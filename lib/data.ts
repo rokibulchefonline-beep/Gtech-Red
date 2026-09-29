@@ -97,3 +97,11 @@ export function findItem(slug: string) {
   }
   return undefined;
 }
+
+const logoBase = 'https://www.gtechdigital.co.uk/assets/frontend/images';
+export const clients = [
+  { name: 'ChefOnline', logo: `${logoBase}/chefonline.png` },
+  { name: 'Salik & Co', logo: `${logoBase}/salikandco.png` },
+  { name: 'Arta', logo: `${logoBase}/arta.png` },
+  { name: 'Table Booking', logo: `${logoBase}/tablebooking.png` },
+];

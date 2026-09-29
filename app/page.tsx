@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import TrustRibbon from '@/components/TrustRibbon';
 import DocCards from '@/components/DocCards';
 import { industries, services, site } from '@/lib/data';
 import { listDocs } from '@/lib/mongo';
@@ -24,6 +25,8 @@ export default async function Home() {
           <Link className="btn ghost" href="/case-studies">See our work</Link>
         </div>
       </section>
+
+      <TrustRibbon />
 
       <section className="dark">
         <div className="wrap">
