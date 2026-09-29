@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { industries, services, site } from '@/lib/data';
 
@@ -6,7 +7,7 @@ export default function Footer() {
     <footer className="ftr">
       <div className="wrap ftr-grid">
         <div>
-          <Link className="logo" href="/">{site.name}</Link>
+          <Link className="logo" href="/"><Image src="/logo.png" alt={site.name} width={140} height={46} priority /></Link>
           <p>{site.tagline}</p>
           <p><a href={`mailto:${site.email}`}>{site.email}</a><br />{site.phone}</p>
         </div>

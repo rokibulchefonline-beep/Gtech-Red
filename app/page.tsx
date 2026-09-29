@@ -17,12 +17,23 @@ export default async function Home() {
   const cases = await listDocs('case_studies', 3);
   return (
     <>
-      <section className="hero">
+      <section className="hero-video">
+        <video autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+          <source src={process.env.NEXT_PUBLIC_HERO_VIDEO_URL || '/videos/hero.mp4'} type="video/mp4" />
+        </video>
         <div className="wrap">
-          <h1>We grow brands with <span className="hl">digital</span>, web &amp; software</h1>
-          <p>{site.tagline}. Strategy, design and engineering under one roof.</p>
-          <Link className="btn" href="/contact">Get a free consultation</Link>
-          <Link className="btn ghost" href="/case-studies">See our work</Link>
+          <h1 className="hero-title">
+            <span>Digital Marketing</span>
+            <span>Agency for Scalable</span>
+            <span className="hero-row">
+              <span>Growth</span>
+              <span className="hero-sub">We help businesses grow with smart, conversion-focused marketing.</span>
+            </span>
+          </h1>
+          <div className="hero-ctas">
+            <Link className="btn-red" href="/contact">Let&apos;s Talk</Link>
+            <Link className="btn-outline" href="/services">Our Services</Link>
+          </div>
         </div>
       </section>
 

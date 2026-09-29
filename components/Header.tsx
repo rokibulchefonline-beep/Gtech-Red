@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { industries, services, site } from '@/lib/data';
@@ -14,7 +15,7 @@ export default function Header() {
   return (
     <header className="hdr">
       <div className="wrap hdr-in">
-        <Link className="logo" href="/" onClick={close}>{site.name}</Link>
+        <Link className="logo" href="/" onClick={close}><Image src="/logo.png" alt={site.name} width={140} height={46} priority /></Link>
         <button className="burger" aria-label="Menu" onClick={() => setNav(!nav)}>&#9776;</button>
         <nav className={`nav ${nav ? 'show' : ''}`}>
           <Link href="/" onClick={close}>Home</Link>
