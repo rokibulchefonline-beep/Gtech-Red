@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Awards from '@/components/Awards';
 import TrustRibbon from '@/components/TrustRibbon';
 import DocCards from '@/components/DocCards';
 import { industries, services, site } from '@/lib/data';
@@ -60,6 +61,8 @@ export default async function Home() {
           ))}
         </div>
       </section>
+
+      <Awards />
 
       <section className="grad">
         <div className="wrap">

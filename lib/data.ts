@@ -105,3 +105,18 @@ export const clients = [
   { name: 'Arta', logo: `${logoBase}/arta.png` },
   { name: 'Table Booking', logo: `${logoBase}/tablebooking.png` },
 ];
+
+// Placeholder badges (hotlinked). Replace with Gtech's own logos in /public/badges/ and update `logo`.
+const w = 'https://growmemarketing.ca/wp-content/uploads';
+export const badges = [
+  { name: 'Forbes', label: 'Featured in Forbes', logo: `${w}/2025/04/logo-forbes.webp` },
+  { name: 'Three Best Business', label: 'Three Best Rated Business', logo: `${w}/2026/03/three-best-businesss.webp` },
+  { name: 'Clutch', label: 'Clutch Top B2B Company', logo: `${w}/2026/03/clutch-top-b2b.webp` },
+  { name: 'Top 3 Advertising Agency', label: 'Top 3 Advertising Agency', logo: `${w}/2026/03/top-3-advertising.webp` },
+  { name: 'UpCity', label: 'UpCity Best Marketing Agency', logo: `${w}/2026/03/upcity-best-alberta.webp` },
+  { name: 'Shopify Partner', label: 'Shopify Partner', logo: `${w}/2026/03/shopify-partner.webp` },
+  { name: 'Meta Partner', label: 'Meta Business Partner', logo: `${w}/2025/04/logo-metapartner.webp` },
+  { name: 'Google Partner', label: 'Google Partner', logo: `${w}/2023/09/image_growme-google-partner.png` },
+  { name: 'Digital Agency Network', label: 'Digital Agency Network Member', logo: `${w}/2025/12/digital-agency-network-logo.svg` },
+  { name: 'Silverhorn', label: 'Silverhorn Partner', logo: `${w}/2024/02/Silverhorn-Logo.png` },
+];
