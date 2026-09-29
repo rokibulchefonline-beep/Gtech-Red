@@ -5,7 +5,7 @@
   <h2>Related services</h2>
   <div class="chips dark-chips">
     <?php foreach ($group['items'] as $n => $b): if ($n === $name) continue; ?>
-      <a href="/services/<?= $gslug ?>/<?= slug($n) ?>"><?= e($n) ?></a>
+      <a href="/services/<?= slug($n) ?>"><?= e($n) ?></a>
     <?php endforeach; ?>
   </div>
   <p><a class="btn" href="/contact?service=<?= urlencode($name) ?>">Get a quote</a></p>

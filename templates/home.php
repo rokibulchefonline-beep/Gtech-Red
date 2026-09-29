@@ -11,10 +11,10 @@
   <div class="wrap">
     <h2>What we do</h2>
     <ul class="list2">
-      <?php foreach (['Digital Advertising' => 'digital-marketing/digital-advertising', 'Branding' => 'branding-strategy/branding',
-        'Search Engine Optimization' => 'digital-marketing/search-engine-optimization', 'Website Design' => 'web-design-development/website-design',
-        'Paid Media' => 'digital-marketing/paid-media', 'Marketing Advisory' => 'branding-strategy/marketing-advisory',
-        'Social Media' => 'social-media-marketing', 'Conversion Rate Optimization' => 'branding-strategy/conversion-rate-optimization'] as $n => $u): ?>
+      <?php foreach (['Digital Advertising' => 'digital-advertising', 'Branding' => 'branding',
+        'Search Engine Optimization' => 'search-engine-optimization', 'Website Design' => 'website-design',
+        'Paid Media' => 'paid-media', 'Marketing Advisory' => 'marketing-advisory',
+        'Social Media' => 'social-media-marketing', 'Conversion Rate Optimization' => 'conversion-rate-optimization'] as $n => $u): ?>
         <li><a href="/services/<?= $u ?>"><?= e($n) ?></a></li>
       <?php endforeach; ?>
     </ul>

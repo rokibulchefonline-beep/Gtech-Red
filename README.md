@@ -19,10 +19,10 @@ PHP backend with MongoDB.
 4. Open `https://<your-app>/api/health`.
 
 ## Site structure
-- `/` home, `/about`, `/contact` (saves to MongoDB `leads`), `/privacy-policy`, `/terms`
-- `/services/{group}` and `/services/{group}/{item}` – Digital Marketing, Social Media Marketing, Web Design & Development, Custom Software Development, Branding & Strategy
+- `/` home, `/about`, `/contact` growth-proposal form (saves to MongoDB `leads`), `/privacy-policy`, `/terms`
+- `/services/{group}` and `/services/{item}` (e.g. `/services/search-engine-optimization`) – Digital Marketing, Social Media Marketing, Web Design & Development, Custom Software Development, Branding & Strategy
 - `/industries/{industry}` – E-commerce, Education, B2B Marketing, Automotive, Healthcare, Hospitality & Hotels, Travel, Real Estate, Finance
-- `/blog`, `/blog/{slug}` – MongoDB collection `posts` (`title`, `slug`, `excerpt`, `body`, `created_at`)
-- `/case-studies`, `/case-studies/{slug}` – MongoDB collection `case_studies` (same fields)
+- `/blogs`, `/blogs/{slug}` (e.g. `/blogs/5-seo-tools`) – MongoDB collection `posts` (`title`, `slug`, `excerpt`, `body`, `created_at`)
+- `/case-studies`, `/case-studies/{slug}` – MongoDB collection `case_studies` (same fields), e.g. `/case-studies/chefonline`
 
 Menus, services and industries live in `src/data.php`. Pages are in `templates/`.

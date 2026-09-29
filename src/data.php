@@ -69,6 +69,11 @@ return [
         ],
     ],
 
+    'budgets' => [
+        'Under £500', '£500 - £1,000', '£1,000 - £2,500', '£2,500 - £5,000',
+        '£5,000 - £10,000', '£10,000+', 'Not sure yet',
+    ],
+
     'industries' => [
         'E-commerce', 'Education', 'B2B Marketing', 'Automotive', 'Healthcare',
         'Hospitality & Hotels', 'Travel', 'Real Estate', 'Finance',
@@ -78,7 +83,7 @@ return [
         ['Home', '/'],
         ['About Us', '/about'],
         ['Case Studies', '/case-studies'],
-        ['Blog', '/blog'],
+        ['Blog', '/blogs'],
         ['Contact Us', '/contact'],
     ],
 ];

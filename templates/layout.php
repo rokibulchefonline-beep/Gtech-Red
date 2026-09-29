@@ -32,7 +32,7 @@
                 <h4><?= e($g['title']) ?></h4>
                 <div class="mega-grid">
                   <?php foreach ($g['items'] as $n => $b): ?>
-                    <a href="/services/<?= $gs ?>/<?= slug($n) ?>"><i><?= e(mb_substr($n, 0, 1)) ?></i><?= e($n) ?></a>
+                    <a href="/services/<?= slug($n) ?>"><i><?= e(mb_substr($n, 0, 1)) ?></i><?= e($n) ?></a>
                   <?php endforeach; ?>
                 </div>
               </div>
@@ -51,7 +51,7 @@
       </div>
 
       <a href="/case-studies">Case Studies</a>
-      <a href="/blog">Blog</a>
+      <a href="/blogs">Blog</a>
       <a class="btn sm" href="/contact">Contact Us</a>
     </nav>
   </div>
@@ -73,7 +73,7 @@
       <?php foreach ($site['industries'] as $n): ?><a href="/industries/<?= slug($n) ?>"><?= e($n) ?></a><?php endforeach; ?>
     </div>
     <div><h5>Company</h5>
-      <a href="/about">About Us</a><a href="/case-studies">Case Studies</a><a href="/blog">Blog</a><a href="/contact">Contact Us</a>
+      <a href="/about">About Us</a><a href="/case-studies">Case Studies</a><a href="/blogs">Blog</a><a href="/contact">Contact Us</a>
       <a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms</a>
     </div>
   </div>

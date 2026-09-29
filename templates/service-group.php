@@ -2,7 +2,7 @@
 <section class="wrap block">
   <div class="cards">
     <?php foreach ($group['items'] as $n => $b): ?>
-      <a class="card" href="/services/<?= $gslug ?>/<?= slug($n) ?>"><h3><?= e($n) ?></h3><p><?= e($b) ?></p></a>
+      <a class="card" href="/services/<?= slug($n) ?>"><h3><?= e($n) ?></h3><p><?= e($b) ?></p></a>
     <?php endforeach; ?>
   </div>
 </section>
