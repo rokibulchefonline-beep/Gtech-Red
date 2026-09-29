@@ -17,3 +17,12 @@ PHP backend with MongoDB.
 2. Deploy this repo to a Docker-capable host (Render, Railway, Fly.io) as a Web Service using the `Dockerfile`.
 3. Set env vars `MONGODB_URI` (the Atlas `mongodb+srv://...` string) and `MONGODB_DB`.
 4. Open `https://<your-app>/api/health`.
+
+## Site structure
+- `/` home, `/about`, `/contact` (saves to MongoDB `leads`), `/privacy-policy`, `/terms`
+- `/services/{group}` and `/services/{group}/{item}` – Digital Marketing, Social Media Marketing, Web Design & Development, Custom Software Development, Branding & Strategy
+- `/industries/{industry}` – E-commerce, Education, B2B Marketing, Automotive, Healthcare, Hospitality & Hotels, Travel, Real Estate, Finance
+- `/blog`, `/blog/{slug}` – MongoDB collection `posts` (`title`, `slug`, `excerpt`, `body`, `created_at`)
+- `/case-studies`, `/case-studies/{slug}` – MongoDB collection `case_studies` (same fields)
+
+Menus, services and industries live in `src/data.php`. Pages are in `templates/`.
