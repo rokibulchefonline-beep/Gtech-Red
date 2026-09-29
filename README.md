@@ -11,3 +11,9 @@ PHP backend with MongoDB.
 ## Endpoints
 - `GET /api/health` – pings MongoDB
 - `GET|POST /api/items`, `GET|PUT|DELETE /api/items/{id}` – example CRUD; replace with your own collections
+
+## Deploy (no local setup)
+1. Create a free cluster on MongoDB Atlas, add a database user, and allow network access (0.0.0.0/0 for testing).
+2. Deploy this repo to a Docker-capable host (Render, Railway, Fly.io) as a Web Service using the `Dockerfile`.
+3. Set env vars `MONGODB_URI` (the Atlas `mongodb+srv://...` string) and `MONGODB_DB`.
+4. Open `https://<your-app>/api/health`.
