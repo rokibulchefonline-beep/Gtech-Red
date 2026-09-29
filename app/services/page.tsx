@@ -1,3 +1,5 @@
+import Icon from '@/components/Icon';
+import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageHead from '@/components/PageHead';
@@ -13,6 +15,7 @@ export default function Services() {
         <div className="cards">
           {services.map((g) => (
             <Link key={g.slug} className="card" href={`/services/${g.slug}`}>
+              <Icon className="card-ico" name={groupIcons[g.slug]} size={28} />
               <h3>{g.title}</h3>
               <p>{g.intro}</p>
               <small>{g.items.map((i) => i.name).join(' · ')}</small>

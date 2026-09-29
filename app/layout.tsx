@@ -1,3 +1,5 @@
+import Icon from '@/components/Icon';
+import { uiIcons } from '@/lib/icons';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
@@ -22,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <Footer />
-        <Link className="float-talk" href="/contact">&#128172; Let&apos;s Talk</Link>
+        <Link className="float-talk" href="/contact"><Icon name={uiIcons.chat} size={18} /> Let&apos;s Talk</Link>
       </body>
     </html>
   );

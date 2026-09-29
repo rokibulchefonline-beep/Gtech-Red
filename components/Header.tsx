@@ -1,5 +1,7 @@
 'use client';
 
+import Icon from '@/components/Icon';
+import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -27,7 +29,7 @@ export default function Header() {
               <div className="mega-tabs">
                 {services.map((g) => (
                   <Link key={g.slug} href={`/services/${g.slug}`} className={tab === g.slug ? 'on' : ''}
-                    onMouseEnter={() => setTab(g.slug)} onClick={close}>{g.title}</Link>
+                    onMouseEnter={() => setTab(g.slug)} onClick={close}><Icon name={groupIcons[g.slug]} size={16} /> {g.title}</Link>
                 ))}
               </div>
               <div className="mega-body">
@@ -36,7 +38,7 @@ export default function Header() {
                     <h4>{g.title}</h4>
                     <div className="mega-grid">
                       {g.items.map((i) => (
-                        <Link key={i.slug} href={`/services/${i.slug}`} onClick={close}><i>{i.name[0]}</i>{i.name}</Link>
+                        <Link key={i.slug} href={`/services/${i.slug}`} onClick={close}><i><Icon name={serviceIcons[i.slug]} size={16} /></i>{i.name}</Link>
                       ))}
                     </div>
                   </div>
@@ -48,7 +50,7 @@ export default function Header() {
           <div className={`dd ${open === 'industries' ? 'open' : ''}`}>
             <a href="#" className="dd-t" onClick={(e) => { e.preventDefault(); toggle('industries'); }}>Industries &#9662;</a>
             <div className="dd-panel ind-panel">
-              {industries.map((i) => <Link key={i.slug} href={`/industries/${i.slug}`} onClick={close}>{i.name}</Link>)}
+              {industries.map((i) => <Link key={i.slug} href={`/industries/${i.slug}`} onClick={close}><Icon name={industryIcons[i.slug]} size={16} /> {i.name}</Link>)}
             </div>
           </div>
 

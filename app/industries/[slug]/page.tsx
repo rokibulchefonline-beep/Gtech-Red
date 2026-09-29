@@ -1,3 +1,5 @@
+import Icon from '@/components/Icon';
+import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -24,13 +26,13 @@ export default async function Industry({ params }: Props) {
   if (!ind) notFound();
   return (
     <>
-      <PageHead title={ind.name} sub={`Marketing, websites and software for ${ind.name.toLowerCase()} businesses.`} />
+      <PageHead icon={industryIcons[ind.slug]} title={ind.name} sub={`Marketing, websites and software for ${ind.name.toLowerCase()} businesses.`} />
       <section className="wrap block prose" style={{ maxWidth: 'none' }}>
         <h2>What we do for {ind.name}</h2>
         <p>Replace with industry-specific copy, challenges and results.</p>
         <div className="cards">
           {services.map((g) => (
-            <Link key={g.slug} className="card" href={`/services/${g.slug}`}><h3>{g.title}</h3><p>{g.intro}</p></Link>
+            <Link key={g.slug} className="card" href={`/services/${g.slug}`}><Icon className="card-ico" name={groupIcons[g.slug]} size={28} /><h3>{g.title}</h3><p>{g.intro}</p></Link>
           ))}
         </div>
       </section>

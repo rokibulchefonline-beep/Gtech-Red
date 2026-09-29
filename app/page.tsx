@@ -1,3 +1,5 @@
+import Icon from '@/components/Icon';
+import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
 import Link from 'next/link';
 import Awards from '@/components/Awards';
 import TrustRibbon from '@/components/TrustRibbon';
@@ -54,6 +56,7 @@ export default async function Home() {
         <div className="cards">
           {services.map((g) => (
             <Link key={g.slug} className="card" href={`/services/${g.slug}`}>
+              <Icon className="card-ico" name={groupIcons[g.slug]} size={28} />
               <h3>{g.title}</h3>
               <p>{g.intro}</p>
               <small>{g.items.slice(0, 3).map((i) => i.name).join(' · ')}</small>
@@ -68,7 +71,7 @@ export default async function Home() {
         <div className="wrap">
           <h2>Industries we serve</h2>
           <div className="chips">
-            {industries.map((i) => <Link key={i.slug} href={`/industries/${i.slug}`}>{i.name}</Link>)}
+            {industries.map((i) => <Link key={i.slug} href={`/industries/${i.slug}`}><Icon name={industryIcons[i.slug]} size={16} /> {i.name}</Link>)}
           </div>
         </div>
       </section>

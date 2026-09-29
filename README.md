@@ -21,3 +21,9 @@ Menus, services, industries and budgets live in `lib/data.ts`.
 
 ## Local
 `npm install`, copy `.env.example` to `.env.local`, `npm run dev`.
+
+## Icons
+Icons come from Iconify sets (browse at https://icones.js.org): `lucide` and `simple-icons` (brands).
+To add or change one: edit the id in `lib/icons.ts` (e.g. `lucide:rocket`), then run `npm run icons`.
+That copies only the used icons into `lib/icon-data.ts`, so no full icon pack ships to the browser.
+To use another pack: `npm i -D @iconify-json/<prefix>` and add it to `scripts/build-icons.mjs`.

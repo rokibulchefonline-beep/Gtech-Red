@@ -1,3 +1,5 @@
+import Icon from '@/components/Icon';
+import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -32,7 +34,7 @@ export default async function ServicePage({ params }: Props) {
         <section className="wrap block">
           <div className="cards">
             {group.items.map((i) => (
-              <Link key={i.slug} className="card" href={`/services/${i.slug}`}><h3>{i.name}</h3><p>{i.blurb}</p></Link>
+              <Link key={i.slug} className="card" href={`/services/${i.slug}`}><Icon className="card-ico" name={serviceIcons[i.slug]} size={28} /><h3>{i.name}</h3><p>{i.blurb}</p></Link>
             ))}
           </div>
         </section>
@@ -48,7 +50,7 @@ export default async function ServicePage({ params }: Props) {
   const { group: g, item } = found;
   return (
     <>
-      <PageHead title={item.name} sub={item.blurb} back={{ href: `/services/${g.slug}`, label: g.title }} />
+      <PageHead icon={serviceIcons[item.slug]} title={item.name} sub={item.blurb} back={{ href: `/services/${g.slug}`, label: g.title }} />
       <section className="wrap block prose">
         <h2>How we help</h2>
         <p>Replace with detailed copy for {item.name}: approach, deliverables, tools, pricing model.</p>

@@ -1,11 +1,12 @@
+import Icon from '@/components/Icon';
 import Link from 'next/link';
 
-export default function PageHead({ title, sub, back }: { title: string; sub?: string; back?: { href: string; label: string } }) {
+export default function PageHead({ title, sub, back, icon }: { title: string; sub?: string; back?: { href: string; label: string }; icon?: string }) {
   return (
     <section className="page-hd">
       <div className="wrap">
         {back && <Link href={back.href}>&larr; {back.label}</Link>}
-        <h1>{title}</h1>
+        <h1>{icon && <Icon className="hd-ico" name={icon} size={36} />}{title}</h1>
         {sub && <p>{sub}</p>}
       </div>
     </section>
