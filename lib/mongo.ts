@@ -1,4 +1,5 @@
 import { MongoClient, type Db } from 'mongodb';
+import { demoCaseStudies } from './data';
 
 const globalForMongo = globalThis as unknown as { _mongo?: Promise<MongoClient> };
 
@@ -9,16 +10,21 @@ export async function getDb(): Promise<Db> {
   return (await globalForMongo._mongo).db(process.env.MONGODB_DB || 'gtech_red');
 }
 
-export type Doc = { slug: string; title: string; excerpt?: string; body?: string };
+export type Doc = { slug: string; title: string; excerpt?: string; body?: string; image?: string; logo?: string };
+
+const toDoc = (r: Record<string, any>): Doc => ({ // eslint-disable-line @typescript-eslint/no-explicit-any
+  slug: r.slug, title: r.title, excerpt: r.excerpt, body: r.body, image: r.image, logo: r.logo,
+});
 
 /** Fetch published docs; empty list if DB is unavailable. */
 export async function listDocs(collection: 'posts' | 'case_studies', limit = 50): Promise<Doc[]> {
   try {
     const db = await getDb();
     const rows = await db.collection(collection).find({}).sort({ created_at: -1 }).limit(limit).toArray();
-    return rows.map((r) => ({ slug: r.slug, title: r.title, excerpt: r.excerpt, body: r.body }));
+    const docs = rows.map(toDoc);
+    return docs.length || collection !== 'case_studies' ? docs : demoCaseStudies.slice(0, limit);
   } catch {
-    return [];
+    return collection === 'case_studies' ? demoCaseStudies.slice(0, limit) : [];
   }
 }
 
@@ -26,8 +32,9 @@ export async function getDoc(collection: 'posts' | 'case_studies', slug: string)
   try {
     const db = await getDb();
     const r = await db.collection(collection).findOne({ slug });
-    return r ? { slug: r.slug, title: r.title, excerpt: r.excerpt, body: r.body } : null;
+    if (r) return toDoc(r);
   } catch {
-    return null;
+    // fall through to demo data
   }
+  return collection === 'case_studies' ? demoCaseStudies.find((c) => c.slug === slug) ?? null : null;
 }

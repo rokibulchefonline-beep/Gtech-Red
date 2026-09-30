@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import DocCards from '@/components/DocCards';
+import CaseCard from '@/components/CaseCard';
 import PageHead from '@/components/PageHead';
 import { listDocs } from '@/lib/mongo';
 
@@ -11,7 +11,7 @@ export default async function Page() {
   return (
     <>
       <PageHead title="Case Studies" />
-      <section className="wrap block"><DocCards docs={docs} base="/case-studies" /></section>
+      <section className="wrap block"><div className="case-grid">{docs.map((d, i) => <CaseCard key={d.slug} doc={d} index={i} />)}</div></section>
     </>
   );
 }

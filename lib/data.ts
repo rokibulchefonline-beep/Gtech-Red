@@ -167,3 +167,19 @@ export const coreServices: {
     points: ['Identity and brand guidelines', 'Positioning and messaging', 'Marketing advisory', 'Conversion rate optimisation'],
   },
 ];
+
+// Demo case studies, shown until real documents exist in the MongoDB `case_studies` collection.
+// Real documents can add `image` (cover photo URL) and `logo` (white logo URL) for the card.
+export const demoCaseStudies = [
+  { slug: 'chefonline', title: 'ChefOnline', excerpt: 'Online ordering growth for a restaurant platform.' },
+  { slug: 'salik-and-co', title: 'Salik & Co', excerpt: 'Lead generation and local SEO for a professional services firm.' },
+  { slug: 'arta', title: 'Arta', excerpt: 'Brand and social growth for a hospitality awards brand.' },
+  { slug: 'table-booking', title: 'Table Booking', excerpt: 'Web platform and paid media for restaurant bookings.' },
+  { slug: 'demo-brand-five', title: 'Demo Brand', excerpt: 'Placeholder case study. Replace with a real client.' },
+  { slug: 'demo-brand-six', title: 'Sample Client', excerpt: 'Placeholder case study. Replace with a real client.' },
+].map((c) => ({
+  ...c,
+  body: `${c.excerpt}\n\nThis is a placeholder case study. Add real documents to the MongoDB "case_studies" collection ` +
+    `(fields: title, slug, excerpt, body, image, logo, created_at) and they replace these demos automatically.\n\n` +
+    `Challenge\nDescribe the client's problem.\n\nSolution\nDescribe what you built or ran.\n\nResults\nAdd real numbers.`,
+}));

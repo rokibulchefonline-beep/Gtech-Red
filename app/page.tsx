@@ -5,9 +5,8 @@ import OurServices from '@/components/OurServices';
 import BrandGrid from '@/components/BrandGrid';
 import WhoWeAre from '@/components/WhoWeAre';
 import TrustRibbon from '@/components/TrustRibbon';
-import DocCards from '@/components/DocCards';
+import CaseStudies from '@/components/CaseStudies';
 import { industries, site } from '@/lib/data';
-import { listDocs } from '@/lib/mongo';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +18,6 @@ const highlights: [string, string][] = [
 ];
 
 export default async function Home() {
-  const cases = await listDocs('case_studies', 3);
   return (
     <>
       <section className="hero-video">
@@ -56,6 +54,7 @@ export default async function Home() {
       <WhoWeAre />
       <BrandGrid />
       <OurServices />
+      <CaseStudies />
 
       <section className="grad">
         <div className="wrap">
@@ -64,12 +63,6 @@ export default async function Home() {
             {industries.map((i) => <Link key={i.slug} href={`/industries/${i.slug}`}><Icon name={industryIcons[i.slug]} size={16} /> {i.name}</Link>)}
           </div>
         </div>
-      </section>
-
-      <section className="wrap block">
-        <h2>Latest case studies</h2>
-        <DocCards docs={cases} base="/case-studies" />
-        <p><Link href="/case-studies">All case studies &rarr;</Link></p>
       </section>
 
       <section className="cta">
