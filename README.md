@@ -33,3 +33,7 @@ The six home-page service visuals are generated from code: `scripts/visuals-scen
 and `scripts/visuals-lib.mjs` (helpers). Edit a scene, then run `npm run visuals` (about 4 minutes) to re-render
 `public/services/*.webp` (3.6 s loop, 20 fps). `node scripts/build-service-visuals.mjs --only=seo` renders one.
 The numbers inside the visuals (for example +240%) are illustrative. Change or remove them before launch.
+
+## Case study images
+The demo case-study covers in `public/case/*.webp` are drawn in code by `scripts/build-case-images.mjs`
+(`npm run case-images`, a few seconds). Real case studies in MongoDB can set `image` to any photo URL.

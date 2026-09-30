@@ -53,6 +53,8 @@ export const industryIcons: Record<string, string> = {
 export const uiIcons = {
   chat: 'lucide:message-circle',
   check: 'lucide:check',
+  quote: 'lucide:messages-square',
+  star: 'lucide:star',
   prev: 'lucide:chevron-left',
   next: 'lucide:chevron-right',
 } as const;

@@ -98,13 +98,6 @@ export function findItem(slug: string) {
   return undefined;
 }
 
-const logoBase = 'https://www.gtechdigital.co.uk/assets/frontend/images';
-export const clients = [
-  { name: 'ChefOnline', logo: `${logoBase}/chefonline.png` },
-  { name: 'Salik & Co', logo: `${logoBase}/salikandco.png` },
-  { name: 'Arta', logo: `${logoBase}/arta.png` },
-  { name: 'Table Booking', logo: `${logoBase}/tablebooking.png` },
-];
 
 // Certified partner logos. Hotlinked for now: download the SVGs into /public/partners/ and change `logo`
 // to '/partners/<file>.svg' so the site does not depend on another domain.
@@ -169,17 +162,41 @@ export const coreServices: {
 ];
 
 // Demo case studies, shown until real documents exist in the MongoDB `case_studies` collection.
+// Covers are drawn in code (scripts/build-case-images.mjs, `npm run case-images`).
 // Real documents can add `image` (cover photo URL) and `logo` (white logo URL) for the card.
 export const demoCaseStudies = [
-  { slug: 'chefonline', title: 'ChefOnline', excerpt: 'Online ordering growth for a restaurant platform.' },
-  { slug: 'salik-and-co', title: 'Salik & Co', excerpt: 'Lead generation and local SEO for a professional services firm.' },
-  { slug: 'arta', title: 'Arta', excerpt: 'Brand and social growth for a hospitality awards brand.' },
-  { slug: 'table-booking', title: 'Table Booking', excerpt: 'Web platform and paid media for restaurant bookings.' },
-  { slug: 'demo-brand-five', title: 'Demo Brand', excerpt: 'Placeholder case study. Replace with a real client.' },
-  { slug: 'demo-brand-six', title: 'Sample Client', excerpt: 'Placeholder case study. Replace with a real client.' },
+  { slug: 'chefonline', image: '/case/chefonline.webp', title: 'ChefOnline', excerpt: 'Online ordering growth for a restaurant platform.' },
+  { slug: 'salik-and-co', image: '/case/salik-and-co.webp', title: 'Salik & Co', excerpt: 'Lead generation and local SEO for a professional services firm.' },
+  { slug: 'arta', image: '/case/arta.webp', title: 'Arta', excerpt: 'Brand and social growth for a hospitality awards brand.' },
+  { slug: 'table-booking', image: '/case/table-booking.webp', title: 'Table Booking', excerpt: 'Web platform and paid media for restaurant bookings.' },
+  { slug: 'demo-brand-five', image: '/case/demo-brand-five.webp', title: 'Demo Brand', excerpt: 'Placeholder case study. Replace with a real client.' },
+  { slug: 'demo-brand-six', image: '/case/demo-brand-six.webp', title: 'Sample Client', excerpt: 'Placeholder case study. Replace with a real client.' },
 ].map((c) => ({
   ...c,
   body: `${c.excerpt}\n\nThis is a placeholder case study. Add real documents to the MongoDB "case_studies" collection ` +
     `(fields: title, slug, excerpt, body, image, logo, created_at) and they replace these demos automatically.\n\n` +
     `Challenge\nDescribe the client's problem.\n\nSolution\nDescribe what you built or ran.\n\nResults\nAdd real numbers.`,
 }));
+
+// Company numbers under the hero. Placeholder figures: replace with your real ones.
+export const stats = [
+  { value: 10, suffix: '+', label: 'Years of experience' },
+  { value: 500, suffix: '+', label: 'Projects delivered' },
+  { value: 150, suffix: '+', label: 'Happy clients' },
+  { value: 12, suffix: '', label: 'Industries served' },
+  { value: 4.9, suffix: '/5', label: 'Average client rating', decimals: 1 },
+];
+
+// Demo testimonials. Replace with real client quotes.
+export const testimonials = [
+  { title: 'Reliable and Strategic SEO Partner', name: 'Derek L',
+    text: "If you're looking for a reliable SEO agency that delivers tangible results, Gtech is the way to go. Their comprehensive SEO audits and tailored strategies have greatly enhanced our site's performance. We appreciate their proactive approach and continuous efforts to optimize our digital assets." },
+  { title: 'Ads That Actually Pay Back', name: 'Sarah M',
+    text: 'Our Google Ads spend used to feel like a gamble. Gtech rebuilt the account, fixed our tracking and cut our cost per lead within the first quarter. The monthly reports are clear and honest.' },
+  { title: 'A Website That Converts', name: 'Imran K',
+    text: 'The new site is faster, looks far better and brings in enquiries every week. The team handled design, development and SEO together, which saved us a lot of back and forth.' },
+  { title: 'Software Built Around Our Process', name: 'Laura P',
+    text: 'Gtech built a custom booking and CRM system that replaced three separate tools. It was delivered on time and the support since launch has been excellent.' },
+  { title: 'A True Growth Partner', name: 'James T',
+    text: 'They act like part of our own team. Strategy, creative and reporting all come from one place, and we can see exactly how marketing turns into revenue.' },
+];

@@ -4,7 +4,9 @@ import Link from 'next/link';
 import OurServices from '@/components/OurServices';
 import BrandGrid from '@/components/BrandGrid';
 import WhoWeAre from '@/components/WhoWeAre';
-import TrustRibbon from '@/components/TrustRibbon';
+import StatsBar from '@/components/StatsBar';
+import Results from '@/components/Results';
+import Testimonials from '@/components/Testimonials';
 import CaseStudies from '@/components/CaseStudies';
 import { industries, site } from '@/lib/data';
 
@@ -33,12 +35,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <TrustRibbon />
+      <StatsBar />
 
       <WhoWeAre />
       <BrandGrid />
       <OurServices />
       <CaseStudies />
+      <Results />
+      <Testimonials />
 
       <section className="grad">
         <div className="wrap">
