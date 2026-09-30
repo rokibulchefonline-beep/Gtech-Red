@@ -27,3 +27,9 @@ Icons come from Iconify sets (browse at https://icones.js.org): `lucide` and `si
 To add or change one: edit the id in `lib/icons.ts` (e.g. `lucide:rocket`), then run `npm run icons`.
 That copies only the used icons into `lib/icon-data.ts`, so no full icon pack ships to the browser.
 To use another pack: `npm i -D @iconify-json/<prefix>` and add it to `scripts/build-icons.mjs`.
+
+## Service visuals (animated WebP)
+The six home-page service visuals are generated from code: `scripts/visuals-scenes.mjs` (one function per scene)
+and `scripts/visuals-lib.mjs` (helpers). Edit a scene, then run `npm run visuals` (about 4 minutes) to re-render
+`public/services/*.webp` (3.6 s loop, 20 fps). `node scripts/build-service-visuals.mjs --only=seo` renders one.
+The numbers inside the visuals (for example +240%) are illustrative. Change or remove them before launch.

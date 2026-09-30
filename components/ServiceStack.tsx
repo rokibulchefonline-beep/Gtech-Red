@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import Icon from '@/components/Icon';
 import { coreServices } from '@/lib/data';
-import { groupIcons, serviceIcons } from '@/lib/icons';
+import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
 
 export default function ServiceStack() {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
@@ -39,16 +39,16 @@ export default function ServiceStack() {
         <div key={s.slug} ref={(el) => { refs.current[i] = el; }}>
         <article className={`svc-card ${shown[i] ? 'in' : ''}`}>
           <div className="svc-text">
-            <span className="svc-num">0{i + 1}</span>
             <h3>{s.title}</h3>
             <p>{s.line}</p>
-            <ul>{s.points.map((p) => <li key={p}>{p}</li>)}</ul>
+            <ul>{s.points.map((p) => <li key={p}><span className="tick"><Icon name={uiIcons.check} size={13} /></span>{p}</li>)}</ul>
             <Link className="svc-link" href={`/services/${s.slug}`}>Learn more &rarr;</Link>
           </div>
           <div className="svc-media">
             {s.image ? (
+              // Re-mounting the <img> when the card appears restarts the animated WebP from frame 0.
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={s.image} alt={s.title} loading="lazy" />
+              <img key={shown[i] ? 'play' : 'idle'} src={s.image} alt={s.title} loading="lazy" />
             ) : (
               <Icon name={serviceIcons[s.slug] ?? groupIcons[s.slug]} size={110} />
             )}

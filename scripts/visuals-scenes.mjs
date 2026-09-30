@@ -1,0 +1,158 @@
+import { C, S, B, seg, clamp, icon, txt, rect, card, pop, zoom, chart, frame } from './visuals-lib.mjs';
+
+const num = (v, d = 0) => v.toFixed(d);
+const upArrow = (x, y, s = 30, col = C.green) => icon('lucide:trending-up', x, y, s, col, 2.6);
+
+/* 1. SEO ---------------------------------------------------------------- */
+export function seo(u) {
+  const q = 'digital agency';
+  const typed = q.slice(0, Math.floor(seg(u, 0.05, 0.28) * (q.length + 0.99)));
+  const caret = u < 0.3 && Math.floor(u * 40) % 2 === 0 ? `<rect x="${162 + typed.length * 12.6}" y="98" width="3" height="30" fill="${C.ink}"/>` : '';
+  const g = seg(u, 0.32, 0.78);
+  const trend = [0.12, 0.2, 0.18, 0.32, 0.4, 0.38, 0.58, 0.72, 0.92];
+  const res = (y, hi, a) => pop(u, a, `
+    ${card(60, y, 500, 108, 20, hi ? `stroke="${C.red}" stroke-width="3"` : '')}
+    <circle cx="106" cy="${y + 40}" r="20" fill="${hi ? C.red : C.line}"/>
+    ${rect(140, y + 24, hi ? 250 : 210, 16, 8, hi ? C.ink : '#c9ccd3')}
+    ${rect(140, y + 52, 130, 11, 6, hi ? '#86efac' : C.line)}
+    ${rect(140, y + 74, 340, 10, 5, C.line)}${rect(140, y + 90, 260, 10, 5, C.line)}`);
+  return frame(u, `
+    ${pop(u, 0, `${card(60, 60, 840, 96, 48)}${icon('lucide:search', 92, 90, 36, C.red, 2.6)}
+      ${txt(162, 118, typed, 26, 500, C.ink)}${caret}
+      <rect x="742" y="80" width="140" height="56" rx="28" fill="url(#rg)"/>${txt(812, 116, 'Search', 22, 700, '#fff', 'middle')}`, 14)}
+    ${res(184, true, 0.3)}${res(310, false, 0.36)}${res(436, false, 0.42)}
+    ${zoom(u, 0.5, 528, 196, `<rect x="486" y="176" width="72" height="40" rx="20" fill="url(#rg)"/>${txt(522, 205, '#1', 22, 700, '#fff', 'middle')}`, 0.12)}
+
+    ${pop(u, 0.2, `${card(590, 184, 310, 262)}${txt(614, 226, 'Organic traffic', 18, 700, C.grey)}
+      ${txt(614, 286, '+' + num(240 * S(u, 0.32, 0.78)) + '%', 50, 700, C.ink)}
+      ${upArrow(840, 250, 34)}
+      ${chart('c1', 616, 316, 262, 100, trend, g)}`)}
+    ${pop(u, 0.5, `${card(60, 574, 500, 110)}${txt(88, 620, 'Qualified leads', 18, 700, C.grey)}
+      ${[0.3, 0.45, 0.6, 0.8, 1].map((v, i) => { const h = 62 * v * S(u, 0.55 + i * 0.05, 0.75 + i * 0.05); return rect(340 + i * 44, 664 - h, 28, h, 8, i === 4 ? C.red : '#ffb3bb'); }).join('')}
+      ${txt(88, 664, num(1240 * S(u, 0.55, 0.85)), 34, 700, C.ink)}`)}
+    ${pop(u, 0.58, `${card(590, 470, 310, 214)}${txt(614, 512, 'Keywords on page 1', 18, 700, C.grey)}
+      ${txt(614, 590, num(128 * S(u, 0.6, 0.9)), 64, 700, C.red)}
+      ${[0, 1, 2, 3, 4, 5, 6].map((i) => rect(614 + i * 38, 660 - 40 * S(u, 0.62 + i * 0.03, 0.85) * (0.4 + i * 0.1), 26, 40 * S(u, 0.62 + i * 0.03, 0.85) * (0.4 + i * 0.1), 6, i > 4 ? C.red : '#ffc9cf')).join('')}`)}
+  `);
+}
+
+/* 2. Paid media --------------------------------------------------------- */
+export function paid(u) {
+  const bars = [0.35, 0.42, 0.5, 0.48, 0.66, 0.78, 0.92];
+  const line = [0.2, 0.3, 0.34, 0.44, 0.58, 0.7, 0.9];
+  const pulse = 1 + 0.05 * Math.sin(u * Math.PI * 6);
+  return frame(u, `
+    ${pop(u, 0, `${card(60, 60, 560, 380)}${txt(88, 106, 'Campaign performance', 20, 700, C.ink)}
+      ${bars.map((v, i) => { const h = 250 * v * S(u, 0.08 + i * 0.05, 0.36 + i * 0.05); return rect(94 + i * 70, 400 - h, 44, h, 10, i > 4 ? 'url(#rg)' : '#ffc9cf'); }).join('')}
+      ${chart('c2', 100, 170, 470, 230, line, seg(u, 0.3, 0.75), C.dark, false)}`, 14)}
+    ${pop(u, 0.16, `${card(650, 60, 250, 178)}${txt(674, 104, 'ROAS', 18, 700, C.grey)}
+      ${txt(674, 176, num(4.8 * S(u, 0.2, 0.6), 1) + 'x', 66, 700, C.ink)}${upArrow(842, 108, 32)}${rect(674, 200, 200, 10, 5, C.line)}${rect(674, 200, 200 * 0.82 * S(u, 0.2, 0.6), 10, 5, C.red)}`)}
+    ${pop(u, 0.26, `${card(650, 262, 250, 178)}${txt(674, 306, 'Cost per lead', 18, 700, C.grey)}
+      ${txt(674, 378, '-' + num(38 * S(u, 0.3, 0.7)) + '%', 66, 700, C.ink)}${icon('lucide:trending-down', 842, 310, 32, C.green, 2.6)}${rect(674, 402, 200, 10, 5, C.line)}${rect(674, 402, 200 * 0.62 * S(u, 0.3, 0.7), 10, 5, C.green)}`)}
+    ${pop(u, 0.38, `${card(60, 470, 560, 214)}
+      <circle cx="112" cy="524" r="26" fill="${C.soft}"/>${icon('simple-icons:googleads', 98, 510, 28, C.red)}
+      <rect x="146" y="510" width="44" height="26" rx="6" fill="none" stroke="${C.ink}" stroke-width="2.5"/>${txt(168, 530, 'Ad', 16, 700, C.ink, 'middle')}
+      ${rect(206, 514, 220, 14, 7, '#c9ccd3')}
+      ${rect(88, 566, 380, 20, 10, C.ink)}${rect(88, 600, 470, 12, 6, C.line)}${rect(88, 622, 400, 12, 6, C.line)}
+      <g transform="translate(${470} 664) scale(${pulse}) translate(${-470} -664)"><rect x="380" y="640" width="180" height="40" rx="20" fill="url(#rg)"/>${txt(470, 668, 'Get a quote', 18, 700, '#fff', 'middle')}</g>`)}
+    ${pop(u, 0.48, `${card(650, 470, 250, 214)}${txt(674, 512, 'Funnel', 18, 700, C.grey)}
+      ${[['Clicks', 200, '#ffc9cf'], ['Leads', 140, '#ff7b89'], ['Sales', 84, C.red]].map(([l, w, c], i) => `${rect(674, 534 + i * 46, w * S(u, 0.52 + i * 0.07, 0.8 + i * 0.05), 34, 10, c)}${txt(684, 558 + i * 46, l, 15, 700, i ? '#fff' : C.ink)}`).join('')}`)}
+  `);
+}
+
+/* 3. Social ------------------------------------------------------------- */
+export function social(u) {
+  const bob = (p) => Math.sin(u * Math.PI * 2 + p) * 6;
+  const heart = 1 + 0.35 * Math.max(0, Math.sin(seg(u, 0.4, 0.55) * Math.PI));
+  const ring = 2 * Math.PI * 62, sweep = S(u, 0.3, 0.72) * 0.72;
+  return frame(u, `
+    ${pop(u, 0, `<rect x="330" y="40" width="300" height="640" rx="44" fill="#fff" filter="url(#sh)"/><rect x="346" y="56" width="268" height="608" rx="34" fill="#fafafa"/>
+      <rect x="440" y="66" width="80" height="20" rx="10" fill="${C.ink}"/>
+      <circle cx="382" cy="130" r="22" fill="url(#rg)"/>${rect(416, 116, 110, 12, 6, C.ink)}${rect(416, 138, 70, 9, 5, C.line)}
+      <rect x="362" y="170" width="236" height="250" rx="20" fill="url(#rg)"/>
+      <circle cx="480" cy="290" r="54" fill="#fff" opacity=".22"/>${icon('lucide:megaphone', 446, 256, 68, '#fff', 2)}
+      ${zoom(u, 0.4, 388, 452, icon('lucide:heart', 372, 436, 34, C.red, 2.4).replace('fill="currentColor"', `fill="${C.red}"`), 0.12)}
+      ${icon('lucide:message-circle', 420, 438, 32, C.ink, 2.2)}${icon('lucide:share-2', 464, 438, 32, C.ink, 2.2)}
+      ${txt(372, 500, num(12400 * S(u, 0.4, 0.8)).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' likes', 17, 700, C.ink)}
+      ${rect(372, 520, 200, 11, 6, C.line)}${rect(372, 540, 150, 11, 6, C.line)}
+      ${rect(372, 580, 100, 40, 20, 'url(#rg)')}${txt(422, 606, 'Follow', 16, 700, '#fff', 'middle')}`, 16, 0.12)}
+    ${pop(u, 0.14, `${card(40, 110, 270, 220)}${txt(64, 152, 'Followers', 18, 700, C.grey)}${txt(64, 210, '+' + num(128 * S(u, 0.2, 0.7)) + '%', 50, 700, C.ink)}
+      ${chart('c3', 66, 236, 220, 70, [0.1, 0.2, 0.18, 0.4, 0.5, 0.75, 0.95], seg(u, 0.22, 0.7))}`)}
+    ${pop(u, 0.5, `${card(40, 372, 270, 130, 65)}${['simple-icons:instagram', 'simple-icons:facebook', 'simple-icons:tiktok'].map((n, i) => `<circle cx="${100 + i * 74}" cy="437" r="28" fill="${C.soft}"/>${icon(n, 100 + i * 74 - 14, 423, 28, C.red)}`).join('')}`)}
+    ${pop(u, 0.42, `<g transform="translate(0 ${bob(0)})"><rect x="660" y="100" width="240" height="76" rx="38" fill="#fff" filter="url(#sh)"/><circle cx="702" cy="138" r="24" fill="${C.soft}"/>${icon('lucide:heart', 690, 126, 24, C.red, 2.4).replace('fill="currentColor"', `fill="${C.red}"`)}${txt(742, 132, '12.4k', 22, 700)}${txt(742, 154, 'new likes', 14, 500, C.grey)}</g>`, 20)}
+    ${pop(u, 0.52, `<g transform="translate(0 ${bob(2)})"><rect x="670" y="200" width="230" height="76" rx="38" fill="#fff" filter="url(#sh)"/><circle cx="712" cy="238" r="24" fill="${C.soft}"/>${icon('lucide:message-circle', 700, 226, 24, C.red, 2.4)}${txt(752, 232, '860', 22, 700)}${txt(752, 254, 'comments', 14, 500, C.grey)}</g>`, 20)}
+    ${pop(u, 0.62, `<g transform="translate(0 ${bob(4)})"><rect x="660" y="300" width="240" height="76" rx="38" fill="#fff" filter="url(#sh)"/><circle cx="702" cy="338" r="24" fill="${C.soft}"/>${icon('lucide:users', 690, 326, 24, C.red, 2.4)}${txt(742, 332, '+3.2k', 22, 700)}${txt(742, 354, 'new followers', 14, 500, C.grey)}</g>`, 20)}
+    ${pop(u, 0.3, `${card(660, 420, 240, 250)}${txt(684, 462, 'Engagement', 18, 700, C.grey)}
+      <g transform="rotate(-90 780 566)"><circle cx="780" cy="566" r="62" fill="none" stroke="${C.line}" stroke-width="18"/>
+      <circle cx="780" cy="566" r="62" fill="none" stroke="url(#rg)" stroke-width="18" stroke-linecap="round" stroke-dasharray="${(ring * sweep).toFixed(1)} ${ring.toFixed(1)}"/></g>
+      ${txt(780, 576, num(72 * S(u, 0.3, 0.72)) + '%', 34, 700, C.ink, 'middle')}`)}
+  `);
+}
+
+/* 4. Web design & development ------------------------------------------- */
+export function web(u) {
+  const arc = (p) => { const a0 = Math.PI * 0.8, a1 = Math.PI * 2.2, a = a0 + (a1 - a0) * p; const x = 780 + 74 * Math.cos(a), y = 210 + 74 * Math.sin(a); return `M${(780 + 74 * Math.cos(a0)).toFixed(1)} ${(210 + 74 * Math.sin(a0)).toFixed(1)} A74 74 0 ${p > 0.5 ? 1 : 0} 1 ${x.toFixed(1)} ${y.toFixed(1)}`; };
+  const code = [[40, C.red], [110, '#3b3f4a'], [70, '#7c8190'], [130, C.red], [60, '#3b3f4a']];
+  return frame(u, `
+    ${pop(u, 0, `${card(60, 60, 570, 440)}<rect x="60" y="60" width="570" height="52" rx="22" fill="#f4f5f7"/><rect x="60" y="90" width="570" height="22" fill="#f4f5f7"/>
+      ${[0, 1, 2].map((i) => `<circle cx="${92 + i * 22}" cy="86" r="7" fill="${['#ff5f57', '#febc2e', '#28c840'][i]}"/>`).join('')}${rect(200, 74, 260, 24, 12, '#fff')}
+      ${rect(90, 136, 60, 12, 6, C.ink)}${rect(430, 136, 40, 10, 5, C.line)}${rect(486, 136, 40, 10, 5, C.line)}<rect x="544" y="128" width="58" height="26" rx="13" fill="url(#rg)"/>
+      ${rect(90, 190, 300 * S(u, 0.1, 0.24), 26, 10, C.ink)}${rect(90, 230, 230 * S(u, 0.16, 0.3), 26, 10, C.ink)}
+      ${rect(90, 280, 260 * S(u, 0.22, 0.34), 12, 6, C.line)}${rect(90, 302, 200 * S(u, 0.24, 0.36), 12, 6, C.line)}
+      ${zoom(u, 0.3, 160, 356, `<rect x="90" y="332" width="140" height="44" rx="22" fill="url(#rg)"/>${txt(160, 362, 'Get started', 17, 700, '#fff', 'middle')}`, 0.1)}
+      ${pop(u, 0.2, `<rect x="400" y="180" width="200" height="200" rx="22" fill="url(#rg)"/><circle cx="500" cy="280" r="46" fill="#fff" opacity=".25"/>${icon('lucide:monitor', 466, 246, 68, '#fff', 2)}`, 20, 0.14)}
+      ${[0, 1, 2].map((i) => pop(u, 0.36 + i * 0.05, `<rect x="${90 + i * 174}" y="404" width="158" height="76" rx="16" fill="#f4f5f7"/><circle cx="${118 + i * 174}" cy="430" r="12" fill="${C.red}" opacity="${0.4 + i * 0.3}"/>${rect(104 + i * 174, 452, 100, 9, 5, '#d5d8de')}`, 16, 0.08)).join('')}`, 14)}
+    ${pop(u, 0.24, `${card(660, 60, 240, 300)}${txt(780, 104, 'Performance', 18, 700, C.grey, 'middle')}
+      <path d="${arc(1)}" fill="none" stroke="${C.line}" stroke-width="16" stroke-linecap="round"/>
+      ${S(u, 0.3, 0.7) > 0.01 ? `<path d="${arc(S(u, 0.3, 0.7) * 0.98)}" fill="none" stroke="url(#rg)" stroke-width="16" stroke-linecap="round"/>` : ''}
+      ${txt(780, 222, num(98 * S(u, 0.3, 0.7)), 50, 700, C.ink, 'middle')}
+      ${icon('lucide:zap', 764, 300, 32, C.red, 2.4)}${txt(780, 350, 'Fast load', 15, 500, C.grey, 'middle')}`)}
+    ${pop(u, 0.4, `<rect x="660" y="384" width="240" height="116" rx="22" fill="#1b1d24" filter="url(#sh)"/>
+      ${code.map(([w, c], i) => rect(686 + (i % 2) * 20, 408 + i * 17, w * S(u, 0.44 + i * 0.05, 0.6 + i * 0.05), 9, 5, c)).join('')}`)}
+    ${pop(u, 0.5, `${card(60, 530, 570, 154)}${txt(88, 574, 'Conversion rate', 18, 700, C.grey)}${txt(88, 640, '+' + num(64 * S(u, 0.54, 0.86)) + '%', 52, 700, C.ink)}${upArrow(258, 604, 34)}
+      ${[0.3, 0.42, 0.5, 0.66, 0.8, 1].map((v, i) => { const h = 100 * v * S(u, 0.55 + i * 0.04, 0.8 + i * 0.04); return rect(340 + i * 44, 664 - h, 30, h, 8, i === 5 ? 'url(#rg)' : '#ffc9cf'); }).join('')}`)}
+    ${pop(u, 0.58, `${card(660, 530, 240, 154)}${icon('lucide:shield-check', 684, 552, 34, C.red, 2.4)}${txt(730, 578, 'Secure', 20, 700)}
+      ${icon('lucide:smartphone', 684, 602, 34, C.red, 2.4)}${txt(730, 628, 'Responsive', 20, 700)}${icon('lucide:search', 684, 648, 26, C.red, 2.4)}${txt(730, 668, 'SEO ready', 18, 700)}`)}
+  `);
+}
+
+/* 5. Custom software ---------------------------------------------------- */
+export function software(u) {
+  const dash = -u * 240;
+  const link = (x1, y1, x2, y2, a) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#ffc9cf" stroke-width="4"/><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${C.red}" stroke-width="4" stroke-dasharray="8 22" stroke-dashoffset="${dash}" opacity="${S(u, a, a + 0.1)}"/>`;
+  const node = (cx, cy, ic, a) => zoom(u, a, cx, cy, `<circle cx="${cx}" cy="${cy}" r="38" fill="#fff" filter="url(#sh)"/>${icon(ic, cx - 18, cy - 18, 36, C.red, 2.4)}`, 0.1);
+  const steps = [['lucide:database', 'Data'], ['lucide:settings-2', 'Logic'], ['lucide:circle-check', 'Live']];
+  return frame(u, `
+    ${pop(u, 0, `${card(60, 60, 600, 420)}<rect x="60" y="60" width="86" height="420" rx="22" fill="#1b1d24"/><rect x="124" y="60" width="22" height="420" fill="#1b1d24"/>
+      ${['lucide:layout-dashboard', 'lucide:users', 'lucide:chart-column', 'lucide:settings'].map((n, i) => `${i === 0 ? `<rect x="78" y="${96 + i * 62}" width="50" height="44" rx="14" fill="url(#rg)"/>` : ''}${icon(n, 91, 105 + i * 62, 24, i === 0 ? '#fff' : '#9aa0ae', 2.2)}`).join('')}
+      ${txt(176, 106, 'Dashboard', 22, 700)}${rect(480, 88, 150, 26, 13, C.line)}
+      ${[['Revenue', 84, '$'], ['Orders', 62, ''], ['Users', 91, '']].map(([l, v, p], i) => pop(u, 0.1 + i * 0.05, `<rect x="${176 + i * 156}" y="132" width="140" height="84" rx="16" fill="#f7f8fa"/>${txt(192 + i * 156, 160, l, 14, 700, C.grey)}${txt(192 + i * 156, 196, p + num(v * S(u, 0.14 + i * 0.05, 0.5)) + 'k', 26, 700, C.ink)}`, 14, 0.08)).join('')}
+      ${[0.4, 0.55, 0.45, 0.7, 0.62, 0.85, 1].map((v, i) => { const h = 110 * v * S(u, 0.22 + i * 0.04, 0.5 + i * 0.04); return rect(196 + i * 60, 350 - h, 36, h, 9, i === 6 ? 'url(#rg)' : '#ffc9cf'); }).join('')}
+      ${[0, 1].map((i) => pop(u, 0.4 + i * 0.05, `${rect(176, 376 + i * 48, 454, 34, 10, '#f7f8fa')}<circle cx="198" cy="${393 + i * 48}" r="9" fill="${i ? C.grey : C.red}"/>${rect(220, 388 + i * 48, 150, 10, 5, '#c9ccd3')}${rect(560, 388 + i * 48, 50, 10, 5, i ? '#c9ccd3' : '#86efac')}`, 10, 0.06)).join('')}`, 14)}
+    ${link(780, 240, 780, 130, 0.3)}${link(780, 240, 700, 340, 0.36)}${link(780, 240, 860, 340, 0.42)}
+    ${zoom(u, 0.24, 780, 240, `<circle cx="780" cy="240" r="${52 + 6 * Math.sin(u * Math.PI * 6)}" fill="${C.soft}"/><circle cx="780" cy="240" r="46" fill="url(#rg)" filter="url(#sh)"/>${icon('lucide:cloud', 758, 218, 44, '#fff', 2.2)}`, 0.12)}
+    ${node(780, 122, 'lucide:webhook', 0.36)}${node(694, 356, 'lucide:database', 0.42)}${node(866, 356, 'lucide:smartphone', 0.48)}
+    ${pop(u, 0.52, `${card(60, 520, 840, 164)}${txt(88, 566, 'Automated workflow', 18, 700, C.grey)}
+      ${steps.map(([ic, l], i) => { const on = S(u, 0.56 + i * 0.1, 0.66 + i * 0.1); const x = 92 + i * 270; return `<rect x="${x}" y="588" width="216" height="74" rx="20" fill="${on > 0.5 ? C.soft : '#f4f5f7'}" stroke="${on > 0.5 ? C.red : 'none'}" stroke-width="2.5"/>${icon(ic, x + 22, 611, 28, on > 0.5 ? C.red : C.grey, 2.4)}${txt(x + 64, 634, l, 22, 700)}${i < 2 ? icon('lucide:arrow-right', x + 226, 612, 30, C.grey, 2.4) : ''}`; }).join('')}`)}
+  `);
+}
+
+/* 6. Branding ----------------------------------------------------------- */
+export function branding(u) {
+  const sw = ['#e8202f', '#b0122c', '#161616', '#f1f2f5', '#ff8a95'];
+  return frame(u, `
+    ${pop(u, 0, `${card(60, 60, 370, 300)}
+      ${zoom(u, 0.06, 245, 190, `<path d="M245 118 L292 146 L292 202 L245 230 L198 202 L198 146 Z" fill="url(#rg)"/><path d="M245 146 L268 160 L268 188 L245 202 L222 188 L222 160 Z" fill="#fff"/>`, 0.14)}
+      ${rect(150, 262, 190 * S(u, 0.16, 0.3), 22, 11, C.ink)}${rect(180, 298, 130 * S(u, 0.2, 0.34), 12, 6, C.line)}`, 14)}
+    ${pop(u, 0.14, `${card(460, 60, 440, 136)}${txt(486, 100, 'Colour palette', 17, 700, C.grey)}${sw.map((c, i) => zoom(u, 0.2 + i * 0.05, 510 + i * 78, 150, `<circle cx="${510 + i * 78}" cy="150" r="30" fill="${c}" stroke="#e5e7eb" stroke-width="2"/>`, 0.1)).join('')}`)}
+    ${pop(u, 0.3, `${card(460, 220, 210, 140)}${zoom(u, 0.34, 520, 300, txt(520, 322, 'Aa', 64, 700, C.red, 'middle'), 0.12)}${rect(580, 268, 64, 12, 6, C.ink)}${rect(580, 292, 50, 10, 5, C.line)}${rect(580, 312, 60, 10, 5, C.line)}`)}
+    ${pop(u, 0.38, `${card(690, 220, 210, 140)}${['lucide:gem', 'lucide:sparkles', 'lucide:star', 'lucide:heart'].map((n, i) => zoom(u, 0.42 + i * 0.05, 738 + (i % 2) * 90, 270 + Math.floor(i / 2) * 60, `<circle cx="${738 + (i % 2) * 90}" cy="${270 + Math.floor(i / 2) * 60}" r="24" fill="${C.soft}"/>${icon(n, 726 + (i % 2) * 90, 258 + Math.floor(i / 2) * 60, 24, C.red, 2.4)}`, 0.09)).join('')}`)}
+    ${pop(u, 0.5, `${card(60, 390, 560, 294)}${txt(88, 434, 'Brand recall', 18, 700, C.grey)}${txt(88, 500, '+' + num(86 * S(u, 0.54, 0.88)) + '%', 56, 700, C.ink)}${upArrow(268, 458, 36)}
+      ${chart('c6', 96, 530, 490, 120, [0.1, 0.16, 0.14, 0.3, 0.42, 0.5, 0.72, 0.9], seg(u, 0.54, 0.88))}`)}
+    ${pop(u, 0.6, `${card(650, 390, 250, 294)}
+      <g transform="rotate(-6 775 500)"><rect x="672" y="430" width="206" height="118" rx="14" fill="url(#rg)"/><path d="M700 470 L716 480 L716 500 L700 510 L684 500 L684 480 Z" fill="#fff"/>${rect(736, 468, 100, 12, 6, '#fff', 'opacity=".9"')}${rect(736, 490, 70, 9, 5, '#fff', 'opacity=".6"')}</g>
+      <circle cx="712" cy="616" r="30" fill="url(#rg)"/>${txt(712, 626, 'G', 28, 700, '#fff', 'middle')}${rect(756, 600, 110, 14, 7, C.ink)}${rect(756, 626, 80, 10, 5, C.line)}`)}
+  `);
+}
+
+export const scenes = { seo, paid, social, web, software, branding };

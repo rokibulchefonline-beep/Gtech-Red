@@ -137,32 +137,32 @@ export const coreServices: {
   slug: string; title: string; line: string; points: string[]; image?: string;
 }[] = [
   {
-    slug: 'search-engine-optimization', title: 'Search Engine Optimization',
+    slug: 'search-engine-optimization', title: 'Search Engine Optimization', image: '/services/seo.webp',
     line: 'Rank higher, earn qualified traffic and turn searches into customers.',
     points: ['Technical SEO audits and fixes', 'Keyword and content strategy', 'Local and ecommerce SEO', 'Link building and monthly reporting'],
   },
   {
-    slug: 'google-ads', title: 'Google Ads & Paid Media',
+    slug: 'google-ads', title: 'Google Ads & Paid Media', image: '/services/paid.webp',
     line: 'Paid campaigns built around cost per lead and return on ad spend.',
     points: ['Search, Shopping and Performance Max', 'Meta, TikTok and LinkedIn ads', 'Landing pages and conversion tracking', 'Weekly optimisation and clear reporting'],
   },
   {
-    slug: 'social-media-marketing', title: 'Social Media Marketing',
+    slug: 'social-media-marketing', title: 'Social Media Marketing', image: '/services/social.webp',
     line: 'Grow your audience and sales on the platforms your customers use.',
     points: ['Content calendars and creative', 'Community management', 'Influencer and UGC campaigns', 'Paid social and analytics'],
   },
   {
-    slug: 'web-design-development', title: 'Web Design & Development',
+    slug: 'web-design-development', title: 'Web Design & Development', image: '/services/web.webp',
     line: 'Fast, secure, conversion-focused websites and online stores.',
     points: ['UX and UI design', 'WordPress, Laravel and Next.js builds', 'Ecommerce and payments', 'Speed, security and maintenance'],
   },
   {
-    slug: 'custom-software-development', title: 'Custom Software Development',
+    slug: 'custom-software-development', title: 'Custom Software Development', image: '/services/software.webp',
     line: 'Software built around your process, not the other way round.',
     points: ['Web apps and internal tools', 'CRM, ERP and integrations', 'Mobile apps', 'SaaS products and MVPs'],
   },
   {
-    slug: 'branding', title: 'Branding & Strategy',
+    slug: 'branding', title: 'Branding & Strategy', image: '/services/branding.webp',
     line: 'A clear brand and a clear plan to grow it.',
     points: ['Identity and brand guidelines', 'Positioning and messaging', 'Marketing advisory', 'Conversion rate optimisation'],
   },
