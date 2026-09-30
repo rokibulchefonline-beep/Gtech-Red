@@ -59,3 +59,13 @@ export const uiIcons = {
   prev: 'lucide:chevron-left',
   next: 'lucide:chevron-right',
 } as const;
+
+// Icons used inside the "How We Work" illustrations.
+export const howIcons = {
+  search: 'lucide:search',
+  target: 'lucide:target',
+  rocket: 'lucide:rocket',
+  trend: 'lucide:trending-up',
+  check: 'lucide:check',
+  users: 'lucide:users',
+} as const;

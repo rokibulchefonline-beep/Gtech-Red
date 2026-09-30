@@ -8,7 +8,8 @@
     "start": "next start",
     "icons": "node scripts/build-icons.mjs",
     "visuals": "node scripts/build-service-visuals.mjs",
-    "case-images": "node scripts/build-case-images.mjs"
+    "case-images": "node scripts/build-case-images.mjs",
+    "cta-bg": "node scripts/build-cta-bg.mjs"
   },
   "dependencies": {
     "mongodb": "^6.10.0",

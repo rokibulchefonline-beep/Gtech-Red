@@ -4,6 +4,8 @@ import Link from 'next/link';
 import OurServices from '@/components/OurServices';
 import BrandGrid from '@/components/BrandGrid';
 import WhoWeAre from '@/components/WhoWeAre';
+import HowWeWork from '@/components/HowWeWork';
+import InquirySection from '@/components/InquirySection';
 import IndustriesSection from '@/components/IndustriesSection';
 import StatsBar from '@/components/StatsBar';
 import Results from '@/components/Results';
@@ -41,15 +43,14 @@ export default async function Home() {
       <WhoWeAre />
       <BrandGrid />
       <OurServices />
+      <HowWeWork />
       <CaseStudies />
       <Results />
       <Testimonials />
 
       <IndustriesSection />
 
-      <section className="cta">
-        <div className="wrap"><h2>Ready to grow?</h2><Link className="btn light" href="/contact">Contact us</Link></div>
-      </section>
+      <InquirySection />
     </>
   );
 }

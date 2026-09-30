@@ -37,3 +37,7 @@ The numbers inside the visuals (for example +240%) are illustrative. Change or r
 ## Case study images
 The demo case-study covers in `public/case/*.webp` are drawn in code by `scripts/build-case-images.mjs`
 (`npm run case-images`, a few seconds). Real case studies in MongoDB can set `image` to any photo URL.
+
+## Inquiry section background
+`public/cta-bg.webp` (the dark laptop backdrop behind the home-page inquiry form) is drawn by
+`scripts/build-cta-bg.mjs` (`npm run cta-bg`). Replace the file with any photo to use your own.
