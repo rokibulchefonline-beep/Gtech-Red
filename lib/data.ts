@@ -115,3 +115,17 @@ export const partners = [
   { name: 'HubSpot', logo: `${p}/work-icon-3.svg` },
   { name: 'Semrush', logo: `${p}/work-icon-4.svg` },
 ];
+
+// Demo client logos (hotlinked placeholders). Replace with your own in /public/clients/.
+const g = 'https://growmemarketing.ca/wp-content/uploads';
+export const brandLogos = [
+  { name: 'Barbecues Galore', logo: `${g}/2023/11/barbecues-galore-logo.webp` },
+  { name: 'Edwards Injury Law', logo: `${g}/2025/10/logo-edwards-injury-law-fit.svg` },
+  { name: 'Stephanie Edwards', logo: `${g}/2019/08/edwards-injury-law_logo-02.png` },
+  { name: 'Supreme Security', logo: `${g}/2023/11/image_home-client-logo-supreme-security.webp` },
+  { name: 'Ultimate Homes & Renovations', logo: `${g}/2025/06/logo-ultimate-renovations-colored.png` },
+  { name: 'Tiptop Plumbing & Heating', logo: `${g}/2025/03/TiptopPlumbingHeatingLogo.png` },
+  { name: 'Vive Rejuvenation', logo: `${g}/2024/12/vive-med-spa.svg` },
+  { name: 'Digital Agency Network', logo: `${g}/2025/12/digital-agency-network-logo.svg` },
+  { name: 'Silverhorn', logo: `${g}/2024/02/Silverhorn-Logo.png` },
+];

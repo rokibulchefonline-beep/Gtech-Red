@@ -1,6 +1,7 @@
 import Icon from '@/components/Icon';
 import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
 import Link from 'next/link';
+import BrandGrid from '@/components/BrandGrid';
 import WhoWeAre from '@/components/WhoWeAre';
 import TrustRibbon from '@/components/TrustRibbon';
 import DocCards from '@/components/DocCards';
@@ -66,6 +67,7 @@ export default async function Home() {
       </section>
 
       <WhoWeAre />
+      <BrandGrid />
 
       <section className="grad">
         <div className="wrap">
