@@ -71,3 +71,13 @@ export const howIcons = {
   check: 'lucide:check',
   users: 'lucide:users',
 } as const;
+
+// Icons inside the inquiry form fields.
+export const formIcons = {
+  business: 'lucide:briefcase-business',
+  person: 'lucide:user',
+  phone: 'lucide:phone',
+  mail: 'lucide:mail',
+  pin: 'lucide:map-pin',
+  service: 'lucide:settings-2',
+} as const;

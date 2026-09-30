@@ -4,7 +4,7 @@ import { getDb } from '@/lib/mongo';
 export const dynamic = 'force-dynamic';
 
 // Accepts both forms: the /contact proposal form (name, business, budget) and the
-// home-page inquiry form (firstName, lastName, company, designation, size).
+// home-page inquiry form (name, company, phone, email, postcode, service).
 export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const v = (k: string) => String(body[k] ?? '').trim();
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     await db.collection('leads').insertOne({
       name, business, email, phone, service,
       budget: v('budget'), designation: v('designation'), companySize: v('size'),
-      message: v('message'), source: v('source') || 'contact', created_at: new Date(),
+      postcode: v('postcode'), message: v('message'), source: v('source') || 'contact', created_at: new Date(),
     });
     return NextResponse.json({ ok: true });
   } catch {
