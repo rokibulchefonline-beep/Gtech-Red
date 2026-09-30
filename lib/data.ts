@@ -80,7 +80,7 @@ export const services: ServiceGroup[] = Object.entries(groups).map(([title, g]) 
 
 export const industries = [
   'E-commerce', 'Education', 'B2B Marketing', 'Automotive', 'Healthcare',
-  'Hospitality & Hotels', 'Travel', 'Real Estate', 'Finance',
+  'Hospitality & Hotels', 'Travel', 'Real Estate', 'Finance', 'Technology & SaaS',
 ].map((name) => ({ name, slug: slugify(name) }));
 
 export const budgets = [

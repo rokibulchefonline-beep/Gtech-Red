@@ -48,6 +48,7 @@ export const industryIcons: Record<string, string> = {
   travel: 'lucide:plane',
   'real-estate': 'lucide:building-2',
   finance: 'lucide:landmark',
+  'technology-saas': 'lucide:cpu',
 };
 
 export const uiIcons = {
