@@ -58,6 +58,8 @@ export const uiIcons = {
   star: 'lucide:star',
   prev: 'lucide:chevron-left',
   next: 'lucide:chevron-right',
+  play: 'lucide:play',
+  pause: 'lucide:pause',
 } as const;
 
 // Icons used inside the "How We Work" illustrations.

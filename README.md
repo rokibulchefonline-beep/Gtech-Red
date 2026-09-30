@@ -42,6 +42,7 @@ The demo case-study covers in `public/case/*.webp` are drawn in code by `scripts
 `public/cta-bg.webp` (the dark laptop backdrop behind the home-page inquiry form) is drawn by
 `scripts/build-cta-bg.mjs` (`npm run cta-bg`). Replace the file with any photo to use your own.
 
-## Who We Are image
-`public/about-tall.webp` (the tall image beside the Who We Are text) is drawn by `scripts/build-about-image.mjs`
-(`npm run about-image`). Replace the file with a real team photo (portrait, about 3:4) when you have one.
+## Intro video (Who We Are section)
+`public/videos/intro.mp4` (30 s, 1280x720) and its poster are drawn in code by `scripts/build-intro-video.mjs`.
+Needs an ffmpeg with libx264: `FFMPEG=/path/to/ffmpeg npm run intro-video` (about 1 minute).
+Edit the scenes and text in that script (numbers live in `scripts/video-data.mjs`), or replace the two files with your own video and poster.
