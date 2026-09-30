@@ -14,6 +14,17 @@ import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
 export default function ServiceStack() {
   const refs = useRef<(HTMLElement | null)[]>([]);
   const [played, setPlayed] = useState<boolean[]>(() => coreServices.map(() => false));
+  const [flow, setFlow] = useState(false); // true when a card is too tall to pin on this screen
+
+  useEffect(() => {
+    const measure = () => {
+      const tallest = Math.max(...refs.current.map((el) => el?.offsetHeight ?? 0));
+      setFlow(tallest + 120 > window.innerHeight);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
 
   useEffect(() => {
     // Re-mount each animated image the first time its card is on screen, so it starts from frame 0.
@@ -35,12 +46,12 @@ export default function ServiceStack() {
   }, []);
 
   return (
-    <div className="svc-stack">
+    <div className={`svc-stack ${flow ? 'flow' : ''}`}>
       {coreServices.map((s, i) => (
         <article
           key={s.slug}
           ref={(el) => { refs.current[i] = el; }}
-          className="svc-card"
+          className={`svc-card ${played[i] ? 'seen' : ''}`}
           style={{ ['--i' as string]: i }}
         >
           <div className="svc-text">
