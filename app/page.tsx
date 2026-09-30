@@ -10,13 +10,6 @@ import { industries, site } from '@/lib/data';
 
 export const dynamic = 'force-dynamic';
 
-const highlights: [string, string][] = [
-  ['Digital Advertising', 'digital-advertising'], ['Branding', 'branding'],
-  ['Search Engine Optimization', 'search-engine-optimization'], ['Website Design', 'website-design'],
-  ['Paid Media', 'paid-media'], ['Marketing Advisory', 'marketing-advisory'],
-  ['Social Media', 'social-media-marketing'], ['Conversion Rate Optimization', 'conversion-rate-optimization'],
-];
-
 export default async function Home() {
   return (
     <>
@@ -41,15 +34,6 @@ export default async function Home() {
       </section>
 
       <TrustRibbon />
-
-      <section className="dark">
-        <div className="wrap">
-          <h2>What we do</h2>
-          <ul className="list2">
-            {highlights.map(([n, s]) => <li key={s}><Link href={`/services/${s}`}>{n}</Link></li>)}
-          </ul>
-        </div>
-      </section>
 
       <WhoWeAre />
       <BrandGrid />
