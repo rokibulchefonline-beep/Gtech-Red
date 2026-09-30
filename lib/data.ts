@@ -129,3 +129,41 @@ export const brandLogos = [
   { name: 'Digital Agency Network', logo: `${g}/2025/12/digital-agency-network-logo.svg` },
   { name: 'Silverhorn', logo: `${g}/2024/02/Silverhorn-Logo.png` },
 ];
+
+// Six core services shown as stacked cards on the home page. `slug` links to /services/{slug}.
+// `image` is optional: set e.g. '/services/seo.jpg' (file in /public/services/) to show a photo
+// instead of the icon panel.
+export const coreServices: {
+  slug: string; title: string; line: string; points: string[]; image?: string;
+}[] = [
+  {
+    slug: 'search-engine-optimization', title: 'Search Engine Optimization',
+    line: 'Rank higher, earn qualified traffic and turn searches into customers.',
+    points: ['Technical SEO audits and fixes', 'Keyword and content strategy', 'Local and ecommerce SEO', 'Link building and monthly reporting'],
+  },
+  {
+    slug: 'google-ads', title: 'Google Ads & Paid Media',
+    line: 'Paid campaigns built around cost per lead and return on ad spend.',
+    points: ['Search, Shopping and Performance Max', 'Meta, TikTok and LinkedIn ads', 'Landing pages and conversion tracking', 'Weekly optimisation and clear reporting'],
+  },
+  {
+    slug: 'social-media-marketing', title: 'Social Media Marketing',
+    line: 'Grow your audience and sales on the platforms your customers use.',
+    points: ['Content calendars and creative', 'Community management', 'Influencer and UGC campaigns', 'Paid social and analytics'],
+  },
+  {
+    slug: 'web-design-development', title: 'Web Design & Development',
+    line: 'Fast, secure, conversion-focused websites and online stores.',
+    points: ['UX and UI design', 'WordPress, Laravel and Next.js builds', 'Ecommerce and payments', 'Speed, security and maintenance'],
+  },
+  {
+    slug: 'custom-software-development', title: 'Custom Software Development',
+    line: 'Software built around your process, not the other way round.',
+    points: ['Web apps and internal tools', 'CRM, ERP and integrations', 'Mobile apps', 'SaaS products and MVPs'],
+  },
+  {
+    slug: 'branding', title: 'Branding & Strategy',
+    line: 'A clear brand and a clear plan to grow it.',
+    points: ['Identity and brand guidelines', 'Positioning and messaging', 'Marketing advisory', 'Conversion rate optimisation'],
+  },
+];

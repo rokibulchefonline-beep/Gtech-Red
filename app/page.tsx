@@ -1,11 +1,12 @@
 import Icon from '@/components/Icon';
 import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
 import Link from 'next/link';
+import OurServices from '@/components/OurServices';
 import BrandGrid from '@/components/BrandGrid';
 import WhoWeAre from '@/components/WhoWeAre';
 import TrustRibbon from '@/components/TrustRibbon';
 import DocCards from '@/components/DocCards';
-import { industries, services, site } from '@/lib/data';
+import { industries, site } from '@/lib/data';
 import { listDocs } from '@/lib/mongo';
 
 export const dynamic = 'force-dynamic';
@@ -52,22 +53,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="wrap block">
-        <h2>Our services</h2>
-        <div className="cards">
-          {services.map((g) => (
-            <Link key={g.slug} className="card" href={`/services/${g.slug}`}>
-              <Icon className="card-ico" name={groupIcons[g.slug]} size={28} />
-              <h3>{g.title}</h3>
-              <p>{g.intro}</p>
-              <small>{g.items.slice(0, 3).map((i) => i.name).join(' · ')}</small>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       <WhoWeAre />
       <BrandGrid />
+      <OurServices />
 
       <section className="grad">
         <div className="wrap">
