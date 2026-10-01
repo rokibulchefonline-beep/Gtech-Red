@@ -5,7 +5,9 @@ import { industryContent } from '@/content/industries';
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
+// Unknown slugs still 404 via notFound(); leaving dynamicParams on lets hosts without a
+// prerender cache (e.g. Cloudflare via OpenNext) render these pages on demand.
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return Object.keys(industryContent).map((slug) => ({ slug }));
