@@ -120,3 +120,33 @@ export function videoAd({ title, platform, kpis }) {
     ${box(660, 160, 260, 120)}${chip(680, 180, 52, 52, 'lucide:shopping-cart')}${txt(748, 208, 'Conversions', 17, 700, C.grey)}${txt(748, 250, esc(kpis[2]), 30, 700, C.ink)}
     ${box(660, 310, 260, 120)}${chip(680, 330, 52, 52, 'lucide:coins')}${txt(748, 358, 'Cost per sale', 17, 700, C.grey)}${txt(748, 400, esc(kpis[3]), 30, 700, C.ink)}`;
 }
+
+export function gauges({ title, items, checks }) {
+  const g = (cx, it) => {
+    const p = Math.min(1, it.p), a0 = Math.PI * 0.8, a1 = a0 + Math.PI * 1.4 * p, r = 70;
+    const pt = (a) => `${(cx + r * Math.cos(a)).toFixed(1)} ${(250 + r * Math.sin(a)).toFixed(1)}`;
+    return `${box(cx - 130, 110, 260, 300)}${txt(cx, 156, esc(it.label), 22, 700, C.grey, 'middle')}
+      <path d="M${pt(a0)} A${r} ${r} 0 1 1 ${pt(Math.PI * 2.2)}" fill="none" stroke="${C.line}" stroke-width="16"/>
+      <path d="M${pt(a0)} A${r} ${r} 0 ${p > 0.72 ? 1 : 0} 1 ${pt(a1)}" fill="none" stroke="${C.green}" stroke-width="16"/>
+      ${txt(cx, 262, esc(it.value), 34, 700, C.ink, 'middle')}<rect x="${cx - 54}" y="348" width="108" height="36" fill="#dcfce7"/>${txt(cx, 373, 'Good', 18, 700, C.green, 'middle')}`;
+  };
+  return `${txt(480, 76, esc(title), 30, 700, C.ink, 'middle')}${items.map((it, i) => g(190 + i * 290, it)).join('')}
+    ${box(60, 446, 840, 220)}${checks.map((l, i) => `${icon('lucide:circle-check', 92 + (i % 2) * 410, 476 + Math.floor(i / 2) * 58, 28, C.green, 2.4)}${txt(132 + (i % 2) * 410, 499 + Math.floor(i / 2) * 58, esc(l), 20, 700, C.ink)}`).join('')}`;
+}
+
+export function code({ file, lang, lines, kpis }) {
+  const colors = { k: '#ff7b89', f: '#7dd3fc', s: '#86efac', c: '#6b7280', t: '#e5e7eb' };
+  return `<rect x="60" y="60" width="560" height="600" fill="#15161c" filter="url(#sh)"/><rect x="60" y="60" width="560" height="44" fill="#1f2029"/>
+    ${[0, 1, 2].map((i) => `<circle cx="${86 + i * 20}" cy="82" r="6" fill="${['#ff5f57', '#febc2e', '#28c840'][i]}"/>`).join('')}
+    <rect x="160" y="68" width="${file.length * 10 + 30}" height="36" fill="#15161c"/>${txt(176, 92, esc(file), 16, 500, '#e5e7eb')}
+    ${lines.map((ln, i) => `${txt(84, 146 + i * 34, String(i + 1), 15, 500, '#4b5060')}${ln.map(([tone, w], j) => { const x = 120 + ln.slice(0, j).reduce((a, [, ww]) => a + ww + 12, 0) + (ln.indent || 0); return `<rect x="${x}" y="${134 + i * 34}" width="${w}" height="12" fill="${colors[tone]}" opacity=".9"/>`; }).join('')}`).join('')}
+    ${box(650, 60, 250, 120)}<rect x="672" y="82" width="76" height="76" fill="${C.soft}"/>${icon(lang, 686, 96, 48, C.red, 1.8)}${txt(766, 128, 'Clean code', 20, 700, C.ink)}
+    ${kpis.map((k, i) => `${box(650, 210 + i * 150, 250, 130)}${chip(672, 232 + i * 150, 52, 52, k.icon)}${txt(740, 262 + i * 150, esc(k.value), 30, 700, C.ink)}${txt(672, 318 + i * 150, esc(k.label), 16, 700, C.grey)}`).join('')}`;
+}
+
+export function stack({ title, layers }) {
+  return `${txt(480, 76, esc(title), 30, 700, C.ink, 'middle')}
+    ${layers.map((l, i) => { const y = 112 + i * 112, w = 840 - i * 0; return `${box(60, y, w, 96)}<rect x="60" y="${y}" width="10" height="96" fill="${i === 0 ? C.red : ['#ff7b89', '#ffb3bb', '#ffd0d5', '#fde7ea'][i - 1] ?? C.line}"/>
+      ${txt(96, y + 42, esc(l.name), 22, 700, C.ink)}${txt(96, y + 72, esc(l.desc), 16, 500, C.grey)}
+      ${l.tags.map((t, j) => `<rect x="${520 + j * 126}" y="${y + 30}" width="114" height="36" fill="${C.soft}"/>${txt(577 + j * 126, y + 54, esc(t), 15, 700, C.red, 'middle')}`).join('')}`; }).join('')}`;
+}

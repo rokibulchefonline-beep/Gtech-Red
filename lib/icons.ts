@@ -9,6 +9,8 @@ export const groupIcons: Record<string, string> = {
 
 export const serviceIcons: Record<string, string> = {
   'search-engine-optimization': 'lucide:search',
+  'local-seo': 'lucide:map-pin',
+  'ecommerce-seo': 'lucide:shopping-bag',
   'google-ads': 'simple-icons:googleads',
   'reputation-management': 'lucide:star',
   'content-marketing': 'lucide:pen-line',

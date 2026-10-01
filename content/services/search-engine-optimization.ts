@@ -205,7 +205,7 @@ const content: ServiceContent = {
     { q: 'Do I need to sign a long contract?', a: 'No. We work on rolling monthly terms after setup, although we recommend six months to give SEO a fair chance to deliver.' },
     { q: 'Will SEO work with my current website?', a: 'Usually, yes. We work with WordPress, Shopify, WooCommerce, Webflow, Wix and custom sites. If your platform is holding you back, we will explain the options.' },
   ],
-  related: ['google-ads', 'content-marketing', 'seo-backlinks', 'website-design', 'conversion-rate-optimization', 'reputation-management'],
+  related: ['local-seo', 'ecommerce-seo', 'google-ads', 'content-marketing', 'seo-backlinks', 'reputation-management'],
 };
 
 export default content;

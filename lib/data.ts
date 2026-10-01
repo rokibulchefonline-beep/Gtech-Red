@@ -20,6 +20,8 @@ const groups: Record<string, { intro: string; items: Record<string, string> }> =
     intro: 'Get found, get clicks, get customers. Data-led search and paid campaigns.',
     items: {
       'Search Engine Optimization': 'Rank higher on Google with technical, on-page and content SEO.',
+      'Local SEO': 'Google Business Profile, map pack and local rankings.',
+      'Ecommerce SEO': 'Category and product page SEO that grows online sales.',
       'Google Ads': 'Paid search and display campaigns tuned for lead cost and ROAS.',
       'Reputation Management': 'Monitor, protect and improve your brand reviews and search results.',
       'Content Marketing': 'Articles, guides and assets that pull qualified traffic.',
@@ -165,12 +167,12 @@ export const coreServices: {
 // Covers are drawn in code (scripts/build-case-images.mjs, `npm run case-images`).
 // Real documents can add `image` (cover photo URL) and `logo` (white logo URL) for the card.
 export const demoCaseStudies = [
-  { slug: 'chefonline', services: ['search-engine-optimization', 'google-ads', 'paid-media', 'reputation-management', 'social-media-marketing', 'facebook-marketing', 'instagram-marketing'], image: '/case/chefonline.webp', title: 'ChefOnline', excerpt: 'Online ordering growth for a restaurant platform.' },
-  { slug: 'salik-and-co', services: ['search-engine-optimization', 'seo-backlinks', 'reputation-management', 'linkedin-marketing'], image: '/case/salik-and-co.webp', title: 'Salik & Co', excerpt: 'Lead generation and local SEO for a professional services firm.' },
-  { slug: 'arta', services: ['social-media-marketing', 'reputation-management', 'content-marketing', 'digital-advertising', 'facebook-marketing', 'instagram-marketing', 'tiktok-marketing'], image: '/case/arta.webp', title: 'Arta', excerpt: 'Brand and social growth for a hospitality awards brand.' },
-  { slug: 'table-booking', services: ['web-design-development', 'google-ads', 'digital-advertising', 'paid-media', 'facebook-marketing', 'pinterest-marketing'], image: '/case/table-booking.webp', title: 'Table Booking', excerpt: 'Web platform and paid media for restaurant bookings.' },
-  { slug: 'demo-brand-five', services: ['search-engine-optimization', 'content-marketing', 'seo-backlinks', 'linkedin-marketing', 'pinterest-marketing'], image: '/case/demo-brand-five.webp', title: 'Demo Brand', excerpt: 'Placeholder case study. Replace with a real client.' },
-  { slug: 'demo-brand-six', services: ['branding', 'digital-advertising', 'paid-media', 'tiktok-marketing', 'pinterest-marketing', 'social-media-marketing'], image: '/case/demo-brand-six.webp', title: 'Sample Client', excerpt: 'Placeholder case study. Replace with a real client.' },
+  { slug: 'chefonline', services: ['search-engine-optimization', 'google-ads', 'paid-media', 'reputation-management', 'social-media-marketing', 'facebook-marketing', 'instagram-marketing', 'local-seo', 'ecommerce-development', 'ecommerce-seo', 'website-design'], image: '/case/chefonline.webp', title: 'ChefOnline', excerpt: 'Online ordering growth for a restaurant platform.' },
+  { slug: 'salik-and-co', services: ['search-engine-optimization', 'seo-backlinks', 'reputation-management', 'linkedin-marketing', 'local-seo', 'web-design-development', 'wordpress-development', 'website-design', 'website-maintenance'], image: '/case/salik-and-co.webp', title: 'Salik & Co', excerpt: 'Lead generation and local SEO for a professional services firm.' },
+  { slug: 'arta', services: ['social-media-marketing', 'reputation-management', 'content-marketing', 'digital-advertising', 'facebook-marketing', 'instagram-marketing', 'tiktok-marketing', 'web-design-development', 'website-design', 'cms-development', 'wordpress-development'], image: '/case/arta.webp', title: 'Arta', excerpt: 'Brand and social growth for a hospitality awards brand.' },
+  { slug: 'table-booking', services: ['web-design-development', 'google-ads', 'digital-advertising', 'paid-media', 'facebook-marketing', 'pinterest-marketing', 'laravel-development', 'php-development', 'website-maintenance', 'ecommerce-development', 'cms-development'], image: '/case/table-booking.webp', title: 'Table Booking', excerpt: 'Web platform and paid media for restaurant bookings.' },
+  { slug: 'demo-brand-five', services: ['search-engine-optimization', 'content-marketing', 'seo-backlinks', 'linkedin-marketing', 'pinterest-marketing', 'ecommerce-seo', 'local-seo', 'laravel-development', 'php-development', 'wordpress-development'], image: '/case/demo-brand-five.webp', title: 'Demo Brand', excerpt: 'Placeholder case study. Replace with a real client.' },
+  { slug: 'demo-brand-six', services: ['branding', 'digital-advertising', 'paid-media', 'tiktok-marketing', 'pinterest-marketing', 'social-media-marketing', 'ecommerce-development', 'ecommerce-seo', 'website-design', 'cms-development', 'website-maintenance', 'laravel-development', 'php-development'], image: '/case/demo-brand-six.webp', title: 'Sample Client', excerpt: 'Placeholder case study. Replace with a real client.' },
 ].map((c) => ({
   ...c,
   body: `${c.excerpt}\n\nThis is a placeholder case study. Add real documents to the MongoDB "case_studies" collection ` +

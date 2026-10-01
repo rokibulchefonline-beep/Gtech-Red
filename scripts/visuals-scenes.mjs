@@ -242,3 +242,58 @@ const linkedin = platformHero('lucide:linkedin', 'LinkedIn', [['B2B leads', 410,
 const tiktok = platformHero('simple-icons:tiktok', 'TikTok', [['Video views', 1200000, (v) => (v / 1e6).toFixed(1) + 'M', 'lucide:eye'], ['Watch-through', 62, (v) => Math.round(v) + '%', 'lucide:play'], ['Orders', 1140, (v) => num(v), 'lucide:shopping-cart'], ['ROAS', 3.8, (v) => v.toFixed(1) + 'x', 'lucide:trending-up']], 'Shop now');
 const pinterest = platformHero('simple-icons:pinterest', 'Pinterest', [['Monthly views', 420000, k, 'lucide:eye'], ['Pin saves', 18000, k, 'lucide:bookmark'], ['Outbound clicks', 9200, k, 'lucide:mouse-pointer-click'], ['ROAS', 5.0, (v) => v.toFixed(1) + 'x', 'lucide:trending-up']], 'Visit site');
 Object.assign(scenes, { facebook, instagram, linkedin, tiktok, pinterest });
+
+/* ===== Batch 4: web build heroes + Local/Ecommerce SEO (centre panel + counting metrics) ===== */
+function panelHero(ic, name, kind, metrics) {
+  const tones = ['#ff9eaa', '#9ec5ff', '#a7e3b5', '#c9ccd3'];
+  const centre = (u) => {
+    if (kind === 'map') {
+      const pins = [[400, 250], [520, 210], [470, 340], [560, 400], [410, 450]];
+      return `<rect x="346" y="100" width="268" height="380" fill="#eef1f4"/>
+        ${[[346, 220, 614, 260], [346, 380, 614, 350], [440, 100, 470, 480], [540, 100, 520, 480]].map(([a, b, c, d]) => `<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#fff" stroke-width="12"/>`).join('')}
+        ${pins.map(([x, y], i) => { const d = S(u, 0.1 + i * 0.08, 0.3 + i * 0.08); const me = i === 2; return `<g opacity="${d}" transform="translate(0 ${(1 - d) * -40})"><path d="M${x} ${y} c-20 -28 -20 -54 0 -54 c20 0 20 26 0 54z" fill="${me ? C.red : '#9aa0aa'}"/><circle cx="${x}" cy="${y - 34}" r="${me ? 10 : 7}" fill="#fff"/></g>`; }).join('')}
+        <circle cx="470" cy="306" r="${30 + 30 * seg(u, 0.5, 0.9)}" fill="none" stroke="${C.red}" stroke-width="3" opacity="${1 - seg(u, 0.5, 0.9)}"/>
+        <rect x="362" y="500" width="236" height="90" fill="#fff" stroke="${C.red}" stroke-width="3"/>${txt(380, 532, '1  Your Business', 17, 700, C.ink)}${txt(380, 562, '4.9 ★  Open now', 15, 700, C.red)}`;
+    }
+    if (kind === 'shop') {
+      return `${[0, 1, 2, 3].map((i) => { const x = 362 + (i % 2) * 124, y = 100 + Math.floor(i / 2) * 200, d = S(u, 0.08 + i * 0.07, 0.3 + i * 0.07);
+          return `<g opacity="${d}"><rect x="${x}" y="${y}" width="112" height="180" fill="#fff" stroke="${C.line}" stroke-width="2"/><rect x="${x + 10}" y="${y + 10}" width="92" height="92" fill="${i === 0 ? C.soft : '#f4f5f7'}"/>${icon('lucide:shopping-bag', x + 38, y + 38, 36, i === 0 ? C.red : '#b6bac3', 2)}
+            ${rect(x + 10, y + 116, 80, 9, 0, C.ink)}${rect(x + 10, y + 134, 56, 9, 0, C.line)}${txt(x + 10, y + 168, '£' + (24 + i * 11), 16, 700, C.red)}</g>`; }).join('')}
+        <rect x="362" y="510" width="236" height="60" fill="url(#rg)"/>${txt(480, 548, 'Add to basket', 17, 700, '#fff', 'middle')}`;
+    }
+    const lines = [[0, 150, 0], [0, 110, 1], [24, 170, 2], [24, 120, 0], [48, 140, 1], [48, 90, 2], [24, 60, 0], [0, 180, 1], [24, 130, 2], [0, 70, 0]];
+    const shown = Math.floor(S(u, 0.05, 0.6) * (lines.length + 0.99));
+    const prog = S(u, 0.55, 0.85);
+    return `<rect x="346" y="100" width="268" height="360" fill="#1d1f27"/>
+      ${lines.slice(0, shown).map(([ind, w, t], i) => `<rect x="${366 + ind}" y="${120 + i * 32}" width="${w}" height="12" fill="${tones[t]}" opacity=".9"/>`).join('')}
+      ${u < 0.6 && Math.floor(u * 40) % 2 ? `<rect x="${366 + (lines[Math.max(0, shown - 1)] || [0])[0]}" y="${120 + shown * 32}" width="10" height="14" fill="#fff"/>` : ''}
+      ${rect(362, 490, 236, 14, 0, C.line)}<rect x="362" y="490" width="${236 * prog}" height="14" fill="url(#rg)"/>
+      ${txt(362, 540, prog < 1 ? 'Deploying…' : 'Live', 18, 700, prog < 1 ? C.grey : C.green)}${prog >= 1 ? icon('lucide:circle-check', 572, 520, 26, C.green, 2.4) : ''}
+      ${txt(362, 580, 'All checks passed', 15, 700, C.grey)}`;
+  };
+  return (u) => {
+    const bob = (p) => Math.sin(u * Math.PI * 2 + p) * 6;
+    return frame(u, `
+      ${pop(u, 0, `<rect x="330" y="40" width="300" height="580" fill="#fff" filter="url(#sh)"/><rect x="330" y="40" width="300" height="44" fill="#f1f2f5"/>
+        ${[0, 1, 2].map((i) => `<circle cx="${352 + i * 18}" cy="62" r="5" fill="${['#ff5f57', '#febc2e', '#28c840'][i]}"/>`).join('')}
+        ${icon(ic, 414, 50, 22, C.red)}${txt(444, 68, name, 16, 700, C.ink)}${centre(u)}`, 16, 0.12)}
+      ${metrics.map(([label, target, fmt, mi], i) => {
+        const x = i < 2 ? 40 : 660, y = i % 2 ? 380 : 130, v = target * S(u, 0.2 + i * 0.08, 0.75);
+        return pop(u, 0.15 + i * 0.1, `<g transform="translate(0 ${bob(i * 1.5)})">${sq(x, y, 260, 200)}<rect x="${x + 22}" y="${y + 22}" width="52" height="52" fill="${C.soft}"/>${icon(mi, x + 34, y + 34, 28, C.red, 2.2)}
+          ${txt(x + 22, y + 128, fmt(v), 42, 700, C.ink)}${txt(x + 22, y + 164, label, 17, 700, C.grey)}</g>`, 22);
+      }).join('')}`);
+  };
+}
+const pct = (v) => Math.round(v) + '%';
+const ms = (v) => Math.round(v) + 'ms';
+const sec = (v) => v.toFixed(1) + 's';
+const wordpress = panelHero('simple-icons:wordpress', 'WordPress', 'code', [['PageSpeed score', 96, (v) => Math.round(v), 'lucide:gauge'], ['Load time', 1.2, sec, 'lucide:zap'], ['Plugins removed', 9, (v) => Math.round(v), 'lucide:puzzle'], ['Uptime', 99.98, (v) => v.toFixed(2) + '%', 'lucide:activity']]);
+const php = panelHero('simple-icons:php', 'PHP 8.3', 'code', [['Response time', 180, ms, 'lucide:zap'], ['Faster than legacy', 4, (v) => v.toFixed(1) + 'x', 'lucide:gauge'], ['API endpoints', 42, (v) => Math.round(v), 'lucide:webhook'], ['Test coverage', 86, pct, 'lucide:shield-check']]);
+const cms = panelHero('lucide:layout-template', 'Your CMS', 'code', [['Pages managed', 640, (v) => Math.round(v), 'lucide:file-text'], ['Publish time', 5, (v) => Math.round(v) + ' min', 'lucide:clock'], ['Editors trained', 24, (v) => Math.round(v), 'lucide:users'], ['Rankings kept', 100, pct, 'lucide:trending-up']]);
+const laravel = panelHero('simple-icons:laravel', 'Laravel 11', 'code', [['Median response', 95, ms, 'lucide:zap'], ['Jobs per hour', 48000, k, 'lucide:layers'], ['Test coverage', 88, pct, 'lucide:shield-check'], ['Admin hours saved', 11, (v) => Math.round(v) + 'h/wk', 'lucide:clock']]);
+const maintenance = panelHero('lucide:wrench', 'Site health', 'code', [['Uptime', 99.98, (v) => v.toFixed(2) + '%', 'lucide:activity'], ['Security score', 98, pct, 'lucide:shield-check'], ['Backups kept', 365, (v) => Math.round(v), 'lucide:database'], ['Response time', 15, (v) => '&lt; ' + Math.round(v) + 'm', 'lucide:bell']]);
+const ecommerce = panelHero('lucide:shopping-cart', 'Your store', 'shop', [['Online revenue', 96, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Conversion rate', 3.4, (v) => v.toFixed(1) + '%', 'lucide:shopping-cart'], ['Average order', 68, (v) => '£' + Math.round(v), 'lucide:receipt'], ['Cart abandonment', 24, (v) => '-' + Math.round(v) + '%', 'lucide:trending-down']]);
+const webdesign = panelHero('lucide:palette', 'New design', 'code', [['Enquiry rate', 3.0, (v) => v.toFixed(1) + '%', 'lucide:mouse-pointer-click'], ['Leads vs old site', 71, (v) => '+' + Math.round(v) + '%', 'lucide:trending-up'], ['Bounce rate', 38, (v) => '-' + Math.round(v) + '%', 'lucide:trending-down'], ['Accessibility', 98, pct, 'lucide:accessibility']]);
+const localseo = panelHero('lucide:map-pin', 'Google Maps', 'map', [['Map pack keywords', 48, (v) => Math.round(v), 'lucide:map-pin'], ['Calls from Google', 312, (v) => Math.round(v), 'lucide:phone'], ['Direction requests', 1840, (v) => Math.round(v).toLocaleString('en-GB'), 'lucide:navigation'], ['Google rating', 4.9, (v) => v.toFixed(1) + ' ★', 'lucide:star']]);
+const ecomseo = panelHero('lucide:search', 'Organic shop', 'shop', [['Organic revenue', 184, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Organic orders', 132, (v) => '+' + Math.round(v) + '%', 'lucide:shopping-cart'], ['Ranking keywords', 2860, (v) => Math.round(v).toLocaleString('en-GB'), 'lucide:search'], ['Free listing clicks', 64, (v) => '+' + Math.round(v) + '%', 'lucide:shopping-bag']]);
+Object.assign(scenes, { wordpress, php, cms, laravel, maintenance, ecommerce, webdesign, localseo, ecomseo });
