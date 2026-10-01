@@ -150,3 +150,12 @@ export function stack({ title, layers }) {
       ${txt(96, y + 42, esc(l.name), 22, 700, C.ink)}${txt(96, y + 72, esc(l.desc), 16, 500, C.grey)}
       ${l.tags.map((t, j) => `<rect x="${520 + j * 126}" y="${y + 30}" width="114" height="36" fill="${C.soft}"/>${txt(577 + j * 126, y + 54, esc(t), 15, 700, C.red, 'middle')}`).join('')}`; }).join('')}`;
 }
+
+export function phone({ title, rows /*4 x {icon,label}*/, kpis /*3*/ }) {
+  return `<rect x="150" y="40" width="330" height="640" fill="#15161c" filter="url(#sh)"/><rect x="166" y="70" width="298" height="580" fill="#fff"/>
+    <rect x="270" y="50" width="90" height="10" fill="#2a2b33"/>
+    <rect x="166" y="70" width="298" height="120" fill="url(#rg)"/>${txt(190, 120, esc(title), 22, 700, '#fff')}${rect(190, 140, 150, 10, 0, '#ffffff88')}
+    ${rows.map((r, i) => `<rect x="186" y="${210 + i * 92}" width="258" height="76" fill="#f7f8fa"/>${chip(198, 222 + i * 92, 52, 52, r.icon)}${txt(264, 246 + i * 92, esc(r.label), 17, 700, C.ink)}${rect(264, 258 + i * 92, 120, 9, 0, C.line)}`).join('')}
+    <rect x="166" y="590" width="298" height="60" fill="#f1f2f5"/>${['lucide:house', 'lucide:search', 'lucide:bell', 'lucide:user'].map((ic, i) => icon(ic, 190 + i * 72, 606, 28, i ? C.grey : C.red, 2.2)).join('')}
+    ${kpis.map((k, i) => `${box(560, 80 + i * 200, 340, 170)}${chip(584, 104 + i * 200, 56, 56, k.icon)}${txt(584, 206 + i * 200, esc(k.value), 40, 700, C.ink)}${txt(584, 236 + i * 200, esc(k.label), 17, 700, C.grey)}`).join('')}`;
+}

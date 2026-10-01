@@ -261,6 +261,19 @@ function panelHero(ic, name, kind, metrics) {
             ${rect(x + 10, y + 116, 80, 9, 0, C.ink)}${rect(x + 10, y + 134, 56, 9, 0, C.line)}${txt(x + 10, y + 168, '£' + (24 + i * 11), 16, 700, C.red)}</g>`; }).join('')}
         <rect x="362" y="510" width="236" height="60" fill="url(#rg)"/>${txt(480, 548, 'Add to basket', 17, 700, '#fff', 'middle')}`;
     }
+    if (kind === 'app') {
+      const rows = [['lucide:calendar-check', 'Bookings'], ['lucide:bell', 'Notifications'], ['lucide:credit-card', 'Payments'], ['lucide:star', 'Rewards']];
+      return `<rect x="346" y="100" width="268" height="96" fill="url(#rg)"/>${txt(366, 140, 'Welcome back', 18, 700, '#fff')}${rect(366, 156, 120, 9, 0, '#ffffff88')}
+        ${rows.map(([ri, rl], i) => { const d = S(u, 0.08 + i * 0.08, 0.3 + i * 0.08); return `<g opacity="${d}" transform="translate(${(1 - d) * 30} 0)"><rect x="362" y="${214 + i * 78}" width="236" height="64" fill="#f7f8fa"/><rect x="374" y="${226 + i * 78}" width="40" height="40" fill="${C.soft}"/>${icon(ri, 382, 234 + i * 78, 24, C.red, 2.2)}${txt(426, 252 + i * 78, rl, 16, 700, C.ink)}</g>`; }).join('')}
+        <rect x="346" y="540" width="268" height="64" fill="#f1f2f5"/>${['lucide:house', 'lucide:search', 'lucide:bell', 'lucide:user'].map((ni, i) => icon(ni, 370 + i * 64, 558, 26, i === Math.floor(u * 4) % 4 ? C.red : C.grey, 2.2)).join('')}`;
+    }
+    if (kind === 'dash') {
+      const bars = [0.3, 0.42, 0.38, 0.55, 0.62, 0.7, 0.86];
+      return `${txt(362, 130, 'This month', 15, 700, C.grey)}${txt(362, 172, '+' + Math.round(48 * S(u, 0.1, 0.7)) + '%', 36, 700, C.ink)}
+        ${bars.map((b, i) => { const h = 200 * b * S(u, 0.1 + i * 0.05, 0.5 + i * 0.05); return `<rect x="${366 + i * 34}" y="${410 - h}" width="24" height="${h}" fill="${i === bars.length - 1 ? C.red : '#ffc9cf'}"/>`; }).join('')}
+        <line x1="362" y1="412" x2="598" y2="412" stroke="${C.line}" stroke-width="2"/>
+        ${[0, 1, 2].map((i) => { const d = S(u, 0.45 + i * 0.1, 0.65 + i * 0.1); return `<g opacity="${d}"><rect x="362" y="${436 + i * 52}" width="236" height="42" fill="#f7f8fa"/>${icon('lucide:circle-check', 372, 444 + i * 52, 24, C.green, 2.4)}${rect(406, 452 + i * 52, 140 - i * 20, 10, 0, C.line)}</g>`; }).join('')}`;
+    }
     const lines = [[0, 150, 0], [0, 110, 1], [24, 170, 2], [24, 120, 0], [48, 140, 1], [48, 90, 2], [24, 60, 0], [0, 180, 1], [24, 130, 2], [0, 70, 0]];
     const shown = Math.floor(S(u, 0.05, 0.6) * (lines.length + 0.99));
     const prog = S(u, 0.55, 0.85);
@@ -297,3 +310,12 @@ const webdesign = panelHero('lucide:palette', 'New design', 'code', [['Enquiry r
 const localseo = panelHero('lucide:map-pin', 'Google Maps', 'map', [['Map pack keywords', 48, (v) => Math.round(v), 'lucide:map-pin'], ['Calls from Google', 312, (v) => Math.round(v), 'lucide:phone'], ['Direction requests', 1840, (v) => Math.round(v).toLocaleString('en-GB'), 'lucide:navigation'], ['Google rating', 4.9, (v) => v.toFixed(1) + ' ★', 'lucide:star']]);
 const ecomseo = panelHero('lucide:search', 'Organic shop', 'shop', [['Organic revenue', 184, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Organic orders', 132, (v) => '+' + Math.round(v) + '%', 'lucide:shopping-cart'], ['Ranking keywords', 2860, (v) => Math.round(v).toLocaleString('en-GB'), 'lucide:search'], ['Free listing clicks', 64, (v) => '+' + Math.round(v) + '%', 'lucide:shopping-bag']]);
 Object.assign(scenes, { wordpress, php, cms, laravel, maintenance, ecommerce, webdesign, localseo, ecomseo });
+
+/* ===== Batch 5: custom software heroes ===== */
+const webapp = panelHero('lucide:app-window', 'Client portal', 'dash', [['Active users', 240, (v) => Math.round(v), 'lucide:users'], ['Median response', 120, ms, 'lucide:zap'], ['Admin hours saved', 9, (v) => Math.round(v) + 'h/wk', 'lucide:clock'], ['Uptime', 99.98, (v) => v.toFixed(2) + '%', 'lucide:activity']]);
+const mobileapp = panelHero('lucide:smartphone', 'Your App', 'app', [['App downloads', 58000, k, 'lucide:download'], ['App Store rating', 4.8, (v) => v.toFixed(1) + ' ★', 'lucide:star'], ['30-day retention', 46, pct, 'lucide:repeat'], ['Crash-free sessions', 99.9, (v) => v.toFixed(1) + '%', 'lucide:shield-check']]);
+const api = panelHero('lucide:webhook', 'Integration hub', 'code', [['Records synced', 1200000, (v) => (v / 1e6).toFixed(1) + 'M', 'lucide:refresh-cw'], ['Median response', 85, ms, 'lucide:zap'], ['Systems connected', 9, (v) => Math.round(v), 'lucide:workflow'], ['Data errors', 94, (v) => '-' + Math.round(v) + '%', 'lucide:trending-down']]);
+const crm = panelHero('lucide:database', 'Your CRM', 'dash', [['Pipeline value', 2.1, (v) => '£' + v.toFixed(1) + 'M', 'lucide:coins'], ['Win rate', 38, (v) => '+' + Math.round(v) + '%', 'lucide:trending-up'], ['Admin saved', 16, (v) => Math.round(v) + 'h/wk', 'lucide:clock'], ['Orders automated', 96, pct, 'lucide:workflow']]);
+const saas = panelHero('lucide:cloud', 'Your SaaS', 'dash', [['Monthly recurring revenue', 86, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Paying customers', 1420, (v) => Math.round(v).toLocaleString('en-GB'), 'lucide:users'], ['Monthly churn', 2.1, (v) => v.toFixed(1) + '%', 'lucide:trending-down'], ['Uptime', 99.95, (v) => v.toFixed(2) + '%', 'lucide:activity']]);
+const mvp = panelHero('lucide:rocket', 'Your MVP', 'app', [['Idea to launch', 10, (v) => Math.round(v) + ' weeks', 'lucide:rocket'], ['Beta users', 420, (v) => Math.round(v), 'lucide:users'], ['Weekly active', 52, pct, 'lucide:repeat'], ['Feedback points', 310, (v) => Math.round(v), 'lucide:message-square']]);
+Object.assign(scenes, { webapp, mobileapp, api, crm, saas, mvp });

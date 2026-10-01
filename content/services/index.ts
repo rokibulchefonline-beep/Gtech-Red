@@ -23,7 +23,15 @@ import websiteDesign from './website-design';
 import localSeo from './local-seo';
 import ecommerceSeo from './ecommerce-seo';
 
+import software from './custom-software-development';
+import webApp from './web-application-development';
+import mobileApp from './mobile-app-development';
+import apiIntegration from './api-system-integration';
+import crmErp from './crm-erp-development';
+import saasProduct from './saas-product-development';
+import mvp from './mvp-development';
+
 // Long-form service pages. Add each new page here.
 export const serviceContent: Record<string, ServiceContent> = Object.fromEntries(
-  [seo, googleAds, reputation, contentMarketing, backlinks, digitalAdvertising, paidMedia, social, facebook, instagram, linkedin, tiktok, pinterest, webDesignDev, wordpress, php, cms, laravel, maintenance, ecommerce, websiteDesign, localSeo, ecommerceSeo].map((c) => [c.slug, c]),
+  [seo, googleAds, reputation, contentMarketing, backlinks, digitalAdvertising, paidMedia, social, facebook, instagram, linkedin, tiktok, pinterest, webDesignDev, wordpress, php, cms, laravel, maintenance, ecommerce, websiteDesign, localSeo, ecommerceSeo, software, webApp, mobileApp, apiIntegration, crmErp, saasProduct, mvp].map((c) => [c.slug, c]),
 );
