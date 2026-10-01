@@ -6,6 +6,14 @@ export const site = {
   tagline: 'Digital marketing, web and software agency',
   email: 'hello@gtechred.com',
   phone: '+44 0000 000000',
+  // Company social profiles (placeholders: replace with the real URLs).
+  socials: [
+    { name: 'LinkedIn', icon: 'simple-icons:linkedin', url: 'https://www.linkedin.com/company/gtechdigital' },
+    { name: 'Facebook', icon: 'simple-icons:facebook', url: 'https://www.facebook.com/gtechdigital' },
+    { name: 'Instagram', icon: 'simple-icons:instagram', url: 'https://www.instagram.com/gtechdigital' },
+    { name: 'X', icon: 'simple-icons:x', url: 'https://x.com/gtechdigital' },
+    { name: 'YouTube', icon: 'simple-icons:youtube', url: 'https://www.youtube.com/@gtechdigital' },
+  ],
 };
 
 export type ServiceGroup = {

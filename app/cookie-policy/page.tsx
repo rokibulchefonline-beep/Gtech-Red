@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import LegalPage from '@/components/LegalPage';
-import doc from '@/content/legal/terms';
+import doc from '@/content/legal/cookies';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions',
+  title: 'Cookie Policy',
   description: doc.intro,
-  alternates: { canonical: '/terms' },
+  alternates: { canonical: '/cookie-policy' },
 };
 
-export default function Terms() {
+export default function CookiePolicy() {
   return <LegalPage doc={doc} />;
 }
