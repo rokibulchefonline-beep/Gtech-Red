@@ -19,6 +19,6 @@ const bgs = {
   'soft-shapes': svg(`<rect width="${W}" height="${H}" fill="#faf8f8"/>
     <path d="M1920 0 V420 C 1700 520, 1500 300, 1260 360 S 980 120, 900 0 Z" fill="#ffe3e6"/>
     <path d="M0 1080 V700 C 220 620, 380 820, 640 760 S 900 960, 1000 1080 Z" fill="#ffe9ec"/>
-    <circle cx="1650" cy="860" r="120" fill="none" stroke="#ffc9cf" stroke-width="3"/><circle cx="260" cy="200" r="70" fill="none" stroke="#ffc9cf" stroke-width="3"/>${dots(0.08)}`),
+    ${dots(0.08)}`),
 };
 for (const [n, s] of Object.entries(bgs)) { await sharp(Buffer.from(s)).webp({ quality: 72, effort: 5 }).toFile(new URL(`../public/bg/${n}.webp`, import.meta.url).pathname); console.log(n); }
