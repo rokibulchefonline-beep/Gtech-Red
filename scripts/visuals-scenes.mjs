@@ -346,3 +346,19 @@ Object.assign(scenes, { brandid, advisory, cro });
 /* ===== Digital marketing category hero ===== */
 const dm = panelHero('lucide:chart-column-increasing', 'Growth dashboard', 'dash', [['Organic traffic', 212, (v) => '+' + Math.round(v) + '%', 'lucide:search'], ['Leads this month', 340, (v) => Math.round(v), 'lucide:users'], ['Cost per acquisition', 38, (v) => '£' + Math.round(v), 'lucide:coins'], ['Marketing ROI', 4.8, (v) => v.toFixed(1) + 'x', 'lucide:trending-up']]);
 Object.assign(scenes, { dm });
+
+/* ===== Industry page heroes ===== */
+const gbp = (v) => Math.round(v).toLocaleString('en-GB');
+const industryHeroes = {
+  'ind-e-commerce': panelHero('lucide:shopping-bag', 'Your store', 'shop', [['Online revenue', 248, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Conversion rate', 3.6, (v) => v.toFixed(1) + '%', 'lucide:shopping-cart'], ['Blended ROAS', 5.4, (v) => v.toFixed(1) + 'x', 'lucide:trending-up'], ['Repeat customers', 41, pct, 'lucide:repeat']]),
+  'ind-education': panelHero('lucide:graduation-cap', 'Student app', 'app', [['Course enquiries', 3840, gbp, 'lucide:users'], ['Enrolments', 1120, gbp, 'lucide:graduation-cap'], ['Cost per enquiry', 46, (v) => '£' + Math.round(v), 'lucide:coins'], ['Open day bookings', 58, (v) => '+' + Math.round(v) + '%', 'lucide:calendar-days']]),
+  'ind-b2b-marketing': panelHero('lucide:handshake', 'Pipeline', 'dash', [['Pipeline created', 3.2, (v) => '£' + v.toFixed(1) + 'M', 'lucide:coins'], ['Qualified leads', 640, gbp, 'lucide:users'], ['Sales meetings', 128, gbp, 'lucide:briefcase'], ['Win rate', 44, (v) => '+' + Math.round(v) + '%', 'lucide:trending-up']]),
+  'ind-automotive': panelHero('lucide:car', 'Your dealership', 'map', [['Vehicle enquiries', 2960, gbp, 'lucide:car'], ['Test drives', 410, gbp, 'lucide:key-round'], ['Service bookings', 36, (v) => '+' + Math.round(v) + '%', 'lucide:wrench'], ['Google rating', 4.9, (v) => v.toFixed(1) + ' ★', 'lucide:star']]),
+  'ind-healthcare': panelHero('lucide:heart-pulse', 'Your clinic', 'map', [['New patients', 1480, gbp, 'lucide:users'], ['Online bookings', 72, (v) => '+' + Math.round(v) + '%', 'lucide:calendar-check'], ['Cost per patient', 28, (v) => '£' + Math.round(v), 'lucide:coins'], ['Google rating', 4.9, (v) => v.toFixed(1) + ' ★', 'lucide:star']]),
+  'ind-hospitality-hotels': panelHero('lucide:concierge-bell', 'Your venue', 'map', [['Direct bookings', 64, (v) => '+' + Math.round(v) + '%', 'lucide:calendar-check'], ['Commission saved', 22, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Direction requests', 3400, gbp, 'lucide:navigation'], ['Google rating', 4.8, (v) => v.toFixed(1) + ' ★', 'lucide:star']]),
+  'ind-travel': panelHero('lucide:plane', 'Trip planner', 'app', [['Bookings value', 1.4, (v) => '£' + v.toFixed(1) + 'M', 'lucide:coins'], ['Trips booked', 3120, gbp, 'lucide:plane'], ['ROAS', 6.8, (v) => v.toFixed(1) + 'x', 'lucide:trending-up'], ['Repeat travellers', 34, pct, 'lucide:repeat']]),
+  'ind-real-estate': panelHero('lucide:building-2', 'Your branch', 'map', [['Valuation requests', 1860, gbp, 'lucide:house'], ['New instructions', 312, gbp, 'lucide:file-text'], ['Viewings booked', 48, (v) => '+' + Math.round(v) + '%', 'lucide:calendar-check'], ['Google rating', 4.9, (v) => v.toFixed(1) + ' ★', 'lucide:star']]),
+  'ind-finance': panelHero('lucide:landmark', 'Client growth', 'dash', [['Qualified enquiries', 1240, gbp, 'lucide:users'], ['New clients', 68, (v) => '+' + Math.round(v) + '%', 'lucide:trending-up'], ['Cost per enquiry', 52, (v) => '£' + Math.round(v), 'lucide:coins'], ['Compliance sign-off', 100, pct, 'lucide:shield-check']]),
+  'ind-technology-saas': panelHero('lucide:cpu', 'SaaS growth', 'dash', [['MRR', 142, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Trial sign-ups', 2840, gbp, 'lucide:users'], ['Trial to paid', 11, pct, 'lucide:trending-up'], ['Net retention', 116, pct, 'lucide:repeat']]),
+};
+Object.assign(scenes, industryHeroes);

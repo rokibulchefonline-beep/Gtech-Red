@@ -226,6 +226,77 @@ const scenes = {
   'about/team': () => frame(U, K.contentGrid({ title: 'One team, every skill', items: [{ icon: 'lucide:search', type: 'Search', title: 'SEO specialists' }, { icon: 'lucide:megaphone', type: 'Paid', title: 'PPC and paid social' }, { icon: 'lucide:pen-line', type: 'Content', title: 'Writers and creators' }, { icon: 'lucide:palette', type: 'Design', title: 'Brand and UX designers' }, { icon: 'lucide:code-xml', type: 'Build', title: 'Web and app developers' }, { icon: 'lucide:lightbulb', type: 'Strategy', title: 'Growth strategists' }] })),
   'about/approach': () => frame(U, K.checklist({ title: 'How we work with you', scoreLabel: 'Client retention', score: '94%', items: [{ ok: true, label: 'One dedicated account lead' }, { ok: true, label: 'Clear plans and fixed prices' }, { ok: true, label: 'Monthly reports in plain English' }, { ok: true, label: 'You own every account and asset' }, { ok: true, label: 'Rolling monthly terms' }, { ok: true, label: 'Results tracked to revenue' }] })),
   'about/partners': () => frame(U, K.network({ center: 'GTech Digital', value: 'Certified', sub: 'by leading platforms', nodes: [{ icon: 'simple-icons:google', label: 'Google Partner' }, { icon: 'simple-icons:meta', label: 'Meta Partner' }, { icon: 'simple-icons:shopify', label: 'Shopify Partner' }, { icon: 'simple-icons:hubspot', label: 'HubSpot' }, { icon: 'simple-icons:semrush', label: 'Semrush' }, { icon: 'simple-icons:tiktok', label: 'TikTok Partner' }] })),
+  // ===== Industry pages: growth dashboard, channels, journey funnel, trust checklist =====
+  ...Object.fromEntries(Object.entries({
+    'e-commerce': {
+      dash: ['Online revenue', '£248k', ['lucide:shopping-cart', '3.6%', 'Conversion rate'], ['lucide:coins', '£72', 'Average order value'], ['lucide:trending-up', '5.4x', 'Blended ROAS']],
+      plat: ['Where your sales come from', [['lucide:search', 'Organic search', '38%', 'Of revenue'], ['simple-icons:googleads', 'Shopping ads', '6.1x', 'ROAS'], ['simple-icons:meta', 'Meta ads', '4.2x', 'ROAS'], ['lucide:mail', 'Email', '22%', 'Of revenue'], ['simple-icons:tiktok', 'TikTok', '1.4M', 'Views'], ['lucide:star', 'Reviews', '4.8', 'Average rating']]],
+      funnel: ['Store conversion funnel', [['Product views', '96,000'], ['Added to basket', '9,800'], ['Checkout started', '4,600'], ['Orders', '3,450']], ['lucide:mouse-pointer-click', '3.6%', 'Conversion rate'], ['lucide:shopping-bag', '-27%', 'Basket abandonment'], ['lucide:repeat', '41%', 'Repeat customers']],
+      check: ['Store health check', 'Store health', '96%', ['Product schema and feed', 'Fast mobile checkout', 'Express payments', 'Abandoned basket emails', 'Stock and courier sync'], 'Returns page rewritten'],
+    },
+    education: {
+      dash: ['Course enquiries', '3,840', ['lucide:graduation-cap', '1,120', 'Enrolments'], ['lucide:coins', '£46', 'Cost per enquiry'], ['lucide:calendar-days', '+58%', 'Open day bookings']],
+      plat: ['How students find you', [['lucide:search', 'Course search', '+164%', 'Organic traffic'], ['simple-icons:googleads', 'Google Ads', '£4.10', 'Cost per click'], ['simple-icons:tiktok', 'TikTok', '820k', 'Student views'], ['simple-icons:instagram', 'Instagram', '+12k', 'Followers'], ['lucide:mail', 'Email nurture', '38%', 'Open rate'], ['lucide:map-pin', 'Local search', '4.8', 'Google rating']]],
+      funnel: ['Student journey', [['Course page visits', '64,000'], ['Prospectus or enquiry', '3,840'], ['Open day attended', '1,560'], ['Enrolled', '1,120']], ['lucide:mouse-pointer-click', '6.0%', 'Enquiry rate'], ['lucide:graduation-cap', '29%', 'Enquiry to enrolment'], ['lucide:clock', '< 1 hr', 'Response time']],
+      check: ['Built for education', 'Accessibility', '98%', ['WCAG 2.2 AA accessible site', 'Course finder and filters', 'CRM and enquiry tracking', 'Safeguarding-aware content', 'Parent and student journeys'], 'Clearing campaign scheduled'],
+    },
+    'b2b-marketing': {
+      dash: ['Sales pipeline created', '£3.2M', ['lucide:users', '640', 'Qualified leads'], ['lucide:briefcase', '128', 'Sales meetings'], ['lucide:coins', '£72', 'Cost per lead']],
+      plat: ['B2B demand channels', [['lucide:search', 'SEO', '+188%', 'Organic leads'], ['simple-icons:linkedin', 'LinkedIn', '£39', 'Cost per lead'], ['simple-icons:googleads', 'Google Ads', '12%', 'Conversion rate'], ['lucide:file-text', 'Content', '46', 'Ranking guides'], ['lucide:mail', 'Email nurture', '31%', 'Open rate'], ['lucide:building-2', 'ABM', '84', 'Target accounts']]],
+      funnel: ['B2B pipeline', [['Target accounts reached', '4,200'], ['Engaged contacts', '1,260'], ['Qualified leads', '640'], ['Meetings booked', '128']], ['lucide:trending-up', '+44%', 'Win rate'], ['lucide:clock', '-21 days', 'Sales cycle'], ['lucide:coins', '£3.2M', 'Pipeline']],
+      check: ['B2B growth engine', 'CRM data quality', '94%', ['HubSpot or Salesforce tracking', 'Lead scoring and routing', 'Thought leadership content', 'Account-based campaigns', 'Closed-loop reporting'], 'Partner portal brief'],
+    },
+    automotive: {
+      dash: ['Vehicle enquiries', '2,960', ['lucide:car', '410', 'Test drives booked'], ['lucide:wrench', '+36%', 'Service bookings'], ['lucide:coins', '£18', 'Cost per lead']],
+      plat: ['How drivers find you', [['lucide:map-pin', 'Google Maps', '1,920', 'Direction requests'], ['simple-icons:googleads', 'Google Ads', '£18', 'Cost per lead'], ['simple-icons:meta', 'Meta ads', '£11', 'Cost per lead'], ['lucide:search', 'SEO', '+142%', 'Stock page traffic'], ['simple-icons:youtube', 'YouTube', '310k', 'Walkaround views'], ['lucide:star', 'Reviews', '4.9', 'Google rating']]],
+      funnel: ['Dealer funnel', [['Stock page views', '74,000'], ['Enquiries and calls', '2,960'], ['Test drives', '410'], ['Vehicles sold', '186']], ['lucide:phone', '1,240', 'Calls tracked'], ['lucide:car', '45%', 'Test drive to sale'], ['lucide:coins', '£64', 'Cost per sale']],
+      check: ['Built for dealers', 'Stock feed health', '99%', ['Live stock feed and filters', 'Finance calculator', 'FCA-compliant finance ads', 'Service booking online', 'Call tracking per channel'], 'Part-exchange tool queued'],
+    },
+    healthcare: {
+      dash: ['New patient bookings', '1,480', ['lucide:calendar-check', '+72%', 'Online bookings'], ['lucide:phone', '620', 'Calls from Google'], ['lucide:coins', '£28', 'Cost per patient']],
+      plat: ['How patients find you', [['lucide:map-pin', 'Google Maps', '#1', 'Map pack position'], ['lucide:search', 'SEO', '+176%', 'Treatment traffic'], ['simple-icons:googleads', 'Google Ads', '£28', 'Cost per patient'], ['simple-icons:meta', 'Meta ads', '£14', 'Cost per lead'], ['lucide:star', 'Reviews', '4.9', 'Google rating'], ['lucide:mail', 'Recall emails', '42%', 'Rebook rate']]],
+      funnel: ['Patient journey', [['Treatment page visits', '38,000'], ['Booking started', '2,600'], ['Appointments booked', '1,480'], ['Attended', '1,390']], ['lucide:calendar-check', '94%', 'Attendance rate'], ['lucide:clock', '24/7', 'Online booking'], ['lucide:repeat', '+31%', 'Returning patients']],
+      check: ['Compliant healthcare marketing', 'Compliance', '100%', ['CQC and GMC-aware content', 'ASA and CAP code compliant ads', 'GDPR-safe forms and data', 'Accessible, calm design', 'Clinician-reviewed copy'], 'Before and after policy review'],
+    },
+    'hospitality-hotels': {
+      dash: ['Direct bookings revenue', '£186k', ['lucide:calendar-check', '+64%', 'Direct bookings'], ['lucide:coins', '-£22k', 'OTA commission saved'], ['lucide:star', '4.8', 'Google rating']],
+      plat: ['How guests find you', [['lucide:map-pin', 'Google Maps', '3,400', 'Direction requests'], ['simple-icons:instagram', 'Instagram', '+18k', 'Followers'], ['simple-icons:googleads', 'Hotel ads', '8.2x', 'ROAS'], ['simple-icons:tiktok', 'TikTok', '960k', 'Views'], ['lucide:search', 'SEO', '+148%', 'Organic traffic'], ['lucide:mail', 'Email', '29%', 'Repeat stays']]],
+      funnel: ['Guest booking journey', [['Website visits', '82,000'], ['Availability checked', '12,400'], ['Booking started', '4,100'], ['Booked direct', '2,780']], ['lucide:mouse-pointer-click', '3.4%', 'Booking rate'], ['lucide:coins', '£214', 'Average booking'], ['lucide:repeat', '29%', 'Repeat guests']],
+      check: ['Built for hospitality', 'Direct booking score', '95%', ['Booking engine integration', 'Menus, rooms and events pages', 'Google Hotel and Maps listings', 'Review replies within 24 hours', 'Seasonal campaign calendar'], 'Christmas menu live'],
+    },
+    travel: {
+      dash: ['Online bookings value', '£1.4M', ['lucide:plane', '3,120', 'Trips booked'], ['lucide:coins', '£448', 'Average booking'], ['lucide:trending-up', '6.8x', 'ROAS']],
+      plat: ['How travellers find you', [['lucide:search', 'Destination SEO', '+212%', 'Organic traffic'], ['simple-icons:googleads', 'Google Ads', '6.8x', 'ROAS'], ['simple-icons:pinterest', 'Pinterest', '640k', 'Monthly views'], ['simple-icons:instagram', 'Instagram', '+22k', 'Followers'], ['lucide:mail', 'Email', '£210k', 'Revenue'], ['simple-icons:youtube', 'YouTube', '1.1M', 'Views']]],
+      funnel: ['Traveller journey', [['Destination research', '210,000'], ['Trip pages viewed', '48,000'], ['Quote or basket', '7,600'], ['Booked', '3,120']], ['lucide:mouse-pointer-click', '1.5%', 'Booking rate'], ['lucide:repeat', '34%', 'Repeat travellers'], ['lucide:mail', '£210k', 'Email revenue']],
+      check: ['Built for travel', 'Booking flow', '97%', ['ATOL and ABTA details clear', 'Live pricing and availability', 'Multi-currency checkout', 'Destination guide hub', 'Seasonal demand planning'], 'Late deals feed queued'],
+    },
+    'real-estate': {
+      dash: ['Valuation requests', '1,860', ['lucide:house', '312', 'New instructions'], ['lucide:calendar-check', '+48%', 'Viewings booked'], ['lucide:coins', '£24', 'Cost per valuation lead']],
+      plat: ['How homeowners find you', [['lucide:map-pin', 'Google Maps', '#1', 'In 6 branch areas'], ['lucide:search', 'Area SEO', '+158%', 'Organic traffic'], ['simple-icons:meta', 'Meta ads', '£24', 'Per valuation'], ['simple-icons:googleads', 'Google Ads', '£31', 'Per valuation'], ['lucide:star', 'Reviews', '4.9', 'Google rating'], ['simple-icons:youtube', 'Video tours', '420k', 'Views']]],
+      funnel: ['Vendor journey', [['Area guide visits', '56,000'], ['Instant valuations', '4,800'], ['Valuation booked', '1,860'], ['Instructions won', '312']], ['lucide:trending-up', '17%', 'Valuation to instruction'], ['lucide:clock', '< 15 min', 'Lead response'], ['lucide:coins', '£24', 'Cost per lead']],
+      check: ['Built for property', 'Portal sync', '100%', ['Rightmove and Zoopla feeds', 'Instant valuation tool', 'Branch and area pages', 'Material information shown', 'Landlord and tenant portals'], 'New homes microsite brief'],
+    },
+    finance: {
+      dash: ['Qualified enquiries', '1,240', ['lucide:users', '+68%', 'New clients'], ['lucide:coins', '£52', 'Cost per enquiry'], ['lucide:shield-check', '100%', 'Compliance sign-off']],
+      plat: ['How clients find you', [['lucide:search', 'SEO', '+184%', 'Organic traffic'], ['simple-icons:googleads', 'Google Ads', '£52', 'Per enquiry'], ['simple-icons:linkedin', 'LinkedIn', '£64', 'Per B2B lead'], ['lucide:file-text', 'Guides', '58', 'Ranking articles'], ['lucide:star', 'Reviews', '4.9', 'Trustpilot'], ['lucide:mail', 'Email', '36%', 'Open rate']]],
+      funnel: ['Client journey', [['Guide and calculator visits', '42,000'], ['Enquiry or callback', '1,240'], ['Consultation held', '610'], ['New clients', '284']], ['lucide:trending-up', '47%', 'Consultation to client'], ['lucide:clock', '< 1 hr', 'Callback time'], ['lucide:coins', '£226', 'Cost per client']],
+      check: ['Compliant financial marketing', 'Compliance', '100%', ['FCA financial promotions rules', 'Consumer Duty-friendly content', 'Risk warnings in place', 'Secure forms and portals', 'Compliance sign-off workflow'], 'Annual promotions audit'],
+    },
+    'technology-saas': {
+      dash: ['Monthly recurring revenue', '£142k', ['lucide:users', '2,840', 'Trial sign-ups'], ['lucide:trending-up', '11%', 'Trial to paid'], ['lucide:coins', '£310', 'Customer acquisition cost']],
+      plat: ['SaaS growth channels', [['lucide:search', 'SEO', '+236%', 'Sign-ups from search'], ['simple-icons:googleads', 'Google Ads', '£48', 'Per trial'], ['simple-icons:linkedin', 'LinkedIn', '£62', 'Per demo'], ['lucide:sparkles', 'AI answers', '34', 'Brand mentions'], ['lucide:file-text', 'Comparison pages', '28', 'Ranking pages'], ['lucide:mail', 'Onboarding emails', '+18%', 'Activation']]],
+      funnel: ['Trial to paid funnel', [['Website visitors', '120,000'], ['Trial sign-ups', '2,840'], ['Activated users', '1,420'], ['Paying customers', '312']], ['lucide:trending-up', '11%', 'Trial to paid'], ['lucide:repeat', '116%', 'Net revenue retention'], ['lucide:clock', '4 min', 'Time to value']],
+      check: ['Built for SaaS', 'Product-led score', '93%', ['Product analytics and events', 'Comparison and alternatives pages', 'Pricing page testing', 'Onboarding email sequences', 'AI search visibility'], 'G2 review campaign'],
+    },
+  }).flatMap(([slug, d]) => {
+    const kpi = ([icon, value, label]) => ({ icon, value, label });
+    return [
+      [`industries/${slug}/growth`, () => frame(U, K.dashboard({ title: d.dash[0], value: d.dash[1], pts: [0.16, 0.2, 0.26, 0.31, 0.38, 0.45, 0.52, 0.6, 0.68, 0.76, 0.86, 0.95], kpis: d.dash.slice(2).map(kpi) }))],
+      [`industries/${slug}/channels`, () => frame(U, K.platforms({ title: d.plat[0], tiles: d.plat[1].map(([icon, name, metric, label]) => ({ icon, name, metric, label })) }))],
+      [`industries/${slug}/journey`, () => frame(U, K.funnel({ title: d.funnel[0], stages: d.funnel[1].map(([label, value]) => ({ label, value })), kpis: d.funnel.slice(2).map(kpi) }))],
+      [`industries/${slug}/trust`, () => frame(U, K.checklist({ title: d.check[0], scoreLabel: d.check[1], score: d.check[2], items: [...d.check[3].map((label) => ({ ok: true, label })), { ok: false, label: d.check[4] }] }))],
+    ];
+  })),
   'web/design': () => frame(U, K.annotated({ labels: ['Clear headline', 'Value proposition', 'Hero visual', 'Trust signals', 'Benefits', 'Call to action'] })),
   'web/build': () => frame(U, K.code({ file: 'page.tsx', lang: 'lucide:code-xml', lines: CODE, kpis: [{ icon: 'lucide:zap', value: '0.9s', label: 'Load time' }, { icon: 'lucide:shield-check', value: 'A+', label: 'Security grade' }, { icon: 'lucide:smartphone', value: '100%', label: 'Mobile-friendly' }] })),
   'web/ecommerce': () => frame(U, K.dashboard({ title: 'Online revenue', value: '£96k', bars: true, pts: [0.2, 0.24, 0.3, 0.34, 0.4, 0.46, 0.52, 0.6, 0.68, 0.76, 0.86, 0.95], kpis: [{ icon: 'lucide:shopping-cart', value: '3.4%', label: 'Conversion rate' }, { icon: 'lucide:coins', value: '£68', label: 'Average order value' }, { icon: 'lucide:repeat', value: '38%', label: 'Repeat customers' }] })),

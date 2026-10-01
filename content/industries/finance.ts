@@ -1,0 +1,45 @@
+import { industry } from './build';
+
+// Entities: financial advisers, mortgage brokers, accountants, wealth managers, lenders, insurance,
+// FCA financial promotions, Consumer Duty, risk warnings, YMYL content, Trustpilot, calculators.
+export default industry({
+  slug: 'finance',
+  name: 'Finance',
+  metaTitle: 'Financial Services Marketing Agency UK | Compliant Marketing | GTech Digital',
+  metaDescription: 'UK financial services marketing agency for advisers, brokers, accountants and lenders: compliant SEO, Google Ads, LinkedIn and secure websites that win clients.',
+  hero: {
+    eyebrow: 'Financial Services Marketing UK',
+    title: 'Financial Marketing That',
+    highlight: 'Wins Clients',
+    lead: 'We help advisers, brokers, accountants and lenders grow with marketing that builds trust, follows FCA rules and turns research into enquiries.',
+    points: ['Free marketing audit', 'FCA-aware campaigns', 'Compliance sign-off built in'],
+  },
+  what: {
+    heading: 'Marketing in a Regulated Industry',
+    para: 'Financial decisions are high-stakes, so clients research carefully and look for expertise and trust. Marketing must be clear, fair and not misleading, and it needs a reliable compliance process.',
+    bullets: ['Expert content that ranks for financial questions', 'Compliant ads with the right risk warnings', 'Secure websites, calculators and portals'],
+  },
+  impact: { heading: 'Growth Without Compliance Risk', stats: [['+68%', 'Average growth in new clients'], ['£52', 'Average cost per enquiry'], ['47%', 'Average consultation to client'], ['100%', 'Campaigns with compliance sign-off']] },
+  media: [
+    { nav: 'Enquiries', eyebrow: 'Client growth', heading: 'More Qualified Enquiries', para: 'We target people actively looking for advice, mortgages or accounting help, and filter out poor-fit leads.', bullets: ['High-intent search campaigns', 'Callback and booking forms', 'Lead qualification', 'Cost per client reporting'], alt: 'Qualified financial enquiries growing with new clients, cost per enquiry and compliance sign-off' },
+    { nav: 'Channels', eyebrow: 'Channels', heading: 'Expertise That Shows Up in Search', para: 'Helpful guides and calculators earn rankings and trust, while Google and LinkedIn reach people ready to act.', bullets: ['Financial SEO and guides', 'Google Ads for advice searches', 'LinkedIn for B2B finance', 'Trustpilot and Google reviews'], alt: 'How clients find you: SEO, Google Ads, LinkedIn, guides, reviews and email' },
+    { nav: 'Journey', eyebrow: 'Client journey', heading: 'From First Question to New Client', para: 'Clear explanations, calculators and fast callbacks guide people from research to a first consultation.', bullets: ['Calculators and tools', 'Consultation booking', 'Callbacks within the hour', 'Email nurture'], alt: 'Financial client journey from guide visits to enquiries, consultations and new clients' },
+    { nav: 'Compliance', eyebrow: 'Compliance', heading: 'Marketing That Passes Compliance', para: 'We build FCA financial promotion rules and Consumer Duty into every page and campaign, with a clear sign-off workflow.', bullets: ['FCA financial promotions rules', 'Consumer Duty-friendly content', 'Risk warnings and disclaimers', 'Secure forms and portals'], alt: 'Compliant financial marketing checklist with FCA rules, Consumer Duty, risk warnings and sign-off' },
+  ],
+  cards: [
+    ['lucide:search', 'Financial SEO', 'Expert content that ranks.'], ['simple-icons:googleads', 'Google Ads', 'Compliant lead campaigns.'],
+    ['simple-icons:linkedin', 'LinkedIn', 'B2B finance marketing.'], ['lucide:calculator', 'Calculators', 'Tools that generate leads.'],
+    ['lucide:star', 'Reviews', 'Trustpilot and Google.'], ['lucide:shield-check', 'Compliance Workflow', 'Sign-off built in.'],
+    ['lucide:monitor', 'Secure Websites', 'Fast and trustworthy.'], ['lucide:app-window', 'Client Portals', 'Documents and onboarding.'],
+  ],
+  reviews: [['Mark S', 'CEO, Financial Advisers', 'Enquiries are up and compliance signs off campaigns without rework.'], ['Helen G', 'Director, Mortgage Broker', 'Our guides rank on page one and bring in steady, quality leads.'], ['Tom A', 'Partner, Accountancy Firm', 'New client enquiries grew by two thirds in a year.']],
+  faqs: [
+    ['How do financial advisers get more clients online?', 'Publish expert content that answers common questions, rank in local and national search, collect reviews and run compliant Google Ads, with fast follow-up on every enquiry.'],
+    ['Are financial promotions regulated?', 'Yes. Financial promotions must be clear, fair and not misleading under FCA rules, and Consumer Duty applies to communications with retail clients. We build campaigns to meet these standards.'],
+    ['Do you work with accountants?', 'Yes. We work with accountants, financial advisers, mortgage and insurance brokers, wealth managers and lenders.'],
+    ['Can our compliance team approve content?', 'Yes. We build a sign-off step into every campaign and keep an audit trail of approvals.'],
+    ['Do you build client portals?', 'Yes. We build secure portals for documents, onboarding and messaging.'],
+    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+  ],
+  related: ['search-engine-optimization', 'google-ads', 'linkedin-marketing', 'content-marketing', 'website-design', 'web-application-development'],
+});

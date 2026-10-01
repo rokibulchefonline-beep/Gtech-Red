@@ -149,7 +149,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
           <div className="sp-inds">
             {s.items.map((it) => {
               const ind = industries.find((i) => i.slug === it.slug);
-              return ind && <div key={it.slug} className="sp-ind"><h3>{ind.name}</h3><p>{it.text}</p></div>;
+              return ind && <div key={it.slug} className="sp-ind"><Link href={`/industries/${ind.slug}`}><h3>{ind.name}</h3></Link><p>{it.text}</p></div>;
             })}
           </div>
         </div></section>

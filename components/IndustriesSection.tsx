@@ -21,10 +21,10 @@ export default function IndustriesSection() {
         </div>
         <div className="ind-cards">
           {industries.map((i) => (
-            <div key={i.slug} className="ind-card">
+            <Link key={i.slug} href={`/industries/${i.slug}`} className="ind-card">
               <span className="ind-ico"><Icon name={industryIcons[i.slug]} size={26} /></span>
               <b>{i.name}</b>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
