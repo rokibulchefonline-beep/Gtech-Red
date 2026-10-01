@@ -2,16 +2,17 @@ import Link from 'next/link';
 import CaseCarousel from '@/components/CaseCarousel';
 import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
+import FaqSection from '@/components/service/FaqSection';
 import type { Section, ServiceContent } from '@/content/types';
 import { brandLogos, findGroup, findItem, industries, site } from '@/lib/data';
 import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
 
-const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
+export const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
 const Paras = ({ p }: { p: string[] }) => <>{p.map((t) => <p key={t.slice(0, 30)}>{t}</p>)}</>;
 const List = ({ b }: { b?: string[] }) => (b ? <ul className="sp-list">{b.map((x) => <li key={x}><Tick />{x}</li>)}</ul> : null);
 
-function Head({ s, center = true, intro }: { s: { eyebrow?: string; heading: string }; center?: boolean; intro?: string }) {
+export function Head({ s, center = true, intro }: { s: { eyebrow?: string; heading: string }; center?: boolean; intro?: string }) {
   return (
     <div className={center ? 'sp-head center' : 'sp-head'}>
       {s.eyebrow && <p className="sp-eyebrow">{s.eyebrow}</p>}
@@ -21,7 +22,7 @@ function Head({ s, center = true, intro }: { s: { eyebrow?: string; heading: str
   );
 }
 
-async function Block({ s, slug, name }: { s: Section; slug: string; name: string }) {
+export async function Block({ s, slug, name }: { s: Section; slug: string; name: string }) {
   switch (s.type) {
     case 'logos':
       return (
@@ -208,17 +209,7 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
 
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={short} />)}
 
-      <section id="faq" className="sp-sec"><div className="wrap sp-faq-wrap">
-        <aside className="sp-faq-aside">
-          <p className="sp-eyebrow light">FAQs</p>
-          <h2>{short} Questions, Answered</h2>
-          <p>Can not find what you are looking for? Our specialists are happy to help.</p>
-          <Link className="btn light-btn" href="/contact">Ask an expert</Link>
-        </aside>
-        <div className="sp-faq">
-          {c.faqs.map((f, n) => <details key={f.q} open={n === 0}><summary>{f.q}<Icon name={uiIcons.chevron} size={20} /></summary><p>{f.a}</p></details>)}
-        </div>
-      </div></section>
+      <FaqSection title={`${short} Questions, Answered`} faqs={c.faqs} />
 
       <section className="sp-sec sp-grey"><div className="wrap">
         <Head s={{ eyebrow: 'Related services', heading: `Services That Work Well With ${short}` }} />

@@ -412,3 +412,19 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 .pstrip-row img{height:38px;width:auto;max-width:160px;object-fit:contain;transition:transform .3s}
 .pstrip-row img:hover{transform:scale(1.06)}
 @media(max-width:600px){.pstrip-row{gap:22px 30px}.pstrip-row img{height:34px;max-width:120px}}
+
+/* About & contact pages */
+.sp-after-hero{padding-top:90px;background:#fff}
+.about-video{width:min(860px,100%)}.about-video .who-video{box-shadow:0 30px 70px rgba(0,0,0,.18)}
+.sp-hero.compact{padding-bottom:64px}
+.contact-sec{background:#f6f6f8}
+.contact-sec .contact-grid{grid-template-columns:7fr 4fr;align-items:start}
+.contact-aside{background:#111;color:#fff;padding:40px 34px;position:sticky;top:150px}
+.contact-aside h3{color:#fff;margin:0 0 20px;font-size:22px}.contact-aside h3:not(:first-child){margin-top:34px}
+.contact-ways{list-style:none;padding:0;margin:0;display:grid;gap:18px}
+.contact-ways li{display:flex;gap:14px;align-items:center}.contact-ways small{display:block;color:#a9a9b3;font-size:13px;font-weight:600}
+.contact-ways a{color:#fff;font-weight:700;word-break:break-all}.contact-ways li>span:last-child{font-weight:700}
+.contact-next{list-style:none;padding:0;margin:0;display:grid;gap:16px}
+.contact-next li{display:flex;gap:14px}.contact-next li>span{flex:none;width:34px;height:34px;border-radius:50%;background:var(--pink);display:grid;place-items:center;font-weight:800}
+.contact-next b{display:block}.contact-next p{margin:2px 0 0;color:#c9c9d0;font-size:14.5px}
+@media(max-width:900px){.contact-sec .contact-grid{grid-template-columns:1fr}.contact-aside{position:static}}

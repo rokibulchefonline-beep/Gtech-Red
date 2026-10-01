@@ -1,20 +1,217 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import PageHead from '@/components/PageHead';
+import CaseCarousel from '@/components/CaseCarousel';
+import InquirySection from '@/components/InquirySection';
+import IntroVideo from '@/components/IntroVideo';
+import PartnerStrip from '@/components/PartnerStrip';
+import FaqSection from '@/components/service/FaqSection';
+import { Block, Head, Tick } from '@/components/service/ServicePage';
+import type { Section } from '@/content/types';
+import { site } from '@/lib/data';
+import { listDocs } from '@/lib/mongo';
 
-export const metadata: Metadata = { title: 'About Us' };
+export const dynamic = 'force-dynamic';
 
-export default function About() {
+// Entity map: GTech Digital (Organization) -> UK digital marketing, web design and software agency;
+// services (SEO, Google Ads, social media, web development, custom software, branding); platform
+// partnerships (Google Partner, Meta, Shopify, HubSpot); team, values, process, industries, clients.
+
+const base = 'https://www.gtechdigital.co.uk';
+
+export const metadata: Metadata = {
+  title: { absolute: 'About GTech Digital | UK Digital Marketing, Web & Software Agency' },
+  description:
+    'Meet GTech Digital, a UK agency combining digital marketing, web design and custom software under one roof, with certified specialists and a focus on measurable growth.',
+  alternates: { canonical: '/about' },
+};
+
+const sections: Section[] = [
+  {
+    type: 'text',
+    id: 'who-we-are',
+    eyebrow: 'Who we are',
+    heading: 'Marketing, Web and Software Under One Roof',
+    paras: [
+      'GTech Digital is a UK agency that helps businesses grow online. We bring SEO, paid media, social, web design and custom software together in one team, so your marketing, website and systems work as one, and every decision is driven by data.',
+    ],
+    bullets: [
+      'Digital marketing that brings leads and sales',
+      'Websites and apps built to convert',
+      'Software that removes manual work',
+    ],
+  },
+  {
+    type: 'impact',
+    id: 'numbers',
+    eyebrow: 'GTech in numbers',
+    heading: 'Built on Results',
+    text: 'A snapshot of the work we have delivered for UK businesses.',
+    stats: [
+      { value: '10+', label: 'Years of experience' },
+      { value: '500+', label: 'Projects delivered' },
+      { value: '150+', label: 'Happy clients' },
+      { value: '4.9/5', label: 'Average client rating' },
+    ],
+  },
+  {
+    type: 'media',
+    id: 'story',
+    eyebrow: 'Our story',
+    heading: 'From SEO Specialists to Full-Service Partner',
+    image: '/pages/about/story.webp',
+    alt: 'GTech Digital journey from founding to a full marketing, web and software team',
+    paras: ['We started by helping local businesses rank on Google. As clients grew, we added paid media, social, web and software, so they could keep everything with one trusted team.'],
+    bullets: ['Started in search and web', 'Grew with our clients', 'Now 30+ services', 'Same senior-led approach'],
+  },
+  {
+    type: 'media',
+    id: 'team',
+    eyebrow: 'Our team',
+    heading: 'Specialists in Every Channel',
+    image: '/pages/about/team.webp',
+    alt: 'GTech Digital team of SEO, paid media, content, design, development and strategy specialists',
+    flip: true,
+    tone: 'grey',
+    paras: ['Each client gets a dedicated lead backed by specialists, so you get expert work in every channel without managing several agencies.'],
+    bullets: ['SEO and content specialists', 'PPC and paid social experts', 'Designers and developers', 'Growth strategists'],
+  },
+  {
+    type: 'media',
+    id: 'approach',
+    eyebrow: 'Our approach',
+    heading: 'Honest, Transparent and Accountable',
+    image: '/pages/about/approach.webp',
+    alt: 'How GTech Digital works: dedicated lead, clear pricing, plain-English reports and client ownership',
+    paras: ['No long contracts, no jargon and no hidden fees. You own your accounts and data, and we earn your business every month.'],
+    bullets: ['One dedicated account lead', 'Fixed, clear pricing', 'Plain-English monthly reports', 'Rolling monthly terms'],
+  },
+  {
+    type: 'media',
+    id: 'partners',
+    eyebrow: 'Certified partners',
+    heading: 'Certified by the Platforms We Use',
+    image: '/pages/about/partners.webp',
+    alt: 'GTech Digital certified with Google, Meta, Shopify, HubSpot, Semrush and TikTok',
+    flip: true,
+    tone: 'grey',
+    paras: ['Our team holds certifications with leading platforms, giving clients early access to features, support and best practice.'],
+    bullets: ['Google Partner', 'Meta Business Partner', 'Shopify and HubSpot partners', 'TikTok Marketing Partner'],
+  },
+  {
+    type: 'cards',
+    id: 'values',
+    eyebrow: 'What we believe',
+    heading: 'Our Values',
+    cards: [
+      { icon: 'lucide:trending-up', title: 'Results First', text: 'Leads and revenue over vanity metrics.' },
+      { icon: 'lucide:eye', title: 'Transparency', text: 'Clear reports, no hidden fees.' },
+      { icon: 'lucide:handshake', title: 'Partnership', text: 'We act like part of your team.' },
+      { icon: 'lucide:shield-check', title: 'Integrity', text: 'Honest advice, even when it is no.' },
+      { icon: 'lucide:lightbulb', title: 'Curiosity', text: 'Always testing and learning.' },
+      { icon: 'lucide:zap', title: 'Pace', text: 'Fast replies and quick delivery.' },
+      { icon: 'lucide:graduation-cap', title: 'Expertise', text: 'Certified, always up to date.' },
+      { icon: 'lucide:heart', title: 'Care', text: 'We treat your business as our own.' },
+    ],
+  },
+  {
+    type: 'steps',
+    id: 'process',
+    eyebrow: 'How we work',
+    heading: 'Working With GTech Digital',
+    steps: [
+      { title: 'Discover', text: 'We learn your goals and market.' },
+      { title: 'Audit', text: 'Free review of what works today.' },
+      { title: 'Plan', text: 'A clear strategy and quote.' },
+      { title: 'Deliver', text: 'Specialists get to work.' },
+      { title: 'Report', text: 'Monthly results in plain English.' },
+      { title: 'Grow', text: 'Scale what works.' },
+    ],
+  },
+];
+
+const later: Section[] = [
+  {
+    type: 'reviews',
+    id: 'reviews',
+    eyebrow: 'Client reviews',
+    heading: 'What Our Clients Say',
+    reviews: [
+      { name: 'Sarah K', role: 'MD, Home Services', text: 'GTech handle our SEO, ads and website. One team, clear reports and steady growth.' },
+      { name: 'Andrew L', role: 'MD, Distribution', text: 'From marketing to custom software, they understand our business and deliver.' },
+      { name: 'Victoria H', role: 'Founder, Interiors Brand', text: 'Honest advice, fast replies and results that speak for themselves.' },
+    ],
+  },
+  {
+    type: 'industries',
+    id: 'industries',
+    eyebrow: 'Industries we serve',
+    heading: 'Experience Across Industries',
+    items: [
+      { slug: 'e-commerce', text: 'Online stores and product brands.' },
+      { slug: 'healthcare', text: 'Clinics, dentists and wellness.' },
+      { slug: 'hospitality-hotels', text: 'Restaurants, venues and hotels.' },
+      { slug: 'real-estate', text: 'Agents, developers and landlords.' },
+      { slug: 'finance', text: 'Advisers, accountants and lenders.' },
+      { slug: 'technology-saas', text: 'SaaS and technology companies.' },
+    ],
+  },
+];
+
+const faqs = [
+  { q: 'What does GTech Digital do?', a: 'GTech Digital is a UK agency providing digital marketing (SEO, Google Ads, social media and content), web design and development, custom software and branding for businesses of all sizes.' },
+  { q: 'Where is GTech Digital based?', a: 'We are a UK agency working with businesses across the country, with meetings in person or online.' },
+  { q: 'What size businesses do you work with?', a: 'We work with start-ups, local businesses, growing SMEs and larger brands, with plans to suit each budget.' },
+  { q: 'Why choose GTech Digital over other agencies?', a: 'You get marketing, web and software specialists in one team, a dedicated lead, transparent reporting and rolling monthly terms with no lock-in.' },
+  { q: 'Are you a certified Google Partner?', a: 'Yes. Our team is certified with Google, Meta and other leading platforms.' },
+  { q: 'How do I start working with you?', a: 'Get in touch through our contact form or book a free audit. We will review your goals and send a clear proposal within 24 hours.' },
+];
+
+export default async function About() {
+  const cases = await listDocs('case_studies', 6);
+  const jsonLd = [
+    { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About GTech Digital', url: `${base}/about`,
+      mainEntity: { '@type': 'Organization', name: site.name, url: base, logo: `${base}/logo.png`, email: site.email, telephone: site.phone,
+        description: 'UK digital marketing, web design and custom software agency.', areaServed: { '@type': 'Country', name: 'United Kingdom' } } },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
+      { '@type': 'ListItem', position: 2, name: 'About Us', item: `${base}/about` }] },
+  ];
+
   return (
     <>
-      <PageHead title="About Us" sub="Marketing, web and software specialists." />
-      <section className="wrap block prose">
-        <h2>Who we are</h2>
-        <p>Replace this text with your company story, team and values.</p>
-        <h2>What we believe</h2>
-        <ul><li>Results over vanity metrics</li><li>Clear reporting</li><li>Long-term partnerships</li></ul>
-        <Link className="btn" href="/contact">Work with us</Link>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <section className="sp-hero">
+        <div className="wrap sp-hero-in">
+          <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>About Us</b></nav>
+          <p className="sp-hero-eyebrow">About GTech Digital</p>
+          <h1>Your UK Partner for <span className="red">Digital Growth</span></h1>
+          <p className="sp-lead">We are marketers, designers and developers who help UK businesses get found, win customers and run smarter, all under one roof.</p>
+          <div className="sp-hero-btns">
+            <Link className="sp-btn-red" href="/contact">Work With Us</Link>
+            <Link className="sp-btn-line" href="/case-studies">See Our Work</Link>
+          </div>
+          <ul className="sp-hero-points">{['Certified Google Partner', 'Marketing, web and software', 'No long contracts'].map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+          <div className="sp-hero-show about-video"><IntroVideo /></div>
+        </div>
       </section>
+
+      <div className="sp-after-hero"><PartnerStrip /></div>
+
+      {sections.map((s) => <Block key={s.id} s={s} slug="about" name="GTech Digital" />)}
+
+      {cases.length > 0 && (
+        <section id="case-studies" className="sp-sec cases"><div className="wrap">
+          <Head s={{ eyebrow: 'Our work', heading: 'Recent Case Studies' }} />
+          <CaseCarousel docs={cases} />
+          <p className="cases-all"><Link className="btn-dark" href="/case-studies">View All Case Studies</Link></p>
+        </div></section>
+      )}
+
+      {later.map((s) => <Block key={s.id} s={s} slug="about" name="GTech Digital" />)}
+
+      <FaqSection title="About GTech Digital" faqs={faqs} schema />
+      <InquirySection />
     </>
   );
 }
