@@ -35,8 +35,9 @@ import brandingStrategy from './branding-strategy';
 import branding from './branding';
 import advisory from './marketing-advisory';
 import cro from './conversion-rate-optimization';
+import digitalMarketing from './digital-marketing';
 
 // Long-form service pages. Add each new page here.
 export const serviceContent: Record<string, ServiceContent> = Object.fromEntries(
-  [seo, googleAds, reputation, contentMarketing, backlinks, digitalAdvertising, paidMedia, social, facebook, instagram, linkedin, tiktok, pinterest, webDesignDev, wordpress, php, cms, laravel, maintenance, ecommerce, websiteDesign, localSeo, ecommerceSeo, software, webApp, mobileApp, apiIntegration, crmErp, saasProduct, mvp, brandingStrategy, branding, advisory, cro].map((c) => [c.slug, c]),
+  [seo, googleAds, reputation, contentMarketing, backlinks, digitalAdvertising, paidMedia, social, facebook, instagram, linkedin, tiktok, pinterest, webDesignDev, wordpress, php, cms, laravel, maintenance, ecommerce, websiteDesign, localSeo, ecommerceSeo, software, webApp, mobileApp, apiIntegration, crmErp, saasProduct, mvp, brandingStrategy, branding, advisory, cro, digitalMarketing].map((c) => [c.slug, c]),
 );

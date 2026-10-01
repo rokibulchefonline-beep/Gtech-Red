@@ -342,3 +342,7 @@ const brandid = panelHero('lucide:gem', 'Brand identity', 'brand', [['Brand reco
 const advisory = panelHero('lucide:lightbulb', 'Growth plan', 'dash', [['Cost per acquisition', 46, (v) => '£' + Math.round(v), 'lucide:coins'], ['Qualified leads', 62, (v) => '+' + Math.round(v) + '%', 'lucide:users'], ['Marketing ROI', 5.2, (v) => v.toFixed(1) + 'x', 'lucide:trending-up'], ['Targets hit', 11, (v) => Math.round(v) + ' / 12', 'lucide:target']]);
 const cro = panelHero('lucide:flask-conical', 'A/B test', 'ab', [['Conversion rate', 4.0, (v) => v.toFixed(1) + '%', 'lucide:mouse-pointer-click'], ['Uplift vs baseline', 71, (v) => '+' + Math.round(v) + '%', 'lucide:trending-up'], ['Cost per lead', 41, (v) => '-' + Math.round(v) + '%', 'lucide:coins'], ['Tests run', 64, (v) => Math.round(v), 'lucide:flask-conical']]);
 Object.assign(scenes, { brandid, advisory, cro });
+
+/* ===== Digital marketing category hero ===== */
+const dm = panelHero('lucide:chart-column-increasing', 'Growth dashboard', 'dash', [['Organic traffic', 212, (v) => '+' + Math.round(v) + '%', 'lucide:search'], ['Leads this month', 340, (v) => Math.round(v), 'lucide:users'], ['Cost per acquisition', 38, (v) => '£' + Math.round(v), 'lucide:coins'], ['Marketing ROI', 4.8, (v) => v.toFixed(1) + 'x', 'lucide:trending-up']]);
+Object.assign(scenes, { dm });
