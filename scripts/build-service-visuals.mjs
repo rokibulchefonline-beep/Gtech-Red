@@ -11,7 +11,7 @@ const out = new URL('../public/services/', import.meta.url);
 mkdirSync(out, { recursive: true });
 
 for (const [name, scene] of Object.entries(scenes)) {
-  if (only && only !== name) continue;
+  if (only && !only.split(',').includes(name)) continue;
   if (preview) {
     const png = await sharp(Buffer.from(scene(0.82))).png().toBuffer();
     writeFileSync(new URL(`${name}-preview.png`, out), png);

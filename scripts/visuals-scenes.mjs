@@ -156,3 +156,61 @@ export function branding(u) {
 }
 
 export const scenes = { seo, paid, social, web, software, branding };
+
+
+/* ===== Batch 2 heroes ===== */
+const sq = (x, y, w, h, extra = '') => card(x, y, w, h, 0, extra);
+const starRow = (x, y, n, s, on) => Array.from({ length: n }, (_, i) => icon('lucide:star', x + i * (s + 4), y, s, i < on ? '#f5b301' : '#d9dbe1', 2.4).replace('fill="currentColor"', `fill="${i < on ? '#f5b301' : 'none'}"`)).join('');
+
+export function reputation(u) {
+  const rating = 4.2 + 0.7 * S(u, 0.1, 0.7);
+  const revs = [['Sarah M', 'Brilliant service, quick reply.'], ['James T', 'Highly recommend to anyone.'], ['Aisha K', 'Friendly team, fair price.']];
+  return frame(u, `
+    ${pop(u, 0, `${sq(60, 60, 330, 600)}${txt(225, 170, num(rating, 1), 100, 700, C.ink, 'middle')}${starRow(98, 200, 5, 30, Math.round(rating))}
+      ${txt(225, 276, num(1284 * S(u, 0.1, 0.75)).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' reviews', 20, 700, C.grey, 'middle')}
+      ${[0.86, 0.09, 0.03, 0.01, 0.01].map((d, i) => `${txt(92, 344 + i * 56, String(5 - i), 18, 700, C.ink)}${rect(118, 330 + i * 56, 230, 18, 0, C.line)}${rect(118, 330 + i * 56, 230 * d * S(u, 0.15 + i * 0.04, 0.6), 18, 0, i ? '#ffc9cf' : C.red)}`).join('')}`, 16, 0.12)}
+    ${revs.map(([n, t], i) => pop(u, 0.3 + i * 0.12, `${sq(420, 60 + i * 206, 480, 186)}<circle cx="466" cy="${106 + i * 206}" r="24" fill="${C.red}"/>${txt(466, 114 + i * 206, n[0], 22, 700, '#fff', 'middle')}
+      ${txt(504, 102 + i * 206, n, 19, 700, C.ink)}${starRow(504, 112 + i * 206, 5, 18, 5)}${txt(444, 178 + i * 206, t, 18, 500, '#4d5156')}
+      ${zoom(u, 0.45 + i * 0.12, 525, 222 + i * 206, `<rect x="444" y="${208 + i * 206}" width="160" height="26" fill="${C.soft}"/>${txt(456, 226 + i * 206, 'Owner replied', 14, 700, C.red)}`, 0.08)}`, 24)).join('')}`);
+}
+
+export function content(u) {
+  const items = [['lucide:file-text', 'Guide'], ['lucide:circle-help', 'FAQ'], ['lucide:scale', 'Comparison'], ['lucide:calculator', 'Cost guide'], ['lucide:list-checks', 'Checklist'], ['lucide:video', 'Video']];
+  return frame(u, `
+    ${items.map(([ic, l], i) => { const x = 60 + (i % 3) * 287, y = 60 + Math.floor(i / 3) * 210; return pop(u, 0.05 + i * 0.08, `${sq(x, y, 266, 190)}<rect x="${x}" y="${y}" width="266" height="96" fill="${i % 2 ? '#fde7ea' : '#ffd0d5'}"/>${icon(ic, x + 107, y + 22, 52, C.red, 1.8)}
+      <rect x="${x + 18}" y="${y + 112}" width="${l.length * 10 + 24}" height="26" fill="${C.ink}"/>${txt(x + 30, y + 130, l, 14, 700, '#fff')}${rect(x + 18, y + 152, 200, 9, 0, C.line)}${rect(x + 18, y + 168, 140, 9, 0, C.line)}`, 20, 0.1); }).join('')}
+    ${pop(u, 0.55, `${sq(60, 490, 840, 170)}${txt(92, 534, 'Organic traffic from content', 20, 700, C.grey)}${txt(92, 600, '+' + num(212 * S(u, 0.6, 0.9)) + '%', 50, 700, C.ink)}
+      ${chart('cc', 400, 520, 470, 120, [0.05, 0.1, 0.16, 0.22, 0.32, 0.44, 0.58, 0.76, 0.94], seg(u, 0.6, 0.9))}`)}`);
+}
+
+export function backlinks(u) {
+  const pos = [[150, 140, 'lucide:newspaper', 'National press'], [480, 90, 'lucide:mic', 'Podcast'], [810, 140, 'lucide:radio', 'Regional news'], [130, 520, 'lucide:pen-line', 'Trade blog'], [480, 600, 'lucide:graduation-cap', 'University'], [830, 520, 'lucide:building-2', 'Association']];
+  const dash = -u * 300;
+  return frame(u, `
+    ${pos.map(([x, y], i) => `<line x1="${x}" y1="${y}" x2="480" y2="350" stroke="${C.red}" stroke-width="3" stroke-dasharray="8 10" stroke-dashoffset="${dash}" opacity="${S(u, 0.2 + i * 0.08, 0.3 + i * 0.08) * 0.8}"/>`).join('')}
+    ${pos.map(([x, y, ic, l], i) => zoom(u, 0.1 + i * 0.08, x, y, `${sq(x - 100, y - 46, 200, 92)}<rect x="${x - 84}" y="${y - 26}" width="52" height="52" fill="${C.soft}"/>${icon(ic, x - 72, y - 14, 28, C.red, 2)}${txt(x - 20, y + 7, l, 17, 700, C.ink)}`, 0.1)).join('')}
+    ${pop(u, 0, `${sq(320, 266, 320, 168)}<rect x="320" y="266" width="320" height="8" fill="${C.red}"/>${txt(480, 318, 'yourwebsite.co.uk', 22, 700, C.ink, 'middle')}
+      ${txt(480, 378, 'Authority ' + num(34 + 18 * S(u, 0.2, 0.8)), 40, 700, C.red, 'middle')}${txt(480, 412, '+' + num(38 * S(u, 0.2, 0.8)) + ' new links', 17, 700, C.grey, 'middle')}`, 14)}`);
+}
+
+export function digital(u) {
+  const tiles = [['simple-icons:google', 'Search', '7.2%', 'CTR'], ['simple-icons:facebook', 'Facebook', '£9.80', 'Cost per lead'], ['simple-icons:instagram', 'Instagram', '3.4%', 'CTR'], ['simple-icons:tiktok', 'TikTok', '1.1M', 'Views'], ['lucide:monitor', 'Display', '1.4M', 'Impressions'], ['lucide:repeat', 'Retargeting', '8.1x', 'ROAS']];
+  return frame(u, `
+    ${txt(480, 86, 'Digital advertising, every channel', 28, 700, C.ink, 'middle')}
+    ${tiles.map(([ic, n, m, l], i) => { const x = 60 + (i % 3) * 287, y = 120 + Math.floor(i / 3) * 270; const p = S(u, 0.15 + i * 0.07, 0.4 + i * 0.07);
+      return pop(u, 0.05 + i * 0.07, `${sq(x, y, 266, 250)}<rect x="${x + 24}" y="${y + 24}" width="64" height="64" fill="${C.soft}"/>${icon(ic, x + 40, y + 40, 32, C.red, 2)}${txt(x + 24, y + 130, n, 24, 700, C.ink)}
+        <g opacity="${p.toFixed(2)}">${txt(x + 24, y + 186, m, 36, 700, C.red)}${txt(x + 24, y + 218, l, 16, 700, C.grey)}</g>`, 22, 0.1); }).join('')}`);
+}
+
+export function paidmedia(u) {
+  const slices = [['Google Search', 38, C.red], ['Meta', 26, '#ff7b89'], ['YouTube', 16, C.dark], ['LinkedIn', 12, '#ffc9cf'], ['TikTok', 8, '#161616']];
+  const r = 150, circ = 2 * Math.PI * r, sweep = S(u, 0.1, 0.6);
+  let off = 0;
+  const segs = slices.map(([, pct, col]) => { const len = circ * pct / 100 * sweep; const sgm = `<circle cx="300" cy="360" r="${r}" fill="none" stroke="${col}" stroke-width="64" stroke-dasharray="${len.toFixed(1)} ${(circ - len).toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}"/>`; off += len; return sgm; }).join('');
+  return frame(u, `
+    ${pop(u, 0, `${sq(60, 60, 500, 600)}${txt(92, 110, 'Media plan', 22, 700, C.grey)}<g transform="rotate(-90 300 360)">${segs}</g>${txt(300, 372, 'Budget', 26, 700, C.ink, 'middle')}`, 14)}
+    ${pop(u, 0.2, `${sq(590, 60, 310, 420)}${slices.map(([l, pct, col], i) => `<rect x="618" y="${100 + i * 76}" width="26" height="26" fill="${col}"/>${txt(658, 120 + i * 76, l, 19, 700, C.ink)}${txt(870, 120 + i * 76, pct + '%', 19, 700, C.grey, 'end')}`).join('')}`)}
+    ${pop(u, 0.45, `${sq(590, 500, 310, 160)}${txt(618, 540, 'Blended ROAS', 19, 700, C.grey)}${txt(618, 610, num(5.6 * S(u, 0.5, 0.85), 1) + 'x', 56, 700, C.red)}${upArrow(800, 570, 40)}`)}`);
+}
+
+Object.assign(scenes, { reputation, content, backlinks, digital, paidmedia });

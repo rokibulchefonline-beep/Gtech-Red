@@ -21,7 +21,7 @@ export const B = (u, a, b) => back(seg(u, a, b));
 export function icon(id, x, y, size, color = C.red, sw) {
   const [prefix, name] = id.split(':');
   const p = packs[prefix];
-  const d = p.icons[name];
+  const d = p.icons[name] ?? (p.aliases?.[name] && p.icons[p.aliases[name].parent]);
   if (!d) throw new Error('missing icon ' + id);
   const w = d.width ?? p.width ?? 24, h = d.height ?? p.height ?? 24;
   const body = sw ? d.body.replace(/stroke-width="[^"]*"/, `stroke-width="${sw}"`) : d.body;
