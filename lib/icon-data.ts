@@ -450,6 +450,11 @@ export const iconData: Record<string, { body: string; w: number; h: number }> = 
     "w": 24,
     "h": 24
   },
+  "lucide:user-check": {
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"m16 11l2 2l4-4m-6 12v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/></g>",
+    "w": 24,
+    "h": 24
+  },
   "lucide:user-plus": {
     "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M19 8v6m3-3h-6\"/></g>",
     "w": 24,

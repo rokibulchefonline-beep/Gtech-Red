@@ -1,11 +1,11 @@
 'use client';
 
 import Icon from '@/components/Icon';
-import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
+import { groupIcons, serviceIcons } from '@/lib/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { industries, services, site } from '@/lib/data';
+import { services, site } from '@/lib/data';
 
 export default function Header() {
   const [tab, setTab] = useState(services[0].slug);
@@ -44,13 +44,6 @@ export default function Header() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          <div className={`dd ${open === 'industries' ? 'open' : ''}`}>
-            <a href="#" className="dd-t" onClick={(e) => { e.preventDefault(); toggle('industries'); }}>Industries &#9662;</a>
-            <div className="dd-panel ind-panel">
-              {industries.map((i) => <Link key={i.slug} href={`/industries/${i.slug}`} onClick={close}><Icon name={industryIcons[i.slug]} size={16} /> {i.name}</Link>)}
             </div>
           </div>
 

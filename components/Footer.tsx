@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import CookieSettingsLink from '@/components/CookieSettingsLink';
 import Icon from '@/components/Icon';
 import { services, site } from '@/lib/data';
 
@@ -30,7 +31,7 @@ export default function Footer() {
       </div>
       <div className="wrap ftr-bottom">
         <span>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</span>
-        <nav aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/cookie-policy">Cookies</Link></nav>
+        <nav aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/cookie-policy">Cookies</Link><CookieSettingsLink /></nav>
       </div>
     </footer>
   );
