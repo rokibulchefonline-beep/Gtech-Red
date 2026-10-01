@@ -362,3 +362,7 @@ const industryHeroes = {
   'ind-technology-saas': panelHero('lucide:cpu', 'SaaS growth', 'dash', [['MRR', 142, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Trial sign-ups', 2840, gbp, 'lucide:users'], ['Trial to paid', 11, pct, 'lucide:trending-up'], ['Net retention', 116, pct, 'lucide:repeat']]),
 };
 Object.assign(scenes, industryHeroes);
+
+/* ===== Services hub hero ===== */
+const hub = panelHero('lucide:layout-grid', 'GTech results', 'dash', [['Organic traffic', 212, (v) => '+' + Math.round(v) + '%', 'lucide:search'], ['Leads this month', 340, (v) => Math.round(v), 'lucide:users'], ['Websites launched', 180, (v) => Math.round(v) + '+', 'lucide:monitor'], ['Admin hours saved', 420, (v) => Math.round(v) + 'h', 'lucide:clock']]);
+Object.assign(scenes, { hub });

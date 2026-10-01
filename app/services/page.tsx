@@ -54,39 +54,25 @@ export default function ServicesHub() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="sh-hero"><div className="wrap sh-hero-in">
-        <div className="sh-hero-copy">
-          <nav className="sp-crumbs left" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Services</b></nav>
-          <p className="sv-eyebrow">What we do</p>
+      <section className="sp-hero">
+        <div className="wrap sp-hero-in">
+          <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Services</b></nav>
+          <p className="sp-hero-eyebrow">What we do</p>
           <h1>GTech Digital <span className="red">Services</span></h1>
-          <p className="sh-lead">Marketing, websites and software from one UK team. Pick a service, or let us recommend the right mix for your goals and budget.</p>
-          <div className="sp-hero-btns left">
-            <Link className="sp-btn-red" href="/contact">Get a Free Audit</Link>
+          <p className="sp-lead">Marketing, websites and software from one UK team. Pick a service, or let us recommend the right mix for your goals and budget.</p>
+          <div className="sp-hero-btns">
+            <Link className="sp-btn-red" href="/contact">Book a Free Audit</Link>
             <a className="sp-btn-line" href="#digital-marketing">Explore Services</a>
           </div>
-          <dl className="sh-stats">
-            <div><dt>{total}+</dt><dd>Specialist services</dd></div>
-            <div><dt>{services.length}</dt><dd>Disciplines</dd></div>
-            <div><dt>1</dt><dd>Joined-up team</dd></div>
-          </dl>
+          <ul className="sp-hero-points">{[`${total}+ specialist services`, `${services.length} disciplines`, 'One joined-up team'].map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+          <div className="sp-hero-show">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/services/hub.webp" alt="GTech Digital results across marketing, web and software" width={800} height={600} />
+            <span className="sp-float a"><Icon name="lucide:layout-grid" size={20} />All Services</span>
+            <span className="sp-float b"><Icon name="lucide:trending-up" size={20} />Revenue-focused</span>
+          </div>
         </div>
-        <div className="sh-tiles">
-          {services.map((g) => (
-            <a key={g.slug} href={`#${g.slug}`} className="sh-tile">
-              <span className="sh-tile-ico"><Icon name={groupIcons[g.slug]} size={24} /></span>
-              <b>{groupInfo[g.slug]?.title ?? g.title}</b>
-              <small>{g.items.length} services</small>
-              <Icon className="sh-tile-arrow" name={uiIcons.arrowRight} size={18} />
-            </a>
-          ))}
-          <Link href="/contact" className="sh-tile red">
-            <span className="sh-tile-ico"><Icon name="lucide:message-circle" size={24} /></span>
-            <b>Not sure where to start?</b>
-            <small>Get a free recommendation</small>
-            <Icon className="sh-tile-arrow" name={uiIcons.arrowRight} size={18} />
-          </Link>
-        </div>
-      </div></section>
+      </section>
 
       <nav className="sp-toc sh-tabs" aria-label="Service categories"><div className="wrap">
         {services.map((g) => <a key={g.slug} href={`#${g.slug}`}><Icon name={groupIcons[g.slug]} size={16} />{groupInfo[g.slug]?.title ?? g.title}</a>)}

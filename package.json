@@ -12,7 +12,10 @@
     "cta-bg": "node scripts/build-cta-bg.mjs",
     "intro-video": "node scripts/build-intro-video.mjs",
     "page-visuals": "node scripts/build-page-visuals.mjs",
-    "backgrounds": "node scripts/build-backgrounds.mjs"
+    "backgrounds": "node scripts/build-backgrounds.mjs",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
     "mongodb": "^6.10.0",
@@ -24,10 +27,12 @@
     "@iconify-json/lucide": "^1.2.137",
     "@iconify-json/simple-icons": "^1.2.98",
     "@iconify/utils": "^3.1.7",
+    "@opennextjs/cloudflare": "^1.20.7",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "sharp": "^0.35.5",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "wrangler": "^4.145.0"
   }
 }

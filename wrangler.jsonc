@@ -1,0 +1,12 @@
+// Cloudflare Workers deployment (OpenNext). Build: npm run cf:build  Deploy: npm run cf:deploy
+// Set MONGODB_URI and MONGODB_DB as Worker secrets/variables in the Cloudflare dashboard.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gtech-red",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "gtech-red" }],
+  "observability": { "enabled": true }
+}
