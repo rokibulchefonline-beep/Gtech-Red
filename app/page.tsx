@@ -7,6 +7,7 @@ import WhoWeAre from '@/components/WhoWeAre';
 import HowWeWork from '@/components/HowWeWork';
 import InquirySection from '@/components/InquirySection';
 import IndustriesSection from '@/components/IndustriesSection';
+import PartnerStrip from '@/components/PartnerStrip';
 import StatsBar from '@/components/StatsBar';
 import Results from '@/components/Results';
 import Testimonials from '@/components/Testimonials';
@@ -38,6 +39,7 @@ export default async function Home() {
         </div>
       </section>
 
+      <PartnerStrip />
       <StatsBar />
 
       <WhoWeAre />
