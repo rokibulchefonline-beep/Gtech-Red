@@ -30,6 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
 
+  // Long-form content (service or category page) wins over the simple layouts below.
+  if (serviceContent[slug]) return <LongServicePage c={serviceContent[slug]} />;
+
   const group = findGroup(slug);
   if (group) {
     return (
@@ -49,7 +52,6 @@ export default async function ServicePage({ params }: Props) {
     );
   }
 
-  if (serviceContent[slug]) return <LongServicePage c={serviceContent[slug]} />;
 
   const found = findItem(slug);
   if (!found) notFound();

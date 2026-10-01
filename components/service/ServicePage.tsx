@@ -3,8 +3,8 @@ import CaseCarousel from '@/components/CaseCarousel';
 import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
 import type { Section, ServiceContent } from '@/content/types';
-import { brandLogos, findItem, industries, site } from '@/lib/data';
-import { serviceIcons, uiIcons } from '@/lib/icons';
+import { brandLogos, findGroup, findItem, industries, site } from '@/lib/data';
+import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
 
 const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
@@ -158,7 +158,8 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
 
 export default function ServicePage({ c }: { c: ServiceContent }) {
   const found = findItem(c.slug);
-  const name = found?.item.name ?? '';
+  const groupPage = findGroup(c.slug); // category pages (e.g. Social Media Marketing) use the same template
+  const name = found?.item.name ?? groupPage?.title ?? '';
   const short = c.short ?? name;
   const related = c.related.map((r) => findItem(r)).filter(Boolean);
   const base = 'https://www.gtechdigital.co.uk';
@@ -169,8 +170,8 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: c.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-      { '@type': 'ListItem', position: 2, name: found?.group.title, item: `${base}/services/${found?.group.slug}` },
-      { '@type': 'ListItem', position: 3, name, item: url }] },
+      ...(found ? [{ '@type': 'ListItem', position: 2, name: found.group.title, item: `${base}/services/${found.group.slug}` }] : []),
+      { '@type': 'ListItem', position: found ? 3 : 2, name, item: url }] },
   ];
 
   return (
@@ -194,7 +195,7 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
           <div className="sp-hero-show">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={c.hero.motion} alt={`${name} results dashboard`} width={800} height={600} />
-            <span className="sp-float a"><Icon name={serviceIcons[c.slug]} size={20} />{name}</span>
+            <span className="sp-float a"><Icon name={serviceIcons[c.slug] ?? groupIcons[c.slug]} size={20} />{name}</span>
             <span className="sp-float b"><Icon name="lucide:trending-up" size={20} />Revenue-focused</span>
           </div>
         </div>

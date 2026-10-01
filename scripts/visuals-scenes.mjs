@@ -214,3 +214,31 @@ export function paidmedia(u) {
 }
 
 Object.assign(scenes, { reputation, content, backlinks, digital, paidmedia });
+
+/* ===== Batch 3: social platform heroes (one template, five platforms) ===== */
+function platformHero(ic, name, metrics, cta) {
+  return (u) => {
+    const bob = (p) => Math.sin(u * Math.PI * 2 + p) * 6;
+    const likes = 1 + 0.35 * Math.max(0, Math.sin(seg(u, 0.4, 0.55) * Math.PI));
+    return frame(u, `
+      ${pop(u, 0, `<rect x="330" y="40" width="300" height="640" fill="#fff" filter="url(#sh)"/><rect x="346" y="56" width="268" height="608" fill="#fafafa"/>
+        <circle cx="382" cy="100" r="22" fill="url(#rg)"/>${icon(ic, 370, 88, 24, '#fff')}${txt(416, 96, name, 17, 700, C.ink)}${rect(416, 106, 80, 9, 0, C.line)}
+        <rect x="362" y="136" width="236" height="300" fill="url(#rg)"/><circle cx="480" cy="286" r="56" fill="#fff" opacity=".22"/>${icon(ic, 450, 256, 60, '#fff')}
+        <g transform="translate(386 466) scale(${likes}) translate(-386 -466)">${icon('lucide:heart', 372, 452, 28, C.red, 2.4).replace('fill="currentColor"', `fill="${C.red}"`)}</g>
+        ${icon('lucide:message-circle', 416, 452, 28, C.ink, 2.2)}${icon('lucide:share-2', 460, 452, 28, C.ink, 2.2)}
+        ${rect(372, 500, 200, 11, 0, C.line)}${rect(372, 520, 150, 11, 0, C.line)}
+        <rect x="372" y="560" width="216" height="46" fill="url(#rg)"/>${txt(480, 590, cta, 17, 700, '#fff', 'middle')}`, 16, 0.12)}
+      ${metrics.map(([label, target, fmt, mi], i) => {
+        const x = i < 2 ? 40 : 660, y = i % 2 ? 380 : 130, v = target * S(u, 0.2 + i * 0.08, 0.75);
+        return pop(u, 0.15 + i * 0.1, `<g transform="translate(0 ${bob(i * 1.5)})">${sq(x, y, 260, 200)}<rect x="${x + 22}" y="${y + 22}" width="52" height="52" fill="${C.soft}"/>${icon(mi, x + 34, y + 34, 28, C.red, 2.2)}
+          ${txt(x + 22, y + 128, fmt(v), 42, 700, C.ink)}${txt(x + 22, y + 164, label, 17, 700, C.grey)}</g>`, 22);
+      }).join('')}`);
+  };
+}
+const k = (v) => (v >= 1000 ? (v / 1000).toFixed(v >= 10000 ? 0 : 1) + 'k' : Math.round(v).toString());
+const facebook = platformHero('simple-icons:facebook', 'Facebook', [['Leads this month', 612, (v) => num(v), 'lucide:users'], ['Cost per lead', 8.6, (v) => '£' + v.toFixed(2), 'lucide:coins'], ['People reached', 182000, k, 'lucide:eye'], ['Engagement rate', 5.4, (v) => v.toFixed(1) + '%', 'lucide:heart']], 'Get quote');
+const instagram = platformHero('simple-icons:instagram', 'Instagram', [['Reel views', 248000, k, 'lucide:eye'], ['New followers', 18400, k, 'lucide:users'], ['Shop orders', 1920, (v) => num(v), 'lucide:shopping-bag'], ['ROAS', 4.6, (v) => v.toFixed(1) + 'x', 'lucide:trending-up']], 'Shop now');
+const linkedin = platformHero('lucide:linkedin', 'LinkedIn', [['B2B leads', 410, (v) => num(v), 'lucide:users'], ['Cost per lead', 39, (v) => '£' + Math.round(v), 'lucide:coins'], ['Meetings booked', 62, (v) => num(v), 'lucide:briefcase'], ['Pipeline', 480, (v) => '£' + Math.round(v) + 'k', 'lucide:trending-up']], 'Download guide');
+const tiktok = platformHero('simple-icons:tiktok', 'TikTok', [['Video views', 1200000, (v) => (v / 1e6).toFixed(1) + 'M', 'lucide:eye'], ['Watch-through', 62, (v) => Math.round(v) + '%', 'lucide:play'], ['Orders', 1140, (v) => num(v), 'lucide:shopping-cart'], ['ROAS', 3.8, (v) => v.toFixed(1) + 'x', 'lucide:trending-up']], 'Shop now');
+const pinterest = platformHero('simple-icons:pinterest', 'Pinterest', [['Monthly views', 420000, k, 'lucide:eye'], ['Pin saves', 18000, k, 'lucide:bookmark'], ['Outbound clicks', 9200, k, 'lucide:mouse-pointer-click'], ['ROAS', 5.0, (v) => v.toFixed(1) + 'x', 'lucide:trending-up']], 'Visit site');
+Object.assign(scenes, { facebook, instagram, linkedin, tiktok, pinterest });
