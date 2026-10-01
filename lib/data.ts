@@ -165,12 +165,12 @@ export const coreServices: {
 // Covers are drawn in code (scripts/build-case-images.mjs, `npm run case-images`).
 // Real documents can add `image` (cover photo URL) and `logo` (white logo URL) for the card.
 export const demoCaseStudies = [
-  { slug: 'chefonline', image: '/case/chefonline.webp', title: 'ChefOnline', excerpt: 'Online ordering growth for a restaurant platform.' },
-  { slug: 'salik-and-co', image: '/case/salik-and-co.webp', title: 'Salik & Co', excerpt: 'Lead generation and local SEO for a professional services firm.' },
-  { slug: 'arta', image: '/case/arta.webp', title: 'Arta', excerpt: 'Brand and social growth for a hospitality awards brand.' },
-  { slug: 'table-booking', image: '/case/table-booking.webp', title: 'Table Booking', excerpt: 'Web platform and paid media for restaurant bookings.' },
-  { slug: 'demo-brand-five', image: '/case/demo-brand-five.webp', title: 'Demo Brand', excerpt: 'Placeholder case study. Replace with a real client.' },
-  { slug: 'demo-brand-six', image: '/case/demo-brand-six.webp', title: 'Sample Client', excerpt: 'Placeholder case study. Replace with a real client.' },
+  { slug: 'chefonline', services: ['search-engine-optimization', 'google-ads'], image: '/case/chefonline.webp', title: 'ChefOnline', excerpt: 'Online ordering growth for a restaurant platform.' },
+  { slug: 'salik-and-co', services: ['search-engine-optimization'], image: '/case/salik-and-co.webp', title: 'Salik & Co', excerpt: 'Lead generation and local SEO for a professional services firm.' },
+  { slug: 'arta', services: ['social-media-marketing'], image: '/case/arta.webp', title: 'Arta', excerpt: 'Brand and social growth for a hospitality awards brand.' },
+  { slug: 'table-booking', services: ['web-design-development', 'google-ads'], image: '/case/table-booking.webp', title: 'Table Booking', excerpt: 'Web platform and paid media for restaurant bookings.' },
+  { slug: 'demo-brand-five', services: ['search-engine-optimization', 'content-marketing'], image: '/case/demo-brand-five.webp', title: 'Demo Brand', excerpt: 'Placeholder case study. Replace with a real client.' },
+  { slug: 'demo-brand-six', services: ['branding'], image: '/case/demo-brand-six.webp', title: 'Sample Client', excerpt: 'Placeholder case study. Replace with a real client.' },
 ].map((c) => ({
   ...c,
   body: `${c.excerpt}\n\nThis is a placeholder case study. Add real documents to the MongoDB "case_studies" collection ` +

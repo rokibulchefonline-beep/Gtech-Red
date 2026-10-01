@@ -10,6 +10,7 @@ import type { ServiceContent } from '../types';
 
 const content: ServiceContent = {
   slug: 'search-engine-optimization',
+  short: 'SEO',
   metaTitle: 'SEO Agency UK | Search Engine Optimisation Services | GTech Digital',
   metaDescription:
     'UK SEO agency delivering technical SEO, content, local SEO and link building that turn Google rankings into leads and sales. Get a free SEO audit from GTech Digital.',
@@ -23,6 +24,7 @@ const content: ServiceContent = {
     points: ['Free SEO audit', 'No long lock-in contracts', 'Monthly plain-English reports'],
   },
   sections: [
+    { type: 'logos', id: 'clients' },
     {
       type: 'text',
       id: 'what-is-seo',
@@ -33,6 +35,19 @@ const content: ServiceContent = {
         'Search engine optimisation (SEO) is the practice of improving a website so that it appears higher in the unpaid, organic results of search engines such as Google and Bing. In the UK, Google handles more than nine in every ten searches, so for most businesses SEO means understanding how Google crawls, indexes and ranks pages, and then making your site the most useful answer for the searches your customers make.',
         'Unlike paid search, you do not pay per click for organic traffic. Instead, you invest in the quality of your website, your content and your reputation across the web. That investment compounds: a page that ranks well for a valuable search term can bring in enquiries every day for years, long after the work that earned the ranking is done.',
         'Google ranks pages using hundreds of signals, but they fall into three broad groups. Technical signals show whether Google can find, render and understand your pages. Relevance signals show whether a page actually answers the search, which depends on your content, headings and structured data. Authority and trust signals, mostly links and mentions from other reputable websites, show whether others vouch for you. Good SEO works on all three at once.',
+      ],
+    },
+    {
+      type: 'impact',
+      id: 'impact',
+      eyebrow: 'SEO in numbers',
+      heading: 'Our Success Is Measured by the Growth We Create',
+      text: 'We have helped UK businesses in retail, hospitality, healthcare and professional services turn search into a reliable source of leads. These are the numbers we are proudest of.',
+      stats: [
+        { value: '1,200+', label: 'Keywords on page one' },
+        { value: '85+', label: 'SEO clients served' },
+        { value: '3.4x', label: 'Average organic traffic growth' },
+        { value: '10+', label: 'Years of SEO experience' },
       ],
     },
     {
@@ -145,6 +160,14 @@ const content: ServiceContent = {
       ],
     },
     {
+      type: 'cases',
+      id: 'case-studies',
+      nav: 'Case studies',
+      eyebrow: 'SEO case studies',
+      heading: 'SEO Results We Have Delivered',
+      intro: 'Real campaigns, real rankings. See how our SEO work turned search visibility into enquiries and sales.',
+    },
+    {
       type: 'table',
       id: 'seo-vs-ppc',
       nav: 'SEO vs PPC',
@@ -191,7 +214,36 @@ const content: ServiceContent = {
       ],
     },
     {
-      type: 'text',
+      type: 'reviews',
+      id: 'reviews',
+      nav: 'Reviews',
+      eyebrow: 'Client reviews',
+      heading: 'What Our SEO Clients Say',
+      intro: 'Do not just take our word for it. Here is what business owners say about working with our SEO team.',
+      reviews: [
+        { name: 'Derek L', role: 'Ecommerce Director', text: 'Their technical audit found problems three previous agencies had missed. Within six months our category pages moved onto page one and organic revenue is now our biggest channel.' },
+        { name: 'Priya S', role: 'Clinic Owner, Manchester', text: 'We now appear in the map pack for every treatment we offer locally. The monthly reports are clear, and we can see exactly how many bookings come from Google.' },
+        { name: 'Tom H', role: 'Managing Partner, Law Firm', text: 'GTech Digital rebuilt our service pages and earned links from proper legal publications. Enquiries from organic search have more than doubled.' },
+      ],
+    },
+    {
+      type: 'industries',
+      id: 'industries',
+      nav: 'Industries',
+      eyebrow: 'Industries we serve',
+      heading: 'SEO Tailored to Your Industry',
+      intro: 'Every sector searches differently. We adapt keyword strategy, content and technical priorities to how your customers actually look for you.',
+      items: [
+        { slug: 'e-commerce', text: 'Category, product and faceted-navigation SEO that grows non-branded revenue without relying on marketplaces.' },
+        { slug: 'hospitality-hotels', text: 'Rank for "near me" searches, win the local pack and drive commission-free direct bookings.' },
+        { slug: 'healthcare', text: 'YMYL-ready content with clear clinical expertise and trust signals that Google expects for health topics.' },
+        { slug: 'real-estate', text: 'Area guides and property pages that capture buyers, sellers and landlords searching by postcode.' },
+        { slug: 'finance', text: 'Compliant, expert-led content for regulated firms where trust and accuracy decide rankings.' },
+        { slug: 'b2b-marketing', text: 'Thought-leadership content and comparison pages that reach decision-makers early in long sales cycles.' },
+      ],
+    },
+    {
+      type: 'features',
       id: 'why-gtech',
       nav: 'Why GTech',
       eyebrow: 'Why choose us',
@@ -200,12 +252,13 @@ const content: ServiceContent = {
         'We are a full-service digital agency, which means your SEO is planned alongside your website, paid media and content rather than in isolation. When a technical fix needs a developer, we have them in-house. When a page needs better copy or design to convert the traffic SEO brings, our writers and designers handle it.',
         'We only use white-hat techniques that follow Google Search Essentials, so the rankings we build are designed to last through algorithm updates. You own everything we create, from content to reports, and you can see exactly what we have done each month.',
       ],
-      bullets: [
-        'Senior specialists, not juniors learning on your account',
-        'Strategy tied to leads and revenue, not vanity metrics',
-        'Developers, writers and designers under one roof',
-        'Transparent monthly reporting and a dedicated contact',
-        'Flexible terms: we keep clients by results, not contracts',
+      cards: [
+        { icon: 'lucide:award', title: 'Senior specialists', text: 'Experienced SEOs work on your account, not juniors learning on the job.' },
+        { icon: 'lucide:target', title: 'Revenue-focused', text: 'Strategy tied to leads and sales, not vanity metrics or traffic alone.' },
+        { icon: 'lucide:users', title: 'One in-house team', text: 'Developers, writers and designers under one roof, so fixes ship fast.' },
+        { icon: 'lucide:chart-column-increasing', title: 'Transparent reporting', text: 'Plain-English monthly reports and a dedicated point of contact.' },
+        { icon: 'lucide:shield-check', title: 'White-hat only', text: 'Techniques that follow Google Search Essentials and survive updates.' },
+        { icon: 'lucide:handshake', title: 'Flexible terms', text: 'Rolling monthly agreements. We keep clients by results, not contracts.' },
       ],
     },
   ],
@@ -221,7 +274,6 @@ const content: ServiceContent = {
     { q: 'Is SEO better than Google Ads?', a: 'They do different jobs. Google Ads delivers traffic immediately but stops when you stop paying. SEO takes longer to build but keeps delivering and usually lowers your cost per lead over time. Most businesses get the best results by running both together.' },
   ],
   related: ['google-ads', 'content-marketing', 'seo-backlinks', 'website-design', 'conversion-rate-optimization', 'reputation-management'],
-  industries: ['e-commerce', 'hospitality-hotels', 'healthcare', 'real-estate', 'finance', 'b2b-marketing'],
 };
 
 export default content;

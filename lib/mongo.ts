@@ -10,10 +10,10 @@ export async function getDb(): Promise<Db> {
   return (await globalForMongo._mongo).db(process.env.MONGODB_DB || 'gtech_red');
 }
 
-export type Doc = { slug: string; title: string; excerpt?: string; body?: string; image?: string; logo?: string };
+export type Doc = { slug: string; title: string; excerpt?: string; body?: string; image?: string; logo?: string; services?: string[] };
 
 const toDoc = (r: Record<string, any>): Doc => ({ // eslint-disable-line @typescript-eslint/no-explicit-any
-  slug: r.slug, title: r.title, excerpt: r.excerpt, body: r.body, image: r.image, logo: r.logo,
+  slug: r.slug, title: r.title, excerpt: r.excerpt, body: r.body, image: r.image, logo: r.logo, services: r.services,
 });
 
 /** Fetch published docs; empty list if DB is unavailable. */
@@ -37,4 +37,10 @@ export async function getDoc(collection: 'posts' | 'case_studies', slug: string)
     // fall through to demo data
   }
   return collection === 'case_studies' ? demoCaseStudies.find((c) => c.slug === slug) ?? null : null;
+}
+
+/** Case studies tagged with a service slug (field `services` in MongoDB). */
+export async function caseStudiesFor(service: string, limit = 6): Promise<Doc[]> {
+  const all = await listDocs('case_studies', 50);
+  return all.filter((d) => d.services?.includes(service)).slice(0, limit);
 }

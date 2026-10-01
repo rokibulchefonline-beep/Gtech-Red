@@ -11,7 +11,8 @@
     "case-images": "node scripts/build-case-images.mjs",
     "cta-bg": "node scripts/build-cta-bg.mjs",
     "intro-video": "node scripts/build-intro-video.mjs",
-    "page-visuals": "node scripts/build-page-visuals.mjs"
+    "page-visuals": "node scripts/build-page-visuals.mjs",
+    "backgrounds": "node scripts/build-backgrounds.mjs"
   },
   "dependencies": {
     "mongodb": "^6.10.0",
