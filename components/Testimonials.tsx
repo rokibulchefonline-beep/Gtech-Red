@@ -11,7 +11,7 @@ export default function Testimonials() {
 
   useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setI((n) => (n + 1) % testimonials.length), 6500);
+    const t = setInterval(() => setI((n) => (n + 1) % testimonials.length), 9000);
     return () => clearInterval(t);
   }, [paused]);
 

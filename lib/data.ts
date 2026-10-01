@@ -2,10 +2,10 @@ import { slugify } from './util';
 
 // Site structure. Edit here to change menus, pages and copy.
 export const site = {
-  name: 'Gtech Red',
+  name: 'GTech Digital',
   tagline: 'Digital marketing, web and software agency',
   email: 'hello@gtechred.com',
-  phone: '+971 00 000 0000',
+  phone: '+44 0000 000000',
 };
 
 export type ServiceGroup = {
@@ -190,13 +190,13 @@ export const stats = [
 // Demo testimonials. Replace with real client quotes.
 export const testimonials = [
   { title: 'Reliable and Strategic SEO Partner', name: 'Derek L',
-    text: "If you're looking for a reliable SEO agency that delivers tangible results, Gtech is the way to go. Their comprehensive SEO audits and tailored strategies have greatly enhanced our site's performance. We appreciate their proactive approach and continuous efforts to optimize our digital assets." },
+    text: "If you're looking for a reliable SEO agency that delivers tangible results, GTech Digital is the way to go. Their comprehensive SEO audits and tailored strategies have greatly enhanced our site's performance. We appreciate their proactive approach and continuous efforts to optimise our digital assets." },
   { title: 'Ads That Actually Pay Back', name: 'Sarah M',
-    text: 'Our Google Ads spend used to feel like a gamble. Gtech rebuilt the account, fixed our tracking and cut our cost per lead within the first quarter. The monthly reports are clear and honest.' },
+    text: 'Our Google Ads spend used to feel like a gamble. GTech Digital rebuilt the account, fixed our tracking and cut our cost per lead within the first quarter. The monthly reports are clear and honest.' },
   { title: 'A Website That Converts', name: 'Imran K',
     text: 'The new site is faster, looks far better and brings in enquiries every week. The team handled design, development and SEO together, which saved us a lot of back and forth.' },
   { title: 'Software Built Around Our Process', name: 'Laura P',
-    text: 'Gtech built a custom booking and CRM system that replaced three separate tools. It was delivered on time and the support since launch has been excellent.' },
+    text: 'GTech Digital built a custom booking and CRM system that replaced three separate tools. It was delivered on time and the support since launch has been excellent.' },
   { title: 'A True Growth Partner', name: 'James T',
     text: 'They act like part of our own team. Strategy, creative and reporting all come from one place, and we can see exactly how marketing turns into revenue.' },
 ];

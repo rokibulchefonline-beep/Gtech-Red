@@ -16,7 +16,7 @@ export default function IntroVideo() {
   return (
     <div className="who-video">
       <video ref={ref} src="/videos/intro.mp4" poster="/videos/intro-poster.webp" autoPlay muted loop playsInline preload="metadata"
-        aria-label="Gtech company introduction video" />
+        aria-label="GTech Digital company introduction video" />
       <button className="who-play" onClick={toggle} aria-label={playing ? 'Pause video' : 'Play video'}>
         <Icon name={playing ? 'lucide:pause' : 'lucide:play'} size={18} />
       </button>

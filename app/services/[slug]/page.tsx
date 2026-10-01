@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PageHead from '@/components/PageHead';
+import LongServicePage from '@/components/service/ServicePage';
+import { serviceContent } from '@/content/services';
 import { findGroup, findItem, services } from '@/lib/data';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -19,6 +21,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const rich = serviceContent[slug];
+  if (rich) return { title: { absolute: rich.metaTitle }, description: rich.metaDescription, alternates: { canonical: `/services/${slug}` } };
   const title = findGroup(slug)?.title ?? findItem(slug)?.item.name;
   return { title, description: findGroup(slug)?.intro ?? findItem(slug)?.item.blurb };
 }
@@ -44,6 +48,8 @@ export default async function ServicePage({ params }: Props) {
       </>
     );
   }
+
+  if (serviceContent[slug]) return <LongServicePage c={serviceContent[slug]} />;
 
   const found = findItem(slug);
   if (!found) notFound();

@@ -25,7 +25,7 @@ for (const [name, scene] of Object.entries(scenes)) {
   const stacked = Buffer.concat(frames.map((f) => f.data));
   const file = new URL(`${name}.webp`, out);
   await sharp(stacked, { raw: { width, height: height * FRAMES, channels, pageHeight: height } })
-    .webp({ nearLossless: true, quality: 85, effort: 5, loop: 0, delay: Array(FRAMES).fill(1000 / FPS) })
+    .webp({ nearLossless: true, quality: 85, effort: 5, loop: 0, delay: Array(FRAMES).fill(2000 / FPS) /* half speed */ })
     .toFile(file.pathname);
   console.log(name, 'done');
 }

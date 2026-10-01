@@ -20,7 +20,7 @@ export default function WhoWeAre() {
           <p className="who-eyebrow">Who We Are</p>
           <h2>A <span className="red">Digital Marketing Agency</span> Built for Growth</h2>
           <p className="who-text">
-            Gtech is a full-service digital marketing agency specializing in search marketing, advertising,
+            GTech Digital is a full-service digital marketing agency specialising in search marketing, advertising,
             branding, and high-performing websites and software for growth-focused businesses. We turn
             strategy into measurable revenue.
           </p>

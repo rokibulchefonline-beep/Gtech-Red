@@ -9,7 +9,7 @@ function Count({ to, decimals = 0, run }: { to: number; decimals?: number; run: 
   useEffect(() => {
     if (!run) return;
     let raf = 0;
-    const t0 = performance.now(), dur = 1400;
+    const t0 = performance.now(), dur = 2800;
     const tick = (t: number) => {
       const p = Math.min(1, (t - t0) / dur);
       setV(to * (1 - Math.pow(1 - p, 3)));
@@ -24,7 +24,7 @@ function Count({ to, decimals = 0, run }: { to: number; decimals?: number; run: 
 export default function StatsBar() {
   const [ref, seen] = useInView<HTMLElement>(0.4);
   return (
-    <section className="stats" ref={ref} aria-label="Gtech in numbers">
+    <section className="stats" ref={ref} aria-label="GTech Digital in numbers">
       <div className="wrap stats-grid">
         {stats.map((s) => (
           <div className="stat" key={s.label}>

@@ -10,7 +10,13 @@ const packs = {
   'simple-icons': JSON.parse(readFileSync(require.resolve('@iconify-json/simple-icons/icons.json'), 'utf8')),
 };
 
-const src = readFileSync(new URL('../lib/icons.ts', import.meta.url), 'utf8');
+import { readdirSync, statSync } from 'node:fs';
+const collect = (dir) => readdirSync(dir).flatMap((f) => {
+  const full = new URL(f, dir);
+  return statSync(full).isDirectory() ? collect(new URL(f + '/', dir)) : f.endsWith('.ts') ? [readFileSync(full, 'utf8')] : [];
+});
+// Icons are picked up from lib/icons.ts and from every content file.
+const src = [readFileSync(new URL('../lib/icons.ts', import.meta.url), 'utf8'), ...collect(new URL('../content/', import.meta.url))].join('\n');
 const names = [...new Set([...src.matchAll(/'((?:lucide|simple-icons):[a-z0-9-]+)'/g)].map((m) => m[1]))].sort();
 
 const out = {};

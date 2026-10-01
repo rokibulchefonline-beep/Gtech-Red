@@ -30,7 +30,7 @@ function Bars({ vals }: { vals: number[] }) {
       {vals.map((v, i) => {
         const h = 132 * v;
         return (
-          <rect key={i} className="bar" style={{ transitionDelay: `${i * 0.12}s` }} x={44 + i * 74} y={156 - h}
+          <rect key={i} className="bar" style={{ transitionDelay: `${i * 0.24}s` }} x={44 + i * 74} y={156 - h}
             width="44" height={h} rx="4" fill={i === vals.length - 1 ? '#e8202f' : '#ffd0d5'} />
         );
       })}
@@ -48,7 +48,7 @@ export default function Results() {
     <section className={`results ${seen ? 'in' : ''}`} ref={ref}>
       <div className="wrap">
         <h2>Tired of Marketing Agencies That Explain Poor Results <span className="red">Instead of Fixing Them?</span></h2>
-        <p className="results-sub"><strong>See what better growth looks like</strong> with Gtech</p>
+        <p className="results-sub"><strong>See what better growth looks like</strong> with GTech Digital</p>
 
         <div className="results-grid">
           <article className="rcard">

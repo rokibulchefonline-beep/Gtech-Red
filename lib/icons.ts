@@ -60,6 +60,9 @@ export const uiIcons = {
   next: 'lucide:chevron-right',
   play: 'lucide:play',
   pause: 'lucide:pause',
+  chevron: 'lucide:chevron-down',
+  arrowRight: 'lucide:arrow-right',
+  home: 'lucide:house',
 } as const;
 
 // Icons used inside the "How We Work" illustrations.
@@ -80,4 +83,5 @@ export const formIcons = {
   mail: 'lucide:mail',
   pin: 'lucide:map-pin',
   service: 'lucide:settings-2',
+  budget: 'lucide:wallet',
 } as const;
