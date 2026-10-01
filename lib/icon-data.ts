@@ -15,6 +15,11 @@ export const iconData: Record<string, { body: string; w: number; h: number }> = 
     "w": 24,
     "h": 24
   },
+  "lucide:arrow-left": {
+    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 19l-7-7l7-7m7 7H5\"/>",
+    "w": 24,
+    "h": 24
+  },
   "lucide:arrow-right": {
     "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 12h14m-7-7l7 7l-7 7\"/>",
     "w": 24,

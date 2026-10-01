@@ -5,7 +5,7 @@ import InquirySection from '@/components/InquirySection';
 import FaqSection from '@/components/service/FaqSection';
 import type { Section, ServiceContent } from '@/content/types';
 import { brandLogos, findGroup, findItem, industries, site } from '@/lib/data';
-import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
+import { groupIcons, industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
 
 export const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
@@ -148,9 +148,17 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
           <div className="sp-inds">
             {s.items.map((it) => {
               const ind = industries.find((i) => i.slug === it.slug);
-              return ind && <div key={it.slug} className="sp-ind"><Link href={`/industries/${ind.slug}`}><h3>{ind.name}</h3></Link><p>{it.text}</p></div>;
+              return ind && (
+                <Link key={it.slug} href={`/industries/${ind.slug}`} className="sp-ind">
+                  <span className="sp-ind-ico"><Icon name={industryIcons[ind.slug]} size={24} /></span>
+                  <h3>{ind.name}</h3>
+                  <p>{it.text}</p>
+                  <span className="sp-ind-more">Explore {ind.name} <Icon name={uiIcons.arrowRight} size={16} /></span>
+                </Link>
+              );
             })}
           </div>
+          <p className="sp-inds-all"><Link href="/industries">View all industries <Icon name={uiIcons.arrowRight} size={16} /></Link></p>
         </div></section>
       );
   }
