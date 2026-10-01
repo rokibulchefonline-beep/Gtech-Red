@@ -4,38 +4,55 @@ import Icon from '@/components/Icon';
 import { groupIcons, industryIcons, serviceIcons } from '@/lib/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { industries, services, site } from '@/lib/data';
 
+// Desktop: menus open on hover with a short close delay (so moving the pointer into the panel
+// never closes it) and close on click or page change. Mobile: menus toggle on tap.
 export default function Header() {
+  const pathname = usePathname();
   const [tab, setTab] = useState(services[0].slug);
-  const [open, setOpen] = useState<string | null>(null); // mobile dropdown
+  const [open, setOpen] = useState<string | null>(null);
   const [nav, setNav] = useState(false);
-  const close = () => { setNav(false); setOpen(null); };
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const desktop = () => typeof window !== 'undefined' && window.matchMedia('(min-width: 901px)').matches;
+
+  const close = () => { if (timer.current) clearTimeout(timer.current); setNav(false); setOpen(null); };
+  const enter = (k: string) => { if (!desktop()) return; if (timer.current) clearTimeout(timer.current); setOpen(k); };
+  const leave = () => { if (!desktop()) return; if (timer.current) clearTimeout(timer.current); timer.current = setTimeout(() => setOpen(null), 220); };
   const toggle = (k: string) => setOpen(open === k ? null : k);
+
+  useEffect(() => { close(); }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   return (
     <header className="hdr">
       <div className="wrap hdr-in">
         <Link className="logo" href="/" onClick={close}><Image src="/logo.png" alt={site.name} width={140} height={46} priority /></Link>
-        <button className="burger" aria-label="Menu" onClick={() => setNav(!nav)}>&#9776;</button>
+        <button className="burger" aria-label="Menu" aria-expanded={nav} onClick={() => setNav(!nav)}>&#9776;</button>
         <nav className={`nav ${nav ? 'show' : ''}`}>
           <Link href="/" onClick={close}>Home</Link>
           <Link href="/about" onClick={close}>About Us</Link>
 
-          <div className={`dd mega ${open === 'services' ? 'open' : ''}`}>
-            <a href="#" className="dd-t" onClick={(e) => { e.preventDefault(); toggle('services'); }}>Services &#9662;</a>
+          <div className={`dd mega ${open === 'services' ? 'open' : ''}`} onMouseEnter={() => enter('services')} onMouseLeave={leave}>
+            <a href="/services" className="dd-t" aria-expanded={open === 'services'} onClick={(e) => { e.preventDefault(); toggle('services'); }}>Services &#9662;</a>
             <div className="dd-panel mega-panel">
               <div className="mega-tabs">
                 {services.map((g) => (
                   <Link key={g.slug} href={`/services/${g.slug}`} className={tab === g.slug ? 'on' : ''}
-                    onMouseEnter={() => setTab(g.slug)} onClick={close}><Icon name={groupIcons[g.slug]} size={16} /> {g.title}</Link>
+                    onMouseEnter={() => setTab(g.slug)} onFocus={() => setTab(g.slug)} onClick={close}><Icon name={groupIcons[g.slug]} size={16} /> {g.title}</Link>
                 ))}
+                <Link href="/services" className="mega-all" onClick={close}><Icon name="lucide:layout-grid" size={16} /> All services</Link>
               </div>
               <div className="mega-body">
                 {services.filter((g) => g.slug === tab).map((g) => (
                   <div key={g.slug} className="mega-pane on">
-                    <h4>{g.title}</h4>
+                    <h4><Link href={`/services/${g.slug}`} onClick={close}>{g.title}</Link></h4>
                     <div className="mega-grid">
                       {g.items.map((i) => (
                         <Link key={i.slug} href={`/services/${i.slug}`} onClick={close}><i><Icon name={serviceIcons[i.slug]} size={16} /></i>{i.name}</Link>
@@ -47,8 +64,8 @@ export default function Header() {
             </div>
           </div>
 
-          <div className={`dd ${open === 'industries' ? 'open' : ''}`}>
-            <a href="#" className="dd-t" onClick={(e) => { e.preventDefault(); toggle('industries'); }}>Industries &#9662;</a>
+          <div className={`dd ${open === 'industries' ? 'open' : ''}`} onMouseEnter={() => enter('industries')} onMouseLeave={leave}>
+            <a href="/industries" className="dd-t" aria-expanded={open === 'industries'} onClick={(e) => { e.preventDefault(); toggle('industries'); }}>Industries &#9662;</a>
             <div className="dd-panel ind-panel">
               {industries.map((i) => <Link key={i.slug} href={`/industries/${i.slug}`} onClick={close}><Icon name={industryIcons[i.slug]} size={16} /> {i.name}</Link>)}
               <Link href="/industries" onClick={close}><Icon name="lucide:layout-grid" size={16} /> All industries</Link>
