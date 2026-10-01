@@ -4,7 +4,7 @@ import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
 import type { Section, ServiceContent } from '@/content/types';
 import { brandLogos, findItem, industries, site } from '@/lib/data';
-import { industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
+import { serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
 
 const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
@@ -33,20 +33,18 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
       );
     case 'text':
       return (
-        <section id={s.id} className="sp-sec sp-split-sec"><div className="wrap sp-split">
+        <section id={s.id} className="sp-sec"><div className="wrap sp-split">
           <div className="sp-split-head">
-            {s.eyebrow && <p className="sp-eyebrow light">{s.eyebrow}</p>}<h2>{s.heading}</h2>
-            <span className="sp-split-shape" aria-hidden="true" />
+            {s.eyebrow && <p className="sp-eyebrow">{s.eyebrow}</p>}<h2>{s.heading}</h2>
           </div>
           <div className="sp-split-body"><Paras p={s.paras} /><List b={s.bullets} /></div>
         </div></section>
       );
     case 'media':
       return (
-        <section id={s.id} className={`sp-sec sp-bg-soft ${s.flip ? 'flip' : ''}`}><div className="wrap sp-media">
+        <section id={s.id} className={`sp-sec sp-grey ${s.flip ? 'flip' : ''}`}><div className="wrap sp-media">
           <div className="sp-media-copy"><Head s={s} center={false} /><Paras p={s.paras} /><List b={s.bullets} /></div>
           <div className="sp-media-frame">
-            <span className="sp-blob" aria-hidden="true" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={s.image} alt={s.alt} loading="lazy" width={960} height={720} />
           </div>
@@ -54,12 +52,11 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
       );
     case 'cards':
       return (
-        <section id={s.id} className={`sp-sec ${s.cards.length > 4 ? 'sp-bg-dark' : 'sp-bg-mesh'}`}><div className="wrap">
+        <section id={s.id} className={`sp-sec ${s.cards.length > 4 ? 'sp-bg-dark' : ''}`}><div className="wrap">
           <Head s={s} intro={s.intro} />
           <div className={`sp-cards n${s.cards.length}`}>
-            {s.cards.map((c, n) => (
+            {s.cards.map((c) => (
               <article key={c.title} className="sp-card">
-                <span className="sp-card-n">{String(n + 1).padStart(2, '0')}</span>
                 <span className="sp-card-ico"><Icon name={c.icon} size={24} /></span>
                 <h3>{c.title}</h3><p>{c.text}</p>
               </article>
@@ -69,7 +66,7 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
       );
     case 'features':
       return (
-        <section id={s.id} className="sp-sec sp-bg-soft"><div className="wrap sp-feat">
+        <section id={s.id} className="sp-sec"><div className="wrap sp-feat">
           <div><Head s={s} center={false} intro={s.intro} /><Paras p={s.paras} />
             <Link className="btn" href="/contact">Talk to our team</Link></div>
           <div className="sp-feat-grid">
@@ -79,7 +76,7 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
       );
     case 'steps':
       return (
-        <section id={s.id} className="sp-sec sp-bg-mesh"><div className="wrap">
+        <section id={s.id} className="sp-sec sp-grey"><div className="wrap">
           <Head s={s} intro={s.intro} />
           <ol className="sp-steps">
             {s.steps.map((st, n) => (
@@ -90,7 +87,7 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
       );
     case 'table':
       return (
-        <section id={s.id} className="sp-sec sp-bg-soft"><div className="wrap" style={{ maxWidth: 1040 }}>
+        <section id={s.id} className="sp-sec"><div className="wrap" style={{ maxWidth: 1040 }}>
           <Head s={s} intro={s.intro} />
           <div className="sp-table-wrap"><table className="sp-table">
             <thead><tr>{s.columns.map((c) => <th key={c} scope="col">{c}</th>)}</tr></thead>
@@ -115,7 +112,6 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
             <div className="sp-impact-copy">{s.eyebrow && <p className="sp-eyebrow">{s.eyebrow}</p>}<h2>{s.heading}</h2><p>{s.text}</p></div>
             <div className="sp-impact-grid">
               {s.stats.map((st) => <div key={st.label} className="sp-impact-card"><b>{st.value}</b><span>{st.label}</span></div>)}
-              <span className="sp-impact-hub" aria-hidden="true">{['↗', '↖', '↙', '↘'].map((a) => <i key={a}>{a}</i>)}</span>
             </div>
           </div>
         </div></section>
@@ -133,7 +129,7 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
     }
     case 'reviews':
       return (
-        <section id={s.id} className="sp-sec sp-bg-dark"><div className="wrap">
+        <section id={s.id} className="sp-sec sp-grey"><div className="wrap">
           <Head s={s} intro={s.intro} />
           <div className="sp-reviews">
             {s.reviews.map((r) => (
@@ -148,17 +144,12 @@ async function Block({ s, slug, name }: { s: Section; slug: string; name: string
       );
     case 'industries':
       return (
-        <section id={s.id} className="sp-sec sp-bg-mesh"><div className="wrap">
+        <section id={s.id} className="sp-sec"><div className="wrap">
           <Head s={s} intro={s.intro} />
           <div className="sp-inds">
             {s.items.map((it) => {
               const ind = industries.find((i) => i.slug === it.slug);
-              return ind && (
-                <Link key={it.slug} href={`/industries/${it.slug}`} className="sp-ind">
-                  <span className="sp-card-ico solid"><Icon name={industryIcons[it.slug]} size={24} /></span>
-                  <h3>{name} for {ind.name}</h3><p>{it.text}</p><span className="sp-more">Learn more <Icon name={uiIcons.arrowRight} size={16} /></span>
-                </Link>
-              );
+              return ind && <div key={it.slug} className="sp-ind"><h3>{ind.name}</h3><p>{it.text}</p></div>;
             })}
           </div>
         </div></section>
@@ -217,20 +208,19 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
 
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={short} />)}
 
-      <section id="faq" className="sp-sec sp-bg-soft"><div className="wrap sp-faq-wrap">
+      <section id="faq" className="sp-sec sp-grey"><div className="wrap sp-faq-wrap">
         <aside className="sp-faq-aside">
           <p className="sp-eyebrow light">FAQs</p>
           <h2>{short} Questions, Answered</h2>
           <p>Can not find what you are looking for? Our specialists are happy to help.</p>
           <Link className="btn light-btn" href="/contact">Ask an expert</Link>
-          <span className="sp-split-shape" aria-hidden="true" />
         </aside>
         <div className="sp-faq">
           {c.faqs.map((f, n) => <details key={f.q} open={n === 0}><summary>{f.q}<Icon name={uiIcons.chevron} size={20} /></summary><p>{f.a}</p></details>)}
         </div>
       </div></section>
 
-      <section className="sp-sec sp-bg-mesh"><div className="wrap">
+      <section className="sp-sec"><div className="wrap">
         <Head s={{ eyebrow: 'Related services', heading: `Services That Work Well With ${short}` }} />
         <div className="sp-related">
           {related.map((r) => r && (

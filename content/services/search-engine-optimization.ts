@@ -200,20 +200,6 @@ const content: ServiceContent = {
       ],
     },
     {
-      type: 'metrics',
-      id: 'results',
-      nav: 'Results',
-      eyebrow: 'What we measure',
-      heading: 'How We Measure SEO Success',
-      intro: 'Rankings are a means to an end. We report on the numbers that show SEO is growing your business, using Google Search Console, GA4 and your CRM.',
-      metrics: [
-        { label: 'Visibility', value: 'Rankings', text: 'Positions for your target keywords and how many sit on page one of Google.' },
-        { label: 'Traffic', value: 'Organic visits', text: 'Non-branded organic sessions to your service and product pages, not just your blog.' },
-        { label: 'Engagement', value: 'CTR', text: 'Click-through rate from Google results, improved with better titles and rich results.' },
-        { label: 'Outcomes', value: 'Leads & sales', text: 'Calls, form fills, bookings and revenue attributed to organic search in GA4.' },
-      ],
-    },
-    {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
@@ -243,7 +229,7 @@ const content: ServiceContent = {
       ],
     },
     {
-      type: 'features',
+      type: 'text',
       id: 'why-gtech',
       nav: 'Why GTech',
       eyebrow: 'Why choose us',
@@ -252,13 +238,11 @@ const content: ServiceContent = {
         'We are a full-service digital agency, which means your SEO is planned alongside your website, paid media and content rather than in isolation. When a technical fix needs a developer, we have them in-house. When a page needs better copy or design to convert the traffic SEO brings, our writers and designers handle it.',
         'We only use white-hat techniques that follow Google Search Essentials, so the rankings we build are designed to last through algorithm updates. You own everything we create, from content to reports, and you can see exactly what we have done each month.',
       ],
-      cards: [
-        { icon: 'lucide:award', title: 'Senior specialists', text: 'Experienced SEOs work on your account, not juniors learning on the job.' },
-        { icon: 'lucide:target', title: 'Revenue-focused', text: 'Strategy tied to leads and sales, not vanity metrics or traffic alone.' },
-        { icon: 'lucide:users', title: 'One in-house team', text: 'Developers, writers and designers under one roof, so fixes ship fast.' },
-        { icon: 'lucide:chart-column-increasing', title: 'Transparent reporting', text: 'Plain-English monthly reports and a dedicated point of contact.' },
-        { icon: 'lucide:shield-check', title: 'White-hat only', text: 'Techniques that follow Google Search Essentials and survive updates.' },
-        { icon: 'lucide:handshake', title: 'Flexible terms', text: 'Rolling monthly agreements. We keep clients by results, not contracts.' },
+      bullets: [
+        'Senior specialists, not juniors learning on your account',
+        'Strategy tied to leads and revenue, not vanity metrics',
+        'Developers, writers and designers under one roof',
+        'Rolling monthly terms: we keep clients by results',
       ],
     },
   ],
