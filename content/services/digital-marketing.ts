@@ -12,7 +12,6 @@ const content: ServiceContent = {
   metaDescription:
     'UK digital marketing agency combining SEO, Google Ads, paid media, content and reputation management into one plan that brings more leads and sales for less.',
   hero: {
-    eyebrow: 'Digital Marketing Agency UK',
     title: 'Digital Marketing That Brings',
     highlight: 'Real Customers',
     lead:
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-digital-marketing',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Digital Marketing?',
       paras: [
         'Digital marketing is how you reach and win customers online, through search engines, ads, content and reviews. The best results come when channels work together: SEO builds lasting visibility, paid ads bring instant demand and content and reviews build trust.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Marketing That Pays for Itself',
+      heading: 'Digital Marketing Results in Numbers',
       text: 'The numbers behind the digital marketing we run for UK businesses.',
       stats: [
         { value: '£12M+', label: 'Client revenue from marketing' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'channels',
       nav: 'Channels',
-      eyebrow: 'Our channels',
-      heading: 'Every Channel, One Team',
+      heading: 'Digital Marketing Channels We Manage',
       image: '/pages/dm/channels.webp',
       alt: 'Digital marketing channels: SEO, Google Ads, paid social, content, reputation and backlinks with results',
       paras: ['Our specialists cover every major channel, working from one shared plan instead of competing for credit.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'funnel',
       nav: 'Full funnel',
-      eyebrow: 'Full-funnel strategy',
-      heading: 'From First Search to Repeat Customer',
+      heading: 'Full-Funnel Digital Marketing Strategy',
       image: '/pages/dm/funnel.webp',
       alt: 'Marketing funnel from reach to visits, leads and customers with cost per acquisition and ROI',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'budget',
       nav: 'Budget',
-      eyebrow: 'Budget & channel mix',
-      heading: 'Every Pound in the Right Place',
+      heading: 'Marketing Budget and Channel Mix',
       image: '/pages/dm/budget.webp',
       alt: 'Marketing budget split across Google Ads, SEO and content, paid social, retargeting and reputation',
       paras: ['We move budget towards the channels that bring customers at the lowest cost, and away from those that do not.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reporting',
       nav: 'Reporting',
-      eyebrow: 'Tracking & reporting',
-      heading: 'See Exactly What Marketing Earns',
+      heading: 'Marketing Tracking and ROI Reporting',
       image: '/pages/dm/reporting.webp',
       alt: 'Revenue from marketing growing with leads, cost per acquisition and conversion rate',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: 'Our services',
-      eyebrow: 'Digital marketing services',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Digital Marketing Services',
       cards: [
         { icon: 'lucide:search', title: 'SEO', text: 'Rank on Google and in AI answers.' },
         { icon: 'lucide:map-pin', title: 'Local SEO', text: 'Top of Google Maps.' },
@@ -119,7 +111,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our Digital Marketing Process',
       steps: [
         { title: 'Audit', text: 'Channels, tracking and competitors.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Digital marketing case studies',
-      heading: 'Digital Marketing Results We Have Delivered',
+      heading: 'Digital Marketing Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'SEO vs PPC',
-      eyebrow: 'Compare',
       heading: 'SEO vs Google Ads: Which Do You Need?',
       columns: ['', 'SEO', 'Google Ads (PPC)'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Digital Marketing Cost?',
       intro: 'UK digital marketing typically ranges from about £750 to £5,000+ per month in management fees, plus any ad spend. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Digital Marketing Clients Say',
+      heading: 'Digital Marketing Client Reviews',
       reviews: [
         { name: 'Sarah K', role: 'MD, Home Services', text: 'SEO and Google Ads together now bring us over 300 enquiries a month.' },
         { name: 'Daniel R', role: 'Founder, Online Store', text: 'Our cost per sale fell by a third once all channels ran from one plan.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Digital Marketing for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'SEO, Shopping and paid social that sell.' },

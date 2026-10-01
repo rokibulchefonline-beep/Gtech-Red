@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'Online reputation management for UK businesses: more genuine 5-star reviews, faster responses, cleaner branded search results and better AI answers about your brand.',
   hero: {
-    eyebrow: 'Online Reputation Management UK',
-    title: 'Be the Business People',
-    highlight: 'Trust First',
+    title: 'Reputation Management That',
+    highlight: 'Builds Trust',
     lead:
       'We help you earn more genuine reviews, respond to every customer, and make sure Google search results and AI tools show the best of your brand.',
     motion: '/services/reputation.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-orm',
       nav: 'What is ORM',
-      eyebrow: 'The basics',
       heading: 'What Is Online Reputation Management?',
       paras: [
         'Before most people buy, book or call, they read your reviews and search your name. Online reputation management (ORM) shapes what they find, so your real quality shows up where decisions are made.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'A Reputation That Wins More Customers',
+      heading: 'Reputation Management Results in Numbers',
       text: 'The numbers behind our reputation work for UK businesses.',
       stats: [
         { value: '4.8★', label: 'Average client rating' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reviews-generation',
       nav: 'Review generation',
-      eyebrow: 'Review generation',
-      heading: 'More Genuine Five-Star Reviews',
+      heading: 'Review Generation',
       image: '/pages/reputation/reviews.webp',
       alt: 'Google review summary with 4.9 stars and recent customer reviews with owner replies',
       paras: ['Happy customers rarely leave reviews unless you ask at the right moment. We automate polite, policy-compliant requests by email, SMS and QR code.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'monitoring',
       nav: 'Monitoring',
-      eyebrow: 'Monitoring & response',
-      heading: 'Every Review Answered, Fast',
+      heading: 'Review Monitoring and Response',
       image: '/pages/reputation/monitoring.webp',
       alt: 'Star rating rising over twelve months with response time and reviews answered',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'branded-search',
       nav: 'Branded search',
-      eyebrow: 'Branded search results',
-      heading: 'Own Page One When People Google Your Name',
+      heading: 'Branded Search Reputation Management',
       image: '/pages/reputation/serp.webp',
       alt: 'Branded search results made up of positive owned and earned pages',
       paras: ['Searches for your brand should show your best pages. We strengthen the results you control so outdated or unfair pages drop out of sight.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ai-reputation',
       nav: 'AI reputation',
-      eyebrow: 'AI reputation',
-      heading: 'Control What AI Says About Your Brand',
+      heading: 'AI Search Reputation Management',
       image: '/pages/reputation/ai.webp',
       alt: 'AI assistant and Google AI Overview describing a brand and citing its website',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our ORM service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Reputation Management Services',
       cards: [
         { icon: 'lucide:search', title: 'Reputation Audit', text: 'Ratings, reviews, branded search and AI answers reviewed.' },
         { icon: 'lucide:star', title: 'Review Generation', text: 'Automated, compliant review requests that work.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Reputation Process',
+      heading: 'Our Reputation Management Process',
       steps: [
         { title: 'Audit', text: 'We review ratings, search results and AI answers.' },
         { title: 'Fix the basics', text: 'Profiles claimed, details corrected, review links set up.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Reputation case studies',
-      heading: 'Reputation Results We Have Delivered',
+      heading: 'Reputation Management Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Platforms',
-      eyebrow: 'Compare',
-      heading: 'Where Your Reviews Matter Most',
+      heading: 'Online Review Platforms Compared',
       columns: ['', 'Google', 'Trustpilot', 'Industry sites'],
       rows: [
         ['Best for', 'Local search and map pack', 'Ecommerce and national brands', 'Sector trust, e.g. TripAdvisor, Checkatrade'],
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Reputation Management Cost?',
       intro: 'UK reputation management typically ranges from about £300 to £2,500+ per month. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Clients Say',
+      heading: 'Reputation Management Client Reviews',
       reviews: [
         { name: 'Olivia B', role: 'Owner, Dental Practice', text: 'We went from 42 to over 400 Google reviews and now rank first in the map pack for our area.' },
         { name: 'Marcus J', role: 'Director, Restaurant Group', text: 'Every review across five sites gets a thoughtful reply within hours. Our average rating went from 4.1 to 4.7.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Reputation Management for Your Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'TripAdvisor, Google and booking-site reviews that fill tables and rooms.' },

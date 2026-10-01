@@ -13,9 +13,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK local SEO agency helping businesses rank in the Google map pack and local search with Google Business Profile optimisation, citations, reviews and location pages.',
   hero: {
-    eyebrow: 'Local SEO Agency UK',
-    title: 'Get Found First When Locals',
-    highlight: 'Search Near Me',
+    title: 'Local SEO That Puts You on Top of',
+    highlight: 'Google Maps',
     lead:
       'We put your business at the top of Google Maps and local search, so nearby customers call, visit and book you instead of your competitors.',
     motion: '/services/localseo.webp',
@@ -27,7 +26,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-local-seo',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Local SEO?',
       paras: [
         'Local SEO helps your business appear when people nearby search for what you offer, such as "plumber near me" or "dentist in Leeds". Google ranks local results on relevance, distance and prominence, and the top three map results win most of the calls.',
@@ -41,8 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'More Calls From Your Local Area',
+      heading: 'Local SEO Results in Numbers',
       text: 'The numbers behind the local SEO we run for UK businesses.',
       stats: [
         { value: '48', label: 'Average map pack keywords won' },
@@ -55,8 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'map-pack',
       nav: 'Map pack',
-      eyebrow: 'Google Maps rankings',
-      heading: 'Win a Place in the Map Pack',
+      heading: 'Google Map Pack Rankings',
       image: '/pages/local-seo/mappack.webp',
       alt: 'Google map pack with your business ranked first above two competitors',
       paras: ['The three businesses shown on the map get most local clicks. We improve every signal Google uses to choose them.'],
@@ -66,8 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'google-business-profile',
       nav: 'Business Profile',
-      eyebrow: 'Google Business Profile',
-      heading: 'A Profile That Gets Chosen',
+      heading: 'Google Business Profile Optimisation',
       image: '/pages/local-seo/gbp.webp',
       alt: 'Google Business Profile checklist with categories, services, posts, photos and Q&A',
       flip: true,
@@ -79,8 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'citations',
       nav: 'Citations',
-      eyebrow: 'Citations & local links',
-      heading: 'Consistent Details Everywhere',
+      heading: 'Local Citations and NAP Consistency',
       image: '/pages/local-seo/citations.webp',
       alt: 'Business name, address and phone matched across Google, Apple Maps, Bing, Yell and Trustpilot',
       paras: ['Google trusts businesses whose name, address and phone (NAP) match across the web. We fix old listings and build new ones.'],
@@ -90,8 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Reviews & location pages',
-      heading: 'Reviews and Pages That Win Locals',
+      heading: 'Google Reviews and Location Pages',
       image: '/pages/local-seo/reviews.webp',
       alt: 'Google reviews with 4.9 rating and owner replies',
       flip: true,
@@ -103,8 +96,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our local SEO service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Local SEO Services',
       cards: [
         { icon: 'lucide:search', title: 'Local SEO Audit', text: 'Profile, site and competitors.' },
         { icon: 'lucide:map-pin', title: 'Business Profile', text: 'Optimised and managed weekly.' },
@@ -120,7 +112,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our Local SEO Process',
       steps: [
         { title: 'Audit', text: 'Rankings across your area.' },
@@ -135,14 +126,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Local SEO case studies',
-      heading: 'Local SEO Results We Have Delivered',
+      heading: 'Local SEO Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Local vs national',
-      eyebrow: 'Compare',
       heading: 'Local SEO vs National SEO',
       columns: ['', 'Local SEO', 'National SEO'],
       rows: [
@@ -157,7 +146,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Local SEO Cost?',
       intro: 'UK local SEO typically ranges from about £300 to £1,500+ per month. Your quote depends on:',
       cards: [
@@ -171,8 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews-clients',
       nav: 'Client reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Local SEO Clients Say',
+      heading: 'Local SEO Client Reviews',
       reviews: [
         { name: 'Steve P', role: 'Owner, Plumbing Firm', text: 'We are now top three on Google Maps across our area and the phone does not stop.' },
         { name: 'Anita G', role: 'Practice Manager, Dental Clinic', text: 'New patient calls from Google have more than doubled in six months.' },
@@ -183,7 +170,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Local SEO for Your Industry',
       items: [
         { slug: 'healthcare', text: 'Clinics, dentists and pharmacies found nearby.' },

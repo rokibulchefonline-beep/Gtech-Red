@@ -13,9 +13,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK Pinterest marketing agency: Pinterest SEO, pin design, shopping catalogues and Pinterest Ads that drive long-lasting traffic and online sales.',
   hero: {
-    eyebrow: 'Pinterest Marketing Agency UK',
-    title: 'Pinterest That Drives Traffic for',
-    highlight: 'Months, Not Hours',
+    title: 'Pinterest Marketing for',
+    highlight: 'Traffic and Sales',
     lead:
       'We design pins people save, optimise them for Pinterest search, and run shopping ads that reach planners at the exact moment they decide what to buy.',
     motion: '/services/pinterest.webp',
@@ -27,7 +26,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-pinterest-marketing',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Pinterest Marketing?',
       paras: [
         'Pinterest is a visual search engine where people plan purchases, from homes and recipes to weddings and gifts. Unlike other social posts, pins can keep bringing traffic for months, and Pinterest users often have clear intent to buy.',
@@ -41,8 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Traffic That Keeps Compounding',
+      heading: 'Pinterest Marketing Results in Numbers',
       text: 'The numbers behind the Pinterest accounts we manage for UK brands.',
       stats: [
         { value: '420k', label: 'Average monthly views' },
@@ -55,8 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'boards',
       nav: 'Pins & boards',
-      eyebrow: 'Pins & boards',
-      heading: 'Pins People Save and Click',
+      heading: 'Pin Design and Board Strategy',
       image: '/pages/pinterest/boards.webp',
       alt: 'Pin and board plan with idea, product, video and seasonal pins',
       paras: ['We design vertical pins with clear text overlays and build boards around the topics your buyers plan for.'],
@@ -66,8 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'pinterest-seo',
       nav: 'Pinterest SEO',
-      eyebrow: 'Pinterest SEO',
-      heading: 'Get Found in Pinterest Search',
+      heading: 'Pinterest SEO',
       image: '/pages/pinterest/seo.webp',
       alt: 'Pin annotated with keyword title, description, board keywords, alt text and product link',
       flip: true,
@@ -79,8 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'Pinterest ads',
-      eyebrow: 'Pinterest ads',
-      heading: 'Reach Planners Before They Buy',
+      heading: 'Pinterest Ads',
       image: '/pages/pinterest/ads.webp',
       alt: 'Pinterest shopping revenue with ROAS, saves and outbound click-through',
       paras: ['Pinterest Ads appear in search and home feeds while people are still deciding. We target by keyword, interest and audience to win the sale early.'],
@@ -90,8 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'catalogue',
       nav: 'Catalogue',
-      eyebrow: 'Catalogue & tracking',
-      heading: 'Turn Your Product Range Into Pins',
+      heading: 'Pinterest Catalogues and Tracking',
       image: '/pages/pinterest/catalogue.webp',
       alt: 'Pinterest catalogue and tracking checklist with tag, feed and verified merchant',
       flip: true,
@@ -103,8 +96,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our Pinterest service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Pinterest Marketing Services',
       cards: [
         { icon: 'lucide:search', title: 'Pinterest Audit', text: 'Account, boards and competitors reviewed.' },
         { icon: 'lucide:key-round', title: 'Keyword Research', text: 'The searches your buyers make on Pinterest.' },
@@ -120,8 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Pinterest Process',
+      heading: 'Our Pinterest Marketing Process',
       steps: [
         { title: 'Audit', text: 'Account, content and competitors.' },
         { title: 'Research', text: 'Keywords and seasonal trends.' },
@@ -135,14 +126,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Pinterest case studies',
-      heading: 'Pinterest Results We Have Delivered',
+      heading: 'Pinterest Marketing Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Pinterest vs others',
-      eyebrow: 'Compare',
       heading: 'Pinterest vs Instagram for Your Brand',
       columns: ['', 'Pinterest', 'Instagram'],
       rows: [
@@ -157,7 +146,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Pinterest Marketing Cost?',
       intro: 'UK Pinterest management typically ranges from about £400 to £2,000+ per month, plus ad spend. Your quote depends on:',
       cards: [
@@ -171,8 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Pinterest Clients Say',
+      heading: 'Pinterest Marketing Client Reviews',
       reviews: [
         { name: 'Amy W', role: 'Owner, Homeware Store', text: 'Pinterest is now our second biggest traffic source and those pins keep working for months.' },
         { name: 'Rebecca J', role: 'Food Blogger', text: 'Their Pinterest SEO tripled our recipe traffic within half a year.' },
@@ -183,7 +170,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Pinterest Marketing for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Shopping catalogues for home, fashion and gifts.' },

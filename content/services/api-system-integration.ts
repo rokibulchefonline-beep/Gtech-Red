@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK API development and system integration company connecting CRM, accounting, ecommerce, ERP and legacy systems so data flows automatically and accurately.',
   hero: {
-    eyebrow: 'API & System Integration UK',
-    title: 'Connect Your Systems and',
-    highlight: 'Stop Copying Data',
+    title: 'API Integration That',
+    highlight: 'Connects Your Systems',
     lead:
       'We build APIs and integrations that link your CRM, accounts, store and operations, so data is entered once and flows everywhere automatically.',
     motion: '/services/api.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-system-integration',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is API and System Integration?',
       paras: [
         'An API lets two pieces of software talk to each other. System integration uses APIs to connect your tools, such as CRM, accounting, ecommerce and warehouse systems, so they share data in real time instead of relying on manual re-typing and spreadsheets.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Data That Flows Without Effort',
+      heading: 'API & System Integration Results in Numbers',
       text: 'The numbers behind the integrations we build and monitor.',
       stats: [
         { value: '1.2M', label: 'Records synced every month' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'integrations',
       nav: 'Integrations',
-      eyebrow: 'System integration',
-      heading: 'One Source of Truth',
+      heading: 'System Integration for CRM, Accounts and Ecommerce',
       image: '/pages/api/network.webp',
       alt: 'Integration hub connecting Salesforce, Xero, Shopify, ERP, Stripe and Slack',
       paras: ['We connect the systems you already rely on, so customers, orders, stock and invoices stay in sync everywhere.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'api-development',
       nav: 'API development',
-      eyebrow: 'API development',
-      heading: 'APIs Built to Last',
+      heading: 'Custom API Development',
       image: '/pages/api/code.webp',
       alt: 'API code with fast median response, OAuth 2 security and OpenAPI documentation',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'automation',
       nav: 'Automation',
-      eyebrow: 'Workflow automation',
-      heading: 'Hours of Data Entry, Gone',
+      heading: 'Workflow Automation and Data Sync',
       image: '/pages/api/sync.webp',
       alt: 'Manual data entry hours falling from 96 to 4 with real-time sync and fewer errors',
       paras: ['When an order, lead or invoice is created, the right systems update instantly and the right people are notified.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reliability',
       nav: 'Reliability',
-      eyebrow: 'Reliability & legacy',
-      heading: 'Integrations That Never Fail Silently',
+      heading: 'Integration Monitoring and Legacy Systems',
       image: '/pages/api/monitor.webp',
       alt: 'Integration reliability checklist with retries, rate limits, alerts, encryption and audit logs',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our integration service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our API & System Integration Services',
       cards: [
         { icon: 'lucide:search', title: 'Systems Review', text: 'Data flows mapped.' },
         { icon: 'lucide:webhook', title: 'API Development', text: 'REST and GraphQL APIs.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Integration Process',
+      heading: 'Our API & System Integration Process',
       steps: [
         { title: 'Map', text: 'Systems and data flows.' },
         { title: 'Design', text: 'Fields, rules and errors.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Integration case studies',
-      heading: 'Integrations We Have Delivered',
+      heading: 'API & System Integration Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Custom vs Zapier',
-      eyebrow: 'Compare',
       heading: 'Custom Integration vs Zapier or Make',
       columns: ['', 'Custom integration', 'Zapier or Make'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does System Integration Cost?',
       intro: 'UK integration projects typically range from about £3,000 for a single connection to £40,000+ for an integration platform. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Integration Clients Say',
+      heading: 'API & System Integration Client Reviews',
       reviews: [
         { name: 'Rachel D', role: 'Finance Director, Wholesale', text: 'Orders now flow from Shopify into our ERP and Xero automatically. Month-end is days faster.' },
         { name: 'Owen P', role: 'Head of Ops, Logistics', text: 'Their integration hub replaced three fragile scripts and has not missed a sync since.' },
@@ -182,8 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'Integration for Your Industry',
+      heading: 'API & System Integration for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Store, stock, courier and accounts in sync.' },
         { slug: 'finance', text: 'Secure data feeds and client systems.' },

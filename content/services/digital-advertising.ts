@@ -13,9 +13,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK digital advertising agency running search, social, display, video and retargeting campaigns that turn ad spend into measurable leads and sales.',
   hero: {
-    eyebrow: 'Digital Advertising Agency UK',
-    title: 'Ads Everywhere Your Customers',
-    highlight: 'Spend Time',
+    title: 'Digital Advertising Across',
+    highlight: 'Every Channel',
     lead:
       'We plan and run digital advertising across Google, Meta, TikTok, LinkedIn, YouTube and display networks, reaching the right people with the right message at the right cost.',
     motion: '/services/digital.webp',
@@ -27,7 +26,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-digital-advertising',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Digital Advertising?',
       paras: [
         'Digital advertising covers every paid ad you run online, from Google search ads to Instagram Reels and banner ads. Each channel reaches people at a different moment, so the best results come from choosing the right mix for your goals.',
@@ -41,8 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Advertising Measured in Results',
+      heading: 'Digital Advertising Results in Numbers',
       text: 'The numbers behind the campaigns we run for UK businesses.',
       stats: [
         { value: '6', label: 'Ad platforms managed' },
@@ -55,8 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'search-ads',
       nav: 'Search ads',
-      eyebrow: 'Search advertising',
-      heading: 'Be There When They Search',
+      heading: 'Search Advertising',
       image: '/pages/digital-advertising/search.webp',
       alt: 'Sponsored search ad for an accountant with click-through and lead figures',
       paras: ['Google and Microsoft search ads put you in front of buyers at the exact moment they look for your product or service.'],
@@ -66,8 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'social-ads',
       nav: 'Social ads',
-      eyebrow: 'Social advertising',
-      heading: 'Reach New Customers on Social',
+      heading: 'Social Media Advertising',
       image: '/pages/digital-advertising/social.webp',
       alt: 'Social advertising results across Facebook, Instagram, TikTok, LinkedIn, Pinterest and YouTube',
       flip: true,
@@ -79,8 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'display-video',
       nav: 'Display & video',
-      eyebrow: 'Display & video',
-      heading: 'Build Awareness at Scale',
+      heading: 'Display and Video Advertising',
       image: '/pages/digital-advertising/display.webp',
       alt: 'Video ad with views, click-through, conversions and cost per sale',
       paras: ['Display, native and video ads build recognition with large, well-targeted audiences, so more people choose you when they are ready to buy.'],
@@ -90,8 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'retargeting',
       nav: 'Retargeting',
-      eyebrow: 'Retargeting',
-      heading: 'Bring Back the Visitors Who Left',
+      heading: 'Retargeting and Remarketing',
       image: '/pages/digital-advertising/retargeting.webp',
       alt: 'Retargeting funnel from site visitors to returning customers and conversions',
       flip: true,
@@ -103,8 +96,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our advertising service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Digital Advertising Services',
       cards: [
         { icon: 'lucide:search', title: 'Channel Strategy', text: 'The right mix of channels for your goals.' },
         { icon: 'lucide:users', title: 'Audience Targeting', text: 'Custom, lookalike and in-market audiences.' },
@@ -120,8 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Advertising Process',
+      heading: 'Our Digital Advertising Process',
       steps: [
         { title: 'Discover', text: 'Goals, margins, audience and past results.' },
         { title: 'Plan', text: 'Channels, budget split and targets.' },
@@ -135,15 +126,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Advertising case studies',
-      heading: 'Advertising Results We Have Delivered',
+      heading: 'Digital Advertising Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Channels',
-      eyebrow: 'Compare',
-      heading: 'Which Ad Channel Fits Your Goal?',
+      heading: 'Digital Advertising Channels Compared',
       columns: ['', 'Search ads', 'Social ads', 'Display & video'],
       rows: [
         ['Best for', 'Ready-to-buy leads', 'New audiences and products', 'Awareness and retargeting'],
@@ -157,7 +146,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Digital Advertising Cost?',
       intro: 'UK management fees typically range from about £500 to £3,000+ per month, plus your ad spend. Your quote depends on:',
       cards: [
@@ -171,8 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Advertising Clients Say',
+      heading: 'Digital Advertising Client Reviews',
       reviews: [
         { name: 'Sophie L', role: 'Owner, Fashion Brand', text: 'TikTok and Meta ads took us from local to national, with ROAS above 4x every month.' },
         { name: 'Ahmed R', role: 'Director, Training Provider', text: 'One team handles Google, LinkedIn and retargeting, and the leads are better than ever.' },
@@ -183,7 +170,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Digital Advertising for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Catalogue, Shopping and retargeting ads that drive profitable sales.' },

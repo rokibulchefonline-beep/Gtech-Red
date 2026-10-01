@@ -4,7 +4,6 @@ export default function BrandGrid() {
   return (
     <section className="brands">
       <div className="wrap">
-        <p className="who-eyebrow">Your Success Story Is Next</p>
         <h2>
           Experience Working with Industry
           <br />

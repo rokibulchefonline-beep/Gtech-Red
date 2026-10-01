@@ -46,11 +46,26 @@ export function annotated({ labels }) {
 }
 
 export function network({ center, value, sub, nodes }) {
-  const pos = [[150, 140], [480, 90], [810, 140], [130, 520], [480, 600], [830, 520]];
-  return `${pos.map(([x, y]) => `<line x1="${x}" y1="${y}" x2="480" y2="350" stroke="${C.red}" stroke-width="3" stroke-dasharray="8 8" opacity=".7"/>`).join('')}
-    ${nodes.map((n, i) => { const [x, y] = pos[i]; return `${box(x - 100, y - 46, 200, 92)}${chip(x - 84, y - 26, 52, 52, n.icon)}${txt(x - 20, y + 7, esc(n.label), 17, 700, C.ink)}`; }).join('')}
-    ${box(320, 266, 320, 168)}<rect x="320" y="266" width="320" height="8" fill="${C.red}"/>
-    ${txt(480, 318, esc(center), 22, 700, C.ink, 'middle')}${txt(480, 376, esc(value), 40, 700, C.red, 'middle')}${txt(480, 410, esc(sub), 17, 700, C.grey, 'middle')}`;
+  // Aligned hub: three source cards on each side, curved connectors into a central summary card.
+  const ys = [150, 360, 570];
+  const cx = 480, top = 196, h = 328, cy = top + h / 2;
+  const node = (n, i) => {
+    const left = i < 3, x = left ? 40 : 690, y = ys[i % 3] - 52;
+    const ex = left ? x + 230 : x, ey = y + 52, tx = left ? cx - 150 : cx + 150, ty = cy - 60 + (i % 3) * 60;
+    const mx = (ex + tx) / 2;
+    return `<path d="M${ex} ${ey} C ${mx} ${ey}, ${mx} ${ty}, ${tx} ${ty}" fill="none" stroke="${C.red}" stroke-width="2.5" opacity=".45"/>
+      <circle cx="${ex}" cy="${ey}" r="5" fill="#fff" stroke="${C.red}" stroke-width="2.5"/><circle cx="${tx}" cy="${ty}" r="5" fill="${C.red}"/>
+      ${box(x, y, 230, 104)}<rect x="${x}" y="${y}" width="4" height="104" fill="${C.red}"/>
+      ${chip(x + 20, y + 26, 52, 52, n.icon)}${txt(x + 86, y + 50, esc(n.label), 16, 700, C.ink)}${rect(x + 86, y + 64, 92, 8, 0, C.line)}`;
+  };
+  const bars = [0.35, 0.5, 0.45, 0.62, 0.7, 0.86, 1];
+  return `${nodes.map(node).join('')}
+    <rect x="${cx - 150}" y="${top}" width="300" height="${h}" fill="#fff" filter="url(#sh)"/>
+    <rect x="${cx - 150}" y="${top}" width="300" height="64" fill="#15161c"/>
+    <circle cx="${cx - 122}" cy="${top + 32}" r="6" fill="${C.red}"/>${txt(cx - 106, top + 39, esc(center), 18, 700, '#fff')}
+    ${txt(cx, top + 136, esc(value), value.length > 12 ? 30 : value.length > 9 ? 36 : 44, 800, C.red, 'middle')}${txt(cx, top + 170, esc(sub), 16, 600, C.grey, 'middle')}
+    ${bars.map((v, i) => rect(cx - 112 + i * 34, top + h - 30 - 96 * v, 22, 96 * v, 0, i === bars.length - 1 ? C.red : '#ffc9cf')).join('')}
+    <line x1="${cx - 120}" y1="${top + h - 28}" x2="${cx + 120}" y2="${top + h - 28}" stroke="${C.line}" stroke-width="2"/>`;
 }
 
 export function reviews({ score, count, items }) {

@@ -12,7 +12,6 @@ const content: ServiceContent = {
   metaDescription:
     'UK ecommerce SEO agency growing organic sales with category and product page optimisation, technical SEO, product schema and Google free listings for Shopify and WooCommerce.',
   hero: {
-    eyebrow: 'Ecommerce SEO Agency UK',
     title: 'Ecommerce SEO That Grows',
     highlight: 'Organic Sales',
     lead:
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-ecommerce-seo',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Ecommerce SEO?',
       paras: [
         'Ecommerce SEO helps online stores rank for the searches shoppers make before they buy. Stores have unique challenges, such as thousands of products, filters that create duplicate pages and thin product descriptions, so they need a specialist approach.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Organic Revenue, Not Just Traffic',
+      heading: 'Ecommerce SEO Results in Numbers',
       text: 'The numbers behind the ecommerce SEO we run for UK online stores.',
       stats: [
         { value: '+132%', label: 'Average organic order growth' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'structure',
       nav: 'Store structure',
-      eyebrow: 'Category & structure',
-      heading: 'A Store Structure Google Understands',
+      heading: 'Ecommerce Site Structure and Category SEO',
       image: '/pages/ecom-seo/structure.webp',
       alt: 'Store structure from homepage to categories, subcategories, products and guides with SEO elements',
       paras: ['Category pages target the biggest buying searches. We plan your categories around real demand and link them so authority flows to them.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'products',
       nav: 'Product pages',
-      eyebrow: 'Product page SEO',
-      heading: 'Product Pages That Rank and Convert',
+      heading: 'Product Page SEO',
       image: '/pages/ecom-seo/products.webp',
       alt: 'Product page annotated with keyword title, price and stock schema, images, description, reviews and related products',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'technical',
       nav: 'Technical SEO',
-      eyebrow: 'Ecommerce technical SEO',
-      heading: 'Fix the Problems That Hold Stores Back',
+      heading: 'Ecommerce Technical SEO',
       image: '/pages/ecom-seo/technical.webp',
       alt: 'Ecommerce technical SEO checklist with faceted navigation, schema, canonicals and out-of-stock handling',
       paras: ['Filters, variants and pagination can create thousands of duplicate pages. We control them so Google crawls the pages that make money.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'shopping',
       nav: 'Shopping & revenue',
-      eyebrow: 'Free listings & revenue',
-      heading: 'More Free Clicks From Google Shopping',
+      heading: 'Google Shopping Free Listings and Organic Revenue',
       image: '/pages/ecom-seo/revenue.webp',
       alt: 'Organic revenue growth with more organic orders, ranking keywords and free listing clicks',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our ecommerce SEO service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Ecommerce SEO Services',
       cards: [
         { icon: 'lucide:search', title: 'Ecommerce Audit', text: 'Technical, content and links.' },
         { icon: 'lucide:key-round', title: 'Keyword Mapping', text: 'Buying searches to categories.' },
@@ -119,7 +111,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our Ecommerce SEO Process',
       steps: [
         { title: 'Audit', text: 'Store, data and competitors.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Ecommerce SEO case studies',
-      heading: 'Ecommerce SEO Results We Have Delivered',
+      heading: 'Ecommerce SEO Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'SEO vs Shopping ads',
-      eyebrow: 'Compare',
       heading: 'Ecommerce SEO vs Shopping Ads',
       columns: ['', 'Ecommerce SEO', 'Shopping ads'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Ecommerce SEO Cost?',
       intro: 'UK ecommerce SEO typically ranges from about £800 to £5,000+ per month. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Ecommerce SEO Clients Say',
+      heading: 'Ecommerce SEO Client Reviews',
       reviews: [
         { name: 'Sophie A', role: 'Founder, Beauty Store', text: 'Organic revenue more than doubled in a year and we rely far less on ads.' },
         { name: 'Daniel F', role: 'Ecommerce Director, Furniture', text: 'They fixed thousands of duplicate filter pages and our categories shot up.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Ecommerce SEO for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Fashion, beauty, homeware and gifts.' },

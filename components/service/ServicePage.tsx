@@ -12,10 +12,9 @@ export const Tick = () => <span className="tick"><Icon name={uiIcons.check} size
 const Paras = ({ p }: { p: string[] }) => <>{p.map((t) => <p key={t.slice(0, 30)}>{t}</p>)}</>;
 const List = ({ b }: { b?: string[] }) => (b ? <ul className="sp-list">{b.map((x) => <li key={x}><Tick />{x}</li>)}</ul> : null);
 
-export function Head({ s, center = true, intro }: { s: { eyebrow?: string; heading: string }; center?: boolean; intro?: string }) {
+export function Head({ s, center = true, intro }: { s: { heading: string }; center?: boolean; intro?: string }) {
   return (
     <div className={center ? 'sp-head center' : 'sp-head'}>
-      {s.eyebrow && <p className="sp-eyebrow">{s.eyebrow}</p>}
       <h2>{s.heading}</h2>
       {intro && <p className="sp-intro">{intro}</p>}
     </div>
@@ -36,7 +35,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
       return (
         <section id={s.id} className="sp-sec"><div className="wrap sp-split">
           <div className="sp-split-head">
-            {s.eyebrow && <p className="sp-eyebrow light">{s.eyebrow}</p>}<h2>{s.heading}</h2>
+            <h2>{s.heading}</h2>
             <span className="sp-split-shape" aria-hidden="true" />
           </div>
           <div className="sp-split-body"><Paras p={s.paras} /><List b={s.bullets} /></div>
@@ -110,7 +109,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
     case 'impact':
       return (
         <section id={s.id} className="sp-impact"><div className="wrap sp-impact-in">
-          <div className="sp-impact-copy">{s.eyebrow && <p className="sp-eyebrow light">{s.eyebrow}</p>}<h2>{s.heading}</h2><p>{s.text}</p></div>
+          <div className="sp-impact-copy"><h2>{s.heading}</h2><p>{s.text}</p></div>
           <div className="sp-impact-stats">
             {s.stats.map((st) => <div key={st.label} className="sp-impact-stat"><b>{st.value}</b><span>{st.label}</span></div>)}
           </div>
@@ -185,7 +184,6 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
             <Link href="/">Home</Link><span>/</span>
             {found && <><Link href={`/services/${found.group.slug}`}>{found.group.title}</Link><span>/</span></>}<b>{name}</b>
           </nav>
-          <p className="sp-hero-eyebrow">{c.hero.eyebrow}</p>
           <h1>{c.hero.title} <span className="red">{c.hero.highlight}</span></h1>
           <p className="sp-lead">{c.hero.lead}</p>
           <div className="sp-hero-btns">
@@ -209,10 +207,10 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
 
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={short} />)}
 
-      <FaqSection title={`${short} Questions, Answered`} faqs={c.faqs} />
+      <FaqSection title={`${short} FAQs`} faqs={c.faqs} />
 
       <section className="sp-sec sp-grey"><div className="wrap">
-        <Head s={{ eyebrow: 'Related services', heading: `Services That Work Well With ${short}` }} />
+        <Head s={{ heading: `Services Related to ${short}` }} />
         <div className="sp-related">
           {related.map((r) => r && (
             <Link key={r.item.slug} href={`/services/${r.item.slug}`} className="sp-rel">

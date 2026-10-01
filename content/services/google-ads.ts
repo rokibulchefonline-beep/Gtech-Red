@@ -12,7 +12,6 @@ const content: ServiceContent = {
   metaDescription:
     'UK Google Ads agency managing Search, Performance Max, Shopping and YouTube campaigns built around cost per lead and ROAS. Free Google Ads account audit.',
   hero: {
-    eyebrow: 'Google Ads Agency UK',
     title: 'Google Ads That Pay Back',
     highlight: 'Every Pound',
     lead:
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-google-ads',
       nav: 'What is Google Ads',
-      eyebrow: 'The basics',
       heading: 'What Is Google Ads Management?',
       paras: [
         'Google Ads lets your business appear at the top of Google, on YouTube, in Gmail and across millions of websites the moment people search for what you sell. You pay per click, so every pound must be spent on the right searches, with the right message, landing on the right page.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Ad Spend That Turns Into Profit',
+      heading: 'Google Ads Results in Numbers',
       text: 'The numbers behind the Google Ads accounts we manage for UK businesses.',
       stats: [
         { value: '£2.4M+', label: 'Ad spend managed' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'search',
       nav: 'Search ads',
-      eyebrow: 'Search campaigns',
-      heading: 'Search Ads That Win High-Intent Clicks',
+      heading: 'Google Search Ads',
       image: '/pages/google-ads/search.webp',
       alt: 'Google sponsored search ad with sitelinks and performance figures',
       paras: ['We target the keywords that buyers use, exclude the ones that waste money and write ads that earn a strong Quality Score, which lowers your cost per click.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'pmax',
       nav: 'PMax & Shopping',
-      eyebrow: 'Performance Max & Shopping',
-      heading: 'Sell More Products Across Every Google Channel',
+      heading: 'Performance Max and Google Shopping Ads',
       image: '/pages/google-ads/pmax.webp',
       alt: 'Performance Max results across Search, Shopping, YouTube, Display, Gmail and Maps',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'display',
       nav: 'Display & YouTube',
-      eyebrow: 'Display & YouTube',
-      heading: 'Visual Ads That Build Demand and Bring Visitors Back',
+      heading: 'Display, YouTube and Remarketing Ads',
       image: '/pages/google-ads/display.webp',
       alt: 'YouTube video ad with views, click-through and conversion figures',
       paras: ['Display, YouTube and Demand Gen campaigns put your brand in front of the right audience before they search, and remind visitors who left without buying.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'tracking',
       nav: 'Tracking',
-      eyebrow: 'Conversion tracking',
-      heading: 'Tracking You Can Actually Trust',
+      heading: 'Google Ads Conversion Tracking',
       image: '/pages/google-ads/tracking.webp',
       alt: 'Conversion tracking health checklist with GA4, enhanced conversions and Consent Mode',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our Google Ads service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Google Ads Services',
       cards: [
         { icon: 'lucide:search', title: 'Account Audit', text: 'A full review of wasted spend, structure and tracking.' },
         { icon: 'lucide:target', title: 'Keyword Strategy', text: 'Profitable keywords, match types and negatives.' },
@@ -119,7 +111,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our Google Ads Process',
       steps: [
         { title: 'Audit', text: 'We find wasted spend and missed opportunities.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Google Ads case studies',
-      heading: 'Google Ads Results We Have Delivered',
+      heading: 'Google Ads Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Campaign types',
-      eyebrow: 'Compare',
-      heading: 'Which Google Ads Campaign Is Right for You?',
+      heading: 'Google Ads Campaign Types Compared',
       columns: ['', 'Search', 'Performance Max', 'YouTube & Display'],
       rows: [
         ['Best for', 'High-intent leads', 'Ecommerce and scale', 'Awareness and retargeting'],
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Google Ads Management Cost?',
       intro: 'UK management fees typically run from about £300 to £2,000+ per month, or 10 to 20% of ad spend for larger accounts. Your fee depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Google Ads Clients Say',
+      heading: 'Google Ads Client Reviews',
       reviews: [
         { name: 'Sarah M', role: 'Marketing Manager, Retail', text: 'They rebuilt our Shopping and PMax campaigns and our ROAS went from 2.1x to 5.4x in four months.' },
         { name: 'Daniel R', role: 'Owner, Home Services', text: 'Our cost per lead halved after they fixed the tracking and cut the wasted keywords.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Google Ads for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Shopping and Performance Max campaigns tuned for profit, not just revenue.' },

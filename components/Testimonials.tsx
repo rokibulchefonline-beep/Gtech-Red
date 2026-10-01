@@ -18,8 +18,7 @@ export default function Testimonials() {
   return (
     <section className="testi" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <div className="wrap">
-        <p className="testi-eyebrow">Testimonial</p>
-        <h2>Client Testimonial</h2>
+        <h2>What Clients Say About GTech Digital</h2>
         <Icon className="testi-ico" name={uiIcons.quote} size={44} />
         <div className="testi-stage">
           {testimonials.map((t, n) => (

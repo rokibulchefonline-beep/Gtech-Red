@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK SaaS development company designing and building multi-tenant SaaS products with subscription billing, onboarding and analytics, from first release to scale.',
   hero: {
-    eyebrow: 'SaaS Development Company UK',
-    title: 'SaaS Products Built to',
-    highlight: 'Grow Recurring Revenue',
+    title: 'SaaS Product Development',
+    highlight: 'Built to Scale',
     lead:
       'We design, build and scale SaaS products with secure multi-tenant architecture, smooth onboarding and subscription billing, so you can focus on customers.',
     motion: '/services/saas.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-saas-development',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is SaaS Product Development?',
       paras: [
         'SaaS (software as a service) is software customers subscribe to and use online. Building SaaS means more than features: it needs multi-tenant architecture, billing, onboarding, analytics and reliability so you can grow recurring revenue with confidence.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'SaaS That Scales',
+      heading: 'SaaS Product Development Results in Numbers',
       text: 'The numbers behind the SaaS products we build and grow.',
       stats: [
         { value: '25+', label: 'SaaS products launched' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'architecture',
       nav: 'Architecture',
-      eyebrow: 'SaaS architecture',
-      heading: 'Built Right From Day One',
+      heading: 'SaaS Architecture and Multi-Tenancy',
       image: '/pages/saas/stack.webp',
       alt: 'SaaS architecture layers: product app, multi-tenancy, billing, platform APIs and cloud',
       paras: ['Getting the foundations right avoids costly rebuilds later. We design for many customers, teams and plans from the start.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'billing',
       nav: 'Billing',
-      eyebrow: 'Subscriptions & billing',
-      heading: 'Recurring Revenue on Autopilot',
+      heading: 'SaaS Subscription Billing',
       image: '/pages/saas/mrr.webp',
       alt: 'Monthly recurring revenue growing with paying customers, monthly churn and uptime',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'onboarding',
       nav: 'Onboarding',
-      eyebrow: 'Onboarding & growth',
-      heading: 'From Sign-up to Paying Customer',
+      heading: 'SaaS Onboarding and Activation',
       image: '/pages/saas/growth.webp',
       alt: 'Trial-to-paid funnel from sign-ups to activated and paid customers with time to value',
       paras: ['Most churn happens in the first week. We design onboarding that gets users to their first win fast, then measure every step.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'scale',
       nav: 'Scale',
-      eyebrow: 'Scale & security',
-      heading: 'Ready for Your First Thousand Customers',
+      heading: 'SaaS Scalability and Security',
       image: '/pages/saas/scale.webp',
       alt: 'SaaS scale gauges for uptime, API speed and error rate with security and backup checks',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our SaaS service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our SaaS Product Development Services',
       cards: [
         { icon: 'lucide:lightbulb', title: 'Product Workshop', text: 'Users, value and roadmap.' },
         { icon: 'lucide:pen-tool', title: 'UX & UI Design', text: 'Clean, intuitive product.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our SaaS Process',
+      heading: 'Our SaaS Product Development Process',
       steps: [
         { title: 'Workshop', text: 'Customers, value and pricing.' },
         { title: 'Prototype', text: 'Tested with target users.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'SaaS case studies',
-      heading: 'SaaS Products We Have Delivered',
+      heading: 'SaaS Product Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Agency vs in-house',
-      eyebrow: 'Compare',
       heading: 'SaaS Agency vs Hiring In-House',
       columns: ['', 'GTech Digital', 'In-house team'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does SaaS Development Cost?',
       intro: 'UK SaaS products typically cost from about £30,000 for a first release to £150,000+ for a mature platform. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our SaaS Clients Say',
+      heading: 'SaaS Product Development Client Reviews',
       reviews: [
         { name: 'Elliot W', role: 'Founder, PropTech SaaS', text: 'We went from beta to 1,000 paying customers on the platform they built.' },
         { name: 'Hannah V', role: 'CEO, HR Software', text: 'Their onboarding redesign doubled our trial-to-paid rate.' },
@@ -182,8 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'SaaS for Your Industry',
+      heading: 'SaaS Product Development for Your Industry',
       items: [
         { slug: 'technology-saas', text: 'B2B SaaS from first release to scale.' },
         { slug: 'real-estate', text: 'PropTech for agents and landlords.' },

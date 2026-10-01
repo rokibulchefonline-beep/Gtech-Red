@@ -31,8 +31,7 @@ export default async function Blog({ searchParams }: Props) {
     <>
       <section className="bl-hero-wrap"><div className="wrap">
         <div className="bl-hero">
-          <p className="bl-pill">GTech Digital Blog</p>
-          <h1>Growth Guides for UK Businesses</h1>
+          <h1>Digital Marketing Blog and Guides</h1>
           <p>Practical advice on SEO, paid ads, social media, websites and software from the specialists who do the work every day.</p>
           <form className="bl-search" action="/blogs" role="search">
             {category && <input type="hidden" name="category" value={category} />}

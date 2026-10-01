@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK WordPress development agency building fast custom themes, Gutenberg blocks, plugins and WooCommerce stores that are secure, SEO-ready and easy to edit.',
   hero: {
-    eyebrow: 'WordPress Development Agency UK',
-    title: 'WordPress Websites That Are Fast,',
-    highlight: 'Secure and Easy to Edit',
+    title: 'WordPress Development for',
+    highlight: 'Fast, Secure Websites',
     lead:
       'We build custom WordPress themes, blocks and plugins without the bloat, so your site loads quickly, ranks well and your team can update it with confidence.',
     motion: '/services/wordpress.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-wordpress-development',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is WordPress Development?',
       paras: [
         'WordPress powers over 40% of the web. WordPress development means building a theme, blocks and plugins tailored to your business, rather than relying on a heavy off-the-shelf theme and dozens of plugins that slow your site down.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Lean WordPress, Better Results',
+      heading: 'WordPress Development Results in Numbers',
       text: 'The numbers behind the WordPress sites we build and rebuild for UK businesses.',
       stats: [
         { value: '120+', label: 'WordPress sites built' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'themes',
       nav: 'Custom themes',
-      eyebrow: 'Custom themes',
-      heading: 'A Theme Built Only for You',
+      heading: 'Custom WordPress Theme Development',
       image: '/pages/wordpress/theme.webp',
       alt: 'Custom WordPress theme code with plugins reduced, zero vulnerabilities and lower page weight',
       paras: ['We code lightweight themes from your design, with only the features you need. Less code means faster pages and fewer security risks.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'blocks',
       nav: 'Blocks & editing',
-      eyebrow: 'Gutenberg blocks',
-      heading: 'Edit Pages Without Breaking the Design',
+      heading: 'Custom Gutenberg Blocks',
       image: '/pages/wordpress/plugins.webp',
       alt: 'WordPress page built from custom header, pattern, hero, content and form blocks',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'woocommerce',
       nav: 'WooCommerce',
-      eyebrow: 'WooCommerce',
-      heading: 'WooCommerce Stores That Convert',
+      heading: 'WooCommerce Development',
       image: '/pages/wordpress/woocommerce.webp',
       alt: 'WooCommerce sales chart with conversion rate, payment methods and shipping rules',
       paras: ['We build WooCommerce stores with fast product pages, a simple checkout and integrations for payments, shipping and stock.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'speed-security',
       nav: 'Speed & security',
-      eyebrow: 'Speed & security',
-      heading: 'Fast Pages, Locked-Down Admin',
+      heading: 'WordPress Speed and Security',
       image: '/pages/wordpress/speed.webp',
       alt: 'WordPress Core Web Vitals gauges with updates, caching, backups and malware scanning',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our WordPress service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our WordPress Development Services',
       cards: [
         { icon: 'lucide:search', title: 'WordPress Audit', text: 'Speed, plugins and security reviewed.' },
         { icon: 'lucide:palette', title: 'Custom Theme', text: 'Built from your design.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our WordPress Process',
+      heading: 'Our WordPress Development Process',
       steps: [
         { title: 'Audit', text: 'Current site, content and goals.' },
         { title: 'Plan', text: 'Sitemap, blocks and features.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'WordPress case studies',
-      heading: 'WordPress Projects We Have Delivered',
+      heading: 'WordPress Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Custom vs theme',
-      eyebrow: 'Compare',
       heading: 'Custom Theme vs Off-the-Shelf Theme',
       columns: ['', 'Custom theme', 'Off-the-shelf theme'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does WordPress Development Cost?',
       intro: 'UK custom WordPress websites typically range from about £3,000 to £15,000+, and WooCommerce stores from about £5,000. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our WordPress Clients Say',
+      heading: 'WordPress Development Client Reviews',
       reviews: [
         { name: 'Claire B', role: 'Marketing Manager, Charity', text: 'We went from 38 plugins to 9 and the site is twice as fast.' },
         { name: 'Ahmed S', role: 'Owner, Dental Practice', text: 'The custom blocks make editing pages simple for our whole team.' },
@@ -182,8 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'WordPress for Your Industry',
+      heading: 'WordPress Development for Your Industry',
       items: [
         { slug: 'education', text: 'School and course sites staff can update.' },
         { slug: 'healthcare', text: 'Clinic sites with booking and treatment pages.' },

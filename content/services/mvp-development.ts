@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK MVP development company helping founders turn ideas into launched products in 8 to 12 weeks, with discovery, design, build and real-user validation.',
   hero: {
-    eyebrow: 'MVP Development Company UK',
-    title: 'Launch Your Idea in Weeks,',
-    highlight: 'Not Months',
+    title: 'MVP Development: Launch in',
+    highlight: 'Weeks, Not Months',
     lead:
       'We help founders and teams turn an idea into a working product, test it with real users and learn what to build next, without wasting budget.',
     motion: '/services/mvp.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-mvp',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is an MVP?',
       paras: [
         'A minimum viable product (MVP) is the simplest version of your product that solves the core problem for real users. It lets you test demand, collect feedback and show traction to investors before investing in a full build.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'From Idea to Traction',
+      heading: 'MVP Development Results in Numbers',
       text: 'The numbers behind the MVPs we build for UK founders and teams.',
       stats: [
         { value: '10 weeks', label: 'Average idea to launch' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'scope',
       nav: 'Scope',
-      eyebrow: 'Discovery & scope',
-      heading: 'Build Only What Matters',
+      heading: 'MVP Discovery and Scoping',
       image: '/pages/mvp/scope.webp',
       alt: 'MVP scope checklist with sign-up, core workflow, payments, analytics and admin, nice-to-haves parked',
       paras: ['We help you find the one workflow that proves your idea, and park everything else for later.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'timeline',
       nav: 'Timeline',
-      eyebrow: 'Build timeline',
-      heading: 'From Idea to Launch in 10 Weeks',
+      heading: 'MVP Development Timeline',
       image: '/pages/mvp/sprints.webp',
       alt: 'MVP timeline from discovery and prototype to build, testing, beta and launch over ten weeks',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'launch',
       nav: 'Launch',
-      eyebrow: 'Launch',
-      heading: 'A Product Ready for Real Users',
+      heading: 'MVP Launch',
       image: '/pages/mvp/launch.webp',
       alt: 'MVP app with sign-up, core feature, subscriptions and feedback, plus beta users and funding raised',
       paras: ['Your MVP launches with sign-up, payments, analytics and feedback built in, so you learn from day one.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'validate',
       nav: 'Validate',
-      eyebrow: 'Validate & iterate',
-      heading: 'Learn What to Build Next',
+      heading: 'MVP Validation and Iteration',
       image: '/pages/mvp/validate.webp',
       alt: 'Beta validation funnel from landing page visits to paying customers',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our MVP service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our MVP Development Services',
       cards: [
         { icon: 'lucide:lightbulb', title: 'Idea Workshop', text: 'Problem, users and value.' },
         { icon: 'lucide:list-checks', title: 'Scoping', text: 'Must-haves only.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our MVP Process',
+      heading: 'Our MVP Development Process',
       steps: [
         { title: 'Workshop', text: 'Problem and users.' },
         { title: 'Prototype', text: 'Clickable design tested.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'MVP case studies',
-      heading: 'MVPs We Have Launched',
+      heading: 'MVP Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'No-code vs custom',
-      eyebrow: 'Compare',
       heading: 'No-Code MVP vs Custom-Coded MVP',
       columns: ['', 'No-code (Bubble, Glide)', 'Custom code'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does an MVP Cost?',
       intro: 'UK MVPs typically range from about £8,000 to £40,000, depending on scope and platform. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our MVP Clients Say',
+      heading: 'MVP Development Client Reviews',
       reviews: [
         { name: 'Natalie C', role: 'Founder, Marketplace Start-up', text: 'We launched in ten weeks and raised our pre-seed round on the back of it.' },
         { name: 'Arjun P', role: 'Co-founder, B2B Tool', text: 'They talked us out of half our features. Best advice we got.' },
@@ -182,8 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'MVPs for Your Industry',
+      heading: 'MVP Development for Your Industry',
       items: [
         { slug: 'technology-saas', text: 'B2B and B2C software start-ups.' },
         { slug: 'finance', text: 'FinTech pilots and calculators.' },

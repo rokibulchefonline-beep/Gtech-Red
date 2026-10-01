@@ -2,10 +2,11 @@ import type { Section, ServiceContent } from '../types';
 
 // Builds an industry page in the approved long-form layout: intro, numbers band, four Z-pattern
 // media sections (growth, channels, journey, trust), services grid, case studies and reviews.
-type Media = { nav: string; eyebrow: string; heading: string; para: string; bullets: string[]; alt: string };
+// Section headings are generated from the industry keyword (`kw`) plus the section topic.
+type Media = { nav: string; topic: string; heading: string; para: string; bullets: string[]; alt: string };
 type Input = {
-  slug: string; name: string; metaTitle: string; metaDescription: string;
-  hero: { eyebrow: string; title: string; highlight: string; lead: string; points: string[] };
+  slug: string; name: string; kw: string; metaTitle: string; metaDescription: string;
+  hero: { title: string; highlight: string; lead: string; points: string[] };
   what: { heading: string; para: string; bullets: string[] };
   impact: { heading: string; stats: [string, string][] };
   media: [Media, Media, Media, Media];
@@ -16,22 +17,23 @@ type Input = {
 };
 
 const images = ['growth', 'channels', 'journey', 'trust'];
+const title = (s: string) => s.replace(/(^|\s)([a-z])/g, (_, a, b) => a + b.toUpperCase()).replace(/ And /g, ' and ').replace(/ To /g, ' to ').replace(/ Of /g, ' of ');
 
 export function industry(i: Input): ServiceContent {
   const sections: Section[] = [
     { type: 'logos', id: 'clients' },
-    { type: 'text', id: 'overview', nav: 'Overview', eyebrow: `${i.name} marketing`, heading: i.what.heading, paras: [i.what.para], bullets: i.what.bullets },
-    { type: 'impact', id: 'impact', eyebrow: 'Results in numbers', heading: i.impact.heading, text: `The numbers behind the work we do for UK ${i.name.toLowerCase()} businesses.`, stats: i.impact.stats.map(([value, label]) => ({ value, label })) },
+    { type: 'text', id: 'overview', nav: 'Overview', heading: `What Makes ${i.kw} Different`, paras: [i.what.para], bullets: i.what.bullets },
+    { type: 'impact', id: 'impact', heading: `${i.kw} Results in Numbers`, text: `The numbers behind the work we do for UK ${i.name.toLowerCase()} businesses.`, stats: i.impact.stats.map(([value, label]) => ({ value, label })) },
     ...i.media.map((m, n): Section => ({
-      type: 'media', id: images[n], nav: m.nav, eyebrow: m.eyebrow, heading: m.heading, image: `/pages/industries/${i.slug}/${images[n]}.webp`, alt: m.alt,
+      type: 'media', id: images[n], nav: m.nav, heading: `${i.kw}: ${title(m.topic)}`, image: `/pages/industries/${i.slug}/${images[n]}.webp`, alt: m.alt,
       paras: [m.para], bullets: m.bullets, ...(n % 2 ? { flip: true, tone: 'grey' as const } : {}),
     })),
-    { type: 'cards', id: 'services', nav: 'What we do', eyebrow: 'How we help', heading: `Everything ${i.name} Businesses Need to Grow`, cards: i.cards.map(([icon, title, text]) => ({ icon, title, text })) },
-    { type: 'cases', id: 'case-studies', nav: 'Case studies', eyebrow: 'Case studies', heading: `${i.name} Results We Have Delivered` },
-    { type: 'reviews', id: 'reviews', nav: 'Reviews', eyebrow: 'Client reviews', heading: `What Our ${i.name} Clients Say`, reviews: i.reviews.map(([name, role, text]) => ({ name, role, text })) },
+    { type: 'cards', id: 'services', nav: 'What we do', heading: `Our ${i.kw} Services`, cards: i.cards.map(([icon, t, text]) => ({ icon, title: t, text })) },
+    { type: 'cases', id: 'case-studies', nav: 'Case studies', heading: `${i.kw} Case Studies` },
+    { type: 'reviews', id: 'reviews', nav: 'Reviews', heading: `${i.kw} Client Reviews`, reviews: i.reviews.map(([name, role, text]) => ({ name, role, text })) },
   ];
   return {
-    slug: i.slug, metaTitle: i.metaTitle, metaDescription: i.metaDescription,
+    slug: i.slug, short: i.kw, metaTitle: i.metaTitle, metaDescription: i.metaDescription,
     hero: { ...i.hero, motion: `/services/ind-${i.slug}.webp` },
     sections, faqs: i.faqs.map(([q, a]) => ({ q, a })), related: i.related,
   };

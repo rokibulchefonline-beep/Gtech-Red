@@ -8,8 +8,7 @@ export default function IndustriesSection() {
     <section className="ind">
       <div className="wrap ind-grid">
         <div className="ind-copy">
-          <p className="ind-eyebrow">Expertise</p>
-          <h2>Industries We Serve</h2>
+          <h2>Digital Marketing for the Industries We Serve</h2>
           <span className="ind-rule" />
           <p>
             We work with a wide range of industries, from e-commerce brands and restaurants to schools,

@@ -5,10 +5,10 @@ import { industry } from './build';
 export default industry({
   slug: 'hospitality-hotels',
   name: 'Hospitality',
+  kw: 'Hospitality Marketing',
   metaTitle: 'Hospitality & Hotel Marketing Agency UK | Direct Bookings | GTech Digital',
   metaDescription: 'UK hospitality marketing agency for hotels, restaurants and venues: local SEO, Google Hotel Ads, social media and booking websites that grow direct bookings.',
   hero: {
-    eyebrow: 'Hospitality Marketing Agency UK',
     title: 'Hospitality Marketing That',
     highlight: 'Fills Tables',
     lead: 'We help hotels, restaurants and venues win more direct bookings, cut commission and keep guests coming back.',
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'More Bookings, Less Commission', stats: [['+64%', 'Average growth in direct bookings'], ['£22k', 'Average commission saved a year'], ['8.2x', 'Average hotel ads ROAS'], ['4.8', 'Average Google rating']] },
   media: [
-    { nav: 'Bookings', eyebrow: 'Direct bookings', heading: 'Book Direct and Keep the Margin', para: 'Every booking moved from an OTA to your own website saves commission. We make booking direct the easy choice.', bullets: ['Direct booking campaigns', 'Google Hotel and Maps ads', 'Best-rate messaging', 'Revenue tracking'], alt: 'Direct bookings revenue growing with OTA commission saved and Google rating' },
-    { nav: 'Channels', eyebrow: 'Channels', heading: 'Be Seen Where Guests Decide', para: 'From Google Maps to Instagram Reels, we put your venue in front of people planning a meal, stay or event.', bullets: ['Google Business Profile', 'Instagram and TikTok content', 'Local SEO for cuisine and area', 'Email for repeat guests'], alt: 'How guests find you: Google Maps, Instagram, hotel ads, TikTok, SEO and email' },
-    { nav: 'Website', eyebrow: 'Booking journey', heading: 'A Website That Takes Bookings', para: 'Beautiful photos, clear menus and room details and a fast booking engine turn browsers into guests.', bullets: ['Booking engine integration', 'Menus, rooms and events pages', 'Mobile-first design', 'Gift vouchers online'], alt: 'Guest booking journey from website visits to direct bookings with booking rate' },
-    { nav: 'Reputation', eyebrow: 'Reviews & seasons', heading: 'Great Reviews, Every Season', para: 'We manage reviews across Google and TripAdvisor and plan campaigns for every busy period.', bullets: ['Review replies within 24 hours', 'Seasonal campaign calendar', 'Events and Christmas promotions', 'Loyalty and email offers'], alt: 'Hospitality checklist with booking engine, Google listings, review replies and seasonal calendar' },
+    { nav: 'Bookings', topic: 'Direct bookings', heading: 'Book Direct and Keep the Margin', para: 'Every booking moved from an OTA to your own website saves commission. We make booking direct the easy choice.', bullets: ['Direct booking campaigns', 'Google Hotel and Maps ads', 'Best-rate messaging', 'Revenue tracking'], alt: 'Direct bookings revenue growing with OTA commission saved and Google rating' },
+    { nav: 'Channels', topic: 'Channels', heading: 'Be Seen Where Guests Decide', para: 'From Google Maps to Instagram Reels, we put your venue in front of people planning a meal, stay or event.', bullets: ['Google Business Profile', 'Instagram and TikTok content', 'Local SEO for cuisine and area', 'Email for repeat guests'], alt: 'How guests find you: Google Maps, Instagram, hotel ads, TikTok, SEO and email' },
+    { nav: 'Website', topic: 'Booking journey', heading: 'A Website That Takes Bookings', para: 'Beautiful photos, clear menus and room details and a fast booking engine turn browsers into guests.', bullets: ['Booking engine integration', 'Menus, rooms and events pages', 'Mobile-first design', 'Gift vouchers online'], alt: 'Guest booking journey from website visits to direct bookings with booking rate' },
+    { nav: 'Reputation', topic: 'Reviews & seasons', heading: 'Great Reviews, Every Season', para: 'We manage reviews across Google and TripAdvisor and plan campaigns for every busy period.', bullets: ['Review replies within 24 hours', 'Seasonal campaign calendar', 'Events and Christmas promotions', 'Loyalty and email offers'], alt: 'Hospitality checklist with booking engine, Google listings, review replies and seasonal calendar' },
   ],
   cards: [
     ['lucide:map-pin', 'Local SEO', 'Top of Maps for your area.'], ['simple-icons:googleads', 'Hotel & Search Ads', 'More direct bookings.'],

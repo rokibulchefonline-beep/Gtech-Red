@@ -403,7 +403,7 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 .sp-rel{background:#fff;border:1px solid #eee;padding:28px;transition:transform .3s,box-shadow .3s;border-top:4px solid var(--pink)}
 .sp-rel:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(232,32,47,.16)}
 .sp-rel h3{margin:16px 0 6px;font-size:17px;font-weight:800}.sp-rel p{margin:0 0 12px!important;font-size:14px!important;line-height:1.6!important;color:#6b7280!important}
-@media(max-width:1000px){.sp-split,.sp-media,.sp-feat,.sp-impact-in,.sp-faq-wrap{grid-template-columns:1fr}.sp-split-body{border-left:1px solid #eee}.flip .sp-media-frame{order:0}.sp-cards,.sp-cards.n3,.sp-cards.n6,.sp-steps,.sp-related,.sp-inds,.sp-reviews{grid-template-columns:repeat(2,1fr)}.sp-metrics{grid-template-columns:repeat(2,1fr)}.sp-feat-grid{grid-template-columns:repeat(2,1fr)}.sp-faq-aside{position:relative;top:0}.sp-float{display:none}.sp-impact{padding:40px 28px}}
+@media(max-width:1000px){.sp-split,.sp-media,.sp-feat,.sp-impact-in,.sp-faq-wrap{grid-template-columns:1fr}.sp-split-body{border-left:1px solid #eee}.flip .sp-media-frame{order:0}.sp-cards,.sp-cards.n3,.sp-cards.n6,.sp-steps,.sp-related,.sp-inds,.sp-reviews{grid-template-columns:repeat(2,1fr)}.sp-metrics{grid-template-columns:repeat(2,1fr)}.sp-feat-grid{grid-template-columns:repeat(2,1fr)}.sp-faq-aside{position:relative;top:0}.sp-float{display:none}.sp-impact{padding:64px 0}.sp-impact-in{gap:32px}}
 @media(max-width:600px){.sp-sec{padding:64px 0}.sp-cards,.sp-cards.n3,.sp-cards.n6,.sp-steps,.sp-related,.sp-inds,.sp-reviews,.sp-metrics,.sp-feat-grid{grid-template-columns:1fr}.sp-feat-card:nth-child(even){transform:none}.sp-split-head,.sp-split-body{padding:36px 26px}.sp-hero-show{margin-bottom:-60px}.sp-logos{padding-top:100px}.sp-btn-red,.sp-btn-line{font-size:16px;padding:13px 22px}}
 .sp-sec,.sp-hero,.sp-impact{overflow-x:clip}
 .pstrip{background:#fff;padding:56px 0 50px;text-align:center;border-bottom:1px solid #f0f0f3}
@@ -635,3 +635,15 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 .ind-others a svg{color:var(--pink)}.ind-others a:hover{border-color:var(--pink);color:var(--pink)}
 .sp-ind a:hover h3{color:var(--pink)}
 @media(max-width:900px){.ih-grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.ih-grid{grid-template-columns:1fr}}
+
+/* Results band on phones: compact 2x2 grid with even dividers */
+@media(max-width:600px){
+  .sp-impact{padding:52px 0}
+  .sp-impact-copy h2{font-size:27px}.sp-impact-copy p:not(.sp-eyebrow){font-size:15.5px}
+  .sp-impact-stats{border-top:1px solid rgba(255,255,255,.28)}
+  .sp-impact-stat{padding:22px 14px 22px 0;border-left:0;border-bottom:1px solid rgba(255,255,255,.28)}
+  .sp-impact-stat:nth-child(even){padding-left:16px;border-left:1px solid rgba(255,255,255,.28)}
+  .sp-impact-stat:nth-child(n+3){border-top:0}
+  .sp-impact-stat b{font-size:32px;overflow-wrap:anywhere}
+  .sp-impact-stat span{font-size:11px;letter-spacing:.06em;line-height:1.45;margin-top:8px}
+}

@@ -13,9 +13,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK custom CRM and ERP development: bespoke systems for sales, orders, stock, scheduling and finance that automate admin and give you live control of the business.',
   hero: {
-    eyebrow: 'CRM & ERP Development UK',
-    title: 'One System to Run',
-    highlight: 'Your Whole Business',
+    title: 'Custom CRM and ERP Systems',
+    highlight: 'for Your Business',
     lead:
       'We build custom CRM and ERP systems that bring sales, orders, stock, jobs and finance together, automating admin and giving you live numbers.',
     motion: '/services/crm.webp',
@@ -27,7 +26,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-crm-erp',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Are CRM and ERP Systems?',
       paras: [
         'A CRM (customer relationship management) system manages leads, customers and sales. An ERP (enterprise resource planning) system runs operations such as orders, stock, purchasing and finance. A custom system combines exactly the parts you need, built around how your business works.',
@@ -41,8 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Less Admin, More Control',
+      heading: 'CRM & ERP Development Results in Numbers',
       text: 'The numbers behind the CRM and ERP systems we build.',
       stats: [
         { value: '16h', label: 'Average admin saved per week' },
@@ -55,8 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'crm',
       nav: 'CRM',
-      eyebrow: 'Custom CRM',
-      heading: 'A Sales Pipeline That Never Leaks',
+      heading: 'Custom CRM Development',
       image: '/pages/crm/pipeline.webp',
       alt: 'Sales pipeline from new leads to won deals with win rate, sales cycle and pipeline value',
       paras: ['Every lead is captured, followed up and tracked to a sale, with reminders and quotes built in.'],
@@ -66,8 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'erp',
       nav: 'ERP',
-      eyebrow: 'Custom ERP',
-      heading: 'Operations, Stock and Finance Together',
+      heading: 'Custom ERP for Operations, Stock and Finance',
       image: '/pages/crm/modules.webp',
       alt: 'Business system modules: CRM, inventory, orders, finance, scheduling and reports',
       flip: true,
@@ -79,8 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'automation',
       nav: 'Automation',
-      eyebrow: 'Automation & reporting',
-      heading: 'Admin That Runs Itself',
+      heading: 'Workflow Automation and Reporting',
       image: '/pages/crm/automation.webp',
       alt: 'Orders processed automatically rising to 96% with workflows automated and fewer errors',
       paras: ['Repetitive tasks happen automatically, and live dashboards show sales, margins and performance at a glance.'],
@@ -90,8 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'migration',
       nav: 'Migration',
-      eyebrow: 'Migration & adoption',
-      heading: 'A Smooth Switch for Your Team',
+      heading: 'CRM Data Migration and Team Onboarding',
       image: '/pages/crm/migration.webp',
       alt: 'Data migration plan with cleansing, field mapping, trial run, training and parallel running',
       flip: true,
@@ -103,8 +96,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our CRM & ERP service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our CRM & ERP Development Services',
       cards: [
         { icon: 'lucide:search', title: 'Process Review', text: 'How work flows today.' },
         { icon: 'lucide:users', title: 'CRM Modules', text: 'Leads, pipeline and quotes.' },
@@ -120,8 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our CRM & ERP Process',
+      heading: 'Our CRM & ERP Development Process',
       steps: [
         { title: 'Review', text: 'Processes and pain points.' },
         { title: 'Design', text: 'Modules and data model.' },
@@ -135,14 +126,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'CRM & ERP case studies',
-      heading: 'Business Systems We Have Delivered',
+      heading: 'CRM & ERP Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Custom vs Salesforce',
-      eyebrow: 'Compare',
       heading: 'Custom CRM vs Salesforce or HubSpot',
       columns: ['', 'Custom CRM / ERP', 'Salesforce / HubSpot'],
       rows: [
@@ -157,7 +146,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does a Custom CRM or ERP Cost?',
       intro: 'UK custom CRM systems typically range from about £15,000, and ERP systems from about £35,000 to £150,000+. Your quote depends on:',
       cards: [
@@ -171,8 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our CRM & ERP Clients Say',
+      heading: 'CRM & ERP Development Client Reviews',
       reviews: [
         { name: 'Martin G', role: 'MD, Manufacturing', text: 'Orders, stock and invoicing are finally in one system. We know our margins every day.' },
         { name: 'Joanne E', role: 'Sales Director, Services', text: 'No lead slips through any more, and our win rate has jumped.' },
@@ -183,8 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'CRM & ERP for Your Industry',
+      heading: 'CRM & ERP Development for Your Industry',
       items: [
         { slug: 'b2b-marketing', text: 'Pipeline and account management for B2B sales.' },
         { slug: 'e-commerce', text: 'Orders, stock and fulfilment across channels.' },

@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK mobile app development company building iOS, Android and cross-platform apps with Flutter and React Native, from design and build to App Store launch.',
   hero: {
-    eyebrow: 'Mobile App Development UK',
-    title: 'Mobile Apps People',
-    highlight: 'Keep Coming Back To',
+    title: 'Mobile App Development for',
+    highlight: 'iOS and Android',
     lead:
       'We design, build and launch iOS and Android apps that are fast, easy to use and built to grow your customer loyalty and revenue.',
     motion: '/services/mobileapp.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-mobile-app-development',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Mobile App Development?',
       paras: [
         'Mobile app development is designing, building and launching apps for iPhone and Android. Today most apps are built cross-platform with Flutter or React Native, giving you both platforms from one codebase at a lower cost.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Apps Users Rate Highly',
+      heading: 'Mobile App Development Results in Numbers',
       text: 'The numbers behind the mobile apps we build and support.',
       stats: [
         { value: '40+', label: 'Apps launched' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'design',
       nav: 'App design',
-      eyebrow: 'App design',
-      heading: 'Designed for Thumbs, Not Desktops',
+      heading: 'Mobile App UX and UI Design',
       image: '/pages/mobile/app.webp',
       alt: 'Mobile app with bookings, push notifications, payments and rewards, plus downloads, rating and retention',
       paras: ['We design simple screens around the few things users do most, so your app feels natural from the first tap.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'platforms',
       nav: 'Platforms',
-      eyebrow: 'iOS, Android & cross-platform',
-      heading: 'Both Platforms, One Codebase',
+      heading: 'iOS, Android and Cross-Platform App Development',
       image: '/pages/mobile/platforms.webp',
       alt: 'Mobile platforms: iOS, Android, Flutter, React Native, progressive web app and back end',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'features',
       nav: 'Features',
-      eyebrow: 'Features',
-      heading: 'Features That Keep Users Engaged',
+      heading: 'Mobile App Features and Integrations',
       image: '/pages/mobile/features.webp',
       alt: 'App features: push notifications, maps, payments, offline mode, Face ID and messaging',
       paras: ['From push notifications to in-app payments, we build the features that bring users back and make it easy to buy.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'launch',
       nav: 'Launch',
-      eyebrow: 'Launch & growth',
-      heading: 'From TestFlight to Top Ratings',
+      heading: 'App Store Launch and Growth',
       image: '/pages/mobile/launch.webp',
       alt: 'App launch checklist with store listings, beta testing, analytics, privacy and app store optimisation',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our app service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Mobile App Development Services',
       cards: [
         { icon: 'lucide:search', title: 'Discovery', text: 'Goals, users and features.' },
         { icon: 'lucide:pen-tool', title: 'App Design', text: 'Prototype tested with users.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our App Process',
+      heading: 'Our Mobile App Development Process',
       steps: [
         { title: 'Discover', text: 'Users, goals and features.' },
         { title: 'Design', text: 'Prototype tested with users.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'App case studies',
-      heading: 'Apps We Have Delivered',
+      heading: 'Mobile App Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Native vs cross-platform',
-      eyebrow: 'Compare',
       heading: 'Native vs Cross-Platform Apps',
       columns: ['', 'Cross-platform (Flutter, React Native)', 'Native (Swift, Kotlin)'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does a Mobile App Cost?',
       intro: 'UK mobile apps typically range from about £15,000 to £90,000+, depending on features and platforms. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our App Clients Say',
+      heading: 'Mobile App Development Client Reviews',
       reviews: [
         { name: 'Lucy M', role: 'Owner, Fitness Studio', text: 'Members book classes in the app and repeat visits are up a third.' },
         { name: 'Hamza I', role: 'Founder, Food Delivery', text: 'Launched on both stores in 12 weeks with a 4.8 rating from day one.' },
@@ -182,8 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'Mobile Apps for Your Industry',
+      heading: 'Mobile App Development for Your Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'Ordering, booking and loyalty apps.' },
         { slug: 'healthcare', text: 'Appointment and wellbeing apps.' },

@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK Instagram marketing agency creating Reels, Stories and ads, managing creators and Instagram Shopping to grow engaged followers and online sales.',
   hero: {
-    eyebrow: 'Instagram Marketing Agency UK',
-    title: 'Instagram That Builds a Brand',
-    highlight: 'People Buy From',
+    title: 'Instagram Marketing That',
+    highlight: 'Grows Sales',
     lead:
       'We create scroll-stopping Reels, Stories and ads, partner you with the right creators, and turn your Instagram into a steady source of followers and sales.',
     motion: '/services/instagram.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-instagram-marketing',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Instagram Marketing?',
       paras: [
         'Instagram is where people discover brands, check them out before buying and shop straight from posts. Winning there takes consistent, visual, short-form content and a clear path from follower to customer.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'An Instagram That Grows Every Month',
+      heading: 'Instagram Marketing Results in Numbers',
       text: 'The numbers behind the Instagram accounts we grow for UK brands.',
       stats: [
         { value: '+18k', label: 'Average followers gained a year' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reels',
       nav: 'Reels & content',
-      eyebrow: 'Reels & content',
-      heading: 'Reels and Stories That Get Seen',
+      heading: 'Instagram Reels and Stories',
       image: '/pages/instagram/reels.webp',
       alt: 'Instagram Reel with views, click-through and conversion figures',
       paras: ['Reels reach people who do not follow you yet. We plan, script and edit short videos with strong hooks, plus carousels and Stories that keep followers engaged.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'Ads & Shopping',
-      eyebrow: 'Instagram ads & Shopping',
-      heading: 'Turn Followers Into Customers',
+      heading: 'Instagram Ads and Shopping',
       image: '/pages/instagram/ads.webp',
       alt: 'Instagram shop revenue growing with ROAS, click-through and orders',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'creators',
       nav: 'Creators',
-      eyebrow: 'Influencers & UGC',
-      heading: 'Creators Who Speak for Your Brand',
+      heading: 'Instagram Influencer and UGC Campaigns',
       image: '/pages/instagram/creators.webp',
       alt: 'Brand connected to lifestyle, food, fitness, fashion, home and local creators',
       paras: ['Authentic creator content builds trust faster than brand posts. We find, brief and manage creators who genuinely fit your audience.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'growth',
       nav: 'Growth',
-      eyebrow: 'Growth & analytics',
-      heading: 'Growth You Can Measure',
+      heading: 'Instagram Analytics and Growth',
       image: '/pages/instagram/growth.webp',
       alt: 'Instagram follower growth with engagement rate, saves and shares',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our Instagram service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Instagram Marketing Services',
       cards: [
         { icon: 'lucide:search', title: 'Profile Audit', text: 'Bio, grid, Highlights and performance reviewed.' },
         { icon: 'lucide:video', title: 'Reels Production', text: 'Scripts, filming guidance and editing.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Instagram Process',
+      heading: 'Our Instagram Marketing Process',
       steps: [
         { title: 'Audit', text: 'Profile, content and competitors reviewed.' },
         { title: 'Strategy', text: 'Content pillars, style and goals.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Instagram case studies',
-      heading: 'Instagram Results We Have Delivered',
+      heading: 'Instagram Marketing Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Formats',
-      eyebrow: 'Compare',
-      heading: 'Which Instagram Format Should You Use?',
+      heading: 'Instagram Reels vs Carousels vs Stories',
       columns: ['', 'Reels', 'Carousels', 'Stories'],
       rows: [
         ['Best for', 'Reaching new people', 'Saves and education', 'Daily connection and offers'],
@@ -155,7 +144,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Instagram Marketing Cost?',
       intro: 'UK Instagram management typically ranges from about £500 to £3,000+ per month, plus ads or creator fees. Your quote depends on:',
       cards: [
@@ -169,8 +157,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Instagram Clients Say',
+      heading: 'Instagram Marketing Client Reviews',
       reviews: [
         { name: 'Chloe M', role: 'Founder, Skincare Brand', text: 'Our Reels regularly reach 100k people and Instagram is now our top sales channel.' },
         { name: 'Sam T', role: 'Owner, Restaurant', text: 'They film, edit and post everything. Weekend bookings from Instagram have doubled.' },
@@ -181,7 +168,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Instagram Marketing for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Shoppable Reels and creators that sell products.' },

@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK ecommerce development agency building Shopify, WooCommerce and custom online stores with fast product pages, simple checkout and integrations that save time.',
   hero: {
-    eyebrow: 'Ecommerce Development Agency UK',
-    title: 'Online Stores Built to',
-    highlight: 'Sell More, Every Day',
+    title: 'Ecommerce Website Development',
+    highlight: 'That Sells',
     lead:
       'We design and build Shopify, WooCommerce and custom online stores with fast pages, simple checkout and the integrations that keep orders flowing.',
     motion: '/services/ecommerce.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-ecommerce-development',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Ecommerce Development?',
       paras: [
         'Ecommerce development is building the online store that sells your products: the catalogue, product pages, basket, checkout and the systems behind them. A well-built store loads fast, is easy to shop on mobile and runs smoothly with your stock, payments and delivery.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Stores That Grow Revenue',
+      heading: 'Ecommerce Development Results in Numbers',
       text: 'The numbers behind the online stores we build for UK brands.',
       stats: [
         { value: '60+', label: 'Online stores launched' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'storefront',
       nav: 'Storefront',
-      eyebrow: 'Store design',
-      heading: 'Product Pages That Sell',
+      heading: 'Ecommerce Store Design and Product Pages',
       image: '/pages/ecommerce/store.webp',
       alt: 'Product page annotated with search, title and price, gallery, reviews, delivery info and add to basket',
       paras: ['Shoppers decide in seconds. We design clear product pages with great images, reviews, delivery details and a strong add to basket.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'platforms',
       nav: 'Platforms',
-      eyebrow: 'Ecommerce platforms',
-      heading: 'The Right Platform for Your Store',
+      heading: 'Shopify, WooCommerce and Custom Ecommerce',
       image: '/pages/ecommerce/platforms.webp',
       alt: 'Ecommerce platforms compared: Shopify, WooCommerce, Adobe Commerce, custom, B2B portal and multi-store',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'checkout',
       nav: 'Checkout',
-      eyebrow: 'Checkout & conversion',
-      heading: 'A Checkout With Fewer Drop-offs',
+      heading: 'Ecommerce Checkout Optimisation',
       image: '/pages/ecommerce/checkout.webp',
       alt: 'Checkout funnel from store visits to orders with conversion rate, one-click payments and lower abandonment',
       paras: ['Every extra step loses sales. We simplify checkout, add express payments and recover abandoned baskets automatically.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'integrations',
       nav: 'Integrations',
-      eyebrow: 'Integrations',
-      heading: 'Orders That Flow Automatically',
+      heading: 'Ecommerce Payments, Stock and Shipping Integrations',
       image: '/pages/ecommerce/integrations.webp',
       alt: 'Store connected to Stripe, PayPal, Xero, Royal Mail and DPD, email marketing and stock systems',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our ecommerce service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Ecommerce Development Services',
       cards: [
         { icon: 'lucide:search', title: 'Store Review', text: 'Conversion and speed audit.' },
         { icon: 'lucide:palette', title: 'Store Design', text: 'Brand-led, mobile-first UX.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Ecommerce Process',
+      heading: 'Our Ecommerce Development Process',
       steps: [
         { title: 'Discover', text: 'Products, customers and goals.' },
         { title: 'Plan', text: 'Platform, structure and features.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Ecommerce case studies',
-      heading: 'Online Stores We Have Delivered',
+      heading: 'Ecommerce Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Shopify vs WooCommerce',
-      eyebrow: 'Compare',
       heading: 'Shopify vs WooCommerce',
       columns: ['', 'Shopify', 'WooCommerce'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does an Ecommerce Website Cost?',
       intro: 'UK ecommerce websites typically range from about £5,000 to £40,000+, depending on platform and features. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Ecommerce Clients Say',
+      heading: 'Ecommerce Development Client Reviews',
       reviews: [
         { name: 'Jess N', role: 'Founder, Fashion Label', text: 'Our new Shopify store converts almost twice as well as the old one.' },
         { name: 'Kevin A', role: 'MD, Wholesale', text: 'The B2B portal lets trade customers order 24/7 and saves our team hours.' },
@@ -182,8 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'Ecommerce for Your Industry',
+      heading: 'Ecommerce Development for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Fashion, beauty, homeware and gifts.' },
         { slug: 'b2b-marketing', text: 'Trade portals with account pricing.' },

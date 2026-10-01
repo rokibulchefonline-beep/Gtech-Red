@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK paid media agency planning and buying across Google, Meta, LinkedIn, TikTok and YouTube. Budget allocation, creative testing and attribution that grow profit.',
   hero: {
-    eyebrow: 'Paid Media Agency UK',
-    title: 'Paid Media Built to',
-    highlight: 'Scale Profit',
+    title: 'Paid Media Management',
+    highlight: 'That Scales Profit',
     lead:
       'We plan, buy and optimise paid media across every major platform, putting your budget where it earns the most and proving the return with honest attribution.',
     motion: '/services/paidmedia.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-paid-media',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Paid Media?',
       paras: [
         'Paid media is the strategy and buying behind all your advertising. Rather than running each platform on its own, we treat your budget as one investment and move it to the channels, audiences and creative that bring the most profit.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Every Pound Working Harder',
+      heading: 'Paid Media Results in Numbers',
       text: 'The numbers behind the paid media we manage for UK businesses.',
       stats: [
         { value: '£4M+', label: 'Media budget managed' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'planning',
       nav: 'Media planning',
-      eyebrow: 'Media planning',
-      heading: 'The Right Budget in the Right Channels',
+      heading: 'Media Planning and Budget Allocation',
       image: '/pages/paid-media/planning.webp',
       alt: 'Media plan budget split across Google, Meta, YouTube, LinkedIn and TikTok with blended ROAS',
       paras: ['We build a media plan from your margins, customer value and targets, then split budget across channels and funnel stages for the best overall return.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'channels',
       nav: 'Channels',
-      eyebrow: 'Media buying',
-      heading: 'Expert Buying on Every Platform',
+      heading: 'Paid Media Buying Across Platforms',
       image: '/pages/paid-media/channels.webp',
       alt: 'Cross-channel performance for Google Ads, Meta, LinkedIn, TikTok, YouTube and programmatic',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'creative',
       nav: 'Creative testing',
-      eyebrow: 'Creative testing',
-      heading: 'Creative That Wins, Tested Weekly',
+      heading: 'Ad Creative Testing',
       image: '/pages/paid-media/creative.webp',
       alt: 'Creative testing grid comparing ad variants and the winning angle',
       paras: ['Creative is now the biggest lever in paid media. We test new angles, formats and hooks every week and scale the winners.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'attribution',
       nav: 'Attribution',
-      eyebrow: 'Attribution & reporting',
-      heading: 'Know Exactly What Drives Sales',
+      heading: 'Paid Media Attribution and Tracking',
       image: '/pages/paid-media/attribution.webp',
       alt: 'Revenue from paid media growing with lower cost per acquisition and blended ROAS',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our paid media service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Paid Media Services',
       cards: [
         { icon: 'lucide:map', title: 'Media Plan', text: 'Channels, budget and targets set from your margins.' },
         { icon: 'lucide:wallet', title: 'Budget Allocation', text: 'Spend moved weekly to the best performers.' },
@@ -119,7 +111,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our Paid Media Process',
       steps: [
         { title: 'Audit', text: 'Accounts, tracking and past performance reviewed.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Paid media case studies',
-      heading: 'Paid Media Results We Have Delivered',
+      heading: 'Paid Media Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Funnel',
-      eyebrow: 'Compare',
-      heading: 'Paid Media Across the Funnel',
+      heading: 'Paid Media Channels Across the Funnel',
       columns: ['', 'Awareness', 'Consideration', 'Conversion'],
       rows: [
         ['Goal', 'Reach new audiences', 'Build interest and trust', 'Turn intent into sales'],
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Paid Media Management Cost?',
       intro: 'UK paid media management typically costs 10 to 20% of ad spend, often with a minimum of around £750 per month. Your fee depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Paid Media Clients Say',
+      heading: 'Paid Media Client Reviews',
       reviews: [
         { name: 'Tom B', role: 'CEO, DTC Brand', text: 'They rebalanced our budget across Google, Meta and TikTok and blended ROAS went from 2.8x to 5.1x.' },
         { name: 'Nina S', role: 'Head of Growth, SaaS', text: 'For the first time we trust our attribution, and we cut cost per trial by a third.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Paid Media for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Profit-led media plans for online stores and DTC brands.' },

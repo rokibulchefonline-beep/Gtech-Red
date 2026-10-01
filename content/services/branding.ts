@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK branding agency creating brand strategy, positioning, logos, visual identities and brand guidelines that make businesses memorable and easier to choose.',
   hero: {
-    eyebrow: 'Branding Agency UK',
-    title: 'A Brand That Makes You',
-    highlight: 'Easy to Choose',
+    title: 'Branding Agency for',
+    highlight: 'Memorable UK Brands',
     lead:
       'We create brand strategies, logos and identities that make your business stand out, build trust at first glance and let you charge what you are worth.',
     motion: '/services/brandid.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-branding',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Branding?',
       paras: [
         'Branding is far more than a logo. It is the strategy, visual identity and voice that shape how people see your business. A strong brand helps customers remember you, trust you and pick you over cheaper competitors.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Brands That Earn Their Keep',
+      heading: 'Branding Results in Numbers',
       text: 'The numbers behind the brands we create and refresh.',
       stats: [
         { value: '120+', label: 'Brands created or refreshed' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'strategy',
       nav: 'Strategy',
-      eyebrow: 'Brand strategy',
-      heading: 'Strategy Before Design',
+      heading: 'Brand Strategy and Positioning',
       image: '/pages/brand/positioning.webp',
       alt: 'Brand strategy layers: purpose, audience, positioning, messaging and personality',
       paras: ['We start with research into your customers and competitors, then define why you exist and why people should choose you.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'identity',
       nav: 'Identity',
-      eyebrow: 'Visual identity',
-      heading: 'A Look That Is Unmistakably Yours',
+      heading: 'Logo and Visual Identity Design',
       image: '/pages/brand/identity.webp',
       alt: 'Brand identity board with logo, typography and colour palette',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'guidelines',
       nav: 'Guidelines',
-      eyebrow: 'Brand guidelines',
-      heading: 'Guidelines That Keep You Consistent',
+      heading: 'Brand Guidelines',
       image: '/pages/brand/guidelines.webp',
       alt: 'Brand guidelines covering logo, colour, type, voice, imagery and templates',
       paras: ['Clear guidelines and templates help your team, printers and agencies use the brand correctly every time.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'roll-out',
       nav: 'Roll-out',
-      eyebrow: 'Brand roll-out',
-      heading: 'One Brand Across Every Touchpoint',
+      heading: 'Brand Roll-Out Across Every Touchpoint',
       image: '/pages/brand/touchpoints.webp',
       alt: 'Brand applied across website, social media, email, packaging, signage and print',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our branding service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Branding Services',
       cards: [
         { icon: 'lucide:search', title: 'Brand Research', text: 'Customers and competitors.' },
         { icon: 'lucide:compass', title: 'Positioning', text: 'Why choose you.' },
@@ -119,7 +111,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our Branding Process',
       steps: [
         { title: 'Discover', text: 'Workshop and research.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Branding case studies',
-      heading: 'Brands We Have Created',
+      heading: 'Branding Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Refresh vs rebrand',
-      eyebrow: 'Compare',
       heading: 'Brand Refresh vs Full Rebrand',
       columns: ['', 'Brand refresh', 'Full rebrand'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Branding Cost?',
       intro: 'UK branding typically ranges from about £2,500 for a logo and starter identity to £25,000+ for a full brand strategy and rebrand. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Branding Clients Say',
+      heading: 'Branding Client Reviews',
       reviews: [
         { name: 'Victoria H', role: 'Founder, Interiors Brand', text: 'The new brand lets us charge premium prices with confidence.' },
         { name: 'Callum R', role: 'MD, Engineering Firm', text: 'We finally look like the established company we are. Tender wins went up.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Branding for Your Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'Restaurants, bars and hotels with personality.' },

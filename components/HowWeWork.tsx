@@ -81,7 +81,7 @@ export default function HowWeWork() {
   return (
     <section className={`how ${seen ? 'in' : ''}`} ref={ref}>
       <div className="wrap">
-        <h2>How We Work</h2>
+        <h2>How Our Digital Marketing Agency Works</h2>
         <p className="how-sub">A simple, transparent process that takes you from first conversation to measurable growth.</p>
         <div className="how-grid">
           <svg className="how-line" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">

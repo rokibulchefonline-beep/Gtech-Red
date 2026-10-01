@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK TikTok marketing agency: trend-led video content, Spark Ads, creator campaigns and TikTok Shop that turn views into followers and sales.',
   hero: {
-    eyebrow: 'TikTok Marketing Agency UK',
-    title: 'TikTok Content That Turns Views Into',
-    highlight: 'Sales',
+    title: 'TikTok Marketing That Turns',
+    highlight: 'Views Into Sales',
     lead:
       'We create native TikTok videos, run Spark Ads and creator campaigns, and set up TikTok Shop so your brand gets discovered and bought.',
     motion: '/services/tiktok.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-tiktok-marketing',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is TikTok Marketing?',
       paras: [
         'TikTok shows videos to people based on interest, not follower count, so even a new account can reach thousands. It is also now a search engine for many younger buyers, who look up products, places and recommendations there first.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Reach That Turns Into Revenue',
+      heading: 'TikTok Marketing Results in Numbers',
       text: 'The numbers behind the TikTok accounts we grow for UK brands.',
       stats: [
         { value: '38M+', label: 'Video views generated' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content',
       nav: 'Content',
-      eyebrow: 'TikTok content',
-      heading: 'Videos That Feel Native to TikTok',
+      heading: 'TikTok Video Content',
       image: '/pages/tiktok/content.webp',
       alt: 'Trend-led TikTok video with views, click-through and conversion figures',
       paras: ['Polished ads look out of place on TikTok. We create authentic, fast-paced videos with hooks in the first second, built around trends and real searches.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'TikTok ads',
-      eyebrow: 'TikTok ads',
-      heading: 'Scale Your Best Videos With Ads',
+      heading: 'TikTok Ads and Spark Ads',
       image: '/pages/tiktok/ads.webp',
       alt: 'TikTok ad revenue growing with ROAS, click-through and cost per sale',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'creators',
       nav: 'Creators & Shop',
-      eyebrow: 'Creators & TikTok Shop',
-      heading: 'Creators and Shop That Sell for You',
+      heading: 'TikTok Creators and TikTok Shop',
       image: '/pages/tiktok/creators.webp',
       alt: 'TikTok Shop sales driven by creators, LIVE selling, product showcase and Spark Ads',
       paras: ['Creators drive most TikTok sales. We recruit affiliate creators, run LIVE shopping and manage your TikTok Shop from setup to fulfilment links.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'analytics',
       nav: 'Analytics',
-      eyebrow: 'Analytics',
-      heading: 'From Views to Real Sales',
+      heading: 'TikTok Analytics and Sales Tracking',
       image: '/pages/tiktok/analytics.webp',
       alt: 'TikTok funnel from video views to profile visits, clicks and orders',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our TikTok service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our TikTok Marketing Services',
       cards: [
         { icon: 'lucide:search', title: 'TikTok Audit', text: 'Account, content and competitors.' },
         { icon: 'lucide:trending-up', title: 'Trend Research', text: 'Trends and searches worth joining.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our TikTok Process',
+      heading: 'Our TikTok Marketing Process',
       steps: [
         { title: 'Audit', text: 'Account, audience and competitors.' },
         { title: 'Ideas', text: 'Trends, hooks and video concepts.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'TikTok case studies',
-      heading: 'TikTok Results We Have Delivered',
+      heading: 'TikTok Marketing Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Ad types',
-      eyebrow: 'Compare',
-      heading: 'Which TikTok Ad Type Should You Run?',
+      heading: 'TikTok Ad Types Compared',
       columns: ['', 'In-Feed Ads', 'Spark Ads', 'TikTok Shop Ads'],
       rows: [
         ['What it is', 'Ad posted from your ad account', 'Boosted organic or creator post', 'Ads that sell through your Shop'],
@@ -155,7 +144,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does TikTok Marketing Cost?',
       intro: 'UK TikTok management typically ranges from about £600 to £3,500+ per month, plus ads and creator fees. Your quote depends on:',
       cards: [
@@ -169,8 +157,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our TikTok Clients Say',
+      heading: 'TikTok Marketing Client Reviews',
       reviews: [
         { name: 'Zara H', role: 'Founder, Beauty Brand', text: 'One creator video hit 2 million views and sold out our bestseller in a weekend.' },
         { name: 'Liam C', role: 'Owner, Gym', text: 'Our TikTok went from zero to 20k local followers, and membership sign-ups followed.' },
@@ -181,7 +168,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'TikTok Marketing for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'TikTok Shop, creators and Spark Ads that sell products.' },

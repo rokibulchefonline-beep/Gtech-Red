@@ -13,9 +13,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK content marketing agency creating strategy, articles, guides and video that rank on Google, get cited in AI answers and turn readers into customers.',
   hero: {
-    eyebrow: 'Content Marketing Agency UK',
-    title: 'Content That Ranks, Gets Cited and',
-    highlight: 'Converts',
+    title: 'Content Marketing That Ranks',
+    highlight: 'and Converts',
     lead:
       'We plan and create articles, guides and video that answer your buyers’ questions, rank on Google, get quoted by AI tools and move readers towards an enquiry.',
     motion: '/services/content.webp',
@@ -27,7 +26,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-content-marketing',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Content Marketing?',
       paras: [
         'Content marketing means creating genuinely useful content that your buyers search for, share and trust. Done well, it brings in traffic every month, builds authority with Google and AI tools, and makes your sales conversations easier.',
@@ -41,8 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Content That Keeps Working for Years',
+      heading: 'Content Marketing Results in Numbers',
       text: 'The numbers behind the content we create for UK businesses.',
       stats: [
         { value: '2,600+', label: 'Articles published' },
@@ -55,8 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'strategy',
       nav: 'Strategy',
-      eyebrow: 'Content strategy',
-      heading: 'A Plan Built Around What Buyers Search',
+      heading: 'Content Strategy and Keyword Research',
       image: '/pages/content/strategy.webp',
       alt: 'Pillar page connected to supporting articles in a topic cluster',
       paras: ['We map every question your buyers ask, from first research to final decision, and group them into topic clusters that build authority around your core services.'],
@@ -66,8 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'articles',
       nav: 'Articles & guides',
-      eyebrow: 'Articles & guides',
-      heading: 'Expert Writing That Earns Trust',
+      heading: 'SEO Content Writing',
       image: '/pages/content/articles.webp',
       alt: 'Monthly content plan with guides, FAQs, comparisons, cost guides and checklists',
       flip: true,
@@ -79,8 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'video',
       nav: 'Video & visual',
-      eyebrow: 'Video & visual content',
-      heading: 'Video and Visuals People Actually Watch',
+      heading: 'Video and Visual Content',
       image: '/pages/content/video.webp',
       alt: 'Short explainer video with views, click-through and conversion figures',
       paras: ['Short explainers, product demos and infographics make complex ideas simple, rank on YouTube and Google, and work across every social channel.'],
@@ -90,8 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'distribution',
       nav: 'Distribution',
-      eyebrow: 'Distribution & AI visibility',
-      heading: 'Content That Gets Found, Not Forgotten',
+      heading: 'Content Distribution and Promotion',
       image: '/pages/content/distribution.webp',
       alt: 'Organic traffic from content growing with articles published and AI citations',
       flip: true,
@@ -103,8 +96,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our content service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Content Marketing Services',
       cards: [
         { icon: 'lucide:search', title: 'Content Audit', text: 'What works, what to refresh and what is missing.' },
         { icon: 'lucide:map', title: 'Strategy & Calendar', text: 'Topics, formats and dates planned months ahead.' },
@@ -120,8 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Content Process',
+      heading: 'Our Content Marketing Process',
       steps: [
         { title: 'Audit', text: 'We review your current content and competitors.' },
         { title: 'Research', text: 'Buyer questions, keywords and search intent mapped.' },
@@ -135,15 +126,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Content case studies',
-      heading: 'Content Results We Have Delivered',
+      heading: 'Content Marketing Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Content types',
-      eyebrow: 'Compare',
-      heading: 'Which Content Should You Create First?',
+      heading: 'Content Marketing Formats Compared',
       columns: ['', 'Guides & how-tos', 'Comparison pages', 'Video'],
       rows: [
         ['Buyer stage', 'Awareness and research', 'Decision', 'Every stage'],
@@ -157,7 +146,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Content Marketing Cost?',
       intro: 'UK content marketing retainers typically range from about £500 to £4,000+ per month. Your quote depends on:',
       cards: [
@@ -171,8 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Content Clients Say',
+      heading: 'Content Marketing Client Reviews',
       reviews: [
         { name: 'Rachel G', role: 'Head of Marketing, SaaS', text: 'Their comparison pages now bring us more demo requests than our ads do.' },
         { name: 'Ben C', role: 'Owner, Ecommerce', text: 'Our buying guides rank on page one and are quoted in Google’s AI Overviews.' },
@@ -183,7 +170,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Content Marketing for Your Industry',
       items: [
         { slug: 'technology-saas', text: 'Comparison, alternatives and use-case content that drives demos.' },

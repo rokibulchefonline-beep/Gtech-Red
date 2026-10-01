@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK web application development company building secure customer portals, staff dashboards and business tools with React, Next.js, Laravel and Node.js.',
   hero: {
-    eyebrow: 'Web Application Development UK',
-    title: 'Web Apps That Make Work',
-    highlight: 'Faster and Simpler',
+    title: 'Web Application Development',
+    highlight: 'for Your Business',
     lead:
       'We build secure web applications, portals and dashboards that your customers and staff can use from any browser, on any device.',
     motion: '/services/webapp.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-web-application-development',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is a Web Application?',
       paras: [
         'A web application is software that runs in the browser, like a customer portal, booking system or internal dashboard. Unlike a website, it lets users log in, do work and manage data, with nothing to install and updates delivered instantly.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Web Apps People Rely On',
+      heading: 'Web Application Development Results in Numbers',
       text: 'The numbers behind the web applications we build and run.',
       stats: [
         { value: '60+', label: 'Web apps launched' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'portals',
       nav: 'Portals',
-      eyebrow: 'Portals & dashboards',
-      heading: 'Portals Your Users Actually Enjoy',
+      heading: 'Customer Portals and Dashboards',
       image: '/pages/webapp/portal.webp',
       alt: 'Web portal annotated with secure sign-in, role-based menu, live dashboard, approvals and reports',
       paras: ['We design around the tasks people do most, so they get them done in fewer clicks and need less support.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'stack',
       nav: 'Technology',
-      eyebrow: 'Technology',
-      heading: 'Modern, Proven Technology',
+      heading: 'Web Application Technology Stack',
       image: '/pages/webapp/stack.webp',
       alt: 'Web application stack with front end, back end, data, integrations and cloud layers',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'performance',
       nav: 'Performance',
-      eyebrow: 'Performance & data',
-      heading: 'Live Data, Fast Everywhere',
+      heading: 'Web App Performance and Live Data',
       image: '/pages/webapp/dashboard.webp',
       alt: 'Web app dashboard with jobs completed rising, active users, response time and admin time saved',
       paras: ['Your team gets live numbers instead of weekly spreadsheets, and pages respond instantly, even with thousands of users.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'security',
       nav: 'Security',
-      eyebrow: 'Security',
-      heading: 'Secure by Design',
+      heading: 'Web Application Security',
       image: '/pages/webapp/security.webp',
       alt: 'Web app security checklist with SSO, permissions, encryption, audit logs and OWASP testing',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our web app service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Web Application Development Services',
       cards: [
         { icon: 'lucide:search', title: 'Discovery', text: 'Users, tasks and requirements.' },
         { icon: 'lucide:pen-tool', title: 'UX & UI Design', text: 'Clickable prototype first.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Web App Process',
+      heading: 'Our Web Application Development Process',
       steps: [
         { title: 'Discover', text: 'Goals, users and workflows.' },
         { title: 'Prototype', text: 'Clickable design tested.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Web app case studies',
-      heading: 'Web Apps We Have Delivered',
+      heading: 'Web Application Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Web app vs mobile app',
-      eyebrow: 'Compare',
       heading: 'Web App vs Mobile App',
       columns: ['', 'Web app', 'Mobile app'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does a Web Application Cost?',
       intro: 'UK web applications typically range from about £12,000 to £80,000+, delivered in phases. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Web App Clients Say',
+      heading: 'Web Application Development Client Reviews',
       reviews: [
         { name: 'Karen S', role: 'Director, Training Provider', text: 'Our learner portal cut admin calls in half within the first term.' },
         { name: 'Jon B', role: 'COO, Field Services', text: 'Engineers and office staff finally work from the same live data.' },
@@ -182,8 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'Web Apps for Your Industry',
+      heading: 'Web Application Development for Your Industry',
       items: [
         { slug: 'real-estate', text: 'Landlord, tenant and agent portals.' },
         { slug: 'education', text: 'Learner portals and course management.' },

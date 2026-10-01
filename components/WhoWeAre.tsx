@@ -17,7 +17,6 @@ export default function WhoWeAre() {
         <IntroVideo />
 
         <div className="who-body">
-          <p className="who-eyebrow">Who We Are</p>
           <h2>A <span className="red">Digital Marketing Agency</span> Built for Growth</h2>
           <p className="who-text">
             GTech Digital is a full-service digital marketing agency specialising in search marketing, advertising,

@@ -9,7 +9,7 @@ export default function PartnerStrip() {
   return (
     <section className="pstrip" aria-label="Our partners">
       <div className="wrap">
-        <h2>Proud to work with</h2>
+        <h2>Our Platform Partners and Certifications</h2>
         <div className="pstrip-row">
           {logos.map(([name, file]) => (
             <div key={file} className="pstrip-tile">

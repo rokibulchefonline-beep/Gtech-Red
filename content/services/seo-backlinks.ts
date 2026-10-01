@@ -13,9 +13,8 @@ const content: ServiceContent = {
   metaDescription:
     'White-hat link building and digital PR for UK businesses. Relevant, editorial backlinks that lift rankings, authority and AI visibility. Free backlink audit.',
   hero: {
-    eyebrow: 'Link Building Agency UK',
-    title: 'Backlinks That Build Real',
-    highlight: 'Authority',
+    title: 'Link Building That Builds',
+    highlight: 'Real Authority',
     lead:
       'We earn editorial links and brand mentions from respected UK and industry websites, strengthening your rankings on Google and your credibility with AI search.',
     motion: '/services/backlinks.webp',
@@ -27,7 +26,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-link-building',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Link Building?',
       paras: [
         'A backlink is a link from another website to yours. Google treats relevant links from trusted sites as votes of confidence, and AI tools use mentions across the web to decide which brands to recommend. Link building is the process of earning those votes.',
@@ -41,8 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Links That Move Rankings',
+      heading: 'Link Building Results in Numbers',
       text: 'The numbers behind our link building for UK businesses.',
       stats: [
         { value: '4,800+', label: 'Links earned' },
@@ -55,8 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'digital-pr',
       nav: 'Digital PR',
-      eyebrow: 'Digital PR',
-      heading: 'Coverage in Publications People Read',
+      heading: 'Digital PR Link Building',
       image: '/pages/backlinks/pr.webp',
       alt: 'Website earning links from national press, podcasts, trade magazines and associations',
       paras: ['We create stories, data and expert commentary that journalists want to cover, earning high-authority links and brand mentions at the same time.'],
@@ -66,8 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'outreach',
       nav: 'Outreach',
-      eyebrow: 'Niche outreach',
-      heading: 'Relevant Links From Your Industry',
+      heading: 'Niche Outreach Link Building',
       image: '/pages/backlinks/outreach.webp',
       alt: 'Outreach funnel from prospects to relevant sites, replies and links earned',
       flip: true,
@@ -79,8 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'local-citations',
       nav: 'Local citations',
-      eyebrow: 'Local citations',
-      heading: 'Consistent Listings Across the UK',
+      heading: 'Local Citation Building',
       image: '/pages/backlinks/local.webp',
       alt: 'Local citation checklist with high NAP consistency across directories',
       paras: ['For local businesses, consistent name, address and phone (NAP) listings on trusted directories strengthen map pack rankings and customer trust.'],
@@ -90,8 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'audit',
       nav: 'Link audit',
-      eyebrow: 'Backlink audit',
-      heading: 'A Clean, Healthy Backlink Profile',
+      heading: 'Backlink Audit and Clean-Up',
       image: '/pages/backlinks/audit.webp',
       alt: 'Growth in healthy referring domains with toxic links removed',
       flip: true,
@@ -103,8 +96,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our link building service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Link Building Services',
       cards: [
         { icon: 'lucide:search', title: 'Backlink Audit', text: 'Your profile, risks and gaps versus competitors.' },
         { icon: 'lucide:target', title: 'Link Strategy', text: 'Target pages, anchor text and site types.' },
@@ -120,7 +112,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our Link Building Process',
       steps: [
         { title: 'Audit', text: 'We review your links and competitors.' },
@@ -135,15 +126,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Link building case studies',
-      heading: 'Link Building Results We Have Delivered',
+      heading: 'Link Building Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Link types',
-      eyebrow: 'Compare',
-      heading: 'Good Links vs Risky Links',
+      heading: 'Safe Link Building vs Risky Links',
       columns: ['', 'Editorial (what we build)', 'Paid or spammy links'],
       rows: [
         ['How they are earned', 'Real coverage and outreach', 'Bought, swapped or automated'],
@@ -157,7 +146,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Link Building Cost?',
       intro: 'UK link building typically ranges from about £500 to £5,000+ per month. Your quote depends on:',
       cards: [
@@ -171,8 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Link Building Clients Say',
+      heading: 'Link Building Client Reviews',
       reviews: [
         { name: 'Chris N', role: 'Founder, Fintech', text: 'Their data campaign landed us in three national newspapers and our key pages jumped to page one.' },
         { name: 'Amelia F', role: 'Marketing Lead, Retail', text: 'Every link is relevant and reported. No dodgy directories, just real sites our customers read.' },
@@ -183,7 +170,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Link Building for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Product and gift-guide features that link to category pages.' },

@@ -12,7 +12,6 @@ const content: ServiceContent = {
   metaDescription:
     'UK Facebook marketing agency: Facebook ads, lead generation, content and community management with accurate Meta Pixel and Conversions API tracking.',
   hero: {
-    eyebrow: 'Facebook Marketing Agency UK',
     title: 'Facebook Marketing That Brings',
     highlight: 'Real Customers',
     lead:
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-facebook-marketing',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Facebook Marketing?',
       paras: [
         'With billions of users and some of the most precise ad targeting available, Facebook remains one of the most effective places for UK businesses to find customers, especially adults over 25 and local communities.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Facebook Ads That Pay Their Way',
+      heading: 'Facebook Marketing Results in Numbers',
       text: 'The numbers behind the Facebook campaigns we run for UK businesses.',
       stats: [
         { value: '£8.60', label: 'Average cost per lead' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'Facebook ads',
-      eyebrow: 'Facebook ads',
-      heading: 'Lead and Sales Campaigns That Convert',
+      heading: 'Facebook Ads for Leads and Sales',
       image: '/pages/facebook/ads.webp',
       alt: 'Facebook lead ad funnel from people reached to leads with cost per lead',
       paras: ['From instant lead forms to catalogue sales ads, we build campaigns around the action you want and target the people most likely to take it.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content',
       nav: 'Page & content',
-      eyebrow: 'Page & content',
-      heading: 'A Page People Want to Follow',
+      heading: 'Facebook Page Management and Content',
       image: '/pages/facebook/content.webp',
       alt: 'Facebook content plan with video, albums, events, reviews, offers and group posts',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'community',
       nav: 'Community',
-      eyebrow: 'Community management',
-      heading: 'Every Comment and Message Answered',
+      heading: 'Facebook Community Management',
       image: '/pages/facebook/community.webp',
       alt: 'Facebook recommendations and customer comments with owner replies',
       paras: ['Fast, friendly replies turn questions into bookings and show new visitors you care about your customers.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'tracking',
       nav: 'Tracking',
-      eyebrow: 'Pixel & Conversions API',
-      heading: 'Accurate Tracking After iOS Changes',
+      heading: 'Meta Pixel and Conversions API Tracking',
       image: '/pages/facebook/tracking.webp',
       alt: 'Meta tracking checklist with Pixel, Conversions API and domain verification',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our Facebook service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Facebook Marketing Services',
       cards: [
         { icon: 'lucide:search', title: 'Account Audit', text: 'Ads, Page and tracking reviewed.' },
         { icon: 'lucide:users', title: 'Audience Strategy', text: 'Custom, lookalike and interest audiences.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Facebook Process',
+      heading: 'Our Facebook Marketing Process',
       steps: [
         { title: 'Audit', text: 'Ads account, Page and tracking reviewed.' },
         { title: 'Plan', text: 'Offers, audiences and budget agreed.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Facebook case studies',
-      heading: 'Facebook Results We Have Delivered',
+      heading: 'Facebook Marketing Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Campaign types',
-      eyebrow: 'Compare',
-      heading: 'Which Facebook Campaign Do You Need?',
+      heading: 'Facebook Ad Campaign Types Compared',
       columns: ['', 'Lead ads', 'Sales ads', 'Awareness ads'],
       rows: [
         ['Best for', 'Service businesses', 'Ecommerce and bookings', 'Launches and local reach'],
@@ -155,7 +144,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Facebook Marketing Cost?',
       intro: 'UK Facebook ads management typically ranges from about £400 to £2,000+ per month, plus ad spend. Your quote depends on:',
       cards: [
@@ -169,8 +157,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Facebook Clients Say',
+      heading: 'Facebook Marketing Client Reviews',
       reviews: [
         { name: 'Gary F', role: 'Owner, Home Improvements', text: 'Lead ads now give us 40 to 60 quote requests a month at under £10 each.' },
         { name: 'Priya N', role: 'Manager, Salon', text: 'Every Messenger enquiry gets answered fast and bookings have gone up noticeably.' },
@@ -181,7 +168,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Facebook Marketing for Your Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'Local offers and events that fill tables and rooms.' },

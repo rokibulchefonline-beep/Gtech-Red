@@ -13,7 +13,6 @@ const content: ServiceContent = {
   metaDescription:
     'UK LinkedIn marketing agency for B2B: thought leadership content, employee advocacy and LinkedIn Ads with Lead Gen Forms that fill your sales pipeline.',
   hero: {
-    eyebrow: 'LinkedIn Marketing Agency UK',
     title: 'LinkedIn Marketing That Fills Your',
     highlight: 'Sales Pipeline',
     lead:
@@ -27,7 +26,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-linkedin-marketing',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is LinkedIn Marketing?',
       paras: [
         'LinkedIn is where business buyers research, network and make decisions. It lets you target by job title, seniority, company and industry, which makes it the most precise B2B marketing channel available.',
@@ -41,8 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'B2B Leads, Not Just Likes',
+      heading: 'LinkedIn Marketing Results in Numbers',
       text: 'The numbers behind the LinkedIn campaigns we run for UK B2B companies.',
       stats: [
         { value: '£39', label: 'Average cost per B2B lead' },
@@ -55,8 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content',
       nav: 'Thought leadership',
-      eyebrow: 'Thought leadership',
-      heading: 'Content That Makes You the Obvious Choice',
+      heading: 'LinkedIn Thought Leadership Content',
       image: '/pages/linkedin/content.webp',
       alt: 'LinkedIn content plan with articles, documents, data, video, live and newsletters',
       paras: ['We turn your expertise into posts, documents, newsletters and video that decision-makers read, share and remember.'],
@@ -66,8 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'LinkedIn ads',
-      eyebrow: 'LinkedIn ads',
-      heading: 'Ads That Reach the Exact Buyers You Want',
+      heading: 'LinkedIn Ads and Lead Gen Forms',
       image: '/pages/linkedin/ads.webp',
       alt: 'LinkedIn lead gen funnel from decision-makers reached to sales meetings',
       flip: true,
@@ -79,8 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'advocacy',
       nav: 'Employee advocacy',
-      eyebrow: 'Employee advocacy',
-      heading: 'Your People Are Your Best Channel',
+      heading: 'LinkedIn Employee Advocacy',
       image: '/pages/linkedin/advocacy.webp',
       alt: 'Company page reach multiplied through posts from the CEO, sales and experts',
       paras: ['Posts from real people reach far more than company posts. We help leaders and experts build their profiles with content written in their voice.'],
@@ -90,8 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'tracking',
       nav: 'Tracking',
-      eyebrow: 'Lead tracking',
-      heading: 'From Click to Closed Deal',
+      heading: 'LinkedIn Lead Tracking and CRM Integration',
       image: '/pages/linkedin/tracking.webp',
       alt: 'B2B lead tracking checklist with Insight Tag, CRM sync and offline deal stages',
       flip: true,
@@ -103,8 +96,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our LinkedIn service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our LinkedIn Marketing Services',
       cards: [
         { icon: 'lucide:search', title: 'LinkedIn Audit', text: 'Page, profiles, ads and competitors.' },
         { icon: 'lucide:target', title: 'ICP & Targeting', text: 'Your ideal customers defined precisely.' },
@@ -120,8 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our LinkedIn Process',
+      heading: 'Our LinkedIn Marketing Process',
       steps: [
         { title: 'Define', text: 'Ideal customer profile and target accounts.' },
         { title: 'Audit', text: 'Page, profiles and past campaigns.' },
@@ -135,15 +126,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'LinkedIn case studies',
-      heading: 'LinkedIn Results We Have Delivered',
+      heading: 'LinkedIn Marketing Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Ad formats',
-      eyebrow: 'Compare',
-      heading: 'Which LinkedIn Ad Format Fits?',
+      heading: 'LinkedIn Ad Formats Compared',
       columns: ['', 'Lead Gen Forms', 'Thought Leader Ads', 'Message Ads'],
       rows: [
         ['Best for', 'Content downloads and demos', 'Trust and awareness', 'Event invites and direct offers'],
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does LinkedIn Marketing Cost?',
       intro: 'UK LinkedIn management typically ranges from about £750 to £3,500+ per month, plus ad spend. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our LinkedIn Clients Say',
+      heading: 'LinkedIn Marketing Client Reviews',
       reviews: [
         { name: 'David K', role: 'MD, IT Services', text: 'LinkedIn now books us around 15 qualified sales meetings a month, all tracked in HubSpot.' },
         { name: 'Fiona R', role: 'Founder, Consultancy', text: 'My ghost-written posts regularly reach 50,000 people and clients mention them on calls.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'LinkedIn Marketing for Your Industry',
       items: [
         { slug: 'b2b-marketing', text: 'Pipeline-focused LinkedIn programmes for B2B firms.' },

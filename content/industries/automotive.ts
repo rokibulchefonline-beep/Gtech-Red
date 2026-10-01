@@ -5,10 +5,10 @@ import { industry } from './build';
 export default industry({
   slug: 'automotive',
   name: 'Automotive',
+  kw: 'Automotive Marketing',
   metaTitle: 'Automotive Marketing Agency UK | Car Dealer & Garage Marketing | GTech Digital',
   metaDescription: 'UK automotive marketing agency for car dealers and garages: local SEO, Google and Meta vehicle ads, stock-led websites and FCA-compliant finance promotions.',
   hero: {
-    eyebrow: 'Automotive Marketing Agency UK',
     title: 'Automotive Marketing That',
     highlight: 'Sells Cars',
     lead: 'We help car dealers and garages sell more vehicles and fill workshops, with stock-led ads, local SEO and websites that turn browsers into buyers.',
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'More Enquiries From Every Vehicle', stats: [['2,960', 'Average vehicle enquiries a year'], ['45%', 'Average test drive to sale'], ['£18', 'Average cost per lead'], ['+36%', 'Average service bookings growth']] },
   media: [
-    { nav: 'Enquiries', eyebrow: 'Vehicle enquiries', heading: 'More Calls, Enquiries and Test Drives', para: 'We track every call, form and chat back to the campaign and vehicle that drove it.', bullets: ['Call tracking by channel', 'Test drive booking forms', 'Finance and part-exchange leads', 'Lead reporting by model'], alt: 'Vehicle enquiries growing with test drives booked, service bookings and cost per lead' },
-    { nav: 'Channels', eyebrow: 'Channels', heading: 'Your Stock in Front of Local Buyers', para: 'Google Vehicle Ads and Meta inventory ads show your real stock to people searching nearby.', bullets: ['Google Vehicle and search ads', 'Meta automotive inventory ads', 'YouTube walkaround videos', 'Google Maps and reviews'], alt: 'How drivers find you: Google Maps, Google Ads, Meta ads, SEO, YouTube and reviews' },
-    { nav: 'Website', eyebrow: 'Dealer website', heading: 'A Showroom That Never Closes', para: 'Fast stock pages with clear prices, finance examples and easy booking turn online interest into forecourt visits.', bullets: ['Live stock search and filters', 'Finance calculator', 'Part-exchange valuation', 'Online service booking'], alt: 'Dealer funnel from stock page views to enquiries, test drives and vehicles sold' },
-    { nav: 'Compliance', eyebrow: 'Feeds & compliance', heading: 'Accurate Stock and Compliant Finance', para: 'We keep your stock feeds accurate everywhere and make sure finance promotions follow FCA rules.', bullets: ['Stock feed management', 'FCA-compliant finance ads', 'Representative APR examples', 'Review management'], alt: 'Dealer checklist with live stock feed, finance calculator, FCA-compliant ads and service booking' },
+    { nav: 'Enquiries', topic: 'Vehicle enquiries', heading: 'More Calls, Enquiries and Test Drives', para: 'We track every call, form and chat back to the campaign and vehicle that drove it.', bullets: ['Call tracking by channel', 'Test drive booking forms', 'Finance and part-exchange leads', 'Lead reporting by model'], alt: 'Vehicle enquiries growing with test drives booked, service bookings and cost per lead' },
+    { nav: 'Channels', topic: 'Channels', heading: 'Your Stock in Front of Local Buyers', para: 'Google Vehicle Ads and Meta inventory ads show your real stock to people searching nearby.', bullets: ['Google Vehicle and search ads', 'Meta automotive inventory ads', 'YouTube walkaround videos', 'Google Maps and reviews'], alt: 'How drivers find you: Google Maps, Google Ads, Meta ads, SEO, YouTube and reviews' },
+    { nav: 'Website', topic: 'Dealer website', heading: 'A Showroom That Never Closes', para: 'Fast stock pages with clear prices, finance examples and easy booking turn online interest into forecourt visits.', bullets: ['Live stock search and filters', 'Finance calculator', 'Part-exchange valuation', 'Online service booking'], alt: 'Dealer funnel from stock page views to enquiries, test drives and vehicles sold' },
+    { nav: 'Compliance', topic: 'Feeds & compliance', heading: 'Accurate Stock and Compliant Finance', para: 'We keep your stock feeds accurate everywhere and make sure finance promotions follow FCA rules.', bullets: ['Stock feed management', 'FCA-compliant finance ads', 'Representative APR examples', 'Review management'], alt: 'Dealer checklist with live stock feed, finance calculator, FCA-compliant ads and service booking' },
   ],
   cards: [
     ['lucide:map-pin', 'Local SEO', 'Top of Maps for your area.'], ['simple-icons:googleads', 'Vehicle Ads', 'Google stock-led campaigns.'],

@@ -14,9 +14,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK SEO agency optimising websites for Google, answer engines and AI search (AEO & GEO). On-page, off-page and technical SEO that turns visibility into leads.',
   hero: {
-    eyebrow: 'SEO, AEO & GEO Agency UK',
-    title: 'Get Found on Google and in',
-    highlight: 'AI Answers',
+    title: 'SEO, AEO and GEO for Google and',
+    highlight: 'AI Search',
     lead:
       'We optimise your website for search engines, answer engines and generative AI, so customers find you on Google, in featured snippets and in tools like ChatGPT and Google AI Overviews.',
     motion: '/services/seo.webp',
@@ -28,7 +27,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-seo',
       nav: 'SEO, AEO & GEO',
-      eyebrow: 'The basics',
       heading: 'What Are SEO, AEO and GEO?',
       paras: [
         'Search has changed. Customers still use Google, but many now get answers straight from featured snippets, voice assistants and AI tools. Your website needs to be optimised for all three.',
@@ -42,8 +40,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Search Visibility That Turns Into Revenue',
+      heading: 'SEO Results in Numbers',
       text: 'The numbers behind our SEO, AEO and GEO work for UK businesses.',
       stats: [
         { value: '1,200+', label: 'Keywords on page one' },
@@ -56,8 +53,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'on-page',
       nav: 'On-page SEO',
-      eyebrow: 'On-page SEO',
-      heading: 'Pages Built to Rank and Convert',
+      heading: 'On-Page SEO',
       image: '/pages/seo/onpage.webp',
       alt: 'Web page annotated with title tag, meta description, headings and schema markup',
       paras: ['We optimise every important page so Google and AI tools understand exactly what it offers, and visitors know what to do next.'],
@@ -67,8 +63,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'off-page',
       nav: 'Off-page SEO',
-      eyebrow: 'Off-page SEO',
-      heading: 'Authority That Search Engines Trust',
+      heading: 'Off-Page SEO and Link Building',
       image: '/pages/seo/offpage.webp',
       alt: 'Backlinks from publications and industry sites pointing to a website',
       flip: true,
@@ -80,8 +75,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'technical',
       nav: 'Technical SEO',
-      eyebrow: 'Technical SEO',
-      heading: 'A Fast, Crawlable, Error-Free Website',
+      heading: 'Technical SEO',
       image: '/pages/seo/technical.webp',
       alt: 'Core Web Vitals scores and technical audit checklist',
       paras: ['If search engines cannot crawl your site, nothing else works. We fix the foundations and hit Google’s Core Web Vitals targets: LCP under 2.5s, INP under 200ms and CLS under 0.1.'],
@@ -91,8 +85,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'aeo-geo',
       nav: 'AEO & GEO',
-      eyebrow: 'AEO & GEO',
-      heading: 'Be the Answer in AI Search',
+      heading: 'AEO and GEO: AI Search Optimisation',
       image: '/pages/seo/aeo-geo.webp',
       alt: 'AI assistant answer and Google AI Overview citing a business website',
       flip: true,
@@ -104,8 +97,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our SEO services',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our SEO Services',
       cards: [
         { icon: 'lucide:search', title: 'Keyword & Intent Research', text: 'The searches and questions your buyers use, mapped to the right pages.' },
         { icon: 'lucide:file-text', title: 'On-Page Optimisation', text: 'Titles, headings, copy, internal links and schema on every key page.' },
@@ -121,7 +113,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our SEO Process',
       steps: [
         { title: 'Audit', text: 'We review your site, rankings, AI visibility and competitors.' },
@@ -136,14 +127,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'SEO case studies',
-      heading: 'SEO Results We Have Delivered',
+      heading: 'SEO Case Studies',
     },
     {
       type: 'table',
       id: 'seo-aeo-geo',
       nav: 'SEO vs AEO vs GEO',
-      eyebrow: 'Compare',
       heading: 'SEO vs AEO vs GEO',
       columns: ['', 'SEO', 'AEO', 'GEO'],
       rows: [
@@ -158,7 +147,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does SEO Cost in the UK?',
       intro: 'Most UK SEO retainers range from about £500 to £5,000+ per month. Your fixed quote depends on:',
       cards: [
@@ -172,8 +160,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our SEO Clients Say',
+      heading: 'SEO Client Reviews',
       reviews: [
         { name: 'Derek L', role: 'Ecommerce Director', text: 'Their technical audit found problems three agencies had missed. Organic is now our biggest revenue channel.' },
         { name: 'Priya S', role: 'Clinic Owner, Manchester', text: 'We appear in the map pack for every treatment we offer, and we can see exactly how many bookings come from Google.' },
@@ -184,8 +171,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'SEO Tailored to Your Industry',
+      heading: 'SEO for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Category and product SEO that grows non-branded revenue.' },
         { slug: 'hospitality-hotels', text: '"Near me" visibility and commission-free direct bookings.' },

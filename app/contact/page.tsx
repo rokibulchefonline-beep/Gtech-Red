@@ -49,8 +49,7 @@ export default async function Contact({ searchParams }: { searchParams: Promise<
       <section className="sp-hero compact">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Contact</b></nav>
-          <p className="sp-hero-eyebrow">Contact GTech Digital</p>
-          <h1>Let&rsquo;s Talk About <span className="red">Growing Your Business</span></h1>
+          <h1>Contact GTech Digital for a <span className="red">Free Proposal</span></h1>
           <p className="sp-lead">Tell us about your goals and get a free audit and tailored proposal within 24 hours. No obligation, no hard sell.</p>
           <ul className="sp-hero-points">{['Reply within one working day', 'Free audit and proposal', 'No long contracts'].map((p) => <li key={p}><Tick />{p}</li>)}</ul>
         </div>
@@ -75,7 +74,7 @@ export default async function Contact({ searchParams }: { searchParams: Promise<
 
       <PartnerStrip />
 
-      <FaqSection title="Questions Before You Get in Touch" faqs={faqs} schema />
+      <FaqSection title="Contact GTech Digital FAQs" faqs={faqs} schema />
     </>
   );
 }

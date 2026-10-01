@@ -35,7 +35,6 @@ export default function IndustryPage({ c }: { c: ServiceContent }) {
           <nav className="sp-crumbs" aria-label="Breadcrumb">
             <Link href="/">Home</Link><span>/</span><Link href="/industries">Industries</Link><span>/</span><b>{name}</b>
           </nav>
-          <p className="sp-hero-eyebrow">{c.hero.eyebrow}</p>
           <h1>{c.hero.title} <span className="red">{c.hero.highlight}</span></h1>
           <p className="sp-lead">{c.hero.lead}</p>
           <div className="sp-hero-btns">
@@ -59,10 +58,10 @@ export default function IndustryPage({ c }: { c: ServiceContent }) {
 
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={name} />)}
 
-      <FaqSection title={`${name} Marketing Questions`} faqs={c.faqs} />
+      <FaqSection title={`${c.short} FAQs`} faqs={c.faqs} />
 
       <section className="sp-sec sp-grey"><div className="wrap">
-        <Head s={{ eyebrow: 'Recommended services', heading: `Services for ${name} Businesses` }} />
+        <Head s={{ heading: `Recommended Services for ${name} Businesses` }} />
         <div className="sp-related">
           {related.map((r) => r && (
             <Link key={r.item.slug} href={`/services/${r.item.slug}`} className="sp-rel">

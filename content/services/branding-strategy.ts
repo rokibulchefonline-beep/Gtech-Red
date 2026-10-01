@@ -12,8 +12,7 @@ const content: ServiceContent = {
   metaDescription:
     'UK branding and strategy agency: brand identity and positioning, senior marketing advisory and conversion rate optimisation that make every marketing pound work harder.',
   hero: {
-    eyebrow: 'Branding & Strategy Agency UK',
-    title: 'A Clear Brand and a Plan That',
+    title: 'Branding and Strategy That',
     highlight: 'Drives Growth',
     lead:
       'We help you stand out with a memorable brand, focus your budget with a clear marketing plan and turn more visitors into customers.',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-branding-strategy',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Are Branding and Strategy?',
       paras: [
         'Your brand is how people recognise and remember you. Your strategy decides who you target, where you show up and how much you spend. Together they make every website, ad and post more effective, because each one builds on the last.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Strategy That Shows in the Numbers',
+      heading: 'Branding & Strategy Results in Numbers',
       text: 'The numbers behind the branding and strategy work we do for UK businesses.',
       stats: [
         { value: '120+', label: 'Brands built or refreshed' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'branding',
       nav: 'Branding',
-      eyebrow: 'Brand identity',
-      heading: 'A Brand People Remember',
+      heading: 'Brand Identity Design',
       image: '/pages/brand/identity.webp',
       alt: 'Brand identity board with logo, typography and colour palette',
       paras: ['We build a distinctive identity from a clear strategy, so you look as good as the work you do.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'services-overview',
       nav: 'Our services',
-      eyebrow: 'Branding & strategy services',
-      heading: 'Brand, Plan and Performance in One Place',
+      heading: 'Branding, Strategy and CRO Services',
       image: '/pages/brandstrat/strategy.webp',
       alt: 'Branding and strategy services: branding, positioning, advisory, CRO, messaging and insight',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'advisory',
       nav: 'Advisory',
-      eyebrow: 'Marketing advisory',
-      heading: 'A Plan Your Whole Team Can Follow',
+      heading: 'Marketing Strategy and Growth Planning',
       image: '/pages/advisory/plan.webp',
       alt: 'Twelve-month growth plan with goals, audience, channels, budget and measurement',
       paras: ['We turn your goals into a 12-month plan with channels, budgets and KPIs, and stay on hand to guide it.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'cro',
       nav: 'CRO',
-      eyebrow: 'Conversion optimisation',
-      heading: 'More Customers From the Same Traffic',
+      heading: 'Conversion Rate Optimisation',
       image: '/pages/cro/abtest.webp',
       alt: 'A/B test where variant B beats variant A with higher conversion rate and confidence',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our services',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Branding & Strategy Services',
       cards: [
         { icon: 'lucide:compass', title: 'Brand Strategy', text: 'Purpose, audience and positioning.' },
         { icon: 'lucide:gem', title: 'Visual Identity', text: 'Logo, colour and type.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Strategy Process',
+      heading: 'Our Branding & Strategy Process',
       steps: [
         { title: 'Listen', text: 'Goals, customers and market.' },
         { title: 'Research', text: 'Competitors and insights.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Strategy case studies',
-      heading: 'Brands and Strategies We Have Delivered',
+      heading: 'Branding & Strategy Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Which service',
-      eyebrow: 'Compare',
-      heading: 'Which Service Do You Need?',
+      heading: 'Branding, Advisory or CRO: Which Do You Need?',
       columns: ['', 'Branding', 'Marketing Advisory', 'CRO'],
       rows: [
         ['Best when', 'You blend in or are rebranding', 'Marketing lacks direction', 'Traffic does not convert'],
@@ -155,7 +144,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Do Branding and Strategy Cost?',
       intro: 'UK branding projects typically range from about £3,000 to £25,000, and advisory or CRO from about £1,000 per month. Your quote depends on:',
       cards: [
@@ -169,8 +157,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Strategy Clients Say',
+      heading: 'Branding & Strategy Client Reviews',
       reviews: [
         { name: 'Victoria H', role: 'Founder, Interiors Brand', text: 'The rebrand let us raise prices by 20% and customers did not blink.' },
         { name: 'Mark S', role: 'CEO, Professional Services', text: 'For the first time our marketing has a plan, a budget and numbers we trust.' },
@@ -181,7 +168,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Branding & Strategy for Your Industry',
       items: [
         { slug: 'technology-saas', text: 'Positioning and growth plans for SaaS.' },

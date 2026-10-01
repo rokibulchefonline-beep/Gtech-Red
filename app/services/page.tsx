@@ -57,7 +57,6 @@ export default function ServicesHub() {
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Services</b></nav>
-          <p className="sp-hero-eyebrow">What we do</p>
           <h1>GTech Digital <span className="red">Services</span></h1>
           <p className="sp-lead">Marketing, websites and software from one UK team. Pick a service, or let us recommend the right mix for your goals and budget.</p>
           <div className="sp-hero-btns">
@@ -85,7 +84,6 @@ export default function ServicesHub() {
           <section key={g.slug} id={g.slug} className={`sh-group ${n % 2 ? 'alt' : ''}`}><div className="wrap">
             <div className="sh-head">
               <div>
-                <p className="sv-eyebrow">{title}</p>
                 <h2>{title} Services</h2>
                 <p>{g.intro}</p>
               </div>
@@ -125,14 +123,14 @@ export default function ServicesHub() {
       })}
 
       <section className="sh-why"><div className="wrap">
-        <div className="sp-head center"><p className="sp-eyebrow light">Why GTech Digital</p><h2>One Partner for Every Part of Your Growth</h2></div>
+        <div className="sp-head center"><h2>Why Choose GTech Digital</h2></div>
         <div className="sh-why-grid">
           {why.map((w) => <div key={w.title} className="sh-why-card"><span className="sp-card-ico solid"><Icon name={w.icon} size={22} /></span><h3>{w.title}</h3><p>{w.text}</p></div>)}
         </div>
       </div></section>
 
       <Block slug="services" name="GTech Digital" s={{
-        type: 'steps', id: 'process', eyebrow: 'How we work', heading: 'From First Call to Results',
+        type: 'steps', id: 'process', heading: 'How GTech Digital Services Work',
         steps: [
           { title: 'Discover', text: 'Your goals, market and customers.' },
           { title: 'Audit', text: 'A free review of what works today.' },
@@ -143,7 +141,7 @@ export default function ServicesHub() {
         ],
       }} />
 
-      <FaqSection title="GTech Digital Services, Explained" faqs={faqs} schema />
+      <FaqSection title="GTech Digital Services FAQs" faqs={faqs} schema />
       <InquirySection />
     </>
   );

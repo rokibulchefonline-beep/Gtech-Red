@@ -12,7 +12,6 @@ const content: ServiceContent = {
   metaDescription:
     'UK website design agency creating user-friendly, accessible and brand-led websites, with UX research, Figma prototypes and design systems that turn visitors into customers.',
   hero: {
-    eyebrow: 'Website Design Agency UK',
     title: 'Website Design That Turns Visitors Into',
     highlight: 'Customers',
     lead:
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-website-design',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Website Design?',
       paras: [
         'Website design covers how your site works (UX) and how it looks (UI). Good design makes your business look credible, makes information easy to find and guides visitors towards an enquiry or purchase, on every screen size.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Design That Pays for Itself',
+      heading: 'Website Design Results in Numbers',
       text: 'The numbers behind the websites we redesign for UK businesses.',
       stats: [
         { value: '+71%', label: 'Average lead growth after redesign' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ux',
       nav: 'UX design',
-      eyebrow: 'UX design',
-      heading: 'Built Around Your Customers',
+      heading: 'UX Design and User Research',
       image: '/pages/design/ux.webp',
       alt: 'Website page annotated with navigation, hierarchy, imagery, scannable sections, social proof and CTA',
       paras: ['We research your customers and plan every page around their questions, so the journey to enquiry feels natural.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'design-system',
       nav: 'UI & design system',
-      eyebrow: 'UI & design system',
-      heading: 'A Look That Is Unmistakably You',
+      heading: 'UI Design and Design Systems',
       image: '/pages/design/system.webp',
       alt: 'Design system with brand palette, font scale, buttons, layouts, icons and mobile patterns',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'conversion',
       nav: 'Conversion',
-      eyebrow: 'Conversion-centred design',
-      heading: 'More Enquiries From the Same Traffic',
+      heading: 'Conversion-Focused Website Design',
       image: '/pages/design/conversion.webp',
       alt: 'Redesign funnel from visitors to enquiries with higher enquiry rate and lower bounce rate',
       paras: ['Design is not just looks. We place clear calls to action, trust signals and proof where they lift enquiries the most.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'accessibility',
       nav: 'Accessibility',
-      eyebrow: 'Responsive & accessible',
-      heading: 'Works for Everyone, on Every Device',
+      heading: 'Responsive and Accessible Website Design',
       image: '/pages/design/accessibility.webp',
       alt: 'Accessibility checklist with WCAG 2.2 AA contrast, keyboard navigation and responsive layouts',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our design service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Website Design Services',
       cards: [
         { icon: 'lucide:search', title: 'Research', text: 'Customers, competitors and goals.' },
         { icon: 'lucide:git-branch', title: 'User Journeys', text: 'Sitemaps and key paths.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Design Process',
+      heading: 'Our Website Design Process',
       steps: [
         { title: 'Discover', text: 'Workshop on goals and customers.' },
         { title: 'Structure', text: 'Sitemap and wireframes.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Design case studies',
-      heading: 'Website Designs We Have Delivered',
+      heading: 'Website Design Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Custom vs template',
-      eyebrow: 'Compare',
       heading: 'Custom Design vs Template',
       columns: ['', 'Custom design', 'Template'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Website Design Cost?',
       intro: 'UK website design typically ranges from about £1,500 to £12,000+, with development priced separately or as a package. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Design Clients Say',
+      heading: 'Website Design Client Reviews',
       reviews: [
         { name: 'Olivia R', role: 'Founder, Architecture Studio', text: 'The new design finally shows the quality of our work. Clients comment on it.' },
         { name: 'James K', role: 'Marketing Lead, B2B', text: 'Enquiries rose by 70% with the same traffic. The prototype testing made a real difference.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Website Design for Your Industry',
       items: [
         { slug: 'healthcare', text: 'Calm, trustworthy designs that drive bookings.' },

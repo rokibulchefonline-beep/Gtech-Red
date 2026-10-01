@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK PHP development company building custom web applications, APIs and integrations, and upgrading legacy PHP to modern, secure PHP 8.',
   hero: {
-    eyebrow: 'PHP Development Company UK',
-    title: 'Custom PHP Applications Built to',
-    highlight: 'Run Your Business',
+    title: 'PHP Development for',
+    highlight: 'Custom Web Applications',
     lead:
       'We build fast, secure PHP applications and APIs, and rescue legacy PHP systems by upgrading them to modern PHP 8 without disrupting your business.',
     motion: '/services/php.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-php-development',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is PHP Development?',
       paras: [
         'PHP is the server-side language behind much of the web, including WordPress and Laravel. Custom PHP development means building the web applications, portals and APIs that run your processes, using modern PHP 8 and proven frameworks.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Modern PHP, Measurable Gains',
+      heading: 'PHP Development Results in Numbers',
       text: 'The numbers behind the PHP systems we build and modernise.',
       stats: [
         { value: '4x', label: 'Average speed gain after upgrade' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'applications',
       nav: 'Applications',
-      eyebrow: 'Custom applications',
-      heading: 'Software Shaped Around Your Process',
+      heading: 'Custom PHP Application Development',
       image: '/pages/php/apps.webp',
       alt: 'Custom PHP application stack from front end and application logic to APIs, data and hosting',
       paras: ['We build the portals, booking systems and admin tools your team needs, with clean architecture that is easy to extend.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'apis',
       nav: 'APIs',
-      eyebrow: 'APIs & integrations',
-      heading: 'Connect Every System You Use',
+      heading: 'PHP API Development and Integrations',
       image: '/pages/php/apis.webp',
       alt: 'PHP platform connected by API to Stripe, Xero, HubSpot, courier, email and ERP systems',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'modernisation',
       nav: 'Modernisation',
-      eyebrow: 'Legacy modernisation',
-      heading: 'Bring Old PHP Up to Date',
+      heading: 'Legacy PHP Modernisation and Upgrades',
       image: '/pages/php/modernise.webp',
       alt: 'Legacy PHP upgrade checklist with PHP 8.3, security patches, tests and Composer',
       paras: ['Old PHP versions are slow and no longer get security fixes. We upgrade step by step, adding tests so nothing breaks along the way.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'performance',
       nav: 'Performance',
-      eyebrow: 'Performance & quality',
-      heading: 'Fast, Stable and Well Tested',
+      heading: 'PHP Performance and Testing',
       image: '/pages/php/performance.webp',
       alt: 'PHP service code with response time, faster queries and uptime',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our PHP service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our PHP Development Services',
       cards: [
         { icon: 'lucide:search', title: 'Code Review', text: 'Quality, security and speed checked.' },
         { icon: 'lucide:app-window', title: 'Web Applications', text: 'Portals and internal tools.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our PHP Process',
+      heading: 'Our PHP Development Process',
       steps: [
         { title: 'Review', text: 'Requirements or existing code.' },
         { title: 'Plan', text: 'Architecture, scope and estimate.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'PHP case studies',
-      heading: 'PHP Projects We Have Delivered',
+      heading: 'PHP Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Upgrade or rebuild',
-      eyebrow: 'Compare',
       heading: 'Upgrade or Rebuild Your PHP System?',
       columns: ['', 'Upgrade', 'Rebuild'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does PHP Development Cost?',
       intro: 'UK custom PHP projects typically range from about £5,000 to £50,000+, or from £450 per day for ongoing work. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our PHP Clients Say',
+      heading: 'PHP Development Client Reviews',
       reviews: [
         { name: 'Nick E', role: 'Operations Director, Logistics', text: 'They upgraded our 10-year-old PHP system without a single day of downtime.' },
         { name: 'Sara L', role: 'Founder, Booking Platform', text: 'Our API now handles four times the traffic and pages load in a fraction of the time.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'PHP Development for Your Industry',
       items: [
         { slug: 'finance', text: 'Secure portals and calculators.' },

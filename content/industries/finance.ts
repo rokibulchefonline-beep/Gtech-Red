@@ -5,10 +5,10 @@ import { industry } from './build';
 export default industry({
   slug: 'finance',
   name: 'Finance',
+  kw: 'Financial Services Marketing',
   metaTitle: 'Financial Services Marketing Agency UK | Compliant Marketing | GTech Digital',
   metaDescription: 'UK financial services marketing agency for advisers, brokers, accountants and lenders: compliant SEO, Google Ads, LinkedIn and secure websites that win clients.',
   hero: {
-    eyebrow: 'Financial Services Marketing UK',
     title: 'Financial Marketing That',
     highlight: 'Wins Clients',
     lead: 'We help advisers, brokers, accountants and lenders grow with marketing that builds trust, follows FCA rules and turns research into enquiries.',
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'Growth Without Compliance Risk', stats: [['+68%', 'Average growth in new clients'], ['£52', 'Average cost per enquiry'], ['47%', 'Average consultation to client'], ['100%', 'Campaigns with compliance sign-off']] },
   media: [
-    { nav: 'Enquiries', eyebrow: 'Client growth', heading: 'More Qualified Enquiries', para: 'We target people actively looking for advice, mortgages or accounting help, and filter out poor-fit leads.', bullets: ['High-intent search campaigns', 'Callback and booking forms', 'Lead qualification', 'Cost per client reporting'], alt: 'Qualified financial enquiries growing with new clients, cost per enquiry and compliance sign-off' },
-    { nav: 'Channels', eyebrow: 'Channels', heading: 'Expertise That Shows Up in Search', para: 'Helpful guides and calculators earn rankings and trust, while Google and LinkedIn reach people ready to act.', bullets: ['Financial SEO and guides', 'Google Ads for advice searches', 'LinkedIn for B2B finance', 'Trustpilot and Google reviews'], alt: 'How clients find you: SEO, Google Ads, LinkedIn, guides, reviews and email' },
-    { nav: 'Journey', eyebrow: 'Client journey', heading: 'From First Question to New Client', para: 'Clear explanations, calculators and fast callbacks guide people from research to a first consultation.', bullets: ['Calculators and tools', 'Consultation booking', 'Callbacks within the hour', 'Email nurture'], alt: 'Financial client journey from guide visits to enquiries, consultations and new clients' },
-    { nav: 'Compliance', eyebrow: 'Compliance', heading: 'Marketing That Passes Compliance', para: 'We build FCA financial promotion rules and Consumer Duty into every page and campaign, with a clear sign-off workflow.', bullets: ['FCA financial promotions rules', 'Consumer Duty-friendly content', 'Risk warnings and disclaimers', 'Secure forms and portals'], alt: 'Compliant financial marketing checklist with FCA rules, Consumer Duty, risk warnings and sign-off' },
+    { nav: 'Enquiries', topic: 'Client growth', heading: 'More Qualified Enquiries', para: 'We target people actively looking for advice, mortgages or accounting help, and filter out poor-fit leads.', bullets: ['High-intent search campaigns', 'Callback and booking forms', 'Lead qualification', 'Cost per client reporting'], alt: 'Qualified financial enquiries growing with new clients, cost per enquiry and compliance sign-off' },
+    { nav: 'Channels', topic: 'Channels', heading: 'Expertise That Shows Up in Search', para: 'Helpful guides and calculators earn rankings and trust, while Google and LinkedIn reach people ready to act.', bullets: ['Financial SEO and guides', 'Google Ads for advice searches', 'LinkedIn for B2B finance', 'Trustpilot and Google reviews'], alt: 'How clients find you: SEO, Google Ads, LinkedIn, guides, reviews and email' },
+    { nav: 'Journey', topic: 'Client journey', heading: 'From First Question to New Client', para: 'Clear explanations, calculators and fast callbacks guide people from research to a first consultation.', bullets: ['Calculators and tools', 'Consultation booking', 'Callbacks within the hour', 'Email nurture'], alt: 'Financial client journey from guide visits to enquiries, consultations and new clients' },
+    { nav: 'Compliance', topic: 'Compliance', heading: 'Marketing That Passes Compliance', para: 'We build FCA financial promotion rules and Consumer Duty into every page and campaign, with a clear sign-off workflow.', bullets: ['FCA financial promotions rules', 'Consumer Duty-friendly content', 'Risk warnings and disclaimers', 'Secure forms and portals'], alt: 'Compliant financial marketing checklist with FCA rules, Consumer Duty, risk warnings and sign-off' },
   ],
   cards: [
     ['lucide:search', 'Financial SEO', 'Expert content that ranks.'], ['simple-icons:googleads', 'Google Ads', 'Compliant lead campaigns.'],

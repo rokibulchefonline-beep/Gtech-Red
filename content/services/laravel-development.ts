@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK Laravel development company building secure web applications, admin panels, APIs and SaaS platforms with Laravel 11, Livewire and Filament.',
   hero: {
-    eyebrow: 'Laravel Development Company UK',
-    title: 'Laravel Applications That',
-    highlight: 'Scale With You',
+    title: 'Laravel Development for Apps',
+    highlight: 'That Scale',
     lead:
       'We build secure, well-tested Laravel web apps, portals and APIs that automate your work and grow with your business, from first release to thousands of users.',
     motion: '/services/laravel.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-laravel-development',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Laravel Development?',
       paras: [
         'Laravel is the most popular PHP framework for building web applications. It comes with secure authentication, queues, APIs and testing built in, so we spend your budget on features that matter instead of reinventing the basics.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Laravel Built for the Long Run',
+      heading: 'Laravel Development Results in Numbers',
       text: 'The numbers behind the Laravel applications we build and support.',
       stats: [
         { value: '50+', label: 'Laravel apps delivered' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'applications',
       nav: 'Web apps',
-      eyebrow: 'Web applications',
-      heading: 'Apps That Automate Your Work',
+      heading: 'Laravel Web Application Development',
       image: '/pages/laravel/apps.webp',
       alt: 'Laravel application layers: interface, Laravel core, background jobs, data and deployment',
       paras: ['We turn spreadsheets and manual steps into fast, secure web apps your team and customers enjoy using.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'apis',
       nav: 'APIs',
-      eyebrow: 'APIs',
-      heading: 'Secure APIs for Apps and Partners',
+      heading: 'Laravel API Development',
       image: '/pages/laravel/api.webp',
       alt: 'Laravel API controller code with endpoints, median response and OAuth 2 security',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'admin',
       nav: 'Admin panels',
-      eyebrow: 'Admin & back office',
-      heading: 'Back Offices That Save Hours',
+      heading: 'Laravel Admin Panels and Back Offices',
       image: '/pages/laravel/admin.webp',
       alt: 'Orders processed chart with one admin panel, staff users and admin time saved',
       paras: ['We build Filament admin panels that let staff manage orders, customers and content in one clear place.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'quality',
       nav: 'Quality',
-      eyebrow: 'Quality & DevOps',
-      heading: 'Tested Code, Safe Releases',
+      heading: 'Laravel Testing and DevOps',
       image: '/pages/laravel/quality.webp',
       alt: 'Laravel quality checklist with Pest tests, Larastan, CI pipeline and staging',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our Laravel service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Laravel Development Services',
       cards: [
         { icon: 'lucide:search', title: 'Discovery', text: 'Requirements and technical plan.' },
         { icon: 'lucide:pen-tool', title: 'UX Design', text: 'Screens designed before code.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our Laravel Process',
+      heading: 'Our Laravel Development Process',
       steps: [
         { title: 'Discover', text: 'Goals, users and workflows.' },
         { title: 'Design', text: 'Wireframes and data model.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Laravel case studies',
-      heading: 'Laravel Projects We Have Delivered',
+      heading: 'Laravel Development Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Laravel vs others',
-      eyebrow: 'Compare',
       heading: 'Laravel vs Off-the-Shelf Software',
       columns: ['', 'Custom Laravel app', 'Off-the-shelf SaaS'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Laravel Development Cost?',
       intro: 'UK Laravel projects typically range from about £8,000 for an MVP to £60,000+ for larger platforms. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Laravel Clients Say',
+      heading: 'Laravel Development Client Reviews',
       reviews: [
         { name: 'Ben R', role: 'COO, Recruitment', text: 'Our Laravel portal replaced five spreadsheets and saves the team hours every week.' },
         { name: 'Nadia K', role: 'Founder, SaaS Start-up', text: 'They took us from idea to paying customers in under four months.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Laravel Development for Your Industry',
       items: [
         { slug: 'technology-saas', text: 'Multi-tenant SaaS with subscription billing.' },

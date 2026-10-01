@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK conversion rate optimisation (CRO) agency using research, heatmaps and A/B testing to turn more website visitors into leads and sales.',
   hero: {
-    eyebrow: 'CRO Agency UK',
-    title: 'Turn More Visitors Into',
-    highlight: 'Leads and Sales',
+    title: 'Conversion Rate Optimisation',
+    highlight: 'That Grows Sales',
     lead:
       'We find out why visitors leave, test better versions of your pages and keep only what wins, so you grow revenue without paying for more traffic.',
     motion: '/services/cro.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-cro',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Conversion Rate Optimisation?',
       paras: [
         'Conversion rate optimisation (CRO) is the process of improving your website so more visitors take action, such as buying, booking or enquiring. Doubling your conversion rate has the same effect as doubling your traffic, at a fraction of the cost.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'More Results From the Same Traffic',
+      heading: 'Conversion Rate Optimisation Results in Numbers',
       text: 'The numbers behind the CRO programmes we run.',
       stats: [
         { value: '+71%', label: 'Average conversion uplift' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'research',
       nav: 'Research',
-      eyebrow: 'Conversion research',
-      heading: 'Find Out Why Visitors Leave',
+      heading: 'Conversion Research and User Insight',
       image: '/pages/cro/research.webp',
       alt: 'Web page annotated with conversion issues like unclear headline, weak value proposition and long form',
       paras: ['We combine analytics, heatmaps, recordings and surveys to pinpoint what stops people converting.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'funnel',
       nav: 'Funnel',
-      eyebrow: 'Funnel analysis',
-      heading: 'Fix the Biggest Leaks First',
+      heading: 'Funnel Analysis and Drop-Off Fixes',
       image: '/pages/cro/funnel.webp',
       alt: 'Conversion funnel from landing page to converted visitors with conversion rate and cost per lead',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'testing',
       nav: 'A/B testing',
-      eyebrow: 'A/B testing',
-      heading: 'Proof, Not Opinions',
+      heading: 'A/B Testing',
       image: '/pages/cro/abtest.webp',
       alt: 'A/B test where variant B beats variant A with higher conversion rate and 97% confidence',
       paras: ['Every change is tested against the original with real visitors, and we only roll out winners backed by statistical confidence.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'programme',
       nav: 'Programme',
-      eyebrow: 'Ongoing programme',
-      heading: 'Small Wins That Compound',
+      heading: 'Ongoing CRO Programme',
       image: '/pages/cro/checklist.webp',
       alt: 'CRO programme checklist with tracking audit, heatmaps, surveys, roadmap and A/B tests',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our CRO service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Conversion Rate Optimisation Services',
       cards: [
         { icon: 'lucide:search', title: 'CRO Audit', text: 'Quick wins and big issues.' },
         { icon: 'lucide:settings-2', title: 'Tracking Setup', text: 'GA4 events you can trust.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'Our CRO Process',
+      heading: 'Our Conversion Rate Optimisation Process',
       steps: [
         { title: 'Audit', text: 'Tracking and quick wins.' },
         { title: 'Research', text: 'Data, heatmaps and users.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'CRO case studies',
-      heading: 'CRO Results We Have Delivered',
+      heading: 'Conversion Rate Optimisation Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'CRO vs more traffic',
-      eyebrow: 'Compare',
       heading: 'CRO vs Buying More Traffic',
       columns: ['', 'Conversion optimisation', 'More ad spend'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does CRO Cost?',
       intro: 'UK CRO programmes typically range from about £1,000 to £5,000+ per month, or from £1,500 for a one-off audit. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our CRO Clients Say',
+      heading: 'Conversion Rate Optimisation Client Reviews',
       reviews: [
         { name: 'Ellie D', role: 'Ecommerce Manager', text: 'Conversion rate up 40% in six months, with no extra ad spend.' },
         { name: 'George N', role: 'Marketing Director, Insurance', text: 'A shorter quote form alone cut our cost per lead by a third.' },
@@ -182,8 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
-      heading: 'CRO for Your Industry',
+      heading: 'Conversion Rate Optimisation for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Product, basket and checkout optimisation.' },
         { slug: 'finance', text: 'Quote and application forms that convert.' },

@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK social media marketing agency for Facebook, Instagram, LinkedIn, TikTok and Pinterest. Strategy, content, paid social and community management that grows sales.',
   hero: {
-    eyebrow: 'Social Media Marketing Agency UK',
-    title: 'Social Media That Grows',
-    highlight: 'Your Business',
+    title: 'Social Media Marketing That',
+    highlight: 'Grows Your Business',
     lead:
       'We plan, create and manage social media across every major platform, building an audience that engages, trusts your brand and buys from you.',
     motion: '/services/social.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-smm',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Social Media Marketing?',
       paras: [
         'Social media marketing uses platforms like Instagram, TikTok and LinkedIn to reach, engage and convert your audience. More people now search on social platforms too, so a strong presence helps you get discovered as well as remembered.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Social Media That Moves the Numbers',
+      heading: 'Social Media Results in Numbers',
       text: 'The numbers behind the social media we manage for UK businesses.',
       stats: [
         { value: '6', label: 'Platforms managed' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'strategy',
       nav: 'Strategy',
-      eyebrow: 'Social strategy',
-      heading: 'The Right Platforms for Your Audience',
+      heading: 'Social Media Strategy',
       image: '/pages/social/strategy.webp',
       alt: 'Brand connected to Facebook, Instagram, LinkedIn, TikTok, Pinterest and YouTube',
       paras: ['You do not need to be everywhere. We find where your customers spend time and build a plan for each platform with clear goals.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content',
       nav: 'Content',
-      eyebrow: 'Content creation',
-      heading: 'Content Made for Each Platform',
+      heading: 'Social Media Content Creation',
       image: '/pages/social/content.webp',
       alt: 'Weekly social content calendar with Reels, carousels, reviews and live sessions',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'paid-social',
       nav: 'Paid social',
-      eyebrow: 'Paid social',
-      heading: 'Ads That Reach Beyond Your Followers',
+      heading: 'Paid Social Advertising',
       image: '/pages/social/paid.webp',
       alt: 'Paid social results across Facebook, Instagram, LinkedIn, TikTok, Pinterest and YouTube',
       paras: ['Organic reach is limited. Paid social puts your best content in front of the right new audiences and turns attention into leads and sales.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'community',
       nav: 'Community',
-      eyebrow: 'Community & reporting',
-      heading: 'Conversations That Build Loyalty',
+      heading: 'Social Media Community Management',
       image: '/pages/social/community.webp',
       alt: 'Engaged followers growing with fast reply times and higher engagement rate',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: 'Platforms',
-      eyebrow: 'Our social services',
-      heading: 'Platforms We Manage',
+      heading: 'What\'s Included in Our Social Media Services',
       cards: [
         { icon: 'simple-icons:facebook', title: 'Facebook Marketing', text: 'Page growth, community and lead-generating ads.' },
         { icon: 'simple-icons:instagram', title: 'Instagram Marketing', text: 'Reels, Stories, creators and Instagram Shopping.' },
@@ -119,7 +111,6 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
       heading: 'Our Social Media Process',
       steps: [
         { title: 'Audit', text: 'Your channels, audience and competitors reviewed.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Social media case studies',
-      heading: 'Social Media Results We Have Delivered',
+      heading: 'Social Media Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Compare platforms',
-      eyebrow: 'Compare',
-      heading: 'Which Social Platform Suits Your Business?',
+      heading: 'Social Media Platforms Compared',
       columns: ['', 'Instagram & Facebook', 'LinkedIn', 'TikTok', 'Pinterest'],
       rows: [
         ['Best for', 'Consumer brands and local business', 'B2B and professional services', 'Reaching younger audiences fast', 'Ideas, home, food and retail'],
@@ -155,7 +144,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Social Media Management Cost?',
       intro: 'UK social media management typically ranges from about £400 to £3,000+ per month, plus any ad spend. Your quote depends on:',
       cards: [
@@ -169,8 +157,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Social Media Clients Say',
+      heading: 'Social Media Client Reviews',
       reviews: [
         { name: 'Jess A', role: 'Owner, Café Group', text: 'Our Instagram Reels now fill weekend bookings, and the team replies to every comment.' },
         { name: 'Mark L', role: 'Director, Consultancy', text: 'LinkedIn has become our best source of qualified leads since they took over.' },
@@ -181,7 +168,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Social Media for Your Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'Mouth-watering Reels and local ads that fill tables and rooms.' },

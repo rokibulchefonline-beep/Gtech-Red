@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK website maintenance and support plans: updates, security monitoring, daily backups, uptime checks, speed tuning and content changes for one fixed monthly fee.',
   hero: {
-    eyebrow: 'Website Maintenance Services UK',
-    title: 'Website Care That Keeps You',
-    highlight: 'Secure, Fast and Online',
+    title: 'Website Maintenance and',
+    highlight: 'Support Plans',
     lead:
       'We look after your website every month, with updates, security, backups, monitoring and small changes, so it stays fast, safe and working while you run your business.',
     motion: '/services/maintenance.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-website-maintenance',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Website Maintenance?',
       paras: [
         'Websites need regular care. Software updates, security threats, expired certificates and broken forms can quietly cost you customers. Website maintenance is a monthly plan that prevents these problems and fixes them fast when they happen.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Peace of Mind, Measured',
+      heading: 'Website Maintenance Results in Numbers',
       text: 'The numbers behind the websites on our care plans.',
       stats: [
         { value: '99.98%', label: 'Average uptime' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'security',
       nav: 'Security',
-      eyebrow: 'Updates & security',
-      heading: 'Patched, Scanned and Protected',
+      heading: 'Website Updates and Security',
       image: '/pages/maintenance/security.webp',
       alt: 'Monthly maintenance checklist with updates, malware scan, SSL, firewall and admin audit',
       paras: ['Most hacks exploit outdated software. We test and apply updates safely, scan for malware and block attacks before they reach you.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'uptime',
       nav: 'Monitoring',
-      eyebrow: 'Uptime monitoring',
-      heading: 'We Know Before Your Customers Do',
+      heading: 'Website Uptime Monitoring',
       image: '/pages/maintenance/uptime.webp',
       alt: 'Uptime chart at 99.98% with 60-second checks and fast response times',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'backups',
       nav: 'Backups',
-      eyebrow: 'Backups & recovery',
-      heading: 'Backups You Can Actually Restore',
+      heading: 'Website Backups and Recovery',
       image: '/pages/maintenance/backups.webp',
       alt: 'Backup plan with daily, off-site, encrypted backups, restore time and monthly tests',
       paras: ['Backups only matter if they work. We keep daily encrypted copies off-site and test restores every month.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'speed',
       nav: 'Speed & fixes',
-      eyebrow: 'Speed & improvements',
-      heading: 'A Website That Gets Better Every Month',
+      heading: 'Website Speed and Ongoing Improvements',
       image: '/pages/maintenance/speed.webp',
       alt: 'Monthly speed checks with Core Web Vitals, image compression, database clean-up and form testing',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our care plans',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Website Maintenance Services',
       cards: [
         { icon: 'lucide:refresh-cw', title: 'Updates', text: 'Tested and applied safely.' },
         { icon: 'lucide:shield-check', title: 'Security', text: 'Scans, firewall and hardening.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'How Our Care Plans Work',
+      heading: 'Our Website Maintenance Process',
       steps: [
         { title: 'Health check', text: 'Full review of your site.' },
         { title: 'Fix', text: 'Urgent issues resolved first.' },
@@ -134,15 +125,13 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Maintenance case studies',
-      heading: 'Websites We Look After',
+      heading: 'Website Maintenance Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Care plans',
-      eyebrow: 'Compare',
-      heading: 'Which Care Plan Do You Need?',
+      heading: 'Website Maintenance Plans Compared',
       columns: ['', 'Essential', 'Growth', 'Business'],
       rows: [
         ['Updates and backups', 'Monthly, daily backups', 'Weekly, daily backups', 'Weekly, hourly backups'],
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Website Maintenance Cost?',
       intro: 'UK website maintenance plans typically range from about £50 to £500+ per month. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Care Plan Clients Say',
+      heading: 'Website Maintenance Client Reviews',
       reviews: [
         { name: 'Diane C', role: 'Owner, Florist', text: 'They spotted our site was down at 6am and had it back before we opened.' },
         { name: 'Matt J', role: 'Director, Accountancy', text: 'No more worrying about updates or hacks. It just works.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Website Maintenance for Your Industry',
       items: [
         { slug: 'e-commerce', text: 'Checkout and payment testing every month.' },

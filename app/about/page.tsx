@@ -29,8 +29,7 @@ const sections: Section[] = [
   {
     type: 'text',
     id: 'who-we-are',
-    eyebrow: 'Who we are',
-    heading: 'Marketing, Web and Software Under One Roof',
+    heading: 'About GTech Digital: Marketing, Web and Software Agency',
     paras: [
       'GTech Digital is a UK agency that helps businesses grow online. We bring SEO, paid media, social, web design and custom software together in one team, so your marketing, website and systems work as one, and every decision is driven by data.',
     ],
@@ -43,8 +42,7 @@ const sections: Section[] = [
   {
     type: 'impact',
     id: 'numbers',
-    eyebrow: 'GTech in numbers',
-    heading: 'Built on Results',
+    heading: 'GTech Digital in Numbers',
     text: 'A snapshot of the work we have delivered for UK businesses.',
     stats: [
       { value: '10+', label: 'Years of experience' },
@@ -56,8 +54,7 @@ const sections: Section[] = [
   {
     type: 'media',
     id: 'story',
-    eyebrow: 'Our story',
-    heading: 'From SEO Specialists to Full-Service Partner',
+    heading: 'Our Story: From SEO Specialists to Full-Service Agency',
     image: '/pages/about/story.webp',
     alt: 'GTech Digital journey from founding to a full marketing, web and software team',
     paras: ['We started by helping local businesses rank on Google. As clients grew, we added paid media, social, web and software, so they could keep everything with one trusted team.'],
@@ -66,8 +63,7 @@ const sections: Section[] = [
   {
     type: 'media',
     id: 'team',
-    eyebrow: 'Our team',
-    heading: 'Specialists in Every Channel',
+    heading: 'Our Team of Digital Specialists',
     image: '/pages/about/team.webp',
     alt: 'GTech Digital team of SEO, paid media, content, design, development and strategy specialists',
     flip: true,
@@ -78,8 +74,7 @@ const sections: Section[] = [
   {
     type: 'media',
     id: 'approach',
-    eyebrow: 'Our approach',
-    heading: 'Honest, Transparent and Accountable',
+    heading: 'Our Approach to Client Partnerships',
     image: '/pages/about/approach.webp',
     alt: 'How GTech Digital works: dedicated lead, clear pricing, plain-English reports and client ownership',
     paras: ['No long contracts, no jargon and no hidden fees. You own your accounts and data, and we earn your business every month.'],
@@ -88,8 +83,7 @@ const sections: Section[] = [
   {
     type: 'media',
     id: 'partners',
-    eyebrow: 'Certified partners',
-    heading: 'Certified by the Platforms We Use',
+    heading: 'Our Platform Certifications',
     image: '/pages/about/partners.webp',
     alt: 'GTech Digital certified with Google, Meta, Shopify, HubSpot, Semrush and TikTok',
     flip: true,
@@ -100,7 +94,6 @@ const sections: Section[] = [
   {
     type: 'cards',
     id: 'values',
-    eyebrow: 'What we believe',
     heading: 'Our Values',
     cards: [
       { icon: 'lucide:trending-up', title: 'Results First', text: 'Leads and revenue over vanity metrics.' },
@@ -116,8 +109,7 @@ const sections: Section[] = [
   {
     type: 'steps',
     id: 'process',
-    eyebrow: 'How we work',
-    heading: 'Working With GTech Digital',
+    heading: 'How We Work With Clients',
     steps: [
       { title: 'Discover', text: 'We learn your goals and market.' },
       { title: 'Audit', text: 'Free review of what works today.' },
@@ -133,8 +125,7 @@ const later: Section[] = [
   {
     type: 'reviews',
     id: 'reviews',
-    eyebrow: 'Client reviews',
-    heading: 'What Our Clients Say',
+    heading: 'GTech Digital Client Reviews',
     reviews: [
       { name: 'Sarah K', role: 'MD, Home Services', text: 'GTech handle our SEO, ads and website. One team, clear reports and steady growth.' },
       { name: 'Andrew L', role: 'MD, Distribution', text: 'From marketing to custom software, they understand our business and deliver.' },
@@ -144,8 +135,7 @@ const later: Section[] = [
   {
     type: 'industries',
     id: 'industries',
-    eyebrow: 'Industries we serve',
-    heading: 'Experience Across Industries',
+    heading: 'Industries We Serve',
     items: [
       { slug: 'e-commerce', text: 'Online stores and product brands.' },
       { slug: 'healthcare', text: 'Clinics, dentists and wellness.' },
@@ -184,8 +174,7 @@ export default async function About() {
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>About Us</b></nav>
-          <p className="sp-hero-eyebrow">About GTech Digital</p>
-          <h1>Your UK Partner for <span className="red">Digital Growth</span></h1>
+          <h1>About GTech Digital, Your <span className="red">Digital Growth Partner</span></h1>
           <p className="sp-lead">We are marketers, designers and developers who help UK businesses get found, win customers and run smarter, all under one roof.</p>
           <div className="sp-hero-btns">
             <Link className="sp-btn-red" href="/contact">Work With Us</Link>
@@ -202,7 +191,7 @@ export default async function About() {
 
       {cases.length > 0 && (
         <section id="case-studies" className="sp-sec cases"><div className="wrap">
-          <Head s={{ eyebrow: 'Our work', heading: 'Recent Case Studies' }} />
+          <Head s={{ heading: 'GTech Digital Case Studies' }} />
           <CaseCarousel docs={cases} />
           <p className="cases-all"><Link className="btn-dark" href="/case-studies">View All Case Studies</Link></p>
         </div></section>
@@ -210,7 +199,7 @@ export default async function About() {
 
       {later.map((s) => <Block key={s.id} s={s} slug="about" name="GTech Digital" />)}
 
-      <FaqSection title="About GTech Digital" faqs={faqs} schema />
+      <FaqSection title="About GTech Digital FAQs" faqs={faqs} schema />
       <InquirySection />
     </>
   );

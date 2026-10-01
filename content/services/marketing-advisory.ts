@@ -12,9 +12,8 @@ const content: ServiceContent = {
   metaDescription:
     'UK marketing advisory and fractional CMO services: senior guidance on strategy, channels, budgets and KPIs to grow faster without a full-time hire.',
   hero: {
-    eyebrow: 'Marketing Advisory UK',
-    title: 'Senior Marketing Leadership',
-    highlight: 'Without the Full-Time Cost',
+    title: 'Marketing Advisory and',
+    highlight: 'Fractional CMO Services',
     lead:
       'We give you an experienced marketing lead who sets the strategy, focuses your budget and keeps your team and agencies delivering results.',
     motion: '/services/advisory.webp',
@@ -26,7 +25,6 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-marketing-advisory',
       nav: 'What is it',
-      eyebrow: 'The basics',
       heading: 'What Is Marketing Advisory?',
       paras: [
         'Marketing advisory gives you senior marketing expertise on a part-time basis, often called a fractional CMO. It suits growing businesses that need a clear strategy and someone to lead marketing, but are not ready for a full-time director.',
@@ -40,8 +38,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      eyebrow: 'Results in numbers',
-      heading: 'Focus That Pays Off',
+      heading: 'Marketing Advisory Results in Numbers',
       text: 'The numbers behind the businesses we advise.',
       stats: [
         { value: '-45%', label: 'Average cost per acquisition' },
@@ -54,8 +51,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'growth-plan',
       nav: 'Growth plan',
-      eyebrow: 'Growth plan',
-      heading: 'A Clear 12-Month Plan',
+      heading: '12-Month Marketing Growth Plan',
       image: '/pages/advisory/plan.webp',
       alt: 'Twelve-month growth plan with goals, audience, channels, budget and measurement',
       paras: ['We turn business goals into a practical marketing plan with priorities, owners and targets for every quarter.'],
@@ -65,8 +61,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'budget',
       nav: 'Budget',
-      eyebrow: 'Budget & channels',
-      heading: 'Spend Where It Works',
+      heading: 'Marketing Budget Allocation',
       image: '/pages/advisory/budget.webp',
       alt: 'Recommended marketing budget split across SEO, Google Ads, paid social, email and testing',
       flip: true,
@@ -78,8 +73,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'kpis',
       nav: 'KPIs',
-      eyebrow: 'KPIs & reporting',
-      heading: 'Numbers You Can Run the Business On',
+      heading: 'Marketing KPIs and Reporting',
       image: '/pages/advisory/kpis.webp',
       alt: 'Cost per acquisition falling from £84 to £46 with more qualified leads and higher ROI',
       paras: ['We set up the dashboards and tracking that show what marketing really delivers, from first click to revenue.'],
@@ -89,8 +83,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'leadership',
       nav: 'Leadership',
-      eyebrow: 'Fractional CMO',
-      heading: 'A Marketing Lead on Your Side',
+      heading: 'Fractional CMO Leadership',
       image: '/pages/advisory/team.webp',
       alt: 'Monthly advisory checklist with strategy sessions, agency review, budget checks and reporting',
       flip: true,
@@ -102,8 +95,7 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'services',
       nav: "What's included",
-      eyebrow: 'Our advisory service',
-      heading: 'Everything Included',
+      heading: 'What\'s Included in Our Marketing Advisory Services',
       cards: [
         { icon: 'lucide:search', title: 'Marketing Audit', text: 'What works and what does not.' },
         { icon: 'lucide:target', title: 'Customer Profile', text: 'Who to win first.' },
@@ -119,8 +111,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      eyebrow: 'How we work',
-      heading: 'How Advisory Works',
+      heading: 'Our Marketing Advisory Process',
       steps: [
         { title: 'Audit', text: 'Marketing, data and team.' },
         { title: 'Plan', text: 'Goals, channels and budget.' },
@@ -134,14 +125,12 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      eyebrow: 'Advisory case studies',
-      heading: 'Businesses We Have Advised',
+      heading: 'Marketing Advisory Case Studies',
     },
     {
       type: 'table',
       id: 'compare',
       nav: 'Fractional vs full-time',
-      eyebrow: 'Compare',
       heading: 'Fractional CMO vs Full-Time Marketing Director',
       columns: ['', 'Fractional CMO', 'Full-time director'],
       rows: [
@@ -156,7 +145,6 @@ const content: ServiceContent = {
       type: 'cards',
       id: 'pricing',
       nav: 'Pricing',
-      eyebrow: 'Investment',
       heading: 'How Much Does Marketing Advisory Cost?',
       intro: 'UK marketing advisory typically ranges from about £1,200 to £6,000+ per month. Your quote depends on:',
       cards: [
@@ -170,8 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      eyebrow: 'Client reviews',
-      heading: 'What Our Advisory Clients Say',
+      heading: 'Marketing Advisory Client Reviews',
       reviews: [
         { name: 'Mark S', role: 'CEO, Professional Services', text: 'We stopped guessing. Budget now goes where the leads actually come from.' },
         { name: 'Priya L', role: 'Founder, D2C Brand', text: 'Like having a marketing director for a fraction of the cost.' },
@@ -182,7 +169,6 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      eyebrow: 'Industries we serve',
       heading: 'Marketing Advisory for Your Industry',
       items: [
         { slug: 'technology-saas', text: 'Go-to-market and growth for SaaS.' },
