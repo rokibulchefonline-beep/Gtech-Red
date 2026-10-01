@@ -2,7 +2,7 @@
 export type Card = { icon: string; title: string; text: string };
 export type Section =
   | { type: 'text'; id: string; nav?: string; eyebrow?: string; heading: string; paras: string[]; bullets?: string[] }
-  | { type: 'media'; id: string; nav?: string; eyebrow?: string; heading: string; paras: string[]; bullets?: string[]; image: string; alt: string; flip?: boolean }
+  | { type: 'media'; id: string; nav?: string; eyebrow?: string; heading: string; paras: string[]; bullets?: string[]; image: string; alt: string; flip?: boolean; tone?: 'white' | 'grey' }
   | { type: 'cards'; id: string; nav?: string; eyebrow?: string; heading: string; intro?: string; cards: Card[] }
   | { type: 'steps'; id: string; nav?: string; eyebrow?: string; heading: string; intro?: string; steps: { title: string; text: string }[] }
   | { type: 'table'; id: string; nav?: string; eyebrow?: string; heading: string; intro?: string; columns: string[]; rows: string[][]; note?: string }
