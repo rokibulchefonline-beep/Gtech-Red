@@ -261,6 +261,23 @@ function panelHero(ic, name, kind, metrics) {
             ${rect(x + 10, y + 116, 80, 9, 0, C.ink)}${rect(x + 10, y + 134, 56, 9, 0, C.line)}${txt(x + 10, y + 168, '£' + (24 + i * 11), 16, 700, C.red)}</g>`; }).join('')}
         <rect x="362" y="510" width="236" height="60" fill="url(#rg)"/>${txt(480, 548, 'Add to basket', 17, 700, '#fff', 'middle')}`;
     }
+    if (kind === 'brand') {
+      const sw = ['#e11d2e', '#8f0f1c', '#15161c', '#ffd0d5'];
+      const r = S(u, 0.05, 0.35), rot = 45 * S(u, 0.15, 0.45);
+      return `<circle cx="480" cy="210" r="${80 * r}" fill="url(#rg)"/><rect x="442" y="172" width="${76 * r}" height="${76 * r}" fill="#fff" transform="rotate(${rot} 480 210) translate(${38 * (1 - r)} ${38 * (1 - r)})"/>
+        <circle cx="480" cy="210" r="${22 * S(u, 0.35, 0.5)}" fill="${C.red}"/>
+        ${txt(480, 336, 'YOUR BRAND', 22, 700, C.ink, 'middle')}<g opacity="${S(u, 0.4, 0.55)}">${txt(362, 392, 'Aa', 44, 700, C.ink)}${rect(440, 372, 140, 10, 0, C.line)}${rect(440, 390, 100, 10, 0, C.line)}</g>
+        ${sw.map((c, i) => { const d = S(u, 0.5 + i * 0.06, 0.65 + i * 0.06); return `<rect x="${362 + i * 60}" y="${430 + (1 - d) * 30}" width="52" height="60" fill="${c}" opacity="${d}" stroke="${C.line}" stroke-width="2"/>`; }).join('')}
+        <rect x="362" y="520" width="236" height="50" fill="url(#rg)" opacity="${S(u, 0.7, 0.85)}"/>${txt(480, 552, 'Brand guidelines', 16, 700, '#fff', 'middle')}`;
+    }
+    if (kind === 'ab') {
+      const a = 2.4 * S(u, 0.15, 0.6), b = 3.9 * S(u, 0.15, 0.75), w = S(u, 0.78, 0.9);
+      const col = (x, l, v, max, win) => `<rect x="${x}" y="110" width="112" height="300" fill="#f7f8fa"/>${txt(x + 56, 140, 'Variant ' + l, 15, 700, C.ink, 'middle')}
+        <rect x="${x + 28}" y="${400 - 220 * v / max}" width="56" height="${220 * v / max}" fill="${win ? C.red : '#c9ccd3'}"/>${txt(x + 56, 440, v.toFixed(1) + '%', 24, 700, win ? C.red : C.ink, 'middle')}`;
+      return `${col(362, 'A', a, 4, false)}${col(486, 'B', b, 4, true)}
+        <g opacity="${w}"><rect x="362" y="480" width="236" height="50" fill="#dcfce7"/>${icon('lucide:trophy', 380, 492, 26, C.green, 2.2)}${txt(418, 512, 'B wins  +62%', 17, 700, C.green)}</g>
+        ${txt(362, 570, '97% confidence', 15, 700, C.grey)}`;
+    }
     if (kind === 'app') {
       const rows = [['lucide:calendar-check', 'Bookings'], ['lucide:bell', 'Notifications'], ['lucide:credit-card', 'Payments'], ['lucide:star', 'Rewards']];
       return `<rect x="346" y="100" width="268" height="96" fill="url(#rg)"/>${txt(366, 140, 'Welcome back', 18, 700, '#fff')}${rect(366, 156, 120, 9, 0, '#ffffff88')}
@@ -319,3 +336,9 @@ const crm = panelHero('lucide:database', 'Your CRM', 'dash', [['Pipeline value',
 const saas = panelHero('lucide:cloud', 'Your SaaS', 'dash', [['Monthly recurring revenue', 86, (v) => '£' + Math.round(v) + 'k', 'lucide:coins'], ['Paying customers', 1420, (v) => Math.round(v).toLocaleString('en-GB'), 'lucide:users'], ['Monthly churn', 2.1, (v) => v.toFixed(1) + '%', 'lucide:trending-down'], ['Uptime', 99.95, (v) => v.toFixed(2) + '%', 'lucide:activity']]);
 const mvp = panelHero('lucide:rocket', 'Your MVP', 'app', [['Idea to launch', 10, (v) => Math.round(v) + ' weeks', 'lucide:rocket'], ['Beta users', 420, (v) => Math.round(v), 'lucide:users'], ['Weekly active', 52, pct, 'lucide:repeat'], ['Feedback points', 310, (v) => Math.round(v), 'lucide:message-square']]);
 Object.assign(scenes, { webapp, mobileapp, api, crm, saas, mvp });
+
+/* ===== Batch 6: branding & strategy heroes ===== */
+const brandid = panelHero('lucide:gem', 'Brand identity', 'brand', [['Brand recognition', 64, (v) => '+' + Math.round(v) + '%', 'lucide:eye'], ['Enquiry rate', 2.8, (v) => v.toFixed(1) + '%', 'lucide:mouse-pointer-click'], ['Average order value', 22, (v) => '+' + Math.round(v) + '%', 'lucide:coins'], ['Touchpoints aligned', 38, (v) => Math.round(v), 'lucide:layers']]);
+const advisory = panelHero('lucide:lightbulb', 'Growth plan', 'dash', [['Cost per acquisition', 46, (v) => '£' + Math.round(v), 'lucide:coins'], ['Qualified leads', 62, (v) => '+' + Math.round(v) + '%', 'lucide:users'], ['Marketing ROI', 5.2, (v) => v.toFixed(1) + 'x', 'lucide:trending-up'], ['Targets hit', 11, (v) => Math.round(v) + ' / 12', 'lucide:target']]);
+const cro = panelHero('lucide:flask-conical', 'A/B test', 'ab', [['Conversion rate', 4.0, (v) => v.toFixed(1) + '%', 'lucide:mouse-pointer-click'], ['Uplift vs baseline', 71, (v) => '+' + Math.round(v) + '%', 'lucide:trending-up'], ['Cost per lead', 41, (v) => '-' + Math.round(v) + '%', 'lucide:coins'], ['Tests run', 64, (v) => Math.round(v), 'lucide:flask-conical']]);
+Object.assign(scenes, { brandid, advisory, cro });
