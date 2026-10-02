@@ -120,14 +120,14 @@ export default function ServicesHub() {
       })}
 
       <section className="sh-why"><div className="wrap">
-        <div className="sp-head center"><h2>Why Choose GTech Digital as Your Digital Agency</h2></div>
+        <div className="sp-head center"><h2>Why Businesses Choose Our Digital Agency</h2></div>
         <div className="sh-why-grid">
           {why.map((w) => <div key={w.title} className="sh-why-card"><span className="sp-card-ico solid"><Icon name={w.icon} size={22} /></span><h3>{w.title}</h3><p>{w.text}</p></div>)}
         </div>
       </div></section>
 
       <Block slug="services" name="GTech Digital" s={{
-        type: 'steps', id: 'process', heading: 'How GTech Digital Services Work, Step by Step',
+        type: 'steps', id: 'process', heading: 'How Our Services Work, Step by Step',
         steps: [
           { title: 'Discover', text: 'Your goals, market and customers.' },
           { title: 'Audit', text: 'A free review of what works today.' },
@@ -138,7 +138,7 @@ export default function ServicesHub() {
         ],
       }} />
 
-      <FaqSection title="Frequently Asked Questions About GTech Digital Services" faqs={faqs} schema />
+      <FaqSection title="Frequently Asked Questions About Our Services" faqs={faqs} schema />
       <InquirySection />
     </>
   );

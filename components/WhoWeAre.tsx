@@ -32,16 +32,15 @@ export default function WhoWeAre() {
             <Link className="btn" href="/about">More about us</Link>
             <Link className="btn-line" href="/contact">Contact us</Link>
           </div>
-
-          <div className="who-partners">
-            <p>Certified partners</p>
-            <div className="who-logos">
-              {partners.map((b) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={b.name} src={b.logo} alt={b.name} loading="lazy" />
-              ))}
-            </div>
-          </div>
+        </div>
+      </div>
+      <div className="wrap who-partners">
+        <p>Certified partners</p>
+        <div className="who-logos">
+          {partners.map((b) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img key={b.name} src={b.logo} alt={b.name} loading="lazy" />
+          ))}
         </div>
       </div>
     </section>

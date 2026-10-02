@@ -28,7 +28,7 @@ const sections: Section[] = [
   {
     type: 'text',
     id: 'who-we-are',
-    heading: 'About GTech Digital: Marketing, Web and Software Agency',
+    heading: 'Who We Are: A Marketing, Web and Software Agency',
     paras: [
       'GTech Digital is a UK agency that helps businesses grow online. We bring SEO, paid media, social, web design and custom software together in one team, so your marketing, website and systems work as one, and every decision is driven by data.',
     ],
@@ -41,7 +41,7 @@ const sections: Section[] = [
   {
     type: 'impact',
     id: 'numbers',
-    heading: 'GTech Digital in Numbers',
+    heading: 'Our Results in Numbers',
     text: 'A snapshot of the work we have delivered for UK businesses.',
     stats: [
       { value: '10+', label: 'Years of experience' },
@@ -108,7 +108,7 @@ const sections: Section[] = [
   {
     type: 'steps',
     id: 'process',
-    heading: 'How GTech Digital Works With Clients, Step by Step',
+    heading: 'How We Work With Clients, Step by Step',
     steps: [
       { title: 'Discover', text: 'We learn your goals and market.' },
       { title: 'Audit', text: 'Free review of what works today.' },
@@ -124,7 +124,7 @@ const later: Section[] = [
   {
     type: 'reviews',
     id: 'reviews',
-    heading: 'GTech Digital Client Reviews and Testimonials',
+    heading: 'Client Reviews and Testimonials',
     reviews: [
       { name: 'Sarah K', role: 'MD, Home Services', text: 'GTech handle our SEO, ads and website. One team, clear reports and steady growth.' },
       { name: 'Andrew L', role: 'MD, Distribution', text: 'From marketing to custom software, they understand our business and deliver.' },
@@ -134,7 +134,7 @@ const later: Section[] = [
   {
     type: 'industries',
     id: 'industries',
-    heading: 'Industries GTech Digital Serves',
+    heading: 'Industries We Serve',
     items: [
       { slug: 'e-commerce', text: 'Online stores and product brands.' },
       { slug: 'healthcare', text: 'Clinics, dentists and wellness.' },
@@ -190,7 +190,7 @@ export default async function About() {
 
       {cases.length > 0 && (
         <section id="case-studies" className="sp-sec cases"><div className="wrap">
-          <Head s={{ heading: 'GTech Digital Case Studies and Client Results' }} />
+          <Head s={{ heading: 'Case Studies and Client Results' }} />
           <CaseCarousel docs={cases} />
           <p className="cases-all"><Link className="btn-dark" href="/case-studies">View All Case Studies</Link></p>
         </div></section>

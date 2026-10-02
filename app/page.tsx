@@ -41,8 +41,8 @@ export default async function Home() {
       <StatsBar />
 
       <WhoWeAre />
-      <BrandGrid />
       <OurServices />
+      <BrandGrid />
       <HowWeWork />
       <CaseStudies />
       <Results />

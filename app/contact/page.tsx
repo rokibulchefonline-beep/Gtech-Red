@@ -73,7 +73,7 @@ export default function Contact() {
 
       <PartnerStrip />
 
-      <FaqSection title="Frequently Asked Questions About Contacting GTech Digital" faqs={faqs} schema />
+      <FaqSection title="Frequently Asked Questions About Getting in Touch" faqs={faqs} schema />
     </>
   );
 }

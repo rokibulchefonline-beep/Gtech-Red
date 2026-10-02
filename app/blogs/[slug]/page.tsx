@@ -137,7 +137,7 @@ export default async function PostPage({ params }: Props) {
 
       {more.length > 0 && (
         <section className="bp-more"><div className="wrap">
-          <h2>More Digital Marketing Guides From GTech Digital</h2>
+          <h2>More Digital Marketing Guides</h2>
           <div className="bl-grid three">{more.map((m) => <PostCard key={m.slug} p={m} />)}</div>
         </div></section>
       )}
