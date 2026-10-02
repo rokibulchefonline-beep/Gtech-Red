@@ -80,42 +80,24 @@ export default function ServicesHub() {
       {services.map((g, n) => {
         const info = groupInfo[g.slug];
         const title = info?.title ?? g.title;
+        const shown = g.items.slice(0, 6);
         return (
-          <section key={g.slug} id={g.slug} className={`sh-group ${n % 2 ? 'alt' : ''}`}><div className="wrap">
-            <div className="sh-head">
-              <div>
-                <h2>{title} Services</h2>
-                <p>{g.intro}</p>
-              </div>
-              <Link className="sh-head-link" href={`/services/${g.slug}`}>View {title} <Icon name={uiIcons.arrowRight} size={16} /></Link>
+          <section key={g.slug} id={g.slug} className={`sz ${n % 2 ? 'flip alt' : ''}`}><div className="wrap sz-in">
+            <div className="sz-media">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={info?.image} alt={`${title} results dashboard`} loading="lazy" width={800} height={600} />
             </div>
-            <div className={`sh-grid ${n % 2 ? 'flip' : ''}`}>
-              <article className="sh-main">
-                <div className="sh-main-img">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={info?.image} alt={`${title} results dashboard`} loading="lazy" width={800} height={600} />
-                </div>
-                <div className="sh-main-body">
-                  <p className="sv-label">Core service</p>
-                  <h3>{title}</h3>
-                  <p>{info?.line}</p>
-                  <ul>{info?.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
-                  <Link className="sv-btn" href={`/services/${g.slug}`}>View Service <Icon name={uiIcons.arrowRight} size={16} /></Link>
-                </div>
-              </article>
-              <div className={`sh-list ${g.items.length <= 5 ? 'few' : ''}`}>
-                <p className="sh-list-title">{g.items.length} specialist services</p>
-                {g.items.map((it) => (
-                  <Link key={it.slug} href={`/services/${it.slug}`} className="sh-item">
-                    <span className="sh-item-ico"><Icon name={serviceIcons[it.slug]} size={20} /></span>
-                    <span className="sh-item-txt"><b>{it.name}</b><small>{it.blurb}</small></span>
-                    <Icon className="sh-item-arrow" name={uiIcons.arrowRight} size={18} />
-                  </Link>
+            <div className="sz-copy">
+              <span className="sz-ico"><Icon name={groupIcons[g.slug]} size={24} /></span>
+              <h2>{title} Services</h2>
+              <p>{info?.line ?? g.intro}</p>
+              <ul className="sz-list">
+                {shown.map((it) => (
+                  <li key={it.slug}><Link href={`/services/${it.slug}`}><Icon name={serviceIcons[it.slug]} size={18} /><span>{it.name}</span></Link></li>
                 ))}
-                <div className="sh-list-cta">
-                  <span><b>Not sure which one you need?</b><small>Get a free audit and a clear recommendation.</small></span>
-                  <Link href={`/contact?service=${encodeURIComponent(g.title)}`}>Ask a specialist</Link>
-                </div>
+              </ul>
+              <div className="sz-btns">
+                <Link className="sz-btn" href={`/services/${g.slug}`} aria-label={`View all ${title} services`}>View All {g.items.length} Services <Icon name={uiIcons.arrowRight} size={18} /></Link>
               </div>
             </div>
           </div></section>

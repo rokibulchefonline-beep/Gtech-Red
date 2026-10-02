@@ -723,3 +723,28 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 @keyframes cmFade{from{opacity:0}to{opacity:1}}@keyframes cmUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @media(max-width:800px){.cm{padding:0;place-items:end center}.cm-box{grid-template-columns:1fr;max-height:92vh}.cm-side{padding:28px 22px}.cm-side ul,.cm-ways{display:none}.cm-side h2{font-size:23px;padding-right:44px}.cm-side>p{margin:0}.cm-form{padding:22px 18px}.cm-close{top:10px;right:10px;background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}}
 .cm-form .contact-form>h3{display:none}.cm-form{padding-top:64px}@media(max-width:800px){.cm-form{padding-top:22px}}
+
+/* Services hub: minimal Z-pattern category rows */
+.sz{padding:96px 0;background:#fff;scroll-margin-top:120px}.sz.alt{background:#faf7f6}
+.sz-in{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.sz.flip .sz-media{order:2}
+.sz-media{background:#fbe9eb;box-shadow:0 30px 70px rgba(0,0,0,.1)}.sz-media img{display:block;width:100%;height:auto}
+.sz-ico{width:52px;height:52px;display:grid;place-items:center;background:var(--grad);color:#fff;margin-bottom:20px}
+.sz-copy h2{font-size:clamp(28px,3vw,40px);line-height:1.15;margin:0 0 14px}
+.sz-copy>p{color:#5b606b;font-size:17px;line-height:1.7;margin:0 0 26px;max-width:520px}
+.sz-list{list-style:none;padding:0;margin:0 0 30px;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e9e9ee}
+.sz-list li{border-bottom:1px solid #e9e9ee}
+.sz-list a{display:flex;align-items:center;gap:10px;padding:14px 10px 14px 0;font-weight:600;font-size:15px;color:#1a1a1f;transition:color .2s,padding .2s}
+.sz-list a svg{flex:none;color:var(--pink)}.sz-list a:hover{color:var(--pink);padding-left:6px}
+.sz-list li:nth-child(odd) a{padding-right:16px}
+.sz-btns{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.sz-btn{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#fff;font-weight:700;padding:15px 26px;box-shadow:0 12px 28px rgba(232,32,47,.28);transition:transform .2s}.sz-btn:hover{transform:translateY(-2px)}
+.sz-more{color:#8a8f99;font-weight:600;font-size:14px}
+@media(max-width:1000px){.sz-in{grid-template-columns:1fr;gap:36px}.sz.flip .sz-media{order:0}.sz{padding:72px 0}}
+@media(max-width:600px){.sz{padding:56px 0}.sz-list{grid-template-columns:1fr}.sz-list li:nth-child(odd) a{padding-right:10px}.sz-btn{width:100%;justify-content:center}}
+
+/* Hero buttons stack full width on phones */
+@media(max-width:600px){
+  .sp-hero-btns{flex-direction:column;align-items:stretch;width:100%;gap:12px}
+  .sp-hero-btns>a{width:100%;text-align:center;justify-content:center}
+}
