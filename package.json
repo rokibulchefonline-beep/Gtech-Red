@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/build.mjs",
     "start": "next start",
     "icons": "node scripts/build-icons.mjs",
     "visuals": "node scripts/build-service-visuals.mjs",
@@ -15,7 +15,8 @@
     "backgrounds": "node scripts/build-backgrounds.mjs",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "build:next": "next build"
   },
   "dependencies": {
     "mongodb": "^6.10.0",
