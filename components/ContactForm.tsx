@@ -40,7 +40,8 @@ export default function ContactForm({ service = '' }: { service?: string }) {
     <form onSubmit={submit} className="iq-form contact-form">
       <h3>Partner with <span className="red">GTech Digital</span></h3>
       {msg && <div className={`alert ${msg.ok ? 'ok' : 'err'}`}>{msg.text}</div>}
-      <input type="text" name="website" className="hp" tabIndex={-1} autoComplete="off" />
+      <input type="text" name="hp_field" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      <div className="cf-grid">
       <div className="iq-field"><Icon name={formIcons.business} size={18} />
         <input name="business" required placeholder="Business Name" aria-label="Business name" autoComplete="organization" /></div>
       <div className="iq-field"><Icon name={formIcons.person} size={18} />
@@ -49,9 +50,11 @@ export default function ContactForm({ service = '' }: { service?: string }) {
         <input type="tel" name="phone" required placeholder="Phone Number" aria-label="Phone number" autoComplete="tel" /></div>
       <div className="iq-field"><Icon name={formIcons.mail} size={18} />
         <input type="email" name="email" required placeholder="Email Address" aria-label="Email address" autoComplete="email" /></div>
+      <div className="iq-field cf-wide"><Icon name={formIcons.website} size={18} />
+        <input type="text" inputMode="url" name="website" placeholder="Website (optional)" aria-label="Website (optional)" autoComplete="url" /></div>
       <div className="iq-field"><Icon name={formIcons.service} size={18} />
         <select ref={serviceSel} name="service" required defaultValue={service} aria-label="Your required service">
-          <option value="" disabled>Your required service*</option>
+          <option value="" disabled>Service needed*</option>
           {services.map((g) => <optgroup key={g.slug} label={g.title}>{g.items.map((i) => <option key={i.slug}>{i.name}</option>)}</optgroup>)}
         </select></div>
       <div className="iq-field"><Icon name={formIcons.budget} size={18} />
@@ -59,6 +62,7 @@ export default function ContactForm({ service = '' }: { service?: string }) {
           <option value="" disabled>Monthly budget*</option>
           {budgets.map((b) => <option key={b}>{b}</option>)}
         </select></div>
+      </div>
       <button className="btn iq-submit" type="submit" disabled={busy}>{busy ? 'Sending...' : 'Get my free proposal'}</button>
     </form>
   );

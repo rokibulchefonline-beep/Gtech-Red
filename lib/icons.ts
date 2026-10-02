@@ -86,4 +86,5 @@ export const formIcons = {
   pin: 'lucide:map-pin',
   service: 'lucide:settings-2',
   budget: 'lucide:wallet',
+  website: 'lucide:globe',
 } as const;

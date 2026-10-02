@@ -22,12 +22,14 @@ export default async function Home() {
       <section className="hero-video">
         <HeroVideo />
         <div className="wrap">
-          <h1 className="hero-title">
-            <span>Digital Marketing</span>
-            <span>Agency for Scalable</span>
-            <span>Growth</span>
-          </h1>
-          <p className="hero-sub">GTech Digital is a UK digital marketing agency growing businesses with SEO, paid ads, social media, websites and software.</p>
+          <div className="hero-head">
+            <h1 className="hero-title">
+              <span>Digital Marketing</span>
+              <span>Agency for Scalable</span>
+              <span className="hero-last">Growth</span>
+            </h1>
+            <p className="hero-sub">GTech Digital helps UK businesses grow with smart, conversion-focused marketing.</p>
+          </div>
           <div className="hero-ctas">
             <Link className="btn-red" href="/contact">Let&apos;s Talk</Link>
             <Link className="btn-outline" href="/services">Our Services</Link>

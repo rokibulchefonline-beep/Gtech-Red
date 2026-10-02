@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const v = (k: string) => String(body[k] ?? '').trim();
 
-  if (v('website')) return NextResponse.json({ ok: true }); // honeypot
+  if (v('hp_field')) return NextResponse.json({ ok: true }); // honeypot (hidden field bots fill in)
 
   const name = v('name') || [v('firstName'), v('lastName')].filter(Boolean).join(' ');
   const business = v('business') || v('company');
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     await db.collection('leads').insertOne({
       name, business, email, phone, service,
       budget: v('budget'), designation: v('designation'), companySize: v('size'),
-      postcode: v('postcode'), message: v('message'), source: v('source') || 'contact', created_at: new Date(),
+      website: v('website').slice(0, 200), postcode: v('postcode'), message: v('message'), source: v('source') || 'contact', created_at: new Date(),
     });
     return NextResponse.json({ ok: true });
   } catch {
