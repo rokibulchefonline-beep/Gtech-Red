@@ -4,7 +4,6 @@ import PageHead from '@/components/PageHead';
 import { listDocs } from '@/lib/mongo';
 
 export const metadata: Metadata = { title: 'Case Studies' };
-export const dynamic = 'force-dynamic';
 
 export default async function Page() {
   const docs = await listDocs('case_studies');

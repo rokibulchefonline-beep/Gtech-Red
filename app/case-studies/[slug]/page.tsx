@@ -1,11 +1,16 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import PageHead from '@/components/PageHead';
-import { getDoc } from '@/lib/mongo';
+import { getDoc, listDocs } from '@/lib/mongo';
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamic = 'force-dynamic';
+// Pre-rendered at build time and served as static HTML (no per-request rendering).
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  return (await listDocs('case_studies', 200)).map((d) => ({ slug: d.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const doc = await getDoc('case_studies', (await params).slug);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Icon from '@/components/Icon';
 import { budgets, services } from '@/lib/data';
 import { formIcons } from '@/lib/icons';
@@ -8,6 +8,14 @@ import { formIcons } from '@/lib/icons';
 export default function ContactForm({ service = '' }: { service?: string }) {
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const [busy, setBusy] = useState(false);
+  const serviceSel = useRef<HTMLSelectElement>(null);
+
+  // On the static /contact page the service comes from ?service= in the URL.
+  useEffect(() => {
+    if (service || !serviceSel.current) return;
+    const s = new URLSearchParams(window.location.search).get('service');
+    if (s && [...serviceSel.current.options].some((o) => o.value === s)) serviceSel.current.value = s;
+  }, [service]);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,7 +50,7 @@ export default function ContactForm({ service = '' }: { service?: string }) {
       <div className="iq-field"><Icon name={formIcons.mail} size={18} />
         <input type="email" name="email" required placeholder="Email Address" aria-label="Email address" autoComplete="email" /></div>
       <div className="iq-field"><Icon name={formIcons.service} size={18} />
-        <select name="service" required defaultValue={service} aria-label="Your required service">
+        <select ref={serviceSel} name="service" required defaultValue={service} aria-label="Your required service">
           <option value="" disabled>Your required service*</option>
           {services.map((g) => <optgroup key={g.slug} label={g.title}>{g.items.map((i) => <option key={i.slug}>{i.name}</option>)}</optgroup>)}
         </select></div>

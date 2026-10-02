@@ -2,19 +2,13 @@ import { demoPosts } from '@/content/posts';
 import { getDb } from '@/lib/mongo';
 import { slugify } from '@/lib/util';
 
+export { formatDate, readTime } from '@/lib/blog-utils';
+
 // Blog posts come from MongoDB (collection `posts`) when available, otherwise the demo posts.
 // Fields: slug, title, excerpt, body (Markdown), category, image, date or created_at, featured.
 
-export type Post = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  image: string;
-  featured: boolean;
-  body: string;
-};
+export type { Post } from '@/lib/blog-utils';
+import type { Post } from '@/lib/blog-utils';
 
 export const author = {
   name: 'GTech Editorial Team',
@@ -42,10 +36,7 @@ export async function getPost(slug: string): Promise<Post | null> {
   return (await getPosts()).find((p) => p.slug === slug) ?? null;
 }
 
-export const readTime = (body: string) => Math.max(1, Math.round(body.split(/\s+/).length / 220));
 
-export const formatDate = (iso: string) =>
-  new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
 export type Block =
   | { type: 'h2' | 'h3'; text: string; id: string }

@@ -10,9 +10,8 @@ import { findGroup, findItem, services } from '@/lib/data';
 
 type Props = { params: Promise<{ slug: string }> };
 
-// Unknown slugs still 404 via notFound(); leaving dynamicParams on lets hosts without a
-// prerender cache (e.g. Cloudflare via OpenNext) render these pages on demand.
-export const dynamicParams = true;
+// Pre-rendered at build time and served as static HTML (no per-request rendering).
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return [

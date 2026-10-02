@@ -31,8 +31,7 @@ const faqs = [
   { q: 'What information should I include?', a: 'Your website, what you want to achieve and a rough monthly budget help us prepare a useful proposal.' },
 ];
 
-export default async function Contact({ searchParams }: { searchParams: Promise<{ service?: string }> }) {
-  const { service } = await searchParams;
+export default function Contact() {
   const jsonLd = [
     { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact GTech Digital', url: `${base}/contact`,
       mainEntity: { '@type': 'Organization', name: site.name, url: base,
@@ -56,7 +55,7 @@ export default async function Contact({ searchParams }: { searchParams: Promise<
       </section>
 
       <section id="form" className="sp-sec contact-sec"><div className="wrap contact-grid">
-        <ContactForm service={service} />
+        <ContactForm />
         <aside className="contact-aside">
           <h3>Get in touch</h3>
           <ul className="contact-ways">

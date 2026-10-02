@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { formatDate, readTime, type Post } from '@/lib/blog';
+import { formatDate, readTime, type Post } from '@/lib/blog-utils';
 
 export default function PostCard({ p, wide = false }: { p: Post; wide?: boolean }) {
   return (

@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Icon from '@/components/Icon';
+import { Suspense } from 'react';
 import Newsletter from '@/components/blog/Newsletter';
-import PostCard from '@/components/blog/PostCard';
+import { BlogList, BlogListView, BlogTools, BlogToolsView } from '@/components/blog/BlogBrowser';
 import { getPosts } from '@/lib/blog';
 import { slugify } from '@/lib/util';
-
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: { absolute: 'GTech Digital Blog | SEO, Marketing, Web & Software Insights' },
@@ -14,18 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/blogs' },
 };
 
-type Props = { searchParams: Promise<{ q?: string; category?: string }> };
-
-export default async function Blog({ searchParams }: Props) {
-  const { q = '', category = '' } = await searchParams;
+export default async function Blog() {
   const all = await getPosts();
   const cats = [...new Set(all.map((p) => p.category))];
-  const term = q.trim().toLowerCase();
-  const posts = all.filter((p) => (!category || slugify(p.category) === category) && (!term || `${p.title} ${p.excerpt} ${p.category}`.toLowerCase().includes(term)));
-  const filtered = Boolean(term || category);
-  const featured = filtered ? undefined : posts.find((p) => p.featured) ?? posts[0];
-  const rest = posts.filter((p) => p !== featured);
-  const catName = cats.find((c) => slugify(c) === category);
 
   return (
     <>
@@ -33,31 +22,12 @@ export default async function Blog({ searchParams }: Props) {
         <div className="bl-hero">
           <h1>Digital Marketing Blog and Guides</h1>
           <p>Practical advice on SEO, paid ads, social media, websites and software from the specialists who do the work every day.</p>
-          <form className="bl-search" action="/blogs" role="search">
-            {category && <input type="hidden" name="category" value={category} />}
-            <Icon name="lucide:search" size={18} />
-            <label className="sr-only" htmlFor="bl-q">Search articles</label>
-            <input id="bl-q" name="q" defaultValue={q} placeholder="Search articles..." />
-            <button type="submit">Search</button>
-          </form>
-          <nav className="bl-cats" aria-label="Categories">
-            <Link href="/blogs" className={!category ? 'on' : ''}>All Posts</Link>
-            {cats.map((c) => <Link key={c} href={`/blogs?category=${slugify(c)}`} className={category === slugify(c) ? 'on' : ''}>{c}</Link>)}
-          </nav>
+          <Suspense fallback={<BlogToolsView cats={cats} />}><BlogTools cats={cats} /></Suspense>
         </div>
       </div></section>
 
       <section className="wrap bl-main">
-        <div className="bl-list">
-          {filtered && (
-            <p className="bl-results">
-              {posts.length} {posts.length === 1 ? 'article' : 'articles'}{catName ? ` in ${catName}` : ''}{term ? ` for “${q}”` : ''} · <Link href="/blogs">Clear</Link>
-            </p>
-          )}
-          {featured && <PostCard p={featured} wide />}
-          {rest.length > 0 && <div className="bl-grid">{rest.map((p) => <PostCard key={p.slug} p={p} />)}</div>}
-          {!posts.length && <p className="bl-empty">No articles found. Try another search or browse all posts.</p>}
-        </div>
+        <Suspense fallback={<BlogListView posts={all} cats={cats} />}><BlogList posts={all} cats={cats} /></Suspense>
 
         <aside className="bl-side">
           <div className="bl-box">

@@ -13,7 +13,12 @@ import { slugify } from '@/lib/util';
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamic = 'force-dynamic';
+// Pre-rendered at build time and served as static HTML (no per-request rendering).
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  return (await getPosts()).map((p) => ({ slug: p.slug }));
+}
 
 const base = 'https://www.gtechdigital.co.uk';
 

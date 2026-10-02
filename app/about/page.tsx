@@ -10,7 +10,6 @@ import type { Section } from '@/content/types';
 import { site } from '@/lib/data';
 import { listDocs } from '@/lib/mongo';
 
-export const dynamic = 'force-dynamic';
 
 // Entity map: GTech Digital (Organization) -> UK digital marketing, web design and software agency;
 // services (SEO, Google Ads, social media, web development, custom software, branding); platform

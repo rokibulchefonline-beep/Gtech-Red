@@ -6,7 +6,6 @@ import { listDocs } from '@/lib/mongo';
 
 const base = 'https://www.gtechdigital.co.uk';
 
-export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = ['', '/services', '/about', '/contact', '/case-studies', '/industries', '/blogs', '/privacy-policy', '/terms', '/cookie-policy'];
