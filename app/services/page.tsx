@@ -17,13 +17,21 @@ export const metadata: Metadata = {
   alternates: { canonical: '/services' },
 };
 
-const groupInfo: Record<string, { image: string; title: string; line: string; points: string[] }> = {
-  'digital-marketing': { image: '/services/dm.webp', title: 'Digital Marketing', line: 'Be found on Google and in AI answers, and turn searches into customers.', points: ['SEO, local SEO and AI search', 'Google Ads and paid media', 'Content, links and reviews'] },
-  'social-media-marketing': { image: '/services/social.webp', title: 'Social Media Marketing', line: 'Content, ads and creators that grow your audience and your sales.', points: ['Content and community management', 'Paid social campaigns', 'Creators and social commerce'] },
-  'web-design-development': { image: '/services/web.webp', title: 'Web Design & Development', line: 'Fast, secure websites and stores designed to convert.', points: ['UX and UI design', 'WordPress, Laravel and ecommerce', 'Speed, SEO and maintenance'] },
-  'custom-software-development': { image: '/services/software.webp', title: 'Custom Software', line: 'Apps and systems built around how your business works.', points: ['Web and mobile apps', 'CRM, ERP and integrations', 'SaaS products and MVPs'] },
-  'branding-strategy': { image: '/services/branding.webp', title: 'Branding & Strategy', line: 'A clear brand and a clear plan to grow it.', points: ['Brand identity and guidelines', 'Marketing advisory', 'Conversion rate optimisation'] },
+const groupInfo: Record<string, { image: string; title: string; h2: string; line: string; points: string[]; cards: string[] }> = {
+  'digital-marketing': { image: '/services/dm.webp', title: 'Digital Marketing', h2: 'Digital Marketing Services: SEO, Google Ads and Content', line: 'Be found on Google and in AI answers, and turn searches into customers.', points: ['SEO, local SEO and AI search', 'Google Ads and paid media', 'Content, links and reviews'],
+    cards: ['search-engine-optimization', 'local-seo', 'ecommerce-seo', 'google-ads', 'content-marketing', 'reputation-management'] },
+  'social-media-marketing': { image: '/services/social.webp', title: 'Social Media Marketing', h2: 'Social Media Marketing Services for Facebook, Instagram, LinkedIn and TikTok', line: 'Content, ads and creators that grow your audience and your sales.', points: ['Content and community management', 'Paid social campaigns', 'Creators and social commerce'],
+    cards: ['facebook-marketing', 'instagram-marketing', 'linkedin-marketing', 'tiktok-marketing', 'pinterest-marketing', 'paid-media'] },
+  'web-design-development': { image: '/services/web.webp', title: 'Web Design & Development', h2: 'Web Design and Development Services: WordPress, Ecommerce and Laravel', line: 'Fast, secure websites and stores designed to convert.', points: ['UX and UI design', 'WordPress, Laravel and ecommerce', 'Speed, SEO and maintenance'],
+    cards: ['website-design', 'ecommerce-development', 'wordpress-development', 'laravel-development', 'cms-development', 'website-maintenance'] },
+  'custom-software-development': { image: '/services/software.webp', title: 'Custom Software', h2: 'Custom Software Development Services: Apps, CRM and SaaS', line: 'Apps and systems built around how your business works.', points: ['Web and mobile apps', 'CRM, ERP and integrations', 'SaaS products and MVPs'],
+    cards: ['web-application-development', 'mobile-app-development', 'api-system-integration', 'crm-erp-development', 'saas-product-development', 'mvp-development'] },
+  'branding-strategy': { image: '/services/branding.webp', title: 'Branding & Strategy', h2: 'Branding and Strategy Services: Identity, Advisory and CRO', line: 'A clear brand and a clear plan to grow it.', points: ['Brand identity and guidelines', 'Marketing advisory', 'Conversion rate optimisation'],
+    cards: ['branding', 'marketing-advisory', 'conversion-rate-optimization', 'website-design', 'content-marketing', 'reputation-management'] },
 };
+
+// Every service, so a category grid can include closely related services from other categories.
+const allItems = Object.fromEntries(services.flatMap((g) => g.items.map((it) => [it.slug, it])));
 
 const why = [
   { icon: 'lucide:users', title: 'One Joined-Up Team', text: 'Marketing, web and software specialists working from one plan.' },
@@ -57,8 +65,8 @@ export default function ServicesHub() {
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Services</b></nav>
-          <h1>GTech Digital <span className="red">Services</span></h1>
-          <p className="sp-lead">Marketing, websites and software from one UK team. Pick a service, or let us recommend the right mix for your goals and budget.</p>
+          <h1>Marketing, Web and Software Services of <span className="red">GTech Digital</span></h1>
+          <p className="sp-lead">GTech Digital is a UK digital agency offering {total}+ services across digital marketing, social media marketing, web design and development, custom software development and branding, all delivered by one joined-up team.</p>
           <div className="sp-hero-btns">
             <Link className="sp-btn-red" href="/contact">Book a Free Audit</Link>
             <a className="sp-btn-line" href="#digital-marketing">Explore Services</a>
@@ -80,39 +88,46 @@ export default function ServicesHub() {
       {services.map((g, n) => {
         const info = groupInfo[g.slug];
         const title = info?.title ?? g.title;
-        const shown = g.items.slice(0, 6);
+        const shown = (info?.cards ?? g.items.map((it) => it.slug)).map((slug) => allItems[slug]).filter(Boolean).slice(0, 6);
         return (
-          <section key={g.slug} id={g.slug} className={`sz ${n % 2 ? 'flip alt' : ''}`}><div className="wrap sz-in">
-            <div className="sz-media">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={info?.image} alt={`${title} results dashboard`} loading="lazy" width={800} height={600} />
-            </div>
-            <div className="sz-copy">
-              <span className="sz-ico"><Icon name={groupIcons[g.slug]} size={24} /></span>
-              <h2>{title} Services</h2>
-              <p>{info?.line ?? g.intro}</p>
-              <ul className="sz-list">
-                {shown.map((it) => (
-                  <li key={it.slug}><Link href={`/services/${it.slug}`}><Icon name={serviceIcons[it.slug]} size={18} /><span>{it.name}</span></Link></li>
-                ))}
-              </ul>
-              <div className="sz-btns">
-                <Link className="sz-btn" href={`/services/${g.slug}`} aria-label={`View all ${title} services`}>View All {g.items.length} Services <Icon name={uiIcons.arrowRight} size={18} /></Link>
+          <section key={g.slug} id={g.slug} className={`sz ${n % 2 ? 'flip alt' : ''}`}><div className="wrap"><div className="sz-in">
+              <div className="sz-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={info?.image} alt={`${title} results dashboard`} loading="lazy" width={800} height={600} />
               </div>
+              <div className="sz-copy">
+                <span className="sz-ico"><Icon name={groupIcons[g.slug]} size={24} /></span>
+                <h2>{info?.h2 ?? `${title} Services`}</h2>
+                <p>{info?.line ?? g.intro}</p>
+                <ul className="sz-points">{info?.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+                <div className="sz-btns">
+                  <Link className="sz-btn" href={`/services/${g.slug}`} aria-label={`View all ${title} services`}>View All {g.items.length} Services <Icon name={uiIcons.arrowRight} size={18} /></Link>
+                </div>
+              </div>
+            </div>
+            <div className="sz-grid">
+              {shown.map((it) => (
+                <Link key={it.slug} href={`/services/${it.slug}`} className="sz-card">
+                  <span className="sz-card-ico"><Icon name={serviceIcons[it.slug]} size={22} /></span>
+                  <h3>{it.name}</h3>
+                  <p>{it.blurb}</p>
+                  <span className="sz-card-more">Learn more <Icon name={uiIcons.arrowRight} size={16} /></span>
+                </Link>
+              ))}
             </div>
           </div></section>
         );
       })}
 
       <section className="sh-why"><div className="wrap">
-        <div className="sp-head center"><h2>Why Choose GTech Digital</h2></div>
+        <div className="sp-head center"><h2>Why Choose GTech Digital as Your Digital Agency</h2></div>
         <div className="sh-why-grid">
           {why.map((w) => <div key={w.title} className="sh-why-card"><span className="sp-card-ico solid"><Icon name={w.icon} size={22} /></span><h3>{w.title}</h3><p>{w.text}</p></div>)}
         </div>
       </div></section>
 
       <Block slug="services" name="GTech Digital" s={{
-        type: 'steps', id: 'process', heading: 'How GTech Digital Services Work',
+        type: 'steps', id: 'process', heading: 'How GTech Digital Services Work, Step by Step',
         steps: [
           { title: 'Discover', text: 'Your goals, market and customers.' },
           { title: 'Audit', text: 'A free review of what works today.' },
@@ -123,7 +138,7 @@ export default function ServicesHub() {
         ],
       }} />
 
-      <FaqSection title="GTech Digital Services FAQs" faqs={faqs} schema />
+      <FaqSection title="Frequently Asked Questions About GTech Digital Services" faqs={faqs} schema />
       <InquirySection />
     </>
   );

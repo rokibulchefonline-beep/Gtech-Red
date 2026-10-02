@@ -19,8 +19,8 @@ export default function Industries() {
       <section className="sp-hero compact">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Industries</b></nav>
-          <h1>Industries We Serve With <span className="red">Digital Marketing</span></h1>
-          <p className="sp-lead">Every sector has its own customers, rules and buying journeys. We tailor marketing, websites and software to the way your industry works.</p>
+          <h1>Industry Marketing Services of <span className="red">GTech Digital</span></h1>
+          <p className="sp-lead">GTech Digital provides industry-specific digital marketing, web design and software services for UK businesses in ecommerce, healthcare, hospitality, property, finance, education, travel, automotive, B2B and SaaS.</p>
           <ul className="sp-hero-points">{['Sector-specific strategy', 'Compliance-aware campaigns', 'Results tracked to revenue'].map((p) => <li key={p}><Tick />{p}</li>)}</ul>
         </div>
       </section>

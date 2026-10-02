@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK paid media agency planning and buying across Google, Meta, LinkedIn, TikTok and YouTube. Budget allocation, creative testing and attribution that grow profit.',
   hero: {
+    keyword: 'Paid Media',
     title: 'Paid Media Management',
     highlight: 'That Scales Profit',
     lead:
-      'We plan, buy and optimise paid media across every major platform, putting your budget where it earns the most and proving the return with honest attribution.',
+      'GTech Digital is a UK paid media agency that plans and buys advertising across Google, Meta, LinkedIn, TikTok and programmatic channels, testing creative weekly and moving budget to the campaigns with the strongest return.',
     motion: '/services/paidmedia.webp',
     points: ['Free media plan review', 'Budget tied to profit', 'One cross-channel report'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-paid-media',
       nav: 'What is it',
-      heading: 'What Is Paid Media?',
+      heading: 'What Is Paid Media and How Does It Work?',
       paras: [
         'Paid media is the strategy and buying behind all your advertising. Rather than running each platform on its own, we treat your budget as one investment and move it to the channels, audiences and creative that bring the most profit.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Paid Media Results in Numbers',
+      heading: 'Paid Media Results and Key Statistics',
       text: 'The numbers behind the paid media we manage for UK businesses.',
       stats: [
         { value: '£4M+', label: 'Media budget managed' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'planning',
       nav: 'Media planning',
-      heading: 'Media Planning and Budget Allocation',
+      heading: 'Media Planning, Audience Research and Budget Allocation',
       image: '/pages/paid-media/planning.webp',
       alt: 'Media plan budget split across Google, Meta, YouTube, LinkedIn and TikTok with blended ROAS',
       paras: ['We build a media plan from your margins, customer value and targets, then split budget across channels and funnel stages for the best overall return.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'channels',
       nav: 'Channels',
-      heading: 'Paid Media Buying Across Platforms',
+      heading: 'Paid Media Buying Across Google, Meta, TikTok and LinkedIn',
       image: '/pages/paid-media/channels.webp',
       alt: 'Cross-channel performance for Google Ads, Meta, LinkedIn, TikTok, YouTube and programmatic',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'creative',
       nav: 'Creative testing',
-      heading: 'Ad Creative Testing',
+      heading: 'Ad Creative Testing and Performance Creative',
       image: '/pages/paid-media/creative.webp',
       alt: 'Creative testing grid comparing ad variants and the winning angle',
       paras: ['Creative is now the biggest lever in paid media. We test new angles, formats and hooks every week and scale the winners.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'attribution',
       nav: 'Attribution',
-      heading: 'Paid Media Attribution and Tracking',
+      heading: 'Paid Media Attribution, Tracking and ROAS Reporting',
       image: '/pages/paid-media/attribution.webp',
       alt: 'Revenue from paid media growing with lower cost per acquisition and blended ROAS',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Paid Media Process',
+      heading: 'Our Paid Media Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Accounts, tracking and past performance reviewed.' },
         { title: 'Model', text: 'Targets set from margins and customer value.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Paid Media Case Studies',
+      heading: 'Paid Media Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Paid Media Client Reviews',
+      heading: 'Paid Media Client Reviews and Testimonials',
       reviews: [
         { name: 'Tom B', role: 'CEO, DTC Brand', text: 'They rebalanced our budget across Google, Meta and TikTok and blended ROAS went from 2.8x to 5.1x.' },
         { name: 'Nina S', role: 'Head of Growth, SaaS', text: 'For the first time we trust our attribution, and we cut cost per trial by a third.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Paid Media for Your Industry',
+      heading: 'Paid Media Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Profit-led media plans for online stores and DTC brands.' },
         { slug: 'technology-saas', text: 'Trial and demo growth with CAC and LTV targets.' },

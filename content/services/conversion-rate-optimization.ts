@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK conversion rate optimisation (CRO) agency using research, heatmaps and A/B testing to turn more website visitors into leads and sales.',
   hero: {
+    keyword: 'Conversion Rate Optimisation',
     title: 'Conversion Rate Optimisation',
     highlight: 'That Grows Sales',
     lead:
-      'We find out why visitors leave, test better versions of your pages and keep only what wins, so you grow revenue without paying for more traffic.',
+      'GTech Digital provides conversion rate optimisation (CRO) services in the UK, using analytics, heatmaps, user research and A/B testing to find why visitors leave and turn more website traffic into leads and sales.',
     motion: '/services/cro.webp',
     points: ['Free CRO audit', 'Research-led tests', 'Results proven by data'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-cro',
       nav: 'What is it',
-      heading: 'What Is Conversion Rate Optimisation?',
+      heading: 'What Is Conversion Rate Optimisation and How Does It Work?',
       paras: [
         'Conversion rate optimisation (CRO) is the process of improving your website so more visitors take action, such as buying, booking or enquiring. Doubling your conversion rate has the same effect as doubling your traffic, at a fraction of the cost.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Conversion Rate Optimisation Results in Numbers',
+      heading: 'Conversion Rate Optimisation Results and Key Statistics',
       text: 'The numbers behind the CRO programmes we run.',
       stats: [
         { value: '+71%', label: 'Average conversion uplift' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'research',
       nav: 'Research',
-      heading: 'Conversion Research and User Insight',
+      heading: 'Conversion Research: Heatmaps, Analytics and User Insight',
       image: '/pages/cro/research.webp',
       alt: 'Web page annotated with conversion issues like unclear headline, weak value proposition and long form',
       paras: ['We combine analytics, heatmaps, recordings and surveys to pinpoint what stops people converting.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'funnel',
       nav: 'Funnel',
-      heading: 'Funnel Analysis and Drop-Off Fixes',
+      heading: 'Funnel Analysis, Checkout and Form Drop-Off Fixes',
       image: '/pages/cro/funnel.webp',
       alt: 'Conversion funnel from landing page to converted visitors with conversion rate and cost per lead',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'testing',
       nav: 'A/B testing',
-      heading: 'A/B Testing',
+      heading: 'A/B Testing and Multivariate Experiments',
       image: '/pages/cro/abtest.webp',
       alt: 'A/B test where variant B beats variant A with higher conversion rate and 97% confidence',
       paras: ['Every change is tested against the original with real visitors, and we only roll out winners backed by statistical confidence.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'programme',
       nav: 'Programme',
-      heading: 'Ongoing CRO Programme',
+      heading: 'Ongoing CRO Programme and Testing Roadmap',
       image: '/pages/cro/checklist.webp',
       alt: 'CRO programme checklist with tracking audit, heatmaps, surveys, roadmap and A/B tests',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Conversion Rate Optimisation Process',
+      heading: 'Our Conversion Rate Optimisation Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Tracking and quick wins.' },
         { title: 'Research', text: 'Data, heatmaps and users.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Conversion Rate Optimisation Case Studies',
+      heading: 'Conversion Rate Optimisation Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Conversion Rate Optimisation Client Reviews',
+      heading: 'Conversion Rate Optimisation Client Reviews and Testimonials',
       reviews: [
         { name: 'Ellie D', role: 'Ecommerce Manager', text: 'Conversion rate up 40% in six months, with no extra ad spend.' },
         { name: 'George N', role: 'Marketing Director, Insurance', text: 'A shorter quote form alone cut our cost per lead by a third.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Conversion Rate Optimisation for Your Industry',
+      heading: 'Conversion Rate Optimisation Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Product, basket and checkout optimisation.' },
         { slug: 'finance', text: 'Quote and application forms that convert.' },

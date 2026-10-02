@@ -13,10 +13,11 @@ const content: ServiceContent = {
   metaDescription:
     'White-hat link building and digital PR for UK businesses. Relevant, editorial backlinks that lift rankings, authority and AI visibility. Free backlink audit.',
   hero: {
+    keyword: 'Link Building',
     title: 'Link Building That Builds',
     highlight: 'Real Authority',
     lead:
-      'We earn editorial links and brand mentions from respected UK and industry websites, strengthening your rankings on Google and your credibility with AI search.',
+      'GTech Digital provides white-hat link building services in the UK, earning quality backlinks through digital PR, niche outreach and local citations that raise domain authority and help websites rank higher on Google.',
     motion: '/services/backlinks.webp',
     points: ['Free backlink audit', '100% white-hat', 'Every link reported'],
   },
@@ -26,7 +27,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-link-building',
       nav: 'What is it',
-      heading: 'What Is Link Building?',
+      heading: 'What Is Link Building and How Does It Work?',
       paras: [
         'A backlink is a link from another website to yours. Google treats relevant links from trusted sites as votes of confidence, and AI tools use mentions across the web to decide which brands to recommend. Link building is the process of earning those votes.',
       ],
@@ -39,7 +40,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Link Building Results in Numbers',
+      heading: 'Link Building Results and Key Statistics',
       text: 'The numbers behind our link building for UK businesses.',
       stats: [
         { value: '4,800+', label: 'Links earned' },
@@ -52,7 +53,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'digital-pr',
       nav: 'Digital PR',
-      heading: 'Digital PR Link Building',
+      heading: 'Digital PR Link Building and Media Coverage',
       image: '/pages/backlinks/pr.webp',
       alt: 'Website earning links from national press, podcasts, trade magazines and associations',
       paras: ['We create stories, data and expert commentary that journalists want to cover, earning high-authority links and brand mentions at the same time.'],
@@ -62,7 +63,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'outreach',
       nav: 'Outreach',
-      heading: 'Niche Outreach Link Building',
+      heading: 'Niche Edits, Guest Posts and Outreach Link Building',
       image: '/pages/backlinks/outreach.webp',
       alt: 'Outreach funnel from prospects to relevant sites, replies and links earned',
       flip: true,
@@ -74,7 +75,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'local-citations',
       nav: 'Local citations',
-      heading: 'Local Citation Building',
+      heading: 'Local Citation Building and Business Directory Links',
       image: '/pages/backlinks/local.webp',
       alt: 'Local citation checklist with high NAP consistency across directories',
       paras: ['For local businesses, consistent name, address and phone (NAP) listings on trusted directories strengthen map pack rankings and customer trust.'],
@@ -84,7 +85,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'audit',
       nav: 'Link audit',
-      heading: 'Backlink Audit and Clean-Up',
+      heading: 'Backlink Audit, Toxic Link Removal and Disavow',
       image: '/pages/backlinks/audit.webp',
       alt: 'Growth in healthy referring domains with toxic links removed',
       flip: true,
@@ -112,7 +113,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Link Building Process',
+      heading: 'Our Link Building Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'We review your links and competitors.' },
         { title: 'Strategy', text: 'Target pages and link types agreed.' },
@@ -126,7 +127,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Link Building Case Studies',
+      heading: 'Link Building Case Studies and Results',
     },
     {
       type: 'table',
@@ -159,7 +160,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Link Building Client Reviews',
+      heading: 'Link Building Client Reviews and Testimonials',
       reviews: [
         { name: 'Chris N', role: 'Founder, Fintech', text: 'Their data campaign landed us in three national newspapers and our key pages jumped to page one.' },
         { name: 'Amelia F', role: 'Marketing Lead, Retail', text: 'Every link is relevant and reported. No dodgy directories, just real sites our customers read.' },
@@ -170,7 +171,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Link Building for Your Industry',
+      heading: 'Link Building Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Product and gift-guide features that link to category pages.' },
         { slug: 'finance', text: 'Expert commentary in trusted finance and business press.' },

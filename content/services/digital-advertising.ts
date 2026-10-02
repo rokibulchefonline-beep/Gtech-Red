@@ -13,10 +13,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK digital advertising agency running search, social, display, video and retargeting campaigns that turn ad spend into measurable leads and sales.',
   hero: {
+    keyword: 'Digital Advertising',
     title: 'Digital Advertising Across',
     highlight: 'Every Channel',
     lead:
-      'We plan and run digital advertising across Google, Meta, TikTok, LinkedIn, YouTube and display networks, reaching the right people with the right message at the right cost.',
+      'GTech Digital runs digital advertising campaigns for UK businesses across Google search, social media, display and video, with precise targeting, retargeting and conversion tracking that turns ad spend into measurable leads and sales.',
     motion: '/services/digital.webp',
     points: ['Free ad account review', 'All channels, one team', 'Clear cost-per-result reporting'],
   },
@@ -26,7 +27,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-digital-advertising',
       nav: 'What is it',
-      heading: 'What Is Digital Advertising?',
+      heading: 'What Is Digital Advertising and How Does It Work?',
       paras: [
         'Digital advertising covers every paid ad you run online, from Google search ads to Instagram Reels and banner ads. Each channel reaches people at a different moment, so the best results come from choosing the right mix for your goals.',
       ],
@@ -39,7 +40,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Digital Advertising Results in Numbers',
+      heading: 'Digital Advertising Results and Key Statistics',
       text: 'The numbers behind the campaigns we run for UK businesses.',
       stats: [
         { value: '6', label: 'Ad platforms managed' },
@@ -52,7 +53,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'search-ads',
       nav: 'Search ads',
-      heading: 'Search Advertising',
+      heading: 'Search Advertising on Google and Microsoft Ads',
       image: '/pages/digital-advertising/search.webp',
       alt: 'Sponsored search ad for an accountant with click-through and lead figures',
       paras: ['Google and Microsoft search ads put you in front of buyers at the exact moment they look for your product or service.'],
@@ -62,7 +63,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'social-ads',
       nav: 'Social ads',
-      heading: 'Social Media Advertising',
+      heading: 'Social Media Advertising on Meta, TikTok and LinkedIn',
       image: '/pages/digital-advertising/social.webp',
       alt: 'Social advertising results across Facebook, Instagram, TikTok, LinkedIn, Pinterest and YouTube',
       flip: true,
@@ -74,7 +75,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'display-video',
       nav: 'Display & video',
-      heading: 'Display and Video Advertising',
+      heading: 'Display, YouTube and Programmatic Video Advertising',
       image: '/pages/digital-advertising/display.webp',
       alt: 'Video ad with views, click-through, conversions and cost per sale',
       paras: ['Display, native and video ads build recognition with large, well-targeted audiences, so more people choose you when they are ready to buy.'],
@@ -84,7 +85,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'retargeting',
       nav: 'Retargeting',
-      heading: 'Retargeting and Remarketing',
+      heading: 'Retargeting and Remarketing Campaigns That Recover Lost Visitors',
       image: '/pages/digital-advertising/retargeting.webp',
       alt: 'Retargeting funnel from site visitors to returning customers and conversions',
       flip: true,
@@ -112,7 +113,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Digital Advertising Process',
+      heading: 'Our Digital Advertising Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Goals, margins, audience and past results.' },
         { title: 'Plan', text: 'Channels, budget split and targets.' },
@@ -126,7 +127,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Digital Advertising Case Studies',
+      heading: 'Digital Advertising Case Studies and Results',
     },
     {
       type: 'table',
@@ -159,7 +160,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Digital Advertising Client Reviews',
+      heading: 'Digital Advertising Client Reviews and Testimonials',
       reviews: [
         { name: 'Sophie L', role: 'Owner, Fashion Brand', text: 'TikTok and Meta ads took us from local to national, with ROAS above 4x every month.' },
         { name: 'Ahmed R', role: 'Director, Training Provider', text: 'One team handles Google, LinkedIn and retargeting, and the leads are better than ever.' },
@@ -170,7 +171,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Digital Advertising for Your Industry',
+      heading: 'Digital Advertising Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Catalogue, Shopping and retargeting ads that drive profitable sales.' },
         { slug: 'education', text: 'Enrolment campaigns targeting students and parents.' },

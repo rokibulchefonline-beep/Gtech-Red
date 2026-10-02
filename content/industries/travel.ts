@@ -11,7 +11,7 @@ export default industry({
   hero: {
     title: 'Travel Marketing That',
     highlight: 'Books Trips',
-    lead: 'We help tour operators, travel agents and holiday brands inspire travellers, rank for destinations and convert planning into booked trips.',
+    lead: 'GTech Digital provides travel marketing services for UK tour operators, travel agents and holiday brands, combining destination SEO, Google Ads, Pinterest, Instagram and YouTube to turn trip research into booked holidays.',
     points: ['Free booking audit', 'Seasonal demand planning', 'Bookings and ROAS tracked'],
   },
   what: {
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'More Trips Booked, Season After Season', stats: [['£1.4M', 'Average bookings value a year'], ['6.8x', 'Average Google Ads ROAS'], ['+212%', 'Average destination traffic growth'], ['34%', 'Average repeat travellers']] },
   media: [
-    { nav: 'Bookings', topic: 'Bookings growth', heading: 'More Bookings at a Lower Cost', para: 'We plan campaigns around booking windows and peak demand so budget works hardest when travellers decide.', bullets: ['Seasonal campaign planning', 'Google Ads and Performance Max', 'Early booking promotions', 'Revenue and ROAS tracking'], alt: 'Online bookings value growing with trips booked, average booking and ROAS' },
-    { nav: 'Channels', topic: 'Inspiration channels', heading: 'Inspire Before They Search', para: 'Pinterest, Instagram and YouTube shape where people want to go. Search then captures the decision.', bullets: ['Destination guides and SEO', 'Pinterest and Instagram content', 'YouTube destination videos', 'Email offers and newsletters'], alt: 'How travellers find you: destination SEO, Google Ads, Pinterest, Instagram, email and YouTube' },
-    { nav: 'Journey', topic: 'Booking journey', heading: 'From Research to Booked Trip', para: 'Clear prices, live availability and visible trust signals make travellers confident enough to book.', bullets: ['Live pricing and availability', 'Trip and itinerary pages', 'Reviews and trust badges', 'Abandoned enquiry follow-up'], alt: 'Traveller journey from destination research to trip pages, quotes and bookings' },
-    { nav: 'Trust', topic: 'Trust & operations', heading: 'Built for Travel Businesses', para: 'We make protection details clear and connect your booking systems so the experience feels seamless.', bullets: ['ATOL and ABTA details visible', 'Booking engine integration', 'Multi-currency checkout', 'Late deals and offers feeds'], alt: 'Travel website checklist with ATOL and ABTA details, live pricing and multi-currency checkout' },
+    { nav: 'Bookings', topic: 'Online bookings growth and ROAS', heading: 'More Bookings at a Lower Cost', para: 'We plan campaigns around booking windows and peak demand so budget works hardest when travellers decide.', bullets: ['Seasonal campaign planning', 'Google Ads and Performance Max', 'Early booking promotions', 'Revenue and ROAS tracking'], alt: 'Online bookings value growing with trips booked, average booking and ROAS' },
+    { nav: 'Channels', topic: 'Destination inspiration and social channels', heading: 'Inspire Before They Search', para: 'Pinterest, Instagram and YouTube shape where people want to go. Search then captures the decision.', bullets: ['Destination guides and SEO', 'Pinterest and Instagram content', 'YouTube destination videos', 'Email offers and newsletters'], alt: 'How travellers find you: destination SEO, Google Ads, Pinterest, Instagram, email and YouTube' },
+    { nav: 'Journey', topic: 'Traveller booking journey and live pricing', heading: 'From Research to Booked Trip', para: 'Clear prices, live availability and visible trust signals make travellers confident enough to book.', bullets: ['Live pricing and availability', 'Trip and itinerary pages', 'Reviews and trust badges', 'Abandoned enquiry follow-up'], alt: 'Traveller journey from destination research to trip pages, quotes and bookings' },
+    { nav: 'Trust', topic: 'ATOL, ABTA trust signals and booking systems', heading: 'Built for Travel Businesses', para: 'We make protection details clear and connect your booking systems so the experience feels seamless.', bullets: ['ATOL and ABTA details visible', 'Booking engine integration', 'Multi-currency checkout', 'Late deals and offers feeds'], alt: 'Travel website checklist with ATOL and ABTA details, live pricing and multi-currency checkout' },
   ],
   cards: [
     ['lucide:search', 'Destination SEO', 'Rank for where travellers go.'], ['simple-icons:googleads', 'Google Ads', 'Capture booking intent.'],

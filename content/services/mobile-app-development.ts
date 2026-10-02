@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK mobile app development company building iOS, Android and cross-platform apps with Flutter and React Native, from design and build to App Store launch.',
   hero: {
+    keyword: 'Mobile App Development',
     title: 'Mobile App Development for',
     highlight: 'iOS and Android',
     lead:
-      'We design, build and launch iOS and Android apps that are fast, easy to use and built to grow your customer loyalty and revenue.',
+      'GTech Digital is a UK mobile app development company that designs, builds and launches iOS and Android apps with Flutter, React Native or native code, from user experience design to App Store and Google Play release.',
     motion: '/services/mobileapp.webp',
     points: ['Free app consultation', 'iOS and Android from one codebase', 'App Store launch handled'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-mobile-app-development',
       nav: 'What is it',
-      heading: 'What Is Mobile App Development?',
+      heading: 'What Is Mobile App Development and How Does It Work?',
       paras: [
         'Mobile app development is designing, building and launching apps for iPhone and Android. Today most apps are built cross-platform with Flutter or React Native, giving you both platforms from one codebase at a lower cost.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Mobile App Development Results in Numbers',
+      heading: 'Mobile App Development Results and Key Statistics',
       text: 'The numbers behind the mobile apps we build and support.',
       stats: [
         { value: '40+', label: 'Apps launched' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'design',
       nav: 'App design',
-      heading: 'Mobile App UX and UI Design',
+      heading: 'Mobile App UX and UI Design: Wireframes to Prototypes',
       image: '/pages/mobile/app.webp',
       alt: 'Mobile app with bookings, push notifications, payments and rewards, plus downloads, rating and retention',
       paras: ['We design simple screens around the few things users do most, so your app feels natural from the first tap.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'platforms',
       nav: 'Platforms',
-      heading: 'iOS, Android and Cross-Platform App Development',
+      heading: 'iOS, Android and Cross-Platform App Development With Flutter and React Native',
       image: '/pages/mobile/platforms.webp',
       alt: 'Mobile platforms: iOS, Android, Flutter, React Native, progressive web app and back end',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'features',
       nav: 'Features',
-      heading: 'Mobile App Features and Integrations',
+      heading: 'Mobile App Features: Payments, Push Notifications and APIs',
       image: '/pages/mobile/features.webp',
       alt: 'App features: push notifications, maps, payments, offline mode, Face ID and messaging',
       paras: ['From push notifications to in-app payments, we build the features that bring users back and make it easy to buy.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'launch',
       nav: 'Launch',
-      heading: 'App Store Launch and Growth',
+      heading: 'App Store Launch, ASO and User Growth',
       image: '/pages/mobile/launch.webp',
       alt: 'App launch checklist with store listings, beta testing, analytics, privacy and app store optimisation',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Mobile App Development Process',
+      heading: 'Our Mobile App Development Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Users, goals and features.' },
         { title: 'Design', text: 'Prototype tested with users.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Mobile App Development Case Studies',
+      heading: 'Mobile App Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Mobile App Development Client Reviews',
+      heading: 'Mobile App Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Lucy M', role: 'Owner, Fitness Studio', text: 'Members book classes in the app and repeat visits are up a third.' },
         { name: 'Hamza I', role: 'Founder, Food Delivery', text: 'Launched on both stores in 12 weeks with a 4.8 rating from day one.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Mobile App Development for Your Industry',
+      heading: 'Mobile App Development Services by Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'Ordering, booking and loyalty apps.' },
         { slug: 'healthcare', text: 'Appointment and wellbeing apps.' },

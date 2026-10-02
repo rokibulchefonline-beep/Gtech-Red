@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK marketing advisory and fractional CMO services: senior guidance on strategy, channels, budgets and KPIs to grow faster without a full-time hire.',
   hero: {
+    keyword: 'Marketing Advisory',
     title: 'Marketing Advisory and',
     highlight: 'Fractional CMO Services',
     lead:
-      'We give you an experienced marketing lead who sets the strategy, focuses your budget and keeps your team and agencies delivering results.',
+      'GTech Digital provides marketing advisory and fractional CMO services for UK businesses, giving senior leadership on marketing strategy, channel mix, budgets and KPIs without the cost of a full-time marketing director.',
     motion: '/services/advisory.webp',
     points: ['Free strategy session', 'Fractional CMO from 2 days a month', 'Clear plan and KPIs'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-marketing-advisory',
       nav: 'What is it',
-      heading: 'What Is Marketing Advisory?',
+      heading: 'What Is Marketing Advisory and How Does It Work?',
       paras: [
         'Marketing advisory gives you senior marketing expertise on a part-time basis, often called a fractional CMO. It suits growing businesses that need a clear strategy and someone to lead marketing, but are not ready for a full-time director.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Marketing Advisory Results in Numbers',
+      heading: 'Marketing Advisory Results and Key Statistics',
       text: 'The numbers behind the businesses we advise.',
       stats: [
         { value: '-45%', label: 'Average cost per acquisition' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'growth-plan',
       nav: 'Growth plan',
-      heading: '12-Month Marketing Growth Plan',
+      heading: '12-Month Marketing Growth Plan and Roadmap',
       image: '/pages/advisory/plan.webp',
       alt: 'Twelve-month growth plan with goals, audience, channels, budget and measurement',
       paras: ['We turn business goals into a practical marketing plan with priorities, owners and targets for every quarter.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'budget',
       nav: 'Budget',
-      heading: 'Marketing Budget Allocation',
+      heading: 'Marketing Budget Allocation by Channel and ROI',
       image: '/pages/advisory/budget.webp',
       alt: 'Recommended marketing budget split across SEO, Google Ads, paid social, email and testing',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'kpis',
       nav: 'KPIs',
-      heading: 'Marketing KPIs and Reporting',
+      heading: 'Marketing KPIs, Dashboards and Performance Reporting',
       image: '/pages/advisory/kpis.webp',
       alt: 'Cost per acquisition falling from £84 to £46 with more qualified leads and higher ROI',
       paras: ['We set up the dashboards and tracking that show what marketing really delivers, from first click to revenue.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'leadership',
       nav: 'Leadership',
-      heading: 'Fractional CMO Leadership',
+      heading: 'Fractional CMO and Outsourced Marketing Leadership',
       image: '/pages/advisory/team.webp',
       alt: 'Monthly advisory checklist with strategy sessions, agency review, budget checks and reporting',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Marketing Advisory Process',
+      heading: 'Our Marketing Advisory Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Marketing, data and team.' },
         { title: 'Plan', text: 'Goals, channels and budget.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Marketing Advisory Case Studies',
+      heading: 'Marketing Advisory Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Marketing Advisory Client Reviews',
+      heading: 'Marketing Advisory Client Reviews and Testimonials',
       reviews: [
         { name: 'Mark S', role: 'CEO, Professional Services', text: 'We stopped guessing. Budget now goes where the leads actually come from.' },
         { name: 'Priya L', role: 'Founder, D2C Brand', text: 'Like having a marketing director for a fraction of the cost.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Marketing Advisory for Your Industry',
+      heading: 'Marketing Advisory Services by Industry',
       items: [
         { slug: 'technology-saas', text: 'Go-to-market and growth for SaaS.' },
         { slug: 'b2b-marketing', text: 'Pipeline-focused B2B strategy.' },

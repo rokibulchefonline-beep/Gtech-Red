@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK digital marketing agency combining SEO, Google Ads, paid media, content and reputation management into one plan that brings more leads and sales for less.',
   hero: {
+    keyword: 'Digital Marketing',
     title: 'Digital Marketing That Brings',
     highlight: 'Real Customers',
     lead:
-      'We combine SEO, Google Ads, content and paid media into one joined-up plan, so every channel works together to grow your leads and revenue.',
+      'GTech Digital is a UK digital marketing agency that combines SEO, Google Ads, paid social, content marketing and online reputation management into one data-led plan that grows leads, sales and return on marketing investment.',
     motion: '/services/dm.webp',
     points: ['Free digital marketing audit', 'One plan across every channel', 'Revenue tracked, not vanity metrics'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-digital-marketing',
       nav: 'What is it',
-      heading: 'What Is Digital Marketing?',
+      heading: 'What Is Digital Marketing and How Does It Work?',
       paras: [
         'Digital marketing is how you reach and win customers online, through search engines, ads, content and reviews. The best results come when channels work together: SEO builds lasting visibility, paid ads bring instant demand and content and reviews build trust.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Digital Marketing Results in Numbers',
+      heading: 'Digital Marketing Results and Key Statistics',
       text: 'The numbers behind the digital marketing we run for UK businesses.',
       stats: [
         { value: '£12M+', label: 'Client revenue from marketing' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'channels',
       nav: 'Channels',
-      heading: 'Digital Marketing Channels We Manage',
+      heading: 'Digital Marketing Channels: SEO, PPC, Social, Email and Content',
       image: '/pages/dm/channels.webp',
       alt: 'Digital marketing channels: SEO, Google Ads, paid social, content, reputation and backlinks with results',
       paras: ['Our specialists cover every major channel, working from one shared plan instead of competing for credit.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'funnel',
       nav: 'Full funnel',
-      heading: 'Full-Funnel Digital Marketing Strategy',
+      heading: 'Full-Funnel Digital Marketing Strategy: Awareness to Conversion',
       image: '/pages/dm/funnel.webp',
       alt: 'Marketing funnel from reach to visits, leads and customers with cost per acquisition and ROI',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'budget',
       nav: 'Budget',
-      heading: 'Marketing Budget and Channel Mix',
+      heading: 'Digital Marketing Budget and Channel Mix Planning',
       image: '/pages/dm/budget.webp',
       alt: 'Marketing budget split across Google Ads, SEO and content, paid social, retargeting and reputation',
       paras: ['We move budget towards the channels that bring customers at the lowest cost, and away from those that do not.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reporting',
       nav: 'Reporting',
-      heading: 'Marketing Tracking and ROI Reporting',
+      heading: 'Marketing Tracking, Attribution and ROI Reporting',
       image: '/pages/dm/reporting.webp',
       alt: 'Revenue from marketing growing with leads, cost per acquisition and conversion rate',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Digital Marketing Process',
+      heading: 'Our Digital Marketing Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Channels, tracking and competitors.' },
         { title: 'Plan', text: 'Goals, channels and budget.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Digital Marketing Case Studies',
+      heading: 'Digital Marketing Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Digital Marketing Client Reviews',
+      heading: 'Digital Marketing Client Reviews and Testimonials',
       reviews: [
         { name: 'Sarah K', role: 'MD, Home Services', text: 'SEO and Google Ads together now bring us over 300 enquiries a month.' },
         { name: 'Daniel R', role: 'Founder, Online Store', text: 'Our cost per sale fell by a third once all channels ran from one plan.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Digital Marketing for Your Industry',
+      heading: 'Digital Marketing Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'SEO, Shopping and paid social that sell.' },
         { slug: 'healthcare', text: 'Patient acquisition for clinics.' },

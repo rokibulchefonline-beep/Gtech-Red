@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK web application development company building secure customer portals, staff dashboards and business tools with React, Next.js, Laravel and Node.js.',
   hero: {
+    keyword: 'Web Application Development',
     title: 'Web Application Development',
     highlight: 'for Your Business',
     lead:
-      'We build secure web applications, portals and dashboards that your customers and staff can use from any browser, on any device.',
+      'GTech Digital is a UK web application development company that builds secure customer portals, dashboards and business tools with React, Next.js, Laravel and Node.js, accessible from any browser on any device.',
     motion: '/services/webapp.webp',
     points: ['Free discovery call', 'Clickable prototype first', 'Secure and scalable'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-web-application-development',
       nav: 'What is it',
-      heading: 'What Is a Web Application?',
+      heading: 'What Is a Web Application and How Does It Work?',
       paras: [
         'A web application is software that runs in the browser, like a customer portal, booking system or internal dashboard. Unlike a website, it lets users log in, do work and manage data, with nothing to install and updates delivered instantly.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Web Application Development Results in Numbers',
+      heading: 'Web Application Development Results and Key Statistics',
       text: 'The numbers behind the web applications we build and run.',
       stats: [
         { value: '60+', label: 'Web apps launched' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'portals',
       nav: 'Portals',
-      heading: 'Customer Portals and Dashboards',
+      heading: 'Customer Portals, Booking Systems and Dashboards',
       image: '/pages/webapp/portal.webp',
       alt: 'Web portal annotated with secure sign-in, role-based menu, live dashboard, approvals and reports',
       paras: ['We design around the tasks people do most, so they get them done in fewer clicks and need less support.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'stack',
       nav: 'Technology',
-      heading: 'Web Application Technology Stack',
+      heading: 'Web Application Tech Stack: React, Next.js, Laravel and Node.js',
       image: '/pages/webapp/stack.webp',
       alt: 'Web application stack with front end, back end, data, integrations and cloud layers',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'performance',
       nav: 'Performance',
-      heading: 'Web App Performance and Live Data',
+      heading: 'Web App Performance, Real-Time Data and APIs',
       image: '/pages/webapp/dashboard.webp',
       alt: 'Web app dashboard with jobs completed rising, active users, response time and admin time saved',
       paras: ['Your team gets live numbers instead of weekly spreadsheets, and pages respond instantly, even with thousands of users.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'security',
       nav: 'Security',
-      heading: 'Web Application Security',
+      heading: 'Web Application Security, Authentication and GDPR',
       image: '/pages/webapp/security.webp',
       alt: 'Web app security checklist with SSO, permissions, encryption, audit logs and OWASP testing',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Web Application Development Process',
+      heading: 'Our Web Application Development Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Goals, users and workflows.' },
         { title: 'Prototype', text: 'Clickable design tested.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Web Application Development Case Studies',
+      heading: 'Web Application Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Web Application Development Client Reviews',
+      heading: 'Web Application Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Karen S', role: 'Director, Training Provider', text: 'Our learner portal cut admin calls in half within the first term.' },
         { name: 'Jon B', role: 'COO, Field Services', text: 'Engineers and office staff finally work from the same live data.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Web Application Development for Your Industry',
+      heading: 'Web Application Development Services by Industry',
       items: [
         { slug: 'real-estate', text: 'Landlord, tenant and agent portals.' },
         { slug: 'education', text: 'Learner portals and course management.' },

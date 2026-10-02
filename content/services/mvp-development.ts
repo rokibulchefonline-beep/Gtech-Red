@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK MVP development company helping founders turn ideas into launched products in 8 to 12 weeks, with discovery, design, build and real-user validation.',
   hero: {
+    keyword: 'MVP Development',
     title: 'MVP Development: Launch in',
     highlight: 'Weeks, Not Months',
     lead:
-      'We help founders and teams turn an idea into a working product, test it with real users and learn what to build next, without wasting budget.',
+      'GTech Digital provides MVP development for UK founders and teams, turning an idea into a working minimum viable product in 8 to 12 weeks, ready to test with real users, gather feedback and show traction to investors.',
     motion: '/services/mvp.webp',
     points: ['Free idea workshop', 'Launch in 8 to 12 weeks', 'Built to grow beyond v1'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-mvp',
       nav: 'What is it',
-      heading: 'What Is an MVP?',
+      heading: 'What Is an MVP and How Does It Work?',
       paras: [
         'A minimum viable product (MVP) is the simplest version of your product that solves the core problem for real users. It lets you test demand, collect feedback and show traction to investors before investing in a full build.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'MVP Development Results in Numbers',
+      heading: 'MVP Development Results and Key Statistics',
       text: 'The numbers behind the MVPs we build for UK founders and teams.',
       stats: [
         { value: '10 weeks', label: 'Average idea to launch' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'scope',
       nav: 'Scope',
-      heading: 'MVP Discovery and Scoping',
+      heading: 'MVP Discovery, Scoping and Feature Prioritisation',
       image: '/pages/mvp/scope.webp',
       alt: 'MVP scope checklist with sign-up, core workflow, payments, analytics and admin, nice-to-haves parked',
       paras: ['We help you find the one workflow that proves your idea, and park everything else for later.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'timeline',
       nav: 'Timeline',
-      heading: 'MVP Development Timeline',
+      heading: 'MVP Development Timeline: From Idea to Launch in Weeks',
       image: '/pages/mvp/sprints.webp',
       alt: 'MVP timeline from discovery and prototype to build, testing, beta and launch over ten weeks',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'launch',
       nav: 'Launch',
-      heading: 'MVP Launch',
+      heading: 'MVP Launch, Analytics and First Users',
       image: '/pages/mvp/launch.webp',
       alt: 'MVP app with sign-up, core feature, subscriptions and feedback, plus beta users and funding raised',
       paras: ['Your MVP launches with sign-up, payments, analytics and feedback built in, so you learn from day one.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'validate',
       nav: 'Validate',
-      heading: 'MVP Validation and Iteration',
+      heading: 'MVP Validation, User Feedback and Product Iteration',
       image: '/pages/mvp/validate.webp',
       alt: 'Beta validation funnel from landing page visits to paying customers',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our MVP Development Process',
+      heading: 'Our MVP Development Process, Step by Step',
       steps: [
         { title: 'Workshop', text: 'Problem and users.' },
         { title: 'Prototype', text: 'Clickable design tested.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'MVP Development Case Studies',
+      heading: 'MVP Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'MVP Development Client Reviews',
+      heading: 'MVP Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Natalie C', role: 'Founder, Marketplace Start-up', text: 'We launched in ten weeks and raised our pre-seed round on the back of it.' },
         { name: 'Arjun P', role: 'Co-founder, B2B Tool', text: 'They talked us out of half our features. Best advice we got.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'MVP Development for Your Industry',
+      heading: 'MVP Development Services by Industry',
       items: [
         { slug: 'technology-saas', text: 'B2B and B2C software start-ups.' },
         { slug: 'finance', text: 'FinTech pilots and calculators.' },

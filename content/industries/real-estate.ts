@@ -11,7 +11,7 @@ export default industry({
   hero: {
     title: 'Property Marketing That',
     highlight: 'Wins Instructions',
-    lead: 'We help estate agents, letting agents and developers generate valuation leads, win instructions and sell or let properties faster.',
+    lead: 'GTech Digital provides property marketing services for UK estate agents, letting agents and developers, using local SEO, valuation ads, area guides and portal integrations to generate valuation leads and instructions.',
     points: ['Free branch audit', 'Valuation lead generation', 'Leads tracked by branch'],
   },
   what: {
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'More Valuations, More Instructions', stats: [['1,860', 'Average valuation requests a year'], ['17%', 'Average valuation to instruction'], ['£24', 'Average cost per valuation lead'], ['4.9', 'Average Google rating']] },
   media: [
-    { nav: 'Valuations', topic: 'Valuation leads', heading: 'A Pipeline of Valuation Requests', para: 'We target homeowners in your patch who are thinking of selling or letting, and track every lead to instruction.', bullets: ['Instant valuation campaigns', 'Landlord lead generation', 'Lead tracking by branch', 'Follow-up within minutes'], alt: 'Valuation requests growing with new instructions, viewings and cost per lead' },
-    { nav: 'Channels', topic: 'Local visibility', heading: 'The Agent Every Local Owner Knows', para: 'We put each branch at the top of local search and keep your brand in front of homeowners on social.', bullets: ['Google Maps for every branch', 'Area guide SEO', 'Meta and Google valuation ads', 'Video property tours'], alt: 'How homeowners find you: Google Maps, area SEO, Meta ads, Google Ads, reviews and video tours' },
-    { nav: 'Website', topic: 'Vendor journey', heading: 'From Area Guide to Signed Instruction', para: 'Useful area guides, instant valuations and fast follow-up turn curious owners into booked appointments.', bullets: ['Instant valuation tool', 'Area and street guides', 'Branch and team pages', 'Booked valuation tracking'], alt: 'Vendor journey from area guide visits to instant valuations, valuations booked and instructions' },
-    { nav: 'Property tech', topic: 'Property tech', heading: 'Portals and Systems in Sync', para: 'We connect your CRM and portal feeds and make sure listings show the information buyers and regulators expect.', bullets: ['Rightmove and Zoopla feeds', 'Material information on listings', 'Landlord and tenant portals', 'New homes microsites'], alt: 'Property checklist with portal feeds, valuation tool, branch pages and material information' },
+    { nav: 'Valuations', topic: 'Valuation leads and new instructions', heading: 'A Pipeline of Valuation Requests', para: 'We target homeowners in your patch who are thinking of selling or letting, and track every lead to instruction.', bullets: ['Instant valuation campaigns', 'Landlord lead generation', 'Lead tracking by branch', 'Follow-up within minutes'], alt: 'Valuation requests growing with new instructions, viewings and cost per lead' },
+    { nav: 'Channels', topic: 'Local visibility for every branch', heading: 'The Agent Every Local Owner Knows', para: 'We put each branch at the top of local search and keep your brand in front of homeowners on social.', bullets: ['Google Maps for every branch', 'Area guide SEO', 'Meta and Google valuation ads', 'Video property tours'], alt: 'How homeowners find you: Google Maps, area SEO, Meta ads, Google Ads, reviews and video tours' },
+    { nav: 'Website', topic: 'Vendor journey from area guide to valuation', heading: 'From Area Guide to Signed Instruction', para: 'Useful area guides, instant valuations and fast follow-up turn curious owners into booked appointments.', bullets: ['Instant valuation tool', 'Area and street guides', 'Branch and team pages', 'Booked valuation tracking'], alt: 'Vendor journey from area guide visits to instant valuations, valuations booked and instructions' },
+    { nav: 'Property tech', topic: 'Portal feeds, CRM and property technology', heading: 'Portals and Systems in Sync', para: 'We connect your CRM and portal feeds and make sure listings show the information buyers and regulators expect.', bullets: ['Rightmove and Zoopla feeds', 'Material information on listings', 'Landlord and tenant portals', 'New homes microsites'], alt: 'Property checklist with portal feeds, valuation tool, branch pages and material information' },
   ],
   cards: [
     ['lucide:map-pin', 'Local SEO', 'Every branch on Maps.'], ['lucide:house', 'Valuation Campaigns', 'Leads from local owners.'],

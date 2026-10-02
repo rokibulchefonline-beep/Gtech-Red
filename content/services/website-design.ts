@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK website design agency creating user-friendly, accessible and brand-led websites, with UX research, Figma prototypes and design systems that turn visitors into customers.',
   hero: {
+    keyword: 'Website Design',
     title: 'Website Design That Turns Visitors Into',
     highlight: 'Customers',
     lead:
-      'We design clear, beautiful and accessible websites around how your customers think, so they find what they need and take action.',
+      'GTech Digital is a UK website design agency that creates user-friendly, accessible and brand-led websites through UX research, wireframes, Figma prototypes and design systems that turn visitors into customers.',
     motion: '/services/webdesign.webp',
     points: ['Free design consultation', 'Clickable Figma prototype', 'Mobile-first and accessible'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-website-design',
       nav: 'What is it',
-      heading: 'What Is Website Design?',
+      heading: 'What Is Website Design and How Does It Work?',
       paras: [
         'Website design covers how your site works (UX) and how it looks (UI). Good design makes your business look credible, makes information easy to find and guides visitors towards an enquiry or purchase, on every screen size.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Website Design Results in Numbers',
+      heading: 'Website Design Results and Key Statistics',
       text: 'The numbers behind the websites we redesign for UK businesses.',
       stats: [
         { value: '+71%', label: 'Average lead growth after redesign' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ux',
       nav: 'UX design',
-      heading: 'UX Design and User Research',
+      heading: 'UX Design, User Research and Wireframing',
       image: '/pages/design/ux.webp',
       alt: 'Website page annotated with navigation, hierarchy, imagery, scannable sections, social proof and CTA',
       paras: ['We research your customers and plan every page around their questions, so the journey to enquiry feels natural.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'design-system',
       nav: 'UI & design system',
-      heading: 'UI Design and Design Systems',
+      heading: 'UI Design, Design Systems and Brand Consistency',
       image: '/pages/design/system.webp',
       alt: 'Design system with brand palette, font scale, buttons, layouts, icons and mobile patterns',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'conversion',
       nav: 'Conversion',
-      heading: 'Conversion-Focused Website Design',
+      heading: 'Conversion-Focused Website Design and Landing Pages',
       image: '/pages/design/conversion.webp',
       alt: 'Redesign funnel from visitors to enquiries with higher enquiry rate and lower bounce rate',
       paras: ['Design is not just looks. We place clear calls to action, trust signals and proof where they lift enquiries the most.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'accessibility',
       nav: 'Accessibility',
-      heading: 'Responsive and Accessible Website Design',
+      heading: 'Responsive, Mobile-First and WCAG Accessible Website Design',
       image: '/pages/design/accessibility.webp',
       alt: 'Accessibility checklist with WCAG 2.2 AA contrast, keyboard navigation and responsive layouts',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Website Design Process',
+      heading: 'Our Website Design Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Workshop on goals and customers.' },
         { title: 'Structure', text: 'Sitemap and wireframes.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Website Design Case Studies',
+      heading: 'Website Design Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Website Design Client Reviews',
+      heading: 'Website Design Client Reviews and Testimonials',
       reviews: [
         { name: 'Olivia R', role: 'Founder, Architecture Studio', text: 'The new design finally shows the quality of our work. Clients comment on it.' },
         { name: 'James K', role: 'Marketing Lead, B2B', text: 'Enquiries rose by 70% with the same traffic. The prototype testing made a real difference.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Website Design for Your Industry',
+      heading: 'Website Design Services by Industry',
       items: [
         { slug: 'healthcare', text: 'Calm, trustworthy designs that drive bookings.' },
         { slug: 'finance', text: 'Clear, credible designs for regulated firms.' },

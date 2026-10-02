@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK custom software development company building web apps, mobile apps, integrations, CRM and ERP systems, SaaS products and MVPs that automate work and grow revenue.',
   hero: {
+    keyword: 'Custom Software Development',
     title: 'Custom Software Development',
     highlight: 'Built Around You',
     lead:
-      'We design and build bespoke software, from web and mobile apps to CRM systems and SaaS products, that removes manual work and gives you an edge.',
+      'GTech Digital is a UK custom software development company that designs and builds web applications, mobile apps, integrations, CRM and ERP systems, SaaS products and MVPs around the way each business works.',
     motion: '/services/software.webp',
     points: ['Free discovery call', 'Fixed-scope sprints', 'You own the code'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-custom-software',
       nav: 'What is it',
-      heading: 'What Is Custom Software Development?',
+      heading: 'What Is Custom Software Development and How Does It Work?',
       paras: [
         'Custom software is built for your exact processes, rather than forcing your team to work around an off-the-shelf tool. It replaces spreadsheets and disconnected systems with one platform that automates the work, gives you live data and grows with you.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Custom Software Results in Numbers',
+      heading: 'Custom Software Results and Key Statistics',
       text: 'The numbers behind the software we build for UK businesses.',
       stats: [
         { value: '90+', label: 'Software projects delivered' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'solutions',
       nav: 'What we build',
-      heading: 'Bespoke Software Solutions',
+      heading: 'Bespoke Software Solutions for UK Businesses',
       image: '/pages/software/apps.webp',
       alt: 'Custom software types: web apps, mobile apps, integrations, CRM and ERP, SaaS and MVP',
       paras: ['Whether you need a better way to run the business or a product to take to market, we build it on proven, modern technology.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'automation',
       nav: 'Automation',
-      heading: 'Business Process Automation',
+      heading: 'Business Process Automation and Workflow Software',
       image: '/pages/software/automation.webp',
       alt: 'Admin hours saved growing each month with spreadsheets replaced and processes automated',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'integration',
       nav: 'Integration',
-      heading: 'Software Integration With Your Systems',
+      heading: 'Software Integration With Your CRM, ERP and Accounting Systems',
       image: '/pages/software/integration.webp',
       alt: 'Platform connected to Xero, HubSpot, Stripe, Shopify, warehouse and email systems',
       paras: ['Your new software connects to the tools you already use, so data is entered once and flows everywhere it is needed.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'quality',
       nav: 'How we build',
-      heading: 'Our Software Development Approach',
+      heading: 'Agile Software Development: Discovery, Build and Support',
       image: '/pages/software/quality.webp',
       alt: 'Software delivery checklist with discovery, sprints, automated tests, security and documentation',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Custom Software Process',
+      heading: 'Our Custom Software Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Goals, users and processes.' },
         { title: 'Design', text: 'Prototype tested with users.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Custom Software Case Studies',
+      heading: 'Custom Software Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Custom Software Client Reviews',
+      heading: 'Custom Software Client Reviews and Testimonials',
       reviews: [
         { name: 'Andrew L', role: 'MD, Distribution', text: 'Our custom system replaced 14 spreadsheets and saves the team two days a week.' },
         { name: 'Sana Q', role: 'Founder, HealthTech', text: 'They turned our idea into a live product with paying customers in four months.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Custom Software for Your Industry',
+      heading: 'Custom Software Services by Industry',
       items: [
         { slug: 'healthcare', text: 'Booking, patient and compliance systems.' },
         { slug: 'finance', text: 'Secure portals, calculators and workflows.' },

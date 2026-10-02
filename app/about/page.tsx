@@ -62,7 +62,7 @@ const sections: Section[] = [
   {
     type: 'media',
     id: 'team',
-    heading: 'Our Team of Digital Specialists',
+    heading: 'Our Team of SEO, PPC, Design and Development Specialists',
     image: '/pages/about/team.webp',
     alt: 'GTech Digital team of SEO, paid media, content, design, development and strategy specialists',
     flip: true,
@@ -82,7 +82,7 @@ const sections: Section[] = [
   {
     type: 'media',
     id: 'partners',
-    heading: 'Our Platform Certifications',
+    heading: 'Google Partner, Meta and Platform Certifications',
     image: '/pages/about/partners.webp',
     alt: 'GTech Digital certified with Google, Meta, Shopify, HubSpot, Semrush and TikTok',
     flip: true,
@@ -93,7 +93,7 @@ const sections: Section[] = [
   {
     type: 'cards',
     id: 'values',
-    heading: 'Our Values',
+    heading: 'Our Values and Company Culture',
     cards: [
       { icon: 'lucide:trending-up', title: 'Results First', text: 'Leads and revenue over vanity metrics.' },
       { icon: 'lucide:eye', title: 'Transparency', text: 'Clear reports, no hidden fees.' },
@@ -108,7 +108,7 @@ const sections: Section[] = [
   {
     type: 'steps',
     id: 'process',
-    heading: 'How We Work With Clients',
+    heading: 'How GTech Digital Works With Clients, Step by Step',
     steps: [
       { title: 'Discover', text: 'We learn your goals and market.' },
       { title: 'Audit', text: 'Free review of what works today.' },
@@ -124,7 +124,7 @@ const later: Section[] = [
   {
     type: 'reviews',
     id: 'reviews',
-    heading: 'GTech Digital Client Reviews',
+    heading: 'GTech Digital Client Reviews and Testimonials',
     reviews: [
       { name: 'Sarah K', role: 'MD, Home Services', text: 'GTech handle our SEO, ads and website. One team, clear reports and steady growth.' },
       { name: 'Andrew L', role: 'MD, Distribution', text: 'From marketing to custom software, they understand our business and deliver.' },
@@ -134,7 +134,7 @@ const later: Section[] = [
   {
     type: 'industries',
     id: 'industries',
-    heading: 'Industries We Serve',
+    heading: 'Industries GTech Digital Serves',
     items: [
       { slug: 'e-commerce', text: 'Online stores and product brands.' },
       { slug: 'healthcare', text: 'Clinics, dentists and wellness.' },
@@ -173,8 +173,8 @@ export default async function About() {
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>About Us</b></nav>
-          <h1>About GTech Digital, Your <span className="red">Digital Growth Partner</span></h1>
-          <p className="sp-lead">We are marketers, designers and developers who help UK businesses get found, win customers and run smarter, all under one roof.</p>
+          <h1>About <span className="red">GTech Digital</span>: UK Digital Marketing, Web and Software Agency</h1>
+          <p className="sp-lead">GTech Digital is a UK digital agency that provides digital marketing, SEO, Google Ads, social media, web design and development, custom software and branding services, helping businesses get found, win customers and grow revenue.</p>
           <div className="sp-hero-btns">
             <Link className="sp-btn-red" href="/contact">Work With Us</Link>
             <Link className="sp-btn-line" href="/case-studies">See Our Work</Link>
@@ -190,7 +190,7 @@ export default async function About() {
 
       {cases.length > 0 && (
         <section id="case-studies" className="sp-sec cases"><div className="wrap">
-          <Head s={{ heading: 'GTech Digital Case Studies' }} />
+          <Head s={{ heading: 'GTech Digital Case Studies and Client Results' }} />
           <CaseCarousel docs={cases} />
           <p className="cases-all"><Link className="btn-dark" href="/case-studies">View All Case Studies</Link></p>
         </div></section>
@@ -198,7 +198,7 @@ export default async function About() {
 
       {later.map((s) => <Block key={s.id} s={s} slug="about" name="GTech Digital" />)}
 
-      <FaqSection title="About GTech Digital FAQs" faqs={faqs} schema />
+      <FaqSection title="Frequently Asked Questions About GTech Digital" faqs={faqs} schema />
       <InquirySection />
     </>
   );

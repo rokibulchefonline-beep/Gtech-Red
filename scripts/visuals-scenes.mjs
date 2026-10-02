@@ -363,6 +363,42 @@ const industryHeroes = {
 };
 Object.assign(scenes, industryHeroes);
 
-/* ===== Services hub hero ===== */
-const hub = panelHero('lucide:layout-grid', 'GTech results', 'dash', [['Organic traffic', 212, (v) => '+' + Math.round(v) + '%', 'lucide:search'], ['Leads this month', 340, (v) => Math.round(v), 'lucide:users'], ['Websites launched', 180, (v) => Math.round(v) + '+', 'lucide:monitor'], ['Admin hours saved', 420, (v) => Math.round(v) + 'h', 'lucide:clock']]);
+/* ===== Services hub hero: the five GTech Digital disciplines light up in turn, each feeding a result ===== */
+function hub(u) {
+  const rows = [
+    ['lucide:search', 'Digital Marketing', 'SEO, PPC, content'],
+    ['lucide:share-2', 'Social Media', 'Meta, TikTok, LinkedIn'],
+    ['lucide:monitor', 'Web Design', 'WordPress, ecommerce'],
+    ['lucide:code', 'Custom Software', 'Apps, CRM, SaaS'],
+    ['lucide:gem', 'Branding', 'Identity, strategy, CRO'],
+  ];
+  const active = Math.min(4, Math.floor(seg(u, 0.12, 0.88) * 5));
+  const metrics = [
+    ['Organic traffic', 212, (v) => '+' + Math.round(v) + '%', 'lucide:trending-up', 0],
+    ['Ad ROAS', 4.8, (v) => v.toFixed(1) + 'x', 'lucide:target', 1],
+    ['Websites launched', 180, (v) => Math.round(v) + '+', 'lucide:monitor-check', 2],
+    ['Apps and systems built', 60, (v) => Math.round(v) + '+', 'lucide:boxes', 3],
+  ];
+  const panel = `<rect x="330" y="40" width="300" height="580" fill="#fff" filter="url(#sh)"/><rect x="330" y="40" width="300" height="44" fill="#f1f2f5"/>
+    ${[0, 1, 2].map((i) => `<circle cx="${352 + i * 18}" cy="62" r="5" fill="${['#ff5f57', '#febc2e', '#28c840'][i]}"/>`).join('')}
+    ${icon('lucide:layout-grid', 414, 50, 22, C.red)}${txt(444, 68, 'GTech Digital', 16, 700, C.ink)}
+    ${txt(350, 116, 'Our services', 15, 700, C.grey)}
+    ${rows.map(([ri, name, sub], i) => {
+      const d = S(u, 0.04 + i * 0.05, 0.2 + i * 0.05), on = i === active && u > 0.12, done = i < active || (i === active && u > 0.86);
+      const y = 132 + i * 94;
+      return `<g opacity="${d}" transform="translate(${(1 - d) * 30} 0)">
+        <rect x="346" y="${y}" width="268" height="82" fill="${on ? C.soft : '#f7f8fa'}" ${on ? `stroke="${C.red}" stroke-width="3"` : ''}/>
+        <rect x="360" y="${y + 18}" width="46" height="46" fill="${on ? 'url(#rg)' : '#fff'}"/>${icon(ri, 371, y + 29, 24, on ? '#fff' : C.red, 2.2)}
+        ${txt(420, y + 36, name, 17, 700, C.ink)}${txt(420, y + 60, sub, 13, 700, C.grey)}
+        ${done ? icon('lucide:circle-check', 578, y + 28, 24, C.green, 2.4) : ''}</g>`;
+    }).join('')}`;
+  const bob = (p) => Math.sin(u * Math.PI * 2 + p) * 6;
+  return frame(u, `${pop(u, 0, panel, 16, 0.12)}
+    ${metrics.map(([label, target, fmt, mi, row], i) => {
+      const x = i < 2 ? 40 : 660, y = i % 2 ? 380 : 130;
+      const start = 0.12 + row * 0.152, v = target * S(u, start, start + 0.25), on = row === active && u > 0.12;
+      return `${pop(u, 0.15 + i * 0.1, `<g transform="translate(0 ${bob(i * 1.5)})">${sq(x, y, 260, 200, on ? `stroke="${C.red}" stroke-width="3"` : '')}<rect x="${x + 22}" y="${y + 22}" width="52" height="52" fill="${on ? C.red : C.soft}"/>${icon(mi, x + 34, y + 34, 28, on ? '#fff' : C.red, 2.2)}
+        ${txt(x + 22, y + 128, fmt(v), 42, 700, C.ink)}${txt(x + 22, y + 164, label, 17, 700, C.grey)}</g>`, 22)}`;
+    }).join('')}`);
+}
 Object.assign(scenes, { hub });

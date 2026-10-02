@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK TikTok marketing agency: trend-led video content, Spark Ads, creator campaigns and TikTok Shop that turn views into followers and sales.',
   hero: {
+    keyword: 'TikTok Marketing',
     title: 'TikTok Marketing That Turns',
     highlight: 'Views Into Sales',
     lead:
-      'We create native TikTok videos, run Spark Ads and creator campaigns, and set up TikTok Shop so your brand gets discovered and bought.',
+      'GTech Digital is a UK TikTok marketing agency that creates native short-form videos, runs Spark Ads and creator campaigns, and sets up TikTok Shop, turning views and followers into measurable sales.',
     motion: '/services/tiktok.webp',
     points: ['Free TikTok audit', 'Native, trend-led video', 'Views tracked to sales'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-tiktok-marketing',
       nav: 'What is it',
-      heading: 'What Is TikTok Marketing?',
+      heading: 'What Is TikTok Marketing and How Does It Work?',
       paras: [
         'TikTok shows videos to people based on interest, not follower count, so even a new account can reach thousands. It is also now a search engine for many younger buyers, who look up products, places and recommendations there first.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'TikTok Marketing Results in Numbers',
+      heading: 'TikTok Marketing Results and Key Statistics',
       text: 'The numbers behind the TikTok accounts we grow for UK brands.',
       stats: [
         { value: '38M+', label: 'Video views generated' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content',
       nav: 'Content',
-      heading: 'TikTok Video Content',
+      heading: 'TikTok Video Content and Trend-Led Creative',
       image: '/pages/tiktok/content.webp',
       alt: 'Trend-led TikTok video with views, click-through and conversion figures',
       paras: ['Polished ads look out of place on TikTok. We create authentic, fast-paced videos with hooks in the first second, built around trends and real searches.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'TikTok ads',
-      heading: 'TikTok Ads and Spark Ads',
+      heading: 'TikTok Ads, Spark Ads and In-Feed Campaigns',
       image: '/pages/tiktok/ads.webp',
       alt: 'TikTok ad revenue growing with ROAS, click-through and cost per sale',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'creators',
       nav: 'Creators & Shop',
-      heading: 'TikTok Creators and TikTok Shop',
+      heading: 'TikTok Creators, Influencers and TikTok Shop',
       image: '/pages/tiktok/creators.webp',
       alt: 'TikTok Shop sales driven by creators, LIVE selling, product showcase and Spark Ads',
       paras: ['Creators drive most TikTok sales. We recruit affiliate creators, run LIVE shopping and manage your TikTok Shop from setup to fulfilment links.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'analytics',
       nav: 'Analytics',
-      heading: 'TikTok Analytics and Sales Tracking',
+      heading: 'TikTok Analytics, Pixel Tracking and Sales Attribution',
       image: '/pages/tiktok/analytics.webp',
       alt: 'TikTok funnel from video views to profile visits, clicks and orders',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our TikTok Marketing Process',
+      heading: 'Our TikTok Marketing Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Account, audience and competitors.' },
         { title: 'Ideas', text: 'Trends, hooks and video concepts.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'TikTok Marketing Case Studies',
+      heading: 'TikTok Marketing Case Studies and Results',
     },
     {
       type: 'table',
@@ -157,7 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'TikTok Marketing Client Reviews',
+      heading: 'TikTok Marketing Client Reviews and Testimonials',
       reviews: [
         { name: 'Zara H', role: 'Founder, Beauty Brand', text: 'One creator video hit 2 million views and sold out our bestseller in a weekend.' },
         { name: 'Liam C', role: 'Owner, Gym', text: 'Our TikTok went from zero to 20k local followers, and membership sign-ups followed.' },
@@ -168,7 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'TikTok Marketing for Your Industry',
+      heading: 'TikTok Marketing Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'TikTok Shop, creators and Spark Ads that sell products.' },
         { slug: 'hospitality-hotels', text: 'Food and venue videos that go viral locally.' },

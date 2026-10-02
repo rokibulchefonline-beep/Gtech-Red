@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK Facebook marketing agency: Facebook ads, lead generation, content and community management with accurate Meta Pixel and Conversions API tracking.',
   hero: {
+    keyword: 'Facebook Marketing',
     title: 'Facebook Marketing That Brings',
     highlight: 'Real Customers',
     lead:
-      'We run Facebook ads and manage your Page so the right local and national audiences see you, engage with you and become paying customers.',
+      'GTech Digital is a UK Facebook marketing agency that runs Facebook ads, lead generation campaigns and Page management, with Meta Pixel and Conversions API tracking that shows the exact cost of every lead and sale.',
     motion: '/services/facebook.webp',
     points: ['Free Facebook ads audit', 'You own your ad account', 'Clear cost-per-lead reports'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-facebook-marketing',
       nav: 'What is it',
-      heading: 'What Is Facebook Marketing?',
+      heading: 'What Is Facebook Marketing and How Does It Work?',
       paras: [
         'With billions of users and some of the most precise ad targeting available, Facebook remains one of the most effective places for UK businesses to find customers, especially adults over 25 and local communities.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Facebook Marketing Results in Numbers',
+      heading: 'Facebook Marketing Results and Key Statistics',
       text: 'The numbers behind the Facebook campaigns we run for UK businesses.',
       stats: [
         { value: '£8.60', label: 'Average cost per lead' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'Facebook ads',
-      heading: 'Facebook Ads for Leads and Sales',
+      heading: 'Facebook Ads for Lead Generation and Online Sales',
       image: '/pages/facebook/ads.webp',
       alt: 'Facebook lead ad funnel from people reached to leads with cost per lead',
       paras: ['From instant lead forms to catalogue sales ads, we build campaigns around the action you want and target the people most likely to take it.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content',
       nav: 'Page & content',
-      heading: 'Facebook Page Management and Content',
+      heading: 'Facebook Page Management and Content Scheduling',
       image: '/pages/facebook/content.webp',
       alt: 'Facebook content plan with video, albums, events, reviews, offers and group posts',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'community',
       nav: 'Community',
-      heading: 'Facebook Community Management',
+      heading: 'Facebook Community Management, Comments and Messenger',
       image: '/pages/facebook/community.webp',
       alt: 'Facebook recommendations and customer comments with owner replies',
       paras: ['Fast, friendly replies turn questions into bookings and show new visitors you care about your customers.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'tracking',
       nav: 'Tracking',
-      heading: 'Meta Pixel and Conversions API Tracking',
+      heading: 'Meta Pixel, Conversions API and Facebook Ads Tracking',
       image: '/pages/facebook/tracking.webp',
       alt: 'Meta tracking checklist with Pixel, Conversions API and domain verification',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Facebook Marketing Process',
+      heading: 'Our Facebook Marketing Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Ads account, Page and tracking reviewed.' },
         { title: 'Plan', text: 'Offers, audiences and budget agreed.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Facebook Marketing Case Studies',
+      heading: 'Facebook Marketing Case Studies and Results',
     },
     {
       type: 'table',
@@ -157,7 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Facebook Marketing Client Reviews',
+      heading: 'Facebook Marketing Client Reviews and Testimonials',
       reviews: [
         { name: 'Gary F', role: 'Owner, Home Improvements', text: 'Lead ads now give us 40 to 60 quote requests a month at under £10 each.' },
         { name: 'Priya N', role: 'Manager, Salon', text: 'Every Messenger enquiry gets answered fast and bookings have gone up noticeably.' },
@@ -168,7 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Facebook Marketing for Your Industry',
+      heading: 'Facebook Marketing Services by Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'Local offers and events that fill tables and rooms.' },
         { slug: 'real-estate', text: 'Valuation and viewing leads from local homeowners.' },

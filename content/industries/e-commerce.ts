@@ -11,7 +11,7 @@ export default industry({
   hero: {
     title: 'Ecommerce Marketing for',
     highlight: 'Profitable Growth',
-    lead: 'We help UK online stores win more traffic, convert more visitors and bring customers back, with every channel measured against revenue and ROAS.',
+    lead: 'GTech Digital provides ecommerce marketing services for UK online stores, combining ecommerce SEO, Google Shopping, Meta and TikTok ads, email marketing and conversion optimisation to grow profitable online sales.',
     points: ['Free store audit', 'Shopify and WooCommerce experts', 'Revenue and ROAS tracked'],
   },
   what: {
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'Online Growth You Can Bank', stats: [['5.4x', 'Average blended ROAS'], ['+132%', 'Average organic revenue growth'], ['-27%', 'Average basket abandonment'], ['41%', 'Average repeat customer rate']] },
   media: [
-    { nav: 'Revenue growth', topic: 'Revenue growth', heading: 'More Revenue From Every Channel', para: 'We plan your marketing around profit, not just traffic, and report on revenue, margin and ROAS every month.', bullets: ['Ecommerce SEO for categories and products', 'Shopping and Performance Max', 'Profit-based bidding', 'Monthly revenue reporting'], alt: 'Online store revenue growing with conversion rate, average order value and ROAS' },
-    { nav: 'Channels', topic: 'Channel mix', heading: 'The Right Mix of Search, Social and Email', para: 'Search captures demand, social creates it and email keeps customers coming back. We run them as one plan.', bullets: ['Google Shopping and search ads', 'Meta and TikTok catalogue ads', 'Klaviyo email and SMS flows', 'Reviews and UGC'], alt: 'Ecommerce revenue by channel: organic, shopping ads, Meta, email, TikTok and reviews' },
-    { nav: 'Conversion', topic: 'Store conversion', heading: 'Turn Browsers Into Buyers', para: 'Small improvements to product pages and checkout add up to big revenue gains without extra ad spend.', bullets: ['Product page and checkout testing', 'Express payments and BNPL', 'Abandoned basket recovery', 'Site speed and Core Web Vitals'], alt: 'Store conversion funnel from product views to orders with lower basket abandonment' },
-    { nav: 'Store health', topic: 'Store health', heading: 'A Store Built to Scale', para: 'We make sure your feeds, tracking, integrations and site speed are ready for growth and peak season.', bullets: ['Merchant Center feed optimisation', 'GA4 ecommerce tracking', 'Stock, courier and accounting sync', 'Black Friday and peak planning'], alt: 'Ecommerce store health checklist with product schema, fast checkout and stock sync' },
+    { nav: 'Revenue growth', topic: 'Revenue growth and ROAS', heading: 'More Revenue From Every Channel', para: 'We plan your marketing around profit, not just traffic, and report on revenue, margin and ROAS every month.', bullets: ['Ecommerce SEO for categories and products', 'Shopping and Performance Max', 'Profit-based bidding', 'Monthly revenue reporting'], alt: 'Online store revenue growing with conversion rate, average order value and ROAS' },
+    { nav: 'Channels', topic: 'Search, social and email channel mix', heading: 'The Right Mix of Search, Social and Email', para: 'Search captures demand, social creates it and email keeps customers coming back. We run them as one plan.', bullets: ['Google Shopping and search ads', 'Meta and TikTok catalogue ads', 'Klaviyo email and SMS flows', 'Reviews and UGC'], alt: 'Ecommerce revenue by channel: organic, shopping ads, Meta, email, TikTok and reviews' },
+    { nav: 'Conversion', topic: 'Product page and checkout conversion', heading: 'Turn Browsers Into Buyers', para: 'Small improvements to product pages and checkout add up to big revenue gains without extra ad spend.', bullets: ['Product page and checkout testing', 'Express payments and BNPL', 'Abandoned basket recovery', 'Site speed and Core Web Vitals'], alt: 'Store conversion funnel from product views to orders with lower basket abandonment' },
+    { nav: 'Store health', topic: 'Feeds, tracking and peak season readiness', heading: 'A Store Built to Scale', para: 'We make sure your feeds, tracking, integrations and site speed are ready for growth and peak season.', bullets: ['Merchant Center feed optimisation', 'GA4 ecommerce tracking', 'Stock, courier and accounting sync', 'Black Friday and peak planning'], alt: 'Ecommerce store health checklist with product schema, fast checkout and stock sync' },
   ],
   cards: [
     ['lucide:shopping-bag', 'Ecommerce SEO', 'Categories and products that rank.'], ['simple-icons:googleads', 'Shopping Ads', 'Profitable Google Shopping.'],

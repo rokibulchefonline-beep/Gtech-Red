@@ -13,10 +13,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK local SEO agency helping businesses rank in the Google map pack and local search with Google Business Profile optimisation, citations, reviews and location pages.',
   hero: {
+    keyword: 'Local SEO',
     title: 'Local SEO That Puts You on Top of',
     highlight: 'Google Maps',
     lead:
-      'We put your business at the top of Google Maps and local search, so nearby customers call, visit and book you instead of your competitors.',
+      'GTech Digital provides local SEO services for UK businesses, optimising Google Business Profiles, local citations, reviews and location pages so nearby customers find you first in Google Maps, the local map pack and near me searches.',
     motion: '/services/localseo.webp',
     points: ['Free local SEO audit', 'Google Business Profile optimised', 'Calls and directions tracked'],
   },
@@ -26,7 +27,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-local-seo',
       nav: 'What is it',
-      heading: 'What Is Local SEO?',
+      heading: 'What Is Local SEO and How Does It Work?',
       paras: [
         'Local SEO helps your business appear when people nearby search for what you offer, such as "plumber near me" or "dentist in Leeds". Google ranks local results on relevance, distance and prominence, and the top three map results win most of the calls.',
       ],
@@ -39,7 +40,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Local SEO Results in Numbers',
+      heading: 'Local SEO Results and Key Statistics',
       text: 'The numbers behind the local SEO we run for UK businesses.',
       stats: [
         { value: '48', label: 'Average map pack keywords won' },
@@ -52,7 +53,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'map-pack',
       nav: 'Map pack',
-      heading: 'Google Map Pack Rankings',
+      heading: 'Google Map Pack and Local Search Rankings',
       image: '/pages/local-seo/mappack.webp',
       alt: 'Google map pack with your business ranked first above two competitors',
       paras: ['The three businesses shown on the map get most local clicks. We improve every signal Google uses to choose them.'],
@@ -62,7 +63,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'google-business-profile',
       nav: 'Business Profile',
-      heading: 'Google Business Profile Optimisation',
+      heading: 'Google Business Profile Optimisation: Categories, Posts and Photos',
       image: '/pages/local-seo/gbp.webp',
       alt: 'Google Business Profile checklist with categories, services, posts, photos and Q&A',
       flip: true,
@@ -74,7 +75,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'citations',
       nav: 'Citations',
-      heading: 'Local Citations and NAP Consistency',
+      heading: 'Local Citations, Directory Listings and NAP Consistency',
       image: '/pages/local-seo/citations.webp',
       alt: 'Business name, address and phone matched across Google, Apple Maps, Bing, Yell and Trustpilot',
       paras: ['Google trusts businesses whose name, address and phone (NAP) match across the web. We fix old listings and build new ones.'],
@@ -84,7 +85,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Google Reviews and Location Pages',
+      heading: 'Google Reviews, Location Pages and Near Me Searches',
       image: '/pages/local-seo/reviews.webp',
       alt: 'Google reviews with 4.9 rating and owner replies',
       flip: true,
@@ -112,7 +113,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Local SEO Process',
+      heading: 'Our Local SEO Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Rankings across your area.' },
         { title: 'Fix', text: 'Profile and NAP issues first.' },
@@ -126,7 +127,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Local SEO Case Studies',
+      heading: 'Local SEO Case Studies and Results',
     },
     {
       type: 'table',
@@ -159,7 +160,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews-clients',
       nav: 'Client reviews',
-      heading: 'Local SEO Client Reviews',
+      heading: 'Local SEO Client Reviews and Testimonials',
       reviews: [
         { name: 'Steve P', role: 'Owner, Plumbing Firm', text: 'We are now top three on Google Maps across our area and the phone does not stop.' },
         { name: 'Anita G', role: 'Practice Manager, Dental Clinic', text: 'New patient calls from Google have more than doubled in six months.' },
@@ -170,7 +171,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Local SEO for Your Industry',
+      heading: 'Local SEO Services by Industry',
       items: [
         { slug: 'healthcare', text: 'Clinics, dentists and pharmacies found nearby.' },
         { slug: 'hospitality-hotels', text: 'Restaurants and hotels top of Maps.' },

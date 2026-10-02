@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK social media marketing agency for Facebook, Instagram, LinkedIn, TikTok and Pinterest. Strategy, content, paid social and community management that grows sales.',
   hero: {
+    keyword: 'Social Media Marketing',
     title: 'Social Media Marketing That',
     highlight: 'Grows Your Business',
     lead:
-      'We plan, create and manage social media across every major platform, building an audience that engages, trusts your brand and buys from you.',
+      'GTech Digital is a UK social media marketing agency that plans content, manages communities and runs paid social campaigns across Facebook, Instagram, LinkedIn, TikTok and Pinterest to grow audiences and sales.',
     motion: '/services/social.webp',
     points: ['Free social media audit', 'Content made for each platform', 'Monthly growth report'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-smm',
       nav: 'What is it',
-      heading: 'What Is Social Media Marketing?',
+      heading: 'What Is Social Media Marketing and How Does It Work?',
       paras: [
         'Social media marketing uses platforms like Instagram, TikTok and LinkedIn to reach, engage and convert your audience. More people now search on social platforms too, so a strong presence helps you get discovered as well as remembered.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Social Media Results in Numbers',
+      heading: 'Social Media Results and Key Statistics',
       text: 'The numbers behind the social media we manage for UK businesses.',
       stats: [
         { value: '6', label: 'Platforms managed' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'strategy',
       nav: 'Strategy',
-      heading: 'Social Media Strategy',
+      heading: 'Social Media Strategy, Audience Research and Content Planning',
       image: '/pages/social/strategy.webp',
       alt: 'Brand connected to Facebook, Instagram, LinkedIn, TikTok, Pinterest and YouTube',
       paras: ['You do not need to be everywhere. We find where your customers spend time and build a plan for each platform with clear goals.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content',
       nav: 'Content',
-      heading: 'Social Media Content Creation',
+      heading: 'Social Media Content Creation: Video, Reels and Graphics',
       image: '/pages/social/content.webp',
       alt: 'Weekly social content calendar with Reels, carousels, reviews and live sessions',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'paid-social',
       nav: 'Paid social',
-      heading: 'Paid Social Advertising',
+      heading: 'Paid Social Advertising on Meta, TikTok and LinkedIn',
       image: '/pages/social/paid.webp',
       alt: 'Paid social results across Facebook, Instagram, LinkedIn, TikTok, Pinterest and YouTube',
       paras: ['Organic reach is limited. Paid social puts your best content in front of the right new audiences and turns attention into leads and sales.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'community',
       nav: 'Community',
-      heading: 'Social Media Community Management',
+      heading: 'Social Media Community Management and Engagement',
       image: '/pages/social/community.webp',
       alt: 'Engaged followers growing with fast reply times and higher engagement rate',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Social Media Process',
+      heading: 'Our Social Media Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Your channels, audience and competitors reviewed.' },
         { title: 'Strategy', text: 'Platforms, pillars and goals agreed.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Social Media Case Studies',
+      heading: 'Social Media Case Studies and Results',
     },
     {
       type: 'table',
@@ -157,7 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Social Media Client Reviews',
+      heading: 'Social Media Client Reviews and Testimonials',
       reviews: [
         { name: 'Jess A', role: 'Owner, Café Group', text: 'Our Instagram Reels now fill weekend bookings, and the team replies to every comment.' },
         { name: 'Mark L', role: 'Director, Consultancy', text: 'LinkedIn has become our best source of qualified leads since they took over.' },
@@ -168,7 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Social Media for Your Industry',
+      heading: 'Social Media Services by Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'Mouth-watering Reels and local ads that fill tables and rooms.' },
         { slug: 'e-commerce', text: 'Shoppable posts, creators and catalogue ads that drive sales.' },

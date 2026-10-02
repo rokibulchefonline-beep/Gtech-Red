@@ -48,8 +48,8 @@ export default function Contact() {
       <section className="sp-hero compact">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Contact</b></nav>
-          <h1>Contact GTech Digital for a <span className="red">Free Proposal</span></h1>
-          <p className="sp-lead">Tell us about your goals and get a free audit and tailored proposal within 24 hours. No obligation, no hard sell.</p>
+          <h1>Contact <span className="red">GTech Digital</span> for a Free Marketing Audit and Proposal</h1>
+          <p className="sp-lead">Contact GTech Digital, a UK digital marketing, web design and software agency, for a free audit and tailored proposal within 24 hours, with no obligation and no long contracts.</p>
           <ul className="sp-hero-points">{['Reply within one working day', 'Free audit and proposal', 'No long contracts'].map((p) => <li key={p}><Tick />{p}</li>)}</ul>
         </div>
       </section>
@@ -73,7 +73,7 @@ export default function Contact() {
 
       <PartnerStrip />
 
-      <FaqSection title="Contact GTech Digital FAQs" faqs={faqs} schema />
+      <FaqSection title="Frequently Asked Questions About Contacting GTech Digital" faqs={faqs} schema />
     </>
   );
 }

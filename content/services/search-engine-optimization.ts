@@ -14,10 +14,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK SEO agency optimising websites for Google, answer engines and AI search (AEO & GEO). On-page, off-page and technical SEO that turns visibility into leads.',
   hero: {
+    keyword: 'SEO, AEO and GEO',
     title: 'SEO, AEO and GEO for Google and',
     highlight: 'AI Search',
     lead:
-      'We optimise your website for search engines, answer engines and generative AI, so customers find you on Google, in featured snippets and in tools like ChatGPT and Google AI Overviews.',
+      'GTech Digital is a UK SEO agency that optimises websites for search engines, answer engines and generative AI, so businesses rank on Google, win featured snippets and are recommended in ChatGPT, Gemini and Google AI Overviews.',
     motion: '/services/seo.webp',
     points: ['Free website audit', 'No lock-in contracts', 'Plain-English monthly reports'],
   },
@@ -40,7 +41,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'SEO Results in Numbers',
+      heading: 'SEO Results and Key Statistics',
       text: 'The numbers behind our SEO, AEO and GEO work for UK businesses.',
       stats: [
         { value: '1,200+', label: 'Keywords on page one' },
@@ -53,7 +54,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'on-page',
       nav: 'On-page SEO',
-      heading: 'On-Page SEO',
+      heading: 'On-Page SEO: Content, Metadata and Internal Linking',
       image: '/pages/seo/onpage.webp',
       alt: 'Web page annotated with title tag, meta description, headings and schema markup',
       paras: ['We optimise every important page so Google and AI tools understand exactly what it offers, and visitors know what to do next.'],
@@ -63,7 +64,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'off-page',
       nav: 'Off-page SEO',
-      heading: 'Off-Page SEO and Link Building',
+      heading: 'Off-Page SEO: Link Building, Digital PR and Brand Mentions',
       image: '/pages/seo/offpage.webp',
       alt: 'Backlinks from publications and industry sites pointing to a website',
       flip: true,
@@ -75,7 +76,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'technical',
       nav: 'Technical SEO',
-      heading: 'Technical SEO',
+      heading: 'Technical SEO: Site Speed, Crawlability and Core Web Vitals',
       image: '/pages/seo/technical.webp',
       alt: 'Core Web Vitals scores and technical audit checklist',
       paras: ['If search engines cannot crawl your site, nothing else works. We fix the foundations and hit Google’s Core Web Vitals targets: LCP under 2.5s, INP under 200ms and CLS under 0.1.'],
@@ -85,7 +86,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'aeo-geo',
       nav: 'AEO & GEO',
-      heading: 'AEO and GEO: AI Search Optimisation',
+      heading: 'AEO and GEO: Optimising for AI Overviews, ChatGPT and Answer Engines',
       image: '/pages/seo/aeo-geo.webp',
       alt: 'AI assistant answer and Google AI Overview citing a business website',
       flip: true,
@@ -113,7 +114,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our SEO Process',
+      heading: 'Our SEO Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'We review your site, rankings, AI visibility and competitors.' },
         { title: 'Strategy', text: 'A keyword and question map with clear targets for leads.' },
@@ -127,7 +128,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'SEO Case Studies',
+      heading: 'SEO Case Studies and Results',
     },
     {
       type: 'table',
@@ -160,7 +161,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'SEO Client Reviews',
+      heading: 'SEO Client Reviews and Testimonials',
       reviews: [
         { name: 'Derek L', role: 'Ecommerce Director', text: 'Their technical audit found problems three agencies had missed. Organic is now our biggest revenue channel.' },
         { name: 'Priya S', role: 'Clinic Owner, Manchester', text: 'We appear in the map pack for every treatment we offer, and we can see exactly how many bookings come from Google.' },
@@ -171,7 +172,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'SEO for Your Industry',
+      heading: 'SEO Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Category and product SEO that grows non-branded revenue.' },
         { slug: 'hospitality-hotels', text: '"Near me" visibility and commission-free direct bookings.' },

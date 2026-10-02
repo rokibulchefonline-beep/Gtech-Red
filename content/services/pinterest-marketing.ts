@@ -13,10 +13,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK Pinterest marketing agency: Pinterest SEO, pin design, shopping catalogues and Pinterest Ads that drive long-lasting traffic and online sales.',
   hero: {
+    keyword: 'Pinterest Marketing',
     title: 'Pinterest Marketing for',
     highlight: 'Traffic and Sales',
     lead:
-      'We design pins people save, optimise them for Pinterest search, and run shopping ads that reach planners at the exact moment they decide what to buy.',
+      'GTech Digital is a UK Pinterest marketing agency that designs pins, optimises boards for Pinterest SEO and runs shopping ads, helping brands reach people planning purchases and drive website traffic that lasts for months.',
     motion: '/services/pinterest.webp',
     points: ['Free Pinterest audit', 'Pins designed for you', 'Traffic and sales tracked'],
   },
@@ -26,7 +27,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-pinterest-marketing',
       nav: 'What is it',
-      heading: 'What Is Pinterest Marketing?',
+      heading: 'What Is Pinterest Marketing and How Does It Work?',
       paras: [
         'Pinterest is a visual search engine where people plan purchases, from homes and recipes to weddings and gifts. Unlike other social posts, pins can keep bringing traffic for months, and Pinterest users often have clear intent to buy.',
       ],
@@ -39,7 +40,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Pinterest Marketing Results in Numbers',
+      heading: 'Pinterest Marketing Results and Key Statistics',
       text: 'The numbers behind the Pinterest accounts we manage for UK brands.',
       stats: [
         { value: '420k', label: 'Average monthly views' },
@@ -52,7 +53,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'boards',
       nav: 'Pins & boards',
-      heading: 'Pin Design and Board Strategy',
+      heading: 'Pin Design, Idea Pins and Board Strategy',
       image: '/pages/pinterest/boards.webp',
       alt: 'Pin and board plan with idea, product, video and seasonal pins',
       paras: ['We design vertical pins with clear text overlays and build boards around the topics your buyers plan for.'],
@@ -62,7 +63,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'pinterest-seo',
       nav: 'Pinterest SEO',
-      heading: 'Pinterest SEO',
+      heading: 'Pinterest SEO: Keywords, Boards and Rich Pins',
       image: '/pages/pinterest/seo.webp',
       alt: 'Pin annotated with keyword title, description, board keywords, alt text and product link',
       flip: true,
@@ -74,7 +75,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'Pinterest ads',
-      heading: 'Pinterest Ads',
+      heading: 'Pinterest Ads and Promoted Pins',
       image: '/pages/pinterest/ads.webp',
       alt: 'Pinterest shopping revenue with ROAS, saves and outbound click-through',
       paras: ['Pinterest Ads appear in search and home feeds while people are still deciding. We target by keyword, interest and audience to win the sale early.'],
@@ -84,7 +85,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'catalogue',
       nav: 'Catalogue',
-      heading: 'Pinterest Catalogues and Tracking',
+      heading: 'Pinterest Catalogues, Shopping Pins and Conversion Tracking',
       image: '/pages/pinterest/catalogue.webp',
       alt: 'Pinterest catalogue and tracking checklist with tag, feed and verified merchant',
       flip: true,
@@ -112,7 +113,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Pinterest Marketing Process',
+      heading: 'Our Pinterest Marketing Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Account, content and competitors.' },
         { title: 'Research', text: 'Keywords and seasonal trends.' },
@@ -126,7 +127,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Pinterest Marketing Case Studies',
+      heading: 'Pinterest Marketing Case Studies and Results',
     },
     {
       type: 'table',
@@ -159,7 +160,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Pinterest Marketing Client Reviews',
+      heading: 'Pinterest Marketing Client Reviews and Testimonials',
       reviews: [
         { name: 'Amy W', role: 'Owner, Homeware Store', text: 'Pinterest is now our second biggest traffic source and those pins keep working for months.' },
         { name: 'Rebecca J', role: 'Food Blogger', text: 'Their Pinterest SEO tripled our recipe traffic within half a year.' },
@@ -170,7 +171,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Pinterest Marketing for Your Industry',
+      heading: 'Pinterest Marketing Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Shopping catalogues for home, fashion and gifts.' },
         { slug: 'hospitality-hotels', text: 'Venue, recipe and event inspiration that books visits.' },

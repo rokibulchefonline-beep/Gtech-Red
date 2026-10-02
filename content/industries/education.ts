@@ -11,7 +11,7 @@ export default industry({
   hero: {
     title: 'Education Marketing That',
     highlight: 'Fills Courses',
-    lead: 'We help schools, colleges, universities and training providers reach the right students and parents, and turn enquiries into enrolments.',
+    lead: 'GTech Digital provides education marketing services for UK schools, colleges, universities and training providers, using course SEO, Google Ads, TikTok and Instagram campaigns and accessible websites to turn enquiries into enrolments.',
     points: ['Free recruitment audit', 'Student and parent journeys', 'Enquiries tracked to enrolment'],
   },
   what: {
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'More Enquiries, More Enrolments', stats: [['+58%', 'Average growth in open day bookings'], ['£46', 'Average cost per enquiry'], ['29%', 'Average enquiry to enrolment'], ['98%', 'Average site accessibility score']] },
   media: [
-    { nav: 'Enquiries', topic: 'Student recruitment', heading: 'A Steady Flow of Course Enquiries', para: 'We plan campaigns around your intake calendar so enquiries peak when you need them most.', bullets: ['Course and subject SEO', 'Open day and event campaigns', 'Clearing and late-intake ads', 'Enrolment tracking'], alt: 'Course enquiries growing with enrolments, cost per enquiry and open day bookings' },
-    { nav: 'Channels', topic: 'Channels', heading: 'Reach Students Where They Scroll', para: 'Students live on TikTok and Instagram, parents on Google and Facebook. We reach both with the right message.', bullets: ['TikTok and Instagram for students', 'Google and Facebook for parents', 'Student-led content', 'Email nurture to enrolment'], alt: 'How students find you: course search, Google Ads, TikTok, Instagram, email and local search' },
-    { nav: 'Journey', topic: 'Student journey', heading: 'From First Visit to Enrolment', para: 'We remove friction from course pages, prospectus requests and applications so more interest turns into places filled.', bullets: ['Course finder and filters', 'Prospectus and open day forms', 'Fast follow-up and CRM', 'Application tracking'], alt: 'Student journey from course page visits to enquiries, open days and enrolments' },
-    { nav: 'Accessibility', topic: 'Accessible and safe', heading: 'Websites Built for Every Learner', para: 'Education websites must be accessible and trustworthy. We design to WCAG 2.2 AA and handle content with care.', bullets: ['WCAG 2.2 AA accessibility', 'Safeguarding-aware content', 'Easy editing for staff', 'Secure forms and GDPR'], alt: 'Education website checklist with accessibility, course finder, CRM and safeguarding' },
+    { nav: 'Enquiries', topic: 'Student recruitment and course enquiries', heading: 'A Steady Flow of Course Enquiries', para: 'We plan campaigns around your intake calendar so enquiries peak when you need them most.', bullets: ['Course and subject SEO', 'Open day and event campaigns', 'Clearing and late-intake ads', 'Enrolment tracking'], alt: 'Course enquiries growing with enrolments, cost per enquiry and open day bookings' },
+    { nav: 'Channels', topic: 'Channels that reach students and parents', heading: 'Reach Students Where They Scroll', para: 'Students live on TikTok and Instagram, parents on Google and Facebook. We reach both with the right message.', bullets: ['TikTok and Instagram for students', 'Google and Facebook for parents', 'Student-led content', 'Email nurture to enrolment'], alt: 'How students find you: course search, Google Ads, TikTok, Instagram, email and local search' },
+    { nav: 'Journey', topic: 'Student journey from open day to enrolment', heading: 'From First Visit to Enrolment', para: 'We remove friction from course pages, prospectus requests and applications so more interest turns into places filled.', bullets: ['Course finder and filters', 'Prospectus and open day forms', 'Fast follow-up and CRM', 'Application tracking'], alt: 'Student journey from course page visits to enquiries, open days and enrolments' },
+    { nav: 'Accessibility', topic: 'Accessible and safeguarding-aware websites', heading: 'Websites Built for Every Learner', para: 'Education websites must be accessible and trustworthy. We design to WCAG 2.2 AA and handle content with care.', bullets: ['WCAG 2.2 AA accessibility', 'Safeguarding-aware content', 'Easy editing for staff', 'Secure forms and GDPR'], alt: 'Education website checklist with accessibility, course finder, CRM and safeguarding' },
   ],
   cards: [
     ['lucide:search', 'Course SEO', 'Rank for subjects and courses.'], ['simple-icons:googleads', 'Google Ads', 'Open day and clearing campaigns.'],

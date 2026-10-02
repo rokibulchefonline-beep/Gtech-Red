@@ -11,7 +11,7 @@ export default industry({
   hero: {
     title: 'Healthcare Marketing for',
     highlight: 'More Patients',
-    lead: 'We help private clinics, dentists and healthcare providers attract the right patients with compliant, trustworthy marketing and easy online booking.',
+    lead: 'GTech Digital provides healthcare marketing services for UK private clinics, dentists and healthcare providers, combining local SEO, compliant Google and Meta ads, reviews and online booking to attract new patients.',
     points: ['Free clinic audit', 'ASA and CQC-aware', 'Bookings tracked'],
   },
   what: {
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'More Patients, Fully Compliant', stats: [['1,480', 'Average new patients a year'], ['+72%', 'Average growth in online bookings'], ['£28', 'Average cost per new patient'], ['4.9', 'Average Google rating']] },
   media: [
-    { nav: 'Patients', topic: 'Patient acquisition', heading: 'A Steady Flow of New Patients', para: 'We focus on the treatments that matter most to your clinic and track every booking back to its source.', bullets: ['Treatment-focused campaigns', 'Online booking integration', 'Call tracking', 'Cost per patient reporting'], alt: 'New patient bookings growing with online bookings, calls and cost per patient' },
-    { nav: 'Channels', topic: 'Channels', heading: 'Be the Clinic Patients Find First', para: 'Most patients start with Google. We put your clinic at the top of local results, Maps and AI answers.', bullets: ['Local SEO and Google Maps', 'Treatment and condition content', 'Google and Meta ads', 'Review generation'], alt: 'How patients find you: Google Maps, SEO, Google Ads, Meta ads, reviews and recall emails' },
-    { nav: 'Booking', topic: 'Patient journey', heading: 'Booking That Takes a Minute', para: 'Clear treatment pages, transparent pricing and 24/7 online booking turn interest into appointments.', bullets: ['Treatment and price pages', '24/7 online booking', 'Reminder and recall emails', 'Reduced no-shows'], alt: 'Patient journey from treatment page visits to bookings and attended appointments' },
-    { nav: 'Compliance', topic: 'Compliance', heading: 'Marketing That Stays Within the Rules', para: 'Healthcare advertising is tightly regulated. We follow ASA, CAP and professional body guidance and protect patient data.', bullets: ['ASA and CAP code compliance', 'CQC and GMC-aware content', 'Clinician-reviewed copy', 'GDPR-safe forms'], alt: 'Compliant healthcare marketing checklist with ASA, CQC, GDPR and clinician review' },
+    { nav: 'Patients', topic: 'Patient acquisition and online bookings', heading: 'A Steady Flow of New Patients', para: 'We focus on the treatments that matter most to your clinic and track every booking back to its source.', bullets: ['Treatment-focused campaigns', 'Online booking integration', 'Call tracking', 'Cost per patient reporting'], alt: 'New patient bookings growing with online bookings, calls and cost per patient' },
+    { nav: 'Channels', topic: 'Local search, Google Maps and patient channels', heading: 'Be the Clinic Patients Find First', para: 'Most patients start with Google. We put your clinic at the top of local results, Maps and AI answers.', bullets: ['Local SEO and Google Maps', 'Treatment and condition content', 'Google and Meta ads', 'Review generation'], alt: 'How patients find you: Google Maps, SEO, Google Ads, Meta ads, reviews and recall emails' },
+    { nav: 'Booking', topic: 'Patient journey and appointment booking', heading: 'Booking That Takes a Minute', para: 'Clear treatment pages, transparent pricing and 24/7 online booking turn interest into appointments.', bullets: ['Treatment and price pages', '24/7 online booking', 'Reminder and recall emails', 'Reduced no-shows'], alt: 'Patient journey from treatment page visits to bookings and attended appointments' },
+    { nav: 'Compliance', topic: 'ASA, CQC and GDPR compliant marketing', heading: 'Marketing That Stays Within the Rules', para: 'Healthcare advertising is tightly regulated. We follow ASA, CAP and professional body guidance and protect patient data.', bullets: ['ASA and CAP code compliance', 'CQC and GMC-aware content', 'Clinician-reviewed copy', 'GDPR-safe forms'], alt: 'Compliant healthcare marketing checklist with ASA, CQC, GDPR and clinician review' },
   ],
   cards: [
     ['lucide:map-pin', 'Local SEO', 'Top of Maps for treatments.'], ['lucide:search', 'Healthcare SEO', 'Trustworthy treatment content.'],

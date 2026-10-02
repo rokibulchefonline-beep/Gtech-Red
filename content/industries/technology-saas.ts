@@ -11,7 +11,7 @@ export default industry({
   hero: {
     title: 'SaaS Marketing That',
     highlight: 'Grows MRR',
-    lead: 'We help software and technology companies win more trials and demos, convert them to paying customers and lower acquisition costs.',
+    lead: 'GTech Digital provides SaaS marketing services for UK software and technology companies, combining SaaS SEO, AI search visibility, Google and LinkedIn ads and onboarding optimisation to grow trials, demos and recurring revenue.',
     points: ['Free growth audit', 'Trials and MRR tracked', 'SEO, paid and product-led'],
   },
   what: {
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'Lower CAC, Higher MRR', stats: [['+236%', 'Average growth in sign-ups from search'], ['11%', 'Average trial to paid'], ['116%', 'Average net revenue retention'], ['-34%', 'Average reduction in CAC']] },
   media: [
-    { nav: 'Revenue', topic: 'Recurring revenue', heading: 'Marketing Measured in MRR', para: 'We connect marketing to trials, activation and paid conversions so every channel is judged on revenue.', bullets: ['Trial and demo tracking', 'CAC and payback reporting', 'Pricing page testing', 'MRR attribution'], alt: 'SaaS monthly recurring revenue growing with trial sign-ups, trial to paid and CAC' },
-    { nav: 'Channels', topic: 'Growth channels', heading: 'Be the Tool Buyers Shortlist', para: 'We rank you for the problems your product solves, the tools you compete with and the questions buyers ask AI.', bullets: ['Comparison and alternatives pages', 'AI search and answer engines', 'Google and LinkedIn ads', 'Review site profiles'], alt: 'SaaS growth channels: SEO, Google Ads, LinkedIn, AI answers, comparison pages and onboarding emails' },
-    { nav: 'Activation', topic: 'Trial to paid', heading: 'Turn Trials Into Customers', para: 'Most churn starts in the first week. We improve onboarding so users reach value fast and upgrade.', bullets: ['Onboarding email sequences', 'In-app guidance', 'Activation milestones', 'Upgrade prompts'], alt: 'Trial to paid funnel from visitors to sign-ups, activated users and paying customers' },
-    { nav: 'Product-led', topic: 'Product-led growth', heading: 'Built for Product-Led Growth', para: 'We set up the analytics and experiments you need to grow efficiently and prove what works.', bullets: ['Product analytics and events', 'A/B testing roadmap', 'Lifecycle and churn reporting', 'G2 and Capterra reviews'], alt: 'SaaS checklist with product analytics, comparison pages, pricing tests and AI search visibility' },
+    { nav: 'Revenue', topic: 'Recurring revenue and CAC payback', heading: 'Marketing Measured in MRR', para: 'We connect marketing to trials, activation and paid conversions so every channel is judged on revenue.', bullets: ['Trial and demo tracking', 'CAC and payback reporting', 'Pricing page testing', 'MRR attribution'], alt: 'SaaS monthly recurring revenue growing with trial sign-ups, trial to paid and CAC' },
+    { nav: 'Channels', topic: 'Growth channels, comparison pages and AI search', heading: 'Be the Tool Buyers Shortlist', para: 'We rank you for the problems your product solves, the tools you compete with and the questions buyers ask AI.', bullets: ['Comparison and alternatives pages', 'AI search and answer engines', 'Google and LinkedIn ads', 'Review site profiles'], alt: 'SaaS growth channels: SEO, Google Ads, LinkedIn, AI answers, comparison pages and onboarding emails' },
+    { nav: 'Activation', topic: 'Trial to paid conversion and activation', heading: 'Turn Trials Into Customers', para: 'Most churn starts in the first week. We improve onboarding so users reach value fast and upgrade.', bullets: ['Onboarding email sequences', 'In-app guidance', 'Activation milestones', 'Upgrade prompts'], alt: 'Trial to paid funnel from visitors to sign-ups, activated users and paying customers' },
+    { nav: 'Product-led', topic: 'Product-led growth analytics and testing', heading: 'Built for Product-Led Growth', para: 'We set up the analytics and experiments you need to grow efficiently and prove what works.', bullets: ['Product analytics and events', 'A/B testing roadmap', 'Lifecycle and churn reporting', 'G2 and Capterra reviews'], alt: 'SaaS checklist with product analytics, comparison pages, pricing tests and AI search visibility' },
   ],
   cards: [
     ['lucide:search', 'SaaS SEO', 'Problem and comparison content.'], ['lucide:sparkles', 'AI Search', 'Get recommended by AI.'],

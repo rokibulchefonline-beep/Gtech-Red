@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK ecommerce SEO agency growing organic sales with category and product page optimisation, technical SEO, product schema and Google free listings for Shopify and WooCommerce.',
   hero: {
+    keyword: 'Ecommerce SEO',
     title: 'Ecommerce SEO That Grows',
     highlight: 'Organic Sales',
     lead:
-      'We optimise your categories, products and store structure so shoppers find you on Google, in Shopping and in AI answers, without paying for every click.',
+      'GTech Digital provides ecommerce SEO services for UK online stores, optimising category pages, product pages, technical SEO and Google Shopping feeds so products rank on Google, appear in AI answers and drive organic sales.',
     motion: '/services/ecomseo.webp',
     points: ['Free ecommerce SEO audit', 'Shopify and WooCommerce experts', 'Revenue tracked, not just rankings'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-ecommerce-seo',
       nav: 'What is it',
-      heading: 'What Is Ecommerce SEO?',
+      heading: 'What Is Ecommerce SEO and How Does It Work?',
       paras: [
         'Ecommerce SEO helps online stores rank for the searches shoppers make before they buy. Stores have unique challenges, such as thousands of products, filters that create duplicate pages and thin product descriptions, so they need a specialist approach.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Ecommerce SEO Results in Numbers',
+      heading: 'Ecommerce SEO Results and Key Statistics',
       text: 'The numbers behind the ecommerce SEO we run for UK online stores.',
       stats: [
         { value: '+132%', label: 'Average organic order growth' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'structure',
       nav: 'Store structure',
-      heading: 'Ecommerce Site Structure and Category SEO',
+      heading: 'Ecommerce Site Architecture and Category Page SEO',
       image: '/pages/ecom-seo/structure.webp',
       alt: 'Store structure from homepage to categories, subcategories, products and guides with SEO elements',
       paras: ['Category pages target the biggest buying searches. We plan your categories around real demand and link them so authority flows to them.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'products',
       nav: 'Product pages',
-      heading: 'Product Page SEO',
+      heading: 'Product Page SEO: Descriptions, Schema and Reviews',
       image: '/pages/ecom-seo/products.webp',
       alt: 'Product page annotated with keyword title, price and stock schema, images, description, reviews and related products',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'technical',
       nav: 'Technical SEO',
-      heading: 'Ecommerce Technical SEO',
+      heading: 'Ecommerce Technical SEO: Faceted Navigation, Crawl Budget and Speed',
       image: '/pages/ecom-seo/technical.webp',
       alt: 'Ecommerce technical SEO checklist with faceted navigation, schema, canonicals and out-of-stock handling',
       paras: ['Filters, variants and pagination can create thousands of duplicate pages. We control them so Google crawls the pages that make money.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'shopping',
       nav: 'Shopping & revenue',
-      heading: 'Google Shopping Free Listings and Organic Revenue',
+      heading: 'Google Shopping Free Listings, Merchant Center and Organic Revenue',
       image: '/pages/ecom-seo/revenue.webp',
       alt: 'Organic revenue growth with more organic orders, ranking keywords and free listing clicks',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Ecommerce SEO Process',
+      heading: 'Our Ecommerce SEO Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Store, data and competitors.' },
         { title: 'Map', text: 'Keywords to categories and products.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Ecommerce SEO Case Studies',
+      heading: 'Ecommerce SEO Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Ecommerce SEO Client Reviews',
+      heading: 'Ecommerce SEO Client Reviews and Testimonials',
       reviews: [
         { name: 'Sophie A', role: 'Founder, Beauty Store', text: 'Organic revenue more than doubled in a year and we rely far less on ads.' },
         { name: 'Daniel F', role: 'Ecommerce Director, Furniture', text: 'They fixed thousands of duplicate filter pages and our categories shot up.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Ecommerce SEO for Your Industry',
+      heading: 'Ecommerce SEO Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Fashion, beauty, homeware and gifts.' },
         { slug: 'b2b-marketing', text: 'Trade and wholesale catalogues.' },

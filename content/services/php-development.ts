@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK PHP development company building custom web applications, APIs and integrations, and upgrading legacy PHP to modern, secure PHP 8.',
   hero: {
+    keyword: 'PHP Development',
     title: 'PHP Development for',
     highlight: 'Custom Web Applications',
     lead:
-      'We build fast, secure PHP applications and APIs, and rescue legacy PHP systems by upgrading them to modern PHP 8 without disrupting your business.',
+      'GTech Digital is a UK PHP development company that builds custom web applications and APIs with modern PHP 8, Laravel and Symfony, and upgrades legacy PHP systems to be faster, more secure and easier to maintain.',
     motion: '/services/php.webp',
     points: ['Free code review', 'Modern PHP 8 standards', 'Tested, documented code'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-php-development',
       nav: 'What is it',
-      heading: 'What Is PHP Development?',
+      heading: 'What Is PHP Development and How Does It Work?',
       paras: [
         'PHP is the server-side language behind much of the web, including WordPress and Laravel. Custom PHP development means building the web applications, portals and APIs that run your processes, using modern PHP 8 and proven frameworks.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'PHP Development Results in Numbers',
+      heading: 'PHP Development Results and Key Statistics',
       text: 'The numbers behind the PHP systems we build and modernise.',
       stats: [
         { value: '4x', label: 'Average speed gain after upgrade' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'applications',
       nav: 'Applications',
-      heading: 'Custom PHP Application Development',
+      heading: 'Custom PHP Web Application Development',
       image: '/pages/php/apps.webp',
       alt: 'Custom PHP application stack from front end and application logic to APIs, data and hosting',
       paras: ['We build the portals, booking systems and admin tools your team needs, with clean architecture that is easy to extend.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'apis',
       nav: 'APIs',
-      heading: 'PHP API Development and Integrations',
+      heading: 'PHP API Development and Third-Party Integrations',
       image: '/pages/php/apis.webp',
       alt: 'PHP platform connected by API to Stripe, Xero, HubSpot, courier, email and ERP systems',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'modernisation',
       nav: 'Modernisation',
-      heading: 'Legacy PHP Modernisation and Upgrades',
+      heading: 'Legacy PHP Modernisation, Upgrades and Refactoring',
       image: '/pages/php/modernise.webp',
       alt: 'Legacy PHP upgrade checklist with PHP 8.3, security patches, tests and Composer',
       paras: ['Old PHP versions are slow and no longer get security fixes. We upgrade step by step, adding tests so nothing breaks along the way.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'performance',
       nav: 'Performance',
-      heading: 'PHP Performance and Testing',
+      heading: 'PHP Performance Optimisation and Automated Testing',
       image: '/pages/php/performance.webp',
       alt: 'PHP service code with response time, faster queries and uptime',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our PHP Development Process',
+      heading: 'Our PHP Development Process, Step by Step',
       steps: [
         { title: 'Review', text: 'Requirements or existing code.' },
         { title: 'Plan', text: 'Architecture, scope and estimate.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'PHP Development Case Studies',
+      heading: 'PHP Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'PHP Development Client Reviews',
+      heading: 'PHP Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Nick E', role: 'Operations Director, Logistics', text: 'They upgraded our 10-year-old PHP system without a single day of downtime.' },
         { name: 'Sara L', role: 'Founder, Booking Platform', text: 'Our API now handles four times the traffic and pages load in a fraction of the time.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'PHP Development for Your Industry',
+      heading: 'PHP Development Services by Industry',
       items: [
         { slug: 'finance', text: 'Secure portals and calculators.' },
         { slug: 'healthcare', text: 'Patient booking and records tools.' },

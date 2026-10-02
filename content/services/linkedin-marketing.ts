@@ -13,10 +13,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK LinkedIn marketing agency for B2B: thought leadership content, employee advocacy and LinkedIn Ads with Lead Gen Forms that fill your sales pipeline.',
   hero: {
+    keyword: 'LinkedIn Marketing',
     title: 'LinkedIn Marketing That Fills Your',
     highlight: 'Sales Pipeline',
     lead:
-      'We help B2B companies reach the decision-makers that matter, with thought leadership that builds trust and LinkedIn Ads that turn it into qualified sales meetings.',
+      'GTech Digital provides LinkedIn marketing for UK B2B companies, combining thought leadership content, employee advocacy and LinkedIn Ads with Lead Gen Forms and CRM tracking that turn decision-makers into sales pipeline.',
     motion: '/services/linkedin.webp',
     points: ['Free LinkedIn audit', 'Targeting by job title and company', 'Leads synced to your CRM'],
   },
@@ -26,7 +27,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-linkedin-marketing',
       nav: 'What is it',
-      heading: 'What Is LinkedIn Marketing?',
+      heading: 'What Is LinkedIn Marketing and How Does It Work?',
       paras: [
         'LinkedIn is where business buyers research, network and make decisions. It lets you target by job title, seniority, company and industry, which makes it the most precise B2B marketing channel available.',
       ],
@@ -39,7 +40,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'LinkedIn Marketing Results in Numbers',
+      heading: 'LinkedIn Marketing Results and Key Statistics',
       text: 'The numbers behind the LinkedIn campaigns we run for UK B2B companies.',
       stats: [
         { value: '£39', label: 'Average cost per B2B lead' },
@@ -52,7 +53,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content',
       nav: 'Thought leadership',
-      heading: 'LinkedIn Thought Leadership Content',
+      heading: 'LinkedIn Thought Leadership and Company Page Content',
       image: '/pages/linkedin/content.webp',
       alt: 'LinkedIn content plan with articles, documents, data, video, live and newsletters',
       paras: ['We turn your expertise into posts, documents, newsletters and video that decision-makers read, share and remember.'],
@@ -62,7 +63,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'LinkedIn ads',
-      heading: 'LinkedIn Ads and Lead Gen Forms',
+      heading: 'LinkedIn Ads, Lead Gen Forms and B2B Targeting',
       image: '/pages/linkedin/ads.webp',
       alt: 'LinkedIn lead gen funnel from decision-makers reached to sales meetings',
       flip: true,
@@ -74,7 +75,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'advocacy',
       nav: 'Employee advocacy',
-      heading: 'LinkedIn Employee Advocacy',
+      heading: 'LinkedIn Employee Advocacy and Personal Branding',
       image: '/pages/linkedin/advocacy.webp',
       alt: 'Company page reach multiplied through posts from the CEO, sales and experts',
       paras: ['Posts from real people reach far more than company posts. We help leaders and experts build their profiles with content written in their voice.'],
@@ -84,7 +85,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'tracking',
       nav: 'Tracking',
-      heading: 'LinkedIn Lead Tracking and CRM Integration',
+      heading: 'LinkedIn Lead Tracking and HubSpot or Salesforce CRM Integration',
       image: '/pages/linkedin/tracking.webp',
       alt: 'B2B lead tracking checklist with Insight Tag, CRM sync and offline deal stages',
       flip: true,
@@ -112,7 +113,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our LinkedIn Marketing Process',
+      heading: 'Our LinkedIn Marketing Process, Step by Step',
       steps: [
         { title: 'Define', text: 'Ideal customer profile and target accounts.' },
         { title: 'Audit', text: 'Page, profiles and past campaigns.' },
@@ -126,7 +127,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'LinkedIn Marketing Case Studies',
+      heading: 'LinkedIn Marketing Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'LinkedIn Marketing Client Reviews',
+      heading: 'LinkedIn Marketing Client Reviews and Testimonials',
       reviews: [
         { name: 'David K', role: 'MD, IT Services', text: 'LinkedIn now books us around 15 qualified sales meetings a month, all tracked in HubSpot.' },
         { name: 'Fiona R', role: 'Founder, Consultancy', text: 'My ghost-written posts regularly reach 50,000 people and clients mention them on calls.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'LinkedIn Marketing for Your Industry',
+      heading: 'LinkedIn Marketing Services by Industry',
       items: [
         { slug: 'b2b-marketing', text: 'Pipeline-focused LinkedIn programmes for B2B firms.' },
         { slug: 'technology-saas', text: 'Demo and trial campaigns aimed at buying committees.' },

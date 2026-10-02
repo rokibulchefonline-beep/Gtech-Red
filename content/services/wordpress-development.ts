@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK WordPress development agency building fast custom themes, Gutenberg blocks, plugins and WooCommerce stores that are secure, SEO-ready and easy to edit.',
   hero: {
+    keyword: 'WordPress Development',
     title: 'WordPress Development for',
     highlight: 'Fast, Secure Websites',
     lead:
-      'We build custom WordPress themes, blocks and plugins without the bloat, so your site loads quickly, ranks well and your team can update it with confidence.',
+      'GTech Digital is a UK WordPress development agency that builds fast custom themes, Gutenberg blocks, plugins and WooCommerce stores that are secure, SEO-ready and easy for teams to edit.',
     motion: '/services/wordpress.webp',
     points: ['Free WordPress audit', 'No page-builder bloat', 'Your team trained to edit'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-wordpress-development',
       nav: 'What is it',
-      heading: 'What Is WordPress Development?',
+      heading: 'What Is WordPress Development and How Does It Work?',
       paras: [
         'WordPress powers over 40% of the web. WordPress development means building a theme, blocks and plugins tailored to your business, rather than relying on a heavy off-the-shelf theme and dozens of plugins that slow your site down.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'WordPress Development Results in Numbers',
+      heading: 'WordPress Development Results and Key Statistics',
       text: 'The numbers behind the WordPress sites we build and rebuild for UK businesses.',
       stats: [
         { value: '120+', label: 'WordPress sites built' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'themes',
       nav: 'Custom themes',
-      heading: 'Custom WordPress Theme Development',
+      heading: 'Custom WordPress Theme Development Without Page Builders',
       image: '/pages/wordpress/theme.webp',
       alt: 'Custom WordPress theme code with plugins reduced, zero vulnerabilities and lower page weight',
       paras: ['We code lightweight themes from your design, with only the features you need. Less code means faster pages and fewer security risks.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'blocks',
       nav: 'Blocks & editing',
-      heading: 'Custom Gutenberg Blocks',
+      heading: 'Custom Gutenberg Blocks and Editor Experience',
       image: '/pages/wordpress/plugins.webp',
       alt: 'WordPress page built from custom header, pattern, hero, content and form blocks',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'woocommerce',
       nav: 'WooCommerce',
-      heading: 'WooCommerce Development',
+      heading: 'WooCommerce Development and Ecommerce Integrations',
       image: '/pages/wordpress/woocommerce.webp',
       alt: 'WooCommerce sales chart with conversion rate, payment methods and shipping rules',
       paras: ['We build WooCommerce stores with fast product pages, a simple checkout and integrations for payments, shipping and stock.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'speed-security',
       nav: 'Speed & security',
-      heading: 'WordPress Speed and Security',
+      heading: 'WordPress Speed, Security and Hosting',
       image: '/pages/wordpress/speed.webp',
       alt: 'WordPress Core Web Vitals gauges with updates, caching, backups and malware scanning',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our WordPress Development Process',
+      heading: 'Our WordPress Development Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Current site, content and goals.' },
         { title: 'Plan', text: 'Sitemap, blocks and features.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'WordPress Development Case Studies',
+      heading: 'WordPress Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'WordPress Development Client Reviews',
+      heading: 'WordPress Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Claire B', role: 'Marketing Manager, Charity', text: 'We went from 38 plugins to 9 and the site is twice as fast.' },
         { name: 'Ahmed S', role: 'Owner, Dental Practice', text: 'The custom blocks make editing pages simple for our whole team.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'WordPress Development for Your Industry',
+      heading: 'WordPress Development Services by Industry',
       items: [
         { slug: 'education', text: 'School and course sites staff can update.' },
         { slug: 'healthcare', text: 'Clinic sites with booking and treatment pages.' },

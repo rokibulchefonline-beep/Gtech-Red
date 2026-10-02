@@ -13,10 +13,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK content marketing agency creating strategy, articles, guides and video that rank on Google, get cited in AI answers and turn readers into customers.',
   hero: {
+    keyword: 'Content Marketing',
     title: 'Content Marketing That Ranks',
     highlight: 'and Converts',
     lead:
-      'We plan and create articles, guides and video that answer your buyers’ questions, rank on Google, get quoted by AI tools and move readers towards an enquiry.',
+      'GTech Digital is a UK content marketing agency that plans, writes and promotes expert guides, articles and videos that rank on Google, get cited in AI answers and turn readers into enquiries and sales.',
     motion: '/services/content.webp',
     points: ['Free content audit', 'Expert UK writers', 'Every piece tied to a goal'],
   },
@@ -26,7 +27,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-content-marketing',
       nav: 'What is it',
-      heading: 'What Is Content Marketing?',
+      heading: 'What Is Content Marketing and How Does It Work?',
       paras: [
         'Content marketing means creating genuinely useful content that your buyers search for, share and trust. Done well, it brings in traffic every month, builds authority with Google and AI tools, and makes your sales conversations easier.',
       ],
@@ -39,7 +40,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Content Marketing Results in Numbers',
+      heading: 'Content Marketing Results and Key Statistics',
       text: 'The numbers behind the content we create for UK businesses.',
       stats: [
         { value: '2,600+', label: 'Articles published' },
@@ -52,7 +53,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'strategy',
       nav: 'Strategy',
-      heading: 'Content Strategy and Keyword Research',
+      heading: 'Content Strategy, Keyword Research and Topic Clusters',
       image: '/pages/content/strategy.webp',
       alt: 'Pillar page connected to supporting articles in a topic cluster',
       paras: ['We map every question your buyers ask, from first research to final decision, and group them into topic clusters that build authority around your core services.'],
@@ -62,7 +63,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'articles',
       nav: 'Articles & guides',
-      heading: 'SEO Content Writing',
+      heading: 'SEO Content Writing: Blogs, Guides and Landing Pages',
       image: '/pages/content/articles.webp',
       alt: 'Monthly content plan with guides, FAQs, comparisons, cost guides and checklists',
       flip: true,
@@ -74,7 +75,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'video',
       nav: 'Video & visual',
-      heading: 'Video and Visual Content',
+      heading: 'Video, Infographics and Visual Content Creation',
       image: '/pages/content/video.webp',
       alt: 'Short explainer video with views, click-through and conversion figures',
       paras: ['Short explainers, product demos and infographics make complex ideas simple, rank on YouTube and Google, and work across every social channel.'],
@@ -84,7 +85,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'distribution',
       nav: 'Distribution',
-      heading: 'Content Distribution and Promotion',
+      heading: 'Content Distribution Across Social, Email and Outreach',
       image: '/pages/content/distribution.webp',
       alt: 'Organic traffic from content growing with articles published and AI citations',
       flip: true,
@@ -112,7 +113,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Content Marketing Process',
+      heading: 'Our Content Marketing Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'We review your current content and competitors.' },
         { title: 'Research', text: 'Buyer questions, keywords and search intent mapped.' },
@@ -126,7 +127,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Content Marketing Case Studies',
+      heading: 'Content Marketing Case Studies and Results',
     },
     {
       type: 'table',
@@ -159,7 +160,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Content Marketing Client Reviews',
+      heading: 'Content Marketing Client Reviews and Testimonials',
       reviews: [
         { name: 'Rachel G', role: 'Head of Marketing, SaaS', text: 'Their comparison pages now bring us more demo requests than our ads do.' },
         { name: 'Ben C', role: 'Owner, Ecommerce', text: 'Our buying guides rank on page one and are quoted in Google’s AI Overviews.' },
@@ -170,7 +171,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Content Marketing for Your Industry',
+      heading: 'Content Marketing Services by Industry',
       items: [
         { slug: 'technology-saas', text: 'Comparison, alternatives and use-case content that drives demos.' },
         { slug: 'e-commerce', text: 'Buying guides and category content that lift organic sales.' },

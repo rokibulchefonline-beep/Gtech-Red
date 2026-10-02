@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK web design and development agency building fast, secure, SEO-ready websites and online stores on WordPress, Laravel, Next.js and Shopify that turn visitors into customers.',
   hero: {
+    keyword: 'Web Design and Development',
     title: 'Web Design and Development',
     highlight: 'That Wins Customers',
     lead:
-      'We design and build fast, secure and search-ready websites and stores that make your business look its best and turn visitors into enquiries and sales.',
+      'GTech Digital is a UK web design and development agency that builds fast, secure, SEO-ready websites and online stores on WordPress, Laravel, Next.js and Shopify, designed to turn visitors into enquiries and sales.',
     motion: '/services/web.webp',
     points: ['Free website review', 'Mobile-first and SEO-ready', 'You own the code and content'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-web-design-development',
       nav: 'What is it',
-      heading: 'What Is Web Design and Development?',
+      heading: 'What Is Web Design and Development and How Does It Work?',
       paras: [
         'Web design is how your website looks, reads and guides visitors. Web development is the code, content management system and hosting that make it fast, secure and easy to update. A good website needs both, built around what your customers want to do.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Web Design & Development Results in Numbers',
+      heading: 'Web Design & Development Results and Key Statistics',
       text: 'The numbers behind the websites we design and build for UK businesses.',
       stats: [
         { value: '180+', label: 'Websites launched' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'design',
       nav: 'Design',
-      heading: 'Website Design',
+      heading: 'Website Design: UX, UI and Mobile-First Layouts',
       image: '/pages/web/design.webp',
       alt: 'Website page annotated with headline, value proposition, hero visual, trust signals and call to action',
       paras: ['Every page has a job. We plan the structure, write clear headlines and place trust signals and calls to action where they work best.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'development',
       nav: 'Development',
-      heading: 'Website Development',
+      heading: 'Website Development With WordPress, Next.js and Laravel',
       image: '/pages/web/build.webp',
       alt: 'Code editor with load time, security grade and mobile-friendly scores',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ecommerce',
       nav: 'Ecommerce',
-      heading: 'Ecommerce Website Development',
+      heading: 'Ecommerce Website Development With Shopify and WooCommerce',
       image: '/pages/web/ecommerce.webp',
       alt: 'Online revenue chart with conversion rate, average order value and repeat customers',
       paras: ['We build Shopify and WooCommerce stores with fast product pages, simple checkout and the integrations you need to run day to day.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'performance',
       nav: 'Performance',
-      heading: 'Website Speed, SEO and Security',
+      heading: 'Website Speed, Technical SEO and Security',
       image: '/pages/web/performance.webp',
       alt: 'Core Web Vitals gauges with security, backup, accessibility and SEO checks',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Web Design & Development Process',
+      heading: 'Our Web Design & Development Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Goals, audience and competitors.' },
         { title: 'Plan', text: 'Sitemap, content and wireframes.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Web Design & Development Case Studies',
+      heading: 'Web Design & Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Web Design & Development Client Reviews',
+      heading: 'Web Design & Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Helen G', role: 'Director, Law Firm', text: 'Our new site loads instantly and enquiries went up within the first month.' },
         { name: 'Raj P', role: 'Founder, Retail Brand', text: 'The Shopify store they built is easy to manage and sales have nearly doubled.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Web Design & Development for Your Industry',
+      heading: 'Web Design & Development Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Fast stores with simple checkout.' },
         { slug: 'healthcare', text: 'Clinic sites with online booking and compliance.' },

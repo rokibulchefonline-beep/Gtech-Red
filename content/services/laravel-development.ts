@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK Laravel development company building secure web applications, admin panels, APIs and SaaS platforms with Laravel 11, Livewire and Filament.',
   hero: {
+    keyword: 'Laravel Development',
     title: 'Laravel Development for Apps',
     highlight: 'That Scale',
     lead:
-      'We build secure, well-tested Laravel web apps, portals and APIs that automate your work and grow with your business, from first release to thousands of users.',
+      'GTech Digital is a UK Laravel development company that builds secure web applications, customer portals, admin panels, APIs and SaaS platforms with Laravel 11, automated testing and reliable cloud hosting.',
     motion: '/services/laravel.webp',
     points: ['Free technical consultation', 'Fixed-scope sprints', 'Tested, documented code'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-laravel-development',
       nav: 'What is it',
-      heading: 'What Is Laravel Development?',
+      heading: 'What Is Laravel Development and How Does It Work?',
       paras: [
         'Laravel is the most popular PHP framework for building web applications. It comes with secure authentication, queues, APIs and testing built in, so we spend your budget on features that matter instead of reinventing the basics.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Laravel Development Results in Numbers',
+      heading: 'Laravel Development Results and Key Statistics',
       text: 'The numbers behind the Laravel applications we build and support.',
       stats: [
         { value: '50+', label: 'Laravel apps delivered' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'applications',
       nav: 'Web apps',
-      heading: 'Laravel Web Application Development',
+      heading: 'Custom Laravel Web Application Development',
       image: '/pages/laravel/apps.webp',
       alt: 'Laravel application layers: interface, Laravel core, background jobs, data and deployment',
       paras: ['We turn spreadsheets and manual steps into fast, secure web apps your team and customers enjoy using.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'apis',
       nav: 'APIs',
-      heading: 'Laravel API Development',
+      heading: 'Laravel REST API Development and Integrations',
       image: '/pages/laravel/api.webp',
       alt: 'Laravel API controller code with endpoints, median response and OAuth 2 security',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'admin',
       nav: 'Admin panels',
-      heading: 'Laravel Admin Panels and Back Offices',
+      heading: 'Laravel Admin Panels, Dashboards and Back Offices',
       image: '/pages/laravel/admin.webp',
       alt: 'Orders processed chart with one admin panel, staff users and admin time saved',
       paras: ['We build Filament admin panels that let staff manage orders, customers and content in one clear place.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'quality',
       nav: 'Quality',
-      heading: 'Laravel Testing and DevOps',
+      heading: 'Laravel Testing, CI/CD and DevOps',
       image: '/pages/laravel/quality.webp',
       alt: 'Laravel quality checklist with Pest tests, Larastan, CI pipeline and staging',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Laravel Development Process',
+      heading: 'Our Laravel Development Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Goals, users and workflows.' },
         { title: 'Design', text: 'Wireframes and data model.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Laravel Development Case Studies',
+      heading: 'Laravel Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Laravel Development Client Reviews',
+      heading: 'Laravel Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Ben R', role: 'COO, Recruitment', text: 'Our Laravel portal replaced five spreadsheets and saves the team hours every week.' },
         { name: 'Nadia K', role: 'Founder, SaaS Start-up', text: 'They took us from idea to paying customers in under four months.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Laravel Development for Your Industry',
+      heading: 'Laravel Development Services by Industry',
       items: [
         { slug: 'technology-saas', text: 'Multi-tenant SaaS with subscription billing.' },
         { slug: 'finance', text: 'Secure client portals and calculators.' },

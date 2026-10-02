@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK website maintenance and support plans: updates, security monitoring, daily backups, uptime checks, speed tuning and content changes for one fixed monthly fee.',
   hero: {
+    keyword: 'Website Maintenance',
     title: 'Website Maintenance and',
     highlight: 'Support Plans',
     lead:
-      'We look after your website every month, with updates, security, backups, monitoring and small changes, so it stays fast, safe and working while you run your business.',
+      'GTech Digital provides website maintenance and support plans for UK businesses, covering software updates, security monitoring, daily backups, uptime checks and content changes for one fixed monthly fee.',
     motion: '/services/maintenance.webp',
     points: ['Free website health check', 'Fixed monthly fee', 'UK support team'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-website-maintenance',
       nav: 'What is it',
-      heading: 'What Is Website Maintenance?',
+      heading: 'What Is Website Maintenance and How Does It Work?',
       paras: [
         'Websites need regular care. Software updates, security threats, expired certificates and broken forms can quietly cost you customers. Website maintenance is a monthly plan that prevents these problems and fixes them fast when they happen.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Website Maintenance Results in Numbers',
+      heading: 'Website Maintenance Results and Key Statistics',
       text: 'The numbers behind the websites on our care plans.',
       stats: [
         { value: '99.98%', label: 'Average uptime' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'security',
       nav: 'Security',
-      heading: 'Website Updates and Security',
+      heading: 'Website Updates, Plugin Patches and Security Monitoring',
       image: '/pages/maintenance/security.webp',
       alt: 'Monthly maintenance checklist with updates, malware scan, SSL, firewall and admin audit',
       paras: ['Most hacks exploit outdated software. We test and apply updates safely, scan for malware and block attacks before they reach you.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'uptime',
       nav: 'Monitoring',
-      heading: 'Website Uptime Monitoring',
+      heading: '24/7 Website Uptime Monitoring and Alerts',
       image: '/pages/maintenance/uptime.webp',
       alt: 'Uptime chart at 99.98% with 60-second checks and fast response times',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'backups',
       nav: 'Backups',
-      heading: 'Website Backups and Recovery',
+      heading: 'Website Backups and Disaster Recovery',
       image: '/pages/maintenance/backups.webp',
       alt: 'Backup plan with daily, off-site, encrypted backups, restore time and monthly tests',
       paras: ['Backups only matter if they work. We keep daily encrypted copies off-site and test restores every month.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'speed',
       nav: 'Speed & fixes',
-      heading: 'Website Speed and Ongoing Improvements',
+      heading: 'Website Speed Optimisation and Ongoing Improvements',
       image: '/pages/maintenance/speed.webp',
       alt: 'Monthly speed checks with Core Web Vitals, image compression, database clean-up and form testing',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Website Maintenance Process',
+      heading: 'Our Website Maintenance Process, Step by Step',
       steps: [
         { title: 'Health check', text: 'Full review of your site.' },
         { title: 'Fix', text: 'Urgent issues resolved first.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Website Maintenance Case Studies',
+      heading: 'Website Maintenance Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Website Maintenance Client Reviews',
+      heading: 'Website Maintenance Client Reviews and Testimonials',
       reviews: [
         { name: 'Diane C', role: 'Owner, Florist', text: 'They spotted our site was down at 6am and had it back before we opened.' },
         { name: 'Matt J', role: 'Director, Accountancy', text: 'No more worrying about updates or hacks. It just works.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Website Maintenance for Your Industry',
+      heading: 'Website Maintenance Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Checkout and payment testing every month.' },
         { slug: 'healthcare', text: 'Secure booking forms and patient data.' },

@@ -11,7 +11,7 @@ export default industry({
   hero: {
     title: 'B2B Marketing That Builds',
     highlight: 'Pipeline',
-    lead: 'We help B2B companies reach decision-makers, generate qualified leads and prove marketing’s impact on pipeline and revenue.',
+    lead: 'GTech Digital provides B2B marketing services for UK companies, combining B2B SEO, LinkedIn Ads, account-based marketing and CRM-connected reporting to generate qualified leads and measurable sales pipeline.',
     points: ['Free pipeline audit', 'CRM-connected tracking', 'Reporting on pipeline, not clicks'],
   },
   what: {
@@ -21,10 +21,10 @@ export default industry({
   },
   impact: { heading: 'Pipeline, Not Vanity Metrics', stats: [['£3.2M', 'Average pipeline created a year'], ['+44%', 'Average win rate improvement'], ['£72', 'Average cost per qualified lead'], ['-21 days', 'Average sales cycle reduction']] },
   media: [
-    { nav: 'Pipeline', topic: 'Pipeline growth', heading: 'Marketing Sales Teams Value', para: 'We agree lead definitions with your sales team and measure success on meetings, opportunities and revenue.', bullets: ['Ideal customer profile', 'Lead scoring and routing', 'Sales and marketing alignment', 'Pipeline reporting'], alt: 'B2B sales pipeline created with qualified leads, sales meetings and cost per lead' },
-    { nav: 'Channels', topic: 'Demand channels', heading: 'Reach the Whole Buying Committee', para: 'We combine search for in-market buyers with LinkedIn and ABM to reach the accounts you most want to win.', bullets: ['SEO and content for research', 'LinkedIn Ads and Lead Gen Forms', 'Account-based marketing', 'Email nurture sequences'], alt: 'B2B demand channels: SEO, LinkedIn, Google Ads, content, email and ABM' },
-    { nav: 'Journey', topic: 'Buyer journey', heading: 'From First Touch to Signed Contract', para: 'Buyers need proof at every stage. We map content and campaigns to each step of their decision.', bullets: ['Guides, case studies and webinars', 'Retargeting by stage', 'Demo and consultation pages', 'Sales enablement content'], alt: 'B2B pipeline from target accounts reached to meetings booked with win rate and sales cycle' },
-    { nav: 'CRM', topic: 'CRM & data', heading: 'Closed-Loop Reporting You Can Trust', para: 'We connect your website, ads and CRM so you see which channels create revenue, not just leads.', bullets: ['HubSpot and Salesforce integration', 'Offline conversion tracking', 'Attribution reporting', 'Data quality checks'], alt: 'B2B growth engine checklist with CRM tracking, lead scoring, ABM and closed-loop reporting' },
+    { nav: 'Pipeline', topic: 'Pipeline growth and qualified leads', heading: 'Marketing Sales Teams Value', para: 'We agree lead definitions with your sales team and measure success on meetings, opportunities and revenue.', bullets: ['Ideal customer profile', 'Lead scoring and routing', 'Sales and marketing alignment', 'Pipeline reporting'], alt: 'B2B sales pipeline created with qualified leads, sales meetings and cost per lead' },
+    { nav: 'Channels', topic: 'Demand generation channels and ABM', heading: 'Reach the Whole Buying Committee', para: 'We combine search for in-market buyers with LinkedIn and ABM to reach the accounts you most want to win.', bullets: ['SEO and content for research', 'LinkedIn Ads and Lead Gen Forms', 'Account-based marketing', 'Email nurture sequences'], alt: 'B2B demand channels: SEO, LinkedIn, Google Ads, content, email and ABM' },
+    { nav: 'Journey', topic: 'Buyer journey content and nurture', heading: 'From First Touch to Signed Contract', para: 'Buyers need proof at every stage. We map content and campaigns to each step of their decision.', bullets: ['Guides, case studies and webinars', 'Retargeting by stage', 'Demo and consultation pages', 'Sales enablement content'], alt: 'B2B pipeline from target accounts reached to meetings booked with win rate and sales cycle' },
+    { nav: 'CRM', topic: 'CRM integration and closed-loop reporting', heading: 'Closed-Loop Reporting You Can Trust', para: 'We connect your website, ads and CRM so you see which channels create revenue, not just leads.', bullets: ['HubSpot and Salesforce integration', 'Offline conversion tracking', 'Attribution reporting', 'Data quality checks'], alt: 'B2B growth engine checklist with CRM tracking, lead scoring, ABM and closed-loop reporting' },
   ],
   cards: [
     ['lucide:search', 'B2B SEO', 'Rank for high-intent searches.'], ['simple-icons:linkedin', 'LinkedIn Ads', 'Reach the right job titles.'],

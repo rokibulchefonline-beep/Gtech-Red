@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK ecommerce development agency building Shopify, WooCommerce and custom online stores with fast product pages, simple checkout and integrations that save time.',
   hero: {
+    keyword: 'Ecommerce Development',
     title: 'Ecommerce Website Development',
     highlight: 'That Sells',
     lead:
-      'We design and build Shopify, WooCommerce and custom online stores with fast pages, simple checkout and the integrations that keep orders flowing.',
+      'GTech Digital builds ecommerce websites for UK brands on Shopify, WooCommerce and custom platforms, with fast product pages, simple checkout, secure payments and integrations for stock, shipping and accounting.',
     motion: '/services/ecommerce.webp',
     points: ['Free store review', 'Built for mobile shoppers', 'SEO-ready from launch'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-ecommerce-development',
       nav: 'What is it',
-      heading: 'What Is Ecommerce Development?',
+      heading: 'What Is Ecommerce Development and How Does It Work?',
       paras: [
         'Ecommerce development is building the online store that sells your products: the catalogue, product pages, basket, checkout and the systems behind them. A well-built store loads fast, is easy to shop on mobile and runs smoothly with your stock, payments and delivery.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Ecommerce Development Results in Numbers',
+      heading: 'Ecommerce Development Results and Key Statistics',
       text: 'The numbers behind the online stores we build for UK brands.',
       stats: [
         { value: '60+', label: 'Online stores launched' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'storefront',
       nav: 'Storefront',
-      heading: 'Ecommerce Store Design and Product Pages',
+      heading: 'Ecommerce Store Design, Category and Product Pages',
       image: '/pages/ecommerce/store.webp',
       alt: 'Product page annotated with search, title and price, gallery, reviews, delivery info and add to basket',
       paras: ['Shoppers decide in seconds. We design clear product pages with great images, reviews, delivery details and a strong add to basket.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'platforms',
       nav: 'Platforms',
-      heading: 'Shopify, WooCommerce and Custom Ecommerce',
+      heading: 'Shopify, WooCommerce and Custom Ecommerce Platforms',
       image: '/pages/ecommerce/platforms.webp',
       alt: 'Ecommerce platforms compared: Shopify, WooCommerce, Adobe Commerce, custom, B2B portal and multi-store',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'checkout',
       nav: 'Checkout',
-      heading: 'Ecommerce Checkout Optimisation',
+      heading: 'Ecommerce Checkout Optimisation and Basket Abandonment',
       image: '/pages/ecommerce/checkout.webp',
       alt: 'Checkout funnel from store visits to orders with conversion rate, one-click payments and lower abandonment',
       paras: ['Every extra step loses sales. We simplify checkout, add express payments and recover abandoned baskets automatically.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'integrations',
       nav: 'Integrations',
-      heading: 'Ecommerce Payments, Stock and Shipping Integrations',
+      heading: 'Ecommerce Payment Gateways, Inventory and Shipping Integrations',
       image: '/pages/ecommerce/integrations.webp',
       alt: 'Store connected to Stripe, PayPal, Xero, Royal Mail and DPD, email marketing and stock systems',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Ecommerce Development Process',
+      heading: 'Our Ecommerce Development Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Products, customers and goals.' },
         { title: 'Plan', text: 'Platform, structure and features.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Ecommerce Development Case Studies',
+      heading: 'Ecommerce Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Ecommerce Development Client Reviews',
+      heading: 'Ecommerce Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Jess N', role: 'Founder, Fashion Label', text: 'Our new Shopify store converts almost twice as well as the old one.' },
         { name: 'Kevin A', role: 'MD, Wholesale', text: 'The B2B portal lets trade customers order 24/7 and saves our team hours.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Ecommerce Development for Your Industry',
+      heading: 'Ecommerce Development Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Fashion, beauty, homeware and gifts.' },
         { slug: 'b2b-marketing', text: 'Trade portals with account pricing.' },

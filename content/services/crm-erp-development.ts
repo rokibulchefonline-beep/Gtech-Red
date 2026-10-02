@@ -13,10 +13,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK custom CRM and ERP development: bespoke systems for sales, orders, stock, scheduling and finance that automate admin and give you live control of the business.',
   hero: {
+    keyword: 'Custom CRM and ERP Development',
     title: 'Custom CRM and ERP Systems',
     highlight: 'for Your Business',
     lead:
-      'We build custom CRM and ERP systems that bring sales, orders, stock, jobs and finance together, automating admin and giving you live numbers.',
+      'GTech Digital develops custom CRM and ERP systems for UK businesses, bringing sales pipelines, orders, stock, scheduling and finance into one secure platform that automates admin and gives managers live data.',
     motion: '/services/crm.webp',
     points: ['Free process review', 'No per-user licence fees', 'Data migrated for you'],
   },
@@ -39,7 +40,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'CRM & ERP Development Results in Numbers',
+      heading: 'CRM & ERP Development Results and Key Statistics',
       text: 'The numbers behind the CRM and ERP systems we build.',
       stats: [
         { value: '16h', label: 'Average admin saved per week' },
@@ -52,7 +53,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'crm',
       nav: 'CRM',
-      heading: 'Custom CRM Development',
+      heading: 'Custom CRM Development for Sales Pipelines and Customer Data',
       image: '/pages/crm/pipeline.webp',
       alt: 'Sales pipeline from new leads to won deals with win rate, sales cycle and pipeline value',
       paras: ['Every lead is captured, followed up and tracked to a sale, with reminders and quotes built in.'],
@@ -62,7 +63,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'erp',
       nav: 'ERP',
-      heading: 'Custom ERP for Operations, Stock and Finance',
+      heading: 'Custom ERP Software for Operations, Inventory and Finance',
       image: '/pages/crm/modules.webp',
       alt: 'Business system modules: CRM, inventory, orders, finance, scheduling and reports',
       flip: true,
@@ -74,7 +75,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'automation',
       nav: 'Automation',
-      heading: 'Workflow Automation and Reporting',
+      heading: 'Business Workflow Automation and Real-Time Reporting',
       image: '/pages/crm/automation.webp',
       alt: 'Orders processed automatically rising to 96% with workflows automated and fewer errors',
       paras: ['Repetitive tasks happen automatically, and live dashboards show sales, margins and performance at a glance.'],
@@ -84,7 +85,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'migration',
       nav: 'Migration',
-      heading: 'CRM Data Migration and Team Onboarding',
+      heading: 'CRM Data Migration, Training and Team Onboarding',
       image: '/pages/crm/migration.webp',
       alt: 'Data migration plan with cleansing, field mapping, trial run, training and parallel running',
       flip: true,
@@ -112,7 +113,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our CRM & ERP Development Process',
+      heading: 'Our CRM & ERP Development Process, Step by Step',
       steps: [
         { title: 'Review', text: 'Processes and pain points.' },
         { title: 'Design', text: 'Modules and data model.' },
@@ -126,7 +127,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'CRM & ERP Development Case Studies',
+      heading: 'CRM & ERP Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -159,7 +160,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'CRM & ERP Development Client Reviews',
+      heading: 'CRM & ERP Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Martin G', role: 'MD, Manufacturing', text: 'Orders, stock and invoicing are finally in one system. We know our margins every day.' },
         { name: 'Joanne E', role: 'Sales Director, Services', text: 'No lead slips through any more, and our win rate has jumped.' },
@@ -170,7 +171,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'CRM & ERP Development for Your Industry',
+      heading: 'CRM & ERP Development Services by Industry',
       items: [
         { slug: 'b2b-marketing', text: 'Pipeline and account management for B2B sales.' },
         { slug: 'e-commerce', text: 'Orders, stock and fulfilment across channels.' },

@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK SaaS development company designing and building multi-tenant SaaS products with subscription billing, onboarding and analytics, from first release to scale.',
   hero: {
+    keyword: 'SaaS Product Development',
     title: 'SaaS Product Development',
     highlight: 'Built to Scale',
     lead:
-      'We design, build and scale SaaS products with secure multi-tenant architecture, smooth onboarding and subscription billing, so you can focus on customers.',
+      'GTech Digital is a UK SaaS development company that designs and builds subscription software with multi-tenant architecture, Stripe billing, user onboarding and analytics, from first release to thousands of paying customers.',
     motion: '/services/saas.webp',
     points: ['Free product workshop', 'Billing and onboarding built in', 'Architecture that scales'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-saas-development',
       nav: 'What is it',
-      heading: 'What Is SaaS Product Development?',
+      heading: 'What Is SaaS Product Development and How Does It Work?',
       paras: [
         'SaaS (software as a service) is software customers subscribe to and use online. Building SaaS means more than features: it needs multi-tenant architecture, billing, onboarding, analytics and reliability so you can grow recurring revenue with confidence.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'SaaS Product Development Results in Numbers',
+      heading: 'SaaS Product Development Results and Key Statistics',
       text: 'The numbers behind the SaaS products we build and grow.',
       stats: [
         { value: '25+', label: 'SaaS products launched' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'architecture',
       nav: 'Architecture',
-      heading: 'SaaS Architecture and Multi-Tenancy',
+      heading: 'SaaS Architecture, Multi-Tenancy and Cloud Hosting',
       image: '/pages/saas/stack.webp',
       alt: 'SaaS architecture layers: product app, multi-tenancy, billing, platform APIs and cloud',
       paras: ['Getting the foundations right avoids costly rebuilds later. We design for many customers, teams and plans from the start.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'billing',
       nav: 'Billing',
-      heading: 'SaaS Subscription Billing',
+      heading: 'SaaS Subscription Billing With Stripe and Recurring Payments',
       image: '/pages/saas/mrr.webp',
       alt: 'Monthly recurring revenue growing with paying customers, monthly churn and uptime',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'onboarding',
       nav: 'Onboarding',
-      heading: 'SaaS Onboarding and Activation',
+      heading: 'SaaS User Onboarding, Activation and Retention',
       image: '/pages/saas/growth.webp',
       alt: 'Trial-to-paid funnel from sign-ups to activated and paid customers with time to value',
       paras: ['Most churn happens in the first week. We design onboarding that gets users to their first win fast, then measure every step.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'scale',
       nav: 'Scale',
-      heading: 'SaaS Scalability and Security',
+      heading: 'SaaS Scalability, Security and Compliance',
       image: '/pages/saas/scale.webp',
       alt: 'SaaS scale gauges for uptime, API speed and error rate with security and backup checks',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our SaaS Product Development Process',
+      heading: 'Our SaaS Product Development Process, Step by Step',
       steps: [
         { title: 'Workshop', text: 'Customers, value and pricing.' },
         { title: 'Prototype', text: 'Tested with target users.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'SaaS Product Development Case Studies',
+      heading: 'SaaS Product Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'SaaS Product Development Client Reviews',
+      heading: 'SaaS Product Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Elliot W', role: 'Founder, PropTech SaaS', text: 'We went from beta to 1,000 paying customers on the platform they built.' },
         { name: 'Hannah V', role: 'CEO, HR Software', text: 'Their onboarding redesign doubled our trial-to-paid rate.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'SaaS Product Development for Your Industry',
+      heading: 'SaaS Product Development Services by Industry',
       items: [
         { slug: 'technology-saas', text: 'B2B SaaS from first release to scale.' },
         { slug: 'real-estate', text: 'PropTech for agents and landlords.' },

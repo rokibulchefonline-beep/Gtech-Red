@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK branding agency creating brand strategy, positioning, logos, visual identities and brand guidelines that make businesses memorable and easier to choose.',
   hero: {
+    keyword: 'Branding',
     title: 'Branding Agency for',
     highlight: 'Memorable UK Brands',
     lead:
-      'We create brand strategies, logos and identities that make your business stand out, build trust at first glance and let you charge what you are worth.',
+      'GTech Digital is a UK branding agency that creates brand strategy, positioning, logos, visual identities and brand guidelines, giving businesses a memorable brand that builds trust at first glance and makes them easier to choose.',
     motion: '/services/brandid.webp',
     points: ['Free brand review', 'Strategy before design', 'Full brand guidelines'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-branding',
       nav: 'What is it',
-      heading: 'What Is Branding?',
+      heading: 'What Is Branding and How Does It Work?',
       paras: [
         'Branding is far more than a logo. It is the strategy, visual identity and voice that shape how people see your business. A strong brand helps customers remember you, trust you and pick you over cheaper competitors.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Branding Results in Numbers',
+      heading: 'Branding Results and Key Statistics',
       text: 'The numbers behind the brands we create and refresh.',
       stats: [
         { value: '120+', label: 'Brands created or refreshed' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'strategy',
       nav: 'Strategy',
-      heading: 'Brand Strategy and Positioning',
+      heading: 'Brand Strategy, Positioning and Messaging',
       image: '/pages/brand/positioning.webp',
       alt: 'Brand strategy layers: purpose, audience, positioning, messaging and personality',
       paras: ['We start with research into your customers and competitors, then define why you exist and why people should choose you.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'identity',
       nav: 'Identity',
-      heading: 'Logo and Visual Identity Design',
+      heading: 'Logo Design and Visual Identity Systems',
       image: '/pages/brand/identity.webp',
       alt: 'Brand identity board with logo, typography and colour palette',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'guidelines',
       nav: 'Guidelines',
-      heading: 'Brand Guidelines',
+      heading: 'Brand Guidelines: Tone of Voice, Colours and Usage Rules',
       image: '/pages/brand/guidelines.webp',
       alt: 'Brand guidelines covering logo, colour, type, voice, imagery and templates',
       paras: ['Clear guidelines and templates help your team, printers and agencies use the brand correctly every time.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'roll-out',
       nav: 'Roll-out',
-      heading: 'Brand Roll-Out Across Every Touchpoint',
+      heading: 'Brand Roll-Out Across Website, Social, Print and Signage',
       image: '/pages/brand/touchpoints.webp',
       alt: 'Brand applied across website, social media, email, packaging, signage and print',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Branding Process',
+      heading: 'Our Branding Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Workshop and research.' },
         { title: 'Define', text: 'Strategy and positioning.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Branding Case Studies',
+      heading: 'Branding Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Branding Client Reviews',
+      heading: 'Branding Client Reviews and Testimonials',
       reviews: [
         { name: 'Victoria H', role: 'Founder, Interiors Brand', text: 'The new brand lets us charge premium prices with confidence.' },
         { name: 'Callum R', role: 'MD, Engineering Firm', text: 'We finally look like the established company we are. Tender wins went up.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Branding for Your Industry',
+      heading: 'Branding Services by Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'Restaurants, bars and hotels with personality.' },
         { slug: 'e-commerce', text: 'Product brands and packaging that sell.' },

@@ -192,7 +192,7 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
             <Link href="/">Home</Link><span>/</span>
             {found && <><Link href={`/services/${found.group.slug}`}>{found.group.title}</Link><span>/</span></>}<b>{name}</b>
           </nav>
-          <h1>{c.hero.title} <span className="red">{c.hero.highlight}</span></h1>
+          <h1>{c.hero.keyword ?? name} Services of <span className="red">GTech Digital</span></h1>
           <p className="sp-lead">{c.hero.lead}</p>
           <div className="sp-hero-btns">
             <Link className="sp-btn-red" href={`/contact?service=${encodeURIComponent(name)}`}>Book a Free Audit</Link>
@@ -215,7 +215,7 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
 
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={short} />)}
 
-      <FaqSection title={`${short} FAQs`} faqs={c.faqs} />
+      <FaqSection title={`Frequently Asked Questions About ${short}`} faqs={c.faqs} />
 
       <section className="sp-sec sp-grey"><div className="wrap">
         <Head s={{ heading: `Services Related to ${short}` }} />

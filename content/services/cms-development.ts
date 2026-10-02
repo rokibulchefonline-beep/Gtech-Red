@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK CMS development agency building WordPress and headless CMS websites with structured content, simple editing and safe migrations that keep your SEO.',
   hero: {
+    keyword: 'CMS Development',
     title: 'CMS Development Your Team',
     highlight: 'Will Enjoy Using',
     lead:
-      'We build content management systems that let your team publish pages, posts and products in minutes, without code and without breaking the design.',
+      'GTech Digital builds content management systems for UK businesses, from WordPress to headless CMS platforms such as Strapi and Sanity, so teams can publish pages, posts and products quickly without code or developer help.',
     motion: '/services/cms.webp',
     points: ['Free CMS consultation', 'Editing without code', 'Safe migration and SEO'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-cms-development',
       nav: 'What is it',
-      heading: 'What Is CMS Development?',
+      heading: 'What Is CMS Development and How Does It Work?',
       paras: [
         'A content management system (CMS) is the admin area where your team edits your website. CMS development means choosing the right platform, modelling your content and building an editing experience that fits how your team works.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'CMS Development Results in Numbers',
+      heading: 'CMS Development Results and Key Statistics',
       text: 'The numbers behind the CMS projects we deliver for UK teams.',
       stats: [
         { value: '5 min', label: 'Average time to publish a page' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'platforms',
       nav: 'Platforms',
-      heading: 'Choosing the Right CMS Platform',
+      heading: 'Choosing a CMS: WordPress, Headless CMS or Custom',
       image: '/pages/cms/platforms.webp',
       alt: 'CMS options compared: WordPress, Webflow, Strapi, Sanity, Contentful and Drupal',
       paras: ['Every CMS has strengths. We recommend one based on your content, team, budget and the channels you publish to.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'content-model',
       nav: 'Content model',
-      heading: 'CMS Content Modelling',
+      heading: 'CMS Content Modelling and Structured Content',
       image: '/pages/cms/model.webp',
       alt: 'Content model with pages, services, blog posts, locations and media types',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'editor',
       nav: 'Editing',
-      heading: 'CMS Editing and Publishing Workflows',
+      heading: 'CMS Editing, User Roles and Publishing Workflows',
       image: '/pages/cms/editor.webp',
       alt: 'CMS editor with live preview, drag-and-drop sections, media library, SEO fields and user roles',
       paras: ['Your team gets live previews, drag-and-drop sections and approval workflows, all locked to your brand.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'migration',
       nav: 'Migration',
-      heading: 'CMS Migration Without Losing SEO',
+      heading: 'CMS Migration Without Losing SEO Rankings or Traffic',
       image: '/pages/cms/migration.webp',
       alt: 'CMS migration plan with content mapping, 301 redirects, SEO metadata and training',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our CMS Development Process',
+      heading: 'Our CMS Development Process, Step by Step',
       steps: [
         { title: 'Discover', text: 'Content, team and workflows.' },
         { title: 'Recommend', text: 'Platform and content model.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'CMS Development Case Studies',
+      heading: 'CMS Development Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'CMS Development Client Reviews',
+      heading: 'CMS Development Client Reviews and Testimonials',
       reviews: [
         { name: 'Laura F', role: 'Content Lead, University', text: 'Forty editors now publish safely, with approvals built into the CMS.' },
         { name: 'Mo A', role: 'Marketing Director, SaaS', text: 'Moving to a headless CMS made our site much faster and kept every ranking.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'CMS Development for Your Industry',
+      heading: 'CMS Development Services by Industry',
       items: [
         { slug: 'education', text: 'Large sites with many departments and editors.' },
         { slug: 'healthcare', text: 'Treatment and location content kept accurate.' },

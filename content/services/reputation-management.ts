@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'Online reputation management for UK businesses: more genuine 5-star reviews, faster responses, cleaner branded search results and better AI answers about your brand.',
   hero: {
+    keyword: 'Online Reputation Management',
     title: 'Reputation Management That',
     highlight: 'Builds Trust',
     lead:
-      'We help you earn more genuine reviews, respond to every customer, and make sure Google search results and AI tools show the best of your brand.',
+      'GTech Digital provides online reputation management for UK businesses, generating genuine reviews, responding to customer feedback, improving branded search results and shaping how AI assistants describe your brand.',
     motion: '/services/reputation.webp',
     points: ['Free reputation audit', 'Policy-compliant reviews', 'Monthly sentiment report'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-orm',
       nav: 'What is ORM',
-      heading: 'What Is Online Reputation Management?',
+      heading: 'What Is Online Reputation Management and How Does It Work?',
       paras: [
         'Before most people buy, book or call, they read your reviews and search your name. Online reputation management (ORM) shapes what they find, so your real quality shows up where decisions are made.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Reputation Management Results in Numbers',
+      heading: 'Reputation Management Results and Key Statistics',
       text: 'The numbers behind our reputation work for UK businesses.',
       stats: [
         { value: '4.8★', label: 'Average client rating' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reviews-generation',
       nav: 'Review generation',
-      heading: 'Review Generation',
+      heading: 'Review Generation on Google, Trustpilot and Industry Sites',
       image: '/pages/reputation/reviews.webp',
       alt: 'Google review summary with 4.9 stars and recent customer reviews with owner replies',
       paras: ['Happy customers rarely leave reviews unless you ask at the right moment. We automate polite, policy-compliant requests by email, SMS and QR code.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'monitoring',
       nav: 'Monitoring',
-      heading: 'Review Monitoring and Response',
+      heading: 'Review Monitoring, Response and Negative Review Handling',
       image: '/pages/reputation/monitoring.webp',
       alt: 'Star rating rising over twelve months with response time and reviews answered',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'branded-search',
       nav: 'Branded search',
-      heading: 'Branded Search Reputation Management',
+      heading: 'Branded Search Results and Online Reputation Repair',
       image: '/pages/reputation/serp.webp',
       alt: 'Branded search results made up of positive owned and earned pages',
       paras: ['Searches for your brand should show your best pages. We strengthen the results you control so outdated or unfair pages drop out of sight.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ai-reputation',
       nav: 'AI reputation',
-      heading: 'AI Search Reputation Management',
+      heading: 'AI Search Reputation: ChatGPT, Gemini and AI Overviews',
       image: '/pages/reputation/ai.webp',
       alt: 'AI assistant and Google AI Overview describing a brand and citing its website',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Reputation Management Process',
+      heading: 'Our Reputation Management Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'We review ratings, search results and AI answers.' },
         { title: 'Fix the basics', text: 'Profiles claimed, details corrected, review links set up.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Reputation Management Case Studies',
+      heading: 'Reputation Management Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Reputation Management Client Reviews',
+      heading: 'Reputation Management Client Reviews and Testimonials',
       reviews: [
         { name: 'Olivia B', role: 'Owner, Dental Practice', text: 'We went from 42 to over 400 Google reviews and now rank first in the map pack for our area.' },
         { name: 'Marcus J', role: 'Director, Restaurant Group', text: 'Every review across five sites gets a thoughtful reply within hours. Our average rating went from 4.1 to 4.7.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Reputation Management for Your Industry',
+      heading: 'Reputation Management Services by Industry',
       items: [
         { slug: 'hospitality-hotels', text: 'TripAdvisor, Google and booking-site reviews that fill tables and rooms.' },
         { slug: 'healthcare', text: 'Sensitive, compliant responses that protect patient trust.' },

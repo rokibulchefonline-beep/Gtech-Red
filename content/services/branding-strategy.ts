@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK branding and strategy agency: brand identity and positioning, senior marketing advisory and conversion rate optimisation that make every marketing pound work harder.',
   hero: {
+    keyword: 'Branding and Strategy',
     title: 'Branding and Strategy That',
     highlight: 'Drives Growth',
     lead:
-      'We help you stand out with a memorable brand, focus your budget with a clear marketing plan and turn more visitors into customers.',
+      'GTech Digital is a UK branding and marketing strategy agency that creates brand identities, growth plans and conversion optimisation programmes, helping businesses stand out, spend their budget wisely and turn more visitors into customers.',
     motion: '/services/branding.webp',
     points: ['Free strategy session', 'Senior-led thinking', 'Decisions backed by data'],
   },
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Branding & Strategy Results in Numbers',
+      heading: 'Branding & Strategy Results and Key Statistics',
       text: 'The numbers behind the branding and strategy work we do for UK businesses.',
       stats: [
         { value: '120+', label: 'Brands built or refreshed' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'branding',
       nav: 'Branding',
-      heading: 'Brand Identity Design',
+      heading: 'Brand Identity Design: Logo, Colour and Typography',
       image: '/pages/brand/identity.webp',
       alt: 'Brand identity board with logo, typography and colour palette',
       paras: ['We build a distinctive identity from a clear strategy, so you look as good as the work you do.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'services-overview',
       nav: 'Our services',
-      heading: 'Branding, Strategy and CRO Services',
+      heading: 'Branding, Marketing Strategy and CRO Services Compared',
       image: '/pages/brandstrat/strategy.webp',
       alt: 'Branding and strategy services: branding, positioning, advisory, CRO, messaging and insight',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'advisory',
       nav: 'Advisory',
-      heading: 'Marketing Strategy and Growth Planning',
+      heading: 'Marketing Strategy, Growth Planning and Budget Allocation',
       image: '/pages/advisory/plan.webp',
       alt: 'Twelve-month growth plan with goals, audience, channels, budget and measurement',
       paras: ['We turn your goals into a 12-month plan with channels, budgets and KPIs, and stay on hand to guide it.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'cro',
       nav: 'CRO',
-      heading: 'Conversion Rate Optimisation',
+      heading: 'Conversion Rate Optimisation: A/B Testing and UX Research',
       image: '/pages/cro/abtest.webp',
       alt: 'A/B test where variant B beats variant A with higher conversion rate and confidence',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Branding & Strategy Process',
+      heading: 'Our Branding & Strategy Process, Step by Step',
       steps: [
         { title: 'Listen', text: 'Goals, customers and market.' },
         { title: 'Research', text: 'Competitors and insights.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Branding & Strategy Case Studies',
+      heading: 'Branding & Strategy Case Studies and Results',
     },
     {
       type: 'table',
@@ -157,7 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Branding & Strategy Client Reviews',
+      heading: 'Branding & Strategy Client Reviews and Testimonials',
       reviews: [
         { name: 'Victoria H', role: 'Founder, Interiors Brand', text: 'The rebrand let us raise prices by 20% and customers did not blink.' },
         { name: 'Mark S', role: 'CEO, Professional Services', text: 'For the first time our marketing has a plan, a budget and numbers we trust.' },
@@ -168,7 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Branding & Strategy for Your Industry',
+      heading: 'Branding & Strategy Services by Industry',
       items: [
         { slug: 'technology-saas', text: 'Positioning and growth plans for SaaS.' },
         { slug: 'finance', text: 'Trustworthy brands for financial firms.' },

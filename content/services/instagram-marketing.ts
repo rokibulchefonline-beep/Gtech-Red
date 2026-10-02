@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK Instagram marketing agency creating Reels, Stories and ads, managing creators and Instagram Shopping to grow engaged followers and online sales.',
   hero: {
+    keyword: 'Instagram Marketing',
     title: 'Instagram Marketing That',
     highlight: 'Grows Sales',
     lead:
-      'We create scroll-stopping Reels, Stories and ads, partner you with the right creators, and turn your Instagram into a steady source of followers and sales.',
+      'GTech Digital is a UK Instagram marketing agency that creates Reels, Stories and carousels, runs Instagram ads and Shopping, and manages influencer campaigns that grow engaged followers and online sales.',
     motion: '/services/instagram.webp',
     points: ['Free profile audit', 'Reels made for you', 'Monthly growth report'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-instagram-marketing',
       nav: 'What is it',
-      heading: 'What Is Instagram Marketing?',
+      heading: 'What Is Instagram Marketing and How Does It Work?',
       paras: [
         'Instagram is where people discover brands, check them out before buying and shop straight from posts. Winning there takes consistent, visual, short-form content and a clear path from follower to customer.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'Instagram Marketing Results in Numbers',
+      heading: 'Instagram Marketing Results and Key Statistics',
       text: 'The numbers behind the Instagram accounts we grow for UK brands.',
       stats: [
         { value: '+18k', label: 'Average followers gained a year' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reels',
       nav: 'Reels & content',
-      heading: 'Instagram Reels and Stories',
+      heading: 'Instagram Reels, Stories and Carousel Content',
       image: '/pages/instagram/reels.webp',
       alt: 'Instagram Reel with views, click-through and conversion figures',
       paras: ['Reels reach people who do not follow you yet. We plan, script and edit short videos with strong hooks, plus carousels and Stories that keep followers engaged.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'ads',
       nav: 'Ads & Shopping',
-      heading: 'Instagram Ads and Shopping',
+      heading: 'Instagram Ads and Instagram Shopping',
       image: '/pages/instagram/ads.webp',
       alt: 'Instagram shop revenue growing with ROAS, click-through and orders',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'creators',
       nav: 'Creators',
-      heading: 'Instagram Influencer and UGC Campaigns',
+      heading: 'Instagram Influencer Marketing and UGC Campaigns',
       image: '/pages/instagram/creators.webp',
       alt: 'Brand connected to lifestyle, food, fitness, fashion, home and local creators',
       paras: ['Authentic creator content builds trust faster than brand posts. We find, brief and manage creators who genuinely fit your audience.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'growth',
       nav: 'Growth',
-      heading: 'Instagram Analytics and Growth',
+      heading: 'Instagram Analytics, Engagement and Follower Growth',
       image: '/pages/instagram/growth.webp',
       alt: 'Instagram follower growth with engagement rate, saves and shares',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our Instagram Marketing Process',
+      heading: 'Our Instagram Marketing Process, Step by Step',
       steps: [
         { title: 'Audit', text: 'Profile, content and competitors reviewed.' },
         { title: 'Strategy', text: 'Content pillars, style and goals.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'Instagram Marketing Case Studies',
+      heading: 'Instagram Marketing Case Studies and Results',
     },
     {
       type: 'table',
@@ -157,7 +158,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'Instagram Marketing Client Reviews',
+      heading: 'Instagram Marketing Client Reviews and Testimonials',
       reviews: [
         { name: 'Chloe M', role: 'Founder, Skincare Brand', text: 'Our Reels regularly reach 100k people and Instagram is now our top sales channel.' },
         { name: 'Sam T', role: 'Owner, Restaurant', text: 'They film, edit and post everything. Weekend bookings from Instagram have doubled.' },
@@ -168,7 +169,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'Instagram Marketing for Your Industry',
+      heading: 'Instagram Marketing Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Shoppable Reels and creators that sell products.' },
         { slug: 'hospitality-hotels', text: 'Food, venue and room content that drives bookings.' },

@@ -28,7 +28,7 @@ export default async function Home() {
             <span>Agency for Scalable</span>
             <span className="hero-row">
               <span>Growth</span>
-              <span className="hero-sub">We help businesses grow with smart, conversion-focused marketing.</span>
+              <span className="hero-sub">GTech Digital is a UK digital marketing agency growing businesses with SEO, paid ads, social media, websites and software.</span>
             </span>
           </h1>
           <div className="hero-ctas">

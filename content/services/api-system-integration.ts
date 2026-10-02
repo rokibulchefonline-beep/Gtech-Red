@@ -12,10 +12,11 @@ const content: ServiceContent = {
   metaDescription:
     'UK API development and system integration company connecting CRM, accounting, ecommerce, ERP and legacy systems so data flows automatically and accurately.',
   hero: {
+    keyword: 'API and System Integration',
     title: 'API Integration That',
     highlight: 'Connects Your Systems',
     lead:
-      'We build APIs and integrations that link your CRM, accounts, store and operations, so data is entered once and flows everywhere automatically.',
+      'GTech Digital provides API development and system integration services in the UK, connecting CRM, accounting, ecommerce and ERP systems so data flows automatically, accurately and securely, without manual entry or copying between spreadsheets.',
     motion: '/services/api.webp',
     points: ['Free integration review', 'Secure, documented APIs', 'Monitored around the clock'],
   },
@@ -25,7 +26,7 @@ const content: ServiceContent = {
       type: 'text',
       id: 'what-is-system-integration',
       nav: 'What is it',
-      heading: 'What Is API and System Integration?',
+      heading: 'What Is API and System Integration and How Does It Work?',
       paras: [
         'An API lets two pieces of software talk to each other. System integration uses APIs to connect your tools, such as CRM, accounting, ecommerce and warehouse systems, so they share data in real time instead of relying on manual re-typing and spreadsheets.',
       ],
@@ -38,7 +39,7 @@ const content: ServiceContent = {
     {
       type: 'impact',
       id: 'impact',
-      heading: 'API & System Integration Results in Numbers',
+      heading: 'API & System Integration Results and Key Statistics',
       text: 'The numbers behind the integrations we build and monitor.',
       stats: [
         { value: '1.2M', label: 'Records synced every month' },
@@ -51,7 +52,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'integrations',
       nav: 'Integrations',
-      heading: 'System Integration for CRM, Accounts and Ecommerce',
+      heading: 'CRM, Accounting and Ecommerce System Integration',
       image: '/pages/api/network.webp',
       alt: 'Integration hub connecting Salesforce, Xero, Shopify, ERP, Stripe and Slack',
       paras: ['We connect the systems you already rely on, so customers, orders, stock and invoices stay in sync everywhere.'],
@@ -61,7 +62,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'api-development',
       nav: 'API development',
-      heading: 'Custom API Development',
+      heading: 'Custom API Development: REST, Webhooks and Third-Party APIs',
       image: '/pages/api/code.webp',
       alt: 'API code with fast median response, OAuth 2 security and OpenAPI documentation',
       flip: true,
@@ -73,7 +74,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'automation',
       nav: 'Automation',
-      heading: 'Workflow Automation and Data Sync',
+      heading: 'Workflow Automation and Real-Time Data Sync',
       image: '/pages/api/sync.webp',
       alt: 'Manual data entry hours falling from 96 to 4 with real-time sync and fewer errors',
       paras: ['When an order, lead or invoice is created, the right systems update instantly and the right people are notified.'],
@@ -83,7 +84,7 @@ const content: ServiceContent = {
       type: 'media',
       id: 'reliability',
       nav: 'Reliability',
-      heading: 'Integration Monitoring and Legacy Systems',
+      heading: 'Integration Monitoring, Error Alerts and Legacy System Connectors',
       image: '/pages/api/monitor.webp',
       alt: 'Integration reliability checklist with retries, rate limits, alerts, encryption and audit logs',
       flip: true,
@@ -111,7 +112,7 @@ const content: ServiceContent = {
       type: 'steps',
       id: 'process',
       nav: 'Process',
-      heading: 'Our API & System Integration Process',
+      heading: 'Our API & System Integration Process, Step by Step',
       steps: [
         { title: 'Map', text: 'Systems and data flows.' },
         { title: 'Design', text: 'Fields, rules and errors.' },
@@ -125,7 +126,7 @@ const content: ServiceContent = {
       type: 'cases',
       id: 'case-studies',
       nav: 'Case studies',
-      heading: 'API & System Integration Case Studies',
+      heading: 'API & System Integration Case Studies and Results',
     },
     {
       type: 'table',
@@ -158,7 +159,7 @@ const content: ServiceContent = {
       type: 'reviews',
       id: 'reviews',
       nav: 'Reviews',
-      heading: 'API & System Integration Client Reviews',
+      heading: 'API & System Integration Client Reviews and Testimonials',
       reviews: [
         { name: 'Rachel D', role: 'Finance Director, Wholesale', text: 'Orders now flow from Shopify into our ERP and Xero automatically. Month-end is days faster.' },
         { name: 'Owen P', role: 'Head of Ops, Logistics', text: 'Their integration hub replaced three fragile scripts and has not missed a sync since.' },
@@ -169,7 +170,7 @@ const content: ServiceContent = {
       type: 'industries',
       id: 'industries',
       nav: 'Industries',
-      heading: 'API & System Integration for Your Industry',
+      heading: 'API & System Integration Services by Industry',
       items: [
         { slug: 'e-commerce', text: 'Store, stock, courier and accounts in sync.' },
         { slug: 'finance', text: 'Secure data feeds and client systems.' },
