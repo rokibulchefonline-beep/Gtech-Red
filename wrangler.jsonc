@@ -8,5 +8,8 @@
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "gtech-red" }],
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Keep variables and secrets added in the Cloudflare dashboard (MONGODB_URI, AUTH_SECRET, ...).
+  // Without this, every deploy replaces them with the (empty) list in this file.
+  "keep_vars": true
 }
