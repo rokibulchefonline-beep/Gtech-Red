@@ -58,9 +58,9 @@ export default async function Page({ params }: Props) {
     <>
       <Schema path={path} nodes={nodes} />
 
-      <section className="cs-hero" style={d.image ? { backgroundImage: `url(${d.image})` } : undefined}>
-        <div className="cs-hero-shade" />
-        <div className="wrap cs-hero-in">
+      <section className="cs-hero">
+        <div className={`wrap cs-hero-in${d.image ? ' has-img' : ''}`}>
+          <div className="cs-hero-copy">
           <nav className="sp-crumbs left" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/case-studies">Case Studies</Link><span>/</span><b>{name}</b></nav>
           {d.industry && <span className="cs-tag">{d.industry}</span>}
           <h1>{name} Case Study{metrics.length > 0 && <>: <span className="hl">{metrics.slice(0, 2).map((m) => `${m.value} ${m.label}`).join(' and ')}</span></>}</h1>
@@ -69,6 +69,8 @@ export default async function Page({ params }: Props) {
             <Link className="sp-btn-red" href={`/contact?service=${encodeURIComponent(used[0]?.item.name ?? '')}`}>Get Similar Results</Link>
             <a className="sp-btn-line light" href="#results">See the Results</a>
           </div>
+          </div>
+          {d.image && <div className="cs-hero-art">{/* eslint-disable-next-line @next/next/no-img-element */}<img src={d.image} alt={d.imageAlt || `${name} case study`} /></div>}
         </div>
       </section>
 
