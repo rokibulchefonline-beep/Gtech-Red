@@ -893,3 +893,4 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 
 /* On red panels the highlight must not be red: use a soft pink so it stays readable. */
 .sp-impact .hl,.sp-impact .red,.sp-bg-red .hl,.sp-bg-red .red,.grad .hl,.grad .red,.sp-faq-aside .hl,.sp-faq-aside .red{color:#ffd0d6!important;-webkit-text-fill-color:#ffd0d6!important}
+.sp-split-head .hl,.sp-split-head .red{color:#ffd0d6!important;-webkit-text-fill-color:#ffd0d6!important}
