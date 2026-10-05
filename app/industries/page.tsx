@@ -8,6 +8,9 @@ import { industryContent } from '@/content/industries';
 import { industries } from '@/lib/data';
 import { industryIcons, uiIcons } from '@/lib/icons';
 import Schema from '@/components/Schema';
+import Hl from '@/components/Hl';
+import { Rt } from '@/components/Rt';
+import { getStaticPage } from '@/lib/content';
 import { BASE, breadcrumbNode, itemListNode, pageNode } from '@/lib/schema';
 
 const baseMeta: Metadata = {
@@ -15,22 +18,23 @@ const baseMeta: Metadata = {
   description: 'GTech Digital helps UK businesses in ecommerce, healthcare, hospitality, property, finance, education, travel, automotive, B2B and SaaS grow with tailored marketing, websites and software.',
   alternates: { canonical: '/industries' },
 };
-export const generateMetadata = () => seoFor('/industries', baseMeta);
+export const generateMetadata = async () => { const c = await getStaticPage('industries-hub'); return seoFor('/industries', { ...baseMeta, title: { absolute: c.metaTitle }, description: c.metaDescription }); };
 
-export default function Industries() {
+export default async function Industries() {
+  const c = await getStaticPage('industries-hub');
   return (
     <>
       <Schema path="/industries" nodes={[
-        pageNode({ path: '/industries', type: 'CollectionPage', name: 'Industry Marketing Services of GTech Digital', description: baseMeta.description as string, mainEntity: `${BASE}/industries#list` }),
+        pageNode({ path: '/industries', type: 'CollectionPage', name: 'Industry Marketing Services of GTech Digital', description: c.metaDescription, mainEntity: `${BASE}/industries#list` }),
         breadcrumbNode('/industries', [['Industries', '/industries']]),
         itemListNode('/industries', 'Industries GTech Digital serves', industries.map((i) => [i.name, `/industries/${i.slug}`] as [string, string])),
       ]} />
       <section className="sp-hero compact">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Industries</b></nav>
-          <h1>Industry Marketing Services of <span className="red">GTech Digital</span></h1>
-          <p className="sp-lead">GTech Digital provides industry-specific digital marketing, web design and software services for UK businesses in ecommerce, healthcare, hospitality, property, finance, education, travel, automotive, B2B and SaaS.</p>
-          <ul className="sp-hero-points">{['Sector-specific strategy', 'Compliance-aware campaigns', 'Results tracked to revenue'].map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+          <h1><Hl>{c.hero.h1 ?? ''}</Hl></h1>
+          <Rt as="p" className="sp-lead" html={c.hero.lead} />
+          <ul className="sp-hero-points">{c.hero.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
         </div>
       </section>
       <section className="sp-sec"><div className="wrap">

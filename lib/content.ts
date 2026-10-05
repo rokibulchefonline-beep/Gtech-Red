@@ -4,6 +4,8 @@ import { cache } from 'react';
 import { aboutContent } from '@/content/static/about';
 import { contactContent } from '@/content/static/contact';
 import { homeContent } from '@/content/static/home';
+import { industriesHubContent } from '@/content/static/industries-hub';
+import { servicesHubContent } from '@/content/static/services-hub';
 import { findOne, list } from '@/lib/store';
 
 // Public-site getters for content managed in the admin. Each falls back to the built-in defaults
@@ -59,7 +61,7 @@ export async function withOverrides(kind: 'service' | 'industry' | 'page', c: Se
   };
 }
 
-export const getStaticPage = cache((slug: 'home' | 'about' | 'contact') => withOverrides('page', { home: homeContent, about: aboutContent, contact: contactContent }[slug]));
+export const getStaticPage = cache((slug: 'home' | 'about' | 'contact' | 'services-hub' | 'industries-hub') => withOverrides('page', { home: homeContent, about: aboutContent, contact: contactContent, 'services-hub': servicesHubContent, 'industries-hub': industriesHubContent }[slug]));
 /** Section of a static page by id, with admin edits applied. */
 export async function homeSection<T = Record<string, unknown>>(id: string): Promise<T & { heading: string; paras?: string[]; bullets?: string[]; text?: string; steps?: { title: string; text: string }[] }> {
   const c = await getStaticPage('home');

@@ -9,6 +9,9 @@ import { services } from '@/lib/data';
 import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import TocBar from '@/components/TocBar';
 import Hl from '@/components/Hl';
+import { Rt } from '@/components/Rt';
+import { getStaticPage } from '@/lib/content';
+import { groupInfo as baseGroups } from '@/content/static/services-hub';
 import Schema from '@/components/Schema';
 import { BASE, breadcrumbNode, faqNode, itemListNode, pageNode } from '@/lib/schema';
 
@@ -21,43 +24,20 @@ const baseMeta: Metadata = {
   description: 'Explore every GTech Digital service: SEO, Google Ads, social media, web design, custom software and branding, delivered by one UK team.',
   alternates: { canonical: '/services' },
 };
-export const generateMetadata = () => seoFor('/services', baseMeta);
-
-const groupInfo: Record<string, { image: string; title: string; h2: string; line: string; points: string[]; cards: string[] }> = {
-  'digital-marketing': { image: '/services/dm.webp', title: 'Digital Marketing', h2: 'Digital Marketing Services: SEO, Google Ads and Content', line: 'Be found on Google and in AI answers, and turn searches into customers.', points: ['SEO, local SEO and AI search', 'Google Ads and paid media', 'Content, links and reviews'],
-    cards: ['search-engine-optimization', 'local-seo', 'ecommerce-seo', 'google-ads', 'content-marketing', 'reputation-management'] },
-  'social-media-marketing': { image: '/services/social.webp', title: 'Social Media Marketing', h2: 'Social Media Marketing Services for Facebook, Instagram, LinkedIn and TikTok', line: 'Content, ads and creators that grow your audience and your sales.', points: ['Content and community management', 'Paid social campaigns', 'Creators and social commerce'],
-    cards: ['facebook-marketing', 'instagram-marketing', 'linkedin-marketing', 'tiktok-marketing', 'pinterest-marketing', 'paid-media'] },
-  'web-design-development': { image: '/services/web.webp', title: 'Web Design & Development', h2: 'Web Design and Development Services: WordPress, Ecommerce and Laravel', line: 'Fast, secure websites and stores designed to convert.', points: ['UX and UI design', 'WordPress, Laravel and ecommerce', 'Speed, SEO and maintenance'],
-    cards: ['website-design', 'ecommerce-development', 'wordpress-development', 'laravel-development', 'cms-development', 'website-maintenance'] },
-  'custom-software-development': { image: '/services/software.webp', title: 'Custom Software', h2: 'Custom Software Development Services: Apps, CRM and SaaS', line: 'Apps and systems built around how your business works.', points: ['Web and mobile apps', 'CRM, ERP and integrations', 'SaaS products and MVPs'],
-    cards: ['web-application-development', 'mobile-app-development', 'api-system-integration', 'crm-erp-development', 'saas-product-development', 'mvp-development'] },
-  'branding-strategy': { image: '/services/branding.webp', title: 'Branding & Strategy', h2: 'Branding and Strategy Services: Identity, Advisory and CRO', line: 'A clear brand and a clear plan to grow it.', points: ['Brand identity and guidelines', 'Marketing advisory', 'Conversion rate optimisation'],
-    cards: ['branding', 'marketing-advisory', 'conversion-rate-optimization', 'website-design', 'content-marketing', 'reputation-management'] },
-};
+export const generateMetadata = async () => { const c = await getStaticPage('services-hub'); return seoFor('/services', { ...baseMeta, title: { absolute: c.metaTitle }, description: c.metaDescription }); };
 
 // Every service, so a category grid can include closely related services from other categories.
 const allItems = Object.fromEntries(services.flatMap((g) => g.items.map((it) => [it.slug, it])));
 
-const why = [
-  { icon: 'lucide:users', title: 'One Joined-Up Team', text: 'Marketing, web and software specialists working from one plan.' },
-  { icon: 'lucide:user-check', title: 'Senior-Led', text: 'A dedicated lead who knows your business.' },
-  { icon: 'lucide:eye', title: 'Transparent', text: 'Fixed prices, plain-English reports, no lock-in.' },
-  { icon: 'lucide:trending-up', title: 'Results Tracked', text: 'Every channel measured against leads and revenue.' },
-];
-
-const faqs = [
-  { q: 'What services does GTech Digital offer?', a: 'We offer digital marketing (SEO, local and ecommerce SEO, Google Ads, paid media, content and reputation), social media marketing, web design and development, custom software and apps, and branding and strategy.' },
-  { q: 'Can I use more than one service?', a: 'Yes. Most clients combine services, for example a new website with SEO and Google Ads, all managed by one team and one plan.' },
-  { q: 'How do I know which service I need?', a: 'Book a free audit. We review your website, marketing and goals, then recommend the services that will make the biggest difference.' },
-  { q: 'Do you work with businesses across the UK?', a: 'Yes. We work with businesses throughout the UK, meeting in person or online.' },
-  { q: 'Are your services on contracts?', a: 'Ongoing services run on rolling monthly terms. Projects such as websites and software have a fixed, agreed price.' },
-];
-
-export default function ServicesHub() {
+export default async function ServicesHub() {
+  const c = await getStaticPage('services-hub');
+  const faqs = c.faqs;
+  const sec = (id: string) => c.sections.find((x) => x.id === id) as unknown as { heading: string; paras?: string[]; bullets?: string[]; cards?: { icon: string; title: string; text: string }[]; steps?: { title: string; text: string }[] };
+  const groupInfo: Record<string, (typeof baseGroups)[string]> = Object.fromEntries(Object.entries(baseGroups).map(([k, g]) => { const e = sec(`group-${k}`); return [k, { ...g, h2: e.heading, line: e.paras?.[0] ?? g.line, points: e.bullets ?? g.points }]; }));
+  const why = sec('why'), proc = sec('process');
   const total = services.reduce((n, g) => n + g.items.length, 0);
   const nodes = [
-    pageNode({ path: '/services', type: 'CollectionPage', name: 'GTech Digital Services', description: baseMeta.description as string, mainEntity: `${BASE}/services#list`, about: ['Digital marketing', 'Web design and development', 'Custom software development', 'Branding'] }),
+    pageNode({ path: '/services', type: 'CollectionPage', name: 'GTech Digital Services', description: c.metaDescription, mainEntity: `${BASE}/services#list`, about: ['Digital marketing', 'Web design and development', 'Custom software development', 'Branding'] }),
     breadcrumbNode('/services', [['Services', '/services']]),
     itemListNode('/services', 'GTech Digital services', services.flatMap((g) => [[g.title, `/services/${g.slug}`] as [string, string], ...g.items.map((it) => [it.name, `/services/${it.slug}`] as [string, string])])),
     faqNode('/services', faqs),
@@ -70,13 +50,13 @@ export default function ServicesHub() {
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Services</b></nav>
-          <h1>Marketing, Web and Software Services of <span className="red">GTech Digital</span></h1>
-          <p className="sp-lead">GTech Digital is a UK digital agency offering {total}+ services across digital marketing, social media marketing, web design and development, custom software development and branding, all delivered by one joined-up team.</p>
+          <h1><Hl>{c.hero.h1 ?? ''}</Hl></h1>
+          <Rt as="p" className="sp-lead" html={c.hero.lead} />
           <div className="sp-hero-btns">
             <Link className="sp-btn-red" href="/contact">Book a Free Audit</Link>
             <a className="sp-btn-line" href="#digital-marketing">Explore Services</a>
           </div>
-          <ul className="sp-hero-points">{[`${total}+ specialist services`, `${services.length} disciplines`, 'One joined-up team'].map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+          <ul className="sp-hero-points">{c.hero.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
           <div className="sp-hero-show">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/services/hub.webp" alt="GTech Digital results across marketing, web and software" width={800} height={600} />
@@ -101,8 +81,8 @@ export default function ServicesHub() {
               <div className="sz-copy">
                 <span className="sz-ico"><Icon name={groupIcons[g.slug]} size={24} /></span>
                 <h2><Hl>{info?.h2 ?? `${title} Services`}</Hl></h2>
-                <p>{info?.line ?? g.intro}</p>
-                <ul className="sz-points">{info?.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+                <Rt as="p" html={info?.line ?? g.intro} />
+                <ul className="sz-points">{info?.points.map((p) => <li key={p}><Tick /><Rt html={p} /></li>)}</ul>
                 <div className="sz-btns">
                   <Link className="sz-btn" href={`/services/${g.slug}`} aria-label={`View all ${title} services`}>View All {g.items.length} Services <Icon name={uiIcons.arrowRight} size={18} /></Link>
                 </div>
@@ -123,22 +103,15 @@ export default function ServicesHub() {
       })}
 
       <section className="sh-why"><div className="wrap">
-        <div className="sp-head center"><h2><Hl>Why Businesses Choose Our Digital Agency</Hl></h2></div>
+        <div className="sp-head center"><h2><Hl>{why.heading}</Hl></h2></div>
         <div className="sh-why-grid">
-          {why.map((w) => <div key={w.title} className="sh-why-card"><span className="sp-card-ico solid"><Icon name={w.icon} size={22} /></span><h3>{w.title}</h3><p>{w.text}</p></div>)}
+          {(why.cards ?? []).map((w) => <div key={w.title} className="sh-why-card"><span className="sp-card-ico solid"><Icon name={w.icon} size={22} /></span><h3>{w.title}</h3><p>{w.text}</p></div>)}
         </div>
       </div></section>
 
       <Block slug="services" name="GTech Digital" s={{
-        type: 'steps', id: 'process', heading: 'How Our Services Work, Step by Step',
-        steps: [
-          { title: 'Discover', text: 'Your goals, market and customers.' },
-          { title: 'Audit', text: 'A free review of what works today.' },
-          { title: 'Recommend', text: 'The right services and budget.' },
-          { title: 'Deliver', text: 'Specialists get to work.' },
-          { title: 'Report', text: 'Clear monthly results.' },
-          { title: 'Grow', text: 'Scale what works.' },
-        ],
+        type: 'steps', id: 'process', heading: proc.heading,
+        steps: proc.steps ?? [],
       }} />
 
       <FaqSection title="Frequently Asked Questions About Our Services" faqs={faqs} />
