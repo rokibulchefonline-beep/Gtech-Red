@@ -50,7 +50,7 @@ export const aboutContent: ServiceContent = {
   {
     type: 'media',
     id: 'team',
-    heading: 'Our Team of SEO, PPC, Design and Development Specialists',
+    heading: 'Our Team of [[SEO, PPC, Design and Development Specialists]]',
     image: '/pages/about/team.webp',
     alt: 'GTech Digital team of SEO, paid media, content, design, development and strategy specialists',
     flip: true,
