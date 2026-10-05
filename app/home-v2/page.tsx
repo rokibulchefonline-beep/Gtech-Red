@@ -1,148 +1,210 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Icon from '@/components/Icon';
-import { getClients, getPartners, getStaticPage } from '@/lib/content';
+import { getPosts } from '@/lib/blog';
+import { formatDate } from '@/lib/blog-utils';
+import { getStaticPage } from '@/lib/content';
 import { industries, services, stats, testimonials } from '@/lib/data';
-import { listDocs } from '@/lib/mongo';
 import { plainHeading } from '@/lib/hl';
-import { industryIcons, uiIcons } from '@/lib/icons';
-import './v2.css';
+import { groupIcons, industryIcons, uiIcons } from '@/lib/icons';
+import { listDocs } from '@/lib/mongo';
+import { BarsArt, CodeArt, Dashboard, NodesArt, OrbsArt } from './art';
+import Motion from './Motion';
+import './ax.css';
 
-// A redesign preview of the home page: Golos Text at one weight, teal palette, mint accent. Not indexed.
+// Redesign preview of the home page in the Agentix design system, recoloured to the GTech red. Not indexed.
 export const metadata: Metadata = { title: { absolute: 'GTech Digital | Digital Marketing Agency UK (preview)' }, robots: { index: false, follow: false }, alternates: { canonical: '/' } };
 
-const Arrow = () => <i><Icon name={uiIcons.arrowRight} size={18} /></i>;
-const Btn = ({ href, children }: { href: string; children: React.ReactNode }) => <Link className="v2-btn" href={href}>{children}<Arrow /></Link>;
-const pad = (n: number) => String(n + 1).padStart(2, '0');
+const strip = (s = '') => s.replace(/<[^>]+>/g, '').replace(/\[\[|\]\]/g, '');
+const SMALL = new Set(['and', 'for', 'the', 'with', 'our', 'you', 'your', 'from']);
+const title = (s: string) => s.replace(/\b([a-z])([a-z]+)/g, (m, a, b, off) => (off > 0 && SMALL.has(m) ? m : a.toUpperCase() + b));
+const Arrow = () => <Icon name={uiIcons.arrowRight} size={16} />;
+type Sec = { heading: string; paras?: string[]; bullets?: string[]; text?: string; steps?: { title: string; text: string }[] };
 
 export default async function HomeV2() {
   const home = await getStaticPage('home');
-  const section = (id: string) => home.sections.find((s) => s.id === id) as unknown as { heading: string; paras?: string[]; bullets?: string[]; text?: string; steps?: { title: string; text: string }[] };
-  const who = section('who'), how = section('how'), howSteps = section('how-steps'), svc = section('services'), ind = section('industries');
-  const [cases, clients] = await Promise.all([listDocs('case_studies', 3), getClients()]);
-  const partners = (await getPartners()).slice(0, 8);
-  const strip = (s: string) => s.replace(/<[^>]+>/g, '');
-  const h1 = plainHeading(home.hero.h1 ?? '').split('|').join(' ');
+  const hub = await getStaticPage('services-hub');
+  const sec = (id: string) => home.sections.find((s) => s.id === id) as unknown as Sec;
+  const who = sec('who'), how = sec('how'), steps = sec('how-steps'), ind = sec('industries');
+  const [cases, posts] = await Promise.all([listDocs('case_studies', 3), getPosts().catch(() => [])]);
+  const h1 = title(plainHeading(home.hero.h1 ?? '').split('|').join(' '));
+  const lead = strip(home.hero.lead);
+  const quotes = [...testimonials, ...testimonials];
+  const art = [<BarsArt key="b" />, <CodeArt key="c" />, <OrbsArt key="o" />, <NodesArt key="n" />, <BarsArt key="b2" />];
 
   return (
-    <div className="v2">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400&display=swap" precedence="default" />
+    <div className="ax">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@500&family=Inter:wght@400;500;600&display=swap" precedence="default" />
+      <Motion />
 
-      <section className="v2-hero v2-dark">
-        <div className="v2-wrap v2-hero-in">
-          <span className="v2-eyebrow">UK digital agency</span>
-          <h1 className="v2-d1">{h1}</h1>
-          <p className="v2-lead" dangerouslySetInnerHTML={{ __html: home.hero.lead }} />
-          <div className="v2-row">
-            <Btn href="/contact">Let&apos;s Talk</Btn>
-            <Link className="v2-link" href="/services">Our services <Icon name={uiIcons.arrowRight} size={18} /></Link>
+      {/* Hero */}
+      <section className="ax-hero">
+        <div className="ax-wrap">
+          <span className="ax-pill"><b>NEW</b> Free marketing audit for UK businesses</span>
+          <h1 className="ax-h1">{h1}</h1>
+          <p className="lead">{lead}</p>
+          <div className="ax-btns">
+            <Link className="ax-btn" href="/contact">Let&apos;s Talk <Arrow /></Link>
+            <Link className="ax-btn alt" href="/services">Our Services</Link>
           </div>
-          <div className="v2-hero-cards">
-            {stats.slice(0, 4).map((s) => <div className="v2-gcard" key={s.label}><b>{s.value}{s.suffix}</b><span>{s.label}</span></div>)}
-          </div>
+          <Dashboard />
         </div>
       </section>
 
-      <section className="v2-sec v2-off v2-after-hero">
-        <div className="v2-wrap">
-          <p className="v2-cap v2-logos-t">Certified partners and brands we have worked with</p>
-          <div className="v2-logos">
-            {[...partners.slice(0, 4), ...clients.slice(0, 4)].map((b) => /* eslint-disable-next-line @next/next/no-img-element */ <img key={b.name} src={b.logo} alt={b.name} loading="lazy" />)}
-          </div>
+      {/* Testimonial ticker */}
+      <div className="ax-ticker" aria-label="Client reviews">
+        <div className="ax-track">
+          {quotes.map((t, i) => <q key={i} aria-hidden={i >= testimonials.length || undefined}>{t.title}<small>{t.name}, verified client</small></q>)}
         </div>
-      </section>
+      </div>
 
-      <section className="v2-sec v2-light" id="services">
-        <div className="v2-wrap">
-          <div className="v2-head">
-            <div><span className="v2-eyebrow">What we do</span><h2 className="v2-h2l">{plainHeading(svc.heading)}</h2></div>
-            <p className="v2-xl">{strip(svc.text ?? '')}</p>
-          </div>
-          <div className="v2-svc">
-            {services.map((g, n) => (
-              <Link key={g.slug} href={`/services/${g.slug}`} className={`v2-card${n === 0 ? ' feat' : ''}`}>
-                <span className="n">{pad(n)}</span>
-                <h3 className="v2-h4">{g.title}</h3>
-                <p className="v2-s">{g.intro}</p>
-                <ul className="v2-sm">{g.items.slice(0, 3).map((it) => <li key={it.slug}>{it.name}</li>)}</ul>
-                <span className="more v2-s">View {g.items.length} services <Icon name={uiIcons.arrowRight} size={16} /></span>
+      {/* Three feature cards */}
+      <section className="ax-sec" id="services">
+        <div className="ax-wrap">
+          <div className="ax-head" data-rv><h2 className="ax-h2">{title(plainHeading(sec('services').heading))}</h2><p>{strip(sec('services').text)}</p></div>
+          <div className="ax-grid3">
+            {services.slice(0, 3).map((g, i) => (
+              <Link key={g.slug} href={`/services/${g.slug}`} className="ax-card" data-rv style={{ transitionDelay: `${i * 80}ms` }}>
+                <div className="ax-panel">{art[i]}</div>
+                <h3 className="ax-title">{g.title}</h3>
+                <p>{g.intro}</p>
+                <span className="ax-link">Explore {g.items.length} services <Arrow /></span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="v2-sec v2-dark" id="approach">
-        <div className="v2-wrap v2-split">
-          <div>
-            <span className="v2-eyebrow">Who we are</span>
-            <h2 className="v2-h2l">{plainHeading(who.heading)}</h2>
-            <p className="v2-xl" style={{ marginTop: 24, opacity: .75 }}>{strip(who.paras?.[0] ?? '')}</p>
-            <ul className="v2-ticks v2-l">{(who.bullets ?? []).map((b) => <li key={b}>{strip(b)}</li>)}</ul>
-            <div className="v2-row"><Btn href="/about">More about us</Btn><Link className="v2-link" href="/contact">Contact us <Icon name={uiIcons.arrowRight} size={18} /></Link></div>
-          </div>
-          <div>
-            <p className="v2-eyebrow">{plainHeading(how.heading)}</p>
-            <div className="v2-steps">
-              {(howSteps.steps ?? []).map((s, n) => (
-                <div className="v2-step v2-gcard" key={s.title}><span className="n">{pad(n)}</span><div><h3 className="v2-h4">{s.title}</h3><p className="v2-s">{strip(s.text)}</p></div></div>
-              ))}
+      {/* Deep dives */}
+      <section className="ax-sec ax-s1" id="about">
+        <div className="ax-wrap">
+          <div className="ax-dive" data-rv>
+            <div>
+              <h2 className="ax-h3">{title(plainHeading(who.heading))}</h2>
+              <p>{strip(who.paras?.[0])}</p>
+              <ul className="ax-ticks">{(who.bullets ?? []).map((b) => <li key={b}>{strip(b)}</li>)}</ul>
+              <div className="ax-stats">{stats.slice(0, 3).map((s) => <div key={s.label}><b>{s.value}{s.suffix}</b><span>{s.label}</span></div>)}</div>
             </div>
+            <div className="ax-dive-img">{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/pages/about/story.webp" alt="GTech Digital journey from SEO specialists to a full marketing, web and software agency" loading="lazy" /></div>
+          </div>
+          <div className="ax-dive flip" data-rv>
+            <div>
+              <h2 className="ax-h3">One Team, Every Skill You Need</h2>
+              <p>Search, paid media, content, design and engineering sit in one team with one plan, so your marketing, website and systems pull in the same direction.</p>
+              <ul className="ax-ticks">{['One dedicated account lead', 'Fixed, clear pricing', 'Plain-English monthly reports'].map((b) => <li key={b}>{b}</li>)}</ul>
+              <div className="ax-btns" style={{ justifyContent: 'flex-start', marginTop: 28 }}><Link className="ax-btn" href="/about">More About Us <Arrow /></Link></div>
+            </div>
+            <div className="ax-dive-img">{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/pages/about/team.webp" alt="GTech Digital specialists in search, paid media, content, design, development and strategy" loading="lazy" /></div>
           </div>
         </div>
       </section>
 
-      <section className="v2-sec v2-off" id="results">
-        <div className="v2-wrap">
-          <div className="v2-head">
-            <div><span className="v2-eyebrow">Case studies</span><h2 className="v2-h2l">Digital marketing case studies</h2></div>
-            <p className="v2-xl">See how we help brands grow with results you can measure.</p>
+      {/* Services on a gradient wash */}
+      <section className="ax-sec ax-wash">
+        <div className="ax-wrap">
+          <div className="ax-head" data-rv><h2 className="ax-h2">Everything Your Business Needs To Grow</h2><p>Five disciplines, measured on leads and revenue.</p></div>
+          <div className="ax-feat">
+            {services.map((g, i) => (
+              <Link key={g.slug} href={`/services/${g.slug}`} data-rv style={{ transitionDelay: `${i * 60}ms` }}>
+                <span className="ico"><Icon name={groupIcons[g.slug]} size={22} /></span>
+                <h3 className="ax-title">{g.title}</h3>
+                <p>{g.items.slice(0, 3).map((it) => it.name).join(', ')} and more.</p>
+              </Link>
+            ))}
+            <Link href="/industries" data-rv><span className="ico"><Icon name="lucide:layout-grid" size={22} /></span><h3 className="ax-title">Industry Specialists</h3><p>Sector-specific strategy for {industries.length} industries.</p></Link>
           </div>
-          <div className="v2-cases">
-            {cases.map((c) => (
-              <Link key={c.slug} href={`/case-studies/${c.slug}`} className="v2-case">
-                <div className="v2-case-img">{c.image && /* eslint-disable-next-line @next/next/no-img-element */ <img src={c.image} alt={c.imageAlt || c.title} loading="lazy" />}</div>
-                <div className="v2-case-body">
-                  <h3 className="v2-h4">{c.client || c.title}</h3>
-                  {c.excerpt && <p className="v2-s">{c.excerpt}</p>}
-                  <div className="v2-chips">{(c.metrics ?? []).slice(0, 3).map((m) => <i key={m.label}>{m.value} {m.label}</i>)}</div>
+        </div>
+      </section>
+
+      {/* Social proof */}
+      <section className="ax-sec ax-s3">
+        <div className="ax-wrap">
+          <div className="ax-head" data-rv><h2 className="ax-h2">Results You Can Measure</h2><p>Demo figures shown. Replace with your real client data.</p></div>
+          <div className="ax-proof">
+            <div data-rv><span className="big">{stats[1].value}{stats[1].suffix}</span><q>{testimonials[1].text}</q><cite>{testimonials[1].name}</cite></div>
+            <div className="dark" data-rv><span className="big">{stats[4].value}{stats[4].suffix}</span><q>{testimonials[4].text}</q><cite>{testimonials[4].name}</cite></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Case studies */}
+      <section className="ax-sec" id="results">
+        <div className="ax-wrap">
+          <div className="ax-head" data-rv><h2 className="ax-h2">Digital Marketing Case Studies</h2><p>See how we help brands grow with results you can measure.</p></div>
+          <div className="ax-cards">
+            {cases.map((c, i) => (
+              <Link key={c.slug} href={`/case-studies/${c.slug}`} className="ax-case" data-rv style={{ transitionDelay: `${i * 80}ms` }}>
+                <div className="ax-case-img">{c.image && /* eslint-disable-next-line @next/next/no-img-element */ <img src={c.image} alt={c.imageAlt || c.title} loading="lazy" />}</div>
+                <div className="ax-case-body">
+                  <h3 className="ax-title">{c.client || c.title}</h3>
+                  {c.excerpt && <p>{c.excerpt}</p>}
+                  <div className="ax-chips">{(c.metrics ?? []).slice(0, 3).map((m) => <i key={m.label}>{m.value} {m.label}</i>)}</div>
                 </div>
               </Link>
             ))}
           </div>
-          <p style={{ marginTop: 32 }}><Link className="v2-link" href="/case-studies">View all case studies <Icon name={uiIcons.arrowRight} size={18} /></Link></p>
+          <div className="ax-btns" style={{ marginTop: 40 }}><Link className="ax-btn alt" href="/case-studies">View All Case Studies</Link></div>
         </div>
       </section>
 
-      <section className="v2-sec v2-teal" id="reviews">
-        <div className="v2-wrap">
-          <div className="v2-head"><div><span className="v2-eyebrow">Reviews</span><h2 className="v2-h2l">What our clients say</h2></div></div>
-          <div className="v2-quotes">
-            {testimonials.slice(0, 3).map((t) => <figure key={t.name} className="v2-quote"><h3 className="v2-h4">{t.title}</h3><q>{t.text}</q><cite>{t.name}</cite></figure>)}
+      {/* How it works */}
+      <section className="ax-sec ax-s1">
+        <div className="ax-wrap">
+          <div className="ax-head" data-rv><h2 className="ax-h2">{title(plainHeading(how.heading))}</h2><p>{strip(how.text)}</p></div>
+          <div className="ax-steps">
+            {(steps.steps ?? []).map((s, i) => (
+              <div key={s.title} className="ax-step" data-rv style={{ transitionDelay: `${i * 80}ms` }}>
+                <span className="n">{i + 1}</span><h3 className="ax-title">{s.title}</h3><p>{strip(s.text)}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="v2-sec v2-tint" id="industries">
-        <div className="v2-wrap">
-          <div className="v2-head">
-            <div><span className="v2-eyebrow">Industries</span><h2 className="v2-h2l">{plainHeading(ind.heading)}</h2></div>
-            <p className="v2-xl">{strip(ind.paras?.[0] ?? '').split('. ')[0]}.</p>
-          </div>
-          <div className="v2-ind">
-            {industries.map((i) => <Link key={i.slug} href={`/industries/${i.slug}`}>{i.name}<Icon name={industryIcons[i.slug] ?? uiIcons.arrowRight} size={20} /></Link>)}
+      {/* Industries */}
+      <section className="ax-sec" id="industries">
+        <div className="ax-wrap">
+          <div className="ax-head" data-rv><h2 className="ax-h2">{title(plainHeading(ind.heading))}</h2><p>{strip(ind.paras?.[0]).split('. ')[0]}.</p></div>
+          <div className="ax-ind">
+            {industries.map((i, n) => <Link key={i.slug} href={`/industries/${i.slug}`} data-rv style={{ transitionDelay: `${n * 40}ms` }}><span className="ico"><Icon name={industryIcons[i.slug]} size={20} /></span>{i.name}</Link>)}
           </div>
         </div>
       </section>
 
-      <section className="v2-sec v2-deep v2-cta">
-        <div className="v2-wrap">
-          <span className="v2-eyebrow">Free proposal</span>
-          <h2 className="v2-d2">Ready to grow your business?</h2>
-          <p className="v2-xl">Tell us about your goals and we will send a clear plan and fixed quote within 24 hours.</p>
-          <Btn href="/contact">Request a free proposal</Btn>
+      {/* FAQ */}
+      <section className="ax-sec ax-s3" id="faq">
+        <div className="ax-wrap">
+          <div className="ax-head" data-rv><h2 className="ax-h2">Frequently Asked Questions</h2></div>
+          <div className="ax-faq" data-rv>
+            {hub.faqs.map((f, n) => <details key={f.q} open={n === 0}><summary>{f.q}</summary><p>{strip(f.a)}</p></details>)}
+          </div>
         </div>
       </section>
+
+      {/* Blog */}
+      {posts.length > 0 && (
+        <section className="ax-sec">
+          <div className="ax-wrap">
+            <div className="ax-head" data-rv><h2 className="ax-h2">Latest Insights</h2><p>Practical advice on SEO, ads, websites and software.</p></div>
+            <div className="ax-cards">
+              {posts.slice(0, 3).map((p, i) => (
+                <Link key={p.slug} href={`/blogs/${p.slug}`} className="ax-case" data-rv style={{ transitionDelay: `${i * 80}ms` }}>
+                  <div className="ax-case-img">{/* eslint-disable-next-line @next/next/no-img-element */}<img src={p.image} alt={p.imageAlt || p.title} loading="lazy" /></div>
+                  <div className="ax-case-body"><span className="ax-meta">{p.category} · {formatDate(p.date)}</span><h3 className="ax-title">{p.title}</h3><p>{p.excerpt}</p></div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <section className="ax-cta" data-rv>
+        <h2 className="ax-h2">Ready To Grow Your Business?</h2>
+        <p>Tell us about your goals and we will send a clear plan and fixed quote within 24 hours.</p>
+        <div className="ax-btns"><Link className="ax-btn on-dark" href="/contact">Request A Free Proposal <Arrow /></Link></div>
+      </section>
+      <div className="ax-after-cta" />
     </div>
   );
 }
