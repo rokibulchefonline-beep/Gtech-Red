@@ -1,11 +1,11 @@
-import { fail, guard, json, str } from '@/lib/admin-api';
+import { fail, guard, json, str, route } from '@/lib/admin-api';
 import { hashPassword, passwordProblem, verifyPassword } from '@/lib/auth';
 import { findOne, update } from '@/lib/store';
 
 export const dynamic = 'force-dynamic';
 
 // Account settings for the signed-in user (any role): name and password.
-export async function PUT(req: Request) {
+async function PUT_(req: Request) {
   const g = await guard(req, null);
   if ('res' in g) return g.res;
   const b = await req.json().catch(() => ({}));
@@ -21,3 +21,5 @@ export async function PUT(req: Request) {
   await update('users', g.user.id, patch);
   return json({ ok: true });
 }
+
+export const PUT = route(PUT_);

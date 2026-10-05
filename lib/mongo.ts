@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { MongoClient, type Db } from 'mongodb';
 import { demoCaseStudies } from './data';
 import { findOne, list } from './store';
@@ -18,24 +19,32 @@ export async function getDb(): Promise<Db> {
 // On Node (builds, local development) one cached client is used as before.
 const onWorkers = () => typeof navigator !== 'undefined' && navigator.userAgent === 'Cloudflare-Workers';
 type Scope = { c?: Promise<MongoClient>; n: number };
-let batch: Scope | undefined; // queries started in the same tick (e.g. Promise.all) share one connection
+const scopes = new AsyncLocalStorage<Scope>();
+let batch: Scope | undefined; // fallback: queries started in the same tick share one connection
+
+const connect = (uri: string) => new MongoClient(uri, { serverSelectionTimeoutMS: 8000, connectTimeoutMS: 8000, maxPoolSize: 4, minPoolSize: 0, serverMonitoringMode: 'poll' }).connect();
+const closeLater = (s: Scope) => { const c = s.c; s.c = undefined; c?.then((x) => x.close()).catch(() => {}); };
+
+/** Runs a request handler with ONE database connection shared by everything it queries (Workers only). */
+export function scoped<T>(fn: () => Promise<T>): Promise<T> {
+  if (!onWorkers() || scopes.getStore()) return fn();
+  const s: Scope = { n: 0 };
+  return scopes.run(s, async () => { try { return await fn(); } finally { closeLater(s); } });
+}
 
 export async function withDb<T>(fn: (db: Db) => Promise<T>): Promise<T> {
   if (!onWorkers()) return fn(await getDb());
   const uri = process.env.MONGODB_URI;
   if (!uri) throw new Error('MONGODB_URI is not set');
-  // JavaScript is single-threaded, so only calls made in this same synchronous tick can share a scope
-  // and they always belong to the same request.
+  const name = process.env.MONGODB_DB || 'gtech_red';
+  const own = scopes.getStore();
+  if (own) { own.c ??= connect(uri); return fn((await own.c).db(name)); }
+  // No request scope: only calls made in the same synchronous tick (same request) may share a connection.
   if (!batch) { const mine: Scope = { n: 0 }; batch = mine; queueMicrotask(() => { if (batch === mine) batch = undefined; }); }
   const scope = batch;
   scope.n++;
-  scope.c ??= new MongoClient(uri, { serverSelectionTimeoutMS: 8000, connectTimeoutMS: 8000, maxPoolSize: 4, minPoolSize: 0, serverMonitoringMode: 'poll' }).connect();
-  try {
-    const client = await scope.c;
-    return await fn(client.db(process.env.MONGODB_DB || 'gtech_red'));
-  } finally {
-    if (--scope.n <= 0) { const c = scope.c; scope.c = undefined; c?.then((x) => x.close()).catch(() => {}); }
-  }
+  scope.c ??= connect(uri);
+  try { return await fn((await scope.c).db(name)); } finally { if (--scope.n <= 0) closeLater(scope); }
 }
 
 export type Metric = { value: string; label: string };

@@ -1,4 +1,5 @@
 import { seoMap } from '@/content/seo-map';
+import { stripHtml } from '@/lib/blog-utils';
 import type { Settings } from '@/lib/settings';
 
 // JSON-LD builders. Every page emits one connected @graph: Organization <- WebSite <- WebPage <- the
@@ -59,7 +60,7 @@ export function serviceNode(o: { path: string; slug: string; name: string; descr
 
 export const faqNode = (path: string, faqs: { q: string; a: string }[]): JsonLd => ({
   '@type': 'FAQPage', '@id': `${abs(path)}#faq`, isPartOf: ref(pageId(path)), inLanguage: 'en-GB',
-  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: stripHtml(f.a) } })),
 });
 
 export const itemListNode = (path: string, name: string, items: [string, string][]): JsonLd => ({

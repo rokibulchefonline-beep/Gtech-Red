@@ -92,19 +92,19 @@ export const resources: Record<string, Resource> = {
       for (const [id, s] of Object.entries((i.sections ?? {}) as Rec).slice(0, 60)) {
         const v = s as Rec;
         sections[id.slice(0, 60)] = {
-          ...(v.heading !== undefined && { heading: str(v.heading, 200) }),
-          ...(v.paras !== undefined && { paras: strs(v.paras, 10, 3000) }),
-          ...(v.bullets !== undefined && { bullets: strs(v.bullets, 20, 300) }),
-          ...(v.text !== undefined && { text: str(v.text, 600) }),
+          ...(v.heading !== undefined && { heading: str(v.heading, 240) }),
+          ...(v.paras !== undefined && { paras: strs(v.paras, 12, 6000).map((x) => sanitizeHtml(x)) }),
+          ...(v.bullets !== undefined && { bullets: strs(v.bullets, 20, 800).map((x) => sanitizeHtml(x)) }),
+          ...(v.text !== undefined && { text: sanitizeHtml(str(v.text, 1500)) }),
         };
       }
       const h = (i.hero ?? {}) as Rec;
       return {
         kind: oneOf(i.kind, ['service', 'industry'] as const, 'service'), slug: str(i.slug, 80),
         metaTitle: str(i.metaTitle, 120), metaDescription: str(i.metaDescription, 300), focusKeyword: str(i.focusKeyword, 80),
-        hero: { keyword: str(h.keyword, 80), lead: str(h.lead, 600), points: strs(h.points, 5, 120) },
+        hero: { keyword: str(h.keyword, 80), h1: str(h.h1, 200), lead: sanitizeHtml(str(h.lead, 1500)), points: strs(h.points, 5, 120) },
         sections,
-        faqs: Array.isArray(i.faqs) ? i.faqs.slice(0, 20).map((f: Rec) => ({ q: str(f?.q, 250), a: str(f?.a, 2000) })).filter((f) => f.q && f.a) : [],
+        faqs: Array.isArray(i.faqs) ? i.faqs.slice(0, 20).map((f: Rec) => ({ q: str(f?.q, 250), a: sanitizeHtml(str(f?.a, 4000)) })).filter((f) => f.q && f.a) : [],
       };
     },
   },

@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
+import { memo } from '@/lib/cache';
 import { findOne } from '@/lib/store';
 
 // Session auth for the admin. Passwords: PBKDF2-SHA256 (Web Crypto, works on Cloudflare Workers).
@@ -52,7 +53,8 @@ export async function currentUser(): Promise<SessionUser | null> {
   if (!token) return null;
   try {
     const { payload } = await jwtVerify(token, secret());
-    const u = await findOne('users', { _id: String(payload.uid) });
+    const uid = String(payload.uid);
+    const u = await memo(`user:${uid}`, 20_000, () => findOne('users', { _id: uid })); // role changes apply within 20s everywhere, at once on this instance
     if (!u || u.active === false) return null;
     return { id: u._id, name: u.name, email: u.email, role: u.role };
   } catch { return null; }

@@ -19,7 +19,7 @@ export type ServiceContent = {
   short?: string; // short name used in headings, e.g. 'SEO'
   metaTitle: string;
   metaDescription: string;
-  hero: { keyword?: string; title?: string; highlight?: string; lead: string; motion: string; points: string[] };
+  hero: { h1?: string; keyword?: string; title?: string; highlight?: string; lead: string; motion: string; points: string[] };
   sections: Section[];
   faqs: { q: string; a: string }[];
   related: string[];

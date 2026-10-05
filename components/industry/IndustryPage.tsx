@@ -8,6 +8,8 @@ import { Block, Head, Tick } from '@/components/service/ServicePage';
 import type { ServiceContent } from '@/content/types';
 import { findItem, industries, site } from '@/lib/data';
 import { industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
+import Hl from '@/components/Hl';
+import { Rt } from '@/components/Rt';
 import Schema from '@/components/Schema';
 import { seoMap } from '@/content/seo-map';
 import { semanticLinksFor } from '@/lib/link-graph';
@@ -36,8 +38,8 @@ export default function IndustryPage({ c }: { c: ServiceContent }) {
           <nav className="sp-crumbs" aria-label="Breadcrumb">
             <Link href="/">Home</Link><span>/</span><Link href="/industries">Industries</Link><span>/</span><b>{name}</b>
           </nav>
-          <h1>{c.hero.keyword ?? name} Services of <span className="red">GTech Digital</span></h1>
-          <p className="sp-lead">{c.hero.lead}</p>
+          <h1><Hl>{c.hero.h1 ?? `${c.hero.keyword ?? name} Services of [[GTech Digital]]`}</Hl></h1>
+          <Rt as="p" className="sp-lead" html={c.hero.lead} />
           <div className="sp-hero-btns">
             <Link className="sp-btn-red" href={`/contact?service=${encodeURIComponent(name)}`}>Book a Free Audit</Link>
             <a className="sp-btn-line" href="#services">See What We Do</a>

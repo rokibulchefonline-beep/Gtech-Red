@@ -11,20 +11,21 @@ import { getClients } from '@/lib/content';
 import SemanticLinks from '@/components/SemanticLinks';
 import TocBar from '@/components/TocBar';
 import Hl from '@/components/Hl';
+import { Rt } from '@/components/Rt';
 import Schema from '@/components/Schema';
 import { seoMap } from '@/content/seo-map';
 import { semanticLinksFor } from '@/lib/link-graph';
 import { BASE, breadcrumbNode, faqNode, pageNode, serviceNode } from '@/lib/schema';
 
 export const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
-const Paras = ({ p }: { p: string[] }) => <>{p.map((t) => <p key={t.slice(0, 30)}>{t}</p>)}</>;
-const List = ({ b }: { b?: string[] }) => (b ? <ul className="sp-list">{b.map((x) => <li key={x}><Tick />{x}</li>)}</ul> : null);
+const Paras = ({ p }: { p: string[] }) => <>{p.map((t) => <Rt key={t.slice(0, 30)} as="p" html={t} />)}</>;
+const List = ({ b }: { b?: string[] }) => (b ? <ul className="sp-list">{b.map((x) => <li key={x}><Tick /><Rt html={x} /></li>)}</ul> : null);
 
 export function Head({ s, center = true, intro }: { s: { heading: string }; center?: boolean; intro?: string }) {
   return (
     <div className={center ? 'sp-head center' : 'sp-head'}>
       <h2><Hl>{s.heading}</Hl></h2>
-      {intro && <p className="sp-intro">{intro}</p>}
+      {intro && <Rt as="p" className="sp-intro" html={intro} />}
     </div>
   );
 }
@@ -117,7 +118,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
     case 'impact':
       return (
         <section id={s.id} className="sp-impact"><div className="wrap sp-impact-in">
-          <div className="sp-impact-copy"><h2><Hl>{s.heading}</Hl></h2><p>{s.text}</p></div>
+          <div className="sp-impact-copy"><h2><Hl>{s.heading}</Hl></h2><Rt as="p" html={s.text} /></div>
           <div className="sp-impact-stats">
             {s.stats.map((st) => <div key={st.label} className="sp-impact-stat"><b>{st.value}</b><span>{st.label}</span></div>)}
           </div>
@@ -196,8 +197,8 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
             <Link href="/">Home</Link><span>/</span>
             {found && <><Link href={`/services/${found.group.slug}`}>{found.group.title}</Link><span>/</span></>}<b>{name}</b>
           </nav>
-          <h1>{c.hero.keyword ?? name} Services of <span className="red">GTech Digital</span></h1>
-          <p className="sp-lead">{c.hero.lead}</p>
+          <h1><Hl>{c.hero.h1 ?? `${c.hero.keyword ?? name} Services of [[GTech Digital]]`}</Hl></h1>
+          <Rt as="p" className="sp-lead" html={c.hero.lead} />
           <div className="sp-hero-btns">
             <Link className="sp-btn-red" href={`/contact?service=${encodeURIComponent(name)}`}>Book a Free Audit</Link>
             <a className="sp-btn-line" href="#case-studies">View Case Studies</a>

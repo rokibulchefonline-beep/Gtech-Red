@@ -1,3 +1,4 @@
+import { forget } from '@/lib/cache';
 import { withDb } from '@/lib/mongo';
 
 // Tiny data-access layer used by the admin and the public site. Documents use string ids (`_id`).
@@ -65,6 +66,8 @@ export async function insert(coll: string, doc: Rec): Promise<Rec> {
 }
 
 export async function update(coll: string, id: string, patch: Rec): Promise<boolean> {
+  if (coll === 'users') forget(`user:${id}`);
+  if (coll === 'settings') forget('settings');
   const set: Rec = { ...patch, updatedAt: new Date() };
   delete set._id;
   if (useMemory()) {
@@ -84,6 +87,7 @@ export async function upsert(coll: string, id: string, doc: Rec): Promise<void> 
 }
 
 export async function remove(coll: string, id: string): Promise<boolean> {
+  if (coll === 'users') forget(`user:${id}`);
   if (useMemory()) {
     const rows = memory().get(coll) ?? [];
     const n = rows.length;

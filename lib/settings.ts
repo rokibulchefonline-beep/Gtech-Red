@@ -1,3 +1,4 @@
+import { forget, memo } from '@/lib/cache';
 import { findOne, upsert } from '@/lib/store';
 import { site } from '@/lib/data';
 
@@ -52,7 +53,7 @@ function merge<T>(base: T, over: unknown): T {
 /** Full settings, including the encrypted SMTP password (server use only). */
 export async function getSettings(): Promise<Settings> {
   try {
-    const doc = await findOne('settings', { _id: 'site' });
+    const doc = await memo('settings', 30_000, () => findOne('settings', { _id: 'site' }));
     return merge(defaults, doc);
   } catch { return defaults; }
 }
@@ -72,4 +73,5 @@ export async function saveSettings(input: Partial<Settings> & { smtp?: Partial<S
   delete (next.smtp as Record<string, unknown>).hasPass;
   delete (next.publish as Record<string, unknown>).hasHook;
   await upsert('settings', 'site', next);
+  forget('settings');
 }

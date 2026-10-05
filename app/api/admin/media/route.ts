@@ -1,11 +1,11 @@
-import { fail, guard, json } from '@/lib/admin-api';
+import { fail, guard, json, route } from '@/lib/admin-api';
 import { insert, list } from '@/lib/store';
 
 export const dynamic = 'force-dynamic';
 const TYPES = ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/svg+xml'];
 const MAX = 1_500_000;
 
-export async function GET(req: Request) {
+async function GET_(req: Request) {
   const g = await guard(req, 'content');
   if ('res' in g) return g.res;
   const rows = await list('media', { sort: { createdAt: -1 }, limit: 200 });
@@ -13,7 +13,7 @@ export async function GET(req: Request) {
 }
 
 // Images are stored in MongoDB (base64) so uploads work on any host, including Cloudflare Workers.
-export async function POST(req: Request) {
+async function POST_(req: Request) {
   const g = await guard(req, 'content');
   if ('res' in g) return g.res;
   const f = (await req.formData().catch(() => null))?.get('file');
@@ -27,3 +27,7 @@ export async function POST(req: Request) {
   const m = await insert('media', { name: f.name.slice(0, 120), type: f.type, size: f.size, data, by: g.user.email });
   return json({ ok: true, media: { _id: m._id, name: m.name, url: `/api/media/${m._id}` } }, 201);
 }
+
+export const GET = route(GET_);
+
+export const POST = route(POST_);

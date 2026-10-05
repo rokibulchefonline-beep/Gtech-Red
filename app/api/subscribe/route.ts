@@ -1,10 +1,11 @@
+import { route } from '@/lib/admin-api';
 import { NextResponse } from 'next/server';
 import { withDb } from '@/lib/mongo';
 
 export const dynamic = 'force-dynamic';
 
 // Newsletter sign-ups from the blog. Saved to the `subscribers` collection.
-export async function POST(req: Request) {
+async function POST_(req: Request) {
   const body = await req.json().catch(() => ({}));
   const email = String(body.email ?? '').trim().toLowerCase();
   if (body.website) return NextResponse.json({ ok: true }); // honeypot
@@ -16,3 +17,5 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: 'Could not subscribe right now. Try again later.' }, { status: 500 });
   }
 }
+
+export const POST = route(POST_);

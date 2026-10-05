@@ -11,7 +11,7 @@ export default async function PageEdit({ params }: { params: Promise<{ kind: str
   if (!c) notFound();
   const base: PageBase = {
     kind: kind as 'service' | 'industry', slug, name: c.short ?? c.slug, metaTitle: c.metaTitle, metaDescription: c.metaDescription,
-    hero: { keyword: c.hero.keyword ?? c.short ?? slug, lead: c.hero.lead, points: c.hero.points },
+    hero: { keyword: c.hero.keyword ?? c.short ?? slug, h1: c.hero.h1 ?? `${c.hero.keyword ?? c.short ?? slug} Services of [[GTech Digital]]`, lead: c.hero.lead, points: c.hero.points },
     sections: c.sections.map((s) => {
       const x = s as unknown as Record<string, unknown>;
       return { id: s.id, type: s.type, nav: x.nav as string | undefined, heading: x.heading as string | undefined, paras: x.paras as string[] | undefined, bullets: x.bullets as string[] | undefined, text: x.text as string | undefined };

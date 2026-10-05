@@ -1,10 +1,11 @@
 import SeoManager from '@/components/admin/SeoManager';
 import { industryContent } from '@/content/industries';
 import { serviceContent } from '@/content/services';
-import { listDocs } from '@/lib/mongo';
+import { listDocs, scoped } from '@/lib/mongo';
 import { staticPages } from '@/lib/site-pages';
 
 export default async function Seo() {
+  return scoped(async () => {
   const cases = await listDocs('case_studies', 200);
   const pages = [
     ...staticPages.map((p) => ({ ...p, group: 'Main pages' })),
@@ -13,4 +14,5 @@ export default async function Seo() {
     ...cases.map((c) => ({ path: `/case-studies/${c.slug}`, label: c.title, group: 'Case studies', title: '', description: c.excerpt ?? '' })),
   ];
   return <SeoManager pages={pages} />;
+});
 }

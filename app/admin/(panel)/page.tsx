@@ -3,11 +3,16 @@ import Icon from '@/components/Icon';
 import { Badge, Card, PageTitle } from '@/components/admin/ui';
 import { fmtDate } from '@/lib/fmt';
 import { can, currentUser } from '@/lib/auth';
+import ImportCard from '@/components/admin/ImportCard';
+import { seedPlan } from '@/lib/seed';
 import { count, list } from '@/lib/store';
+import { scoped } from '@/lib/mongo';
 
 export default async function Dashboard() {
+  return scoped(async () => {
   const user = (await currentUser())!;
   const safe = <T,>(p: Promise<T>, d: T) => p.catch(() => d);
+  const plan = can(user.role, 'content') ? await safe(seedPlan(), { posts: 0, caseStudies: 0, partners: 0, clients: 0 }) : { posts: 0, caseStudies: 0, partners: 0, clients: 0 };
   const [newLeads, leads, posts, drafts, cases, recent] = await Promise.all([
     safe(count('leads', { status: 'new' }), 0), safe(count('leads'), 0), safe(count('posts', { status: 'published' }), 0),
     safe(count('posts', { status: 'draft' }), 0), safe(count('case_studies', { status: 'published' }), 0),
@@ -24,6 +29,7 @@ export default async function Dashboard() {
   return (
     <>
       <PageTitle title={`Welcome back, ${user.name.split(' ')[0]}`} sub="Manage your website content, SEO and leads." />
+      <ImportCard plan={plan} />
       <div className="ad-stats">{stats.map((s) => <Link key={s.label} href={s.href} className={`ad-stat ${s.tone ?? ''}`}><Icon name={s.icon} size={22} /><strong>{s.value}</strong><span>{s.label}</span></Link>)}</div>
       <div className="ad-two">
         {can(user.role, 'leads') && (
@@ -51,4 +57,5 @@ export default async function Dashboard() {
       </div>
     </>
   );
+});
 }

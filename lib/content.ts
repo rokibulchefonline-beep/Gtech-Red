@@ -13,7 +13,7 @@ async function logos(coll: 'partners' | 'clients', fallback: Logo[]): Promise<Lo
     return rows.length ? shown : fallback;
   } catch { return fallback; }
 }
-const builtInPartners: Logo[] = [
+export const builtInPartners: Logo[] = [
   ['Google Partner', 'Google-Partner.png'], ['Meta Business Partner', 'Meta-1.png'], ['LinkedIn', 'LinkedIn.png'], ['TikTok Marketing Partner', 'TikTok-Partners.png'],
   ['Brevo Partner', 'Brevo.png'], ['Shopify Partner', 'Shopify.png'], ['Klaviyo Partner', 'Klaviyo.png'], ['Google Analytics', 'Google-Analytics.png'],
 ].map(([name, f]) => ({ name, logo: `/partners/${f}` }));
@@ -31,6 +31,7 @@ export async function withOverrides(kind: 'service' | 'industry', c: ServiceCont
     metaDescription: o.metaDescription || c.metaDescription,
     hero: {
       ...c.hero,
+      ...(o.hero?.h1 && { h1: o.hero.h1 }),
       ...(o.hero?.keyword && { keyword: o.hero.keyword }),
       ...(o.hero?.lead && { lead: o.hero.lead }),
       ...(o.hero?.points?.length && { points: o.hero.points }),

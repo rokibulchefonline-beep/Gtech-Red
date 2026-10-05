@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
+import { Rt } from '@/components/Rt';
 import { uiIcons } from '@/lib/icons';
 import Hl from '@/components/Hl';
 
@@ -17,7 +18,7 @@ export default function FaqSection({ title, faqs, schema = false }: { title: str
         <Link className="btn light-btn" href="/contact">Ask an expert</Link>
       </aside>
       <div className="sp-faq">
-        {faqs.map((f, n) => <details key={f.q} open={n === 0}><summary>{f.q}<Icon name={uiIcons.chevron} size={20} /></summary><p>{f.a}</p></details>)}
+        {faqs.map((f, n) => <details key={f.q} open={n === 0}><summary>{f.q}<Icon name={uiIcons.chevron} size={20} /></summary><Rt as="p" html={f.a} /></details>)}
       </div>
     </div></section>
   );

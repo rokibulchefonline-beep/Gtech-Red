@@ -1,11 +1,11 @@
-import { fail, guard, json } from '@/lib/admin-api';
+import { fail, guard, json, route } from '@/lib/admin-api';
 import { resources } from '@/lib/admin-resources';
 import { findOne, insert, remove, update } from '@/lib/store';
 
 export const dynamic = 'force-dynamic';
 type Ctx = { params: Promise<{ resource: string; id: string }> };
 
-export async function GET(req: Request, { params }: Ctx) {
+async function GET_(req: Request, { params }: Ctx) {
   const { resource, id } = await params;
   const r = resources[resource];
   if (!r) return fail('Unknown resource.', 404);
@@ -16,7 +16,7 @@ export async function GET(req: Request, { params }: Ctx) {
   return json({ ok: true, doc: (r.view ?? ((d) => d))(doc) });
 }
 
-export async function PUT(req: Request, { params }: Ctx) {
+async function PUT_(req: Request, { params }: Ctx) {
   const { resource, id } = await params;
   const r = resources[resource];
   if (!r) return fail('Unknown resource.', 404);
@@ -30,7 +30,7 @@ export async function PUT(req: Request, { params }: Ctx) {
   return json({ ok: true, doc: (r.view ?? ((d) => d))({ ...existing, ...out, _id: id }) });
 }
 
-export async function DELETE(req: Request, { params }: Ctx) {
+async function DELETE_(req: Request, { params }: Ctx) {
   const { resource, id } = await params;
   const r = resources[resource];
   if (!r) return fail('Unknown resource.', 404);
@@ -43,3 +43,9 @@ export async function DELETE(req: Request, { params }: Ctx) {
   await remove(r.coll, id);
   return json({ ok: true });
 }
+
+export const GET = route(GET_);
+
+export const PUT = route(PUT_);
+
+export const DELETE = route(DELETE_);

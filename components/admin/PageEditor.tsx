@@ -5,13 +5,15 @@ import { useEffect, useMemo, useState } from 'react';
 import Icon from '@/components/Icon';
 import { api } from '@/components/admin/api';
 import { Card, Count, Field, ListField, useToast } from '@/components/admin/ui';
+import { HeadingField, RichField } from '@/components/admin/RichField';
+import { plainHeading } from '@/lib/hl';
 import { SchemaBox } from '@/components/admin/SeoManager';
 import { analyse } from '@/lib/seo-analysis';
 import { encodeSeoId } from '@/lib/site-pages';
 
 export type EditSection = { id: string; type: string; nav?: string; heading?: string; paras?: string[]; bullets?: string[]; text?: string };
 export type PageInfo = { kw: string; sec: string[]; ent: string[]; linksIn: number; linksOut: number; anchorsIn: { from: string; anchor: string }[]; out: { href: string; anchor: string }[] };
-export type PageBase = { kind: 'service' | 'industry'; slug: string; name: string; metaTitle: string; metaDescription: string; hero: { keyword: string; lead: string; points: string[] }; sections: EditSection[]; faqs: { q: string; a: string }[] };
+export type PageBase = { kind: 'service' | 'industry'; slug: string; name: string; metaTitle: string; metaDescription: string; hero: { keyword: string; h1: string; lead: string; points: string[] }; sections: EditSection[]; faqs: { q: string; a: string }[] };
 
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 
@@ -34,7 +36,7 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
     api(`/api/admin/page-content/${key}`).then(({ doc }) => {
       if (!doc) return;
       setHasOverride(true);
-      setHero((h) => ({ keyword: doc.hero?.keyword || h.keyword, lead: doc.hero?.lead || h.lead, points: doc.hero?.points?.length ? doc.hero.points : h.points }));
+      setHero((h) => ({ keyword: doc.hero?.keyword || h.keyword, h1: doc.hero?.h1 || h.h1, lead: doc.hero?.lead || h.lead, points: doc.hero?.points?.length ? doc.hero.points : h.points }));
       setSections((ss) => ss.map((s) => { const o = doc.sections?.[s.id]; return o ? { ...s, ...o } : s; }));
       if (doc.faqs?.length) setFaqs(doc.faqs);
       setMeta({ metaTitle: doc.metaTitle || base.metaTitle, metaDescription: doc.metaDescription || base.metaDescription, focusKeyword: doc.focusKeyword || '' });
@@ -47,7 +49,7 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
   }, [dirty]);
 
   const upd = (id: string, patch: Partial<EditSection>) => { setSections((ss) => ss.map((s) => (s.id === id ? { ...s, ...patch } : s))); setDirty(true); };
-  const text = useMemo(() => [hero.lead, ...hero.points, ...sections.flatMap((s) => [s.heading ?? '', s.text ?? '', ...(s.paras ?? []), ...(s.bullets ?? [])]), ...faqs.flatMap((f) => [f.q, f.a])].join(' \n'), [hero, sections, faqs]);
+  const text = useMemo(() => [plainHeading(hero.h1), hero.lead, ...hero.points, ...sections.flatMap((s) => [s.heading ?? '', s.text ?? '', ...(s.paras ?? []), ...(s.bullets ?? [])]), ...faqs.flatMap((f) => [f.q, f.a])].join(' \n'), [hero, sections, faqs]);
   const keyword = meta.focusKeyword || info.kw;
   const md = useMemo(() => [hero.lead, ...sections.flatMap((s) => [s.heading ? `## ${s.heading}` : '', s.text ?? '', ...(s.paras ?? []), ...(s.bullets ?? [])])].join('\n\n'), [hero, sections]);
   const seo = useMemo(() => analyse({ title: base.name, metaTitle: meta.metaTitle, metaDescription: meta.metaDescription, keyword: keyword.replace(/\b(services?|company|agency|uk)\b/gi, '').trim(), body: md, slug: base.slug, links: info.linksOut, image: 'hero' }), [base.name, base.slug, meta, keyword, md, info.linksOut]);
@@ -68,7 +70,7 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
     try {
       await api(`/api/admin/page-content/${key}`, { method: 'PUT', body: {
         kind: base.kind, slug: base.slug, metaTitle: meta.metaTitle === base.metaTitle ? '' : meta.metaTitle, metaDescription: meta.metaDescription === base.metaDescription ? '' : meta.metaDescription, focusKeyword: meta.focusKeyword,
-        hero: { keyword: hero.keyword === base.hero.keyword ? '' : hero.keyword, lead: hero.lead === base.hero.lead ? '' : hero.lead, points: same(hero.points, base.hero.points) ? [] : hero.points },
+        hero: { keyword: hero.keyword === base.hero.keyword ? '' : hero.keyword, h1: hero.h1 === base.hero.h1 ? '' : hero.h1, lead: hero.lead === base.hero.lead ? '' : hero.lead, points: same(hero.points, base.hero.points) ? [] : hero.points },
         sections: changed, faqs: same(faqs, base.faqs) ? [] : faqs,
       } });
       await api(`/api/admin/seo/${encodeSeoId(pagePath)}`, { method: 'PUT', body: { ...seoDoc, path: pagePath, focusKeyword: meta.focusKeyword } });
@@ -100,18 +102,35 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
         <div className="ad-stack">
           <Card title="Hero">
             <div className="ad-form one">
-              <Field label="Main keyword" hint={`The H1 reads “${hero.keyword || base.name} Services of GTech Digital”.`}><input value={hero.keyword} onChange={(e) => { setHero({ ...hero, keyword: e.target.value }); setDirty(true); }} /></Field>
-              <Field label="Opening description" hint={<><Count n={hero.lead.length} max={260} /> Write it as a direct answer that names GTech Digital.</>}><textarea rows={3} value={hero.lead} onChange={(e) => { setHero({ ...hero, lead: e.target.value }); setDirty(true); }} /></Field>
+              <Field label="Main heading (H1)" hint="Fully editable. Select words and press “Make selection red” to colour them."><HeadingField value={hero.h1} onChange={(v) => { setHero({ ...hero, h1: v }); setDirty(true); }} /></Field>
+              <Field label="Main keyword" hint="Used for the page title and SEO checks."><input value={hero.keyword} onChange={(e) => { setHero({ ...hero, keyword: e.target.value }); setDirty(true); }} /></Field>
+              <Field label="Opening description" hint={<><Count n={hero.lead.replace(/<[^>]+>/g, '').length} max={260} /> Write it as a direct answer that names GTech Digital.</>}><RichField value={hero.lead} onChange={(v) => { setHero({ ...hero, lead: v }); setDirty(true); }} /></Field>
               <Field label="Highlights (3 short points)"><ListField value={hero.points} onChange={(v) => { setHero({ ...hero, points: v }); setDirty(true); }} max={5} /></Field>
             </div>
           </Card>
           {sections.filter((s) => s.heading !== undefined || s.paras || s.bullets || s.text !== undefined).map((s) => (
             <Card key={s.id} title={`${s.nav || s.type}: ${s.id}`}>
               <div className="ad-form one">
-                {s.heading !== undefined && <Field label="Heading"><input value={s.heading} onChange={(e) => upd(s.id, { heading: e.target.value })} /></Field>}
-                {s.text !== undefined && <Field label="Intro text"><textarea rows={2} value={s.text} onChange={(e) => upd(s.id, { text: e.target.value })} /></Field>}
-                {s.paras && <Field label="Paragraphs">{s.paras.map((p, i) => <textarea key={i} rows={4} value={p} onChange={(e) => upd(s.id, { paras: s.paras!.map((x, n) => (n === i ? e.target.value : x)) })} />)}</Field>}
-                {s.bullets && <Field label="Bullet points"><ListField value={s.bullets} onChange={(v) => upd(s.id, { bullets: v })} /></Field>}
+                {s.heading !== undefined && <Field label="Heading" hint="Select words and press “Make selection red”."><HeadingField value={s.heading} onChange={(v) => upd(s.id, { heading: v })} /></Field>}
+                {s.text !== undefined && <Field label="Intro text"><RichField rows={2} value={s.text} onChange={(v) => upd(s.id, { text: v })} /></Field>}
+                {s.paras && <Field label="Paragraphs">
+                  {s.paras.map((p, i) => (
+                    <div key={i} className="ad-rich-row">
+                      <RichField rows={4} value={p} onChange={(v) => upd(s.id, { paras: s.paras!.map((x, n) => (n === i ? v : x)) })} />
+                      <button type="button" className="ad-ico danger" aria-label="Remove paragraph" onClick={() => upd(s.id, { paras: s.paras!.filter((_, n) => n !== i) })}><Icon name="lucide:trash-2" size={16} /></button>
+                    </div>
+                  ))}
+                  <button type="button" className="ad-btn ghost small" onClick={() => upd(s.id, { paras: [...s.paras!, ''] })}><Icon name="lucide:plus" size={15} /> Add paragraph</button>
+                </Field>}
+                {s.bullets && <Field label="Bullet points">
+                  {s.bullets.map((p, i) => (
+                    <div key={i} className="ad-rich-row">
+                      <RichField rows={1} value={p} onChange={(v) => upd(s.id, { bullets: s.bullets!.map((x, n) => (n === i ? v : x)) })} />
+                      <button type="button" className="ad-ico danger" aria-label="Remove bullet" onClick={() => upd(s.id, { bullets: s.bullets!.filter((_, n) => n !== i) })}><Icon name="lucide:trash-2" size={16} /></button>
+                    </div>
+                  ))}
+                  <button type="button" className="ad-btn ghost small" onClick={() => upd(s.id, { bullets: [...s.bullets!, ''] })}><Icon name="lucide:plus" size={15} /> Add bullet</button>
+                </Field>}
               </div>
             </Card>
           ))}
@@ -125,7 +144,7 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
           {faqs.map((f, i) => (
             <div key={i} className="ad-faq">
               <input value={f.q} placeholder="Question" onChange={(e) => { setFaqs(faqs.map((x, n) => (n === i ? { ...x, q: e.target.value } : x))); setDirty(true); }} />
-              <textarea rows={3} value={f.a} placeholder="Answer" onChange={(e) => { setFaqs(faqs.map((x, n) => (n === i ? { ...x, a: e.target.value } : x))); setDirty(true); }} />
+              <RichField rows={3} value={f.a} placeholder="Answer" onChange={(v) => { setFaqs(faqs.map((x, n) => (n === i ? { ...x, a: v } : x))); setDirty(true); }} />
               <button className="ad-ico danger" aria-label="Remove question" onClick={() => { setFaqs(faqs.filter((_, n) => n !== i)); setDirty(true); }}><Icon name="lucide:trash-2" size={16} /></button>
             </div>
           ))}

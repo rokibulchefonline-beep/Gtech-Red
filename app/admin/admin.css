@@ -240,3 +240,18 @@ kbd{background:#f3f4f6;border:1px solid #d5d8de;padding:2px 7px;font-size:12.5px
 @media(max-width:1000px){.net{grid-template-columns:1fr}.au-group ul{grid-template-columns:1fr}}
 .sch{margin-top:18px;padding:16px;border:1px solid var(--line);background:#fafbfc;display:grid;gap:12px}.sch h3{font-size:14px}.sch-t{display:inline-block;font-style:normal;font-size:12px;background:#e0f2fe;color:#075985;padding:1px 8px;margin:2px 6px 2px 0}.sch-bad{color:#b91c1c!important;font-weight:600}
 .au-tags i.miss{background:#fee2e2;color:#b91c1c;font-weight:600}.ad-h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:12px 0 6px}.lk{list-style:none;margin:0;padding:0;display:grid;gap:8px}.lk a{color:var(--red);font-weight:600}.lk small{display:block;color:var(--mut)}
+
+.ad-import{display:flex;gap:18px;align-items:center;background:#fff8e6;border:1px solid #f3dd9b;padding:20px 22px;margin-bottom:22px}.ad-import>svg{flex:none;color:#b45309}.ad-import h2{font-size:17px;margin-bottom:4px}.ad-import p{margin:0;color:#5b4a14;font-size:14px;line-height:1.55}.ad-import .ad-btn{flex:none}@media(max-width:700px){.ad-import{flex-direction:column;align-items:flex-start}}
+.ad-root .rf{border:1px solid #d9d9df;background:#fff}
+.ad-root .rf-bar{display:flex;gap:2px;padding:4px;border-bottom:1px solid #e6e6ea;background:#f7f7f9}
+.ad-root .rf-box{padding:10px 12px;line-height:1.6;font-size:15px;outline:none}
+.ad-root .rf-box:empty::before{content:attr(data-ph);color:#999}
+.ad-root .rf-box a{color:#d40000;text-decoration:underline}
+.ad-root .rf:focus-within{border-color:#d40000}
+.ad-root .hf-act{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.ad-root .hf-pre{margin:8px 0 0;padding:10px 12px;background:#111;color:#fff;font-weight:700;font-size:20px;line-height:1.25}
+.ad-root .hf-pre .hl{color:var(--hl-dark,#ff4d5a)}
+.ad-root .ad-where{background:#fff7f7;border:1px solid #f1c9c9;padding:12px 14px;margin:0 0 16px;font-size:14px}
+.ad-root .ad-where ul{margin:6px 0 0;padding-left:18px}
+.ad-root .ad-logo .tag{display:inline-block;margin:2px 3px 0 0;padding:1px 6px;background:#f0f0f4;font-size:11px}
+.ad-root .ad-rich-row{display:flex;gap:6px;align-items:flex-start;margin-bottom:8px}.ad-root .ad-rich-row .rf{flex:1}

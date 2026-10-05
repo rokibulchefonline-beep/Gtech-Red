@@ -1,15 +1,15 @@
-import { fail, guard, json } from '@/lib/admin-api';
+import { fail, guard, json, route } from '@/lib/admin-api';
 import { getSettings, redact, saveSettings } from '@/lib/settings';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(req: Request) {
+async function GET_(req: Request) {
   const g = await guard(req, 'settings');
   if ('res' in g) return g.res;
   return json({ ok: true, settings: redact(await getSettings()) });
 }
 
-export async function PUT(req: Request) {
+async function PUT_(req: Request) {
   const g = await guard(req, 'settings');
   if ('res' in g) return g.res;
   const b = await req.json().catch(() => null);
@@ -21,3 +21,7 @@ export async function PUT(req: Request) {
   await saveSettings(b);
   return json({ ok: true, settings: redact(await getSettings()) });
 }
+
+export const GET = route(GET_);
+
+export const PUT = route(PUT_);

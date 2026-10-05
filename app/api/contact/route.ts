@@ -1,3 +1,4 @@
+import { route } from '@/lib/admin-api';
 import { NextResponse } from 'next/server';
 import { esc, mailShell, sendMail } from '@/lib/mail';
 import { getSettings } from '@/lib/settings';
@@ -8,7 +9,7 @@ export const dynamic = 'force-dynamic';
 // Accepts both forms: the /contact proposal form (name, business, budget) and the
 // home-page inquiry form (name, company, phone, email, postcode, service).
 // Leads are saved to the `leads` collection (managed in Admin > Leads) and emailed through SMTP.
-export async function POST(req: Request) {
+async function POST_(req: Request) {
   const body = await req.json().catch(() => ({}));
   const v = (k: string) => String(body[k] ?? '').trim();
 
@@ -53,3 +54,5 @@ export async function POST(req: Request) {
   } catch { /* ignore */ }
   return NextResponse.json({ ok: true });
 }
+
+export const POST = route(POST_);

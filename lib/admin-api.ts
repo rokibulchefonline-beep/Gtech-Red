@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { can, currentUser, type Perm, type SessionUser } from '@/lib/auth';
+import { scoped } from '@/lib/mongo';
 
 export const json = (data: unknown, status = 200) => NextResponse.json(data, { status, headers: { 'Cache-Control': 'no-store' } });
 export const fail = (error: string, status = 400) => json({ ok: false, error }, status);
@@ -18,12 +19,15 @@ export async function guard(req: Request, perm: Perm | null): Promise<{ user: Se
 
 /** Runs a route body and turns unexpected errors (usually the database) into a readable JSON message. */
 export async function safe(fn: () => Promise<NextResponse>): Promise<NextResponse> {
-  try { return await fn(); } catch (e) {
+  try { return await scoped(fn); } catch (e) {
     const msg = (e instanceof Error ? e.message : String(e)).replace(/mongodb(\+srv)?:\/\/[^\s]+/gi, 'mongodb://…').slice(0, 220);
     console.error('admin api error:', e);
     return fail(`Server error: ${msg}`, 500);
   }
 }
+
+/** Wraps a route handler: one shared database connection per request and readable JSON errors. */
+export const route = <A extends unknown[]>(h: (...a: A) => Promise<NextResponse | Response>) => (...a: A) => safe(async () => (await h(...a)) as NextResponse);
 
 // ---- input helpers ---------------------------------------------------------------------------
 export const str = (v: unknown, max = 500) => String(v ?? '').trim().slice(0, max);

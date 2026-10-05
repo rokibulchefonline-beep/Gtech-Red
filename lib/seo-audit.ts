@@ -41,7 +41,7 @@ function bodyOf(c: ServiceContent) {
     if (Array.isArray(x.reviews)) for (const r of x.reviews as Record<string, string>[]) parts.push(r.text);
   }
   for (const f of c.faqs) parts.push(f.q, f.a);
-  return { text: parts.join(' \n'), h2 };
+  return { text: parts.join(' \n').replace(/<[^>]+>/g, ' ').replace(/\[\[|\]\]/g, ''), h2: h2.map((h) => h.replace(/\[\[|\]\]/g, '')) };
 }
 
 export function auditPage(kind: 'service' | 'industry', c: ServiceContent, links: PageLinks | undefined, ctx: { socials: number; schemaOff: boolean; focus?: string }): PageAudit {

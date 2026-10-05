@@ -9,11 +9,13 @@ type Item = { _id?: string; name: string; logo: string; url: string; order: numb
 const blank: Item = { name: '', logo: '', url: '', order: 100, visible: true };
 
 /** Manager for logo collections: partner badges and client logos. */
-export default function LogoManager({ resource, title, sub, noun }: { resource: 'partners' | 'clients'; title: string; sub: string; noun: string }) {
+export default function LogoManager({ resource, title, sub, noun, where }: { resource: 'partners' | 'clients'; title: string; sub: string; noun: string; where: { place: string; page: string; href: string; rule: (index: number) => boolean }[] }) {
   const toast = useToast();
   const [rows, setRows] = useState<Item[] | null>(null);
   const [edit, setEdit] = useState<Item | null>(null);
   const [busy, setBusy] = useState(false);
+  const shown = (rows ?? []).filter((r) => r.visible).sort((a, b) => a.order - b.order);
+  const usedAt = (r: Item) => { const i = shown.indexOf(r); return i < 0 ? [] : where.filter((w) => w.rule(i)); };
 
   const load = useCallback(() => api(`/api/admin/${resource}?size=200`).then((d) => setRows(d.rows)).catch((e) => { toast(e.message, true); setRows([]); }), [resource, toast]);
   useEffect(() => { load(); }, [load]);
@@ -37,11 +39,13 @@ export default function LogoManager({ resource, title, sub, noun }: { resource: 
     <>
       <PageTitle title={title} sub={sub} actions={<button className="ad-btn" onClick={() => setEdit({ ...blank })}><Icon name="lucide:plus" size={16} /> Add {noun}</button>} />
       {rows && rows.length === 0 && <p className="ad-note">None added yet, so the site shows its built-in {resource === 'partners' ? 'partner badges' : 'demo logos'}. Add your own and they replace those automatically.</p>}
+      <div className="ad-where"><b>Where these appear on the website</b><ul>{where.map((w) => <li key={w.place}><a href={w.href} target="_blank" rel="noopener noreferrer">{w.page}</a>: {w.place}</li>)}</ul></div>
       <div className="ad-logos">
         {rows?.map((r) => (
           <div key={r._id} className={`ad-logo${r.visible ? '' : ' off'}`}>
             <div className="ad-logo-img">{r.logo ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={r.logo} alt={r.name} /> : <Icon name="lucide:image" size={26} />}</div>
             <b>{r.name}</b><small>Order {r.order}{r.visible ? '' : ' · hidden'}</small>
+            <span>{r.visible ? (usedAt(r).length ? usedAt(r).map((w) => <i key={w.place} className="tag">{w.page}</i>) : <i className="tag">Not shown (beyond the limit)</i>) : <i className="tag">Hidden</i>}</span>
             <div className="ad-logo-act"><button className="ad-ico" onClick={() => setEdit(r)} aria-label="Edit"><Icon name="lucide:pencil" size={16} /></button><button className="ad-ico" onClick={() => toggle(r)} aria-label={r.visible ? 'Hide' : 'Show'}><Icon name={r.visible ? 'lucide:eye' : 'lucide:eye-off'} size={16} /></button><button className="ad-ico danger" onClick={() => del(r)} aria-label="Delete"><Icon name="lucide:trash-2" size={16} /></button></div>
           </div>
         ))}
