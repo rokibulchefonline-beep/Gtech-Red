@@ -47,7 +47,7 @@ export default function Results() {
   return (
     <section className={`results ${seen ? 'in' : ''}`} ref={ref}>
       <div className="wrap">
-        <h2>Tired of Marketing Agencies That Explain Poor Results <span className="red">Instead of Fixing Them?</span></h2>
+        <h2>Tired of Excuses <span className="red">Instead of Results?</span></h2>
         <p className="results-sub"><strong>See what better growth looks like</strong> with GTech Digital</p>
 
         <div className="results-grid">

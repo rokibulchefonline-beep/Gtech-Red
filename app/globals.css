@@ -854,3 +854,10 @@ h1{letter-spacing:-.045em}h2{letter-spacing:-.035em}h3,h4{letter-spacing:-.02em}
 /* Client logos inside the partner strip */
 .brands-inline{margin-top:48px;padding-top:40px;border-top:1px solid #f0f0f3}
 .brands-inline h3{margin:0 0 24px;font-size:clamp(20px,2.4vw,28px)}
+
+/* Home hero: text aligned with the logo, stats bar inside the hero */
+.hero-video .wrap{width:100%;padding-bottom:40px;padding-top:96px}
+.stats.stats-hero{background:rgba(0,0,0,.38);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);padding:16px 0;margin-top:44px}
+.stats-hero .wrap{padding:0 8px}.stats-hero .stat{border-color:rgba(255,255,255,.2)}
+.stats-hero .stat strong{color:#fff;font-size:clamp(24px,3vw,36px)}.stats-hero .stat span{color:rgba(255,255,255,.78);margin-top:2px;font-size:13px}
+@media(max-width:800px){.stats.stats-hero{margin-top:32px}}

@@ -46,11 +46,11 @@ export default async function Home() {
             <Link className="btn-red" href="/contact">Let&apos;s Talk</Link>
             <Link className="btn-outline" href="/services">Our Services</Link>
           </div>
+          <StatsBar hero />
         </div>
       </section>
 
       <PartnerStrip withClients />
-      <StatsBar />
 
       <WhoWeAre />
       <OurServices />

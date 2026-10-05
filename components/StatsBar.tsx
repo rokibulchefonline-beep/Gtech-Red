@@ -21,10 +21,10 @@ function Count({ to, decimals = 0, run }: { to: number; decimals?: number; run: 
   return <>{v.toFixed(decimals)}</>;
 }
 
-export default function StatsBar() {
+export default function StatsBar({ hero = false }: { hero?: boolean }) {
   const [ref, seen] = useInView<HTMLElement>(0.4);
   return (
-    <section className="stats" ref={ref} aria-label="GTech Digital in numbers">
+    <section className={hero ? 'stats stats-hero' : 'stats'} ref={ref} aria-label="GTech Digital in numbers">
       <div className="wrap stats-grid">
         {stats.map((s) => (
           <div className="stat" key={s.label}>
