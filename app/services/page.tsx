@@ -6,6 +6,7 @@ import FaqSection from '@/components/service/FaqSection';
 import { Block, Tick } from '@/components/service/ServicePage';
 import { services } from '@/lib/data';
 import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
+import TocBar from '@/components/TocBar';
 import Hl from '@/components/Hl';
 
 // Services hub. Targets the brand + "services" query (GTech Digital services), not the
@@ -82,9 +83,7 @@ export default function ServicesHub() {
         </div>
       </section>
 
-      <nav className="sp-toc sh-tabs" aria-label="Service categories"><div className="wrap">
-        {services.map((g) => <a key={g.slug} href={`#${g.slug}`}><Icon name={groupIcons[g.slug]} size={16} />{groupInfo[g.slug]?.title ?? g.title}</a>)}
-      </div></nav>
+      <TocBar className="sh-tabs" label="Service categories" items={services.map((g) => ({ id: g.slug, label: groupInfo[g.slug]?.title ?? g.title, icon: groupIcons[g.slug] }))} />
 
       {services.map((g, n) => {
         const info = groupInfo[g.slug];

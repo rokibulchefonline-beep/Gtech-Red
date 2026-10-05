@@ -111,7 +111,7 @@ a{color:inherit;text-decoration:none}
 .brands{background:#fff;padding:80px 0;text-align:center}
 .brands h2{margin:0 auto 50px;font-size:clamp(28px,4.4vw,48px);line-height:1.12;font-weight:700}
 .hl,h1 .red,h2 .red{color:#d40000}
-.sp-faq-aside .hl,.sp-faq-aside .red{color:#ff5a68}
+.sp-faq-aside .hl,.sp-faq-aside .red,.page-hd .hl,.page-hd .red{color:#ff5a68}
 .brand-marquee{overflow:hidden;padding:10px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .brand-track{display:flex;width:max-content;animation:brandScroll 120s linear infinite}
 .brand-marquee:hover .brand-track{animation-play-state:paused}
@@ -155,7 +155,14 @@ a{color:inherit;text-decoration:none}
 .case-img{position:relative;display:block;aspect-ratio:1.38;border-radius:0;overflow:hidden;background:#222}
 .case-img>img:not(.case-logo){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .case-card:hover .case-img>img:not(.case-logo){transform:scale(1.05)}
-.case-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 30%,rgba(0,0,0,.78))}
+.case-hover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:26px;color:#fff;background:linear-gradient(180deg,rgba(10,0,3,.1) 20%,rgba(10,0,3,.9));opacity:0;transition:opacity .3s}
+.case-hover b{font-size:clamp(22px,2.2vw,28px);line-height:1.15;transform:translateY(12px);transition:transform .35s}
+.case-hover ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;transform:translateY(12px);transition:transform .35s .05s}
+.case-hover li{padding:5px 11px;font-size:12.5px;font-weight:600;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4)}
+.case-hover i{font-style:normal;font-size:13px;font-weight:700;color:#ff8a95;display:flex;align-items:center;gap:6px;transform:translateY(12px);transition:transform .35s .1s}
+.case-img:hover .case-hover,.case-img:focus-visible .case-hover{opacity:1}
+.case-img:hover .case-hover :is(b,ul,i),.case-img:focus-visible .case-hover :is(b,ul,i){transform:none}
+.case-img{box-shadow:0 14px 34px rgba(0,0,0,.14)}
 .case-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:60%;max-height:44%;object-fit:contain}
 .case-word{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86%;text-align:center;color:#fff;font-weight:700;font-size:clamp(20px,2.2vw,28px);letter-spacing:.02em;text-shadow:0 2px 12px rgba(0,0,0,.4)}
 .case-btn{display:block;margin-top:12px;padding:11px 14px;text-align:center;border:1px solid var(--pink);border-radius:0;color:var(--pink);font-weight:700;font-size:14px;background:#fff;transition:background .2s,color .2s}
@@ -332,7 +339,8 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 .sp-logo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:26px 54px}.sp-logo-row img{height:42px;max-width:150px;object-fit:contain;filter:grayscale(1);opacity:.7;transition:.3s}.sp-logo-row img:hover{filter:none;opacity:1}
 .sp-toc{position:sticky;top:70px;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-top:1px solid #eee;border-bottom:1px solid #eee}
 .sp-toc .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-top:10px;padding-bottom:10px;justify-content:safe center}.sp-toc .wrap::-webkit-scrollbar{display:none}
-.sp-toc a{flex:none;padding:8px 14px;border-radius:0;font-size:13.5px;font-weight:600;color:#444;transition:background .2s,color .2s}.sp-toc a:hover{background:#fff1f2;color:var(--pink)}
+.sp-toc a{flex:none;padding:8px 14px;border-radius:0;font-size:13.5px;font-weight:600;color:#444;transition:background .2s,color .2s}.sp-toc a{position:relative}.sp-toc a:hover,.sp-toc a.on{background:#fff1f2;color:var(--pink)}
+.sp-toc a::after{content:'';position:absolute;left:14px;right:14px;bottom:0;height:2px;background:var(--pink);transform:scaleX(0);transition:transform .25s}.sp-toc a.on::after{transform:scaleX(1)}
 .sp-sec{position:relative;padding:96px 0;background:#fff}
 .sp-grey{background:#f6f6f7}
 .sp-bg-mesh{background:#fff8f8 url(/bg/light-mesh.webp) center/cover}

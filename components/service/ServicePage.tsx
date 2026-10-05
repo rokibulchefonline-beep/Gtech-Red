@@ -7,6 +7,7 @@ import type { Section, ServiceContent } from '@/content/types';
 import { brandLogos, findGroup, findItem, industries, site } from '@/lib/data';
 import { groupIcons, industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
+import TocBar from '@/components/TocBar';
 import Hl from '@/components/Hl';
 
 export const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
@@ -209,10 +210,7 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
         </div>
       </section>
 
-      <nav className="sp-toc" aria-label="On this page"><div className="wrap">
-        {c.sections.filter((s) => 'nav' in s && s.nav).map((s) => <a key={s.id} href={`#${s.id}`}>{'nav' in s ? s.nav : ''}</a>)}
-        <a href="#faq">FAQs</a>
-      </div></nav>
+      <TocBar label="On this page" items={[...c.sections.filter((s) => 'nav' in s && s.nav).map((s) => ({ id: s.id, label: 'nav' in s ? s.nav ?? '' : '' })), { id: 'faq', label: 'FAQs' }]} />
 
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={short} />)}
 

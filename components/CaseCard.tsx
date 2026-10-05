@@ -8,20 +8,19 @@ const tints = [
   'linear-gradient(135deg,#1a0a0d,#c4152d)', 'linear-gradient(135deg,#0c0c10,#6e1224)',
 ];
 
+// Banner-only card. The project name and three attributes appear on hover or keyboard focus.
 export default function CaseCard({ doc, index = 0 }: { doc: Doc; index?: number }) {
-  const href = `/case-studies/${doc.slug}`;
   return (
     <article className="case-card">
-      <Link href={href} className="case-img" style={{ background: doc.image ? undefined : tints[index % tints.length] }} aria-label={doc.title}>
+      <Link href={`/case-studies/${doc.slug}`} className="case-img" style={{ background: doc.image ? undefined : tints[index % tints.length] }} aria-label={`${doc.title} case study`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {doc.image && <img src={doc.image} alt="" loading="lazy" />}
-        <span className="case-shade" />
-        {doc.logo
-          // eslint-disable-next-line @next/next/no-img-element
-          ? <img className="case-logo" src={doc.logo} alt={doc.title} loading="lazy" />
-          : <span className="case-word">{doc.title}</span>}
+        <span className="case-hover">
+          <b>{doc.title}</b>
+          {doc.tags && doc.tags.length > 0 && <ul>{doc.tags.map((t) => <li key={t}>{t}</li>)}</ul>}
+          <i>View case study</i>
+        </span>
       </Link>
-      <Link href={href} className="case-btn">See Case Study</Link>
     </article>
   );
 }

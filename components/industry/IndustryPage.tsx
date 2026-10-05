@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import TocBar from '@/components/TocBar';
 import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
 import FaqSection from '@/components/service/FaqSection';
@@ -51,10 +52,7 @@ export default function IndustryPage({ c }: { c: ServiceContent }) {
         </div>
       </section>
 
-      <nav className="sp-toc" aria-label="On this page"><div className="wrap">
-        {c.sections.filter((s) => 'nav' in s && s.nav).map((s) => <a key={s.id} href={`#${s.id}`}>{'nav' in s ? s.nav : ''}</a>)}
-        <a href="#faq">FAQs</a>
-      </div></nav>
+      <TocBar label="On this page" items={[...c.sections.filter((s) => 'nav' in s && s.nav).map((s) => ({ id: s.id, label: 'nav' in s ? s.nav ?? '' : '' })), { id: 'faq', label: 'FAQs' }]} />
 
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={name} />)}
 
