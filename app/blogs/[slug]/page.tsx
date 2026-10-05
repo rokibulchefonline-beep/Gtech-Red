@@ -10,6 +10,7 @@ import { author, formatDate, getPost, getPosts, parseBody, readTime } from '@/li
 import { services, site } from '@/lib/data';
 import { groupIcons } from '@/lib/icons';
 import { slugify } from '@/lib/util';
+import Hl from '@/components/Hl';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -137,7 +138,7 @@ export default async function PostPage({ params }: Props) {
 
       {more.length > 0 && (
         <section className="bp-more"><div className="wrap">
-          <h2>More Digital Marketing Guides</h2>
+          <h2><Hl>More Digital Marketing Guides</Hl></h2>
           <div className="bl-grid three">{more.map((m) => <PostCard key={m.slug} p={m} />)}</div>
         </div></section>
       )}

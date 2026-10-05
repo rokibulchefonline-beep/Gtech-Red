@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import { uiIcons } from '@/lib/icons';
+import Hl from '@/components/Hl';
 
 type Faq = { q: string; a: string };
 
@@ -11,7 +12,7 @@ export default function FaqSection({ title, faqs, schema = false }: { title: str
     <section id="faq" className="sp-sec"><div className="wrap sp-faq-wrap">
       {schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />}
       <aside className="sp-faq-aside">
-        <h2>{title}</h2>
+        <h2><Hl>{title}</Hl></h2>
         <p>Can not find what you are looking for? Our specialists are happy to help.</p>
         <Link className="btn light-btn" href="/contact">Ask an expert</Link>
       </aside>

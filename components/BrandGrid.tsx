@@ -11,7 +11,7 @@ export default function BrandGrid() {
         <h2>
           Experience Working with Industry
           <br />
-          <span className="red">Leading Brands.</span>
+          <span className="hl">Leading Brands.</span>
         </h2>
       </div>
       <div className="brand-marquee">

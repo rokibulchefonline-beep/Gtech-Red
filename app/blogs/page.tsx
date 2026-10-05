@@ -20,7 +20,7 @@ export default async function Blog() {
     <>
       <section className="bl-hero-wrap"><div className="wrap">
         <div className="bl-hero">
-          <h1>Digital Marketing Blog of GTech Digital</h1>
+          <h1>Digital Marketing Blog of <span className="hl">GTech Digital</span></h1>
           <p>The GTech Digital blog shares practical guides on SEO, AI search, Google Ads, social media marketing, web design and custom software, written by our UK specialists.</p>
           <Suspense fallback={<BlogToolsView cats={cats} />}><BlogTools cats={cats} /></Suspense>
         </div>

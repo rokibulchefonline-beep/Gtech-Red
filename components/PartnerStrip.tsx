@@ -1,3 +1,5 @@
+import Hl from '@/components/Hl';
+
 // Platform partner logos (files in public/partners/).
 const logos = [
   ['Google Partner', 'Google-Partner.png'], ['Meta Business Partner', 'Meta-1.png'], ['LinkedIn', 'LinkedIn.png'],
@@ -9,7 +11,7 @@ export default function PartnerStrip() {
   return (
     <section className="pstrip" aria-label="Our partners">
       <div className="wrap">
-        <h2>Our Platform Partners and Certifications</h2>
+        <h2><Hl>Our Platform Partners and Certifications</Hl></h2>
         <div className="pstrip-row">
           {logos.map(([name, file]) => (
             <div key={file} className="pstrip-tile">

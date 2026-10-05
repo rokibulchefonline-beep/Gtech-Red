@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Icon from '@/components/Icon';
 import { testimonials } from '@/lib/data';
 import { uiIcons } from '@/lib/icons';
+import Hl from '@/components/Hl';
 
 export default function Testimonials() {
   const [i, setI] = useState(0);
@@ -18,7 +19,7 @@ export default function Testimonials() {
   return (
     <section className="testi" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <div className="wrap">
-        <h2>What Our Clients Say</h2>
+        <h2><Hl>What Our Clients Say</Hl></h2>
         <Icon className="testi-ico" name={uiIcons.quote} size={44} />
         <div className="testi-stage">
           {testimonials.map((t, n) => (

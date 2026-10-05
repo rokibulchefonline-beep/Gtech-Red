@@ -7,6 +7,7 @@ import type { Section, ServiceContent } from '@/content/types';
 import { brandLogos, findGroup, findItem, industries, site } from '@/lib/data';
 import { groupIcons, industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
+import Hl from '@/components/Hl';
 
 export const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
 const Paras = ({ p }: { p: string[] }) => <>{p.map((t) => <p key={t.slice(0, 30)}>{t}</p>)}</>;
@@ -15,7 +16,7 @@ const List = ({ b }: { b?: string[] }) => (b ? <ul className="sp-list">{b.map((x
 export function Head({ s, center = true, intro }: { s: { heading: string }; center?: boolean; intro?: string }) {
   return (
     <div className={center ? 'sp-head center' : 'sp-head'}>
-      <h2>{s.heading}</h2>
+      <h2><Hl>{s.heading}</Hl></h2>
       {intro && <p className="sp-intro">{intro}</p>}
     </div>
   );
@@ -35,7 +36,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
       return (
         <section id={s.id} className="sp-sec"><div className="wrap sp-split">
           <div className="sp-split-head">
-            <h2>{s.heading}</h2>
+            <h2><Hl>{s.heading}</Hl></h2>
             <span className="sp-split-shape" aria-hidden="true" />
           </div>
           <div className="sp-split-body"><Paras p={s.paras} /><List b={s.bullets} /></div>
@@ -109,7 +110,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
     case 'impact':
       return (
         <section id={s.id} className="sp-impact"><div className="wrap sp-impact-in">
-          <div className="sp-impact-copy"><h2>{s.heading}</h2><p>{s.text}</p></div>
+          <div className="sp-impact-copy"><h2><Hl>{s.heading}</Hl></h2><p>{s.text}</p></div>
           <div className="sp-impact-stats">
             {s.stats.map((st) => <div key={st.label} className="sp-impact-stat"><b>{st.value}</b><span>{st.label}</span></div>)}
           </div>

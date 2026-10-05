@@ -2,13 +2,14 @@ import Link from 'next/link';
 import Icon from '@/components/Icon';
 import { industries } from '@/lib/data';
 import { industryIcons } from '@/lib/icons';
+import Hl from '@/components/Hl';
 
 export default function IndustriesSection() {
   return (
     <section className="ind">
       <div className="wrap ind-grid">
         <div className="ind-copy">
-          <h2>Digital Marketing for the Industries We Serve</h2>
+          <h2><Hl>Digital Marketing for the Industries We Serve</Hl></h2>
           <span className="ind-rule" />
           <p>
             We work with a wide range of industries, from e-commerce brands and restaurants to schools,

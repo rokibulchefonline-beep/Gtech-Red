@@ -3,6 +3,7 @@
 import { iconData } from '@/lib/icon-data';
 import { howIcons } from '@/lib/icons';
 import { useInView } from '@/components/useInView';
+import Hl from '@/components/Hl';
 
 const R = '#e8202f', D = '#1b1d24';
 
@@ -81,7 +82,7 @@ export default function HowWeWork() {
   return (
     <section className={`how ${seen ? 'in' : ''}`} ref={ref}>
       <div className="wrap">
-        <h2>How Our Digital Marketing Agency Works</h2>
+        <h2><Hl>How Our Digital Marketing Agency Works</Hl></h2>
         <p className="how-sub">A simple, transparent process that takes you from first conversation to measurable growth.</p>
         <div className="how-grid">
           <svg className="how-line" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">

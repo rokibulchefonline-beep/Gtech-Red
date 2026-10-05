@@ -6,6 +6,7 @@ import FaqSection from '@/components/service/FaqSection';
 import { Block, Tick } from '@/components/service/ServicePage';
 import { services } from '@/lib/data';
 import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
+import Hl from '@/components/Hl';
 
 // Services hub. Targets the brand + "services" query (GTech Digital services), not the
 // home page's main agency keyword.
@@ -97,7 +98,7 @@ export default function ServicesHub() {
               </div>
               <div className="sz-copy">
                 <span className="sz-ico"><Icon name={groupIcons[g.slug]} size={24} /></span>
-                <h2>{info?.h2 ?? `${title} Services`}</h2>
+                <h2><Hl>{info?.h2 ?? `${title} Services`}</Hl></h2>
                 <p>{info?.line ?? g.intro}</p>
                 <ul className="sz-points">{info?.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
                 <div className="sz-btns">
@@ -120,7 +121,7 @@ export default function ServicesHub() {
       })}
 
       <section className="sh-why"><div className="wrap">
-        <div className="sp-head center"><h2>Why Businesses Choose Our Digital Agency</h2></div>
+        <div className="sp-head center"><h2><Hl>Why Businesses Choose Our Digital Agency</Hl></h2></div>
         <div className="sh-why-grid">
           {why.map((w) => <div key={w.title} className="sh-why-card"><span className="sp-card-ico solid"><Icon name={w.icon} size={22} /></span><h3>{w.title}</h3><p>{w.text}</p></div>)}
         </div>
