@@ -848,3 +848,9 @@ h1,h2,h3,h4,h5,h6{font-family:Geist,Inter,system-ui,-apple-system,"Segoe UI",Ari
 h1{letter-spacing:-.045em}h2{letter-spacing:-.035em}h3,h4{letter-spacing:-.02em}
 .hero-title,.hero-title span{font-weight:500!important;text-transform:none;letter-spacing:-.05em;line-height:1.05}
 .sp-lead,.hero-sub,.os-sub,.how-sub{letter-spacing:-.01em}
+
+/* Home page headings use one colour: no red highlight. */
+.no-hl .hl,.no-hl .red{color:inherit!important;-webkit-text-fill-color:currentColor!important;background:none!important}
+/* Client logos inside the partner strip */
+.brands-inline{margin-top:48px;padding-top:40px;border-top:1px solid #f0f0f3}
+.brands-inline h3{margin:0 0 24px;font-size:clamp(20px,2.4vw,28px)}

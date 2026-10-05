@@ -1,8 +1,9 @@
 import Hl from '@/components/Hl';
+import BrandGrid from '@/components/BrandGrid';
 import { getPartners } from '@/lib/content';
 
 // Platform partner badges: managed in Admin > Partner badges (built-in files in public/partners/ until then).
-export default async function PartnerStrip() {
+export default async function PartnerStrip({ withClients = false }: { withClients?: boolean }) {
   const partners = await getPartners();
   return (
     <section className="pstrip" aria-label="Our partners">
@@ -16,6 +17,7 @@ export default async function PartnerStrip() {
           })}
         </div>
       </div>
+      {withClients && <BrandGrid inline />}
     </section>
   );
 }

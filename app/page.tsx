@@ -3,7 +3,6 @@ import { groupIcons } from '@/lib/icons';
 import Link from 'next/link';
 import HeroVideo from '@/components/HeroVideo';
 import OurServices from '@/components/OurServices';
-import BrandGrid from '@/components/BrandGrid';
 import WhoWeAre from '@/components/WhoWeAre';
 import HowWeWork from '@/components/HowWeWork';
 import InquirySection from '@/components/InquirySection';
@@ -29,7 +28,7 @@ export default async function Home() {
   const c = await getStaticPage('home');
   const lines = (c.hero.h1 ?? homeContent.hero.h1!).split('|');
   return (
-    <>
+    <div className="no-hl">
       <Schema path="/" nodes={[
         pageNode({ path: '/', name: c.metaTitle, description: c.metaDescription, mainEntity: ids.org }),
         itemListNode('/', 'GTech Digital services', services.map((g) => [g.title, `/services/${g.slug}`] as [string, string])),
@@ -50,12 +49,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <PartnerStrip />
+      <PartnerStrip withClients />
       <StatsBar />
 
       <WhoWeAre />
       <OurServices />
-      <BrandGrid />
       <HowWeWork head={await homeSection('how')} steps={(await homeSection('how-steps')).steps} />
       <CaseStudies />
       <Results />
@@ -64,6 +62,6 @@ export default async function Home() {
       <IndustriesSection />
 
       <InquirySection />
-    </>
+    </div>
   );
 }
