@@ -7,7 +7,9 @@ import IntroVideo from '@/components/IntroVideo';
 import PartnerStrip from '@/components/PartnerStrip';
 import FaqSection from '@/components/service/FaqSection';
 import { Block, Head, Tick } from '@/components/service/ServicePage';
-import type { Section } from '@/content/types';
+import Hl from '@/components/Hl';
+import { Rt } from '@/components/Rt';
+import { getStaticPage } from '@/lib/content';
 import { site } from '@/lib/data';
 import { listDocs } from '@/lib/mongo';
 import Schema from '@/components/Schema';
@@ -26,143 +28,15 @@ const baseMeta: Metadata = {
     'Meet GTech Digital, a UK agency combining digital marketing, web design and custom software under one roof, with certified specialists and a focus on measurable growth.',
   alternates: { canonical: '/about' },
 };
-export const generateMetadata = () => seoFor('/about', baseMeta);
-
-const sections: Section[] = [
-  {
-    type: 'text',
-    id: 'who-we-are',
-    heading: 'Who We Are: A Marketing, Web and Software Agency',
-    paras: [
-      'GTech Digital is a UK agency that helps businesses grow online. We bring SEO, paid media, social, web design and custom software together in one team, so your marketing, website and systems work as one, and every decision is driven by data.',
-    ],
-    bullets: [
-      'Digital marketing that brings leads and sales',
-      'Websites and apps built to convert',
-      'Software that removes manual work',
-    ],
-  },
-  {
-    type: 'impact',
-    id: 'numbers',
-    heading: 'Our Results in Numbers',
-    text: 'A snapshot of the work we have delivered for UK businesses.',
-    stats: [
-      { value: '10+', label: 'Years of experience' },
-      { value: '500+', label: 'Projects delivered' },
-      { value: '150+', label: 'Happy clients' },
-      { value: '4.9/5', label: 'Average client rating' },
-    ],
-  },
-  {
-    type: 'media',
-    id: 'story',
-    heading: 'Our Story: From SEO Specialists to Full-Service Agency',
-    image: '/pages/about/story.webp',
-    alt: 'GTech Digital journey from founding to a full marketing, web and software team',
-    paras: ['We started by helping local businesses rank on Google. As clients grew, we added paid media, social, web and software, so they could keep everything with one trusted team.'],
-    bullets: ['Started in search and web', 'Grew with our clients', 'Now 30+ services', 'Same senior-led approach'],
-  },
-  {
-    type: 'media',
-    id: 'team',
-    heading: 'Our Team of SEO, PPC, Design and Development Specialists',
-    image: '/pages/about/team.webp',
-    alt: 'GTech Digital team of SEO, paid media, content, design, development and strategy specialists',
-    flip: true,
-    tone: 'grey',
-    paras: ['Each client gets a dedicated lead backed by specialists, so you get expert work in every channel without managing several agencies.'],
-    bullets: ['SEO and content specialists', 'PPC and paid social experts', 'Designers and developers', 'Growth strategists'],
-  },
-  {
-    type: 'media',
-    id: 'approach',
-    heading: 'Our Approach to Client Partnerships',
-    image: '/pages/about/approach.webp',
-    alt: 'How GTech Digital works: dedicated lead, clear pricing, plain-English reports and client ownership',
-    paras: ['No long contracts, no jargon and no hidden fees. You own your accounts and data, and we earn your business every month.'],
-    bullets: ['One dedicated account lead', 'Fixed, clear pricing', 'Plain-English monthly reports', 'Rolling monthly terms'],
-  },
-  {
-    type: 'media',
-    id: 'partners',
-    heading: 'Google Partner, Meta and Platform Certifications',
-    image: '/pages/about/partners.webp',
-    alt: 'GTech Digital certified with Google, Meta, Shopify, HubSpot, Semrush and TikTok',
-    flip: true,
-    tone: 'grey',
-    paras: ['Our team holds certifications with leading platforms, giving clients early access to features, support and best practice.'],
-    bullets: ['Google Partner', 'Meta Business Partner', 'Shopify and HubSpot partners', 'TikTok Marketing Partner'],
-  },
-  {
-    type: 'cards',
-    id: 'values',
-    heading: 'Our Values and Company Culture',
-    cards: [
-      { icon: 'lucide:trending-up', title: 'Results First', text: 'Leads and revenue over vanity metrics.' },
-      { icon: 'lucide:eye', title: 'Transparency', text: 'Clear reports, no hidden fees.' },
-      { icon: 'lucide:handshake', title: 'Partnership', text: 'We act like part of your team.' },
-      { icon: 'lucide:shield-check', title: 'Integrity', text: 'Honest advice, even when it is no.' },
-      { icon: 'lucide:lightbulb', title: 'Curiosity', text: 'Always testing and learning.' },
-      { icon: 'lucide:zap', title: 'Pace', text: 'Fast replies and quick delivery.' },
-      { icon: 'lucide:graduation-cap', title: 'Expertise', text: 'Certified, always up to date.' },
-      { icon: 'lucide:heart', title: 'Care', text: 'We treat your business as our own.' },
-    ],
-  },
-  {
-    type: 'steps',
-    id: 'process',
-    heading: 'How We Work With Clients, Step by Step',
-    steps: [
-      { title: 'Discover', text: 'We learn your goals and market.' },
-      { title: 'Audit', text: 'Free review of what works today.' },
-      { title: 'Plan', text: 'A clear strategy and quote.' },
-      { title: 'Deliver', text: 'Specialists get to work.' },
-      { title: 'Report', text: 'Monthly results in plain English.' },
-      { title: 'Grow', text: 'Scale what works.' },
-    ],
-  },
-];
-
-const later: Section[] = [
-  {
-    type: 'reviews',
-    id: 'reviews',
-    heading: 'Client Reviews and Testimonials',
-    reviews: [
-      { name: 'Sarah K', role: 'MD, Home Services', text: 'GTech handle our SEO, ads and website. One team, clear reports and steady growth.' },
-      { name: 'Andrew L', role: 'MD, Distribution', text: 'From marketing to custom software, they understand our business and deliver.' },
-      { name: 'Victoria H', role: 'Founder, Interiors Brand', text: 'Honest advice, fast replies and results that speak for themselves.' },
-    ],
-  },
-  {
-    type: 'industries',
-    id: 'industries',
-    heading: 'Industries We Serve',
-    items: [
-      { slug: 'e-commerce', text: 'Online stores and product brands.' },
-      { slug: 'healthcare', text: 'Clinics, dentists and wellness.' },
-      { slug: 'hospitality-hotels', text: 'Restaurants, venues and hotels.' },
-      { slug: 'real-estate', text: 'Agents, developers and landlords.' },
-      { slug: 'finance', text: 'Advisers, accountants and lenders.' },
-      { slug: 'technology-saas', text: 'SaaS and technology companies.' },
-    ],
-  },
-];
-
-const faqs = [
-  { q: 'What does GTech Digital do?', a: 'GTech Digital is a UK agency providing digital marketing (SEO, Google Ads, social media and content), web design and development, custom software and branding for businesses of all sizes.' },
-  { q: 'Where is GTech Digital based?', a: 'We are a UK agency working with businesses across the country, with meetings in person or online.' },
-  { q: 'What size businesses do you work with?', a: 'We work with start-ups, local businesses, growing SMEs and larger brands, with plans to suit each budget.' },
-  { q: 'Why choose GTech Digital over other agencies?', a: 'You get marketing, web and software specialists in one team, a dedicated lead, transparent reporting and rolling monthly terms with no lock-in.' },
-  { q: 'Are you a certified Google Partner?', a: 'Yes. Our team is certified with Google, Meta and other leading platforms.' },
-  { q: 'How do I start working with you?', a: 'Get in touch through our contact form or book a free audit. We will review your goals and send a clear proposal within 24 hours.' },
-];
+export const generateMetadata = async () => { const c = await getStaticPage('about'); return seoFor('/about', { ...baseMeta, title: { absolute: c.metaTitle }, description: c.metaDescription }); };
 
 export default async function About() {
+  const c = await getStaticPage('about');
+  const cut = c.sections.findIndex((x) => x.id === 'reviews');
+  const sections = c.sections.slice(0, cut), later = c.sections.slice(cut), faqs = c.faqs;
   const cases = await listDocs('case_studies', 6);
   const nodes = [
-    pageNode({ path: '/about', type: 'AboutPage', name: 'About GTech Digital', description: baseMeta.description as string, mainEntity: ids.org, about: ['Digital marketing agency', 'Web design', 'Custom software'] }),
+    pageNode({ path: '/about', type: 'AboutPage', name: 'About GTech Digital', description: c.metaDescription, mainEntity: ids.org, about: ['Digital marketing agency', 'Web design', 'Custom software'] }),
     breadcrumbNode('/about', [['About Us', '/about']]),
     faqNode('/about', faqs),
   ];
@@ -174,13 +48,13 @@ export default async function About() {
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>About Us</b></nav>
-          <h1>About <span className="red">GTech Digital</span>: UK Digital Marketing, Web and Software Agency</h1>
-          <p className="sp-lead">GTech Digital is a UK digital agency that provides digital marketing, SEO, Google Ads, social media, web design and development, custom software and branding services, helping businesses get found, win customers and grow revenue.</p>
+          <h1><Hl>{c.hero.h1 ?? ''}</Hl></h1>
+          <Rt as="p" className="sp-lead" html={c.hero.lead} />
           <div className="sp-hero-btns">
             <Link className="sp-btn-red" href="/contact">Work With Us</Link>
             <Link className="sp-btn-line" href="/case-studies">See Our Work</Link>
           </div>
-          <ul className="sp-hero-points">{['Certified Google Partner', 'Marketing, web and software', 'No long contracts'].map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+          <ul className="sp-hero-points">{c.hero.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
           <div className="sp-hero-show about-video"><IntroVideo /></div>
         </div>
       </section>

@@ -1,15 +1,16 @@
 import ServiceStack from '@/components/ServiceStack';
 import Hl from '@/components/Hl';
 
-export default function OurServices() {
+import { homeSection } from '@/lib/content';
+import { Rt } from '@/components/Rt';
+
+export default async function OurServices() {
+  const h = await homeSection('services');
   return (
     <section className="ourservices">
       <div className="wrap">
-        <h2><Hl>Digital Marketing, Web and Software Services</Hl></h2>
-        <p className="os-sub">
-          Everything you need to grow online, from one team. Strategy, creative and engineering that
-          work together and are measured on real business results.
-        </p>
+        <h2><Hl>{h.heading}</Hl></h2>
+        <Rt as="p" className="os-sub" html={(h as { text?: string }).text ?? ''} />
         <ServiceStack />
       </div>
     </section>

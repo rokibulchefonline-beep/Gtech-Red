@@ -13,10 +13,10 @@ export default function PagesList({ rows }: { rows: Row[] }) {
   const shown = rows.filter((r) => (!kind || r.kind === kind) && (r.name + r.path).toLowerCase().includes(q.toLowerCase()));
   return (
     <>
-      <PageTitle title="Page content" sub="Edit the hero, section text, FAQs and search appearance of every service and industry page." />
+      <PageTitle title="Page content" sub="Edit the hero, section text, FAQs and search appearance of the home, about and contact pages and every service and industry page." />
       <div className="ad-toolbar">
         <div className="ad-search"><Icon name="lucide:search" size={16} /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search pages…" aria-label="Search pages" /></div>
-        <div className="ad-seg">{[['', 'All'], ['service', 'Services'], ['industry', 'Industries']].map(([v, l]) => <button key={v} className={kind === v ? 'on' : ''} onClick={() => setKind(v)}>{l}</button>)}</div>
+        <div className="ad-seg">{[['', 'All'], ['page', 'Main pages'], ['service', 'Services'], ['industry', 'Industries']].map(([v, l]) => <button key={v} className={kind === v ? 'on' : ''} onClick={() => setKind(v)}>{l}</button>)}</div>
       </div>
       <div className="ad-tablewrap"><table className="ad-table">
         <thead><tr><th>Page</th><th>Type</th><th>Status</th><th style={{ width: 70 }} /></tr></thead>

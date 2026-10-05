@@ -1,5 +1,9 @@
 import type { ServiceContent } from '@/content/types';
 import { brandLogos } from '@/lib/data';
+import { cache } from 'react';
+import { aboutContent } from '@/content/static/about';
+import { contactContent } from '@/content/static/contact';
+import { homeContent } from '@/content/static/home';
 import { findOne, list } from '@/lib/store';
 
 // Public-site getters for content managed in the admin. Each falls back to the built-in defaults
@@ -21,7 +25,7 @@ export const getPartners = () => logos('partners', builtInPartners);
 export const getClients = () => logos('clients', brandLogos);
 
 /** Apply admin edits (Admin > Pages) on top of a service or industry page definition. */
-export async function withOverrides(kind: 'service' | 'industry', c: ServiceContent): Promise<ServiceContent> {
+export async function withOverrides(kind: 'service' | 'industry' | 'page', c: ServiceContent): Promise<ServiceContent> {
   let o;
   try { o = await findOne('page_content', { _id: `${kind}~${c.slug}` }); } catch { return c; }
   if (!o) return c;
@@ -38,8 +42,26 @@ export async function withOverrides(kind: 'service' | 'industry', c: ServiceCont
     },
     sections: c.sections.map((s) => {
       const e = o.sections?.[s.id];
-      return e ? ({ ...s, ...(e.heading && { heading: e.heading }), ...(e.paras?.length && 'paras' in s && { paras: e.paras }), ...(e.bullets?.length && 'bullets' in s && { bullets: e.bullets }), ...(e.text && 'text' in s && { text: e.text }) } as typeof s) : s;
+      if (!e) return s;
+      const x: Record<string, unknown> = { ...s };
+      if (e.heading) x.heading = e.heading;
+      if (e.intro && 'intro' in s) x.intro = e.intro;
+      if (e.paras?.length && 'paras' in s) x.paras = e.paras;
+      if (e.bullets?.length && 'bullets' in s) x.bullets = e.bullets;
+      if (e.text && 'text' in s) x.text = e.text;
+      for (const f of ['cards', 'steps', 'stats', 'reviews', 'items'] as const) {
+        const base = (s as Record<string, unknown>)[f];
+        if (Array.isArray(base) && Array.isArray(e[f])) x[f] = base.map((b, i) => ({ ...b, ...(e[f][i] ?? {}) }));
+      }
+      return x as typeof s;
     }),
     faqs: o.faqs?.length ? o.faqs : c.faqs,
   };
+}
+
+export const getStaticPage = cache((slug: 'home' | 'about' | 'contact') => withOverrides('page', { home: homeContent, about: aboutContent, contact: contactContent }[slug]));
+/** Section of a static page by id, with admin edits applied. */
+export async function homeSection<T = Record<string, unknown>>(id: string): Promise<T & { heading: string; paras?: string[]; bullets?: string[]; text?: string; steps?: { title: string; text: string }[] }> {
+  const c = await getStaticPage('home');
+  return c.sections.find((x) => x.id === id) as never;
 }

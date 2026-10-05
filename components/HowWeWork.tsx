@@ -4,6 +4,7 @@ import { iconData } from '@/lib/icon-data';
 import { howIcons } from '@/lib/icons';
 import { useInView } from '@/components/useInView';
 import Hl from '@/components/Hl';
+import { sanitizeHtml } from '@/lib/sanitize-html';
 
 const R = '#e8202f', D = '#1b1d24';
 
@@ -77,24 +78,24 @@ const steps = [
   { art: <Grow />, title: 'Measure & Grow', text: 'We track every lead and sale, report in plain English and keep improving so results compound month after month.' },
 ];
 
-export default function HowWeWork() {
+export default function HowWeWork({ head, steps: edited }: { head: { heading: string; text?: string }; steps?: { title: string; text: string }[] }) {
   const [ref, seen] = useInView<HTMLElement>(0.25);
   return (
     <section className={`how ${seen ? 'in' : ''}`} ref={ref}>
       <div className="wrap">
-        <h2><Hl>How Our Digital Marketing Agency Works</Hl></h2>
-        <p className="how-sub">A simple, transparent process that takes you from first conversation to measurable growth.</p>
+        <h2><Hl>{head.heading}</Hl></h2>
+        <p className="how-sub" dangerouslySetInnerHTML={{ __html: sanitizeHtml(head.text ?? '') }} />
         <div className="how-grid">
           <svg className="how-line" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
             <path d="M175 120 C 250 20, 330 20, 420 92 S 570 190, 660 100 S 740 40, 830 100" pathLength={1} fill="none" stroke="#c9ccd6" strokeWidth="2" strokeDasharray="0.012 0.014" />
           </svg>
-          {steps.map((s) => (
+          {steps.map((s0, n) => { const s = { ...s0, ...(edited?.[n] ?? {}) }; return (
             <div className="how-step" key={s.title}>
               <div className="how-art">{s.art}</div>
               <h3>{s.title}</h3>
               <p>{s.text}</p>
             </div>
-          ))}
+          ); })}
         </div>
       </div>
     </section>

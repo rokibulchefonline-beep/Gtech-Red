@@ -96,11 +96,13 @@ export const resources: Record<string, Resource> = {
           ...(v.paras !== undefined && { paras: strs(v.paras, 12, 6000).map((x) => sanitizeHtml(x)) }),
           ...(v.bullets !== undefined && { bullets: strs(v.bullets, 20, 800).map((x) => sanitizeHtml(x)) }),
           ...(v.text !== undefined && { text: sanitizeHtml(str(v.text, 1500)) }),
+          ...(v.intro !== undefined && { intro: sanitizeHtml(str(v.intro, 1500)) }),
+          ...Object.fromEntries((['cards', 'steps', 'stats', 'reviews', 'items'] as const).filter((f) => Array.isArray(v[f])).map((f) => [f, (v[f] as Rec[]).slice(0, 30).map((o) => Object.fromEntries(Object.entries(o ?? {}).filter(([k]) => k !== 'icon' && k !== 'slug').slice(0, 6).map(([k, val]) => [k.slice(0, 20), sanitizeHtml(str(val, 800))])))])),
         };
       }
       const h = (i.hero ?? {}) as Rec;
       return {
-        kind: oneOf(i.kind, ['service', 'industry'] as const, 'service'), slug: str(i.slug, 80),
+        kind: oneOf(i.kind, ['service', 'industry', 'page'] as const, 'service'), slug: str(i.slug, 80),
         metaTitle: str(i.metaTitle, 120), metaDescription: str(i.metaDescription, 300), focusKeyword: str(i.focusKeyword, 80),
         hero: { keyword: str(h.keyword, 80), h1: str(h.h1, 200), lead: sanitizeHtml(str(h.lead, 1500)), points: strs(h.points, 5, 120) },
         sections,

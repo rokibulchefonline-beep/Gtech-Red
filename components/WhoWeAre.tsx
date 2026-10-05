@@ -1,32 +1,26 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import IntroVideo from '@/components/IntroVideo';
-import { getPartners } from '@/lib/content';
+import { getPartners, homeSection } from '@/lib/content';
+import Hl from '@/components/Hl';
+import { Rt } from '@/components/Rt';
 import { uiIcons } from '@/lib/icons';
-
-const points = [
-  'Strategy, design and engineering under one roof',
-  'Every campaign tracked to leads and revenue',
-  'Plain-English reporting, no jargon',
-];
 
 export default async function WhoWeAre() {
   const partners = (await getPartners()).slice(0, 4);
+  const h = await homeSection('who');
+  const points = h.bullets ?? [];
   return (
     <section className="who">
       <div className="wrap who-grid">
         <IntroVideo />
 
         <div className="who-body">
-          <h2>A <span className="red">Digital Marketing Agency</span> Built for Growth</h2>
-          <p className="who-text">
-            GTech Digital is a full-service digital marketing agency specialising in search marketing, advertising,
-            branding, and high-performing websites and software for growth-focused businesses. We turn
-            strategy into measurable revenue.
-          </p>
+          <h2>{h.heading.includes('[[') ? <Hl>{h.heading}</Hl> : h.heading}</h2>
+          <Rt as="p" className="who-text" html={h.paras?.[0] ?? ''} />
           <ul className="who-points">
             {points.map((p) => (
-              <li key={p}><span className="tick"><Icon name={uiIcons.check} size={13} /></span>{p}</li>
+              <li key={p}><span className="tick"><Icon name={uiIcons.check} size={13} /></span><Rt html={p} /></li>
             ))}
           </ul>
           <div className="who-btns">

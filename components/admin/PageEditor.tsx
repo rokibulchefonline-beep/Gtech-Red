@@ -11,14 +11,18 @@ import { SchemaBox } from '@/components/admin/SeoManager';
 import { analyse } from '@/lib/seo-analysis';
 import { encodeSeoId } from '@/lib/site-pages';
 
-export type EditSection = { id: string; type: string; nav?: string; heading?: string; paras?: string[]; bullets?: string[]; text?: string };
+type Item = Record<string, string>;
+export type EditSection = { id: string; type: string; nav?: string; heading?: string; intro?: string; paras?: string[]; bullets?: string[]; text?: string; cards?: Item[]; steps?: Item[]; stats?: Item[]; reviews?: Item[]; items?: Item[] };
+const ITEM_FIELDS = ['cards', 'steps', 'stats', 'reviews', 'items'] as const;
+const SKIP = new Set(['icon', 'slug']);
+const nice = (k: string) => ({ title: 'Title', text: 'Text', value: 'Number', label: 'Label', name: 'Name', role: 'Role' } as Record<string, string>)[k] ?? k;
 export type PageInfo = { kw: string; sec: string[]; ent: string[]; linksIn: number; linksOut: number; anchorsIn: { from: string; anchor: string }[]; out: { href: string; anchor: string }[] };
-export type PageBase = { kind: 'service' | 'industry'; slug: string; name: string; metaTitle: string; metaDescription: string; hero: { keyword: string; h1: string; lead: string; points: string[] }; sections: EditSection[]; faqs: { q: string; a: string }[] };
+export type PageBase = { kind: 'service' | 'industry' | 'page'; slug: string; name: string; metaTitle: string; metaDescription: string; hero: { keyword: string; h1: string; lead: string; points: string[] }; sections: EditSection[]; faqs: { q: string; a: string }[] };
 
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 
 /** Edits the copy of a service or industry page. Only fields that differ from the built-in text are saved as overrides. */
-export default function PageEditor({ base, info }: { base: PageBase; info: PageInfo }) {
+export default function PageEditor({ base, info, path: pagePath }: { base: PageBase; info: PageInfo; path: string }) {
   const toast = useToast();
   const key = `${base.kind}~${base.slug}`;
   const [tab, setTab] = useState<'content' | 'faqs' | 'seo'>('content');
@@ -27,7 +31,6 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
   const [faqs, setFaqs] = useState(base.faqs);
   const [meta, setMeta] = useState({ metaTitle: base.metaTitle, metaDescription: base.metaDescription, focusKeyword: '' });
   const [seoDoc, setSeoDoc] = useState<Record<string, unknown>>({ schemaOff: false, schemaCustom: '' });
-  const pagePath = `/${base.kind === 'service' ? 'services' : 'industries'}/${base.slug}`;
   const [hasOverride, setHasOverride] = useState(false);
   const [busy, setBusy] = useState(false);
   const [dirty, setDirty] = useState(false);
@@ -37,7 +40,7 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
       if (!doc) return;
       setHasOverride(true);
       setHero((h) => ({ keyword: doc.hero?.keyword || h.keyword, h1: doc.hero?.h1 || h.h1, lead: doc.hero?.lead || h.lead, points: doc.hero?.points?.length ? doc.hero.points : h.points }));
-      setSections((ss) => ss.map((s) => { const o = doc.sections?.[s.id]; return o ? { ...s, ...o } : s; }));
+      setSections((ss) => ss.map((s) => { const o = doc.sections?.[s.id]; if (!o) return s; const m = { ...s, ...o } as EditSection; for (const f of ITEM_FIELDS) if (s[f] && o[f]) m[f] = s[f]!.map((b, i) => ({ ...b, ...(o[f][i] ?? {}) })); return m; }));
       if (doc.faqs?.length) setFaqs(doc.faqs);
       setMeta({ metaTitle: doc.metaTitle || base.metaTitle, metaDescription: doc.metaDescription || base.metaDescription, focusKeyword: doc.focusKeyword || '' });
     }).catch(() => {});
@@ -63,7 +66,7 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
     for (const s of sections) {
       const b = base.sections.find((x) => x.id === s.id)!;
       const d: Partial<EditSection> = {};
-      for (const f of ['heading', 'paras', 'bullets', 'text'] as const) if (s[f] !== undefined && !same(s[f], b[f])) (d as Record<string, unknown>)[f] = s[f];
+      for (const f of ['heading', 'intro', 'paras', 'bullets', 'text', ...ITEM_FIELDS] as const) if (s[f] !== undefined && !same(s[f], b[f])) (d as Record<string, unknown>)[f] = s[f];
       if (Object.keys(d).length) changed[s.id] = d;
     }
     setBusy(true);
@@ -82,7 +85,8 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
     if (!window.confirm('Remove all edits and go back to the original text for this page?')) return;
     try { await api(`/api/admin/page-content/${key}`, { method: 'DELETE' }); toast('Reset to the original text'); window.location.reload(); } catch (e) { toast(e instanceof Error ? e.message : 'Failed', true); }
   }
-  const path = `/${base.kind === 'service' ? 'services' : 'industries'}/${base.slug}`;
+  const path = pagePath;
+  const isHome = base.slug === 'home';
 
   return (
     <div className="ed">
@@ -96,16 +100,16 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
         </div>
       </div>
       <h1 className="ed-h1">{base.name} <small>{path}</small></h1>
-      <div className="ed-tabs inline">{(['content', 'faqs', 'seo'] as const).map((t) => <button key={t} className={tab === t ? 'on' : ''} onClick={() => setTab(t)}>{t === 'faqs' ? 'FAQs' : t === 'seo' ? `SEO (${seo.score})` : 'Content'}</button>)}</div>
+      <div className="ed-tabs inline">{(['content', 'faqs', 'seo'] as const).filter((t) => t !== 'faqs' || !isHome).map((t) => <button key={t} className={tab === t ? 'on' : ''} onClick={() => setTab(t)}>{t === 'faqs' ? 'FAQs' : t === 'seo' ? `SEO (${seo.score})` : 'Content'}</button>)}</div>
 
       {tab === 'content' && (
         <div className="ad-stack">
           <Card title="Hero">
             <div className="ad-form one">
-              <Field label="Main heading (H1)" hint="Fully editable. Select words and press “Make selection red” to colour them."><HeadingField value={hero.h1} onChange={(v) => { setHero({ ...hero, h1: v }); setDirty(true); }} /></Field>
-              <Field label="Main keyword" hint="Used for the page title and SEO checks."><input value={hero.keyword} onChange={(e) => { setHero({ ...hero, keyword: e.target.value }); setDirty(true); }} /></Field>
-              <Field label="Opening description" hint={<><Count n={hero.lead.replace(/<[^>]+>/g, '').length} max={260} /> Write it as a direct answer that names GTech Digital.</>}><RichField value={hero.lead} onChange={(v) => { setHero({ ...hero, lead: v }); setDirty(true); }} /></Field>
-              <Field label="Highlights (3 short points)"><ListField value={hero.points} onChange={(v) => { setHero({ ...hero, points: v }); setDirty(true); }} max={5} /></Field>
+              <Field label="Main heading (H1)" hint={isHome ? "Use | to start a new line. Select words and press “Make selection red” to colour them." : "Fully editable. Select words and press “Make selection red” to colour them."}><HeadingField value={hero.h1} onChange={(v) => { setHero({ ...hero, h1: v }); setDirty(true); }} /></Field>
+              {base.kind !== 'page' && <Field label="Main keyword" hint="Used for the page title and SEO checks."><input value={hero.keyword} onChange={(e) => { setHero({ ...hero, keyword: e.target.value }); setDirty(true); }} /></Field>}
+              <Field label={isHome ? 'Text under the heading' : 'Opening description'} hint={<><Count n={hero.lead.replace(/<[^>]+>/g, '').length} max={260} /> Write it as a direct answer that names GTech Digital.</>}><RichField value={hero.lead} onChange={(v) => { setHero({ ...hero, lead: v }); setDirty(true); }} /></Field>
+              {!isHome && <Field label="Highlights (3 short points)"><ListField value={hero.points} onChange={(v) => { setHero({ ...hero, points: v }); setDirty(true); }} max={5} /></Field>}
             </div>
           </Card>
           {sections.filter((s) => s.heading !== undefined || s.paras || s.bullets || s.text !== undefined).map((s) => (
@@ -113,6 +117,18 @@ export default function PageEditor({ base, info }: { base: PageBase; info: PageI
               <div className="ad-form one">
                 {s.heading !== undefined && <Field label="Heading" hint="Select words and press “Make selection red”."><HeadingField value={s.heading} onChange={(v) => upd(s.id, { heading: v })} /></Field>}
                 {s.text !== undefined && <Field label="Intro text"><RichField rows={2} value={s.text} onChange={(v) => upd(s.id, { text: v })} /></Field>}
+                {s.intro !== undefined && <Field label="Intro text"><RichField rows={2} value={s.intro} onChange={(v) => upd(s.id, { intro: v })} /></Field>}
+                {ITEM_FIELDS.map((f) => s[f]?.length ? (
+                  <Field key={f} label={f === 'steps' ? 'Steps' : f === 'cards' ? 'Cards' : f === 'stats' ? 'Numbers' : f === 'reviews' ? 'Reviews' : 'Items'} hint="The number and icons are part of the design, so only the text changes here.">
+                    {s[f]!.map((it, i) => (
+                      <div key={i} className="ad-item">
+                        {Object.keys(it).filter((k) => !SKIP.has(k)).map((k) => (
+                          <label key={k}><small>{nice(k)}</small>{k === 'text' ? <RichField rows={2} value={it[k]} onChange={(v) => upd(s.id, { [f]: s[f]!.map((x, n) => (n === i ? { ...x, [k]: v } : x)) })} /> : <input value={it[k]} onChange={(e) => upd(s.id, { [f]: s[f]!.map((x, n) => (n === i ? { ...x, [k]: e.target.value } : x)) })} />}</label>
+                        ))}
+                      </div>
+                    ))}
+                  </Field>
+                ) : null)}
                 {s.paras && <Field label="Paragraphs">
                   {s.paras.map((p, i) => (
                     <div key={i} className="ad-rich-row">

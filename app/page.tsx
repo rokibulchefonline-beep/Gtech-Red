@@ -17,15 +17,21 @@ import { seoFor } from '@/lib/seo';
 import Schema from '@/components/Schema';
 import { ids, itemListNode, pageNode } from '@/lib/schema';
 import { services } from '@/lib/data';
+import { getStaticPage, homeSection } from '@/lib/content';
+import Hl from '@/components/Hl';
+import { Rt } from '@/components/Rt';
+import { homeContent } from '@/content/static/home';
 
 
-export const generateMetadata = () => seoFor('/');
+export const generateMetadata = async () => { const c = await getStaticPage('home'); return seoFor('/', { title: { absolute: c.metaTitle }, description: c.metaDescription }); };
 
 export default async function Home() {
+  const c = await getStaticPage('home');
+  const lines = (c.hero.h1 ?? homeContent.hero.h1!).split('|');
   return (
     <>
       <Schema path="/" nodes={[
-        pageNode({ path: '/', name: 'GTech Digital | Digital Marketing Agency UK', description: 'GTech Digital is a UK digital marketing agency growing businesses with SEO, Google Ads, social media, web design and custom software.', mainEntity: ids.org }),
+        pageNode({ path: '/', name: c.metaTitle, description: c.metaDescription, mainEntity: ids.org }),
         itemListNode('/', 'GTech Digital services', services.map((g) => [g.title, `/services/${g.slug}`] as [string, string])),
       ]} />
       <section className="hero-video">
@@ -33,11 +39,9 @@ export default async function Home() {
         <div className="wrap">
           <div className="hero-head">
             <h1 className="hero-title">
-              <span>Digital Marketing</span>
-              <span>Agency for Scalable</span>
-              <span className="hero-last">Growth</span>
+              {lines.map((l, i) => <span key={i} className={i === lines.length - 1 && i > 0 ? 'hero-last' : undefined}>{l.includes('[[') ? <Hl>{l}</Hl> : l.trim() || ' '}</span>)}
             </h1>
-            <p className="hero-sub">GTech Digital helps UK businesses grow with smart, conversion-focused marketing.</p>
+            <Rt as="p" className="hero-sub" html={c.hero.lead} />
           </div>
           <div className="hero-ctas">
             <Link className="btn-red" href="/contact">Let&apos;s Talk</Link>
@@ -52,7 +56,7 @@ export default async function Home() {
       <WhoWeAre />
       <OurServices />
       <BrandGrid />
-      <HowWeWork />
+      <HowWeWork head={await homeSection('how')} steps={(await homeSection('how-steps')).steps} />
       <CaseStudies />
       <Results />
       <Testimonials />

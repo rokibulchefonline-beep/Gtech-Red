@@ -255,3 +255,5 @@ kbd{background:#f3f4f6;border:1px solid #d5d8de;padding:2px 7px;font-size:12.5px
 .ad-root .ad-where ul{margin:6px 0 0;padding-left:18px}
 .ad-root .ad-logo .tag{display:inline-block;margin:2px 3px 0 0;padding:1px 6px;background:#f0f0f4;font-size:11px}
 .ad-root .ad-rich-row{display:flex;gap:6px;align-items:flex-start;margin-bottom:8px}.ad-root .ad-rich-row .rf{flex:1}
+.ad-root .ad-item{display:grid;gap:6px;padding:10px;margin-bottom:8px;border:1px solid #e6e6ea;background:#fafafb}
+.ad-root .ad-item label{display:grid;gap:3px}.ad-root .ad-item small{color:#666;font-size:12px}

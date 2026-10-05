@@ -4,19 +4,18 @@ import { industries } from '@/lib/data';
 import { industryIcons } from '@/lib/icons';
 import Hl from '@/components/Hl';
 
-export default function IndustriesSection() {
+import { homeSection } from '@/lib/content';
+import { Rt } from '@/components/Rt';
+
+export default async function IndustriesSection() {
+  const h = await homeSection('industries');
   return (
     <section className="ind">
       <div className="wrap ind-grid">
         <div className="ind-copy">
-          <h2><Hl>Digital Marketing for the Industries We Serve</Hl></h2>
+          <h2><Hl>{h.heading}</Hl></h2>
           <span className="ind-rule" />
-          <p>
-            We work with a wide range of industries, from e-commerce brands and restaurants to schools,
-            healthcare providers and finance firms. Good marketing and software adapt to every niche, but we
-            go the extra mile: we take the time to understand your business, your customers and your values.
-            It is this personalised approach that sets us apart from the competition.
-          </p>
+          <Rt as="p" html={h.paras?.[0] ?? ''} />
           <Link className="btn" href="/contact">Speak to our experts</Link>
         </div>
         <div className="ind-cards">
