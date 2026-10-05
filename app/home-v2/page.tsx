@@ -25,7 +25,8 @@ export default async function HomeV2() {
   const home = await getStaticPage('home');
   const hub = await getStaticPage('services-hub');
   const sec = (id: string) => home.sections.find((s) => s.id === id) as unknown as Sec;
-  const who = sec('who'), how = sec('how'), steps = sec('how-steps'), ind = sec('industries');
+  const who = sec('who'), how = sec('how'), steps = sec('how-steps');
+  const ind: Sec = { heading: 'Digital Marketing for the Industries We Serve', paras: ['We work with a wide range of industries, from e-commerce brands and restaurants to schools, healthcare providers and finance firms.'] };
   const [cases, posts] = await Promise.all([listDocs('case_studies', 3), getPosts().catch(() => [])]);
   const h1 = title(plainHeading(home.hero.h1 ?? '').split('|').join(' '));
   const lead = strip(home.hero.lead);
