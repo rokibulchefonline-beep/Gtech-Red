@@ -21,7 +21,7 @@ export default async function BrandGrid({ inline = false }: { inline?: boolean }
     </div>
   );
   const heading = h.heading.includes('[[') ? <Hl>{h.heading}</Hl> : h.heading;
-  if (inline) return <div className="brands-inline"><h3>{heading}</h3>{marquee}</div>;
+  if (inline) return <div className="brands-inline"><div className="wrap"><h2>{heading}</h2></div>{marquee}</div>;
   return (
     <section className="brands">
       <div className="wrap"><h2>{heading}</h2></div>

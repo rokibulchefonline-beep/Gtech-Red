@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import IntroVideo from '@/components/IntroVideo';
-import { getPartners, homeSection } from '@/lib/content';
+import { homeSection } from '@/lib/content';
 import Hl from '@/components/Hl';
 import { Rt } from '@/components/Rt';
 import { uiIcons } from '@/lib/icons';
 
 export default async function WhoWeAre() {
-  const partners = (await getPartners()).slice(0, 4);
   const h = await homeSection('who');
   const points = h.bullets ?? [];
   return (
@@ -27,15 +26,6 @@ export default async function WhoWeAre() {
             <Link className="btn" href="/about">More about us</Link>
             <Link className="btn-line" href="/contact">Contact us</Link>
           </div>
-        </div>
-      </div>
-      <div className="wrap who-partners">
-        <p>Certified partners</p>
-        <div className="who-logos">
-          {partners.map((b) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img key={b.name} src={b.logo} alt={b.name} loading="lazy" />
-          ))}
         </div>
       </div>
     </section>
