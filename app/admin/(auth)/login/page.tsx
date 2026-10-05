@@ -5,6 +5,8 @@ import { count } from '@/lib/store';
 
 export default async function Login() {
   if (await currentUser()) redirect('/admin');
-  if ((await count('users').catch(() => 1)) === 0) redirect('/admin/setup');
-  return <AuthForm mode="login" />;
+  let dbError = '';
+  const n = await count('users').catch((e: Error) => { dbError = e.message; return 1; });
+  if (n === 0) redirect('/admin/setup');
+  return <AuthForm mode="login" dbError={dbError} />;
 }

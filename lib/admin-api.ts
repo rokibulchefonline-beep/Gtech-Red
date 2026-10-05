@@ -16,6 +16,15 @@ export async function guard(req: Request, perm: Perm | null): Promise<{ user: Se
   return { user };
 }
 
+/** Runs a route body and turns unexpected errors (usually the database) into a readable JSON message. */
+export async function safe(fn: () => Promise<NextResponse>): Promise<NextResponse> {
+  try { return await fn(); } catch (e) {
+    const msg = (e instanceof Error ? e.message : String(e)).replace(/mongodb(\+srv)?:\/\/[^\s]+/gi, 'mongodb://…').slice(0, 220);
+    console.error('admin api error:', e);
+    return fail(`Server error: ${msg}`, 500);
+  }
+}
+
 // ---- input helpers ---------------------------------------------------------------------------
 export const str = (v: unknown, max = 500) => String(v ?? '').trim().slice(0, max);
 export const longStr = (v: unknown, max = 100000) => String(v ?? '').replace(/\r/g, '').slice(0, max);

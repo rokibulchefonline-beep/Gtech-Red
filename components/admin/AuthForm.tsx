@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { api } from '@/components/admin/api';
 
-export default function AuthForm({ mode, needsKey }: { mode: 'login' | 'setup'; needsKey?: boolean }) {
+export default function AuthForm({ mode, needsKey, dbError }: { mode: 'login' | 'setup'; needsKey?: boolean; dbError?: string }) {
   const router = useRouter();
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState(false);
@@ -24,6 +24,7 @@ export default function AuthForm({ mode, needsKey }: { mode: 'login' | 'setup'; 
         <div className="ad-brand big"><span>G</span> GTech Admin</div>
         <h1>{mode === 'login' ? 'Sign in' : 'Create the super admin'}</h1>
         {mode === 'setup' && <p className="ad-muted">First-time setup. This account can manage users, content and settings.</p>}
+        {dbError && <div className="ad-alert bad" role="alert"><b>Database problem.</b> {dbError.replace(/mongodb(\+srv)?:\/\/\S+/gi, 'mongodb://…').slice(0, 220)}</div>}
         {err && <div className="ad-alert bad" role="alert">{err}</div>}
         {mode === 'setup' && <label className="ad-field"><span>Your name</span><input name="name" required autoComplete="name" /></label>}
         <label className="ad-field"><span>Email</span><input name="email" type="email" required autoComplete="username" autoFocus /></label>

@@ -7,7 +7,8 @@ const globalForMongo = globalThis as unknown as { _mongo?: Promise<MongoClient> 
 export async function getDb(): Promise<Db> {
   const uri = process.env.MONGODB_URI;
   if (!uri) throw new Error('MONGODB_URI is not set');
-  globalForMongo._mongo ??= new MongoClient(uri).connect();
+  // A failed connection must not be cached, or every later request would fail instantly.
+  globalForMongo._mongo ??= new MongoClient(uri, { serverSelectionTimeoutMS: 8000, connectTimeoutMS: 8000 }).connect().catch((e) => { globalForMongo._mongo = undefined; throw e; });
   return (await globalForMongo._mongo).db(process.env.MONGODB_DB || 'gtech_red');
 }
 

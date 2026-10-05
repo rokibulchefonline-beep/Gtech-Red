@@ -1,11 +1,12 @@
-import { fail, json, str } from '@/lib/admin-api';
+import { fail, json, safe, str } from '@/lib/admin-api';
 import { createSession, verifyPassword } from '@/lib/auth';
 import { findOne, update } from '@/lib/store';
 
 export const dynamic = 'force-dynamic';
 const tries = (globalThis as unknown as { _tries?: Map<string, { n: number; t: number }> });
 
-export async function POST(req: Request) {
+export const POST = (req: Request) => safe(() => handle(req));
+async function handle(req: Request) {
   const body = await req.json().catch(() => ({}));
   const email = str(body.email, 160).toLowerCase();
   const key = `${req.headers.get('cf-connecting-ip') ?? req.headers.get('x-forwarded-for') ?? 'ip'}|${email}`;

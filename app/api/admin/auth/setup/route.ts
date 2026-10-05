@@ -1,4 +1,4 @@
-import { fail, json, str } from '@/lib/admin-api';
+import { fail, json, safe, str } from '@/lib/admin-api';
 import { createSession, hashPassword, passwordProblem } from '@/lib/auth';
 import { count, insert } from '@/lib/store';
 
@@ -6,7 +6,8 @@ export const dynamic = 'force-dynamic';
 
 // One-time creation of the first super admin. Disabled as soon as any user exists.
 // If SETUP_KEY is set, the form must supply it (recommended on a public site).
-export async function POST(req: Request) {
+export const POST = (req: Request) => safe(() => handle(req));
+async function handle(req: Request) {
   if ((await count('users')) > 0) return fail('Setup is already complete.', 403);
   const b = await req.json().catch(() => ({}));
   if (process.env.SETUP_KEY && b.setupKey !== process.env.SETUP_KEY) return fail('Incorrect setup key.', 403);
