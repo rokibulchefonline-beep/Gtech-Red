@@ -14,6 +14,9 @@ import Results from '@/components/Results';
 import Testimonials from '@/components/Testimonials';
 import CaseStudies from '@/components/CaseStudies';
 import { seoFor } from '@/lib/seo';
+import Schema from '@/components/Schema';
+import { ids, itemListNode, pageNode } from '@/lib/schema';
+import { services } from '@/lib/data';
 
 
 export const generateMetadata = () => seoFor('/');
@@ -21,6 +24,10 @@ export const generateMetadata = () => seoFor('/');
 export default async function Home() {
   return (
     <>
+      <Schema path="/" nodes={[
+        pageNode({ path: '/', name: 'GTech Digital | Digital Marketing Agency UK', description: 'GTech Digital is a UK digital marketing agency growing businesses with SEO, Google Ads, social media, web design and custom software.', mainEntity: ids.org }),
+        itemListNode('/', 'GTech Digital services', services.map((g) => [g.title, `/services/${g.slug}`] as [string, string])),
+      ]} />
       <section className="hero-video">
         <HeroVideo />
         <div className="wrap">

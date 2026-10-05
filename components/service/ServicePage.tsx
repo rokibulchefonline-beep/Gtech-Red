@@ -8,8 +8,13 @@ import { findGroup, findItem, industries, site } from '@/lib/data';
 import { groupIcons, industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
 import { getClients } from '@/lib/content';
+import SemanticLinks from '@/components/SemanticLinks';
 import TocBar from '@/components/TocBar';
 import Hl from '@/components/Hl';
+import Schema from '@/components/Schema';
+import { seoMap } from '@/content/seo-map';
+import { semanticLinksFor } from '@/lib/link-graph';
+import { BASE, breadcrumbNode, faqNode, pageNode, serviceNode } from '@/lib/schema';
 
 export const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
 const Paras = ({ p }: { p: string[] }) => <>{p.map((t) => <p key={t.slice(0, 30)}>{t}</p>)}</>;
@@ -173,21 +178,17 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
   const name = found?.item.name ?? groupPage?.title ?? '';
   const short = c.short ?? name;
   const related = c.related.map((r) => findItem(r)).filter(Boolean);
-  const base = 'https://www.gtechdigital.co.uk';
-  const url = `${base}/services/${c.slug}`;
-  const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'Service', name, serviceType: name, description: c.metaDescription, url,
-      areaServed: { '@type': 'Country', name: 'United Kingdom' }, provider: { '@type': 'Organization', name: site.name, url: base } },
-    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: c.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-      ...(found ? [{ '@type': 'ListItem', position: 2, name: found.group.title, item: `${base}/services/${found.group.slug}` }] : []),
-      { '@type': 'ListItem', position: found ? 3 : 2, name, item: url }] },
+  const path = `/services/${c.slug}`;
+  const nodes = [
+    pageNode({ path, name: c.metaTitle.split('|')[0].trim(), description: c.metaDescription, mainEntity: `${BASE}${path}#service`, about: seoMap[c.slug]?.ent, image: c.hero.motion }),
+    breadcrumbNode(path, [...(found ? [[found.group.title, `/services/${found.group.slug}`] as [string, string]] : []), [name, path]]),
+    serviceNode({ path, slug: c.slug, name, description: c.metaDescription, category: found?.group.title, related: [...related.map((r) => ({ name: r!.item.name, path: `/services/${r!.item.slug}` })), ...semanticLinksFor(c.slug).filter((l) => l.group !== 'page').map((l) => ({ name: l.anchor, path: l.href }))] }),
+    faqNode(path, c.faqs),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Schema path={path} nodes={nodes} />
 
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
@@ -202,6 +203,7 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
             <a className="sp-btn-line" href="#case-studies">View Case Studies</a>
           </div>
           <ul className="sp-hero-points">{c.hero.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+          <p className="sp-updated">Reviewed by GTech Digital specialists · Updated {new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}</p>
           <div className="sp-hero-show">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={c.hero.motion} alt={`${name} results dashboard`} width={800} height={600} />
@@ -216,6 +218,8 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={short} />)}
 
       <FaqSection title={`Frequently Asked Questions About ${short}`} faqs={c.faqs} />
+
+      <SemanticLinks slug={c.slug} name={short} />
 
       <section className="sp-sec sp-grey"><div className="wrap">
         <Head s={{ heading: `Services Related to ${short}` }} />

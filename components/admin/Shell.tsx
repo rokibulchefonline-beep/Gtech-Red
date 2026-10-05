@@ -17,6 +17,7 @@ const nav = [
   { href: '/admin/partners', label: 'Partner badges', icon: 'lucide:badge-check', perm: 'content' },
   { href: '/admin/clients', label: 'Client logos', icon: 'lucide:building-2', perm: 'content' },
   { href: '/admin/seo', label: 'SEO manager', icon: 'lucide:search-check', perm: 'content' },
+  { href: '/admin/seo-audit', label: 'SEO audit', icon: 'lucide:gauge', perm: 'content' },
   { group: 'Sales' },
   { href: '/admin/leads', label: 'Leads', icon: 'lucide:inbox', perm: 'leads' },
   { group: 'System' },
@@ -55,7 +56,7 @@ export default function Shell({ user, children }: { user: SessionUser; children:
         <nav>
           {items.map((n, i) => 'group' in n
             ? <p key={i} className="ad-group">{n.group}</p>
-            : <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className={('exact' in n && n.exact ? path === n.href : path.startsWith(n.href)) ? 'on' : ''}><Icon name={n.icon} size={18} />{n.label}</Link>)}
+            : <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className={('exact' in n && n.exact ? path === n.href : n.href === '/admin/seo' ? path === '/admin/seo' : path.startsWith(n.href)) ? 'on' : ''}><Icon name={n.icon} size={18} />{n.label}</Link>)}
         </nav>
         <div className="ad-me">
           <b>{user.name}</b><small>{roleInfo[user.role].label}</small>

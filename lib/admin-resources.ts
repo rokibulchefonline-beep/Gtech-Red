@@ -1,6 +1,7 @@
 import { hashPassword, passwordProblem, roleList, type Role, type SessionUser } from '@/lib/auth';
 import { bool, longStr, num, oneOf, slugOf, str, strs, url } from '@/lib/admin-api';
 import { sanitizeHtml } from '@/lib/sanitize-html';
+import { validateCustomSchema } from '@/lib/schema';
 import { count, findOne, list, type Rec } from '@/lib/store';
 
 type Ctx = { user: SessionUser; existing?: Rec | null; creating: boolean };
@@ -109,7 +110,12 @@ export const resources: Record<string, Resource> = {
   },
   seo: {
     coll: 'seo', perm: 'content', search: ['path', 'title'], sort: { path: 1 }, keyed: true,
-    clean: (i) => ({ path: str(i.path, 200), title: str(i.title, 120), description: str(i.description, 300), canonical: url(i.canonical), ogImage: url(i.ogImage), noindex: bool(i.noindex), focusKeyword: str(i.focusKeyword, 80) }),
+    clean(i) {
+      const custom = longStr(i.schemaCustom, 20000).trim();
+      const bad = validateCustomSchema(custom);
+      if (bad) return { error: bad };
+      return { path: str(i.path, 200), title: str(i.title, 120), description: str(i.description, 300), canonical: url(i.canonical), ogImage: url(i.ogImage), noindex: bool(i.noindex), focusKeyword: str(i.focusKeyword, 80), schemaOff: bool(i.schemaOff), schemaCustom: custom };
+    },
   },
   leads: {
     coll: 'leads', perm: 'leads', search: ['name', 'business', 'email', 'phone', 'service'], sort: { createdAt: -1 }, noCreate: true,

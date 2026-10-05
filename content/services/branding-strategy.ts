@@ -8,15 +8,15 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'branding-strategy',
   short: 'Branding & Strategy',
-  metaTitle: 'Branding & Marketing Strategy Agency UK | Brand, Advisory & CRO | GTech Digital',
+  metaTitle: 'Branding & Strategy Agency UK | Brand, Advisory & CRO',
   metaDescription:
-    'UK branding and strategy agency: brand identity and positioning, senior marketing advisory and conversion rate optimisation that make every marketing pound work harder.',
+    'UK branding and strategy agency: brand identity, senior marketing advisory and conversion rate optimisation that make every marketing pound work harder.',
   hero: {
     keyword: 'Branding and Strategy',
     title: 'Branding and Strategy That',
     highlight: 'Drives Growth',
     lead:
-      'GTech Digital is a UK branding and marketing strategy agency that creates brand identities, growth plans and conversion optimisation programmes, helping businesses stand out, spend their budget wisely and turn more visitors into customers.',
+      'GTech Digital is a UK branding and strategy agency that creates brand identities, growth plans and conversion optimisation programmes, helping businesses stand out, spend their budget wisely and turn more visitors into customers.',
     motion: '/services/branding.webp',
     points: ['Free strategy session', 'Senior-led thinking', 'Decisions backed by data'],
   },
@@ -181,13 +181,13 @@ const content: ServiceContent = {
     },
   ],
   faqs: [
-    { q: 'What comes first, branding or marketing strategy?', a: 'Strategy usually comes first, because it defines who you serve and why they should choose you. The brand then expresses that clearly and consistently.' },
-    { q: 'How do I know if I need a rebrand?', a: 'Common signs are looking dated next to competitors, attracting the wrong customers, inconsistent materials or a business that has outgrown its original identity.' },
-    { q: 'What is marketing advisory?', a: 'It is senior marketing guidance without a full-time hire, covering strategy, budgets, channels and team or agency management.' },
-    { q: 'What is conversion rate optimisation?', a: 'CRO uses research and A/B testing to improve your website so more visitors become leads or customers.' },
-    { q: 'How long does branding take?', a: 'A typical brand project takes 6 to 10 weeks, from research and strategy to final guidelines.' },
-    { q: 'Do you work with in-house teams?', a: 'Yes. We often work alongside marketing teams and other agencies, providing strategy and direction.' },
-    { q: 'Do you need a contract?', a: 'Branding is a fixed project. Advisory and CRO run on rolling monthly terms.' },
+    { q: 'What comes first, branding or marketing strategy?', a: 'Strategy usually comes first, because it defines who you serve and why they should choose you. The brand then expresses that clearly and consistently across your website, ads and sales materials.' },
+    { q: 'How do I know if I need a rebrand?', a: 'Common signs are looking dated next to competitors, attracting the wrong customers, inconsistent materials or a business that has outgrown its original identity. A short brand audit tells you whether a refresh or full rebrand is worth it.' },
+    { q: 'What is marketing advisory?', a: 'Marketing advisory is senior marketing guidance without a full-time hire, covering strategy, budgets, channels and team or agency management. It suits businesses that want a clear plan and someone accountable for results.' },
+    { q: 'What is conversion rate optimisation?', a: 'Conversion rate optimisation (CRO) uses research and A/B testing to improve your website so more visitors become leads or customers, often delivering more growth than buying extra traffic.' },
+    { q: 'How long does branding take?', a: 'A typical brand project takes 6 to 10 weeks, from research and strategy to final guidelines. A logo and starter identity can be done faster, and we agree milestones and review points at the start.' },
+    { q: 'Do you work with in-house teams?', a: 'Yes. We often work alongside in-house marketing teams and other agencies, providing strategy, direction and creative support, so your team keeps its expertise while gaining senior help where it is needed.' },
+    { q: 'Do you need a contract?', a: 'Branding is a fixed-price project with no ongoing commitment. Marketing advisory and CRO run on rolling monthly terms, so you can continue, pause or stop with a month\'s notice.' },
   ],
   related: ['branding', 'marketing-advisory', 'conversion-rate-optimization', 'website-design', 'content-marketing', 'search-engine-optimization'],
 };

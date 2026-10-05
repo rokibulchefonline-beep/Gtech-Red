@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'saas-product-development',
   short: 'SaaS Product Development',
-  metaTitle: 'SaaS Development Company UK | Build & Scale Your SaaS Product | GTech Digital',
+  metaTitle: 'SaaS Development Company UK | GTech Digital',
   metaDescription:
     'UK SaaS development company designing and building multi-tenant SaaS products with subscription billing, onboarding and analytics, from first release to scale.',
   hero: {
@@ -183,12 +183,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'How long does it take to build a SaaS product?', a: 'A first sellable version usually takes 3 to 6 months. Many founders start with a smaller MVP in 8 to 12 weeks to validate demand first.' },
-    { q: 'What is multi-tenant architecture?', a: 'It means one platform serves many customers, with each customer’s data kept securely separate. It keeps hosting costs low and updates simple.' },
-    { q: 'Which technology do you use for SaaS?', a: 'Typically Next.js or React with Laravel or Node.js, PostgreSQL and AWS, chosen for speed, security and an easy hiring market.' },
-    { q: 'Can you handle subscriptions and VAT?', a: 'Yes. We use Stripe Billing for plans, trials, upgrades, invoices and UK VAT.' },
-    { q: 'Will we own the code and IP?', a: 'Yes. You own all the code, designs and intellectual property, which matters for investors.' },
-    { q: 'Can you help after launch?', a: 'Yes. We provide ongoing development, DevOps and support, and can help you hire and hand over to an in-house team.' },
-    { q: 'Do you sign NDAs?', a: 'Yes. We are happy to sign an NDA before you share your idea.' },
+    { q: 'What is multi-tenant architecture?', a: 'It means one platform serves many customers, with each customer\'s data kept securely separate. Multi tenant architecture keeps hosting costs low and updates simple, because you maintain one product instead of one copy per client.' },
+    { q: 'Which technology do you use for SaaS?', a: 'Typically Next.js or React with Laravel or Node.js, PostgreSQL and AWS, chosen for speed, security and an easy hiring market. We recommend the simplest stack that can scale, so you are not paying for complexity you do not need.' },
+    { q: 'Can you handle subscriptions and VAT?', a: 'Yes. We use Stripe Billing for plans, trials, upgrades, invoices and UK VAT, including failed-payment retries and customer billing portals, so subscription revenue is collected reliably without manual invoicing.' },
+    { q: 'Will we own the code and IP?', a: 'Yes. You own all the code, designs and intellectual property, which matters for investors and for any future sale. We assign IP in the contract and keep everything in your own repository.' },
+    { q: 'Can you help after launch?', a: 'Yes. We provide ongoing development, DevOps and support, and can help you hire and hand over to an in-house team when you are ready. Many founders keep us for specialist work after launch.' },
+    { q: 'Do you sign NDAs?', a: 'Yes. We are happy to sign an NDA before you share your idea, and we treat every product concept and customer dataset as confidential, with access limited to the people working on your project.' },
+    { q: 'How do you design SaaS onboarding?', a: 'SaaS onboarding is how new users reach their first win quickly. We design sign-up, guided set-up, checklists and email sequences around the one action that predicts retention, then measure activation so you can see where new customers drop off.' },
   ],
   related: ['mvp-development', 'web-application-development', 'api-system-integration', 'laravel-development', 'mobile-app-development', 'marketing-advisory'],
 };

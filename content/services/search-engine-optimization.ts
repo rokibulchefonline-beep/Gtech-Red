@@ -10,7 +10,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'search-engine-optimization',
   short: 'SEO',
-  metaTitle: 'SEO, AEO & GEO Agency UK | Search & AI Optimisation | GTech Digital',
+  metaTitle: 'SEO, AEO & GEO Agency UK | Search & AI Optimisation',
   metaDescription:
     'UK SEO agency optimising websites for Google, answer engines and AI search (AEO & GEO). On-page, off-page and technical SEO that turns visibility into leads.',
   hero: {
@@ -188,9 +188,10 @@ const content: ServiceContent = {
     { q: 'How long does SEO take to work?', a: 'Technical and on-page improvements are often picked up within 1 to 3 months, with meaningful growth in traffic and leads typically after 3 to 6 months. Competitive national keywords can take longer.' },
     { q: 'How much does SEO cost in the UK?', a: 'Most UK SEO retainers range from about £500 per month for focused local campaigns to £5,000 or more for national and ecommerce campaigns. We give a fixed quote after a free audit.' },
     { q: 'How do you get a business cited in ChatGPT or AI Overviews?', a: 'AI tools favour clear, well-structured, expert content from brands that are mentioned consistently across trusted websites. We improve your content structure and schema, strengthen entity signals and earn mentions, then track your citations each month.' },
-    { q: 'Can you guarantee first place on Google?', a: 'No honest agency can guarantee a ranking, because Google controls its algorithm. We commit to a clear strategy, measurable targets and transparent reporting.' },
-    { q: 'Do I need to sign a long contract?', a: 'No. We work on rolling monthly terms after setup, although we recommend six months to give SEO a fair chance to deliver.' },
+    { q: 'Can you guarantee first place on Google?', a: 'No honest SEO agency can guarantee a first-place ranking, because Google controls its algorithm and results change daily. GTech Digital commits to a clear strategy, measurable targets such as traffic, leads and visibility in AI answers, and transparent monthly reporting.' },
+    { q: 'Do I need to sign a long contract?', a: 'No. After setup we work on rolling monthly terms, so you can stop whenever you like. We do recommend at least six months, because SEO compounds over time and a shorter test rarely shows what a proper campaign can deliver.' },
     { q: 'Will SEO work with my current website?', a: 'Usually, yes. We work with WordPress, Shopify, WooCommerce, Webflow, Wix and custom sites. If your platform is holding you back, we will explain the options.' },
+    { q: 'What does an SEO agency actually do?', a: 'A good SEO agency audits your website, fixes technical issues, improves content and internal links, earns quality backlinks and reports on rankings and leads. GTech Digital also provides AI search optimisation, so your brand is cited in ChatGPT, Perplexity and Google AI Overviews.' },
   ],
   related: ['local-seo', 'ecommerce-seo', 'google-ads', 'content-marketing', 'seo-backlinks', 'reputation-management'],
 };

@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'digital-marketing',
   short: 'Digital Marketing',
-  metaTitle: 'Digital Marketing Agency UK | SEO, PPC & Content | GTech Digital',
+  metaTitle: 'Digital Marketing Agency UK | SEO, PPC & Content',
   metaDescription:
     'UK digital marketing agency combining SEO, Google Ads, paid media, content and reputation management into one plan that brings more leads and sales for less.',
   hero: {
@@ -184,11 +184,12 @@ const content: ServiceContent = {
   faqs: [
     { q: 'What does a digital marketing agency do?', a: 'A digital marketing agency plans and runs your online marketing, such as SEO, Google Ads, paid social, content and reputation management, and reports on the leads and sales it brings.' },
     { q: 'Which digital marketing channel is best?', a: 'It depends on your goals and market. Search channels (SEO and Google Ads) usually suit businesses people actively search for, while social suits brands that create demand. We recommend a mix after an audit.' },
-    { q: 'How long does digital marketing take to work?', a: 'Google Ads can bring leads within days. SEO and content usually show strong results in 3 to 6 months and keep growing after that.' },
+    { q: 'How long does digital marketing take to work?', a: 'Google Ads can bring leads within days. SEO and content usually show strong results in 3 to 6 months and keep growing after that. We set realistic milestones for each channel so you know what to expect and when.' },
     { q: 'How much should I spend on digital marketing?', a: 'Many UK small businesses spend 5 to 10% of revenue on marketing. We help you start at a level you are comfortable with and scale what works.' },
-    { q: 'How do you measure results?', a: 'We track leads, sales, cost per acquisition and return on investment through GA4, call tracking and your CRM.' },
-    { q: 'Do you work with small businesses?', a: 'Yes. We work with start-ups, local businesses and larger brands, with plans to suit each budget.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'How do you measure results?', a: 'We track leads, sales, cost per acquisition and return on investment through GA4, call tracking and your CRM. A monthly dashboard shows what each channel earned, so budget moves towards what actually grows revenue.' },
+    { q: 'Do you work with small businesses?', a: 'Yes. We work with start-ups, local businesses and larger brands, with plans to suit each budget. Smaller businesses often start with one or two channels, such as local SEO and Google Ads, then scale what works.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital runs digital marketing on rolling monthly terms, because results should keep clients, not contracts. You keep ownership of your ad accounts, analytics and data.' },
+    { q: 'How do SEO and PPC work together?', a: 'SEO and PPC work best as one plan. Google Ads gives fast leads and data about which keywords convert, while SEO builds lasting traffic. We share that data between channels, manage your Google Business Profile and Meta ads, and report on the whole picture.' },
   ],
   related: ['search-engine-optimization', 'google-ads', 'local-seo', 'content-marketing', 'paid-media', 'reputation-management'],
 };

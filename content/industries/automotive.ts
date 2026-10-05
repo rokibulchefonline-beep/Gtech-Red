@@ -6,7 +6,7 @@ export default industry({
   slug: 'automotive',
   name: 'Automotive',
   kw: 'Automotive Marketing',
-  metaTitle: 'Automotive Marketing Agency UK | Car Dealer & Garage Marketing | GTech Digital',
+  metaTitle: 'Automotive Marketing Agency UK | GTech Digital',
   metaDescription: 'UK automotive marketing agency for car dealers and garages: local SEO, Google and Meta vehicle ads, stock-led websites and FCA-compliant finance promotions.',
   hero: {
     title: 'Automotive Marketing That',
@@ -35,11 +35,12 @@ export default industry({
   reviews: [['Gary F', 'Owner, Used Car Dealer', 'Enquiries doubled and our cost per sale dropped by a third.'], ['Sandeep B', 'Service Manager, Garage', 'Online MOT and service bookings now fill most of our workshop.'], ['Neil R', 'Dealer Principal', 'Every call is tracked, so we know exactly which ads sell cars.']],
   faqs: [
     ['How can a car dealer get more leads online?', 'Show live stock in Google and Meta vehicle ads, rank in local search and Maps, collect reviews and make finance, part exchange and test drive booking easy on your website.'],
-    ['Do you work with independent garages?', 'Yes. We help garages grow MOT, servicing and repair bookings with local SEO, Google Ads and online booking.'],
-    ['Are finance ads regulated?', 'Yes. Finance promotions must follow FCA rules, including representative examples. We build campaigns to stay compliant.'],
-    ['Can you use our stock feed?', 'Yes. We connect your stock feed to your website and ad platforms so ads always show what is available.'],
-    ['How do you track sales?', 'We track calls, forms and test drives by channel, and can match them to sales in your DMS or CRM.'],
-    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+    ['Do you work with independent garages?', 'Yes. Our garage marketing helps independent garages grow MOT, servicing and repair bookings with local SEO, Google Ads and online booking, so the workshop stays busy in quieter months.'],
+    ['Are finance ads regulated?', 'Yes. Finance promotions must follow FCA rules, including representative APR examples. We build campaigns to stay compliant, with clear wording, approved examples and a record of what was published.'],
+    ['Can you use our stock feed?', 'Yes. We connect your stock feed to your website and ad platforms so ads always show what is available, and sold vehicles are removed quickly. Accurate listings on AutoTrader and Google protect trust and cut wasted clicks.'],
+    ['How do you track sales?', 'We track calls, forms and test drives by channel, and can match them to sales in your DMS or CRM. You can see which ads and listings produce vehicles sold, not just enquiries.'],
+    ['Do you need a contract?', 'No. GTech Digital runs automotive marketing on rolling monthly terms. We suggest at least three months, because local rankings and stock-led campaigns need time to build.'],
+    ['What does car dealer marketing include?', 'Car dealer marketing covers stock-led Google and Meta vehicle ads, local SEO for every branch, review management, an online showroom with finance and part-exchange tools, and call tracking. Everything is measured against test drives booked and cars sold.'],
   ],
   related: ['local-seo', 'google-ads', 'facebook-marketing', 'website-design', 'reputation-management', 'web-application-development'],
 });

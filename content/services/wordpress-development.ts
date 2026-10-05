@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'wordpress-development',
   short: 'WordPress Development',
-  metaTitle: 'WordPress Development Agency UK | Custom Themes & Plugins | GTech Digital',
+  metaTitle: 'WordPress Development Agency UK | Custom Themes & Plugins',
   metaDescription:
     'UK WordPress development agency building fast custom themes, Gutenberg blocks, plugins and WooCommerce stores that are secure, SEO-ready and easy to edit.',
   hero: {
@@ -183,12 +183,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'Is WordPress good for business websites?', a: 'Yes. WordPress is flexible, SEO-friendly and easy to edit. Built well, with a custom theme and few plugins, it is fast and secure enough for most businesses.' },
-    { q: 'Do you use page builders like Elementor?', a: 'We prefer custom Gutenberg blocks because they are faster and keep your design consistent. We can still work with existing page-builder sites if needed.' },
-    { q: 'Can you fix a slow WordPress website?', a: 'Yes. We remove unnecessary plugins, optimise images and code, add caching and a CDN, and fix Core Web Vitals issues.' },
-    { q: 'Can you fix a hacked WordPress site?', a: 'Yes. We clean the malware, close the vulnerability, restore from clean backups where needed and harden the site to stop it happening again.' },
-    { q: 'Can you migrate our site to WordPress?', a: 'Yes. We move pages, posts, images and SEO metadata and set up 301 redirects so you keep your rankings.' },
-    { q: 'Do you offer WordPress maintenance?', a: 'Yes. Our care plans cover updates, backups, security monitoring, uptime checks and small changes each month.' },
-    { q: 'Do we own the theme and code?', a: 'Yes. Everything we build for you is yours.' },
+    { q: 'Do you use page builders like Elementor?', a: 'We prefer custom Gutenberg blocks because they are faster and keep your design consistent. We can still work with existing page-builder sites such as Elementor if needed, and tidy them up for speed and security.' },
+    { q: 'Can you fix a slow WordPress website?', a: 'Yes. We remove unnecessary plugins, optimise images and code, add caching and a CDN, and fix Core Web Vitals issues. Most slow WordPress sites load two to four times faster after our speed work.' },
+    { q: 'Can you fix a hacked WordPress site?', a: 'Yes. We clean the malware, close the vulnerability, restore from clean backups where needed and harden the site to stop it happening again. WordPress security is part of every build and every care plan we run.' },
+    { q: 'Can you migrate our site to WordPress?', a: 'Yes. We move pages, posts, images and SEO metadata and set up 301 redirects so you keep your rankings. We test the new site on a staging copy and only switch over once everything is checked.' },
+    { q: 'Do you offer WordPress maintenance?', a: 'Yes. Our care plans cover updates, backups, security monitoring, uptime checks and small changes each month, with a fixed fee so there are no surprise bills when a plugin or PHP update goes wrong.' },
+    { q: 'Do we own the theme and code?', a: 'Yes. Everything we build for you is yours, including the theme, custom blocks and code. We keep it in your own version control with notes, so any competent WordPress developer can take it on.' },
+    { q: 'Which PHP version should my WordPress site use?', a: 'Use a currently supported PHP version, which is PHP 8.2 or newer for most sites in 2026. Older PHP versions no longer get security fixes and run slower, so we test your theme and plugins and upgrade PHP safely as part of maintenance.' },
   ],
   related: ['website-design', 'website-maintenance', 'ecommerce-development', 'cms-development', 'php-development', 'search-engine-optimization'],
 };

@@ -8,9 +8,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'web-design-development',
   short: 'Web Design & Development',
-  metaTitle: 'Web Design & Development Agency UK | Fast, SEO-Ready Websites | GTech Digital',
+  metaTitle: 'Web Design & Development Agency UK | GTech Digital',
   metaDescription:
-    'UK web design and development agency building fast, secure, SEO-ready websites and online stores on WordPress, Laravel, Next.js and Shopify that turn visitors into customers.',
+    'UK web design and development agency building fast, secure, SEO-ready websites and online stores on WordPress, Laravel, Next.js and Shopify.',
   hero: {
     keyword: 'Web Design and Development',
     title: 'Web Design and Development',
@@ -182,13 +182,14 @@ const content: ServiceContent = {
     },
   ],
   faqs: [
-    { q: 'How long does it take to build a website?', a: 'A typical business website takes 4 to 8 weeks from kick-off to launch. Larger ecommerce or custom builds usually take 8 to 16 weeks.' },
+    { q: 'How long does it take to build a website?', a: 'A typical business website takes 4 to 8 weeks from kick-off to launch, including design, build, content and testing. Larger ecommerce or custom builds usually take 8 to 16 weeks, and we give a fixed timeline in your proposal.' },
     { q: 'Which platform should we use?', a: 'WordPress suits most brochure and content sites, Shopify suits most online stores, and Laravel or Next.js suit portals and custom features. We recommend the best fit after reviewing your needs.' },
-    { q: 'Will our new website be SEO-friendly?', a: 'Yes. Every build includes clean structure, fast loading, schema markup, metadata and 301 redirects from your old URLs so you keep your rankings.' },
-    { q: 'Can we update the website ourselves?', a: 'Yes. We build easy editing into every site and train your team, so you can change text, images and pages without code.' },
-    { q: 'Do you provide hosting and maintenance?', a: 'Yes. We offer managed UK hosting, updates, backups, security monitoring and support on monthly plans.' },
-    { q: 'Do we own the website?', a: 'Yes. You own the design, code, content and domain once the project is paid for.' },
-    { q: 'Do you redesign existing websites?', a: 'Yes. We review what works today, keep your SEO value and rebuild for speed, clarity and conversion.' },
+    { q: 'Will our new website be SEO-friendly?', a: 'Yes. Every build includes clean structure, fast loading, schema markup, metadata and 301 redirects from your old URLs so you keep your rankings. GTech Digital builds for Core Web Vitals from day one rather than fixing speed later.' },
+    { q: 'Can we update the website ourselves?', a: 'Yes. We build easy editing into every site and train your team, so you can change text, images and pages without code. Most clients feel confident updating their own site within one short training session.' },
+    { q: 'Do you provide hosting and maintenance?', a: 'Yes. We offer managed UK hosting, updates, backups, security monitoring and support on monthly plans, so your site stays fast, secure and online without you needing to think about it.' },
+    { q: 'Do we own the website?', a: 'Yes. You own the design, code, content and domain once the project is paid for. We never hold your website hostage, and we hand over full access and documentation whenever you ask.' },
+    { q: 'Do you redesign existing websites?', a: 'Yes. We review what works today, keep your SEO value and rebuild for speed, clarity and conversion. As a website design agency we also redirect every old URL so rankings carry over to the new site.' },
+    { q: 'Is your web design responsive on phones and tablets?', a: 'Yes. Every site we build uses responsive web design and is tested on real phones, tablets and desktops, because most UK visitors now arrive on mobile. We also check accessibility to WCAG 2.2 standards so the site works for everyone.' },
   ],
   related: ['website-design', 'wordpress-development', 'ecommerce-development', 'laravel-development', 'website-maintenance', 'search-engine-optimization'],
 };

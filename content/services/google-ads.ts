@@ -188,7 +188,8 @@ const content: ServiceContent = {
     { q: 'What is Performance Max?', a: 'Performance Max is a Google Ads campaign type that uses automation to show your ads across Search, Shopping, YouTube, Display, Gmail and Maps from one campaign. It works best with good product data, strong assets and accurate conversion tracking.' },
     { q: 'Do I own my Google Ads account?', a: 'Yes. Your account, data and campaigns always belong to you. We manage it with access you grant and can hand everything over at any time.' },
     { q: 'Why is my Google Ads cost per click so high?', a: 'High CPCs usually come from broad targeting, low Quality Score, competitive keywords or poor landing pages. Improving ad relevance and landing page experience often lowers what you pay per click.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms, because results should keep clients, not contracts.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital manages Google Ads on rolling monthly terms, because results should keep clients, not contracts. You keep full ownership of your account, data and campaigns, and you can pause or leave at any time.' },
+    { q: 'Do you run Google Shopping ads for ecommerce stores?', a: 'Yes. As a PPC agency we set up and manage Google Shopping ads, from cleaning your product feed in Google Merchant Center to bidding by profit margin. Shopping ads often deliver the highest return for online stores, especially alongside Performance Max.' },
   ],
   related: ['search-engine-optimization', 'paid-media', 'digital-advertising', 'conversion-rate-optimization', 'ecommerce-development', 'content-marketing'],
 };

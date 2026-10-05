@@ -9,15 +9,15 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'crm-erp-development',
   short: 'CRM & ERP Development',
-  metaTitle: 'Custom CRM & ERP Development UK | Bespoke Business Systems | GTech Digital',
+  metaTitle: 'Custom CRM & ERP Development UK | GTech Digital',
   metaDescription:
-    'UK custom CRM and ERP development: bespoke systems for sales, orders, stock, scheduling and finance that automate admin and give you live control of the business.',
+    'UK custom CRM and ERP development: bespoke systems for sales, orders, stock and finance that automate admin and give you live control of the business.',
   hero: {
     keyword: 'Custom CRM and ERP Development',
     title: 'Custom CRM and ERP Systems',
     highlight: 'for Your Business',
     lead:
-      'GTech Digital develops custom CRM and ERP systems for UK businesses, bringing sales pipelines, orders, stock, scheduling and finance into one secure platform that automates admin and gives managers live data.',
+      'GTech Digital provides custom CRM and ERP development for UK businesses, bringing sales pipelines, orders, stock, scheduling and finance into one secure platform that automates admin and gives managers live data.',
     motion: '/services/crm.webp',
     points: ['Free process review', 'No per-user licence fees', 'Data migrated for you'],
   },
@@ -185,11 +185,12 @@ const content: ServiceContent = {
   faqs: [
     { q: 'Should we buy a CRM or build one?', a: 'If a standard CRM fits your process and licence costs are reasonable, buy one. Build when you need operations features too, when workarounds are slowing you down, or when per-user fees become expensive.' },
     { q: 'What is the difference between CRM and ERP?', a: 'A CRM manages customers and sales. An ERP manages operations like stock, orders, purchasing and finance. Many businesses need parts of both in one system.' },
-    { q: 'Can you migrate data from our current system?', a: 'Yes. We clean, map and migrate your data, with trial runs before the final switch.' },
-    { q: 'Will it connect to Xero or Sage?', a: 'Yes. We integrate with Xero, Sage, QuickBooks and most other accounting systems.' },
-    { q: 'How long does it take?', a: 'A focused CRM takes around 10 to 14 weeks. A full ERP is usually delivered in phases over 4 to 9 months.' },
-    { q: 'Can staff use it on mobile?', a: 'Yes. Systems are responsive, and we can add a mobile app for field teams.' },
-    { q: 'Who owns the system?', a: 'You do, including the code and all your data.' },
+    { q: 'Can you migrate data from our current system?', a: 'Yes. We clean, map and migrate your data from spreadsheets or your current CRM, with trial runs before the final switch, so customer history, notes and open deals arrive complete and in the right place.' },
+    { q: 'Will it connect to Xero or Sage?', a: 'Yes. We integrate with Xero, Sage, QuickBooks and most other accounting systems, so invoices, payments and customer records stay in sync and your finance team no longer retypes data between systems.' },
+    { q: 'How long does it take?', a: 'A focused CRM takes around 10 to 14 weeks. A full ERP is usually delivered in phases over 4 to 9 months, with each phase live and useful before the next begins, so staff adopt the system gradually.' },
+    { q: 'Can staff use it on mobile?', a: 'Yes. Systems are responsive, and we can add a mobile app for field teams so engineers, reps and drivers can update jobs, stock and customer notes on site, even with a weak signal.' },
+    { q: 'Who owns the system?', a: 'You do, including the code and all your data. We hand over documentation and keep everything in your own repository, so you are never tied to GTech Digital or to a per-user licence fee.' },
+    { q: 'How does custom CRM software support business automation?', a: 'Sales pipeline software and workflow automation remove repeat admin: leads are assigned automatically, quotes and follow-ups are generated for you, and orders flow into stock and finance. Teams spend less time on data entry and more time with customers.' },
   ],
   related: ['api-system-integration', 'web-application-development', 'laravel-development', 'saas-product-development', 'mobile-app-development', 'linkedin-marketing'],
 };

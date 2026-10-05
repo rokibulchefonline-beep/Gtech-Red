@@ -9,7 +9,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'seo-backlinks',
   short: 'Link Building',
-  metaTitle: 'Link Building Agency UK | White-Hat SEO Backlinks | GTech Digital',
+  metaTitle: 'Link Building Agency UK | White-Hat SEO Backlinks',
   metaDescription:
     'White-hat link building and digital PR for UK businesses. Relevant, editorial backlinks that lift rankings, authority and AI visibility. Free backlink audit.',
   hero: {
@@ -188,8 +188,9 @@ const content: ServiceContent = {
     { q: 'Do you buy links?', a: 'No. Buying links breaks Google’s spam policies and puts your rankings at risk. Every link we build is earned through PR, outreach and genuinely useful content.' },
     { q: 'How long until links improve rankings?', a: 'Google usually takes a few weeks to discover and credit new links. Most clients see ranking movement within 2 to 4 months of a consistent campaign.' },
     { q: 'What is a toxic backlink?', a: 'A toxic backlink comes from a spammy, unrelated or manipulative site. Too many can hurt rankings. We identify them, request removal and use a disavow file where appropriate.' },
-    { q: 'Will I see every link you build?', a: 'Yes. Your monthly report lists every link, the site, its authority and the page it points to.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Will I see every link you build?', a: 'Yes. Your monthly report lists every link we build with the website, its Domain Rating, the page it points to and the anchor text used, so you can see exactly where your SEO backlinks come from.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital builds links on rolling monthly terms. We recommend at least six months, because link building takes time to influence rankings, but you are never locked in.' },
+    { q: 'How do you judge the quality of a link?', a: 'We look at relevance, real organic traffic, editorial standards and metrics such as Domain Rating and domain authority. We avoid link farms and paid guest posting networks that break Google Search Essentials, because one relevant, trusted link beats dozens of weak ones.' },
   ],
   related: ['search-engine-optimization', 'content-marketing', 'reputation-management', 'digital-advertising', 'website-design', 'google-ads'],
 };

@@ -8,9 +8,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'social-media-marketing',
   short: 'Social Media',
-  metaTitle: 'Social Media Marketing Agency UK | Organic & Paid Social | GTech Digital',
+  metaTitle: 'Social Media Marketing Agency UK | Organic & Paid Social',
   metaDescription:
-    'UK social media marketing agency for Facebook, Instagram, LinkedIn, TikTok and Pinterest. Strategy, content, paid social and community management that grows sales.',
+    'UK social media marketing agency for Facebook, Instagram, LinkedIn, TikTok and Pinterest. Strategy, content, paid social and community management.',
   hero: {
     keyword: 'Social Media Marketing',
     title: 'Social Media Marketing That',
@@ -183,11 +183,12 @@ const content: ServiceContent = {
   faqs: [
     { q: 'Which social media platforms should my business use?', a: 'The ones your customers use. Consumer brands usually do best on Instagram, Facebook and TikTok; B2B businesses on LinkedIn; and retail, home and food brands often see strong traffic from Pinterest. We recommend a focus after a short audit.' },
     { q: 'How often should we post?', a: 'Consistency matters more than volume. Most businesses do well with 3 to 5 posts a week per main platform, plus Stories, with more short-form video on TikTok and Instagram.' },
-    { q: 'Do you create the content?', a: 'Yes. We plan, write, design and edit content, and can organise photography, video shoots and creators when needed.' },
+    { q: 'Do you create the content?', a: 'Yes. We plan, write, design and edit content, and can organise photography, video shoots and creators when needed. Every post follows a monthly calendar that you approve in advance.' },
     { q: 'How long does it take to see results?', a: 'Engagement often improves within the first month. Meaningful follower growth and sales usually build over 3 to 6 months, faster when combined with paid social.' },
-    { q: 'Do you reply to comments and messages?', a: 'Yes. Community management is included, with agreed response times and escalation for anything sensitive.' },
-    { q: 'How do you measure social media ROI?', a: 'We track reach, engagement and follower growth, and use tracking links, pixels and GA4 to measure the leads and sales social media drives.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Do you reply to comments and messages?', a: 'Yes. Community management is included, with agreed response times and escalation for anything sensitive, so comments, messages and reviews are answered quickly in your brand voice.' },
+    { q: 'How do you measure social media ROI?', a: 'We track reach, engagement and follower growth, and use tracking links, pixels and GA4 to measure the leads and sales social media drives. Monthly reports show cost per lead and revenue, not just likes.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital manages social media on rolling monthly terms. We suggest six months to build momentum, but you are never locked in.' },
+    { q: 'What does a social media agency do?', a: 'A social media agency plans content, publishes and manages your channels, answers the community and runs social media advertising to reach new customers. GTech Digital connects all of it to leads and sales, so social is judged on results, not vanity metrics.' },
   ],
   related: ['facebook-marketing', 'instagram-marketing', 'linkedin-marketing', 'tiktok-marketing', 'pinterest-marketing', 'paid-media'],
 };

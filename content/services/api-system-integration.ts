@@ -8,15 +8,15 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'api-system-integration',
   short: 'API & System Integration',
-  metaTitle: 'API Development & System Integration UK | Connect Your Systems | GTech Digital',
+  metaTitle: 'API & System Integration Services UK | GTech Digital',
   metaDescription:
-    'UK API development and system integration company connecting CRM, accounting, ecommerce, ERP and legacy systems so data flows automatically and accurately.',
+    'UK API and system integration company connecting CRM, accounting, ecommerce, ERP and legacy systems so data flows automatically and accurately.',
   hero: {
     keyword: 'API and System Integration',
     title: 'API Integration That',
     highlight: 'Connects Your Systems',
     lead:
-      'GTech Digital provides API development and system integration services in the UK, connecting CRM, accounting, ecommerce and ERP systems so data flows automatically, accurately and securely, without manual entry or copying between spreadsheets.',
+      'GTech Digital provides API and system integration services in the UK, connecting CRM, accounting, ecommerce and ERP systems so data flows automatically, accurately and securely, without manual entry or copying between spreadsheets.',
     motion: '/services/api.webp',
     points: ['Free integration review', 'Secure, documented APIs', 'Monitored around the clock'],
   },
@@ -183,12 +183,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'What is an API?', a: 'An API (application programming interface) is a set of rules that lets one piece of software request data or actions from another, securely and automatically.' },
-    { q: 'Can you connect systems that do not have an API?', a: 'Often, yes. We can use database connections, file exchanges such as CSV over SFTP, or older SOAP services to integrate legacy systems.' },
+    { q: 'Can you connect systems that do not have an API?', a: 'Often, yes. We can use database connections, file exchanges such as CSV over SFTP, or older SOAP services to integrate legacy systems, then wrap them in a modern API so other tools can use the data safely.' },
     { q: 'Should we use Zapier or a custom integration?', a: 'Zapier and Make are great for simple, low-volume tasks. For high volumes, complex rules or critical data, a custom integration is more reliable and cheaper to run.' },
-    { q: 'How do you keep integrations secure?', a: 'We use OAuth 2, encrypted credentials, least-privilege access and full audit logs, and follow GDPR rules for personal data.' },
-    { q: 'What happens if an integration fails?', a: 'Failed messages are retried automatically and stored safely, and our team is alerted so nothing is lost.' },
-    { q: 'Can you build an API for our customers or partners?', a: 'Yes. We build public and partner APIs with documentation, keys, rate limits and usage analytics.' },
-    { q: 'Do you support integrations after launch?', a: 'Yes. We monitor integrations and update them when connected systems change their APIs.' },
+    { q: 'How do you keep integrations secure?', a: 'We use OAuth 2, encrypted credentials, least-privilege access and full audit logs, and follow GDPR rules for personal data. Every integration is tested against failure and abuse before it goes live.' },
+    { q: 'What happens if an integration fails?', a: 'Failed messages are retried automatically and stored safely, and our team is alerted so nothing is lost. A dashboard shows every sync, so you can see what happened and replay any item that needs it.' },
+    { q: 'Can you build an API for our customers or partners?', a: 'Yes. We build public and partner APIs with documentation, keys, rate limits and usage analytics, so customers and partners can connect to your platform safely, and you can see how they use it.' },
+    { q: 'Do you support integrations after launch?', a: 'Yes. We monitor integrations and update them when connected systems change their APIs, which happens often. Support plans include alerts, fixes and a named contact, so your data keeps flowing without surprises.' },
+    { q: 'What is a REST API and why use one for third party integration?', a: 'A REST API is the common standard that lets software exchange data over the web in a simple, predictable way. Most modern tools offer one, so third party integration with systems like HubSpot, Xero and Shopify is faster, cheaper and more reliable than manual exports.' },
   ],
   related: ['crm-erp-development', 'web-application-development', 'php-development', 'laravel-development', 'saas-product-development', 'ecommerce-development'],
 };

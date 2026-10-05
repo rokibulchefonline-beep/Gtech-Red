@@ -9,7 +9,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'linkedin-marketing',
   short: 'LinkedIn Marketing',
-  metaTitle: 'LinkedIn Marketing Agency UK | B2B LinkedIn Ads & Content | GTech Digital',
+  metaTitle: 'LinkedIn Marketing Agency UK | B2B LinkedIn Ads & Content',
   metaDescription:
     'UK LinkedIn marketing agency for B2B: thought leadership content, employee advocacy and LinkedIn Ads with Lead Gen Forms that fill your sales pipeline.',
   hero: {
@@ -187,8 +187,9 @@ const content: ServiceContent = {
     { q: 'Can you write posts for our CEO?', a: 'Yes. We interview your leaders, write posts in their voice and publish after their approval. It is one of the most effective ways to build trust on LinkedIn.' },
     { q: 'What are LinkedIn Lead Gen Forms?', a: 'Lead Gen Forms are pre-filled forms inside LinkedIn ads. They reduce friction and usually lower cost per lead. We sync them to your CRM so sales can follow up quickly.' },
     { q: 'What is account-based marketing on LinkedIn?', a: 'ABM targets ads at a list of named companies you want to win, and often at specific roles within them, so your budget focuses on your highest-value prospects.' },
-    { q: 'How do you track LinkedIn ROI?', a: 'We use the Insight Tag, Conversions API and CRM integration to track leads through to meetings, opportunities and closed revenue.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'How do you track LinkedIn ROI?', a: 'We use the LinkedIn Insight Tag, the Conversions API and CRM integration to track leads through to meetings, opportunities and closed revenue, so you can see which campaigns and audiences create real pipeline, not just clicks.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital runs LinkedIn marketing on rolling monthly terms. B2B sales cycles are long, so we recommend six months, but there is no lock-in if the results are not there.' },
+    { q: 'How do you generate B2B leads on LinkedIn?', a: 'B2B lead generation on LinkedIn combines thought leadership posts, targeted ads and Lead Gen Forms aimed at the right job titles. We pair this with account based marketing for your highest-value companies, and measure meetings booked rather than likes.' },
   ],
   related: ['content-marketing', 'paid-media', 'marketing-advisory', 'facebook-marketing', 'search-engine-optimization', 'crm-erp-development'],
 };

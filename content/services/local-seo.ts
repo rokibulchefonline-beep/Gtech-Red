@@ -9,9 +9,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'local-seo',
   short: 'Local SEO',
-  metaTitle: 'Local SEO Agency UK | Google Maps & Business Profile SEO | GTech Digital',
+  metaTitle: 'Local SEO Agency UK | Google Maps & Business Profile SEO',
   metaDescription:
-    'UK local SEO agency helping businesses rank in the Google map pack and local search with Google Business Profile optimisation, citations, reviews and location pages.',
+    'UK local SEO agency helping businesses rank in the Google map pack with Google Business Profile optimisation, citations, reviews and location pages.',
   hero: {
     keyword: 'Local SEO',
     title: 'Local SEO That Puts You on Top of',
@@ -184,12 +184,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'How do I rank higher on Google Maps?', a: 'Complete and update your Google Business Profile, use the right categories, keep your name, address and phone consistent online, earn regular reviews and build local relevance with your website and links.' },
-    { q: 'How long does local SEO take?', a: 'Many businesses see map ranking gains within 4 to 8 weeks. Competitive areas usually take 3 to 6 months.' },
+    { q: 'How long does local SEO take?', a: 'Many businesses see map ranking gains within 4 to 8 weeks of fixing their Google Business Profile and citations. Competitive areas usually take 3 to 6 months to reach the top three of the local pack.' },
     { q: 'Can I rank in towns where I do not have an office?', a: 'In the organic results, yes, with strong service area pages. The map pack strongly favours businesses close to the searcher, so it is harder there.' },
-    { q: 'Do reviews really affect local rankings?', a: 'Yes. The number, quality and freshness of reviews influence both your map ranking and whether people choose you.' },
-    { q: 'Can you manage several locations?', a: 'Yes. We manage multi-location brands with a profile, location page and reporting for each branch.' },
-    { q: 'How do you measure local SEO results?', a: 'We track map rankings by postcode, calls, direction requests, website clicks and enquiries from your Google Business Profile.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Do reviews really affect local rankings?', a: 'Yes. The number, quality and freshness of reviews influence both your map ranking and whether people choose you. We set up a simple review process that brings in a steady flow of genuine 5-star Google reviews.' },
+    { q: 'Can you manage several locations?', a: 'Yes. We manage multi-location brands with a profile, location page and reporting for each branch, keeping names, addresses and opening hours consistent so every location can win its own map pack rankings.' },
+    { q: 'How do you measure local SEO results?', a: 'We track map pack rankings by postcode, calls, direction requests, website clicks and enquiries from your Google Business Profile. Monthly reports show how local searches turn into customers walking in or ringing up.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital runs local SEO on rolling monthly terms. We recommend at least four months for competitive areas, but you can stop at any time and you keep control of your Google Business Profile.' },
+    { q: 'What is the local pack and how do I get into it?', a: 'The local pack is the map with three business listings shown above Google\'s normal results for searches like "plumber near me". To get in, optimise your Google Business Profile, earn reviews, keep your details consistent online and build local relevance on your website.' },
   ],
   related: ['search-engine-optimization', 'reputation-management', 'seo-backlinks', 'google-ads', 'content-marketing', 'website-design'],
 };

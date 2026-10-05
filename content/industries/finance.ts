@@ -7,12 +7,12 @@ export default industry({
   name: 'Finance',
   kw: 'Financial Services Marketing',
   h1: 'Financial Marketing',
-  metaTitle: 'Financial Services Marketing Agency UK | Compliant Marketing | GTech Digital',
-  metaDescription: 'UK financial services marketing agency for advisers, brokers, accountants and lenders: compliant SEO, Google Ads, LinkedIn and secure websites that win clients.',
+  metaTitle: 'Financial Marketing Agency UK | Compliant Marketing',
+  metaDescription: 'UK financial marketing agency for advisers, brokers, accountants and lenders: compliant SEO, Google Ads, LinkedIn and secure websites that win clients.',
   hero: {
     title: 'Financial Marketing That',
     highlight: 'Wins Clients',
-    lead: 'GTech Digital provides financial services marketing for UK advisers, mortgage brokers, accountants and lenders, combining financial SEO, Google and LinkedIn ads and FCA-compliant content to win qualified client enquiries.',
+    lead: 'GTech Digital provides financial marketing for UK advisers, mortgage brokers, accountants and lenders, combining financial SEO, Google and LinkedIn ads and FCA-compliant content to win qualified client enquiries.',
     points: ['Free marketing audit', 'FCA-aware campaigns', 'Compliance sign-off built in'],
   },
   what: {
@@ -37,10 +37,11 @@ export default industry({
   faqs: [
     ['How do financial advisers get more clients online?', 'Publish expert content that answers common questions, rank in local and national search, collect reviews and run compliant Google Ads, with fast follow-up on every enquiry.'],
     ['Are financial promotions regulated?', 'Yes. Financial promotions must be clear, fair and not misleading under FCA rules, and Consumer Duty applies to communications with retail clients. We build campaigns to meet these standards.'],
-    ['Do you work with accountants?', 'Yes. We work with accountants, financial advisers, mortgage and insurance brokers, wealth managers and lenders.'],
-    ['Can our compliance team approve content?', 'Yes. We build a sign-off step into every campaign and keep an audit trail of approvals.'],
-    ['Do you build client portals?', 'Yes. We build secure portals for documents, onboarding and messaging.'],
-    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+    ['Do you work with accountants?', 'Yes. Our accountant marketing and financial adviser marketing work covers accountants, financial advisers, mortgage and insurance brokers, wealth managers and lenders, with content written for each audience.'],
+    ['Can our compliance team approve content?', 'Yes. We build a sign-off step into every campaign and keep an audit trail of approvals, so your compliance team reviews each ad, page and email before it goes live.'],
+    ['Do you build client portals?', 'Yes. We build secure portals for documents, onboarding and messaging, so clients can upload information, sign forms and message your team safely, which reduces email attachments and speeds up onboarding.'],
+    ['Do you need a contract?', 'No. GTech Digital runs financial marketing on rolling monthly terms. Compliance reviews and trust building take time, so we recommend six months, but you can stop with a month\'s notice.'],
+    ['What is FCA compliant marketing?', 'FCA compliant marketing means every financial promotion is clear, fair and not misleading, includes the right risk warnings and meets Consumer Duty. Our mortgage broker marketing and adviser campaigns follow these rules and include a documented approval step.'],
   ],
   related: ['search-engine-optimization', 'google-ads', 'linkedin-marketing', 'content-marketing', 'website-design', 'web-application-development'],
 });

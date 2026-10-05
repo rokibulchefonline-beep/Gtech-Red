@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'ecommerce-development',
   short: 'Ecommerce Development',
-  metaTitle: 'Ecommerce Website Development UK | Shopify & WooCommerce | GTech Digital',
+  metaTitle: 'Ecommerce Development Agency UK | Shopify & WooCommerce',
   metaDescription:
     'UK ecommerce development agency building Shopify, WooCommerce and custom online stores with fast product pages, simple checkout and integrations that save time.',
   hero: {
@@ -16,7 +16,7 @@ const content: ServiceContent = {
     title: 'Ecommerce Website Development',
     highlight: 'That Sells',
     lead:
-      'GTech Digital builds ecommerce websites for UK brands on Shopify, WooCommerce and custom platforms, with fast product pages, simple checkout, secure payments and integrations for stock, shipping and accounting.',
+      'GTech Digital provides ecommerce development services for UK brands, building Shopify, WooCommerce and custom online stores with fast product pages, simple checkout, secure payments and integrations for stock, shipping and accounting.',
     motion: '/services/ecommerce.webp',
     points: ['Free store review', 'Built for mobile shoppers', 'SEO-ready from launch'],
   },
@@ -183,12 +183,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'Should I use Shopify or WooCommerce?', a: 'Shopify suits most growing product brands because it is managed and quick to launch. WooCommerce suits stores that need full control or already run on WordPress. We recommend one after reviewing your needs.' },
-    { q: 'How long does an ecommerce website take?', a: 'Most stores take 6 to 12 weeks, depending on catalogue size, design and integrations.' },
-    { q: 'Can you migrate our existing store?', a: 'Yes. We move products, customers, orders and SEO data and set up redirects so you keep your rankings.' },
-    { q: 'Do you handle UK VAT and shipping?', a: 'Yes. We set up VAT, shipping zones and courier integrations for the UK and international orders.' },
-    { q: 'Can we sell to trade customers too?', a: 'Yes. We build B2B features such as trade accounts, price lists and quick ordering.' },
-    { q: 'Will the store be SEO-friendly?', a: 'Yes. We build clean category structures, product schema and fast pages, and can continue with ecommerce SEO after launch.' },
-    { q: 'Do you support stores after launch?', a: 'Yes. We offer maintenance, conversion optimisation and new features on monthly plans.' },
+    { q: 'How long does an ecommerce website take?', a: 'Most stores take 6 to 12 weeks, depending on catalogue size, design and integrations. We agree a fixed timeline after discovery, and launch in stages so your ecommerce website development delivers value early.' },
+    { q: 'Can you migrate our existing store?', a: 'Yes. We move products, customers, orders and SEO data and set up 301 redirects so you keep your rankings. Our Shopify development and WooCommerce teams test the migrated store before the switch-over.' },
+    { q: 'Do you handle UK VAT and shipping?', a: 'Yes. We set up VAT, shipping zones and courier integrations for the UK and international orders, with payment integration for Stripe, PayPal, Apple Pay and buy now pay later providers such as Klarna.' },
+    { q: 'Can we sell to trade customers too?', a: 'Yes. We build B2B features such as trade accounts, price lists, quick ordering and invoicing, so wholesale and retail customers can buy from the same store with the right prices and payment terms.' },
+    { q: 'Will the store be SEO-friendly?', a: 'Yes. We build clean category structures, product schema and fast pages, with online store design that supports search from day one. We can continue with ecommerce SEO after launch to grow organic sales.' },
+    { q: 'Do you support stores after launch?', a: 'Yes. We offer maintenance, conversion optimisation and new features on monthly plans, including WooCommerce development and Shopify theme changes, so your store keeps improving long after launch.' },
+    { q: 'What makes a good online store design?', a: 'A good online store design loads in under two seconds, shows clear product images and prices, and makes checkout simple on mobile. We design product and category pages around how UK shoppers browse, then test and refine them with real conversion data.' },
   ],
   related: ['ecommerce-seo', 'website-design', 'wordpress-development', 'website-maintenance', 'google-ads', 'conversion-rate-optimization'],
 };

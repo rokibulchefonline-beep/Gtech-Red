@@ -16,7 +16,8 @@
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "build:next": "next build"
+    "build:next": "next build",
+    "seo:audit": "tsx scripts/seo-audit.ts"
   },
   "dependencies": {
     "jose": "^6.2.12",
@@ -36,6 +37,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "sharp": "^0.35.5",
+    "tsx": "^4.23.15",
     "typescript": "^5.6.0",
     "wrangler": "^4.145.0"
   }

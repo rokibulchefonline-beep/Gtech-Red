@@ -22,13 +22,18 @@ const title = (s: string) => s.replace(/(^|\s)([a-z])/g, (_, a, b) => a + b.toUp
 export function industry(i: Input): ServiceContent {
   const sections: Section[] = [
     { type: 'logos', id: 'clients' },
-    { type: 'text', id: 'overview', nav: 'Overview', heading: `What Makes ${i.kw} Different and Why It Matters`, paras: [i.what.para], bullets: i.what.bullets },
+    { type: 'text', id: 'overview', nav: 'Overview', heading: `What Is ${i.kw} and Why Does It Matter?`, paras: [i.what.para], bullets: i.what.bullets },
     { type: 'impact', id: 'impact', heading: `${i.kw} Results and Key Statistics`, text: `The numbers behind the work we do for UK ${i.name.toLowerCase()} businesses.`, stats: i.impact.stats.map(([value, label]) => ({ value, label })) },
     ...i.media.map((m, n): Section => ({
       type: 'media', id: images[n], nav: m.nav, heading: `${i.kw}: ${title(m.topic)}`, image: `/pages/industries/${i.slug}/${images[n]}.webp`, alt: m.alt,
       paras: [m.para], bullets: m.bullets, ...(n % 2 ? { flip: true, tone: 'grey' as const } : {}),
     })),
     { type: 'cards', id: 'services', nav: 'What we do', heading: `Our ${i.kw} Services and Solutions`, cards: i.cards.map(([icon, t, text]) => ({ icon, title: t, text })) },
+    { type: 'steps', id: 'process', nav: 'Process', heading: `How Our ${i.kw} Process Works, Step by Step`, intro: `A clear, repeatable process for UK ${i.name.toLowerCase()} businesses.`, steps: [
+      { title: 'Discover', text: 'Your goals, customers and competitors.' }, { title: 'Audit', text: 'A free review of your site, ads and tracking.' },
+      { title: 'Plan', text: 'Channels, budget and a clear 90-day roadmap.' }, { title: 'Launch', text: 'Campaigns and pages go live, fully tracked.' },
+      { title: 'Report', text: 'Plain-English results tied to leads and revenue.' }, { title: 'Grow', text: 'We scale what works and fix what does not.' },
+    ] },
     { type: 'cases', id: 'case-studies', nav: 'Case studies', heading: `${i.kw} Case Studies and Results` },
     { type: 'reviews', id: 'reviews', nav: 'Reviews', heading: `${i.kw} Client Reviews and Testimonials`, reviews: i.reviews.map(([name, role, text]) => ({ name, role, text })) },
   ];

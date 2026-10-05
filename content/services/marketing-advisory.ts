@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'marketing-advisory',
   short: 'Marketing Advisory',
-  metaTitle: 'Marketing Advisory & Fractional CMO UK | Growth Strategy | GTech Digital',
+  metaTitle: 'Marketing Advisory & Fractional CMO UK | Growth Strategy',
   metaDescription:
     'UK marketing advisory and fractional CMO services: senior guidance on strategy, channels, budgets and KPIs to grow faster without a full-time hire.',
   hero: {
@@ -184,11 +184,12 @@ const content: ServiceContent = {
   faqs: [
     { q: 'What is a fractional CMO?', a: 'A fractional CMO is a senior marketing leader who works with you part-time, usually a few days a month, setting strategy and leading marketing without a full-time salary.' },
     { q: 'When does a business need marketing advisory?', a: 'Common signs are spending on marketing without clear results, having no marketing plan, managing several agencies without direction or preparing to grow or raise investment.' },
-    { q: 'How much time will you spend with us?', a: 'Most clients choose two to six days a month, including strategy sessions, team check-ins and reporting.' },
-    { q: 'Will you manage our agencies?', a: 'Yes. We set briefs and targets for your agencies and freelancers and hold them to account.' },
-    { q: 'Do you also deliver the marketing?', a: 'We can. Our specialist teams handle SEO, ads, social and web, or we work with your existing partners.' },
-    { q: 'How do you measure success?', a: 'Against agreed business KPIs such as qualified leads, cost per acquisition, revenue and marketing ROI.' },
-    { q: 'Do you need a contract?', a: 'No. Advisory runs on rolling monthly terms.' },
+    { q: 'How much time will you spend with us?', a: 'Most clients choose two to six days a month, including strategy sessions, team check-ins and reporting. We agree the time in advance and can increase it around launches, peak seasons or budget reviews.' },
+    { q: 'Will you manage our agencies?', a: 'Yes. We set briefs and targets for your agencies and freelancers and hold them to account, reviewing reports with you each month so you know what is working and where budget should move.' },
+    { q: 'Do you also deliver the marketing?', a: 'We can. Our specialist teams handle SEO, ads, social and web, or we work with your existing partners. Many clients start with advisory and add delivery services only where they need extra capacity.' },
+    { q: 'How do you measure success?', a: 'Against agreed business KPIs such as qualified leads, cost per acquisition, revenue and marketing ROI. Each month you receive a plain-English dashboard showing progress against the targets in your growth plan.' },
+    { q: 'Do you need a contract?', a: 'No. Marketing advisory runs on rolling monthly terms, so you can stop or change the number of days with a month\'s notice. Most clients stay because the plan keeps delivering.' },
+    { q: 'What does a marketing strategy include?', a: 'A marketing strategy defines your audience, positioning, channels, budget, targets and 12-month plan. As a marketing consultancy we turn it into a clear roadmap with owners and dates, so every pound has a purpose and progress is easy to measure.' },
   ],
   related: ['branding', 'conversion-rate-optimization', 'digital-advertising', 'search-engine-optimization', 'content-marketing', 'linkedin-marketing'],
 };

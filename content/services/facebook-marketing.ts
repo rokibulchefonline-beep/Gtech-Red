@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'facebook-marketing',
   short: 'Facebook Marketing',
-  metaTitle: 'Facebook Marketing Agency UK | Facebook Ads & Page Management | GTech Digital',
+  metaTitle: 'Facebook Marketing Agency UK | GTech Digital',
   metaDescription:
     'UK Facebook marketing agency: Facebook ads, lead generation, content and community management with accurate Meta Pixel and Conversions API tracking.',
   hero: {
@@ -185,9 +185,10 @@ const content: ServiceContent = {
     { q: 'How much should I spend on Facebook ads?', a: 'Many UK businesses start with £500 to £2,000 per month. We set a budget from your target cost per lead or ROAS and scale it as results prove out.' },
     { q: 'What are Facebook lead ads?', a: 'Lead ads let people submit their details through a pre-filled form without leaving Facebook. They usually produce cheaper leads, and we connect them to your CRM or email so you can follow up fast.' },
     { q: 'What is the Conversions API?', a: 'The Conversions API sends conversion data from your server to Meta, which keeps tracking accurate despite browser and iOS privacy changes. It improves both reporting and ad performance.' },
-    { q: 'Do you manage our Facebook Page as well?', a: 'Yes. We can manage posting, Reels, events and community replies alongside your ads.' },
-    { q: 'Do I keep ownership of my ad account?', a: 'Yes. Your Business Manager, Page, Pixel and data always belong to your business.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Do you manage our Facebook Page as well?', a: 'Yes. We can manage posting, Reels, events and community replies alongside your ads, with a monthly content calendar you approve. A consistent Page builds the trust that makes your Facebook ads convert better.' },
+    { q: 'Do I keep ownership of my ad account?', a: 'Yes. Your Business Manager, Page, Pixel and data always belong to your business. We work with access you grant and can hand over full control at any time, with nothing held back.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital manages Facebook marketing on rolling monthly terms, because results should keep clients, not contracts. You can pause or stop whenever you need to.' },
+    { q: 'Which Facebook ads work best for lead generation?', a: 'Lead generation ads with an instant form and a clear offer, such as a free quote or audit, usually give the lowest cost per lead. We build them in Facebook Ads Manager, test creative weekly and send every lead straight to your CRM.' },
   ],
   related: ['instagram-marketing', 'tiktok-marketing', 'paid-media', 'digital-advertising', 'reputation-management', 'linkedin-marketing'],
 };

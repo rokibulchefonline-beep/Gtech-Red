@@ -9,7 +9,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'digital-advertising',
   short: 'Digital Advertising',
-  metaTitle: 'Digital Advertising Agency UK | Search, Social & Display Ads | GTech Digital',
+  metaTitle: 'Digital Advertising Agency UK | Search, Social & Display Ads',
   metaDescription:
     'UK digital advertising agency running search, social, display, video and retargeting campaigns that turn ad spend into measurable leads and sales.',
   hero: {
@@ -185,11 +185,12 @@ const content: ServiceContent = {
   faqs: [
     { q: 'Which advertising channel is best for my business?', a: 'It depends on your goal and audience. Search ads suit people ready to buy, social ads find new customers by interests, and display and video build awareness. We recommend a mix based on your margins, budget and past results.' },
     { q: 'How much should I spend on digital ads?', a: 'Many UK small businesses start with £1,000 to £5,000 per month across channels. We set a budget from your target cost per lead or ROAS so spend is tied to results.' },
-    { q: 'Do you create the ads as well?', a: 'Yes. We write copy and produce static, carousel and video creative, and we test new versions every week.' },
+    { q: 'Do you create the ads as well?', a: 'Yes. We write copy and produce static, carousel and video creative for every channel, then test new versions every week so ad fatigue never drags results down. All creative files are yours to keep.' },
     { q: 'What is retargeting?', a: 'Retargeting shows ads to people who have already visited your website or engaged with your brand, reminding them to come back and buy. It is often the lowest-cost source of sales.' },
     { q: 'How do you track results across channels?', a: 'We set up pixels, the Meta Conversions API, Google tags and GA4 so leads and sales are tracked accurately, then report cost per result for every channel.' },
-    { q: 'Do I keep my ad accounts?', a: 'Yes. Your ad accounts, pixels and data always belong to your business.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Do I keep my ad accounts?', a: 'Yes. Your ad accounts, pixels and data always belong to your business. We work inside accounts you own and can hand over full access whenever you ask.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital runs digital advertising on rolling monthly terms, because results should keep clients, not contracts. You can pause or stop at any time.' },
+    { q: 'Is display advertising worth it?', a: 'Display advertising on the Google Display Network is rarely the best first channel, but it works well for retargeting and awareness. We use it to bring back site visitors and support search and social campaigns, and measure it on assisted conversions, not just clicks.' },
   ],
   related: ['google-ads', 'paid-media', 'facebook-marketing', 'tiktok-marketing', 'linkedin-marketing', 'conversion-rate-optimization'],
 };

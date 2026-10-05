@@ -3,7 +3,7 @@ export type Check = { ok: boolean | 'warn'; label: string; hint?: string };
 
 const words = (s: string) => (s.toLowerCase().match(/[a-z0-9£%'-]+/g) ?? []);
 
-export function analyse(i: { title: string; metaTitle?: string; metaDescription?: string; slug?: string; keyword?: string; body?: string; image?: string; imageAlt?: string }): { score: number; checks: Check[] } {
+export function analyse(i: { links?: number; title: string; metaTitle?: string; metaDescription?: string; slug?: string; keyword?: string; body?: string; image?: string; imageAlt?: string }): { score: number; checks: Check[] } {
   const kw = (i.keyword ?? '').trim().toLowerCase();
   const title = (i.metaTitle || i.title || '').trim();
   const desc = (i.metaDescription ?? '').trim();
@@ -11,7 +11,7 @@ export function analyse(i: { title: string; metaTitle?: string; metaDescription?
   const wc = words(body).length;
   const first = body.replace(/^#+ .*$/gm, '').trim().slice(0, 400).toLowerCase();
   const h2s = [...body.matchAll(/^## (.+)$/gm)].map((m) => m[1].toLowerCase());
-  const links = (body.match(/\]\((https?:\/\/|\/)[^)]+\)/g) ?? []).length;
+  const links = i.links ?? (body.match(/\]\((https?:\/\/|\/)[^)]+\)/g) ?? []).length;
   const imgs = (body.match(/!\[[^\]]*\]\([^)]+\)/g) ?? []).length;
   const checks: Check[] = [
     { ok: title.length >= 30 && title.length <= 60 ? true : title.length ? 'warn' : false, label: `SEO title length (${title.length}/60)`, hint: 'Aim for 30 to 60 characters.' },

@@ -6,7 +6,7 @@ export default industry({
   slug: 'e-commerce',
   name: 'E-commerce',
   kw: 'Ecommerce Marketing',
-  metaTitle: 'Ecommerce Marketing Agency UK | SEO, Shopping Ads & CRO | GTech Digital',
+  metaTitle: 'Ecommerce Marketing Agency UK | SEO, Shopping Ads & CRO',
   metaDescription: 'UK ecommerce marketing agency growing online stores with ecommerce SEO, Google Shopping, Meta and TikTok ads, email and conversion optimisation.',
   hero: {
     title: 'Ecommerce Marketing for',
@@ -36,10 +36,11 @@ export default industry({
   faqs: [
     ['What is the best marketing for an ecommerce store?', 'Most stores grow fastest with a mix of Google Shopping, ecommerce SEO, paid social and email. The right balance depends on your margins, products and competition.'],
     ['How much should an online store spend on marketing?', 'Many UK ecommerce brands invest 10 to 20% of revenue in marketing. We set budgets from your target ROAS and margin so spend stays profitable.'],
-    ['Do you work with Shopify and WooCommerce?', 'Yes. We market and build stores on both, as well as custom and headless platforms.'],
-    ['How do you measure success?', 'We track revenue, ROAS, conversion rate, average order value and repeat purchase rate in GA4 and your store platform.'],
-    ['Can you help with Black Friday?', 'Yes. We plan peak campaigns months ahead, from creative and email to site speed and stock.'],
-    ['Do you need a contract?', 'No. Ongoing marketing runs on rolling monthly terms.'],
+    ['Do you work with Shopify and WooCommerce?', 'Yes. We market and build stores on both Shopify and WooCommerce, as well as custom and headless platforms, so advice is based on what suits your products, team and growth plans, not on one platform.'],
+    ['How do you measure success?', 'We track revenue, ROAS, conversion rate, average order value and repeat purchase rate in GA4 and your store platform, then report profit, not just sales, so you can see which channels earn their budget.'],
+    ['Can you help with Black Friday?', 'Yes. We plan peak campaigns months ahead, from creative, email and Meta Catalogue Ads to site speed and stock checks, so your store is ready when traffic and competition spike in November.'],
+    ['Do you need a contract?', 'No. GTech Digital runs ecommerce marketing on rolling monthly terms. We suggest at least six months to build momentum across SEO, paid media and email, but you are never locked in.'],
+    ['How do you use email marketing and conversion optimisation for stores?', 'Email marketing flows such as welcome, abandoned basket and win-back typically earn 20 to 30% of store revenue, and conversion optimisation lifts the share of visitors who buy. Together they raise profit from the traffic you already pay for.'],
   ],
   related: ['ecommerce-seo', 'google-ads', 'ecommerce-development', 'facebook-marketing', 'tiktok-marketing', 'conversion-rate-optimization'],
 });

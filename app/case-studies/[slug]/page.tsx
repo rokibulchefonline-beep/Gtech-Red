@@ -10,6 +10,8 @@ import { findItem } from '@/lib/data';
 import { serviceIcons, uiIcons } from '@/lib/icons';
 import { getDoc, listDocs } from '@/lib/mongo';
 import { seoFor } from '@/lib/seo';
+import Schema from '@/components/Schema';
+import { BASE, articleNode, breadcrumbNode, pageNode } from '@/lib/schema';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -45,18 +47,16 @@ export default async function Page({ params }: Props) {
   const name = d.client || d.title;
   const metrics = d.metrics ?? [];
 
-  const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'Article', headline: headline(d), description: d.excerpt, image: d.image ? `${base}${d.image}` : undefined,
-      about: used.map((u) => u.item.name), author: { '@type': 'Organization', name: 'GTech Digital', url: base }, publisher: { '@type': 'Organization', name: 'GTech Digital' }, mainEntityOfPage: `${base}/case-studies/${d.slug}` },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-      { '@type': 'ListItem', position: 2, name: 'Case Studies', item: `${base}/case-studies` },
-      { '@type': 'ListItem', position: 3, name: name, item: `${base}/case-studies/${d.slug}` }] },
+  const path = `/case-studies/${d.slug}`;
+  const nodes = [
+    pageNode({ path, name: headline(d), description: d.excerpt ?? '', mainEntity: `${BASE}${path}#article`, image: d.image, about: used.map((u) => u.item.name) }),
+    breadcrumbNode(path, [['Case Studies', '/case-studies'], [name, path]]),
+    articleNode({ path, headline: headline(d), description: d.metaDescription || d.excerpt || '', image: d.image, keywords: used.map((u) => u.item.name) }),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Schema path={path} nodes={nodes} />
 
       <section className="cs-hero" style={d.image ? { backgroundImage: `url(${d.image})` } : undefined}>
         <div className="cs-hero-shade" />

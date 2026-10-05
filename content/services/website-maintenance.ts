@@ -8,9 +8,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'website-maintenance',
   short: 'Website Maintenance',
-  metaTitle: 'Website Maintenance Services UK | Updates, Security & Support | GTech Digital',
+  metaTitle: 'Website Maintenance Services UK | GTech Digital',
   metaDescription:
-    'UK website maintenance and support plans: updates, security monitoring, daily backups, uptime checks, speed tuning and content changes for one fixed monthly fee.',
+    'UK website maintenance and support plans: updates, security monitoring, daily backups, uptime checks, speed tuning and content changes for one monthly fee.',
   hero: {
     keyword: 'Website Maintenance',
     title: 'Website Maintenance and',
@@ -182,13 +182,13 @@ const content: ServiceContent = {
     },
   ],
   faqs: [
-    { q: 'Why does my website need maintenance?', a: 'Software, plugins and servers change constantly. Without updates and monitoring, sites become slow, insecure and can break without warning.' },
-    { q: 'Do you maintain websites you did not build?', a: 'Yes. We start with a health check, fix any urgent issues and then add your site to a care plan.' },
-    { q: 'What happens if my site is hacked?', a: 'We clean it, restore from a clean backup if needed and close the security gap. Hack clean-up is included on our care plans.' },
-    { q: 'How quickly do you respond?', a: 'Outages get a response within 15 minutes during UK business hours. Change requests are usually completed within one to two working days.' },
-    { q: 'Which platforms do you support?', a: 'WordPress, WooCommerce, Laravel, PHP, Shopify and most custom websites.' },
-    { q: 'Is hosting included?', a: 'We can provide managed UK hosting or maintain your site on your existing host.' },
-    { q: 'Do you need a contract?', a: 'No. Our care plans run on rolling monthly terms.' },
+    { q: 'Why does my website need maintenance?', a: 'Software, plugins and servers change constantly. Without updates, monitoring and backups, sites become slow and insecure and can break without warning. Regular website maintenance protects your rankings, your customers\' data and your reputation.' },
+    { q: 'Do you maintain websites you did not build?', a: 'Yes. We start with a health check, fix any urgent issues and then add your site to a care plan. We support sites built by other agencies or in-house teams, with no need to rebuild anything.' },
+    { q: 'What happens if my site is hacked?', a: 'We clean it, restore from a clean backup if needed and close the security gap. Hack clean-up is included on our care plans, and we add firewall rules and monitoring so the same attack cannot happen again.' },
+    { q: 'How quickly do you respond?', a: 'Outages get a response within 15 minutes during UK business hours. Change requests are usually completed within one to two working days, and urgent fixes outside hours can be arranged for an agreed fee.' },
+    { q: 'Which platforms do you support?', a: 'We provide website support for WordPress, WooCommerce, Laravel, PHP, Shopify and most custom websites. We include WordPress maintenance such as plugin updates, security hardening, backups and speed checks.' },
+    { q: 'Is hosting included?', a: 'We can provide managed UK hosting with daily backups and uptime monitoring, or maintain your site on your existing host. Either way you get one team responsible for keeping the website secure and online.' },
+    { q: 'Do you need a contract?', a: 'No. Our website security and maintenance plans run on rolling monthly terms, so you can change or cancel at any time with a month\'s notice. Most clients stay because the site simply stays fast, safe and online.' },
   ],
   related: ['wordpress-development', 'website-design', 'ecommerce-development', 'php-development', 'laravel-development', 'search-engine-optimization'],
 };

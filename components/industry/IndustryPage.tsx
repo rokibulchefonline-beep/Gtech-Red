@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SemanticLinks from '@/components/SemanticLinks';
 import TocBar from '@/components/TocBar';
 import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
@@ -7,6 +8,10 @@ import { Block, Head, Tick } from '@/components/service/ServicePage';
 import type { ServiceContent } from '@/content/types';
 import { findItem, industries, site } from '@/lib/data';
 import { industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
+import Schema from '@/components/Schema';
+import { seoMap } from '@/content/seo-map';
+import { semanticLinksFor } from '@/lib/link-graph';
+import { BASE, breadcrumbNode, faqNode, pageNode, serviceNode } from '@/lib/schema';
 
 // Long-form industry page. Uses the same section blocks as the service pages.
 export default function IndustryPage({ c }: { c: ServiceContent }) {
@@ -14,22 +19,17 @@ export default function IndustryPage({ c }: { c: ServiceContent }) {
   const name = ind?.name ?? '';
   const related = c.related.map((r) => findItem(r)).filter(Boolean);
   const others = industries.filter((i) => i.slug !== c.slug);
-  const base = 'https://www.gtechdigital.co.uk';
-  const url = `${base}/industries/${c.slug}`;
-  const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'Service', name: c.metaTitle.split('|')[0].trim(), description: c.metaDescription, url,
-      audience: { '@type': 'BusinessAudience', name: `${name} businesses` }, areaServed: { '@type': 'Country', name: 'United Kingdom' },
-      provider: { '@type': 'Organization', name: site.name, url: base } },
-    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: c.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-      { '@type': 'ListItem', position: 2, name: 'Industries', item: `${base}/industries` },
-      { '@type': 'ListItem', position: 3, name, item: url }] },
+  const path = `/industries/${c.slug}`;
+  const nodes = [
+    pageNode({ path, name: c.metaTitle.split('|')[0].trim(), description: c.metaDescription, mainEntity: `${BASE}${path}#service`, about: seoMap[c.slug]?.ent, image: c.hero.motion }),
+    breadcrumbNode(path, [['Industries', '/industries'], [name, path]]),
+    serviceNode({ path, slug: c.slug, name: c.metaTitle.split('|')[0].trim(), description: c.metaDescription, category: 'Industry marketing', audience: `${name} businesses`, related: [...related.map((r) => ({ name: r!.item.name, path: `/services/${r!.item.slug}` })), ...semanticLinksFor(c.slug).filter((l) => l.group !== 'page').map((l) => ({ name: l.anchor, path: l.href }))] }),
+    faqNode(path, c.faqs),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Schema path={path} nodes={nodes} />
 
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
@@ -43,6 +43,7 @@ export default function IndustryPage({ c }: { c: ServiceContent }) {
             <a className="sp-btn-line" href="#services">See What We Do</a>
           </div>
           <ul className="sp-hero-points">{c.hero.points.map((p) => <li key={p}><Tick />{p}</li>)}</ul>
+          <p className="sp-updated">Reviewed by GTech Digital specialists · Updated {new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}</p>
           <div className="sp-hero-show">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={c.hero.motion} alt={`${name} marketing results dashboard`} width={800} height={600} />
@@ -57,6 +58,8 @@ export default function IndustryPage({ c }: { c: ServiceContent }) {
       {c.sections.map((s) => <Block key={s.id} s={s} slug={c.slug} name={name} />)}
 
       <FaqSection title={`Frequently Asked Questions About ${c.short}`} faqs={c.faqs} />
+
+      <SemanticLinks slug={c.slug} name={c.short ?? name} />
 
       <section className="sp-sec sp-grey"><div className="wrap">
         <Head s={{ heading: `Recommended Services for ${name} Businesses` }} />

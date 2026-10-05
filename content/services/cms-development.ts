@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'cms-development',
   short: 'CMS Development',
-  metaTitle: 'CMS Development Agency UK | WordPress & Headless CMS | GTech Digital',
+  metaTitle: 'CMS Development Agency UK | WordPress & Headless CMS',
   metaDescription:
     'UK CMS development agency building WordPress and headless CMS websites with structured content, simple editing and safe migrations that keep your SEO.',
   hero: {
@@ -16,7 +16,7 @@ const content: ServiceContent = {
     title: 'CMS Development Your Team',
     highlight: 'Will Enjoy Using',
     lead:
-      'GTech Digital builds content management systems for UK businesses, from WordPress to headless CMS platforms such as Strapi and Sanity, so teams can publish pages, posts and products quickly without code or developer help.',
+      'GTech Digital provides CMS development services for UK businesses, from WordPress to headless CMS platforms such as Strapi and Sanity, so teams can publish pages, posts and products quickly without code or developer help.',
     motion: '/services/cms.webp',
     points: ['Free CMS consultation', 'Editing without code', 'Safe migration and SEO'],
   },
@@ -184,11 +184,12 @@ const content: ServiceContent = {
   faqs: [
     { q: 'What is the best CMS for a business website?', a: 'For most small and medium businesses, WordPress is the best balance of cost and flexibility. Headless CMS platforms suit teams that need top speed or publish to apps and multiple sites.' },
     { q: 'What is a headless CMS?', a: 'A headless CMS stores and manages content, then sends it to your website or app through an API. It keeps content separate from design, which makes sites faster and content reusable.' },
-    { q: 'Can we preview pages before publishing?', a: 'Yes. We set up live preview so editors see exactly how a page will look before it goes live.' },
-    { q: 'Will we lose SEO when changing CMS?', a: 'Not if it is planned well. We keep URLs where possible, move metadata and set up 301 redirects for every changed URL.' },
-    { q: 'Can different people have different permissions?', a: 'Yes. We set up user roles so writers, editors and admins see only what they need, with approvals where required.' },
-    { q: 'Do you provide training?', a: 'Yes. Every project includes team training and simple written guides.' },
-    { q: 'Do you support the CMS after launch?', a: 'Yes. Our support plans cover updates, security and new features.' },
+    { q: 'Can we preview pages before publishing?', a: 'Yes. We set up live preview so editors see exactly how a page will look before it goes live, on desktop and mobile. Preview links can also be shared with colleagues for sign-off before anything is published.' },
+    { q: 'Will we lose SEO when changing CMS?', a: 'Not if it is planned well. We keep URLs where possible, move metadata and set up 301 redirects for every changed URL, then monitor Search Console after launch so any ranking dip is caught and fixed quickly.' },
+    { q: 'Can different people have different permissions?', a: 'Yes. We set up user roles so writers, editors and admins see only what they need, with approval steps where required. Clear permissions keep your content accurate and protect the site from accidental changes.' },
+    { q: 'Do you provide training?', a: 'Yes. Every project includes team training and simple written guides, usually in one or two short sessions. Most editors are publishing confidently within a week, with a named contact for any questions.' },
+    { q: 'Do you support the CMS after launch?', a: 'Yes. Our support plans cover CMS updates, security patches, backups and new features, with a fixed monthly fee and a response time you can rely on, so your editors are never left stuck.' },
+    { q: 'What are editorial workflows in a CMS?', a: 'Editorial workflows are the steps content passes through before it goes live, such as draft, review, approval and scheduled publishing. In a custom CMS we build these around your team, so every page is checked and nothing is published by mistake.' },
   ],
   related: ['wordpress-development', 'website-design', 'website-maintenance', 'content-marketing', 'web-application-development', 'search-engine-optimization'],
 };

@@ -9,6 +9,8 @@ import { services } from '@/lib/data';
 import { groupIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import TocBar from '@/components/TocBar';
 import Hl from '@/components/Hl';
+import Schema from '@/components/Schema';
+import { BASE, breadcrumbNode, faqNode, itemListNode, pageNode } from '@/lib/schema';
 
 // Services hub. Targets the brand + "services" query (GTech Digital services), not the
 // home page's main agency keyword.
@@ -54,17 +56,16 @@ const faqs = [
 
 export default function ServicesHub() {
   const total = services.reduce((n, g) => n + g.items.length, 0);
-  const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'GTech Digital Services', url: `${base}/services`,
-      hasPart: services.map((g) => ({ '@type': 'ItemList', name: g.title, itemListElement: g.items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, url: `${base}/services/${it.slug}` })) })) },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: `${base}/services` }] },
+  const nodes = [
+    pageNode({ path: '/services', type: 'CollectionPage', name: 'GTech Digital Services', description: baseMeta.description as string, mainEntity: `${BASE}/services#list`, about: ['Digital marketing', 'Web design and development', 'Custom software development', 'Branding'] }),
+    breadcrumbNode('/services', [['Services', '/services']]),
+    itemListNode('/services', 'GTech Digital services', services.flatMap((g) => [[g.title, `/services/${g.slug}`] as [string, string], ...g.items.map((it) => [it.name, `/services/${it.slug}`] as [string, string])])),
+    faqNode('/services', faqs),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Schema path="/services" nodes={nodes} />
 
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
@@ -140,7 +141,7 @@ export default function ServicesHub() {
         ],
       }} />
 
-      <FaqSection title="Frequently Asked Questions About Our Services" faqs={faqs} schema />
+      <FaqSection title="Frequently Asked Questions About Our Services" faqs={faqs} />
       <InquirySection />
     </>
   );

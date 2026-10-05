@@ -6,7 +6,7 @@ export default industry({
   slug: 'b2b-marketing',
   name: 'B2B',
   kw: 'B2B Marketing',
-  metaTitle: 'B2B Marketing Agency UK | Lead Generation & ABM | GTech Digital',
+  metaTitle: 'B2B Marketing Agency UK | Lead Generation & ABM',
   metaDescription: 'UK B2B marketing agency generating qualified leads and sales pipeline with SEO, LinkedIn, Google Ads, account-based marketing and CRM-connected reporting.',
   hero: {
     title: 'B2B Marketing That Builds',
@@ -35,11 +35,12 @@ export default industry({
   reviews: [['David K', 'MD, IT Services', 'We now get around 15 qualified sales meetings a month, all tracked in HubSpot.'], ['Joanne E', 'Sales Director, Services', 'Marketing and sales finally agree on what a good lead looks like.'], ['Tariq A', 'Head of Growth, SaaS', 'Their ABM campaigns opened doors we had been knocking on for years.']],
   faqs: [
     ['What is B2B marketing?', 'B2B marketing promotes products and services to other businesses. It focuses on reaching decision-makers, building trust over longer sales cycles and generating qualified leads for sales teams.'],
-    ['Which channels work best for B2B?', 'Usually SEO and content for research-stage buyers, LinkedIn for precise targeting by job title and company, and Google Ads for in-market searches.'],
-    ['What is account-based marketing?', 'ABM focuses marketing on a list of named target accounts, with tailored ads and content for the people involved in the buying decision.'],
-    ['How do you measure B2B marketing?', 'We track qualified leads, meetings, opportunities and closed revenue through your CRM, not just clicks and form fills.'],
-    ['Do you work with our sales team?', 'Yes. We agree lead definitions, follow-up processes and reporting with sales from the start.'],
-    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+    ['Which channels work best for B2B?', 'Usually SEO and content for research-stage buyers, LinkedIn for precise targeting by job title and company, and Google Ads for in-market searches. The mix depends on deal size, sales cycle and how buyers research suppliers.'],
+    ['What is account-based marketing?', 'Account based marketing (ABM) focuses marketing on a list of named target accounts, with tailored ads and content for the people involved in the buying decision, so budget goes to the companies most likely to buy.'],
+    ['How do you measure B2B marketing?', 'We track qualified leads, meetings, opportunities and closed revenue through your CRM, not just clicks and form fills, so your marketing pipeline is judged on the revenue it creates for your sales team.'],
+    ['Do you work with our sales team?', 'Yes. We agree lead definitions, follow-up processes and reporting with sales from the start, and review lead quality together each month so campaigns bring the kind of enquiries your team can close.'],
+    ['Do you need a contract?', 'No. GTech Digital runs B2B marketing on rolling monthly terms. B2B sales cycles are long, so we recommend six months, but you can adjust or stop with a month\'s notice.'],
+    ['How do you approach B2B lead generation?', 'B2B lead generation starts with a clear ideal customer profile, then combines SEO, LinkedIn and Google Ads to reach buyers at each stage. We score leads, route them to sales within minutes and report on the revenue they generate, not just form fills.'],
   ],
   related: ['linkedin-marketing', 'search-engine-optimization', 'content-marketing', 'google-ads', 'crm-erp-development', 'marketing-advisory'],
 });

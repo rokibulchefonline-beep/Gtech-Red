@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'mobile-app-development',
   short: 'Mobile App Development',
-  metaTitle: 'Mobile App Development Company UK | iOS & Android Apps | GTech Digital',
+  metaTitle: 'Mobile App Development Company UK | iOS & Android Apps',
   metaDescription:
     'UK mobile app development company building iOS, Android and cross-platform apps with Flutter and React Native, from design and build to App Store launch.',
   hero: {
@@ -183,12 +183,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'Should I build a native or cross-platform app?', a: 'For most business and consumer apps, cross-platform with Flutter or React Native is faster and cheaper with excellent performance. Native suits games, AR and apps needing deep hardware access.' },
-    { q: 'How long does it take to build an app?', a: 'A first version usually takes 10 to 16 weeks from design to store launch.' },
-    { q: 'Do you publish the app to the App Store?', a: 'Yes. We prepare listings, privacy labels and screenshots and handle App Store and Google Play submission.' },
-    { q: 'Do I need a website as well as an app?', a: 'Usually yes. A website helps people find you on Google, while the app serves your regular customers.' },
-    { q: 'Can the app take payments?', a: 'Yes. We integrate Apple Pay, Google Pay, card payments and in-app subscriptions.' },
-    { q: 'How much does it cost to maintain an app?', a: 'Plan for around 15 to 20% of the build cost per year for updates, new OS versions and hosting.' },
-    { q: 'Who owns the app?', a: 'You do. The app, code and store accounts belong to your business.' },
+    { q: 'How long does it take to build an app?', a: 'A first version usually takes 10 to 16 weeks from design to store launch, depending on features and platforms. We build in sprints and share a testable app every two weeks, so you see progress long before launch.' },
+    { q: 'Do you publish the app to the App Store?', a: 'Yes. We prepare listings, privacy labels and screenshots and handle App Store and Google Play submission, including review feedback. Our app store launch process also covers keyword research so people can find your app.' },
+    { q: 'Do I need a website as well as an app?', a: 'Usually yes. A website helps people find you on Google and explains what you do, while the app serves your regular customers with faster, personalised features. The two should share branding, accounts and data.' },
+    { q: 'Can the app take payments?', a: 'Yes. We integrate Apple Pay, Google Pay, card payments and in-app subscriptions, using providers such as Stripe, so customers can pay securely in a few taps and you receive clear reporting on every transaction.' },
+    { q: 'How much does it cost to maintain an app?', a: 'Plan for around 15 to 20% of the build cost per year for updates, new OS versions, hosting and support. Regular maintenance keeps iOS and Android versions working and avoids expensive catch-up rebuilds.' },
+    { q: 'Who owns the app?', a: 'You do. The app, code and store accounts belong to your business, and we publish under your own Apple and Google developer accounts so you stay in control of the product and its customers.' },
+    { q: 'Do you build both iOS and Android apps?', a: 'Yes. We offer iOS app development and Android app development as native builds or as cross platform apps with Flutter or React Native. Cross-platform is usually faster and cheaper, and we begin with app UX design so the experience feels right on each device.' },
   ],
   related: ['web-application-development', 'mvp-development', 'saas-product-development', 'api-system-integration', 'website-design', 'branding'],
 };

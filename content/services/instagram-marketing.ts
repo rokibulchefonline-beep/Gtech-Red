@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'instagram-marketing',
   short: 'Instagram Marketing',
-  metaTitle: 'Instagram Marketing Agency UK | Reels, Ads & Influencers | GTech Digital',
+  metaTitle: 'Instagram Marketing Agency UK | Reels, Ads & Influencers',
   metaDescription:
     'UK Instagram marketing agency creating Reels, Stories and ads, managing creators and Instagram Shopping to grow engaged followers and online sales.',
   hero: {
@@ -182,12 +182,12 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'How do I grow on Instagram in 2026?', a: 'Post Reels consistently with a strong hook in the first second, use carousels to earn saves, write captions with the keywords people search for, and engage with your community. Creator partnerships and ads speed up growth.' },
-    { q: 'How often should we post on Instagram?', a: 'Most brands do well with 3 to 5 feed posts a week, at least half of them Reels, plus Stories most days.' },
-    { q: 'Do you film the Reels?', a: 'We script and edit Reels, and can either guide your team to film on a phone or organise professional and creator shoots.' },
-    { q: 'Do influencer posts need to be labelled?', a: 'Yes. UK advertising rules require paid or gifted content to be clearly labelled, for example with #ad. We manage disclosures for every campaign.' },
-    { q: 'Can we sell directly on Instagram?', a: 'Yes. With Instagram Shopping you can tag products in posts and Reels so people can browse and buy through your shop.' },
-    { q: 'How do you measure Instagram results?', a: 'We track reach, engagement, saves, followers and, through tracking links and GA4, the traffic, leads and sales Instagram drives.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'How often should we post on Instagram?', a: 'Most brands do well with 3 to 5 feed posts a week, at least half of them Reels, plus Stories most days. Consistency matters more than volume, and our content creation plan keeps your Meta channels active without burning out your team.' },
+    { q: 'Do you film the Reels?', a: 'We script and edit Reels, and can either guide your team to film on a phone or organise professional and creator shoots. Most clients mix quick phone clips with one planned shoot a month to keep quality high.' },
+    { q: 'Do influencer posts need to be labelled?', a: 'Yes. UK advertising rules require paid or gifted content to be clearly labelled, for example with #ad or the paid partnership tag. GTech Digital manages disclosures for every creator campaign so your brand stays compliant with ASA guidance.' },
+    { q: 'Can we sell directly on Instagram?', a: 'Yes. With Instagram Shopping you can tag products in posts and Reels so people can browse and buy through your shop. We connect your catalogue, set up tagging and run ads that retarget shoppers who viewed items.' },
+    { q: 'How do you measure Instagram results?', a: 'We track reach, engagement, saves, followers and, through tracking links and GA4, the traffic, leads and sales Instagram drives. Your monthly report shows which Reels and ads produce revenue so we can do more of what works.' },
+    { q: 'Do you need a contract?', a: 'No. We run Instagram marketing on rolling monthly terms. We suggest at least three months so Reels and ads have time to learn, but you are never locked in.' },
   ],
   related: ['facebook-marketing', 'tiktok-marketing', 'pinterest-marketing', 'content-marketing', 'paid-media', 'branding'],
 };

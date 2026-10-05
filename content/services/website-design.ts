@@ -8,9 +8,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'website-design',
   short: 'Website Design',
-  metaTitle: 'Website Design Agency UK | UX & UI Design That Converts | GTech Digital',
+  metaTitle: 'Website Design Agency UK | UX & UI Design That Converts',
   metaDescription:
-    'UK website design agency creating user-friendly, accessible and brand-led websites, with UX research, Figma prototypes and design systems that turn visitors into customers.',
+    'UK website design agency creating accessible, brand-led websites with UX research, Figma prototypes and design systems that turn visitors into customers.',
   hero: {
     keyword: 'Website Design',
     title: 'Website Design That Turns Visitors Into',
@@ -182,13 +182,13 @@ const content: ServiceContent = {
     },
   ],
   faqs: [
-    { q: 'What makes a good website design?', a: 'A good design is clear, fast, accessible and on-brand. It answers visitor questions quickly, builds trust and makes the next step obvious.' },
-    { q: 'How long does website design take?', a: 'Design usually takes 3 to 6 weeks, depending on the number of pages, research and rounds of feedback.' },
-    { q: 'Will we see the design before it is built?', a: 'Yes. You review wireframes, page designs and a clickable Figma prototype before any development starts.' },
-    { q: 'Do you design for mobile?', a: 'Yes. We design mobile-first, then scale up to tablet and desktop.' },
-    { q: 'Can you work with our existing brand?', a: 'Yes. We follow your brand guidelines, or refresh them with our branding team if needed.' },
-    { q: 'Do you also build the website?', a: 'Yes. Our developers build the design on WordPress, Shopify, Laravel or Next.js.' },
-    { q: 'Is the design accessible?', a: 'Yes. We design to WCAG 2.2 AA, covering colour contrast, keyboard use and screen readers.' },
+    { q: 'What makes a good website design?', a: 'A good design is clear, fast, accessible and on-brand. It answers visitor questions quickly, builds trust and makes the next step obvious. As a web design agency we test layouts with real users, not just opinions.' },
+    { q: 'How long does website design take?', a: 'Design usually takes 3 to 6 weeks, depending on the number of pages, research and rounds of feedback. We agree the timeline upfront and share progress weekly, so there are no surprises before development starts.' },
+    { q: 'Will we see the design before it is built?', a: 'Yes. You review wireframes, page designs and a clickable Figma prototype before any development starts, so you can click through the site and approve every key page and journey before we build it.' },
+    { q: 'Do you design for mobile?', a: 'Yes. We design mobile-first, then scale up to tablet and desktop, because most UK visitors arrive on a phone. Responsive design means layouts, buttons and forms are tested on real devices before launch.' },
+    { q: 'Can you work with our existing brand?', a: 'Yes. We follow your brand guidelines, or refresh them with our branding team if needed, so colours, typography and tone of voice stay consistent between your website, social media and printed materials.' },
+    { q: 'Do you also build the website?', a: 'Yes. Our developers build the design on WordPress, Shopify, Laravel or Next.js, so there is no handover gap between designer and developer, and the finished site matches the approved design exactly.' },
+    { q: 'Is the design accessible?', a: 'Yes. We design to WCAG 2.2 AA, covering colour contrast, keyboard use, screen readers and clear form labels. Accessible, conversion focused design is better for every visitor and reduces legal risk.' },
   ],
   related: ['wordpress-development', 'search-engine-optimization', 'branding', 'conversion-rate-optimization', 'ecommerce-development', 'website-maintenance'],
 };

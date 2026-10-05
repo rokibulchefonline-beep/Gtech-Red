@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'tiktok-marketing',
   short: 'TikTok Marketing',
-  metaTitle: 'TikTok Marketing Agency UK | TikTok Ads, Creators & Shop | GTech Digital',
+  metaTitle: 'TikTok Marketing Agency UK | TikTok Ads, Creators & Shop',
   metaDescription:
     'UK TikTok marketing agency: trend-led video content, Spark Ads, creator campaigns and TikTok Shop that turn views into followers and sales.',
   hero: {
@@ -182,12 +182,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'Is TikTok right for my business?', a: 'If your customers are under 45, or your product is visual, fun or easy to demonstrate, TikTok can work very well. Many local and B2B businesses also succeed with educational content.' },
-    { q: 'Do we need to dance or follow every trend?', a: 'No. The best TikTok content is authentic and useful. Trends help, but tips, behind-the-scenes and honest product videos often perform even better.' },
+    { q: 'Do we need to dance or follow every trend?', a: 'No. The best TikTok content is authentic and useful, not a forced dance. Trends help, but tips, behind-the-scenes and honest product videos often perform even better, and we plan short form video that fits your brand and audience.' },
     { q: 'What are Spark Ads?', a: 'Spark Ads let you boost an existing organic TikTok post, from your account or a creator’s, as an ad. They keep the likes and comments, which builds trust and usually lowers costs.' },
     { q: 'How do I sell on TikTok Shop?', a: 'You set up a TikTok Shop account, list your products and connect fulfilment. Creators can then tag your products in videos and LIVEs for commission. We handle the setup and creator programme.' },
-    { q: 'How often should we post on TikTok?', a: 'Three to seven videos a week is a good target. Consistency helps TikTok learn who your content is for.' },
-    { q: 'How do you measure TikTok results?', a: 'We track views, watch time, followers and, through the TikTok Pixel, Events API and Shop data, the traffic and sales your videos drive.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'How often should we post on TikTok?', a: 'Three to seven videos a week is a good target. Consistency helps TikTok learn who your content is for, and a regular rhythm also gives us more creative to test in Spark Ads and paid campaigns.' },
+    { q: 'How do you measure TikTok results?', a: 'We track views, watch time, followers and, through the TikTok Pixel, Events API and TikTok Shop data, the traffic and sales your videos drive. Your report shows cost per sale and which creators and videos earn their budget.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital runs TikTok marketing on rolling monthly terms. We recommend three months to find the formats that work, but you are never tied in.' },
+    { q: 'Do you manage creator marketing on TikTok?', a: 'Yes. We find, brief and manage UK creators who suit your brand, handle contracts, gifting and disclosure, and boost their best videos as Spark Ads. Creator marketing builds trust faster than brand-only content and usually lowers advertising costs.' },
   ],
   related: ['instagram-marketing', 'facebook-marketing', 'paid-media', 'content-marketing', 'ecommerce-development', 'pinterest-marketing'],
 };

@@ -6,7 +6,7 @@ export default industry({
   slug: 'real-estate',
   name: 'Real Estate',
   kw: 'Property Marketing',
-  metaTitle: 'Estate Agent Marketing Agency UK | Property Marketing | GTech Digital',
+  metaTitle: 'Property Marketing Agency UK | Estate Agents',
   metaDescription: 'UK property marketing agency for estate agents, letting agents and developers: local SEO, valuation lead generation, social media and property websites.',
   hero: {
     title: 'Property Marketing That',
@@ -35,11 +35,12 @@ export default industry({
   reviews: [['Rob H', 'Director, Estate Agent', 'Each branch now ranks in its own town, with reviews to match.'], ['Ayesha R', 'Founder, Lettings Agency', 'Landlords love the portal and we win more managed properties.'], ['Paul D', 'Sales Director, Developer', 'Our new homes campaign sold the first phase off-plan.']],
   faqs: [
     ['How do estate agents get more valuation leads?', 'Rank each branch in local search and Maps, collect reviews, run targeted valuation ads to homeowners and offer an instant valuation tool with fast follow-up.'],
-    ['Do you work with letting agents?', 'Yes. We help letting agents win landlords and build tenant and landlord portals.'],
-    ['Can you help property developers?', 'Yes. We run new homes campaigns, microsites and video to sell developments faster.'],
-    ['Do you integrate with property CRMs and portals?', 'Yes. We connect most agency CRMs and portal feeds such as Rightmove and Zoopla.'],
-    ['How do you measure results?', 'We track valuation requests, booked valuations and instructions by branch and channel.'],
-    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+    ['Do you work with letting agents?', 'Yes. Our letting agent marketing helps win landlords, grow your rental listings and build landlord and tenant portals, with local SEO and ads aimed at property owners in your area.'],
+    ['Can you help property developers?', 'Yes. We run new homes campaigns, microsites and video to sell developments faster, with reservation tracking and viewing bookings, so you can see which marketing reaches buyers.'],
+    ['Do you integrate with property CRMs and portals?', 'Yes. We connect most agency CRMs and portal feeds such as Rightmove and Zoopla, so listings stay accurate and enquiries from every source flow into one place for fast follow-up.'],
+    ['How do you measure results?', 'We track valuation requests, booked valuations and instructions by branch and channel, so you can see which ads, searches and area guides lead to listings won, not just enquiries received.'],
+    ['Do you need a contract?', 'No. GTech Digital runs property marketing on rolling monthly terms. Local rankings take a few months to build, so we recommend at least four, but there is no lock-in.'],
+    ['How do you market estate agents locally?', 'Estate agent marketing starts with each branch ranking in Google Maps and local search, supported by area guides, reviews and valuation ads aimed at homeowners nearby. A fast, simple instant valuation tool then turns interest into booked appointments.'],
   ],
   related: ['local-seo', 'facebook-marketing', 'google-ads', 'reputation-management', 'website-design', 'web-application-development'],
 });

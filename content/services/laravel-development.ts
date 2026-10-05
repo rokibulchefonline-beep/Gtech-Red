@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'laravel-development',
   short: 'Laravel Development',
-  metaTitle: 'Laravel Development Company UK | Web Apps, APIs & SaaS | GTech Digital',
+  metaTitle: 'Laravel Development Company UK | Web Apps, APIs & SaaS',
   metaDescription:
     'UK Laravel development company building secure web applications, admin panels, APIs and SaaS platforms with Laravel 11, Livewire and Filament.',
   hero: {
@@ -183,12 +183,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'Why choose Laravel for a web application?', a: 'Laravel gives a secure, well-tested foundation with authentication, queues, APIs and testing built in. That means faster development and code any PHP developer can maintain.' },
-    { q: 'Is Laravel good for SaaS?', a: 'Yes. Laravel handles multi-tenancy, subscription billing with Stripe, background jobs and APIs very well, which is why many UK SaaS products use it.' },
-    { q: 'Can Laravel handle high traffic?', a: 'Yes. With caching, queues and the right hosting, Laravel applications serve thousands of users and millions of requests.' },
-    { q: 'Can you take over an existing Laravel project?', a: 'Yes. We review the code, upgrade Laravel and PHP versions if needed and then continue development.' },
-    { q: 'Do you build the front end too?', a: 'Yes. We use Livewire, Inertia with Vue or React, or a separate Next.js front end depending on the project.' },
-    { q: 'How do you price Laravel projects?', a: 'We estimate each phase from a clear scope, usually as fixed-price sprints, so you know the cost before work starts.' },
-    { q: 'Who owns the code?', a: 'You do. We hand over the full source code and documentation.' },
+    { q: 'Is Laravel good for SaaS?', a: 'Yes. Laravel handles multi-tenancy, subscription billing with Stripe, background jobs and APIs very well, which is why many UK SaaS products use it. GTech Digital has built Laravel SaaS platforms from first release to scale.' },
+    { q: 'Can Laravel handle high traffic?', a: 'Yes. With caching, queues, a tuned MySQL database and the right hosting, Laravel applications serve thousands of concurrent users and millions of requests a day. We load-test before launch so you know your limits.' },
+    { q: 'Can you take over an existing Laravel project?', a: 'Yes. We review the code, upgrade Laravel and PHP versions if needed, add tests where they are missing and then continue development. Most inherited projects are stabilised within the first few weeks.' },
+    { q: 'Do you build the front end too?', a: 'Yes. We use Livewire, Inertia with Vue or React, or a separate Next.js front end depending on the project, so you get a fast, modern interface rather than a back end with no usable screens.' },
+    { q: 'How do you price Laravel projects?', a: 'We estimate each phase from a clear scope, usually as fixed-price sprints of two to four weeks, so you know the cost before work starts. Changes are agreed in writing before any extra time is spent.' },
+    { q: 'Who owns the code?', a: 'You do. We hand over the full source code and documentation, kept in your own repository. There is no licence fee and no lock-in, so any Laravel developer can continue the work.' },
+    { q: 'How do you handle Laravel DevOps and deployment?', a: 'Laravel DevOps is part of every build: automated tests, continuous integration, staging and production environments, zero-downtime deployments and monitoring. We host on AWS or your own cloud, with a managed MySQL database and daily backups you can restore from.' },
   ],
   related: ['php-development', 'web-application-development', 'saas-product-development', 'api-system-integration', 'mvp-development', 'website-maintenance'],
 };

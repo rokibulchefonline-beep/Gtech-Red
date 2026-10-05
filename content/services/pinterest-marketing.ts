@@ -9,7 +9,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'pinterest-marketing',
   short: 'Pinterest Marketing',
-  metaTitle: 'Pinterest Marketing Agency UK | Pinterest SEO & Ads | GTech Digital',
+  metaTitle: 'Pinterest Marketing Agency UK | Pinterest SEO & Ads',
   metaDescription:
     'UK Pinterest marketing agency: Pinterest SEO, pin design, shopping catalogues and Pinterest Ads that drive long-lasting traffic and online sales.',
   hero: {
@@ -184,12 +184,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'Is Pinterest good for business?', a: 'Pinterest works especially well for home, food, fashion, beauty, travel, weddings and gifts. Users come to plan purchases, so pins often drive high-intent traffic to your website.' },
-    { q: 'How long do Pinterest pins last?', a: 'Much longer than social posts. A well-optimised pin can keep getting views and clicks for months, sometimes years, because people find it through search.' },
+    { q: 'How long do Pinterest pins last?', a: 'Much longer than posts on other social platforms. A well-optimised pin can keep getting views and clicks for months, sometimes years, because people find it through Pinterest search and visual discovery rather than a timeline.' },
     { q: 'What is Pinterest SEO?', a: 'Pinterest SEO means using the keywords people search for in your pin titles, descriptions and board names so Pinterest shows your pins in search results and related feeds.' },
-    { q: 'How often should we pin?', a: 'Fresh pins matter more than repins. We usually recommend several new pins a week, published consistently.' },
-    { q: 'When should we start seasonal campaigns?', a: 'Early. People plan on Pinterest weeks or months ahead, so Christmas, summer and wedding content should go live well before the season.' },
-    { q: 'Can we sell products on Pinterest?', a: 'Yes. By connecting your product catalogue, your products become shoppable pins, and shopping ads can promote them to people searching for similar items.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'How often should we pin?', a: 'Fresh pins matter more than repins. We usually recommend several new pins a week, published consistently, with each pin linking to a relevant page and using the keywords people search for on Pinterest.' },
+    { q: 'When should we start seasonal campaigns?', a: 'Early. People plan on Pinterest weeks or months ahead, so Christmas, summer and wedding content should go live 6 to 8 weeks before the season. We build a seasonal calendar so your pins are indexed in time.' },
+    { q: 'Can we sell products on Pinterest?', a: 'Yes. By connecting your product catalogue, your products become shoppable pins, and shopping ads can promote them to people searching for similar items. We set up the Pinterest Tag and track sales back to each pin.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital runs Pinterest marketing on rolling monthly terms. Pins build slowly, so we suggest six months, but there is no lock-in and you keep full ownership of your account.' },
+    { q: 'How does Pinterest help customers discover my brand?', a: 'Pinterest is a visual discovery engine, so people search for ideas before they know which brand to buy from. Strong pins and keyword-rich boards put your products in front of buyers at the planning stage, often months before they purchase.' },
   ],
   related: ['instagram-marketing', 'facebook-marketing', 'ecommerce-development', 'content-marketing', 'search-engine-optimization', 'paid-media'],
 };

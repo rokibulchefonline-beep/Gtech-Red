@@ -3,11 +3,17 @@ import Toc from '@/components/blog/Toc';
 import { slugify } from '@/lib/util';
 import type { LegalDoc } from '@/content/legal/types';
 import Hl from '@/components/Hl';
+import Schema from '@/components/Schema';
+import { breadcrumbNode, pageNode } from '@/lib/schema';
 
-export default function LegalPage({ doc }: { doc: LegalDoc }) {
+export default function LegalPage({ doc, path }: { doc: LegalDoc; path: string }) {
   const items = doc.sections.map((s) => ({ id: slugify(s.h), text: s.h }));
   return (
     <>
+      <Schema path={path} nodes={[
+        pageNode({ path, name: doc.title, description: doc.intro, speakable: false }),
+        breadcrumbNode(path, [[doc.title, path]]),
+      ]} />
       <section className="sp-hero compact">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>{doc.title}</b></nav>

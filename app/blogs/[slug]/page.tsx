@@ -15,6 +15,8 @@ import { groupIcons } from '@/lib/icons';
 import { headingsOf, sanitizeHtml } from '@/lib/sanitize-html';
 import { slugify } from '@/lib/util';
 import Hl from '@/components/Hl';
+import Schema from '@/components/Schema';
+import { BASE, articleNode, breadcrumbNode, pageNode } from '@/lib/schema';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -52,20 +54,16 @@ export default async function PostPage({ params }: Props) {
   const url = `${base}/blogs/${p.slug}`;
   const mins = readTime(p.body, isHtml);
 
-  const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.excerpt, image: `${base}${p.image}`, datePublished: p.date, dateModified: p.date,
-      mainEntityOfPage: url, articleSection: p.category, wordCount: wordCount(p.body, isHtml),
-      author: { '@type': 'Organization', name: p.author || author.name, url: `${base}/about` },
-      publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${base}/logo.png` } } },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${base}/blogs` },
-      { '@type': 'ListItem', position: 3, name: p.title, item: url }] },
+  const path = `/blogs/${p.slug}`;
+  const nodes = [
+    pageNode({ path, type: 'WebPage', name: p.title, description: p.excerpt, mainEntity: `${BASE}${path}#article`, image: p.image, published: p.date, modified: p.date }),
+    breadcrumbNode(path, [['Blog', '/blogs'], [p.title, path]]),
+    articleNode({ path, type: 'BlogPosting', headline: p.title, description: p.metaDescription || p.excerpt, image: p.image, published: p.date, modified: p.date, section: p.category, keywords: p.tags, words: wordCount(p.body, isHtml), author: p.author || author.name }),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Schema path={path} nodes={nodes} />
 
       <header className="bp-top"><div className="wrap bp-top-in">
         <div className="bp-top-copy">

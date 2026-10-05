@@ -8,9 +8,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'custom-software-development',
   short: 'Custom Software',
-  metaTitle: 'Custom Software Development Company UK | Bespoke Software | GTech Digital',
+  metaTitle: 'Custom Software Development Company UK | Bespoke Software',
   metaDescription:
-    'UK custom software development company building web apps, mobile apps, integrations, CRM and ERP systems, SaaS products and MVPs that automate work and grow revenue.',
+    'UK custom software development company building web apps, mobile apps, integrations, CRM and ERP systems, SaaS products and MVPs that automate work.',
   hero: {
     keyword: 'Custom Software Development',
     title: 'Custom Software Development',
@@ -185,10 +185,11 @@ const content: ServiceContent = {
     { q: 'When does custom software make sense?', a: 'When off-the-shelf tools force workarounds, when licence fees grow with every user, or when manual processes cost your team hours each week. Custom software also helps when the software itself is your competitive edge.' },
     { q: 'How long does custom software take?', a: 'A focused tool or MVP usually takes 8 to 12 weeks. Larger platforms are delivered in phases over 4 to 9 months, with usable releases along the way.' },
     { q: 'How do you price projects?', a: 'We start with a paid or free discovery phase, then give a fixed price per phase, so you always know the cost before work starts.' },
-    { q: 'Who owns the software?', a: 'You do. You own the source code, data and intellectual property once each phase is paid for.' },
-    { q: 'Which technologies do you use?', a: 'We choose proven tools for each project, typically Laravel, Node.js, React, Next.js, Flutter and React Native, hosted on AWS or Azure.' },
-    { q: 'Is our data secure?', a: 'Yes. We build with encryption, role-based access, audit logs and GDPR compliance, and follow OWASP security practices.' },
-    { q: 'Do you support the software after launch?', a: 'Yes. We offer hosting, monitoring, maintenance and ongoing development on monthly plans.' },
+    { q: 'Who owns the software?', a: 'You do. You own the source code, data and intellectual property once each phase is paid for. We keep everything in your repository with documentation, so you are never dependent on GTech Digital to run the software.' },
+    { q: 'Which technologies do you use?', a: 'We choose proven tools for each project, typically Laravel, Node.js, React, Next.js, Flutter and React Native, hosted on AWS or Azure. We pick what is easiest to maintain, not what is fashionable.' },
+    { q: 'Is our data secure?', a: 'Yes. We build with encryption, role-based access, audit logs and GDPR compliance, and follow OWASP security practices. Every release is tested for vulnerabilities, and data is backed up and stored in UK or EU regions.' },
+    { q: 'Do you support the software after launch?', a: 'Yes. We offer hosting, monitoring, maintenance and ongoing development on monthly plans, with an agreed response time for faults, so your software stays secure, fast and aligned with how your business changes.' },
+    { q: 'What types of custom software do you build?', a: 'We build web application development projects such as portals and dashboards, mobile app development for iOS and Android, CRM development for sales and customer data, and business automation that removes repetitive admin. Each is designed around your process, not a template.' },
   ],
   related: ['web-application-development', 'mobile-app-development', 'api-system-integration', 'crm-erp-development', 'saas-product-development', 'mvp-development'],
 };

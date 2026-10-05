@@ -9,7 +9,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'content-marketing',
   short: 'Content Marketing',
-  metaTitle: 'Content Marketing Agency UK | SEO & AI-Ready Content | GTech Digital',
+  metaTitle: 'Content Marketing Agency UK | SEO & AI-Ready Content',
   metaDescription:
     'UK content marketing agency creating strategy, articles, guides and video that rank on Google, get cited in AI answers and turn readers into customers.',
   hero: {
@@ -184,12 +184,12 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'How long does content marketing take to work?', a: 'New articles usually start ranking within 2 to 4 months, with traffic building steadily over 6 to 12 months. Comparison and cost pages often produce leads sooner.' },
-    { q: 'How many articles should we publish each month?', a: 'Quality matters more than volume. Most businesses do well with 4 to 8 in-depth pieces a month, plus regular refreshes of existing content.' },
+    { q: 'How many articles should we publish each month?', a: 'Quality matters more than volume. Most businesses do well with 4 to 8 in-depth pieces a month, plus regular refreshes of existing content. Our blog writing is planned around keyword research, so every article targets a real search and a real customer.' },
     { q: 'Do you use AI to write content?', a: 'We use AI tools for research and efficiency, but every piece is planned, written and edited by experienced UK writers and checked with your experts. That is what makes content helpful, accurate and trustworthy.' },
     { q: 'How do you get content cited by AI tools?', a: 'AI tools favour clear, well-structured answers from trusted sources. We write direct answers to specific questions, add schema and supporting evidence, and build your authority so AI tools are more likely to quote you.' },
-    { q: 'Who owns the content?', a: 'You do. All content, images and video we create for you belong to your business.' },
-    { q: 'Can you refresh our existing content?', a: 'Yes. Updating and consolidating older content is often the fastest way to win back rankings and traffic.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Who owns the content?', a: 'You do. All content, images and video content we create for you belong to your business once paid for, so you are free to republish or repurpose it on any channel.' },
+    { q: 'Can you refresh our existing content?', a: 'Yes. Updating and consolidating older content is often the fastest way to win back rankings and traffic. We refresh facts, add structure and direct answers that can win featured snippets, and redirect weak pages to stronger ones.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital works on rolling monthly terms. Content compounds over time, so we recommend six months, but there is no lock-in if it is not working for your business.' },
   ],
   related: ['search-engine-optimization', 'seo-backlinks', 'reputation-management', 'website-design', 'linkedin-marketing', 'google-ads'],
 };

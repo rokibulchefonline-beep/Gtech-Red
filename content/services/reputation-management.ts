@@ -8,9 +8,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'reputation-management',
   short: 'Reputation Management',
-  metaTitle: 'Online Reputation Management UK | Reviews & Brand Search | GTech Digital',
+  metaTitle: 'Online Reputation Management UK | Reviews & Brand Search',
   metaDescription:
-    'Online reputation management for UK businesses: more genuine 5-star reviews, faster responses, cleaner branded search results and better AI answers about your brand.',
+    'Online reputation management for UK businesses: more genuine 5-star reviews, faster responses, cleaner branded search results and better AI answers.',
   hero: {
     keyword: 'Online Reputation Management',
     title: 'Reputation Management That',
@@ -187,8 +187,9 @@ const content: ServiceContent = {
     { q: 'How quickly can my star rating improve?', a: 'Most businesses see new reviews within the first week of automated requests. A noticeable rise in average rating usually takes 2 to 3 months, depending on how many customers you serve.' },
     { q: 'How do you improve what ChatGPT says about my business?', a: 'AI tools draw on information across the web. We correct inaccurate facts, strengthen consistent information on trusted sources and build positive coverage, then monitor how AI tools describe your brand.' },
     { q: 'Can you push down a negative news article?', a: 'We strengthen and create positive pages that compete for your branded search results, which usually moves unwanted pages lower. Where legal or policy grounds exist, we also help with removal requests.' },
-    { q: 'Do you reply to reviews in our name?', a: 'Yes, in your tone of voice and following guidelines you approve. Sensitive complaints are flagged to you before we respond.' },
-    { q: 'Do I need a long contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Do you reply to reviews in our name?', a: 'Yes, in your tone of voice and following guidelines you approve. Our review management service replies to positive and neutral reviews directly, and flags sensitive complaints to you first so nothing is sent without your sign-off.' },
+    { q: 'Do I need a long contract?', a: 'No. GTech Digital runs online reputation management on rolling monthly terms. Most clients stay because their star rating, review volume and brand search results keep improving, not because they are locked in.' },
+    { q: 'What is a brand SERP and why does it matter?', a: 'Your brand SERP is what appears when someone searches your company name on Google. It shapes first impressions and trust, so we protect your brand reputation by strengthening official profiles, positive reviews and press that outrank unhelpful pages.' },
   ],
   related: ['search-engine-optimization', 'facebook-marketing', 'content-marketing', 'branding', 'google-ads', 'seo-backlinks'],
 };

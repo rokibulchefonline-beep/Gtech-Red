@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'mvp-development',
   short: 'MVP Development',
-  metaTitle: 'MVP Development Company UK | Launch Your Startup Fast | GTech Digital',
+  metaTitle: 'MVP Development Company UK | Launch Your Startup Fast',
   metaDescription:
     'UK MVP development company helping founders turn ideas into launched products in 8 to 12 weeks, with discovery, design, build and real-user validation.',
   hero: {
@@ -182,13 +182,14 @@ const content: ServiceContent = {
     },
   ],
   faqs: [
-    { q: 'How long does it take to build an MVP?', a: 'Most MVPs take 8 to 12 weeks from workshop to launch, depending on scope and platform.' },
+    { q: 'How long does it take to build an MVP?', a: 'Most MVPs take 8 to 12 weeks from workshop to launch, depending on scope and platform. We fix the scope in week one, release a testable version early and keep weekly demos so you can steer the build.' },
     { q: 'How much should an MVP include?', a: 'Only what proves your core idea: usually sign-up, the main workflow, a way to pay or join, and analytics. Everything else waits until you have feedback.' },
-    { q: 'Can the MVP grow into the full product?', a: 'Yes. We build on a solid, scalable foundation so you extend it rather than rebuild it.' },
+    { q: 'Can the MVP grow into the full product?', a: 'Yes. We build on a solid, scalable foundation so you extend the product rather than rebuild it. Code quality, testing and architecture are set up properly from the start, even though the first release is deliberately small.' },
     { q: 'Should we build web or mobile first?', a: 'Usually web first, because it is faster to build and update. Go mobile first if your idea depends on phone features like location or the camera.' },
-    { q: 'Can you help us pitch to investors?', a: 'We provide a polished demo, product metrics and technical answers for due diligence.' },
-    { q: 'Who owns the code and IP?', a: 'You do, in full, which is important for investors.' },
-    { q: 'Do you sign NDAs?', a: 'Yes. We are happy to sign an NDA before you share your idea.' },
+    { q: 'Can you help us pitch to investors?', a: 'We provide a polished demo, product metrics and technical answers for due diligence. Many founders use our MVP launch data, such as sign-ups and retention, to show traction in investor pitches.' },
+    { q: 'Who owns the code and IP?', a: 'You do, in full, which is important for investors. We assign all intellectual property to your company in the contract and keep the code in your own repository from the first commit.' },
+    { q: 'Do you sign NDAs?', a: 'Yes. We are happy to sign an NDA before you share your idea, and we keep all product plans and user data confidential. Many startup founders ask for this on the first call, and we agree straight away.' },
+    { q: 'How do you handle product validation and user testing?', a: 'Product validation starts before we build: we test the problem with real customers, then use rapid prototyping to put clickable screens in front of users. After launch, user testing and analytics show whether you have product-market fit or need to change direction.' },
   ],
   related: ['saas-product-development', 'web-application-development', 'mobile-app-development', 'website-design', 'branding', 'marketing-advisory'],
 };

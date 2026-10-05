@@ -7,6 +7,8 @@ import PartnerStrip from '@/components/PartnerStrip';
 import FaqSection from '@/components/service/FaqSection';
 import { Tick } from '@/components/service/ServicePage';
 import { getPublicSettings } from '@/lib/settings';
+import Schema from '@/components/Schema';
+import { breadcrumbNode, faqNode, ids, pageNode } from '@/lib/schema';
 
 const base = 'https://www.gtechdigital.co.uk';
 
@@ -36,18 +38,15 @@ const faqs = [
 export default async function Contact() {
   const st = await getPublicSettings();
   const site = { name: st.general.siteName, email: st.contact.email, phone: st.contact.phone };
-  const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact GTech Digital', url: `${base}/contact`,
-      mainEntity: { '@type': 'Organization', name: site.name, url: base,
-        contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: site.email, telephone: site.phone, areaServed: 'GB', availableLanguage: 'English' } } },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-      { '@type': 'ListItem', position: 2, name: 'Contact', item: `${base}/contact` }] },
+  const nodes = [
+    pageNode({ path: '/contact', type: 'ContactPage', name: 'Contact GTech Digital', description: baseMeta.description as string, mainEntity: ids.org }),
+    breadcrumbNode('/contact', [['Contact', '/contact']]),
+    faqNode('/contact', faqs),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Schema path="/contact" nodes={nodes} />
 
       <section className="sp-hero compact">
         <div className="wrap sp-hero-in">
@@ -77,7 +76,7 @@ export default async function Contact() {
 
       <PartnerStrip />
 
-      <FaqSection title="Frequently Asked Questions About Getting in Touch" faqs={faqs} schema />
+      <FaqSection title="Frequently Asked Questions About Getting in Touch" faqs={faqs} />
     </>
   );
 }

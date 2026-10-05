@@ -6,6 +6,8 @@ import Newsletter from '@/components/blog/Newsletter';
 import { BlogList, BlogListView, BlogTools, BlogToolsView } from '@/components/blog/BlogBrowser';
 import { getPosts } from '@/lib/blog';
 import { slugify } from '@/lib/util';
+import Schema from '@/components/Schema';
+import { BASE, breadcrumbNode, itemListNode, pageNode } from '@/lib/schema';
 
 const baseMeta: Metadata = {
   title: { absolute: 'GTech Digital Blog | SEO, Marketing, Web & Software Insights' },
@@ -20,6 +22,11 @@ export default async function Blog() {
 
   return (
     <>
+      <Schema path="/blogs" nodes={[
+        pageNode({ path: '/blogs', type: ['CollectionPage', 'Blog'], name: 'GTech Digital Blog', description: baseMeta.description as string, mainEntity: `${BASE}/blogs#list` }),
+        breadcrumbNode('/blogs', [['Blog', '/blogs']]),
+        itemListNode('/blogs', 'GTech Digital blog posts', all.slice(0, 30).map((p) => [p.title, `/blogs/${p.slug}`] as [string, string])),
+      ]} />
       <section className="bl-hero-wrap"><div className="wrap">
         <div className="bl-hero">
           <h1>Digital Marketing Blog of <span className="hl">GTech Digital</span></h1>

@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'web-application-development',
   short: 'Web Application Development',
-  metaTitle: 'Web Application Development Company UK | Portals & Dashboards | GTech Digital',
+  metaTitle: 'Web Application Development Company UK | GTech Digital',
   metaDescription:
     'UK web application development company building secure customer portals, staff dashboards and business tools with React, Next.js, Laravel and Node.js.',
   hero: {
@@ -183,12 +183,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'What is the difference between a website and a web application?', a: 'A website mainly shares information. A web application lets users log in and do things, such as book, order, manage accounts or run business processes.' },
-    { q: 'How long does it take to build a web app?', a: 'A first version usually takes 8 to 16 weeks, depending on features. We release in phases so you get value early.' },
-    { q: 'Can the web app work on phones?', a: 'Yes. Every app we build is responsive, and we can make it an installable progressive web app (PWA).' },
-    { q: 'Can it connect to our existing systems?', a: 'Yes. We integrate with CRMs, accounting, payment and industry systems through APIs.' },
-    { q: 'How do you keep the app secure?', a: 'We use secure sign-in, role-based access, encryption, audit logs and OWASP testing, and keep everything patched after launch.' },
-    { q: 'Who owns the code?', a: 'You do. We hand over the full source code and documentation.' },
-    { q: 'Do you host and support the app?', a: 'Yes. We offer monitored cloud hosting, maintenance and ongoing development.' },
+    { q: 'How long does it take to build a web app?', a: 'A first version usually takes 8 to 16 weeks, depending on features. We release in phases so you get value early, and each release is tested with real users before we add the next set of features.' },
+    { q: 'Can the web app work on phones?', a: 'Yes. Every app we build is responsive, and we can make it an installable progressive web app (PWA) that works offline and sits on the home screen, without needing App Store approval or a separate mobile build.' },
+    { q: 'Can it connect to our existing systems?', a: 'Yes. We integrate with CRMs, accounting software, payment providers and industry systems through APIs, so data flows between your custom web app and the tools your team already uses without double entry.' },
+    { q: 'How do you keep the app secure?', a: 'We use secure sign-in, role-based access, encryption, audit logs and OWASP testing, and keep everything patched after launch. Security is designed in from the start, not added at the end.' },
+    { q: 'Who owns the code?', a: 'You do. We hand over the full source code and documentation, kept in your own repository, so you have full control of the product and can change developers if you ever need to.' },
+    { q: 'Do you host and support the app?', a: 'Yes. We offer monitored cloud hosting, backups, maintenance and ongoing development on monthly plans, so your web application stays fast, secure and available while it grows with your business.' },
+    { q: 'What kinds of custom web apps do you build?', a: 'We build a custom web app for almost any process: customer portals, booking systems, dashboard development for live reporting, internal tools and SaaS products. GTech Digital designs each one around how your users actually work, then launches it in phases.' },
   ],
   related: ['laravel-development', 'mobile-app-development', 'api-system-integration', 'saas-product-development', 'crm-erp-development', 'mvp-development'],
 };

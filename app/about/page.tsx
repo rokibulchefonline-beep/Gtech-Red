@@ -10,6 +10,8 @@ import { Block, Head, Tick } from '@/components/service/ServicePage';
 import type { Section } from '@/content/types';
 import { site } from '@/lib/data';
 import { listDocs } from '@/lib/mongo';
+import Schema from '@/components/Schema';
+import { breadcrumbNode, faqNode, ids, pageNode } from '@/lib/schema';
 
 
 // Entity map: GTech Digital (Organization) -> UK digital marketing, web design and software agency;
@@ -159,18 +161,15 @@ const faqs = [
 
 export default async function About() {
   const cases = await listDocs('case_studies', 6);
-  const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About GTech Digital', url: `${base}/about`,
-      mainEntity: { '@type': 'Organization', name: site.name, url: base, logo: `${base}/logo.png`, email: site.email, telephone: site.phone,
-        description: 'UK digital marketing, web design and custom software agency.', areaServed: { '@type': 'Country', name: 'United Kingdom' } } },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
-      { '@type': 'ListItem', position: 2, name: 'About Us', item: `${base}/about` }] },
+  const nodes = [
+    pageNode({ path: '/about', type: 'AboutPage', name: 'About GTech Digital', description: baseMeta.description as string, mainEntity: ids.org, about: ['Digital marketing agency', 'Web design', 'Custom software'] }),
+    breadcrumbNode('/about', [['About Us', '/about']]),
+    faqNode('/about', faqs),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Schema path="/about" nodes={nodes} />
 
       <section className="sp-hero">
         <div className="wrap sp-hero-in">
@@ -200,7 +199,7 @@ export default async function About() {
 
       {later.map((s) => <Block key={s.id} s={s} slug="about" name="GTech Digital" />)}
 
-      <FaqSection title="Frequently Asked Questions About GTech Digital" faqs={faqs} schema />
+      <FaqSection title="Frequently Asked Questions About GTech Digital" faqs={faqs} />
       <InquirySection />
     </>
   );

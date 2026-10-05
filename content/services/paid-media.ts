@@ -8,9 +8,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'paid-media',
   short: 'Paid Media',
-  metaTitle: 'Paid Media Agency UK | Media Planning & Buying | GTech Digital',
+  metaTitle: 'Paid Media Agency UK | Media Planning & Buying',
   metaDescription:
-    'UK paid media agency planning and buying across Google, Meta, LinkedIn, TikTok and YouTube. Budget allocation, creative testing and attribution that grow profit.',
+    'UK paid media agency buying Google, Meta, LinkedIn, TikTok and YouTube ads. Budget allocation, creative testing and attribution that grow profit.',
   hero: {
     keyword: 'Paid Media',
     title: 'Paid Media Management',
@@ -186,9 +186,10 @@ const content: ServiceContent = {
     { q: 'How do you decide where to spend our budget?', a: 'We start from your margins and customer value, set targets for cost per acquisition or ROAS, then test channels and shift budget weekly towards those that hit the targets.' },
     { q: 'What is blended ROAS?', a: 'Blended ROAS is your total revenue divided by total ad spend across all channels. It avoids double counting when several platforms claim the same sale and gives a truer picture of overall return.' },
     { q: 'How much should we spend on paid media?', a: 'It depends on your goals and economics. We model the budget needed to hit your targets and recommend a starting spend you can scale as results prove out.' },
-    { q: 'Do you produce the ad creative?', a: 'Yes. We produce static, video and UGC-style creative and test new versions every week.' },
-    { q: 'How do you handle tracking after iOS privacy changes?', a: 'We use server-side tracking, the Meta Conversions API, enhanced conversions and GA4 so you keep accurate data, then report blended metrics alongside platform numbers.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Do you produce the ad creative?', a: 'Yes. We produce static, video and UGC-style creative for paid social and test new versions every week, because fresh creative is the biggest lever on cost per result across Meta Ads, TikTok Ads and LinkedIn Ads.' },
+    { q: 'How do you handle tracking after iOS privacy changes?', a: 'We use server-side tracking, the Meta Conversions API, enhanced conversions and GA4 so you keep accurate data after iOS privacy changes, then report blended metrics alongside platform numbers so decisions rest on the full picture.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital manages paid media on rolling monthly terms. You own your accounts and data, and you can change budgets or stop at any time.' },
+    { q: 'Which platforms do you manage?', a: 'We run paid social and PPC management across Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, Pinterest and YouTube. We pick channels for your audience and margins rather than selling every platform to every client.' },
   ],
   related: ['google-ads', 'digital-advertising', 'facebook-marketing', 'tiktok-marketing', 'conversion-rate-optimization', 'marketing-advisory'],
 };

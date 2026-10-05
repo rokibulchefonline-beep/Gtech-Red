@@ -7,6 +7,8 @@ import { Tick } from '@/components/service/ServicePage';
 import { industryContent } from '@/content/industries';
 import { industries } from '@/lib/data';
 import { industryIcons, uiIcons } from '@/lib/icons';
+import Schema from '@/components/Schema';
+import { BASE, breadcrumbNode, itemListNode, pageNode } from '@/lib/schema';
 
 const baseMeta: Metadata = {
   title: { absolute: 'Industries We Serve | Sector Marketing & Software | GTech Digital' },
@@ -18,6 +20,11 @@ export const generateMetadata = () => seoFor('/industries', baseMeta);
 export default function Industries() {
   return (
     <>
+      <Schema path="/industries" nodes={[
+        pageNode({ path: '/industries', type: 'CollectionPage', name: 'Industry Marketing Services of GTech Digital', description: baseMeta.description as string, mainEntity: `${BASE}/industries#list` }),
+        breadcrumbNode('/industries', [['Industries', '/industries']]),
+        itemListNode('/industries', 'Industries GTech Digital serves', industries.map((i) => [i.name, `/industries/${i.slug}`] as [string, string])),
+      ]} />
       <section className="sp-hero compact">
         <div className="wrap sp-hero-in">
           <nav className="sp-crumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><b>Industries</b></nav>

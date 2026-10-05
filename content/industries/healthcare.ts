@@ -6,7 +6,7 @@ export default industry({
   slug: 'healthcare',
   name: 'Healthcare',
   kw: 'Healthcare Marketing',
-  metaTitle: 'Healthcare Marketing Agency UK | Clinic & Dental Marketing | GTech Digital',
+  metaTitle: 'Healthcare Marketing Agency UK | Clinic & Dental Marketing',
   metaDescription: 'UK healthcare marketing agency for private clinics, dentists and aesthetics: compliant SEO, Google Ads, reviews and booking websites that attract new patients.',
   hero: {
     title: 'Healthcare Marketing for',
@@ -36,10 +36,11 @@ export default industry({
   faqs: [
     ['How can a private clinic attract more patients?', 'Rank in local search and Google Maps, collect genuine reviews, publish clear treatment and price information and offer easy online booking. Targeted ads speed up results.'],
     ['Are there rules for healthcare advertising?', 'Yes. UK healthcare ads must follow ASA and CAP codes, and some treatments, such as prescription medicines, cannot be advertised to the public. We keep campaigns compliant.'],
-    ['Do you work with dentists?', 'Yes. We work with dental practices, aesthetics clinics, physiotherapists, opticians and other private healthcare providers.'],
-    ['Can you integrate our booking system?', 'Yes. We connect most clinic booking systems to your website and track bookings in GA4.'],
-    ['How do you handle patient data?', 'We use secure, GDPR-compliant forms and never put sensitive health data into ad platforms.'],
-    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+    ['Do you work with dentists?', 'Yes. Our dental marketing work covers dental practices, aesthetics clinics, physiotherapists, opticians and other private healthcare providers, using compliant treatment pages, local SEO and online booking to bring in new patients.'],
+    ['Can you integrate our booking system?', 'Yes. We connect most clinic booking systems to your website and track bookings in GA4, so you can see which searches, ads and reviews lead to appointments that are actually attended.'],
+    ['How do you handle patient data?', 'We use secure, GDPR-compliant forms and never put sensitive health data into ad platforms. Tracking is configured to protect patient privacy, and we review consent and data flows with your practice manager.'],
+    ['Do you need a contract?', 'No. GTech Digital runs clinic marketing on rolling monthly terms. We suggest at least four months for private healthcare SEO, because trust, reviews and rankings take time to build.'],
+    ['How do you optimise a clinic\'s Google Business Profile?', 'A strong Google Business Profile lists the right categories, treatments, opening hours, photos and booking link, and collects genuine reviews. It is the biggest driver of local clicks and calls, so we set it up carefully and keep it updated every week.'],
   ],
   related: ['local-seo', 'search-engine-optimization', 'google-ads', 'reputation-management', 'website-design', 'facebook-marketing'],
 });

@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'conversion-rate-optimization',
   short: 'Conversion Rate Optimisation',
-  metaTitle: 'Conversion Rate Optimisation Agency UK | CRO & A/B Testing | GTech Digital',
+  metaTitle: 'Conversion Rate Optimisation Agency UK | CRO & A/B Testing',
   metaDescription:
     'UK conversion rate optimisation (CRO) agency using research, heatmaps and A/B testing to turn more website visitors into leads and sales.',
   hero: {
@@ -184,11 +184,12 @@ const content: ServiceContent = {
   faqs: [
     { q: 'What is a good conversion rate?', a: 'It depends on your industry and goal. Many lead generation sites convert 2 to 5% of visitors, and ecommerce stores 1 to 3%. We benchmark against your own data and competitors.' },
     { q: 'How much traffic do I need for A/B testing?', a: 'Reliable A/B tests usually need at least a few thousand visitors a month to the page being tested. With less traffic, we focus on research-led improvements instead.' },
-    { q: 'How long does each test run?', a: 'Most tests run for two to four weeks, long enough to cover full weekly cycles and reach statistical significance.' },
-    { q: 'Will testing affect our SEO?', a: 'No. We follow Google’s guidance for testing, so your rankings are not affected.' },
-    { q: 'Which tools do you use?', a: 'GA4, heatmap and recording tools such as Hotjar or Microsoft Clarity, and testing platforms such as VWO or Optimizely.' },
-    { q: 'Do you build the test variations?', a: 'Yes. Our designers and developers create and QA every variation.' },
-    { q: 'Do you need a contract?', a: 'No. CRO programmes run on rolling monthly terms.' },
+    { q: 'How long does each test run?', a: 'Most tests run for two to four weeks, long enough to cover full weekly cycles and reach statistical significance. Stopping early can give a false winner, so we agree sample sizes and rules before each test starts.' },
+    { q: 'Will testing affect our SEO?', a: 'No. We follow Google\'s guidance for testing, using proper redirects and canonical tags, so your rankings are not affected. Faster, clearer pages often improve SEO as a side effect, especially when Core Web Vitals improve.' },
+    { q: 'Which tools do you use?', a: 'GA4, heatmap and recording tools such as Hotjar or Microsoft Clarity, and testing platforms such as VWO or Optimizely. We choose tools to fit your traffic and budget, and you keep ownership of every account.' },
+    { q: 'Do you build the test variations?', a: 'Yes. Our designers and developers create and QA every variation, so tests are properly built, tracked and checked on every device before they go live, and winning changes are rolled out for you.' },
+    { q: 'Do you need a contract?', a: 'No. Our CRO services run on rolling monthly terms. Most programmes need three to six months of testing to build momentum, but you can pause or stop with a month\'s notice.' },
+    { q: 'What do CRO services include?', a: 'CRO services combine analytics review, heatmaps, user research and A/B testing, then turn the findings into a prioritised test roadmap. We also check Core Web Vitals and mobile usability, because slow or awkward pages quietly lose a large share of potential customers.' },
   ],
   related: ['website-design', 'google-ads', 'marketing-advisory', 'ecommerce-development', 'search-engine-optimization', 'paid-media'],
 };

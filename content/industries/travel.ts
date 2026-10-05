@@ -6,7 +6,7 @@ export default industry({
   slug: 'travel',
   name: 'Travel',
   kw: 'Travel Marketing',
-  metaTitle: 'Travel Marketing Agency UK | Tour Operator & Holiday Marketing | GTech Digital',
+  metaTitle: 'Travel Marketing Agency UK | GTech Digital',
   metaDescription: 'UK travel marketing agency for tour operators, travel agents and holiday brands: destination SEO, Google Ads, social media and booking websites that sell trips.',
   hero: {
     title: 'Travel Marketing That',
@@ -35,11 +35,12 @@ export default industry({
   reviews: [['Hannah W', 'Marketing Manager, Tour Operator', 'Our destination guides now rank on page one and drive most of our bookings.'], ['Ravi S', 'Founder, Travel Agency', 'Google Ads ROAS went from 3x to almost 7x in one season.'], ['Emily J', 'Director, Holiday Company', 'Pinterest became a real booking channel for us.']],
   faqs: [
     ['How can a travel company get more bookings?', 'Combine destination SEO and inspiring content to reach people early, Google Ads to capture booking intent, and a trusted, easy booking experience to convert them.'],
-    ['When should travel campaigns start?', 'Usually several months before peak booking windows. We plan around January peaks, summer and late deals.'],
-    ['Do you work with small travel agents?', 'Yes. We work with independent agents, specialist tour operators and larger holiday brands.'],
-    ['Can you show ATOL and ABTA details correctly?', 'Yes. We make protection information clear across your site and campaigns.'],
-    ['Do you build booking websites?', 'Yes. We build travel websites and integrate booking engines and live pricing.'],
-    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+    ['When should travel campaigns start?', 'Usually several months before peak booking windows. We plan around January peaks, summer and late deals, so destination SEO, inspiration content and Google Ads are live when travellers start comparing holidays.'],
+    ['Do you work with small travel agents?', 'Yes. Our travel agent marketing works for independent agents, specialist tour operators and larger holiday brands, with a focus on the destinations and trip types where you can win.'],
+    ['Can you show ATOL and ABTA details correctly?', 'Yes. We make ATOL and ABTA protection information clear across your site and campaigns, in the right wording and position, which builds trust and keeps your travel business compliant.'],
+    ['Do you build booking websites?', 'Yes. We build travel websites and integrate booking engines and live pricing, with itinerary pages and fast mobile checkout, so inspired visitors can turn research into holiday bookings quickly.'],
+    ['Do you need a contract?', 'No. GTech Digital runs travel marketing on rolling monthly terms. We plan campaigns around booking seasons, so spend is concentrated where demand is highest.'],
+    ['What is destination marketing and travel SEO?', 'Destination marketing builds interest in places and experiences, while travel SEO makes your guides, itineraries and trip pages rank when people search. For tour operator marketing, the two together bring in travellers early and keep your holiday bookings steady all year.'],
   ],
   related: ['search-engine-optimization', 'google-ads', 'pinterest-marketing', 'instagram-marketing', 'content-marketing', 'web-application-development'],
 });

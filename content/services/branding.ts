@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'branding',
   short: 'Branding',
-  metaTitle: 'Branding Agency UK | Brand Strategy, Logo & Identity Design | GTech Digital',
+  metaTitle: 'Branding Agency UK | Brand Strategy, Logo & Identity Design',
   metaDescription:
     'UK branding agency creating brand strategy, positioning, logos, visual identities and brand guidelines that make businesses memorable and easier to choose.',
   hero: {
@@ -182,13 +182,14 @@ const content: ServiceContent = {
     },
   ],
   faqs: [
-    { q: 'What is included in a branding project?', a: 'Typically research, brand strategy and positioning, logo and visual identity, messaging and tone of voice, brand guidelines and core templates.' },
-    { q: 'How long does a branding project take?', a: 'Most projects take 6 to 10 weeks. A logo and starter identity can be done in 3 to 4 weeks.' },
-    { q: 'How many logo concepts will we see?', a: 'Usually two or three distinct creative routes, each grounded in the strategy, followed by refinement of your chosen route.' },
-    { q: 'Do we own the brand files?', a: 'Yes. You receive all final files and full ownership of the designs.' },
-    { q: 'Can you help with a business name?', a: 'Yes. We offer naming, including trademark and domain checks, as part of a full brand project.' },
-    { q: 'Can you apply the brand to our website?', a: 'Yes. Our web team can design and build a website around your new brand.' },
-    { q: 'Do you work with start-ups?', a: 'Yes. We offer starter brand packages for new businesses that can grow with you.' },
+    { q: 'What is included in a branding project?', a: 'Typically research, brand strategy and positioning, logo and visual identity, messaging and tone of voice, brand guidelines and core templates. Every element is connected, so the finished brand works consistently across channels.' },
+    { q: 'How long does a branding project take?', a: 'Most projects take 6 to 10 weeks. A logo and starter identity can be done in 3 to 4 weeks, with full brand identity design, guidelines and templates following as the second phase.' },
+    { q: 'How many logo concepts will we see?', a: 'Usually two or three distinct creative routes, each grounded in the strategy, followed by refinement of your chosen route. We explain the thinking behind each concept so decisions are based on strategy, not taste alone.' },
+    { q: 'Do we own the brand files?', a: 'Yes. You receive all final files and full ownership of the designs, including logo variations, fonts guidance, colour values and templates, ready for printers, developers and designers to use.' },
+    { q: 'Can you help with a business name?', a: 'Yes. We offer naming, including trademark and domain checks, as part of a full brand project. A strong name supports your positioning and is available as a web address and social handle.' },
+    { q: 'Can you apply the brand to our website?', a: 'Yes. Our web team can design and build a website around your new brand, and we update social profiles, signage and printed materials so the rebranding launches consistently everywhere.' },
+    { q: 'Do you work with start-ups?', a: 'Yes. We offer starter brand packages for new businesses that can grow with you, so you get a professional identity and guidelines now and can add messaging, templates and a website as the company grows.' },
+    { q: 'What is brand identity design?', a: 'Brand identity design is the visual and verbal system that makes a business recognisable: logo, colours, typography, imagery and tone of voice. GTech Digital also handles rebranding, refreshing an outdated identity without losing the recognition you have already built.' },
   ],
   related: ['website-design', 'marketing-advisory', 'conversion-rate-optimization', 'facebook-marketing', 'content-marketing', 'instagram-marketing'],
 };

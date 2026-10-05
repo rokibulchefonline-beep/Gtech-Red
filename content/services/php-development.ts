@@ -8,7 +8,7 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'php-development',
   short: 'PHP Development',
-  metaTitle: 'PHP Development Company UK | Custom PHP Apps & APIs | GTech Digital',
+  metaTitle: 'PHP Development Company UK | Custom PHP Apps & APIs',
   metaDescription:
     'UK PHP development company building custom web applications, APIs and integrations, and upgrading legacy PHP to modern, secure PHP 8.',
   hero: {
@@ -182,13 +182,14 @@ const content: ServiceContent = {
     },
   ],
   faqs: [
-    { q: 'Is PHP still a good choice in 2026?', a: 'Yes. Modern PHP 8 is fast, secure and actively developed, and it powers a large share of the web, including WordPress and Laravel.' },
-    { q: 'Can you work on our existing PHP code?', a: 'Yes. We start with a code review, then fix, extend or upgrade your system depending on its condition.' },
-    { q: 'Why should we upgrade an old PHP version?', a: 'Old PHP versions no longer receive security fixes and are much slower. Upgrading reduces risk, improves speed and makes hosting easier.' },
-    { q: 'Do you use frameworks?', a: 'Usually, yes. Laravel or Symfony give a secure, well-tested foundation and make your system easier for any developer to maintain.' },
-    { q: 'Will we get the source code?', a: 'Yes. You own the code, which we keep in your version control with documentation.' },
-    { q: 'Do you sign NDAs?', a: 'Yes. We are happy to sign an NDA before reviewing your system.' },
-    { q: 'Do you offer ongoing support?', a: 'Yes. We offer monthly support plans covering fixes, updates and new features.' },
+    { q: 'Is PHP still a good choice in 2026?', a: 'Yes. Modern PHP 8 is fast, secure and actively developed, and it powers a large share of the web, including WordPress and Laravel. For most business applications it remains a practical, well-supported and cost-effective choice.' },
+    { q: 'Can you work on our existing PHP code?', a: 'Yes. We start with a code review and a short report, then fix, extend or upgrade your system depending on its condition. Often we can stabilise a legacy application in weeks rather than rebuilding it from scratch.' },
+    { q: 'Why should we upgrade an old PHP version?', a: 'Old PHP versions no longer receive security fixes and are much slower. Upgrading reduces risk, improves speed, lowers hosting costs and makes it easier to hire developers who can maintain your code in future.' },
+    { q: 'Do you use frameworks?', a: 'Usually, yes. Laravel or Symfony give a secure, well-tested foundation and make your system easier for any developer to maintain. For small tools, plain modern PHP with clean structure can be the better fit.' },
+    { q: 'Will we get the source code?', a: 'Yes. You own the code, which we keep in your version control with documentation. We never lock clients into a proprietary setup, so you can move or extend the project with any developer you choose.' },
+    { q: 'Do you sign NDAs?', a: 'Yes. We are happy to sign an NDA before reviewing your system, and we handle your code and data under strict access controls. Confidentiality is standard for the custom projects we build for UK businesses.' },
+    { q: 'Do you offer ongoing support?', a: 'Yes. We offer monthly support plans covering bug fixes, security updates, PHP version upgrades and new features, with an agreed response time so issues in your custom PHP applications are fixed quickly.' },
+    { q: 'What are custom PHP applications used for?', a: 'Custom PHP applications power customer portals, booking systems, internal tools, APIs and ecommerce back ends that off-the-shelf software cannot handle. GTech Digital designs them around your process, so staff do less manual work and customers get a faster service.' },
   ],
   related: ['laravel-development', 'web-application-development', 'api-system-integration', 'wordpress-development', 'website-maintenance', 'crm-erp-development'],
 };

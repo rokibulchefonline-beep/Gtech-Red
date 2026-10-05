@@ -5,13 +5,30 @@ import Icon from '@/components/Icon';
 import { api } from '@/components/admin/api';
 import { Badge, Card, Count, Field, ImageField, PageTitle, useToast } from '@/components/admin/ui';
 import { analyse } from '@/lib/seo-analysis';
+import { autoSchemaTypes, validateCustomSchema } from '@/lib/schema';
 import { encodeSeoId } from '@/lib/site-pages';
 
 type P = { path: string; label: string; group: string; title?: string; description?: string };
-type O = { title: string; description: string; canonical: string; ogImage: string; noindex: boolean; focusKeyword: string };
-const empty: O = { title: '', description: '', canonical: '', ogImage: '', noindex: false, focusKeyword: '' };
+type O = { title: string; description: string; canonical: string; ogImage: string; noindex: boolean; focusKeyword: string; schemaOff: boolean; schemaCustom: string };
+const empty: O = { title: '', description: '', canonical: '', ogImage: '', noindex: false, focusKeyword: '', schemaOff: false, schemaCustom: '' };
 
 /** Per-URL title, description, canonical, social image and noindex overrides for any page. */
+export function SchemaBox({ path, form, setForm }: { path: string; form: { schemaOff: boolean; schemaCustom: string }; setForm: (f: never) => void }) {
+  const set = setForm as unknown as (f: Record<string, unknown>) => void;
+  const bad = validateCustomSchema(form.schemaCustom);
+  return (
+    <div className="sch">
+      <h3>Structured data (schema.org)</h3>
+      <p className="ad-muted small">This page automatically emits one connected graph: {autoSchemaTypes(path).map((t) => <i key={t} className="sch-t">{t}</i>)}</p>
+      <label className="ad-check"><input type="checkbox" checked={form.schemaOff} onChange={(e) => set({ ...form, schemaOff: e.target.checked })} /> Turn off the automatic schema for this page</label>
+      <label className="ad-field"><span>Custom JSON-LD (optional)</span>
+        <textarea rows={6} value={form.schemaCustom} onChange={(e) => set({ ...form, schemaCustom: e.target.value })} placeholder={'{\n  "@context": "https://schema.org",\n  "@type": "HowTo",\n  "name": "…"\n}'} spellCheck={false} style={{ fontFamily: 'ui-monospace,Menlo,monospace', fontSize: 13 }} />
+        <small className={bad ? 'sch-bad' : ''}>{bad ?? (form.schemaCustom.trim() ? 'Valid JSON-LD. It is added alongside the automatic schema.' : 'Added alongside the automatic schema. Use it for HowTo, Event, Product, Review or anything the template does not cover.')}</small>
+      </label>
+    </div>
+  );
+}
+
 export default function SeoManager({ pages }: { pages: P[] }) {
   const toast = useToast();
   const [overrides, setOverrides] = useState<Record<string, O>>({});
@@ -65,6 +82,7 @@ export default function SeoManager({ pages }: { pages: P[] }) {
                 <Field label="Social sharing image" hint="Used by Facebook, LinkedIn and X. 1200×630."><ImageField value={form.ogImage} onChange={(v) => setForm({ ...form, ogImage: v })} label="Social image" /></Field>
                 <label className="ad-check"><input type="checkbox" checked={form.noindex} onChange={(e) => setForm({ ...form, noindex: e.target.checked })} /> Hide this page from search engines (noindex)</label>
               </div>
+              <SchemaBox path={sel.path} form={form} setForm={setForm} />
               {seo && <ul className="seo-checks">{seo.checks.map((k) => <li key={k.label} className={k.ok === true ? 'ok' : k.ok === 'warn' ? 'warn' : 'bad'}>{k.label}</li>)}</ul>}
               <div className="ad-foot"><button className="ad-btn ghost" onClick={clear}>Remove override</button><button className="ad-btn" onClick={save} disabled={busy}>{busy ? 'Saving…' : 'Save'}</button></div>
             </>

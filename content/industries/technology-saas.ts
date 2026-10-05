@@ -6,8 +6,8 @@ export default industry({
   slug: 'technology-saas',
   name: 'Technology & SaaS',
   kw: 'SaaS Marketing',
-  metaTitle: 'SaaS Marketing Agency UK | Tech & Software Growth | GTech Digital',
-  metaDescription: 'UK SaaS and technology marketing agency growing trials, demos and MRR with SEO, AI search, paid acquisition, LinkedIn and product-led onboarding.',
+  metaTitle: 'SaaS Marketing Agency UK | Tech & Software Growth',
+  metaDescription: 'UK SaaS marketing agency growing trials, demos and MRR with SEO, AI search, paid acquisition, LinkedIn and product-led onboarding.',
   hero: {
     title: 'SaaS Marketing That',
     highlight: 'Grows MRR',
@@ -35,11 +35,12 @@ export default industry({
   reviews: [['Elliot W', 'Founder, PropTech SaaS', 'Search is now our biggest source of trials, at a fraction of our ad CAC.'], ['Hannah V', 'CEO, HR Software', 'Their onboarding work doubled our trial-to-paid rate.'], ['Simran K', 'Head of Growth, B2B SaaS', 'We now show up when buyers ask ChatGPT for tools like ours.']],
   faqs: [
     ['What is the best marketing for SaaS?', 'Usually a mix of SEO for problem and comparison searches, AI search visibility, paid search and LinkedIn for demand capture, and lifecycle email to convert trials. The right mix depends on your price point and sales model.'],
-    ['How do you reduce customer acquisition cost?', 'By growing organic and AI search, improving sign-up and trial conversion, and cutting paid spend that does not lead to paying customers.'],
-    ['Do you work with B2B and B2C software?', 'Yes. We work with both self-serve and sales-led SaaS and technology companies.'],
-    ['Can you help us appear in ChatGPT and AI answers?', 'Yes. Our AEO and GEO work improves how AI assistants understand and recommend your product.'],
-    ['Can you also build our product?', 'Yes. Our development team builds SaaS products, MVPs and integrations.'],
-    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+    ['How do you reduce customer acquisition cost?', 'By growing organic and AI search, improving sign-up and trial conversion, and cutting paid spend that does not lead to paying customers. We report CAC payback by channel, so budget moves to what pays back fastest.'],
+    ['Do you work with B2B and B2C software?', 'Yes. We work with both self-serve and sales-led SaaS and technology companies, adapting tactics to price point, buyer and sales cycle. B2B SaaS marketing usually leans on content and LinkedIn, B2C on search and social.'],
+    ['Can you help us appear in ChatGPT and AI answers?', 'Yes. Our AEO and GEO work improves how AI assistants such as ChatGPT and Perplexity understand and recommend your product, using clear comparison content, schema and consistent mentions on trusted sites.'],
+    ['Can you also build our product?', 'Yes. Our development team builds SaaS products, MVPs and integrations, so you can get product and marketing from one partner. This also means your marketing site, onboarding and analytics are connected from day one.'],
+    ['Do you need a contract?', 'No. GTech Digital runs SaaS marketing on rolling monthly terms. We recommend six months to build content and demand, but you are never locked in.'],
+    ['What is product-led growth?', 'Product-led growth means the product itself drives sign-ups, upgrades and referrals, usually through a free trial or freemium plan. We support it with onboarding emails, in-app prompts, activation tracking and experiments, so more trial users become paying customers.'],
   ],
   related: ['search-engine-optimization', 'saas-product-development', 'linkedin-marketing', 'google-ads', 'conversion-rate-optimization', 'content-marketing'],
 });

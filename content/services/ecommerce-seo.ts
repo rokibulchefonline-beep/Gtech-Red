@@ -8,9 +8,9 @@ import type { ServiceContent } from '../types';
 const content: ServiceContent = {
   slug: 'ecommerce-seo',
   short: 'Ecommerce SEO',
-  metaTitle: 'Ecommerce SEO Agency UK | Shopify & WooCommerce SEO | GTech Digital',
+  metaTitle: 'Ecommerce SEO Agency UK | Shopify & WooCommerce SEO',
   metaDescription:
-    'UK ecommerce SEO agency growing organic sales with category and product page optimisation, technical SEO, product schema and Google free listings for Shopify and WooCommerce.',
+    'UK ecommerce SEO agency growing organic sales with category and product page optimisation, technical SEO, product schema and Google free listings.',
   hero: {
     keyword: 'Ecommerce SEO',
     title: 'Ecommerce SEO That Grows',
@@ -183,12 +183,13 @@ const content: ServiceContent = {
   ],
   faqs: [
     { q: 'What is the difference between SEO and ecommerce SEO?', a: 'Ecommerce SEO focuses on category and product pages, product schema, Google Shopping and technical issues unique to stores, such as filters, variants and out-of-stock products.' },
-    { q: 'Is Shopify good for SEO?', a: 'Yes, with the right setup. Shopify handles the basics well, but needs work on duplicate URLs, structure, speed and content to compete.' },
-    { q: 'Should I optimise category or product pages first?', a: 'Usually categories first. They target bigger buying searches and help all the products inside them rank.' },
-    { q: 'What should I do with out-of-stock products?', a: 'Keep temporarily out-of-stock pages live with a clear message and alternatives. Redirect discontinued products to the closest match or category.' },
-    { q: 'How long does ecommerce SEO take?', a: 'Technical fixes can show results in weeks. Most stores see strong revenue growth within 4 to 9 months.' },
-    { q: 'How do you measure success?', a: 'We track organic revenue, orders and conversion rate in GA4, plus rankings for your most valuable categories.' },
-    { q: 'Do you need a contract?', a: 'No. We work on rolling monthly terms.' },
+    { q: 'Is Shopify good for SEO?', a: 'Yes, with the right setup. Shopify handles the basics well, but needs work on duplicate URLs, structure, speed and content to compete. We fix collection and product URLs and improve themes for Core Web Vitals.' },
+    { q: 'Should I optimise category or product pages first?', a: 'Usually categories first. They target bigger buying searches such as "mens running shoes" and help all the products inside them rank. Once categories are strong we move on to individual product pages.' },
+    { q: 'What should I do with out-of-stock products?', a: 'Keep temporarily out-of-stock pages live with a clear message, a back-in-stock sign-up and alternatives. Redirect discontinued products with a 301 to the closest match or category so link value is not lost.' },
+    { q: 'How long does ecommerce SEO take?', a: 'Technical fixes can show results in weeks. Most stores see strong revenue growth within 4 to 9 months, as category and product pages climb, with the biggest gains usually arriving before peak season.' },
+    { q: 'How do you measure success?', a: 'We track organic revenue, orders and conversion rate in GA4, plus rankings for your most valuable categories and products. Monthly reports show which pages earn money, not just which keywords moved.' },
+    { q: 'Do you need a contract?', a: 'No. GTech Digital runs ecommerce SEO on rolling monthly terms. We recommend six months because category pages take time to climb, but you are free to stop whenever you like.' },
+    { q: 'What is technical SEO for ecommerce?', a: 'Technical SEO for ecommerce means fixing the problems that stop stores ranking: faceted navigation creating duplicate pages, slow product pages, missing product schema, poor crawl paths and broken variants. Fixing these usually unlocks growth that content alone cannot.' },
   ],
   related: ['search-engine-optimization', 'ecommerce-development', 'google-ads', 'seo-backlinks', 'content-marketing', 'local-seo'],
 };

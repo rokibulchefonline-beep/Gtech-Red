@@ -6,7 +6,7 @@ export default industry({
   slug: 'hospitality-hotels',
   name: 'Hospitality',
   kw: 'Hospitality Marketing',
-  metaTitle: 'Hospitality & Hotel Marketing Agency UK | Direct Bookings | GTech Digital',
+  metaTitle: 'Hospitality Marketing Agency UK | Hotels & Restaurants',
   metaDescription: 'UK hospitality marketing agency for hotels, restaurants and venues: local SEO, Google Hotel Ads, social media and booking websites that grow direct bookings.',
   hero: {
     title: 'Hospitality Marketing That',
@@ -35,11 +35,12 @@ export default industry({
   reviews: [['Sam T', 'Owner, Restaurant', 'Weekend bookings from Instagram and Google have doubled.'], ['Claire M', 'GM, Boutique Hotel', 'Direct bookings are up 60% and we pay far less commission.'], ['Amara O', 'Owner, Bar and Kitchen', 'Guests recognise our brand and we are always top of Maps nearby.']],
   faqs: [
     ['How can a hotel get more direct bookings?', 'Run Google Hotel Ads, offer a clear best-rate guarantee, make your booking engine fast on mobile, and use email and social media to stay in touch with past guests.'],
-    ['How do restaurants get more bookings online?', 'Keep your Google Business Profile complete with menus and photos, post regularly on Instagram and TikTok, collect reviews and make online booking easy.'],
-    ['Do you work with independent venues?', 'Yes. We work with independent restaurants, pubs, cafés, hotels and event venues as well as groups.'],
-    ['Can you manage our reviews?', 'Yes. We monitor and respond to reviews on Google, TripAdvisor and booking sites.'],
-    ['Can you integrate our booking system?', 'Yes. We work with most table and hotel booking engines and track bookings in GA4.'],
-    ['Do you need a contract?', 'No. We work on rolling monthly terms.'],
+    ['How do restaurants get more bookings online?', 'Keep your Google Business Profile complete with menus and photos, post regularly on Instagram and TikTok, collect reviews and make online booking easy. Restaurant marketing works best when every channel links to a simple booking page.'],
+    ['Do you work with independent venues?', 'Yes. Our venue marketing covers independent restaurants, pubs, cafés, hotels and event venues as well as groups, with plans that suit a single site or a growing portfolio.'],
+    ['Can you manage our reviews?', 'Yes. We monitor and respond to reviews on Google, TripAdvisor and booking sites, replying in your voice within 24 hours and flagging problems early so guests feel heard and future customers see great service.'],
+    ['Can you integrate our booking system?', 'Yes. We work with most table and hotel booking engines and track bookings in GA4, so you can see how many direct reservations each ad, post and search brings, and what each booking is worth.'],
+    ['Do you need a contract?', 'No. GTech Digital runs hospitality marketing on rolling monthly terms, and we plan around your busy periods, so campaigns for Christmas, summer and events start early enough to fill the diary.'],
+    ['What is different about hotel marketing?', 'Hotel marketing is about winning direct bookings and avoiding OTA commission. We run Google Hotel Ads, best-rate messaging and email to past guests, and improve your booking engine, so more guests reserve on your own website instead of a third-party site.'],
   ],
   related: ['local-seo', 'instagram-marketing', 'google-ads', 'reputation-management', 'website-design', 'tiktok-marketing'],
 });
