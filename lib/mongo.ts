@@ -12,6 +12,32 @@ export async function getDb(): Promise<Db> {
   return (await globalForMongo._mongo).db(process.env.MONGODB_DB || 'gtech_red');
 }
 
+// Cloudflare Workers cannot reuse an I/O object (such as a database socket) created during an earlier
+// request: the next request crashes with error 1101. On Workers we therefore connect per request,
+// share that connection between the queries that run together, and close it when they are done.
+// On Node (builds, local development) one cached client is used as before.
+const onWorkers = () => typeof navigator !== 'undefined' && navigator.userAgent === 'Cloudflare-Workers';
+type Scope = { c?: Promise<MongoClient>; n: number };
+let batch: Scope | undefined; // queries started in the same tick (e.g. Promise.all) share one connection
+
+export async function withDb<T>(fn: (db: Db) => Promise<T>): Promise<T> {
+  if (!onWorkers()) return fn(await getDb());
+  const uri = process.env.MONGODB_URI;
+  if (!uri) throw new Error('MONGODB_URI is not set');
+  // JavaScript is single-threaded, so only calls made in this same synchronous tick can share a scope
+  // and they always belong to the same request.
+  if (!batch) { const mine: Scope = { n: 0 }; batch = mine; queueMicrotask(() => { if (batch === mine) batch = undefined; }); }
+  const scope = batch;
+  scope.n++;
+  scope.c ??= new MongoClient(uri, { serverSelectionTimeoutMS: 8000, connectTimeoutMS: 8000, maxPoolSize: 4, minPoolSize: 0, serverMonitoringMode: 'poll' }).connect();
+  try {
+    const client = await scope.c;
+    return await fn(client.db(process.env.MONGODB_DB || 'gtech_red'));
+  } finally {
+    if (--scope.n <= 0) { const c = scope.c; scope.c = undefined; c?.then((x) => x.close()).catch(() => {}); }
+  }
+}
+
 export type Metric = { value: string; label: string };
 export type Doc = {
   slug: string; title: string; excerpt?: string; body?: string; image?: string; imageAlt?: string; logo?: string; services?: string[];

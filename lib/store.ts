@@ -1,4 +1,4 @@
-import { getDb } from '@/lib/mongo';
+import { withDb } from '@/lib/mongo';
 
 // Tiny data-access layer used by the admin and the public site. Documents use string ids (`_id`).
 // Production: MongoDB (MONGODB_URI). Local development and tests without a database: an in-memory
@@ -45,13 +45,12 @@ export async function list(coll: string, q: Query = {}): Promise<Rec[]> {
     for (const [k, dir] of Object.entries(q.sort ?? {}).reverse()) rows = [...rows].sort((a, b) => dir * cmp(get(a, k), get(b, k)));
     return rows.slice(q.skip ?? 0, (q.skip ?? 0) + (q.limit ?? 1000)).map((r) => structuredClone(r));
   }
-  const db = await getDb();
-  return db.collection(coll).find(q.filter ?? {}).sort(q.sort ?? {}).skip(q.skip ?? 0).limit(q.limit ?? 1000).toArray() as Promise<Rec[]>;
+  return withDb((db) => db.collection(coll).find(q.filter ?? {}).sort(q.sort ?? {}).skip(q.skip ?? 0).limit(q.limit ?? 1000).toArray() as Promise<Rec[]>);
 }
 
 export async function count(coll: string, filter: Rec = {}): Promise<number> {
   if (useMemory()) return (memory().get(coll) ?? []).filter((d) => match(d, filter)).length;
-  return (await getDb()).collection(coll).countDocuments(filter);
+  return withDb((db) => db.collection(coll).countDocuments(filter));
 }
 
 export async function findOne(coll: string, filter: Rec): Promise<Rec | null> {
@@ -61,7 +60,7 @@ export async function findOne(coll: string, filter: Rec): Promise<Rec | null> {
 export async function insert(coll: string, doc: Rec): Promise<Rec> {
   const d = { ...doc, _id: doc._id ?? newId(), createdAt: doc.createdAt ?? new Date(), updatedAt: new Date() };
   if (useMemory()) { const m = memory(); m.set(coll, [...(m.get(coll) ?? []), structuredClone(d)]); return d; }
-  await (await getDb()).collection(coll).insertOne(d as never);
+  await withDb((db) => db.collection(coll).insertOne(d as never));
   return d;
 }
 
@@ -75,7 +74,7 @@ export async function update(coll: string, id: string, patch: Rec): Promise<bool
     rows[i] = { ...rows[i], ...structuredClone(set) };
     return true;
   }
-  const r = await (await getDb()).collection(coll).updateOne({ _id: id as never }, { $set: set });
+  const r = await withDb((db) => db.collection(coll).updateOne({ _id: id as never }, { $set: set }));
   return r.matchedCount > 0;
 }
 
@@ -91,5 +90,5 @@ export async function remove(coll: string, id: string): Promise<boolean> {
     memory().set(coll, rows.filter((r) => r._id !== id));
     return rows.length !== n;
   }
-  return ((await (await getDb()).collection(coll).deleteOne({ _id: id as never })).deletedCount ?? 0) > 0;
+  return ((await withDb((db) => db.collection(coll).deleteOne({ _id: id as never }))).deletedCount ?? 0) > 0;
 }

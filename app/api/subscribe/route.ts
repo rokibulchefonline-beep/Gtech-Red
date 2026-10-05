@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/mongo';
+import { withDb } from '@/lib/mongo';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,8 +10,7 @@ export async function POST(req: Request) {
   if (body.website) return NextResponse.json({ ok: true }); // honeypot
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return NextResponse.json({ ok: false, error: 'Enter a valid email address.' }, { status: 400 });
   try {
-    const db = await getDb();
-    await db.collection('subscribers').updateOne({ email }, { $setOnInsert: { email, source: 'blog', created_at: new Date() } }, { upsert: true });
+    await withDb((db) => db.collection('subscribers').updateOne({ email }, { $setOnInsert: { email, source: 'blog', created_at: new Date() } }, { upsert: true }));
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ ok: false, error: 'Could not subscribe right now. Try again later.' }, { status: 500 });
