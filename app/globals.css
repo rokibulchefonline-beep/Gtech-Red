@@ -853,21 +853,4 @@ h1{letter-spacing:-.045em}h2{letter-spacing:-.035em}h3,h4{letter-spacing:-.02em}
 .no-hl .hl,.no-hl .red{color:inherit!important;-webkit-text-fill-color:currentColor!important;background:none!important}
 /* Client logos inside the partner strip */
 .brands-inline{margin-top:48px;padding-top:40px;border-top:1px solid #f0f0f3}
-.brands-inline h2{margin:0 0 30px;font-size:clamp(28px,3.6vw,44px);font-weight:500;text-align:center}
-
-/* Home: stats inside the hero, compact services grid */
-.hero-video .wrap{padding-bottom:40px;padding-top:96px}
-.stats.stats-hero{background:rgba(0,0,0,.38);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);padding:16px 0;margin-top:44px}
-.stats-hero .wrap{padding:0 8px}.stats-hero .stat{border-color:rgba(255,255,255,.2)}
-.stats-hero .stat strong{color:#fff;font-size:clamp(24px,3vw,36px)}.stats-hero .stat span{color:rgba(255,255,255,.78);margin-top:2px;font-size:13px}
-@media(max-width:800px){.stats.stats-hero{margin-top:32px}}
-.ourservices{padding:72px 0}
-.sg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;text-align:left}
-.sg-card{display:flex;flex-direction:column;gap:10px;padding:26px 24px;background:#fff;border:1px solid #ececf0;transition:border-color .25s,transform .25s,box-shadow .25s}
-.sg-card:hover{border-color:var(--pink);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.07)}
-.sg-ico{display:grid;place-items:center;width:46px;height:46px;background:#fff0f1;color:var(--pink)}
-.sg-card h3{margin:6px 0 0;font-size:20px}.sg-card p{margin:0;font-size:14.5px;color:var(--muted)}
-.sg-more{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:8px;font-size:14px;font-weight:500;color:var(--pink)}
-.sg-all{background:#111;border-color:#111;color:#fff;justify-content:center}.sg-all p{color:rgba(255,255,255,.72)}.sg-all h3{color:#fff}.sg-all .sg-more{color:#ff4d5a}
-@media(max-width:1000px){.sg-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.sg-grid{grid-template-columns:1fr}.ourservices{padding:56px 0}}
-.hero-video .wrap{width:100%}
+.brands-inline h3{margin:0 0 24px;font-size:clamp(20px,2.4vw,28px)}

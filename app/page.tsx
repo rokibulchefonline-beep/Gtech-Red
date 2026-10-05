@@ -4,16 +4,19 @@ import Link from 'next/link';
 import HeroVideo from '@/components/HeroVideo';
 import OurServices from '@/components/OurServices';
 import WhoWeAre from '@/components/WhoWeAre';
+import HowWeWork from '@/components/HowWeWork';
 import InquirySection from '@/components/InquirySection';
+import IndustriesSection from '@/components/IndustriesSection';
 import PartnerStrip from '@/components/PartnerStrip';
 import StatsBar from '@/components/StatsBar';
+import Results from '@/components/Results';
 import Testimonials from '@/components/Testimonials';
 import CaseStudies from '@/components/CaseStudies';
 import { seoFor } from '@/lib/seo';
 import Schema from '@/components/Schema';
 import { ids, itemListNode, pageNode } from '@/lib/schema';
 import { services } from '@/lib/data';
-import { getStaticPage } from '@/lib/content';
+import { getStaticPage, homeSection } from '@/lib/content';
 import Hl from '@/components/Hl';
 import { Rt } from '@/components/Rt';
 import { homeContent } from '@/content/static/home';
@@ -43,16 +46,20 @@ export default async function Home() {
             <Link className="btn-red" href="/contact">Let&apos;s Talk</Link>
             <Link className="btn-outline" href="/services">Our Services</Link>
           </div>
-          <StatsBar hero />
         </div>
       </section>
 
       <PartnerStrip withClients />
+      <StatsBar />
 
       <WhoWeAre />
       <OurServices />
+      <HowWeWork head={await homeSection('how')} steps={(await homeSection('how-steps')).steps} />
       <CaseStudies />
+      <Results />
       <Testimonials />
+
+      <IndustriesSection />
 
       <InquirySection />
     </div>
