@@ -12,17 +12,6 @@ export default async function Footer() {
   return (
     <footer className="ft">
       <div className="wrap">
-        <div className="ft-cta">
-          <div>
-            <h2>Ready to Grow Your Business Online?</h2>
-            <p>Get a free audit and a tailored proposal from our marketing, web and software specialists.</p>
-          </div>
-          <div className="ft-cta-btns">
-            <Link className="ft-btn" href="/contact">Get a Free Audit <Icon name="lucide:arrow-right" size={18} /></Link>
-            <a className="ft-btn line" href={`tel:${site.phone.replace(/\s/g, '')}`}><Icon name="lucide:phone" size={18} /> {site.phone}</a>
-          </div>
-        </div>
-
         <div className="ft-grid">
           <div className="ft-brand">
             <Link className="ft-logo" href="/"><Image src="/logo.png" alt={site.name} width={140} height={46} /></Link>

@@ -8,7 +8,7 @@ export default async function PartnerStrip({ withClients = false }: { withClient
   return (
     <section className="pstrip" aria-label="Our partners">
       <div className="wrap">
-        <h2><Hl>Our Platform Partners and Certifications</Hl></h2>
+        <h2><Hl>Our [[Platform Partners]] and Certifications</Hl></h2>
         <div className="pstrip-row">
           {partners.map((p) => {
             // eslint-disable-next-line @next/next/no-img-element

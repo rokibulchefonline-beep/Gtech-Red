@@ -6,7 +6,6 @@ import OurServices from '@/components/OurServices';
 import WhoWeAre from '@/components/WhoWeAre';
 import HowWeWork from '@/components/HowWeWork';
 import InquirySection from '@/components/InquirySection';
-import IndustriesSection from '@/components/IndustriesSection';
 import PartnerStrip from '@/components/PartnerStrip';
 import StatsBar from '@/components/StatsBar';
 import Results from '@/components/Results';
@@ -58,8 +57,6 @@ export default async function Home() {
       <CaseStudies />
       <Results />
       <Testimonials />
-
-      <IndustriesSection />
 
       <InquirySection />
     </div>

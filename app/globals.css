@@ -841,7 +841,7 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 
 /* One highlight colour for every heading: red on light backgrounds, a lighter red on dark ones. */
 .hl,h1 .red,h2 .red,h3 .red,h4 .red{background:none;-webkit-background-clip:border-box;background-clip:border-box;-webkit-text-fill-color:currentColor;color:var(--hl);font-weight:inherit}
-.hero .hl,.hero .red,.page-hd .hl,.page-hd .red,.cs-hero .hl,.cs-hero .red,.dark .hl,.dark .red,.sp-bg-dark .hl,.sp-bg-dark .red,.sp-faq-aside .hl,.sp-faq-aside .red,.cta .hl,.cta .red,.iq .hl,.iq .red,.ftr .hl,.ftr .red,.who-video .hl,.who-video .red{color:var(--hl-dark)}
+.hero .hl,.hero .red,.hero-video .hl,.hero-video .red,.page-hd .hl,.page-hd .red,.cs-hero .hl,.cs-hero .red,.dark .hl,.dark .red,.sp-bg-dark .hl,.sp-bg-dark .red,.sp-faq-aside .hl,.sp-faq-aside .red,.cta .hl,.cta .red,.iq .hl,.iq .red,.ftr .hl,.ftr .red,.who-video .hl,.who-video .red{color:var(--hl-dark)}
 
 /* Typography refresh: Geist for headings at weight 500 with tight tracking, Inter for body text. */
 h1,h2,h3,h4,h5,h6{font-family:Geist,Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-weight:500!important}
@@ -849,8 +849,6 @@ h1{letter-spacing:-.045em}h2{letter-spacing:-.035em}h3,h4{letter-spacing:-.02em}
 .hero-title,.hero-title span{font-weight:500!important;text-transform:none;letter-spacing:-.05em;line-height:1.05}
 .sp-lead,.hero-sub,.os-sub,.how-sub{letter-spacing:-.01em}
 
-/* Home page headings use one colour: no red highlight. */
-.no-hl .hl,.no-hl .red{color:inherit!important;-webkit-text-fill-color:currentColor!important;background:none!important}
 /* Client logos inside the partner strip */
 .brands-inline{margin-top:48px;padding-top:40px;border-top:1px solid #f0f0f3}
 .brands-inline h3{margin:0 0 24px;font-size:clamp(20px,2.4vw,28px)}
@@ -861,3 +859,24 @@ h1{letter-spacing:-.045em}h2{letter-spacing:-.035em}h3,h4{letter-spacing:-.02em}
 .stats-hero .wrap{padding:0 8px}.stats-hero .stat{border-color:rgba(255,255,255,.2)}
 .stats-hero .stat strong{color:#fff;font-size:clamp(24px,3vw,36px)}.stats-hero .stat span{color:rgba(255,255,255,.78);margin-top:2px;font-size:13px}
 @media(max-width:800px){.stats.stats-hero{margin-top:32px}}
+
+/* Premium motion */
+[data-rv]{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--rv-d,0ms),transform .9s cubic-bezier(.2,.7,.2,1) var(--rv-d,0ms)}
+[data-rv].rv-in{opacity:1;transform:none}
+#scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e8202f,#ff4d5a);transform:scaleX(0);transform-origin:0 50%;z-index:100;pointer-events:none}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.hero-title span{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+.hero-title span:nth-child(2){animation-delay:.12s}.hero-title span:nth-child(3){animation-delay:.24s}
+.hero-sub{animation:rise 1s .36s cubic-bezier(.2,.7,.2,1) both}.hero-ctas{animation:rise 1s .5s cubic-bezier(.2,.7,.2,1) both}.stats-hero{animation:rise 1s .65s cubic-bezier(.2,.7,.2,1) both}
+.sp-hero .sp-crumbs,.sp-hero h1,.sp-hero .sp-lead,.sp-hero .sp-hero-btns,.sp-hero .sp-hero-points,.cs-hero h1,.cs-hero .cs-lead,.page-hd h1{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.sp-hero h1,.cs-hero h1,.page-hd h1{animation-delay:.08s}.sp-hero .sp-lead,.cs-hero .cs-lead{animation-delay:.18s}.sp-hero .sp-hero-btns{animation-delay:.28s}.sp-hero .sp-hero-points{animation-delay:.36s}
+.sp-hero-show img{animation:fadeIn 1.2s .3s both}
+/* hover polish */
+.btn,.btn-red,.btn-outline,.btn-line,.btn-dark,.sp-btn-red,.sp-btn-line{transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s,color .25s}
+.btn:hover,.btn-red:hover,.btn-outline:hover,.btn-line:hover,.btn-dark:hover,.sp-btn-red:hover,.sp-btn-line:hover{transform:translateY(-2px)}
+.sz-card,.ih-card,.sh-why-card,.bl-card,.rcard{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .25s}
+.sz-card:hover,.ih-card:hover,.sh-why-card:hover,.bl-card:hover,.rcard:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(20,0,3,.1)}
+@media(prefers-reduced-motion:reduce){[data-rv]{opacity:1;transform:none;transition:none}.hero-title span,.hero-sub,.hero-ctas,.stats-hero,.sp-hero *,.cs-hero *,.page-hd *{animation:none!important}#scroll-progress{display:none}}
+
+@media(max-width:800px){.stats.stats-hero{padding:14px 0}.stats-hero .stats-grid{grid-template-columns:repeat(6,1fr);row-gap:14px}.stats-hero .stat{grid-column:span 2;border-left:1px solid rgba(255,255,255,.2)!important;padding:2px 4px}.stats-hero .stat:nth-child(3n+1){border-left:0!important}.stats-hero .stat:nth-child(4),.stats-hero .stat:nth-child(5){grid-column:span 3}.stats-hero .stat:nth-child(4){border-left:0!important}.stats-hero .stat:nth-child(5){border-left:1px solid rgba(255,255,255,.2)!important}.stats-hero .stat:last-child{grid-column:span 3}.stats-hero .stat strong{font-size:24px}.stats-hero .stat span{font-size:12px}}
