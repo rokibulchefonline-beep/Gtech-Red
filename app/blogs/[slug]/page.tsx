@@ -5,11 +5,14 @@ import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
 import PostCard from '@/components/blog/PostCard';
 import ShareButtons from '@/components/blog/ShareButtons';
+import HtmlBody from '@/components/blog/HtmlBody';
 import PostBody from '@/components/blog/PostBody';
 import Toc from '@/components/blog/Toc';
 import { author, formatDate, getPost, getPosts, parseBody, readTime } from '@/lib/blog';
+import { wordCount } from '@/lib/blog-utils';
 import { services, site } from '@/lib/data';
 import { groupIcons } from '@/lib/icons';
+import { headingsOf, sanitizeHtml } from '@/lib/sanitize-html';
 import { slugify } from '@/lib/util';
 import Hl from '@/components/Hl';
 
@@ -41,16 +44,17 @@ export default async function PostPage({ params }: Props) {
   const p = await getPost((await params).slug);
   if (!p) notFound();
   const all = await getPosts();
-  const blocks = parseBody(p.body);
-  const toc = blocks.filter((b) => b.type === 'h2').map((b) => ({ id: (b as { id: string }).id, text: (b as { text: string }).text }));
+  const isHtml = p.format === 'html';
+  const blocks = isHtml ? [] : parseBody(p.body);
+  const toc = isHtml ? headingsOf(sanitizeHtml(p.body)) : blocks.filter((b) => b.type === 'h2').map((b) => ({ id: (b as { id: string }).id, text: (b as { text: string }).text }));
   const recent = all.filter((x) => x.slug !== p.slug).slice(0, 5);
   const more = all.filter((x) => x.slug !== p.slug && x.category === p.category).concat(all.filter((x) => x.slug !== p.slug && x.category !== p.category)).slice(0, 3);
   const url = `${base}/blogs/${p.slug}`;
-  const mins = readTime(p.body);
+  const mins = readTime(p.body, isHtml);
 
   const jsonLd = [
     { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.excerpt, image: `${base}${p.image}`, datePublished: p.date, dateModified: p.date,
-      mainEntityOfPage: url, articleSection: p.category, wordCount: p.body.split(/\s+/).length,
+      mainEntityOfPage: url, articleSection: p.category, wordCount: wordCount(p.body, isHtml),
       author: { '@type': 'Organization', name: p.author || author.name, url: `${base}/about` },
       publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${base}/logo.png` } } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -92,7 +96,7 @@ export default async function PostPage({ params }: Props) {
         </div></aside>
 
         <article className="bp-body">
-          <PostBody blocks={blocks} />
+          {isHtml ? <HtmlBody html={p.body} /> : <PostBody blocks={blocks} />}
 
           <div className="bp-share-end"><ShareButtons url={url} title={p.title} /></div>
 

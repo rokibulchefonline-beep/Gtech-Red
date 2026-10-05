@@ -2,30 +2,46 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import Icon from '@/components/Icon';
-import PostBody from '@/components/blog/PostBody';
+import HtmlBody from '@/components/blog/HtmlBody';
+import VisualEditor from '@/components/admin/VisualEditor';
 import { api } from '@/components/admin/api';
-import { Count, Field, ImageField, ListField, useToast } from '@/components/admin/ui';
-import { parseBody, readTime } from '@/lib/blog-utils';
+import { Count, MediaModal, confirmDelete, useToast } from '@/components/admin/ui';
+import { htmlToPseudoMd, markdownToHtml, readTime, stripHtml } from '@/lib/blog-utils';
 import { analyse } from '@/lib/seo-analysis';
 
 type Post = {
-  title: string; slug: string; excerpt: string; body: string; category: string; tags: string[]; image: string; imageAlt: string; author: string; featured: boolean;
-  status: 'draft' | 'published' | 'scheduled'; date: string; metaTitle: string; metaDescription: string; focusKeyword: string; canonical: string; noindex: boolean;
+  title: string; slug: string; excerpt: string; body: string; categories: string[]; tags: string[]; image: string; imageAlt: string; author: string; featured: boolean;
+  status: 'draft' | 'published' | 'scheduled'; date: string; visibility: 'public' | 'private'; postFormat: string; allowComments: boolean; allowPingbacks: boolean;
+  customFields: { name: string; value: string }[]; metaTitle: string; metaDescription: string; focusKeyword: string; canonical: string; noindex: boolean;
 };
-const blank: Post = { title: '', slug: '', excerpt: '', body: '', category: 'Insights', tags: [], image: '', imageAlt: '', author: 'GTech Editorial Team', featured: false, status: 'draft', date: '', metaTitle: '', metaDescription: '', focusKeyword: '', canonical: '', noindex: false };
-const categories = ['SEO', 'Paid Media', 'Social Media', 'Web Design', 'Software', 'Branding', 'Insights'];
+const blank: Post = { title: '', slug: '', excerpt: '', body: '', categories: [], tags: [], image: '', imageAlt: '', author: 'GTech Editorial Team', featured: false, status: 'draft', date: '', visibility: 'public', postFormat: 'standard', allowComments: true, allowPingbacks: true, customFields: [], metaTitle: '', metaDescription: '', focusKeyword: '', canonical: '', noindex: false };
+const defaultCats = ['SEO', 'Paid Media', 'Social Media', 'Web Design', 'Software', 'Branding', 'Insights'];
+const formats: [string, string, string][] = [['standard', 'Standard', 'lucide:pin'], ['aside', 'Aside', 'lucide:align-left'], ['image', 'Image', 'lucide:image'], ['video', 'Video', 'lucide:play'], ['quote', 'Quote', 'lucide:quote'], ['link', 'Link', 'lucide:link'], ['gallery', 'Gallery', 'lucide:images'], ['status', 'Status', 'lucide:message-circle'], ['audio', 'Audio', 'lucide:music'], ['chat', 'Chat', 'lucide:messages-square']];
 const slugify = (s: string) => s.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
 const toLocal = (iso: string) => { if (!iso) return ''; const d = new Date(iso); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16); };
+const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
-const tools: { icon: string; tip: string; run: string }[] = [
-  { icon: 'lucide:heading-2', tip: 'Heading 2 (section)', run: 'h2' }, { icon: 'lucide:heading-3', tip: 'Heading 3', run: 'h3' },
-  { icon: 'lucide:bold', tip: 'Bold (Ctrl+B)', run: 'bold' }, { icon: 'lucide:italic', tip: 'Italic (Ctrl+I)', run: 'italic' },
-  { icon: 'lucide:link', tip: 'Link (Ctrl+K)', run: 'link' }, { icon: 'lucide:list', tip: 'Bulleted list', run: 'ul' },
-  { icon: 'lucide:list-ordered', tip: 'Numbered list', run: 'ol' }, { icon: 'lucide:quote', tip: 'Quote', run: 'quote' },
-  { icon: 'lucide:image', tip: 'Insert image', run: 'image' }, { icon: 'lucide:minus', tip: 'Divider', run: 'hr' },
-];
+const mainDefault = ['excerpt', 'seo', 'fields', 'discussion', 'slug', 'tags'];
+const sideDefault = ['publish', 'format', 'categories', 'featured'];
+
+/** A WordPress-style meta box: title bar with move up/down and collapse. */
+function Box({ id, title, children, first, last, move, closed, toggle }: { id: string; title: string; children: ReactNode; first: boolean; last: boolean; move: (id: string, d: -1 | 1) => void; closed: boolean; toggle: (id: string) => void }) {
+  return (
+    <section className={`wpx-box${closed ? ' closed' : ''}`}>
+      <header>
+        <h2 onClick={() => toggle(id)}>{title}</h2>
+        <div>
+          <button type="button" aria-label={`Move ${title} up`} disabled={first} onClick={() => move(id, -1)}><Icon name="lucide:chevron-up" size={16} /></button>
+          <button type="button" aria-label={`Move ${title} down`} disabled={last} onClick={() => move(id, 1)}><Icon name="lucide:chevron-down" size={16} /></button>
+          <button type="button" aria-label={closed ? `Open ${title}` : `Close ${title}`} aria-expanded={!closed} onClick={() => toggle(id)}><Icon name={closed ? 'lucide:triangle' : 'lucide:triangle'} size={10} className={closed ? 'rot' : ''} /></button>
+        </div>
+      </header>
+      {!closed && <div className="wpx-in">{children}</div>}
+    </section>
+  );
+}
 
 export default function PostEditor({ id }: { id: string }) {
   const router = useRouter();
@@ -36,24 +52,47 @@ export default function PostEditor({ id }: { id: string }) {
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
   const [slugTouched, setSlugTouched] = useState(!isNew);
-  const [view, setView] = useState<'write' | 'split' | 'preview'>('split');
-  const [tab, setTab] = useState<'publish' | 'seo' | 'media'>('publish');
-  const ta = useRef<HTMLTextAreaElement>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
+  const [cats, setCats] = useState<string[]>(defaultCats);
+  const [catTab, setCatTab] = useState<'all' | 'used'>('all');
+  const [catAdd, setCatAdd] = useState<string | null>(null);
+  const [counts, setCounts] = useState<{ cats: Record<string, number>; tags: Record<string, number> }>({ cats: {}, tags: {} });
+  const [tagIn, setTagIn] = useState('');
+  const [showTags, setShowTags] = useState(false);
+  const [edit, setEdit] = useState<'' | 'status' | 'vis' | 'date'>('');
+  const [media, setMedia] = useState(false);
+  const [preview, setPreview] = useState(false);
+  const [order, setOrder] = useState({ main: mainDefault, side: sideDefault });
+  const [closed, setClosed] = useState<string[]>([]);
   const draftKey = `gt-post-draft-${id}`;
 
   useEffect(() => {
+    try { const s = JSON.parse(localStorage.getItem('gt-post-boxes') ?? 'null'); if (s) { const keep = (a: string[], d: string[]) => [...a.filter((x) => d.includes(x)), ...d.filter((x) => !a.includes(x))]; setOrder({ main: keep(s.main ?? [], mainDefault), side: keep(s.side ?? [], sideDefault) }); setClosed(s.closed ?? []); } } catch { /* ignore */ }
+  }, []);
+  const saveLayout = (o: typeof order, c: string[]) => { try { localStorage.setItem('gt-post-boxes', JSON.stringify({ ...o, closed: c })); } catch { /* ignore */ } };
+  const move = (col: 'main' | 'side') => (bid: string, d: -1 | 1) => setOrder((o) => { const a = [...o[col]], i = a.indexOf(bid); [a[i], a[i + d]] = [a[i + d], a[i]]; const n = { ...o, [col]: a }; saveLayout(n, closed); return n; });
+  const toggle = (bid: string) => setClosed((c) => { const n = c.includes(bid) ? c.filter((x) => x !== bid) : [...c, bid]; saveLayout(order, n); return n; });
+
+  useEffect(() => {
+    api('/api/admin/categories?size=200').then((d) => setCats((c) => [...new Set([...c, ...d.rows.map((r: { name: string }) => r.name)])])).catch(() => {});
+    api('/api/admin/posts?size=200').then((d) => {
+      const cc: Record<string, number> = {}, tt: Record<string, number> = {};
+      for (const r of d.rows) { for (const c of r.categories ?? [r.category]) if (c) cc[c] = (cc[c] ?? 0) + 1; for (const t of r.tags ?? []) tt[t] = (tt[t] ?? 0) + 1; }
+      setCounts({ cats: cc, tags: tt }); setCats((c) => [...new Set([...c, ...Object.keys(cc)])]);
+    }).catch(() => {});
+  }, []);
+
+  useEffect(() => {
     if (isNew) return;
-    api(`/api/admin/posts/${id}`).then((d) => { setP({ ...blank, ...d.doc }); setLoaded(true); }).catch((e) => { toast(e.message, true); setLoaded(true); });
+    api(`/api/admin/posts/${id}`).then((d) => {
+      const doc = d.doc;
+      setP({ ...blank, ...doc, categories: doc.categories?.length ? doc.categories : doc.category ? [doc.category] : [], body: doc.format === 'html' ? doc.body : markdownToHtml(doc.body ?? '') });
+      setLoaded(true);
+    }).catch((e) => { toast(e.message, true); setLoaded(true); });
   }, [id, isNew, toast]);
 
-  // Restore an unsaved local draft (autosaved every 2s while editing).
   useEffect(() => {
     if (!loaded) return;
-    try {
-      const d = localStorage.getItem(draftKey);
-      if (d && window.confirm('Restore your unsaved changes from the last session?')) { setP({ ...blank, ...JSON.parse(d) }); setDirty(true); } else localStorage.removeItem(draftKey);
-    } catch { /* storage blocked */ }
+    try { const d = localStorage.getItem(draftKey); if (d && window.confirm('Restore your unsaved changes from the last session?')) { setP({ ...blank, ...JSON.parse(d) }); setDirty(true); } else localStorage.removeItem(draftKey); } catch { /* storage blocked */ }
   }, [loaded, draftKey]);
   useEffect(() => {
     if (!dirty) return;
@@ -62,149 +101,130 @@ export default function PostEditor({ id }: { id: string }) {
   }, [p, dirty, draftKey]);
   useEffect(() => {
     const warn = (e: BeforeUnloadEvent) => { if (dirty) e.preventDefault(); };
-    window.addEventListener('beforeunload', warn);
-    return () => window.removeEventListener('beforeunload', warn);
+    window.addEventListener('beforeunload', warn); return () => window.removeEventListener('beforeunload', warn);
   }, [dirty]);
 
   const set = <K extends keyof Post>(k: K, v: Post[K]) => { setP((x) => ({ ...x, [k]: v })); setDirty(true); };
   const setTitle = (v: string) => { setP((x) => ({ ...x, title: v, slug: slugTouched ? x.slug : slugify(v) })); setDirty(true); };
+  const seo = useMemo(() => analyse({ title: p.title, metaTitle: p.metaTitle, metaDescription: p.metaDescription || p.excerpt, slug: p.slug, keyword: p.focusKeyword, body: htmlToPseudoMd(p.body), image: p.image, imageAlt: p.imageAlt }), [p]);
+  const tone = seo.score >= 75 ? 'good' : seo.score >= 45 ? 'mid' : 'low';
 
-  // ---- editor commands ----
-  const edit = useCallback((fn: (sel: string, before: string, after: string) => { text: string; start: number; end: number }) => {
-    const el = ta.current; if (!el) return;
-    const { selectionStart: s, selectionEnd: e, value } = el;
-    const r = fn(value.slice(s, e), value.slice(0, s), value.slice(e));
-    set('body', r.text);
-    requestAnimationFrame(() => { el.focus(); el.setSelectionRange(r.start, r.end); });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const wrap = (a: string, b = a, ph = 'text') => edit((sel, bf, af) => { const m = sel || ph; return { text: bf + a + m + b + af, start: bf.length + a.length, end: bf.length + a.length + m.length }; });
-  const linePrefix = (pre: string | ((i: number) => string)) => edit((sel, bf, af) => {
-    const start = bf.lastIndexOf('\n') + 1;
-    const block = (bf.slice(start) + sel).split('\n').map((l, i) => (typeof pre === 'string' ? pre : pre(i)) + l.replace(/^(#{1,3} |[-*] |\d+\. |> )/, '')).join('\n');
-    return { text: bf.slice(0, start) + block + af, start: start + block.length, end: start + block.length };
-  });
-  const insert = (text: string) => edit((_s, bf, af) => ({ text: bf + text + af, start: bf.length + text.length, end: bf.length + text.length }));
-
-  async function uploadInline(f: File) {
-    try {
-      const fd = new FormData(); fd.append('file', f);
-      const res = await fetch('/api/admin/media', { method: 'POST', body: fd }); const d = await res.json();
-      if (!res.ok) throw new Error(d.error);
-      insert(`\n\n![${f.name.replace(/\.[^.]+$/, '')}](${d.media.url})\n\n`); toast('Image inserted');
-    } catch (e) { toast(e instanceof Error ? e.message : 'Upload failed', true); }
-  }
-  function run(cmd: string) {
-    if (cmd === 'h2') linePrefix('## '); else if (cmd === 'h3') linePrefix('### ');
-    else if (cmd === 'bold') wrap('**'); else if (cmd === 'italic') wrap('*');
-    else if (cmd === 'ul') linePrefix('- '); else if (cmd === 'ol') linePrefix((i) => `${i + 1}. `); else if (cmd === 'quote') linePrefix('> ');
-    else if (cmd === 'hr') insert('\n\n---\n\n');
-    else if (cmd === 'link') { const u = window.prompt('Link URL (https://… or /services/seo)'); if (u) edit((sel, bf, af) => { const t = sel || 'link text'; return { text: `${bf}[${t}](${u})${af}`, start: bf.length + 1, end: bf.length + 1 + t.length }; }); }
-    else if (cmd === 'image') fileRef.current?.click();
-  }
-  function onKey(e: React.KeyboardEvent) {
-    if (!(e.ctrlKey || e.metaKey)) return;
-    const k = e.key.toLowerCase();
-    if (k === 'b') { e.preventDefault(); run('bold'); } else if (k === 'i') { e.preventDefault(); run('italic'); } else if (k === 'k') { e.preventDefault(); run('link'); } else if (k === 's') { e.preventDefault(); save(); }
-  }
-
-  // ---- derived ----
-  const blocks = useMemo(() => parseBody(p.body), [p.body]);
-  const words = (p.body.match(/\S+/g) ?? []).length;
-  const seo = useMemo(() => analyse({ title: p.title, metaTitle: p.metaTitle, metaDescription: p.metaDescription || p.excerpt, slug: p.slug, keyword: p.focusKeyword, body: p.body, image: p.image, imageAlt: p.imageAlt }), [p]);
-  const serpTitle = (p.metaTitle || p.title || 'Post title') ;
-  const serpDesc = p.metaDescription || p.excerpt || 'Your meta description appears here. Write 120 to 160 characters that make people click.';
-
-  async function save(status?: Post['status']) {
-    const body = { ...p, status: status ?? p.status };
-    if (body.status === 'scheduled' && !body.date) { toast('Pick a publish date to schedule this post.', true); setTab('publish'); return; }
+  async function save(kind: 'draft' | 'publish' | 'keep') {
+    const body: Post = { ...p };
+    if (kind === 'draft') body.status = 'draft';
+    else if (kind === 'publish') body.status = body.date && new Date(body.date).getTime() > Date.now() ? 'scheduled' : 'published';
     if (body.status === 'published' && !body.date) body.date = new Date().toISOString();
+    if (body.status === 'scheduled' && !body.date) { toast('Pick a date to schedule this post.', true); setEdit('date'); return; }
     setSaving(true);
     try {
       const d = isNew ? await api('/api/admin/posts', { body }) : await api(`/api/admin/posts/${id}`, { method: 'PUT', body });
-      setP({ ...blank, ...d.doc }); setDirty(false);
+      setP({ ...blank, ...d.doc, categories: d.doc.categories ?? [], body: d.doc.body }); setDirty(false);
       try { localStorage.removeItem(draftKey); } catch { /* ignore */ }
-      toast(body.status === 'published' ? 'Saved. Use Publish site to rebuild.' : 'Saved');
+      toast(body.status === 'draft' ? 'Draft saved' : body.status === 'scheduled' ? 'Post scheduled' : 'Post saved. Use Publish site to rebuild.');
       if (isNew) router.replace(`/admin/posts/${d.doc._id}`);
     } catch (e) { toast(e instanceof Error ? e.message : 'Save failed', true); }
     setSaving(false);
   }
+  async function trash() {
+    if (isNew || !confirmDelete(`“${p.title || 'this post'}”`)) return;
+    try { await api(`/api/admin/posts/${id}`, { method: 'DELETE' }); setDirty(false); router.push('/admin/posts'); } catch (e) { toast(e instanceof Error ? e.message : 'Failed', true); }
+  }
+  async function addCategory() {
+    const name = (catAdd ?? '').trim(); if (!name) return;
+    try { await api('/api/admin/categories', { body: { name } }); setCats((c) => [...new Set([...c, name])]); set('categories', [...p.categories, name]); setCatAdd(null); } catch (e) { toast(e instanceof Error ? e.message : 'Failed', true); }
+  }
+  const addTags = (raw: string) => { const t = raw.split(',').map((x) => x.trim()).filter((x) => x && !p.tags.includes(x)); if (t.length) set('tags', [...p.tags, ...t].slice(0, 12)); setTagIn(''); };
 
   if (!loaded) return <p className="ad-empty">Loading…</p>;
-  const tone = seo.score >= 75 ? 'good' : seo.score >= 45 ? 'mid' : 'low';
+  const live = p.status === 'published';
+  const catList = catTab === 'all' ? [...cats].sort() : [...cats].sort((a, b) => (counts.cats[b] ?? 0) - (counts.cats[a] ?? 0)).slice(0, 8);
+  const statusLabel = { draft: 'Draft', published: 'Published', scheduled: 'Scheduled' }[p.status];
+  const when = p.status === 'published' ? `Published on: ${fmt(p.date)}` : p.date ? `Schedule for: ${fmt(p.date)}` : 'Publish immediately';
+
+  const boxes: Record<string, { title: string; body: ReactNode }> = {
+    publish: { title: 'Publish', body: (
+      <div className="wpx-pub">
+        <div className="wpx-pub-top"><button type="button" className="wp-btn" onClick={() => save('draft')} disabled={saving}>{live ? 'Switch to Draft' : 'Save Draft'}</button><button type="button" className="wp-btn" onClick={() => setPreview(true)}>Preview</button></div>
+        <ul className="wpx-meta">
+          <li><Icon name="lucide:map-pin" size={15} /> Status: <b>{statusLabel}</b> {edit === 'status' ? <span className="wpx-edit"><select value={p.status} onChange={(e) => set('status', e.target.value as Post['status'])}><option value="draft">Draft</option><option value="published">Published</option><option value="scheduled">Scheduled</option></select><button type="button" className="wp-btn sm" onClick={() => setEdit('')}>OK</button></span> : <button type="button" className="wpx-link" onClick={() => setEdit('status')}>Edit</button>}</li>
+          <li><Icon name="lucide:eye" size={15} /> Visibility: <b>{p.visibility === 'public' ? 'Public' : 'Private'}</b> {edit === 'vis' ? <span className="wpx-edit"><select value={p.visibility} onChange={(e) => set('visibility', e.target.value as Post['visibility'])}><option value="public">Public</option><option value="private">Private (hidden)</option></select><button type="button" className="wp-btn sm" onClick={() => setEdit('')}>OK</button></span> : <button type="button" className="wpx-link" onClick={() => setEdit('vis')}>Edit</button>}</li>
+          <li><Icon name="lucide:calendar" size={15} /> {when} {edit === 'date' ? <span className="wpx-edit"><input type="datetime-local" value={toLocal(p.date)} onChange={(e) => set('date', e.target.value ? new Date(e.target.value).toISOString() : '')} /><button type="button" className="wp-btn sm" onClick={() => setEdit('')}>OK</button>{p.date && p.status !== 'published' && <button type="button" className="wpx-link" onClick={() => { set('date', ''); setEdit(''); }}>Now</button>}</span> : <button type="button" className="wpx-link" onClick={() => setEdit('date')}>Edit</button>}</li>
+        </ul>
+        <div className="wpx-pub-foot">{!isNew ? <button type="button" className="wpx-trash" onClick={trash}>Move to Trash</button> : <span />}<button type="button" className="wp-btn primary" onClick={() => save(live ? 'keep' : 'publish')} disabled={saving}>{live ? 'Update' : p.date && new Date(p.date).getTime() > Date.now() ? 'Schedule' : 'Publish'}</button></div>
+      </div>) },
+    format: { title: 'Format', body: <div className="wpx-radios">{formats.map(([v, l, ic]) => <label key={v}><input type="radio" name="fmt" checked={p.postFormat === v} onChange={() => set('postFormat', v)} /><Icon name={ic} size={16} />{l}</label>)}</div> },
+    categories: { title: 'Categories', body: (
+      <div>
+        <div className="wpx-tabs"><button type="button" className={catTab === 'all' ? 'on' : ''} onClick={() => setCatTab('all')}>All Categories</button><button type="button" className={catTab === 'used' ? 'on' : ''} onClick={() => setCatTab('used')}>Most Used</button></div>
+        <div className="wpx-cats">{catList.map((c) => <label key={c}><input type="checkbox" checked={p.categories.includes(c)} onChange={(e) => set('categories', e.target.checked ? [...p.categories, c] : p.categories.filter((x) => x !== c))} /> {c}</label>)}</div>
+        {catAdd === null ? <button type="button" className="wpx-link plus" onClick={() => setCatAdd('')}>+ Add Category</button> : <div className="wpx-addcat"><input autoFocus value={catAdd} onChange={(e) => setCatAdd(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addCategory(); } }} placeholder="New category name" /><button type="button" className="wp-btn sm" onClick={addCategory}>Add</button></div>}
+      </div>) },
+    featured: { title: 'Featured image', body: (
+      <div>
+        {p.image && <>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="wpx-feat" src={p.image} alt={p.imageAlt} /></>}
+        <button type="button" className="wpx-link" onClick={() => setMedia(true)}>{p.image ? 'Replace featured image' : 'Set featured image'}</button>
+        {p.image && <><label className="wpx-label">Alt text<input value={p.imageAlt} onChange={(e) => set('imageAlt', e.target.value)} /></label><button type="button" className="wpx-trash" onClick={() => { set('image', ''); set('imageAlt', ''); }}>Remove featured image</button></>}
+      </div>) },
+    excerpt: { title: 'Excerpt', body: <><textarea rows={3} value={p.excerpt} onChange={(e) => set('excerpt', e.target.value)} /><p className="wpx-help"><Count n={p.excerpt.length} max={200} /> A short summary shown on blog cards and used as the default description.</p></> },
+    seo: { title: 'SEO Settings', body: (
+      <div>
+        <div className="serp"><small>gtechdigital.co.uk › blogs › {p.slug || 'url-slug'}</small><b>{(p.metaTitle || p.title || 'Post title').slice(0, 60)}</b><p>{(p.metaDescription || p.excerpt || 'Your meta description appears here.').slice(0, 160)}</p></div>
+        <label className="wpx-label">Meta Title<input value={p.metaTitle} onChange={(e) => set('metaTitle', e.target.value)} placeholder="Custom SEO Title (max 60 chars)" /></label>
+        <p className="wpx-help"><Count n={(p.metaTitle || p.title).length} max={60} /> Recommended: 50–60 characters.</p>
+        <label className="wpx-label">Meta Description<textarea rows={3} value={p.metaDescription} onChange={(e) => set('metaDescription', e.target.value)} placeholder="Custom SEO Description (max 160 chars)" /></label>
+        <p className="wpx-help"><Count n={(p.metaDescription || p.excerpt).length} max={160} /> Recommended: 120–160 characters.</p>
+        <label className="wpx-label">Focus keyword<input value={p.focusKeyword} onChange={(e) => set('focusKeyword', e.target.value)} placeholder="e.g. technical seo checklist" /></label>
+        <label className="wpx-label">Canonical URL<input value={p.canonical} onChange={(e) => set('canonical', e.target.value)} placeholder="Only if first published elsewhere" /></label>
+        <label className="wpx-check"><input type="checkbox" checked={p.noindex} onChange={(e) => set('noindex', e.target.checked)} /> Ask search engines not to index this post (noindex)</label>
+        <div className="seo-list"><div className={`seo-score ${tone}`}><strong>{seo.score}</strong><span>SEO score</span></div>
+          <ul>{seo.checks.map((c) => <li key={c.label} className={c.ok === true ? 'ok' : c.ok === 'warn' ? 'warn' : 'bad'}><Icon name={c.ok === true ? 'lucide:circle-check' : c.ok === 'warn' ? 'lucide:circle-alert' : 'lucide:circle-x'} size={16} /><span>{c.label}{c.ok !== true && c.hint && <small>{c.hint}</small>}</span></li>)}</ul></div>
+      </div>) },
+    fields: { title: 'Custom Fields', body: (
+      <div>
+        {p.customFields.length > 0 && <table className="wpx-cf"><thead><tr><th>Name</th><th>Value</th><th /></tr></thead><tbody>{p.customFields.map((f, i) => (
+          <tr key={i}><td><input value={f.name} onChange={(e) => set('customFields', p.customFields.map((x, n) => (n === i ? { ...x, name: e.target.value } : x)))} /></td><td><textarea rows={2} value={f.value} onChange={(e) => set('customFields', p.customFields.map((x, n) => (n === i ? { ...x, value: e.target.value } : x)))} /></td><td><button type="button" className="ad-ico" aria-label="Delete field" onClick={() => set('customFields', p.customFields.filter((_, n) => n !== i))}><Icon name="lucide:trash-2" size={15} /></button></td></tr>
+        ))}</tbody></table>}
+        <button type="button" className="wp-btn" onClick={() => set('customFields', [...p.customFields, { name: '', value: '' }])}>Add Custom Field</button>
+        <p className="wpx-help">Extra information stored with the post (for example “reviewed-by”). Developers can use it in templates.</p>
+      </div>) },
+    discussion: { title: 'Discussion', body: <div className="wpx-radios col"><label><input type="checkbox" checked={p.allowComments} onChange={(e) => set('allowComments', e.target.checked)} /> Allow comments</label><label><input type="checkbox" checked={p.allowPingbacks} onChange={(e) => set('allowPingbacks', e.target.checked)} /> Allow trackbacks and pingbacks</label></div> },
+    slug: { title: 'Slug', body: <input className="wpx-full" value={p.slug} onChange={(e) => { setSlugTouched(true); set('slug', slugify(e.target.value)); }} placeholder="url-slug" aria-label="Slug" /> },
+    tags: { title: 'Tags', body: (
+      <div>
+        <div className="wpx-tagin"><input value={tagIn} onChange={(e) => setTagIn(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addTags(tagIn); } }} aria-label="Add tag" /><button type="button" className="wp-btn" onClick={() => addTags(tagIn)}>Add</button></div>
+        <p className="wpx-help">Separate tags with commas</p>
+        {p.tags.length > 0 && <ul className="wpx-chips">{p.tags.map((t) => <li key={t}><button type="button" aria-label={`Remove ${t}`} onClick={() => set('tags', p.tags.filter((x) => x !== t))}><Icon name="lucide:x" size={12} /></button>{t}</li>)}</ul>}
+        <button type="button" className="wpx-link" onClick={() => setShowTags(!showTags)}>Choose from the most used tags</button>
+        {showTags && <p className="wpx-used">{Object.entries(counts.tags).sort((a, b) => b[1] - a[1]).slice(0, 20).map(([t, n]) => <button key={t} type="button" onClick={() => addTags(t)}>{t} <small>({n})</small></button>)}{Object.keys(counts.tags).length === 0 && <em>No tags used yet.</em>}</p>}
+      </div>) },
+  };
+  const col = (key: 'main' | 'side') => order[key].map((bid, i, a) => <Box key={bid} id={bid} title={boxes[bid].title} first={i === 0} last={i === a.length - 1} move={move(key)} closed={closed.includes(bid)} toggle={toggle}>{boxes[bid].body}</Box>);
 
   return (
-    <div className="ed">
-      <div className="ed-bar">
-        <Link href="/admin/posts" className="ad-btn ghost small"><Icon name="lucide:arrow-left" size={15} /> Posts</Link>
-        <span className="ed-state">{saving ? 'Saving…' : dirty ? 'Unsaved changes' : 'All changes saved'}</span>
-        <div className="ed-bar-r">
-          <select value={p.status} onChange={(e) => set('status', e.target.value as Post['status'])} aria-label="Status"><option value="draft">Draft</option><option value="published">Published</option><option value="scheduled">Scheduled</option></select>
-          <button className="ad-btn ghost small" onClick={() => save()} disabled={saving}>Save</button>
-          {p.status !== 'published' && <button className="ad-btn small" onClick={() => save('published')} disabled={saving}>Publish</button>}
+    <div className="wpx" onKeyDown={(e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); save(live ? 'keep' : 'draft'); } }}>
+      <div className="wpx-bar"><Link href="/admin/posts" className="ad-btn ghost small"><Icon name="lucide:arrow-left" size={15} /> All Posts</Link><span className="ed-state">{saving ? 'Saving…' : dirty ? 'Unsaved changes' : 'All changes saved'}</span></div>
+      <h1 className="wpx-h1">{isNew ? 'Add Post' : 'Edit Post'}</h1>
+      <div className="wpx-grid">
+        <div className="wpx-main">
+          <input className="wpx-title" value={p.title} onChange={(e) => setTitle(e.target.value)} placeholder="Add title" aria-label="Post title" />
+          <VisualEditor value={p.body} onChange={(html) => set('body', html)} />
+          <p className="wpx-count">{stripHtml(p.body).match(/\S+/g)?.length ?? 0} words · {readTime(p.body, true)} min read</p>
+          {col('main')}
         </div>
+        <aside className="wpx-side">{col('side')}</aside>
       </div>
 
-      <div className="ed-grid">
-        <div className="ed-main">
-          <input className="ed-title" value={p.title} onChange={(e) => setTitle(e.target.value)} placeholder="Post title" aria-label="Post title" />
-          <div className="ed-slug"><span>/blogs/</span><input value={p.slug} onChange={(e) => { setSlugTouched(true); set('slug', slugify(e.target.value)); }} placeholder="url-slug" aria-label="URL slug" /></div>
-
-          <div className="ed-box">
-            <div className="ed-tools" role="toolbar" aria-label="Formatting">
-              {tools.map((t) => <button key={t.run} type="button" title={t.tip} aria-label={t.tip} onMouseDown={(e) => e.preventDefault()} onClick={() => run(t.run)}><Icon name={t.icon} size={17} /></button>)}
-              <span className="ed-sp" />
-              {(['write', 'split', 'preview'] as const).map((v) => <button key={v} type="button" className={`ed-v${view === v ? ' on' : ''}`} onClick={() => setView(v)}>{v}</button>)}
-            </div>
-            <div className={`ed-panes ${view}`}>
-              {view !== 'preview' && <textarea ref={ta} value={p.body} onChange={(e) => set('body', e.target.value)} onKeyDown={onKey} spellCheck placeholder={'Start writing…\n\n## Use H2 headings for sections\nWrite short paragraphs. Use **bold**, lists and [links](/services/seo).'}
-                onDrop={(e) => { const f = e.dataTransfer.files?.[0]; if (f?.type.startsWith('image/')) { e.preventDefault(); uploadInline(f); } }} aria-label="Post content (Markdown)" />}
-              {view !== 'write' && <div className="ed-prev bp-body">{p.body.trim() ? <PostBody blocks={blocks} /> : <p className="ad-muted">Your preview appears here.</p>}</div>}
-            </div>
-            <div className="ed-foot"><span>{words} words</span><span>{readTime(p.body)} min read</span><span>{blocks.filter((b) => b.type === 'h2').length} sections</span><span className="ed-hint">Tip: drag an image into the editor to upload it</span></div>
-            <input ref={fileRef} type="file" hidden accept="image/png,image/jpeg,image/webp,image/gif" onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadInline(f); e.target.value = ''; }} />
+      {media && <MediaModal title="Set featured image" onClose={() => setMedia(false)} onPick={(m) => { set('image', m.url); setMedia(false); }} />}
+      {preview && (
+        <div className="ad-modal" role="dialog" aria-modal="true" aria-label="Preview" onMouseDown={(e) => { if (e.target === e.currentTarget) setPreview(false); }}>
+          <div className="ad-modal-box wpx-prev">
+            <header><h2>Preview</h2><button className="ad-ico" onClick={() => setPreview(false)} aria-label="Close"><Icon name="lucide:x" size={18} /></button></header>
+            {p.image && <>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={p.image} alt={p.imageAlt} className="wpx-prev-img" /></>}
+            <h1 className="wpx-prev-h">{p.title || 'Untitled'}</h1>
+            <article className="bp-body"><HtmlBody html={p.body} /></article>
           </div>
-
-          <Field label="Excerpt" hint={<><Count n={p.excerpt.length} max={200} /> Shown on blog cards and used as the default description.</>}>
-            <textarea rows={3} value={p.excerpt} onChange={(e) => set('excerpt', e.target.value)} />
-          </Field>
         </div>
-
-        <aside className="ed-side">
-          <div className="ed-tabs">{(['publish', 'seo', 'media'] as const).map((t) => <button key={t} className={tab === t ? 'on' : ''} onClick={() => setTab(t)}>{t === 'seo' ? <>SEO <b className={`ed-score ${tone}`}>{seo.score}</b></> : t === 'media' ? 'Cover' : 'Post'}</button>)}</div>
-
-          {tab === 'publish' && (
-            <div className="ed-pane">
-              {p.status === 'scheduled' && <Field label="Publish on"><input type="datetime-local" value={toLocal(p.date)} onChange={(e) => set('date', e.target.value ? new Date(e.target.value).toISOString() : '')} /></Field>}
-              {p.status === 'published' && <Field label="Published date"><input type="datetime-local" value={toLocal(p.date)} onChange={(e) => set('date', e.target.value ? new Date(e.target.value).toISOString() : '')} /></Field>}
-              <Field label="Category"><input list="cats" value={p.category} onChange={(e) => set('category', e.target.value)} /><datalist id="cats">{categories.map((c) => <option key={c} value={c} />)}</datalist></Field>
-              <Field label="Tags"><ListField value={p.tags} onChange={(v) => set('tags', v)} placeholder="Add a tag" max={12} /></Field>
-              <Field label="Author"><input value={p.author} onChange={(e) => set('author', e.target.value)} /></Field>
-              <label className="ad-check"><input type="checkbox" checked={p.featured} onChange={(e) => set('featured', e.target.checked)} /> Feature this post on the blog page</label>
-            </div>
-          )}
-
-          {tab === 'media' && (
-            <div className="ed-pane">
-              <Field label="Cover image" hint="Shown at the top of the post and in cards. 1200×675 works well."><ImageField value={p.image} onChange={(v) => set('image', v)} label="Cover image" /></Field>
-              <Field label="Image alt text" hint="Describe the image for accessibility and SEO."><input value={p.imageAlt} onChange={(e) => set('imageAlt', e.target.value)} /></Field>
-            </div>
-          )}
-
-          {tab === 'seo' && (
-            <div className="ed-pane">
-              <div className="serp"><small>gtechdigital.co.uk › blogs › {p.slug || 'url-slug'}</small><b>{serpTitle.length > 60 ? serpTitle.slice(0, 58) + '…' : serpTitle}</b><p>{serpDesc.length > 160 ? serpDesc.slice(0, 157) + '…' : serpDesc}</p></div>
-              <Field label="Focus keyword" hint="The phrase this post should rank for."><input value={p.focusKeyword} onChange={(e) => set('focusKeyword', e.target.value)} placeholder="e.g. local seo for plumbers" /></Field>
-              <Field label="SEO title" hint={<><Count n={(p.metaTitle || p.title).length} max={60} /> Leave blank to use the post title.</>}><input value={p.metaTitle} onChange={(e) => set('metaTitle', e.target.value)} placeholder={p.title} /></Field>
-              <Field label="Meta description" hint={<><Count n={(p.metaDescription || p.excerpt).length} max={160} /></>}><textarea rows={3} value={p.metaDescription} onChange={(e) => set('metaDescription', e.target.value)} placeholder={p.excerpt} /></Field>
-              <Field label="Canonical URL" hint="Only if this content was first published elsewhere."><input value={p.canonical} onChange={(e) => set('canonical', e.target.value)} placeholder="https://" /></Field>
-              <label className="ad-check"><input type="checkbox" checked={p.noindex} onChange={(e) => set('noindex', e.target.checked)} /> Hide from search engines (noindex)</label>
-              <div className="seo-list"><div className={`seo-score ${tone}`}><strong>{seo.score}</strong><span>SEO score</span></div>
-                <ul>{seo.checks.map((c) => <li key={c.label} className={c.ok === true ? 'ok' : c.ok === 'warn' ? 'warn' : 'bad'}><Icon name={c.ok === true ? 'lucide:circle-check' : c.ok === 'warn' ? 'lucide:circle-alert' : 'lucide:circle-x'} size={16} /><span>{c.label}{c.ok !== true && c.hint && <small>{c.hint}</small>}</span></li>)}</ul></div>
-            </div>
-          )}
-        </aside>
-      </div>
+      )}
     </div>
   );
 }

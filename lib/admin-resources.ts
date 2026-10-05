@@ -1,5 +1,6 @@
 import { hashPassword, passwordProblem, roleList, type Role, type SessionUser } from '@/lib/auth';
 import { bool, longStr, num, oneOf, slugOf, str, strs, url } from '@/lib/admin-api';
+import { sanitizeHtml } from '@/lib/sanitize-html';
 import { count, findOne, list, type Rec } from '@/lib/store';
 
 type Ctx = { user: SessionUser; existing?: Rec | null; creating: boolean };
@@ -34,8 +35,13 @@ export const resources: Record<string, Resource> = {
       if (!slug) return { error: 'A URL slug is required.' };
       if (!(await uniqueSlug('posts', slug, existing?._id))) return { error: 'Another post already uses that URL slug.' };
       const st = oneOf(i.status, status, 'draft');
+      const cats = strs(i.categories, 10, 60);
+      if (!cats.length && str(i.category, 60)) cats.push(str(i.category, 60));
+      const fields = Array.isArray(i.customFields) ? i.customFields.slice(0, 30).map((f: Rec) => ({ name: str(f?.name, 80), value: str(f?.value, 1000) })).filter((f) => f.name) : [];
       return {
-        title, slug, excerpt: str(i.excerpt, 400), body: longStr(i.body), category: str(i.category, 60) || 'Insights', tags: strs(i.tags, 12, 40),
+        title, slug, excerpt: str(i.excerpt, 400), format: 'html', body: sanitizeHtml(longStr(i.body, 400000)), category: cats[0] || 'Insights', categories: cats, tags: strs(i.tags, 12, 40),
+        postFormat: oneOf(i.postFormat, ['standard', 'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'] as const, 'standard'),
+        visibility: oneOf(i.visibility, ['public', 'private'] as const, 'public'), allowComments: i.allowComments !== false, allowPingbacks: i.allowPingbacks !== false, customFields: fields,
         image: url(i.image), imageAlt: str(i.imageAlt, 200), author: str(i.author, 80) || 'GTech Editorial Team', featured: bool(i.featured),
         status: st, date: str(i.date, 40) || (st === 'published' ? new Date().toISOString() : ''),
         metaTitle: str(i.metaTitle, 120), metaDescription: str(i.metaDescription, 300), focusKeyword: str(i.focusKeyword, 80), canonical: url(i.canonical), noindex: bool(i.noindex),
@@ -58,6 +64,16 @@ export const resources: Record<string, Resource> = {
         status: oneOf(i.status, ['draft', 'published'] as const, 'draft'), order: num(i.order, 100),
         metaTitle: str(i.metaTitle, 120), metaDescription: str(i.metaDescription, 300), focusKeyword: str(i.focusKeyword, 80),
       };
+    },
+  },
+  categories: {
+    coll: 'categories', perm: 'content', search: ['name'], sort: { name: 1 },
+    async clean(i, { existing }) {
+      const name = str(i.name, 60), slug = slugOf(name);
+      if (!name || !slug) return { error: 'Enter a category name.' };
+      const hit = await findOne('categories', { slug });
+      if (hit && hit._id !== existing?._id) return { error: 'That category already exists.' };
+      return { name, slug };
     },
   },
   partners: {

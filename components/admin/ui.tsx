@@ -48,16 +48,18 @@ export function ListField({ value, onChange, placeholder, max = 20 }: { value: s
   );
 }
 
-// ---- image picker with upload + media library ----------------------------------------------------
+// ---- media library (upload + pick) ---------------------------------------------------------------
 type Media = { _id: string; name: string; url: string };
-export function ImageField({ value, onChange, label = 'Image' }: { value: string; onChange: (v: string) => void; label?: string }) {
-  const toast = useToast();
-  const [open, setOpen] = useState(false);
-  const [lib, setLib] = useState<Media[]>([]);
-  const [busy, setBusy] = useState(false);
-  const file = useRef<HTMLInputElement>(null);
 
-  useEffect(() => { if (open) api('/api/admin/media').then((d) => setLib(d.rows)).catch((e) => toast(e.message, true)); }, [open, toast]);
+/** Modal with an upload button and the image library. Calls onPick with the chosen image. */
+export function MediaModal({ onPick, onClose, title = 'Media library', altField = false }: { onPick: (m: { url: string; name: string; alt: string }) => void; onClose: () => void; title?: string; altField?: boolean }) {
+  const toast = useToast();
+  const [lib, setLib] = useState<Media[] | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [alt, setAlt] = useState('');
+  const file = useRef<HTMLInputElement>(null);
+  const load = useCallback(() => api('/api/admin/media').then((d) => setLib(d.rows)).catch((e) => { toast(e.message, true); setLib([]); }), [toast]);
+  useEffect(() => { load(); }, [load]);
 
   async function upload(f: File) {
     setBusy(true);
@@ -66,11 +68,27 @@ export function ImageField({ value, onChange, label = 'Image' }: { value: string
       const res = await fetch('/api/admin/media', { method: 'POST', body: fd });
       const d = await res.json();
       if (!res.ok) throw new Error(d.error || 'Upload failed');
-      onChange(d.media.url); setOpen(false); toast('Image uploaded');
+      toast('Image uploaded'); onPick({ url: d.media.url, name: f.name, alt });
     } catch (e) { toast(e instanceof Error ? e.message : 'Upload failed', true); }
     setBusy(false);
   }
+  return (
+    <div className="ad-modal" role="dialog" aria-modal="true" aria-label={title} onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="ad-modal-box">
+        <header><h2>{title}</h2><div className="ad-modal-act"><button type="button" className="ad-btn small" onClick={() => file.current?.click()} disabled={busy}><Icon name="lucide:upload" size={15} /> {busy ? 'Uploading…' : 'Upload image'}</button><button className="ad-ico" onClick={onClose} aria-label="Close"><Icon name="lucide:x" size={18} /></button></div></header>
+        {altField && <label className="ad-field" style={{ marginBottom: 14 }}><span>Alt text (describe the image for accessibility and SEO)</span><input value={alt} onChange={(e) => setAlt(e.target.value)} placeholder="e.g. Local SEO results dashboard" /></label>}
+        {lib === null ? <p className="ad-empty">Loading…</p> : lib.length === 0 ? <p className="ad-empty">No images yet. Upload one to start your library.</p> : (
+          <div className="ad-media">{lib.map((m) => <button key={m._id} type="button" onClick={() => onPick({ url: m.url, name: m.name, alt })} title={m.name}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={m.url} alt={m.name} /><span>{m.name}</span></button>)}</div>
+        )}
+        <input ref={file} type="file" hidden accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" onChange={(e) => { const f = e.target.files?.[0]; if (f) upload(f); e.target.value = ''; }} />
+      </div>
+    </div>
+  );
+}
 
+// ---- image field: preview + URL + upload/library ---------------------------------------------------
+export function ImageField({ value, onChange, label = 'Image' }: { value: string; onChange: (v: string) => void; label?: string }) {
+  const [open, setOpen] = useState(false);
   return (
     <div className="ad-img">
       <div className="ad-img-row">
@@ -78,23 +96,12 @@ export function ImageField({ value, onChange, label = 'Image' }: { value: string
         <div className="ad-img-ctl">
           <input value={value} placeholder="https://… or choose an image" aria-label={label} onChange={(e) => onChange(e.target.value)} />
           <div>
-            <button type="button" className="ad-btn small" onClick={() => file.current?.click()} disabled={busy}><Icon name="lucide:upload" size={15} /> {busy ? 'Uploading…' : 'Upload'}</button>
-            <button type="button" className="ad-btn small" onClick={() => setOpen(true)}><Icon name="lucide:images" size={15} /> Library</button>
+            <button type="button" className="ad-btn small" onClick={() => setOpen(true)}><Icon name="lucide:images" size={15} /> Upload / Library</button>
             {value && <button type="button" className="ad-btn small ghost" onClick={() => onChange('')}>Remove</button>}
           </div>
         </div>
-        <input ref={file} type="file" hidden accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" onChange={(e) => { const f = e.target.files?.[0]; if (f) upload(f); e.target.value = ''; }} />
       </div>
-      {open && (
-        <div className="ad-modal" role="dialog" aria-modal="true" onMouseDown={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
-          <div className="ad-modal-box">
-            <header><h2>Media library</h2><button className="ad-ico" onClick={() => setOpen(false)} aria-label="Close"><Icon name="lucide:x" size={18} /></button></header>
-            {lib.length === 0 ? <p className="ad-empty">No images yet. Upload one to start your library.</p> : (
-              <div className="ad-media">{lib.map((m) => <button key={m._id} type="button" onClick={() => { onChange(m.url); setOpen(false); }} title={m.name}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={m.url} alt={m.name} /><span>{m.name}</span></button>)}</div>
-            )}
-          </div>
-        </div>
-      )}
+      {open && <MediaModal onClose={() => setOpen(false)} onPick={(m) => { onChange(m.url); setOpen(false); }} />}
     </div>
   );
 }

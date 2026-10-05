@@ -17,14 +17,14 @@ export const author = {
 const toPost = (r: Record<string, any>): Post => ({ // eslint-disable-line @typescript-eslint/no-explicit-any
   slug: r.slug, title: r.title, excerpt: r.excerpt ?? '', category: r.category ?? 'Insights',
   date: new Date(r.date || r.createdAt || Date.now()).toISOString().slice(0, 10),
-  image: r.image || '/posts/default.webp', featured: Boolean(r.featured), body: r.body ?? '',
+  image: r.image || '/posts/default.webp', featured: Boolean(r.featured), body: r.body ?? '', format: r.format === 'html' ? 'html' : 'md',
   imageAlt: r.imageAlt, author: r.author, tags: r.tags, metaTitle: r.metaTitle, metaDescription: r.metaDescription, canonical: r.canonical, noindex: r.noindex,
 });
 
 export async function getPosts(): Promise<Post[]> {
   try {
     const rows = await list('posts', { filter: { status: { $in: ['published', 'scheduled'] } }, limit: 300 });
-    const live = rows.filter((r) => r.status === 'published' || new Date(r.date).getTime() <= Date.now()).map(toPost);
+    const live = rows.filter((r) => r.visibility !== 'private' && (r.status === 'published' || new Date(r.date).getTime() <= Date.now())).map(toPost);
     if (live.length) return live.sort((a, b) => b.date.localeCompare(a.date));
   } catch {
     // fall back to demo posts
