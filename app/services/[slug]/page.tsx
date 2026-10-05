@@ -6,7 +6,9 @@ import { notFound } from 'next/navigation';
 import PageHead from '@/components/PageHead';
 import LongServicePage from '@/components/service/ServicePage';
 import { serviceContent } from '@/content/services';
+import { withOverrides } from '@/lib/content';
 import { findGroup, findItem, services } from '@/lib/data';
+import { seoFor } from '@/lib/seo';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -22,8 +24,11 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const rich = serviceContent[slug];
-  if (rich) return { title: { absolute: rich.metaTitle }, description: rich.metaDescription, alternates: { canonical: `/services/${slug}` } };
+  const base = serviceContent[slug];
+  if (base) {
+    const rich = await withOverrides('service', base);
+    return seoFor(`/services/${slug}`, { title: { absolute: rich.metaTitle }, description: rich.metaDescription, alternates: { canonical: `/services/${slug}` } });
+  }
   const title = findGroup(slug)?.title ?? findItem(slug)?.item.name;
   return { title, description: findGroup(slug)?.intro ?? findItem(slug)?.item.blurb };
 }
@@ -32,7 +37,7 @@ export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
 
   // Long-form content (service or category page) wins over the simple layouts below.
-  if (serviceContent[slug]) return <LongServicePage c={serviceContent[slug]} />;
+  if (serviceContent[slug]) return <LongServicePage c={await withOverrides('service', serviceContent[slug])} />;
 
   const group = findGroup(slug);
   if (group) {

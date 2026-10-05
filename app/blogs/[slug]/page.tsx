@@ -5,6 +5,7 @@ import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
 import PostCard from '@/components/blog/PostCard';
 import ShareButtons from '@/components/blog/ShareButtons';
+import PostBody from '@/components/blog/PostBody';
 import Toc from '@/components/blog/Toc';
 import { author, formatDate, getPost, getPosts, parseBody, readTime } from '@/lib/blog';
 import { services, site } from '@/lib/data';
@@ -26,16 +27,15 @@ const base = 'https://www.gtechdigital.co.uk';
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = await getPost((await params).slug);
   if (!p) return {};
+  const title = p.metaTitle || p.title, description = p.metaDescription || p.excerpt;
   return {
-    title: p.title,
-    description: p.excerpt,
-    alternates: { canonical: `/blogs/${p.slug}` },
-    openGraph: { type: 'article', title: p.title, description: p.excerpt, images: [p.image], publishedTime: p.date, authors: [author.name] },
+    title, description,
+    alternates: { canonical: p.canonical || `/blogs/${p.slug}` },
+    ...(p.noindex && { robots: { index: false, follow: true } }),
+    openGraph: { type: 'article', title, description, images: [p.image], publishedTime: p.date, authors: [p.author || author.name] },
+    keywords: p.tags,
   };
 }
-
-// **bold** support inside paragraphs and list items.
-const Rich = ({ t }: { t: string }) => <>{t.split(/(\*\*[^*]+\*\*)/).map((s, i) => (s.startsWith('**') ? <strong key={i}>{s.slice(2, -2)}</strong> : s))}</>;
 
 export default async function PostPage({ params }: Props) {
   const p = await getPost((await params).slug);
@@ -51,7 +51,7 @@ export default async function PostPage({ params }: Props) {
   const jsonLd = [
     { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.excerpt, image: `${base}${p.image}`, datePublished: p.date, dateModified: p.date,
       mainEntityOfPage: url, articleSection: p.category, wordCount: p.body.split(/\s+/).length,
-      author: { '@type': 'Organization', name: author.name, url: `${base}/about` },
+      author: { '@type': 'Organization', name: p.author || author.name, url: `${base}/about` },
       publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${base}/logo.png` } } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
@@ -71,13 +71,13 @@ export default async function PostPage({ params }: Props) {
           <p className="bp-excerpt">{p.excerpt}</p>
           <div className="bp-meta">
             <span className="bp-avatar" aria-hidden="true">G</span>
-            <span><b>{author.name}</b><small><Icon name="lucide:calendar-days" size={14} />{formatDate(p.date)}<Icon name="lucide:clock" size={14} />{mins} min read</small></span>
+            <span><b>{p.author || author.name}</b><small><Icon name="lucide:calendar-days" size={14} />{formatDate(p.date)}<Icon name="lucide:clock" size={14} />{mins} min read</small></span>
           </div>
           <ShareButtons url={url} title={p.title} />
         </div>
         <div className="bp-top-img">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={p.image} alt={p.title} width={1200} height={675} />
+          <img src={p.image} alt={p.imageAlt || p.title} width={1200} height={675} />
         </div>
       </div></header>
 
@@ -92,12 +92,7 @@ export default async function PostPage({ params }: Props) {
         </div></aside>
 
         <article className="bp-body">
-          {blocks.map((b, i) => {
-            if (b.type === 'h2') return <h2 key={i} id={b.id}>{b.text}</h2>;
-            if (b.type === 'h3') return <h3 key={i} id={b.id}>{b.text}</h3>;
-            if (b.type === 'ul') return <ul key={i}>{b.items.map((it) => <li key={it}><Rich t={it} /></li>)}</ul>;
-            return <p key={i}><Rich t={b.text} /></p>;
-          })}
+          <PostBody blocks={blocks} />
 
           <div className="bp-share-end"><ShareButtons url={url} title={p.title} /></div>
 

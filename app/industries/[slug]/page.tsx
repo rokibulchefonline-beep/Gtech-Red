@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import IndustryPage from '@/components/industry/IndustryPage';
 import { industryContent } from '@/content/industries';
+import { withOverrides } from '@/lib/content';
+import { seoFor } from '@/lib/seo';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -13,13 +15,14 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const c = industryContent[(await params).slug];
-  if (!c) return {};
-  return { title: { absolute: c.metaTitle }, description: c.metaDescription, alternates: { canonical: `/industries/${c.slug}` } };
+  const base = industryContent[(await params).slug];
+  if (!base) return {};
+  const c = await withOverrides('industry', base);
+  return seoFor(`/industries/${c.slug}`, { title: { absolute: c.metaTitle }, description: c.metaDescription, alternates: { canonical: `/industries/${c.slug}` } });
 }
 
 export default async function Industry({ params }: Props) {
   const c = industryContent[(await params).slug];
   if (!c) notFound();
-  return <IndustryPage c={c} />;
+  return <IndustryPage c={await withOverrides('industry', c)} />;
 }

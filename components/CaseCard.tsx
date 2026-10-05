@@ -8,7 +8,7 @@ const tints = [
   'linear-gradient(135deg,#1a0a0d,#c4152d)', 'linear-gradient(135deg,#0c0c10,#6e1224)',
 ];
 
-// Banner-only card. The project name and three attributes appear on hover or keyboard focus.
+// Banner-only card. The project name and three headline numbers appear on hover or keyboard focus.
 export default function CaseCard({ doc, index = 0 }: { doc: Doc; index?: number }) {
   return (
     <article className="case-card">
@@ -17,7 +17,7 @@ export default function CaseCard({ doc, index = 0 }: { doc: Doc; index?: number 
         {doc.image && <img src={doc.image} alt="" loading="lazy" />}
         <span className="case-hover">
           <b>{doc.title}</b>
-          {doc.tags && doc.tags.length > 0 && <ul>{doc.tags.map((t) => <li key={t}>{t}</li>)}</ul>}
+          {doc.metrics && doc.metrics.length > 0 && <ul>{doc.metrics.slice(0, 3).map((m) => <li key={m.label}><strong>{m.value}</strong> {m.label}</li>)}</ul>}
           <i>View case study</i>
         </span>
       </Link>

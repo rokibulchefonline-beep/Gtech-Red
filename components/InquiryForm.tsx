@@ -32,7 +32,7 @@ export default function InquiryForm() {
     <form className="iq-form" onSubmit={submit}>
       <h3>Partner with <span className="red">GTech Digital</span></h3>
       {msg && <div className={`alert ${msg.ok ? 'ok' : 'err'}`}>{msg.text}</div>}
-      <input type="text" name="website" className="hp" tabIndex={-1} autoComplete="off" />
+      <input type="text" name="hp_field" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
       <div className="iq-field"><Icon name={formIcons.business} size={18} />
         <input name="company" required placeholder="Business Name" aria-label="Business name" autoComplete="organization" /></div>

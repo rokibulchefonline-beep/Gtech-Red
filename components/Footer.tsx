@@ -2,9 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CookieSettingsLink from '@/components/CookieSettingsLink';
 import Icon from '@/components/Icon';
-import { industries, services, site } from '@/lib/data';
+import { industries, services, site as base } from '@/lib/data';
+import { getPublicSettings } from '@/lib/settings';
 
-export default function Footer() {
+export default async function Footer() {
+  const st = await getPublicSettings();
+  const site = { name: st.general.siteName, email: st.contact.email, phone: st.contact.phone,
+    socials: st.socials.filter((s) => s.url).map((s) => ({ ...s, icon: base.socials.find((b) => b.name === s.name)?.icon ?? 'lucide:link' })) };
   return (
     <footer className="ft">
       <div className="wrap">

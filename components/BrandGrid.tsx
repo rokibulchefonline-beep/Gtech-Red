@@ -1,8 +1,9 @@
-import { brandLogos } from '@/lib/data';
+import { getClients } from '@/lib/content';
 
 // Client logos in a slow, continuous auto-scrolling strip. Repeats are hidden from assistive tech
 // so each brand is announced once. Pauses on hover and for reduced motion.
-export default function BrandGrid() {
+export default async function BrandGrid() {
+  const brandLogos = await getClients();
   // Two copies of the list make one loop wide enough for large screens; the track holds it twice.
   const set = [...brandLogos, ...brandLogos];
   return (

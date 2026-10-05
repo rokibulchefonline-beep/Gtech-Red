@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seoFor } from '@/lib/seo';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import Newsletter from '@/components/blog/Newsletter';
@@ -6,11 +7,12 @@ import { BlogList, BlogListView, BlogTools, BlogToolsView } from '@/components/b
 import { getPosts } from '@/lib/blog';
 import { slugify } from '@/lib/util';
 
-export const metadata: Metadata = {
+const baseMeta: Metadata = {
   title: { absolute: 'GTech Digital Blog | SEO, Marketing, Web & Software Insights' },
   description: 'Practical guides on SEO, Google Ads, social media, web design and software from the GTech Digital team, written for UK businesses.',
   alternates: { canonical: '/blogs' },
 };
+export const generateMetadata = () => seoFor('/blogs', baseMeta);
 
 export default async function Blog() {
   const all = await getPosts();

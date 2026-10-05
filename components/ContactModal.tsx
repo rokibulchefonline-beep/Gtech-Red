@@ -3,11 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/Icon';
-import { site } from '@/lib/data';
 
 // Site-wide contact popup. Any link to /contact opens this form instead of navigating
 // (add data-page to a link to keep normal navigation). The /contact page still works directly.
-export default function ContactModal() {
+export default function ContactModal({ phone, email }: { phone: string; email: string }) {
+  const site = { phone, email };
   const [open, setOpen] = useState(false);
   const [service, setService] = useState('');
   const [key, setKey] = useState(0);

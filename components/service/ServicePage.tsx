@@ -4,9 +4,10 @@ import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
 import FaqSection from '@/components/service/FaqSection';
 import type { Section, ServiceContent } from '@/content/types';
-import { brandLogos, findGroup, findItem, industries, site } from '@/lib/data';
+import { findGroup, findItem, industries, site } from '@/lib/data';
 import { groupIcons, industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
+import { getClients } from '@/lib/content';
 import TocBar from '@/components/TocBar';
 import Hl from '@/components/Hl';
 
@@ -30,7 +31,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
         <section className="sp-logos" aria-label="Clients"><div className="wrap">
           <p>Trusted by growing UK brands</p>
           <div className="sp-logo-row">{/* eslint-disable-next-line @next/next/no-img-element */}
-            {brandLogos.slice(0, 6).map((b) => <img key={b.name} src={b.logo} alt={b.name} loading="lazy" />)}</div>
+            {(await getClients()).slice(0, 6).map((b) => <img key={b.name} src={b.logo} alt={b.name} loading="lazy" />)}</div>
         </div></section>
       );
     case 'text':

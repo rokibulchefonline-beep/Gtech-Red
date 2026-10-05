@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seoFor } from '@/lib/seo';
 import Link from 'next/link';
 import CaseCarousel from '@/components/CaseCarousel';
 import InquirySection from '@/components/InquirySection';
@@ -17,12 +18,13 @@ import { listDocs } from '@/lib/mongo';
 
 const base = 'https://www.gtechdigital.co.uk';
 
-export const metadata: Metadata = {
+const baseMeta: Metadata = {
   title: { absolute: 'About GTech Digital | UK Digital Marketing, Web & Software Agency' },
   description:
     'Meet GTech Digital, a UK agency combining digital marketing, web design and custom software under one roof, with certified specialists and a focus on measurable growth.',
   alternates: { canonical: '/about' },
 };
+export const generateMetadata = () => seoFor('/about', baseMeta);
 
 const sections: Section[] = [
   {

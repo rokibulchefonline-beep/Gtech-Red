@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seoFor } from '@/lib/seo';
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
@@ -13,11 +14,12 @@ import Hl from '@/components/Hl';
 // home page's main agency keyword.
 const base = 'https://www.gtechdigital.co.uk';
 
-export const metadata: Metadata = {
+const baseMeta: Metadata = {
   title: { absolute: 'GTech Digital Services | Marketing, Web & Software Solutions' },
   description: 'Explore every GTech Digital service: SEO, Google Ads, social media, web design, custom software and branding, delivered by one UK team.',
   alternates: { canonical: '/services' },
 };
+export const generateMetadata = () => seoFor('/services', baseMeta);
 
 const groupInfo: Record<string, { image: string; title: string; h2: string; line: string; points: string[]; cards: string[] }> = {
   'digital-marketing': { image: '/services/dm.webp', title: 'Digital Marketing', h2: 'Digital Marketing Services: SEO, Google Ads and Content', line: 'Be found on Google and in AI answers, and turn searches into customers.', points: ['SEO, local SEO and AI search', 'Google Ads and paid media', 'Content, links and reviews'],

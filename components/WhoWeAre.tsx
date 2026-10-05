@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import IntroVideo from '@/components/IntroVideo';
-import { partners } from '@/lib/data';
+import { getPartners } from '@/lib/content';
 import { uiIcons } from '@/lib/icons';
 
 const points = [
@@ -10,7 +10,8 @@ const points = [
   'Plain-English reporting, no jargon',
 ];
 
-export default function WhoWeAre() {
+export default async function WhoWeAre() {
+  const partners = (await getPartners()).slice(0, 4);
   return (
     <section className="who">
       <div className="wrap who-grid">

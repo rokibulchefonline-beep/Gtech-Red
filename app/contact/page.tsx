@@ -1,20 +1,22 @@
 import type { Metadata } from 'next';
+import { seoFor } from '@/lib/seo';
 import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/Icon';
 import PartnerStrip from '@/components/PartnerStrip';
 import FaqSection from '@/components/service/FaqSection';
 import { Tick } from '@/components/service/ServicePage';
-import { site } from '@/lib/data';
+import { getPublicSettings } from '@/lib/settings';
 
 const base = 'https://www.gtechdigital.co.uk';
 
-export const metadata: Metadata = {
+const baseMeta: Metadata = {
   title: { absolute: 'Contact GTech Digital | Get a Free Proposal | UK Digital Agency' },
   description:
     'Contact GTech Digital for a free audit and tailored proposal for SEO, Google Ads, social media, web design or custom software. We reply within one working day.',
   alternates: { canonical: '/contact' },
 };
+export const generateMetadata = () => seoFor('/contact', baseMeta);
 
 const next = [
   { title: 'We review your enquiry', text: 'A specialist looks at your website and goals.' },
@@ -31,7 +33,9 @@ const faqs = [
   { q: 'What information should I include?', a: 'Your website, what you want to achieve and a rough monthly budget help us prepare a useful proposal.' },
 ];
 
-export default function Contact() {
+export default async function Contact() {
+  const st = await getPublicSettings();
+  const site = { name: st.general.siteName, email: st.contact.email, phone: st.contact.phone };
   const jsonLd = [
     { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact GTech Digital', url: `${base}/contact`,
       mainEntity: { '@type': 'Organization', name: site.name, url: base,

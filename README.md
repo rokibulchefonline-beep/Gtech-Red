@@ -46,3 +46,24 @@ The demo case-study covers in `public/case/*.webp` are drawn in code by `scripts
 `public/videos/intro.mp4` (30 s, 1280x720) and its poster are drawn in code by `scripts/build-intro-video.mjs`.
 Needs an ffmpeg with libx264: `FFMPEG=/path/to/ffmpeg npm run intro-video` (about 1 minute).
 Edit the scenes and text in that script (numbers live in `scripts/video-data.mjs`), or replace the two files with your own video and poster.
+
+## Admin panel
+
+Open `/admin`. On a fresh database it sends you to `/admin/setup` to create the first **super admin** (set `SETUP_KEY` first on a public site).
+
+Required environment variables: `MONGODB_URI`, `MONGODB_DB`, `AUTH_SECRET`.
+
+| Area | What it does |
+| --- | --- |
+| Page content | Edit hero text, section copy, bullets and FAQs of every service and industry page (only changed fields are stored as overrides; Reset restores the original). |
+| Blog posts | Markdown editor with toolbar, live preview, autosave, image upload, scheduling, categories, tags and an SEO score. |
+| Case studies | Banner, headline numbers (shown on card hover), challenge, solution, results, quote and linked services. |
+| Partner badges / Client logos | Manage the partner strip, certified-partner row and the scrolling brands strip. |
+| SEO manager | Per-URL title, description, canonical, social image and noindex, with a SERP preview and checks. |
+| Leads | Every form submission: status pipeline, notes, assignee, value, CSV export. |
+| Users and roles | Super admin only. Roles: Super admin, Admin, Editor, Sales. |
+| Settings | Site details, tracking IDs, SEO defaults, SMTP email (encrypted password, test send) and the deploy hook. |
+
+The public site is pre-rendered. After editing content, click **Publish site** to rebuild it (needs a deploy hook, see Settings > Publishing). Leads, login and the admin itself are always live.
+
+Without `MONGODB_URI`, development (`npm run dev`) uses an in-memory store so you can try the admin; production does not.

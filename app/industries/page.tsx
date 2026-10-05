@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seoFor } from '@/lib/seo';
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
@@ -7,11 +8,12 @@ import { industryContent } from '@/content/industries';
 import { industries } from '@/lib/data';
 import { industryIcons, uiIcons } from '@/lib/icons';
 
-export const metadata: Metadata = {
+const baseMeta: Metadata = {
   title: { absolute: 'Industries We Serve | Sector Marketing & Software | GTech Digital' },
   description: 'GTech Digital helps UK businesses in ecommerce, healthcare, hospitality, property, finance, education, travel, automotive, B2B and SaaS grow with tailored marketing, websites and software.',
   alternates: { canonical: '/industries' },
 };
+export const generateMetadata = () => seoFor('/industries', baseMeta);
 
 export default function Industries() {
   return (

@@ -13,8 +13,10 @@ import StatsBar from '@/components/StatsBar';
 import Results from '@/components/Results';
 import Testimonials from '@/components/Testimonials';
 import CaseStudies from '@/components/CaseStudies';
-import { site } from '@/lib/data';
+import { seoFor } from '@/lib/seo';
 
+
+export const generateMetadata = () => seoFor('/');
 
 export default async function Home() {
   return (
