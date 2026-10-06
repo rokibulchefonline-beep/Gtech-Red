@@ -60,7 +60,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
       return (
         <section id={s.id} className={`sp-sec ${s.tone === 'grey' ? 'sp-grey' : ''} ${s.flip ? 'flip' : ''}`}><div className="wrap sp-media">
           <div className="sp-media-copy"><Head s={s} center={false} /><Paras p={s.paras} /><List b={s.bullets} />
-            <p className="sp-media-cta"><Link className="sp-btn-red" href={`/contact?service=${encodeURIComponent(name)}`}>{ctaLabel(slug, name, s.id)} <Icon name={uiIcons.arrowRight} size={16} /></Link></p>
+            <p className="sp-media-cta"><Link className="btn-red" href={`/contact?service=${encodeURIComponent(name)}`}>{ctaLabel(slug, name, s.id)} <Icon name={uiIcons.arrowRight} size={15} /></Link></p>
           </div>
           <div className="sp-media-frame">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -175,7 +175,7 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
               );
             })}
           </div>
-          <p className="sp-inds-all"><Link href="/industries">View all industries <Icon name={uiIcons.arrowRight} size={16} /></Link></p>
+          <p className="sp-inds-all"><Link href="/industries">View all industries <Icon name={uiIcons.arrowRight} size={15} /></Link></p>
         </div></section>
       );
   }
