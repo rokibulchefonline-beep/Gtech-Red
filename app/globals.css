@@ -954,3 +954,8 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 .sp-media-copy .sp-media-cta{margin:30px 0 0}
 .sp-media-cta .btn-red{display:inline-flex;align-items:center;gap:10px;box-shadow:none}
 .sp-media-cta .btn-red:hover{box-shadow:0 10px 26px rgba(232,32,47,.35)}
+
+/* Home hero: two lines on desktop, a little larger */
+.hero-head{max-width:none}
+.hero-head .hero-title,.hero-head .hero-title span{font-size:clamp(36px,5.6vw,78px)!important;line-height:1.04}
+@media(min-width:1024px){.hero-head .hero-title span{white-space:nowrap}}

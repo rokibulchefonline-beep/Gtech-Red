@@ -6,7 +6,7 @@ export const homeContent: ServiceContent = {
   short: 'Home',
   metaTitle: 'GTech Digital | Digital Marketing Agency UK',
   metaDescription: 'GTech Digital is a UK digital marketing agency growing businesses with SEO, Google Ads, social media, web design and custom software.',
-  hero: { h1: 'Digital Marketing|Agency [[for Scalable]]|[[Growth]]', lead: 'GTech Digital helps UK businesses grow with smart, conversion-focused marketing.', motion: '', points: [] },
+  hero: { h1: 'Digital Marketing Agency|[[for Scalable Growth]]', lead: 'GTech Digital helps UK businesses grow with smart, conversion-focused marketing.', motion: '', points: [] },
   sections: [
     { type: 'text', id: 'who', nav: 'Who we are', heading: 'A [[Digital Marketing Agency]] Built for Growth',
       paras: ['GTech Digital is a full-service digital marketing agency specialising in search marketing, advertising, branding, and high-performing websites and software for growth-focused businesses. We turn strategy into measurable revenue.'],
