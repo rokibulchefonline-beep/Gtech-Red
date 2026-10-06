@@ -143,6 +143,19 @@ All page addresses stay the same, so no redirects are needed beyond the old ones
 - **On every deploy** run `php artisan optimize` (config, routes, views and events are cached) and keep PHP OPcache
   on. Run `php artisan optimize:clear` before editing `.env` on the server.
 
+## Admin panel notes
+
+- **Emails** (password reset, lead alerts, auto-replies) are sent with the SMTP account in **Site settings → Email**
+  and go out straight away (`QUEUE_CONNECTION=sync`). If you prefer a background queue, set `QUEUE_CONNECTION=database`
+  and keep `php artisan queue:work` running (Supervisor, or a Plesk scheduled task).
+- **Redirects** (Website content → Redirects): changing a blog post or case study address adds one automatically, so
+  old links keep working. You can add your own, e.g. for retired pages. A redirect is only used when the address no
+  longer exists, so it can never hide a live page.
+- **Article editor:** click an image, then the image button, to change its alt text. Click inside a link, then the
+  link button, to change or remove it.
+- **Admin theme:** the compiled stylesheet is committed in `public/build`, so the server needs no Node.js. Only after
+  changing `resources/css/filament/admin/*` run `npm install && npm run build` (on your computer) and commit the result.
+
 ## Commands
 
 | Command | What it does |

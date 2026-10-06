@@ -16,4 +16,12 @@ class Lead extends Model
     {
         return ['value'=>'decimal:2'];
     }
+
+    /** Phone number for tel: and WhatsApp links: digits only, UK numbers starting with 0 written with +44. */
+    public function phoneDigits(): string
+    {
+        $d = preg_replace('/\D+/', '', (string) $this->phone);
+        if (str_starts_with((string) $this->phone, '+')) return $d;
+        return str_starts_with($d, '00') ? substr($d, 2) : (str_starts_with($d, '0') ? '44'.substr($d, 1) : $d);
+    }
 }

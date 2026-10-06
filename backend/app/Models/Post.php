@@ -16,4 +16,12 @@ class Post extends Model
     {
         return ['categories'=>'array','tags'=>'array','custom_fields'=>'array','allow_comments'=>'boolean','allow_pingbacks'=>'boolean','featured'=>'boolean','noindex'=>'boolean','date'=>'datetime'];
     }
+
+    protected static function booted(): void
+    {
+        // A changed address keeps working: the old one redirects to the new one.
+        static::updated(function (self $m) {
+            if ($m->wasChanged('slug') && $m->getOriginal('slug')) Redirect::moved('/blogs/'.$m->getOriginal('slug'), '/blogs/'.$m->slug);
+        });
+    }
 }

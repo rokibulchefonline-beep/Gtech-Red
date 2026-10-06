@@ -16,4 +16,12 @@ class CaseStudy extends Model
     {
         return ['services'=>'array','metrics'=>'array','results'=>'array','quote'=>'array','order'=>'integer'];
     }
+
+    protected static function booted(): void
+    {
+        // A changed address keeps working: the old one redirects to the new one.
+        static::updated(function (self $m) {
+            if ($m->wasChanged('slug') && $m->getOriginal('slug')) Redirect::moved('/case-studies/'.$m->getOriginal('slug'), '/case-studies/'.$m->slug);
+        });
+    }
 }

@@ -58,6 +58,10 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->authMiddleware([Authenticate::class]);
+            ->authMiddleware([Authenticate::class])
+            // On phones and small tablets the menu starts closed, so the page is visible straight away.
+            ->renderHook(\Filament\View\PanelsRenderHook::BODY_END, fn () => new \Illuminate\Support\HtmlString(
+                "<script>document.addEventListener('alpine:initialized',function(){if(window.innerWidth<1024&&window.Alpine&&Alpine.store('sidebar'))Alpine.store('sidebar').close()})</script>"
+            ));
     }
 }

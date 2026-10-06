@@ -110,7 +110,7 @@ class PageResource extends Resource
 
     private static function siteUrl(?Page $r): string
     {
-        return rtrim(config('gtech.site_url'), '/').($r?->path ?? '/');
+        return \App\Filament\Support\SiteLink::to($r?->path ?? '/');
     }
 
     /** Database row -> form state. */
@@ -191,12 +191,12 @@ class PageResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Page')->searchable()->description(fn (Page $r) => $r->path),
                 Tables\Columns\TextColumn::make('kind')->label('Type')->badge()->formatStateUsing(fn ($state) => self::KINDS[$state] ?? $state),
-                Tables\Columns\TextColumn::make('updated_at')->label('Last change')->since()->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')->label('Last change')->since()->sortable()->visibleFrom('md'),
             ])
             ->filters([Tables\Filters\SelectFilter::make('kind')->label('Type')->options(self::KINDS)])
             ->actions([
-                Tables\Actions\Action::make('view')->icon('heroicon-o-arrow-top-right-on-square')->color('gray')->url(fn (Page $r) => self::siteUrl($r), shouldOpenInNewTab: true),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('view')->icon('heroicon-o-arrow-top-right-on-square')->color('gray')->iconButton()->tooltip('View on the website')->url(fn (Page $r) => self::siteUrl($r), shouldOpenInNewTab: true),
+                Tables\Actions\EditAction::make()->iconButton()->tooltip('Edit'),
                 Tables\Actions\Action::make('restore')->label('Restore original')->icon('heroicon-o-arrow-uturn-left')->color('danger')->requiresConfirmation()
                     ->modalDescription('Replace this page\'s text with the original copy it launched with? Your edits to this page are lost.')
                     ->action(fn (Page $r) => self::restore($r)),

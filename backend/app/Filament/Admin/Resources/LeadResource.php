@@ -8,6 +8,7 @@ use App\Filament\Support\HooksDefault;
 use App\Models\Lead;
 use Filament\Actions\Action;
 use Filament\Forms;
+use Illuminate\Support\HtmlString;
 use Filament\Forms\Form;
 use Filament\Infolists;
 use Filament\Resources\Resource;
@@ -41,9 +42,13 @@ class LeadResource extends Resource
         return $form->schema([
             Forms\Components\Section::make('Enquiry')->schema([
                 Forms\Components\Placeholder::make('who')->label('From')->content(fn (?Lead $r) => $r ? "{$r->name}, {$r->business}" : ''),
-                Forms\Components\Placeholder::make('contact')->label('Contact')->content(fn (?Lead $r) => $r ? "{$r->email} · {$r->phone}" : ''),
+                Forms\Components\Placeholder::make('contact')->label('Contact')->content(fn (?Lead $r) => $r ? new HtmlString(implode(' · ', array_filter([
+                    $r->email ? '<a class="text-primary-600 underline" href="mailto:'.e($r->email).'?subject='.rawurlencode('Your enquiry about '.$r->service).'">'.e($r->email).'</a>' : '',
+                    $r->phone ? '<a class="text-primary-600 underline" href="tel:+'.$r->phoneDigits().'">'.e($r->phone).'</a>' : '',
+                ]))) : ''),
                 Forms\Components\Placeholder::make('svc')->label('Service and budget')->content(fn (?Lead $r) => $r ? trim("{$r->service} · {$r->budget}", ' ·') : ''),
-                Forms\Components\Placeholder::make('site')->label('Website / postcode')->content(fn (?Lead $r) => $r ? trim("{$r->website} {$r->postcode}") ?: '-' : ''),
+                Forms\Components\Placeholder::make('site')->label('Website / postcode')->content(fn (?Lead $r) => $r ? new HtmlString(trim(
+                    ($r->website ? '<a class="text-primary-600 underline" target="_blank" rel="noopener noreferrer" href="'.e(preg_match('#^https?://#i', $r->website) ? $r->website : 'https://'.$r->website).'">'.e($r->website).'</a> ' : '').e($r->postcode)) ?: '-') : ''),
                 Forms\Components\Placeholder::make('msg')->label('Message')->content(fn (?Lead $r) => $r?->message ?: '-')->columnSpanFull(),
                 Forms\Components\Placeholder::make('when')->label('Received')->content(fn (?Lead $r) => $r?->created_at?->format('d M Y, H:i').' via '.$r?->source),
             ])->columns(2),
@@ -62,10 +67,10 @@ class LeadResource extends Resource
             ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable()->description(fn (Lead $r) => $r->business),
-                Tables\Columns\TextColumn::make('email')->searchable()->copyable()->description(fn (Lead $r) => $r->phone),
-                Tables\Columns\TextColumn::make('service')->searchable()->wrap(),
+                Tables\Columns\TextColumn::make('email')->searchable()->url(fn (Lead $r) => 'mailto:'.$r->email)->description(fn (Lead $r) => $r->phone)->visibleFrom('md'),
+                Tables\Columns\TextColumn::make('service')->searchable()->wrap()->visibleFrom('lg'),
                 Tables\Columns\SelectColumn::make('status')->options(self::STATUSES)->selectablePlaceholder(false),
-                Tables\Columns\TextColumn::make('assignee')->toggleable(),
+                Tables\Columns\TextColumn::make('assignee')->toggleable()->visibleFrom('lg'),
                 Tables\Columns\TextColumn::make('created_at')->label('Received')->since()->sortable(),
             ])
             ->filters([Tables\Filters\SelectFilter::make('status')->options(self::STATUSES)])

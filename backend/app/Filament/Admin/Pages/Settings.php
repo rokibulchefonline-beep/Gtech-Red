@@ -83,7 +83,7 @@ class Settings extends Page implements HasForms
                     Forms\Components\TextInput::make('smtp.notifyTo')->label('Send lead alerts to')->email()->maxLength(160),
                     Forms\Components\Toggle::make('smtp.autoReply')->label('Send an automatic reply to the person who enquired'),
                 ])->columns(2),
-                Forms\Components\Tabs\Tab::make('Publishing')->schema([
+                Forms\Components\Tabs\Tab::make('Publishing')->visible(fn () => ! config('gtech.blade_live'))->schema([
                     Forms\Components\TextInput::make('publish.deployHook')->label('Cloudflare deploy hook URL')->url()->maxLength(500)
                         ->helperText('Cloudflare > Workers & Pages > your site > Settings > Builds > Deploy hooks. "Publish site" calls this URL.'),
                 ]),
@@ -117,7 +117,8 @@ class Settings extends Page implements HasForms
                         Notification::make()->title('Email failed')->body($e->getMessage())->danger()->send();
                     }
                 }),
-            Action::make('publish')->label('Publish site')->icon('heroicon-o-rocket-launch')->requiresConfirmation()->action(fn () => Publisher::publish()),
+            Action::make('publish')->label('Publish site')->icon('heroicon-o-rocket-launch')->requiresConfirmation()
+                ->visible(fn () => ! config('gtech.blade_live'))->action(fn () => Publisher::publish()),
         ];
     }
 }

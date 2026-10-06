@@ -39,6 +39,6 @@ class ImageField
     /** Relative website paths (/posts/x.webp) are shown from the public site. */
     public static function preview(string $v): string
     {
-        return str_starts_with($v, '/') && ! str_starts_with($v, '/api/media/') ? rtrim(config('gtech.site_url'), '/').$v : $v;
+        return str_starts_with($v, '/') && ! str_starts_with($v, '/api/media/') ? SiteLink::to($v) : $v;
     }
 }

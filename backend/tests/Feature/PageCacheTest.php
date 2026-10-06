@@ -19,6 +19,8 @@ class PageCacheTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        // Livewire remembers rendering an admin page in a static flag; a real request starts fresh.
+        \Livewire\Features\SupportAutoInjectedAssets\SupportAutoInjectedAssets::$hasRenderedAComponentThisRequest = false;
         Artisan::call('gtech:seed-content');
         $this->fresh();
     }

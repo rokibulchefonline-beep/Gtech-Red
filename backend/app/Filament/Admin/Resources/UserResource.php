@@ -60,7 +60,7 @@ class UserResource extends Resource
             Tables\Columns\TextColumn::make('name')->searchable()->description(fn (User $r) => $r->email),
             Tables\Columns\TextColumn::make('role')->badge()->formatStateUsing(fn ($state) => User::ROLES[$state]['label'] ?? $state),
             Tables\Columns\IconColumn::make('active')->boolean(),
-            Tables\Columns\TextColumn::make('created_at')->label('Added')->date('d M Y'),
+            Tables\Columns\TextColumn::make('created_at')->label('Added')->date('d M Y')->visibleFrom('md'),
         ])->actions([
             Tables\Actions\EditAction::make(),
             Tables\Actions\DeleteAction::make()->hidden(fn (User $r) => $r->is(auth()->user()))

@@ -36,7 +36,7 @@ class SubscriberResource extends Resource
     {
         return $table->defaultSort('created_at', 'desc')->columns([
             Tables\Columns\TextColumn::make('email')->searchable()->copyable(),
-            Tables\Columns\TextColumn::make('source'),
+            Tables\Columns\TextColumn::make('source')->visibleFrom('md'),
             Tables\Columns\TextColumn::make('created_at')->label('Joined')->dateTime('d M Y')->sortable(),
         ])->actions([Tables\Actions\DeleteAction::make()])->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }

@@ -67,9 +67,9 @@ class SeoEntryResource extends Resource
     {
         return $table->defaultSort('path')->columns([
             Tables\Columns\TextColumn::make('path')->searchable()->sortable(),
-            Tables\Columns\TextColumn::make('title')->limit(50)->placeholder('page default'),
+            Tables\Columns\TextColumn::make('title')->limit(50)->placeholder('page default')->visibleFrom('md'),
             Tables\Columns\IconColumn::make('noindex')->label('Hidden')->boolean(),
-            Tables\Columns\IconColumn::make('schema_custom')->label('Custom schema')->getStateUsing(fn (SeoEntry $r) => (bool) $r->schema_custom)->boolean(),
+            Tables\Columns\IconColumn::make('schema_custom')->label('Custom schema')->getStateUsing(fn (SeoEntry $r) => (bool) $r->schema_custom)->boolean()->visibleFrom('md'),
         ])->actions([Tables\Actions\EditAction::make(), Tables\Actions\DeleteAction::make()]);
     }
 
