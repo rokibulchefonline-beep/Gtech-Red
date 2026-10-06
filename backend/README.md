@@ -107,6 +107,18 @@ code with `npm run export:content`. It only fills what is missing and never over
 
 The Next.js website still reads pages through the same API until the Blade front end replaces it.
 
+## Switching the website to Blade
+
+1. Point the website's domain at this Laravel app (document root `backend/public`). Keep `APP_URL` on the address
+   the panel should use.
+2. In `.env` set `GTECH_BLADE_LIVE=true`. This removes the `noindex` header and opens `robots.txt` with the sitemap.
+3. Run `php artisan optimize`.
+4. Check a few pages, then submit `https://www.gtechdigital.co.uk/sitemap.xml` in Google Search Console.
+5. The Cloudflare (Next.js) project and its "Publish site" deploy hook are no longer needed. Content edits show on the
+   site straight away.
+
+All page addresses stay the same, so no redirects are needed beyond the old ones already in place.
+
 ## Speed and caching
 
 - **Page cache.** Public pages are stored as finished HTML and served without touching the database. Saving
@@ -140,9 +152,10 @@ The Next.js website still reads pages through the same API until the Blade front
 | `php artisan gtech:create-admin <email>` | Create a super admin, or reset an existing user's password |
 | `php artisan test` | Run the backend tests |
 
-## Blade front end (in progress)
+## Blade front end
 
-The website is being rebuilt in Blade with the same HTML, CSS and behaviour as the Next.js version.
+The website has been rebuilt in Blade with the same HTML, CSS and behaviour as the Next.js version. It is ready to
+replace the Next.js site; see **Switching the website to Blade** below.
 
 | Phase | Status |
 |---|---|
@@ -152,7 +165,7 @@ The website is being rebuilt in Blade with the same HTML, CSS and behaviour as t
 | 4. Behaviour check: 35 interaction scenarios (scrolling, sliders, rotation, count-ups, videos, share, newsletter, search, forms, popup, menus, cookie banner) give the same result as the website; no JS errors on any page | Done. Tools in `scripts/parity/` |
 | 5. SEO: titles, descriptions, canonicals, robots, Open Graph and Twitter tags, the JSON-LD graph on every page, the panel's SEO overrides, `sitemap.xml`, `robots.txt` and the old-address redirects | Done. Same output as the website on all 67 pages, with the fixes below |
 | 6. Caching: full-page cache that refreshes itself on every save, no cookies or sessions on public pages, 304 responses for unchanged pages, compression and long browser caching for CSS, JS and images | Done |
-| 7. Full visual check | Next |
+| 7. Full visual check: all 67 pages at 1352, 900 and 390 px, full page including header and footer, compared pixel by pixel with the website | Done. Same page heights everywhere; at most 0.012% of pixels differ (text edges and the resized logo) |
 
 SEO fixes compared with the Next.js output:
 
