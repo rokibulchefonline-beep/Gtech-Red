@@ -1,0 +1,1 @@
+<a href="/services/{{ $it->slug }}" class="sp-rel"><span class="sp-card-ico solid">@icon($it->icon, 22)</span><h3>{{ $it->name }}</h3><p>{{ $it->blurb }}</p><span class="sp-more">Explore @icon('lucide:arrow-right', 16)</span></a>
