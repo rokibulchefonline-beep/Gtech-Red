@@ -1,9 +1,11 @@
 import { route } from '@/lib/admin-api';
-import { findOne } from '@/lib/store';
+import { findOne, laravel } from '@/lib/store';
 
 export const dynamic = 'force-dynamic';
 
 async function GET_(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const lv = laravel();
+  if (lv) return Response.redirect(`${lv.url}/api/media/${encodeURIComponent((await params).id)}`, 308);
   const m = await findOne('media', { _id: (await params).id }).catch(() => null);
   if (!m) return new Response('Not found', { status: 404 });
   const bytes = Uint8Array.from(atob(m.data), (c) => c.charCodeAt(0));

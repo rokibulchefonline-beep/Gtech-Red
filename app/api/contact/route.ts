@@ -2,7 +2,8 @@ import { route } from '@/lib/admin-api';
 import { NextResponse } from 'next/server';
 import { esc, mailShell, sendMail } from '@/lib/mail';
 import { getSettings } from '@/lib/settings';
-import { insert } from '@/lib/store';
+import { forward } from '@/lib/forward';
+import { insert, laravel } from '@/lib/store';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,6 +12,8 @@ export const dynamic = 'force-dynamic';
 // Leads are saved to the `leads` collection (managed in Admin > Leads) and emailed through SMTP.
 async function POST_(req: Request) {
   const body = await req.json().catch(() => ({}));
+  const lv = laravel();
+  if (lv) return forward(`${lv.url}/api/v1/contact`, body, req);
   const v = (k: string) => String(body[k] ?? '').trim();
 
   if (v('hp_field')) return NextResponse.json({ ok: true }); // honeypot
@@ -56,3 +59,4 @@ async function POST_(req: Request) {
 }
 
 export const POST = route(POST_);
+

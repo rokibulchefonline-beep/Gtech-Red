@@ -2,8 +2,10 @@ import { forget } from '@/lib/cache';
 import { withDb } from '@/lib/mongo';
 
 // Tiny data-access layer used by the admin and the public site. Documents use string ids (`_id`).
-// Production: MongoDB (MONGODB_URI). Local development and tests without a database: an in-memory
-// store, enabled only when NODE_ENV is not "production" or ALLOW_MEMORY_DB=1.
+// Sources, in order:
+//   1. Laravel backend (LARAVEL_API_URL + LARAVEL_API_TOKEN): read-only; content is edited in the Laravel panel.
+//   2. MongoDB (MONGODB_URI): the original setup, kept until the switch-over.
+//   3. In-memory store for local development and tests (NODE_ENV not "production" or ALLOW_MEMORY_DB=1).
 
 export type Rec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 export type Query = {
@@ -13,6 +15,17 @@ export type Query = {
 const mem = (globalThis as unknown as { _memdb?: Map<string, Rec[]> });
 const memory = (): Map<string, Rec[]> => (mem._memdb ??= new Map<string, Rec[]>());
 const useMemory = () => !process.env.MONGODB_URI && (process.env.NODE_ENV !== 'production' || process.env.ALLOW_MEMORY_DB === '1');
+
+// --- Laravel backend (read only) -----------------------------------------------------------------
+export const laravel = () => (process.env.LARAVEL_API_URL ? { url: process.env.LARAVEL_API_URL.replace(/\/$/, ''), token: process.env.LARAVEL_API_TOKEN ?? '' } : null);
+async function remote(body: Rec): Promise<Rec> {
+  const b = laravel()!;
+  const res = await fetch(`${b.url}/api/v1/query`, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json', 'x-api-key': b.token }, body: JSON.stringify(body) });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) throw new Error(`Laravel API: ${json.error ?? res.status}`);
+  return json;
+}
+const readOnly = () => { throw new Error('This data is managed in the Laravel admin panel.'); };
 
 export const newId = () => crypto.randomUUID().replace(/-/g, '').slice(0, 24);
 
@@ -41,6 +54,7 @@ function match(d: Rec, f: Rec): boolean {
 const cmp = (a: unknown, b: unknown) => (a === b ? 0 : (a as number) > (b as number) ? 1 : -1);
 
 export async function list(coll: string, q: Query = {}): Promise<Rec[]> {
+  if (laravel()) return (await remote({ coll, filter: q.filter ?? {}, sort: q.sort ?? {}, limit: q.limit ?? 500, skip: q.skip ?? 0 })).rows as Rec[];
   if (useMemory()) {
     let rows = (memory().get(coll) ?? []).filter((d) => match(d, q.filter ?? {}));
     for (const [k, dir] of Object.entries(q.sort ?? {}).reverse()) rows = [...rows].sort((a, b) => dir * cmp(get(a, k), get(b, k)));
@@ -50,6 +64,7 @@ export async function list(coll: string, q: Query = {}): Promise<Rec[]> {
 }
 
 export async function count(coll: string, filter: Rec = {}): Promise<number> {
+  if (laravel()) return (await remote({ coll, filter, count: true })).total as number;
   if (useMemory()) return (memory().get(coll) ?? []).filter((d) => match(d, filter)).length;
   return withDb((db) => db.collection(coll).countDocuments(filter));
 }
@@ -59,6 +74,7 @@ export async function findOne(coll: string, filter: Rec): Promise<Rec | null> {
 }
 
 export async function insert(coll: string, doc: Rec): Promise<Rec> {
+  if (laravel()) return readOnly();
   const d = { ...doc, _id: doc._id ?? newId(), createdAt: doc.createdAt ?? new Date(), updatedAt: new Date() };
   if (useMemory()) { const m = memory(); m.set(coll, [...(m.get(coll) ?? []), structuredClone(d)]); return d; }
   await withDb((db) => db.collection(coll).insertOne(d as never));
@@ -66,6 +82,7 @@ export async function insert(coll: string, doc: Rec): Promise<Rec> {
 }
 
 export async function update(coll: string, id: string, patch: Rec): Promise<boolean> {
+  if (laravel()) return readOnly();
   if (coll === 'users') forget(`user:${id}`);
   if (coll === 'settings') forget('settings');
   const set: Rec = { ...patch, updatedAt: new Date() };
@@ -87,6 +104,7 @@ export async function upsert(coll: string, id: string, doc: Rec): Promise<void> 
 }
 
 export async function remove(coll: string, id: string): Promise<boolean> {
+  if (laravel()) return readOnly();
   if (coll === 'users') forget(`user:${id}`);
   if (useMemory()) {
     const rows = memory().get(coll) ?? [];
