@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Testimonial extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'testimonials';
 
     protected $fillable = ['title','name','text','visible','sort'];

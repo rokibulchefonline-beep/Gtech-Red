@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'posts';
 
     protected $fillable = ['legacy_id','title','slug','excerpt','body','format','category','categories','tags','post_format','visibility','allow_comments','allow_pingbacks','custom_fields','image','image_alt','author','featured','status','date','meta_title','meta_description','focus_keyword','canonical','noindex'];

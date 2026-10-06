@@ -110,4 +110,29 @@ class Blog
         }
         return array_values(array_map(fn ($b) => ['id' => $b['id'], 'text' => $b['text']], array_filter(self::parse((string) $p->body), fn ($b) => $b['type'] === 'h2')));
     }
+
+    /** Inline Markdown as HTML for the editor (inline() in lib/blog-utils.ts). */
+    private static function inlineHtml(string $t): string
+    {
+        $h = htmlspecialchars($t, ENT_NOQUOTES);
+        $h = preg_replace('/\*\*([^*]+)\*\*/', '<strong>$1</strong>', $h);
+        $h = preg_replace('/(^|[^*])\*([^*\s][^*]*)\*/', '$1<em>$2</em>', $h);
+        $h = preg_replace('/`([^`]+)`/', '<code>$1</code>', $h);
+        return preg_replace('/\[([^\]]+)\]\(([^)\s]+)\)/', '<a href="$2">$1</a>', $h);
+    }
+
+    /** Old Markdown post bodies, converted so they open correctly in the visual editor (markdownToHtml). */
+    public static function markdownToHtml(string $md): string
+    {
+        return implode("\n", array_map(function (array $b) {
+            return match ($b['type']) {
+                'h2', 'h3' => "<{$b['type']}>".self::inlineHtml($b['text'])."</{$b['type']}>",
+                'ul', 'ol' => "<{$b['type']}>".implode('', array_map(fn ($i) => '<li>'.self::inlineHtml($i).'</li>', $b['items']))."</{$b['type']}>",
+                'quote' => '<blockquote>'.self::inlineHtml($b['text']).'</blockquote>',
+                'img' => '<p><img src="'.htmlspecialchars($b['src']).'" alt="'.htmlspecialchars($b['alt']).'"/></p>',
+                'hr' => '<hr/>',
+                default => '<p>'.self::inlineHtml($b['text']).'</p>',
+            };
+        }, self::parse($md)));
+    }
 }

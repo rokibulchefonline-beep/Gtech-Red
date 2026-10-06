@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stat extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'stats';
 
     protected $fillable = ['value','suffix','label','decimals','sort'];

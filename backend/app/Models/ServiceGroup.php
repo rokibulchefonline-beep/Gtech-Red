@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceGroup extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'service_groups';
 
     protected $fillable = ['slug','title','intro','icon','sort'];

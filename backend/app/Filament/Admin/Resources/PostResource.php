@@ -8,7 +8,10 @@ use App\Filament\Support\ImageField;
 use App\Filament\Support\Perms;
 use App\Models\Category;
 use App\Models\Post;
+use App\Support\Site\Blog;
 use Filament\Forms;
+use FilamentTiptapEditor\Enums\TiptapOutput;
+use FilamentTiptapEditor\TiptapEditor;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -39,9 +42,10 @@ class PostResource extends Resource
                     Forms\Components\TextInput::make('slug')->label('URL slug')->required()->maxLength(160)->prefix('/blogs/')
                         ->unique(ignoreRecord: true)->rule('regex:/^[a-z0-9-]+$/')->helperText('Lowercase words separated by hyphens.'),
                     Forms\Components\Textarea::make('excerpt')->rows(2)->maxLength(400)->helperText('One or two sentences shown on the blog list.'),
-                    Forms\Components\RichEditor::make('body')->label('Article')->required()->columnSpanFull()
-                        ->fileAttachmentsDisk('public')->fileAttachmentsDirectory('media')
-                        ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'link', 'h2', 'h3', 'bulletList', 'orderedList', 'blockquote', 'codeBlock', 'attachFiles', 'undo', 'redo']),
+                    // Images get alt text (click an image, then the edit button); links can be edited in place.
+                    TiptapEditor::make('body')->label('Article')->required()->columnSpanFull()
+                        ->profile('blog')->disk('public')->directory('media')->output(TiptapOutput::Html)
+                        ->maxContentWidth('3xl')->extraInputAttributes(['style' => 'min-height: 24rem;']),
                 ]),
                 Forms\Components\Section::make('Search engines')->collapsible()->schema([
                     Forms\Components\TextInput::make('focus_keyword')->maxLength(80),
@@ -71,6 +75,13 @@ class PostResource extends Resource
                 ]),
             ])->columnSpan(['lg' => 1]),
         ])->columns(3);
+    }
+
+    /** Markdown posts (imported or seeded) open as HTML, so the editor shows real headings and paragraphs. */
+    public static function beforeFill(array $data): array
+    {
+        if (($data['format'] ?? 'html') !== 'html') $data['body'] = Blog::markdownToHtml((string) ($data['body'] ?? ''));
+        return $data;
     }
 
     public static function beforeSave(array $data, $record = null): array

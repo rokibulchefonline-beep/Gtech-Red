@@ -1,0 +1,5 @@
+/* GTech admin theme: Filament's own styles plus the article editor (TipTap). Build with `npm run build`. */
+@import '/vendor/filament/filament/resources/css/theme.css';
+@import '/vendor/awcodes/filament-tiptap-editor/resources/css/plugin.css';
+
+@config 'tailwind.config.js';

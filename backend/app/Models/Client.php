@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'clients';
 
     protected $fillable = ['legacy_id','name','logo','url','order','visible'];

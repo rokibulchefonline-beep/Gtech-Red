@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements FilamentUser
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     use HasFactory, Notifiable;
 
     /** Same roles and permissions as the old admin. */

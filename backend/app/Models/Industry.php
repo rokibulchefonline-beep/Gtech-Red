@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Industry extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'industries';
 
     protected $fillable = ['slug','name','icon','sort'];

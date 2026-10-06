@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'pages';
     protected $primaryKey = 'key';
     public $incrementing = false;

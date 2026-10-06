@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CoreService extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'core_services';
 
     protected $fillable = ['slug','title','line','points','image','sort'];

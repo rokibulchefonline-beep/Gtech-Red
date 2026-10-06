@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SeoKeyword extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'seo_keywords';
     protected $primaryKey = 'slug';
     public $incrementing = false;

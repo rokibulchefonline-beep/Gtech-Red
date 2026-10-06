@@ -24,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer('site.*', SiteComposer::class);
         Blade::directive('icon', fn ($e) => "<?php echo \\App\\Support\\Site\\Icons::svg($e); ?>");
         Blade::directive('hl', fn ($e) => "<?php echo \\App\\Support\\Site\\Hl::html($e); ?>");
+        // Password reset and other notifications are sent with the SMTP account from Site settings > Email.
+        \Illuminate\Support\Facades\Event::listen(\Illuminate\Notifications\Events\NotificationSending::class, fn () => \App\Support\SiteMailer::useAsDefault());
+
         // Any content change refreshes the cached public pages.
         foreach (\App\Support\Site\PageCache::MODELS as $model) {
             $model::saved(fn () => \App\Support\Site\PageCache::flush());

@@ -24,6 +24,22 @@ class SiteMailer
         return true;
     }
 
+    /**
+     * Make the panel's SMTP account the default mailer, so Laravel's own emails (password reset, notifications)
+     * use it too instead of the .env mailer. Called just before a notification is sent.
+     */
+    public static function useAsDefault(): void
+    {
+        try {
+            if (self::configure()) {
+                config(['mail.default' => 'site']);
+                app('mail.manager')->purge('site');
+            }
+        } catch (\Throwable) {
+            // Settings unavailable (e.g. during install): keep the .env mailer.
+        }
+    }
+
     public static function send(string $to, string $subject, string $html, ?string $replyTo = null): void
     {
         $mailer = self::configure() ? Mail::mailer('site') : Mail::mailer();

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /** Per-page SEO overrides. Key: the encoded path ("home", "services~seo"). */
 class SeoEntry extends Model
 {
+    use \App\Models\Concerns\BlankNotNull;
+
     protected $table = 'seo_entries';
     protected $primaryKey = 'key';
     public $incrementing = false;

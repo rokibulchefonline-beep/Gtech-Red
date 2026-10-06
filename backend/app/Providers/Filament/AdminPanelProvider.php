@@ -33,6 +33,8 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('favicon.ico'))
             ->colors(['primary' => Color::hex('#e8202f'), 'gray' => Color::Zinc])
             ->font('Inter')
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->defaultAvatarProvider(\App\Filament\Support\InitialsAvatar::class)
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
                 NavigationGroup::make('Website content'),
