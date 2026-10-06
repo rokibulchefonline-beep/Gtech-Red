@@ -10,6 +10,7 @@ import PartnerStrip from '@/components/PartnerStrip';
 import StatsBar from '@/components/StatsBar';
 import Results from '@/components/Results';
 import Testimonials from '@/components/Testimonials';
+import BrandGrid from '@/components/BrandGrid';
 import CaseStudies from '@/components/CaseStudies';
 import { seoFor } from '@/lib/seo';
 import Schema from '@/components/Schema';
@@ -49,11 +50,12 @@ export default async function Home() {
         </div>
       </section>
 
-      <PartnerStrip withClients />
+      <PartnerStrip />
 
       <WhoWeAre />
       <OurServices />
       <HowWeWork head={await homeSection('how')} steps={(await homeSection('how-steps')).steps} />
+      <BrandGrid />
       <CaseStudies />
       <Results />
       <Testimonials />
