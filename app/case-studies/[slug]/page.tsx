@@ -5,9 +5,8 @@ import CaseCard from '@/components/CaseCard';
 import Hl from '@/components/Hl';
 import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
-import { Tick } from '@/components/service/ServicePage';
 import { findItem } from '@/lib/data';
-import { serviceIcons, uiIcons } from '@/lib/icons';
+import { serviceIcons } from '@/lib/icons';
 import { getDoc, listDocs } from '@/lib/mongo';
 import { seoFor } from '@/lib/seo';
 import Schema from '@/components/Schema';
@@ -75,7 +74,7 @@ export default async function Page({ params }: Props) {
       </section>
 
       {metrics.length > 0 && (
-        <div className="wrap cs-metrics-wrap"><div className={`cs-metrics n${metrics.length}`}>
+        <div id="results" className="wrap cs-metrics-wrap"><div className={`cs-metrics n${metrics.length}`}>
           {metrics.map((m) => <div key={m.label} className="cs-metric"><strong>{m.value}</strong><span>{m.label}</span></div>)}
         </div></div>
       )}
@@ -104,36 +103,12 @@ export default async function Page({ params }: Props) {
         </div>
       </div></section>
 
-      {(d.results?.length || metrics.length) ? (
-        <section id="results" className="sp-sec sp-grey cs-results"><div className="wrap">
-          <div className="sp-head center"><h2><Hl>{`${name} Results and Key Numbers`}</Hl></h2></div>
-          <div className="cs-res-grid">
-            {metrics.map((m) => <div key={m.label} className="cs-res-card"><strong>{m.value}</strong><span>{m.label}</span></div>)}
-          </div>
-          {d.results && d.results.length > 0 && <ul className="cs-res-list">{d.results.map((r) => <li key={r}><Tick />{r}</li>)}</ul>}
-        </div></section>
-      ) : null}
-
       {d.quote?.text && (
         <section className="sp-sec"><div className="wrap"><figure className="cs-quote">
           <Icon name="lucide:quote" size={34} />
           <blockquote>{d.quote.text}</blockquote>
           <figcaption><b>{d.quote.name}</b>{d.quote.role && <span>{d.quote.role}</span>}</figcaption>
         </figure></div></section>
-      )}
-
-      {used.length > 0 && (
-        <section className="sp-sec sp-grey"><div className="wrap">
-          <div className="sp-head center"><h2><Hl>{`Services We Delivered for ${name}`}</Hl></h2></div>
-          <div className="sp-related">
-            {used.map(({ item }) => (
-              <Link key={item.slug} href={`/services/${item.slug}`} className="sp-rel">
-                <span className="sp-card-ico solid"><Icon name={serviceIcons[item.slug]} size={22} /></span>
-                <h3>{item.name}</h3><p>{item.blurb}</p><span className="sp-more">Explore <Icon name={uiIcons.arrowRight} size={16} /></span>
-              </Link>
-            ))}
-          </div>
-        </div></section>
       )}
 
       {others.length > 0 && (
