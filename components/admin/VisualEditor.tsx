@@ -24,12 +24,19 @@ export default function VisualEditor({ value, onChange }: { value: string; onCha
   const ed = useRef<HTMLDivElement>(null);
   const code = useRef<HTMLTextAreaElement>(null);
   const range = useRef<Range | null>(null);
+  // The HTML this editor last reported. When the same value comes back from the parent the content is left
+  // alone: rewriting it (even with equivalent, sanitised markup) replaces every node and loses the selection,
+  // which broke links and jumped the caret to the top.
+  const emitted = useRef<string | null>(null);
+  const linkTarget = useRef<{ range: Range | null; anchor: HTMLAnchorElement | null }>({ range: null, anchor: null });
   const [mode, setMode] = useState<'visual' | 'code'>('visual');
   const [two, setTwo] = useState(true);
   const [full, setFull] = useState(false);
   const [plain, setPlain] = useState(false);
   const [menu, setMenu] = useState<'' | 'fmt' | 'color' | 'chars'>('');
-  const [link, setLink] = useState<{ url: string; blank: boolean } | null>(null);
+  const [link, setLink] = useState<{ url: string; blank: boolean; text: string; askText: boolean; editing: boolean } | null>(null);
+  const [atLink, setAtLink] = useState<HTMLAnchorElement | null>(null);
+  const [img, setImg] = useState<{ el: HTMLImageElement; alt: string; align: string } | null>(null);
   const [help, setHelp] = useState(false);
   const [media, setMedia] = useState(false);
   const [state, setState] = useState({ block: 'p', path: 'p', bold: false, italic: false, ul: false, ol: false, quote: false, left: false, center: false, right: false, strike: false });
@@ -37,7 +44,7 @@ export default function VisualEditor({ value, onChange }: { value: string; onCha
   // keep the editable area in step with the value when it changes from outside (loading, Code tab)
   useEffect(() => {
     const el = ed.current;
-    if (mode !== 'visual' || !el || document.activeElement === el) return;
+    if (mode !== 'visual' || !el || document.activeElement === el || (value === emitted.current && el.innerHTML === value)) return;
     const clean = sanitizeHtml(value);
     if (el.innerHTML !== clean) el.innerHTML = clean;
   }, [value, mode]);
@@ -48,14 +55,23 @@ export default function VisualEditor({ value, onChange }: { value: string; onCha
     if (el && !el.innerHTML.trim()) { el.innerHTML = '<p><br></p>'; const r = document.createRange(); r.setStart(el.firstChild!, 0); r.collapse(true); const s = window.getSelection(); s?.removeAllRanges(); s?.addRange(r); }
   };
 
-  const sync = useCallback(() => { if (ed.current) onChange(ed.current.innerHTML); }, [onChange]);
+  const sync = useCallback(() => { if (ed.current) { emitted.current = ed.current.innerHTML; onChange(emitted.current); } }, [onChange]);
+
+  /** Focus the editor without scrolling it, putting back the last selection if focus had moved away. */
+  const refocus = useCallback((r?: Range | null) => {
+    const el = ed.current; if (!el) return;
+    const away = document.activeElement !== el; // focus was in a dialog or another field
+    el.focus({ preventScroll: true });
+    const sel = window.getSelection(), want = r ?? (away ? range.current : null);
+    if (want && el.contains(want.commonAncestorContainer)) { sel?.removeAllRanges(); sel?.addRange(want); }
+  }, []);
 
   const exec = useCallback((cmd: string, arg?: string) => {
     if (mode !== 'visual') return;
-    ed.current?.focus();
+    refocus();
     document.execCommand(cmd, false, arg);
     sync();
-  }, [mode, sync]);
+  }, [mode, sync, refocus]);
   const setBlock = (tag: string) => { exec('formatBlock', `<${tag}>`); setMenu(''); };
 
   // toolbar state follows the caret
@@ -68,6 +84,8 @@ export default function VisualEditor({ value, onChange }: { value: string; onCha
       for (let n: Node | null = sel.anchorNode; n && n !== el; n = n.parentNode) if (n.nodeType === 1) names.unshift((n as Element).tagName.toLowerCase());
       const block = names.find((n) => blocks.some((b) => b.tag === n)) ?? 'p';
       const q = (c: string) => { try { return document.queryCommandState(c); } catch { return false; } };
+      const a = (sel.anchorNode.nodeType === 1 ? sel.anchorNode as Element : sel.anchorNode.parentElement)?.closest('a');
+      setAtLink(a && el.contains(a) ? a as HTMLAnchorElement : null);
       setState({ block, path: names.join(' » ') || 'p', bold: q('bold'), italic: q('italic'), strike: q('strikeThrough'), ul: q('insertUnorderedList'), ol: q('insertOrderedList'), quote: names.includes('blockquote'), left: q('justifyLeft'), center: q('justifyCenter'), right: q('justifyRight') });
     };
     document.addEventListener('selectionchange', update);
@@ -89,22 +107,58 @@ export default function VisualEditor({ value, onChange }: { value: string; onCha
   }
 
   function openLink() {
-    const a = (window.getSelection()?.anchorNode?.parentElement as HTMLElement | null)?.closest('a');
-    setLink({ url: a?.getAttribute('href') ?? 'https://', blank: a?.getAttribute('target') === '_blank' });
+    const el = ed.current, sel = window.getSelection();
+    const r = sel?.rangeCount && el?.contains(sel.anchorNode) ? sel.getRangeAt(0).cloneRange() : range.current;
+    const node = r?.startContainer;
+    const anchor = ((node?.nodeType === 1 ? node as Element : node?.parentElement)?.closest('a') ?? null) as HTMLAnchorElement | null;
+    const a = anchor && el?.contains(anchor) ? anchor : null;
+    linkTarget.current = { range: r ?? null, anchor: a };
+    const selected = r && !r.collapsed ? r.toString() : '';
+    setLink({ url: a?.getAttribute('href') ?? 'https://', blank: a?.getAttribute('target') === '_blank', text: a?.textContent ?? selected, askText: !a && !selected, editing: !!a });
   }
   function applyLink() {
     if (!link) return;
-    ed.current?.focus();
-    const sel = window.getSelection();
-    if (range.current) { sel?.removeAllRanges(); sel?.addRange(range.current); }
-    const url = link.url.trim();
-    if (!url) { exec('unlink'); setLink(null); return; }
-    if (sel?.isCollapsed) document.execCommand('insertHTML', false, `<a href="${url.replace(/"/g, '&quot;')}"${link.blank ? ' target="_blank"' : ''}>${url.replace(/[<>&]/g, '')}</a>`);
-    else {
-      document.execCommand('createLink', false, url);
-      if (link.blank) ed.current?.querySelectorAll(`a[href="${CSS.escape(url)}"]`).forEach((a) => a.setAttribute('target', '_blank'));
+    const url = link.url.trim(), { range: r, anchor } = linkTarget.current;
+    if (/^\s*(javascript|data|vbscript):/i.test(url)) { toast('That kind of link is not allowed.', true); return; }
+    refocus(r);
+    if (anchor) {
+      // Editing an existing link: change it in place (or remove it when the URL is cleared).
+      if (!url || url === 'https://') anchor.replaceWith(...Array.from(anchor.childNodes));
+      else {
+        anchor.setAttribute('href', url);
+        if (link.blank) anchor.setAttribute('target', '_blank'); else anchor.removeAttribute('target');
+        if (link.text.trim() && link.text !== anchor.textContent) anchor.textContent = link.text.trim();
+      }
+    } else if (url && url !== 'https://') {
+      const sel = window.getSelection();
+      if (sel?.isCollapsed) {
+        const text = (link.text.trim() || url).replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]!));
+        document.execCommand('insertHTML', false, `<a href="${url.replace(/"/g, '&quot;')}"${link.blank ? ' target="_blank"' : ''}>${text}</a>`);
+      } else {
+        document.execCommand('createLink', false, url);
+        if (link.blank) ed.current?.querySelectorAll(`a[href="${CSS.escape(url)}"]`).forEach((a) => a.setAttribute('target', '_blank'));
+      }
     }
     sync(); setLink(null);
+  }
+  function removeLink(a: HTMLAnchorElement) { a.replaceWith(...Array.from(a.childNodes)); setAtLink(null); sync(); }
+
+  // Images: click one to edit its alt text and alignment, or remove it.
+  function openImage(el: HTMLImageElement) {
+    const block = el.closest('p,div,figure') as HTMLElement | null;
+    setImg({ el, alt: el.getAttribute('alt') ?? '', align: block?.style.textAlign || '' });
+  }
+  function applyImage(remove = false) {
+    if (!img) return;
+    const { el } = img;
+    if (remove) el.remove();
+    else {
+      el.setAttribute('alt', img.alt.trim());
+      let block = el.parentElement;
+      if (!block || block === ed.current || !/^(P|DIV|FIGURE)$/.test(block.tagName)) { const p = document.createElement('p'); el.replaceWith(p); p.appendChild(el); block = p; }
+      block.style.textAlign = img.align;
+    }
+    sync(); setImg(null);
   }
 
   function insertImage(src: string, alt: string) {
@@ -114,9 +168,7 @@ export default function VisualEditor({ value, onChange }: { value: string; onCha
       const s = t.selectionStart; onChange(value.slice(0, s) + html + value.slice(t.selectionEnd));
       return;
     }
-    ed.current?.focus();
-    const sel = window.getSelection();
-    if (range.current) { sel?.removeAllRanges(); sel?.addRange(range.current); }
+    refocus();
     document.execCommand('insertHTML', false, html); sync();
   }
   async function uploadAndInsert(f: File) {
@@ -202,24 +254,47 @@ export default function VisualEditor({ value, onChange }: { value: string; onCha
           )}
         </div>
 
+        {visual && atLink && (
+          <div className="wp-linkbar" role="status">
+            <Icon name="lucide:link" size={14} /><a href={atLink.getAttribute('href') ?? '#'} target="_blank" rel="noopener noreferrer">{atLink.getAttribute('href')}</a>
+            {atLink.getAttribute('target') === '_blank' && <small>opens in a new tab</small>}
+            <button type="button" onMouseDown={(e) => e.preventDefault()} onClick={openLink}>Edit</button>
+            <button type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => removeLink(atLink)}>Remove link</button>
+          </div>
+        )}
         {visual ? (
           <div className="wp-area"><div ref={ed} className="wp-visual bp-body" contentEditable suppressContentEditableWarning spellCheck role="textbox" aria-multiline="true" aria-label="Post content"
-            onFocus={startPara} onInput={sync} onBlur={sync} onKeyDown={onKeyDown} onPaste={onPaste} onDrop={onDrop} onClick={() => setMenu('')} /></div>
+            onFocus={startPara} onInput={sync} onBlur={sync} onKeyDown={onKeyDown} onPaste={onPaste} onDrop={onDrop} onClick={(e) => { setMenu(''); const t = e.target as HTMLElement; if (t.tagName === 'IMG') { const r = document.createRange(); r.selectNode(t); range.current = r; openImage(t as HTMLImageElement); } }} /></div>
         ) : (
           <textarea ref={code} className="wp-code" value={value} onChange={(e) => onChange(e.target.value)} spellCheck={false} aria-label="Post content (HTML)" />
         )}
-        <div className="wp-status"><span>{visual ? state.path : 'html'}</span><span>Word count: {words}</span></div>
+        <div className="wp-status"><span>{visual ? state.path : 'html'}</span><span>{words} {words === 1 ? 'word' : 'words'} · {Math.max(1, Math.round(words / 220))} min read</span></div>
       </div>
 
       {link && (
         <div className="ad-modal" role="dialog" aria-modal="true" aria-label="Insert link" onMouseDown={(e) => { if (e.target === e.currentTarget) setLink(null); }}>
           <div className="ad-modal-box narrow">
-            <header><h2>Insert/edit link</h2></header>
+            <header><h2>{link.editing ? 'Edit link' : 'Insert link'}</h2></header>
             <div className="ad-form one">
-              <label className="ad-field"><span>URL</span><input autoFocus value={link.url} onChange={(e) => setLink({ ...link, url: e.target.value })} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); applyLink(); } }} placeholder="https://… or /services/seo" /><small>Leave empty and apply to remove the link.</small></label>
+              <label className="ad-field"><span>URL</span><input autoFocus onFocus={(e) => e.currentTarget.select()} value={link.url} onChange={(e) => setLink({ ...link, url: e.target.value })} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); applyLink(); } }} placeholder="https://… or /services/seo" /><small>{link.editing ? 'Clear it and apply to remove the link.' : 'A full address, or a page on this site such as /services/seo.'}</small></label>
+              {(link.askText || link.editing) && <label className="ad-field"><span>Link text</span><input value={link.text} onChange={(e) => setLink({ ...link, text: e.target.value })} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); applyLink(); } }} placeholder="The words people click" /></label>}
               <label className="ad-check"><input type="checkbox" checked={link.blank} onChange={(e) => setLink({ ...link, blank: e.target.checked })} /> Open link in a new tab</label>
             </div>
-            <footer><button className="ad-btn ghost" onClick={() => setLink(null)}>Cancel</button><button className="ad-btn" onClick={applyLink}>Apply</button></footer>
+            <footer><button className="ad-btn ghost" onClick={() => setLink(null)}>Cancel</button><button className="ad-btn" onClick={applyLink}>{link.editing ? 'Update link' : 'Add link'}</button></footer>
+          </div>
+        </div>
+      )}
+      {img && (
+        <div className="ad-modal" role="dialog" aria-modal="true" aria-label="Image details" onMouseDown={(e) => { if (e.target === e.currentTarget) setImg(null); }}>
+          <div className="ad-modal-box narrow">
+            <header><h2>Image details</h2><button className="ad-ico" onClick={() => setImg(null)} aria-label="Close"><Icon name="lucide:x" size={18} /></button></header>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={img.el.getAttribute('src') ?? ''} alt="" className="wp-img-prev" />
+            <div className="ad-form one">
+              <label className="ad-field"><span>Alt text</span><input autoFocus value={img.alt} onChange={(e) => setImg({ ...img, alt: e.target.value })} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); applyImage(); } }} placeholder="Describe the image for screen readers and Google" /><small>Leave empty only for purely decorative images.</small></label>
+              <div className="ad-field"><span>Alignment</span><div className="wp-align">{[['', 'Default'], ['left', 'Left'], ['center', 'Centre'], ['right', 'Right']].map(([v, l]) => <button key={v} type="button" className={img.align === v ? 'on' : ''} onClick={() => setImg({ ...img, align: v })}>{l}</button>)}</div></div>
+            </div>
+            <footer><button className="ad-btn ghost danger" onClick={() => applyImage(true)}>Remove image</button><span style={{ flex: 1 }} /><button className="ad-btn ghost" onClick={() => setImg(null)}>Cancel</button><button className="ad-btn" onClick={() => applyImage()}>Save</button></footer>
           </div>
         </div>
       )}

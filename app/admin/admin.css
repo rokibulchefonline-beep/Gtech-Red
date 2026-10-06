@@ -257,3 +257,25 @@ kbd{background:#f3f4f6;border:1px solid #d5d8de;padding:2px 7px;font-size:12.5px
 .ad-root .ad-rich-row{display:flex;gap:6px;align-items:flex-start;margin-bottom:8px}.ad-root .ad-rich-row .rf{flex:1}
 .ad-root .ad-item{display:grid;gap:6px;padding:10px;margin-bottom:8px;border:1px solid #e6e6ea;background:#fafafb}
 .ad-root .ad-item label{display:grid;gap:3px}.ad-root .ad-item small{color:#666;font-size:12px}
+
+/* Blog editor: links are clearly visible, images look clickable, the link bar and image dialog. */
+.wp-visual a{color:#2271b1;text-decoration:underline;text-underline-offset:2px}
+.wp-visual img{cursor:pointer;outline:2px solid transparent;outline-offset:2px;transition:outline-color .15s}
+.wp-visual img:hover{outline-color:#72aee6}
+.wp-linkbar{display:flex;align-items:center;gap:10px;padding:6px 12px;background:#f0f6fc;border-bottom:1px solid #c5d9ed;font-size:13px;color:#1d2327}
+.wp-linkbar a{color:#2271b1;max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wp-linkbar small{color:#646970}
+.wp-linkbar button{background:none;border:0;color:#2271b1;cursor:pointer;font:inherit;padding:2px 4px;text-decoration:underline}
+.wp-linkbar button:last-child{color:#b32d2e}
+.wp-img-prev{display:block;max-width:100%;max-height:220px;margin:0 auto 14px;border-radius:6px;border:1px solid #dcdcde}
+.wp-align{display:flex;gap:6px}
+.wp-align button{flex:1;padding:7px 0;border:1px solid #8c8f94;background:#fff;border-radius:4px;cursor:pointer;font:inherit}
+.wp-align button.on{background:#2271b1;border-color:#2271b1;color:#fff}
+.wpx-permalink{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 14px;font-size:13px;color:#50575e}
+.wpx-permalink a{color:#2271b1}
+.wpx-permalink b{color:#1d2327;font-weight:600}
+.wpx-permalink input{width:260px;max-width:100%;padding:3px 8px;font-size:13px;height:28px}
+.wpx-plbase{color:#646970}
+.wpx-bar{position:sticky;top:57px;z-index:15;background:var(--bg);padding:8px 0}
+.wpx-bar-grow{flex:1}
+@media (max-width:640px){.wpx-bar{flex-wrap:wrap;gap:8px}.wpx-bar .ed-state{order:3;width:100%}}
