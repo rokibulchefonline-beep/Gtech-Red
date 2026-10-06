@@ -969,3 +969,8 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 .to-top:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
 @media(max-width:600px){.to-top{right:16px;bottom:76px;width:42px;height:42px}.float-talk{right:16px;bottom:16px}}
 .hero-title span .hl,.hero-title span span{display:inline!important;grid-column:auto}
+/* Keep the intro text to two lines beside GROWTH so it doesn't stretch that row (no gap above GROWTH) */
+.hero-head{align-items:center}
+.hero-head .hero-sub{align-self:center;max-width:480px;margin:0;font-size:clamp(14px,1.3vw,18px);line-height:1.45}
+.hero-title .hero-last{align-self:center}
+@media(max-width:640px){.hero-head .hero-sub{margin:18px 0 0;max-width:none}}
