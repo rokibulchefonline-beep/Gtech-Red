@@ -11,8 +11,12 @@
 @php($featured = $filtered ? null : ($list->firstWhere('featured', true) ?? $list->first()))
 @php($rest = $list->reject(fn ($p) => $featured && $p->is($featured))->values())
 @php($catName = $cats->first(fn ($c) => $B::slugify($c) === $category))
-@section('title', 'Digital Marketing Blog | GTech Digital')
-@section('description', 'The GTech Digital blog shares practical guides on SEO, AI search, Google Ads, social media marketing, web design and custom software, written by our UK specialists.')
+@php($desc = 'Practical guides on SEO, Google Ads, social media, web design and software from the GTech Digital team, written for UK businesses.')
+@php($seo = \App\Support\Site\Seo::make('/blogs', ['title' => 'GTech Digital Blog | SEO, Marketing, Web & Software Insights', 'absolute' => true, 'description' => $desc], [
+    \App\Support\Site\Schema::page(['path' => '/blogs', 'type' => ['CollectionPage', 'Blog'], 'name' => 'GTech Digital Blog', 'description' => $desc, 'mainEntity' => \App\Support\Site\Schema::abs('/blogs').'#list']),
+    \App\Support\Site\Schema::breadcrumb('/blogs', [['Blog', '/blogs']]),
+    \App\Support\Site\Schema::itemList('/blogs', 'GTech Digital blog posts', $all->take(30)->map(fn ($x) => [$x->title, "/blogs/{$x->slug}"])->values()->all()),
+]))
 @section('content')
 <section class="bl-hero-wrap">
 <div class="bl-hero">

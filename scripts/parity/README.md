@@ -17,5 +17,6 @@ of the website, so it never affects the Cloudflare build.
 | Script | What it checks |
 |---|---|
 | `python3 scripts/parity/compare-html.py next.html blade.html` | The page content (`<main>`) of two saved pages is the same HTML, after normalising attribute order, whitespace and entities |
+| `python3 scripts/parity/compare-seo.py next.html blade.html` | Title, meta tags, canonical and every JSON-LD node match (allowing the deliberate fixes: absolute URLs and extra Open Graph tags) |
 | `node scripts/parity/behaviour.mjs [filter]` | The same interactions on both sites leave the same state: tabs and tables of contents while scrolling, slider controls, testimonials, count-ups, service stack, charts, videos, share, newsletter, blog search, forms, popup and FAQs. `scenarios.mjs` holds the scenarios |
 | `node scripts/parity/errors.mjs urls.txt` | Every page of the Blade site loads without JS errors or broken requests (`urls.txt`: one path per line) |

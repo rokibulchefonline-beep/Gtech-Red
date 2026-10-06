@@ -11,8 +11,17 @@
 @php($more = $others->filter(fn ($x) => ($x->category ?: 'Insights') === $cat)->concat($others->filter(fn ($x) => ($x->category ?: 'Insights') !== $cat))->take(3))
 @php($url = config('gtech.public_url').'/blogs/'.$p->slug)
 @php($mins = $B::readTime((string) $p->body, $html))
-@section('title', $p->meta_title ?: $p->title.' | GTech Digital')
-@section('description', $p->meta_description ?: $p->excerpt)
+@php($path = "/blogs/{$p->slug}")
+@php($date = ($p->date ?? $p->created_at)?->format('Y-m-d'))
+@php($tags = array_values(array_filter((array) $p->tags)))
+@php($t = $p->meta_title ?: $p->title)
+@php($dsc = $p->meta_description ?: $p->excerpt)
+@php($by = $p->author ?: $B::AUTHOR)
+@php($seo = \App\Support\Site\Seo::make($path, ['title' => $t, 'description' => $dsc, 'canonical' => $p->canonical ?: $path, 'noindex' => (bool) $p->noindex, 'keywords' => $tags, 'og' => ['type' => 'article', 'title' => $t, 'description' => $dsc, 'image' => $p->image ?: '/posts/default.webp', 'published' => $date, 'author' => $by]], [
+    \App\Support\Site\Schema::page(['path' => $path, 'name' => $p->title, 'description' => (string) $p->excerpt, 'mainEntity' => \App\Support\Site\Schema::abs($path).'#article', 'image' => $p->image ?: '/posts/default.webp', 'published' => $date, 'modified' => $date]),
+    \App\Support\Site\Schema::breadcrumb($path, [['Blog', '/blogs'], [$p->title, $path]]),
+    \App\Support\Site\Schema::article(['path' => $path, 'type' => 'BlogPosting', 'headline' => $p->title, 'description' => $dsc, 'image' => $p->image ?: '/posts/default.webp', 'published' => $date, 'modified' => $date, 'section' => $cat, 'keywords' => $tags, 'words' => $B::words((string) $p->body, $html), 'author' => $by]),
+]))
 @section('content')
 <header class="bp-top"><div class="wrap bp-top-in">
 <div class="bp-top-copy">

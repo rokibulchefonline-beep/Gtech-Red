@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\Site\PageController;
+use App\Http\Controllers\Site\SeoController;
 use App\Http\Middleware\MinifySiteHtml;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,14 @@ Route::middleware(MinifySiteHtml::class)->group(function () {
         Route::get("/$legal", [PageController::class, 'legal'])->defaults('slug', $legal);
     }
 });
+
+Route::get('/sitemap.xml', [SeoController::class, 'sitemap']);
+Route::get('/robots.txt', [SeoController::class, 'robots']);
+
+// Old addresses (next.config.mjs on the website).
+Route::redirect('/quote', '/contact', 308);
+Route::redirect('/blog', '/blogs', 308);
+Route::get('/blog/{slug}', fn (string $slug) => redirect('/blogs/'.$slug, 308))->where('slug', '[A-Za-z0-9-]+');
+Route::get('/services/{group}/{item}', fn (string $group, string $item) => redirect('/services/'.$item, 308))->where(['group' => '[a-z0-9-]+', 'item' => '[a-z0-9-]+']);
 
 Route::get('/api/media/{id}', [MediaController::class, 'show'])->where('id', '[A-Za-z0-9_-]+');

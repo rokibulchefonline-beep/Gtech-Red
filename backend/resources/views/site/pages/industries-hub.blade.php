@@ -2,8 +2,12 @@
 @extends('site.layout')
 @php($R = \App\Support\Site\Repo::class)
 @php($how = [['lucide:search', 'Sector research', 'We study your market, buyers and competitors first.'], ['lucide:shield-check', 'Compliance-aware', 'Campaigns that respect the rules of your industry.'], ['lucide:trending-up', 'Tracked to revenue', 'Every channel measured against leads and sales.']])
-@section('title', $p->meta_title)
-@section('description', $p->meta_description)
+@php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
+@php($seo = \App\Support\Site\Seo::make('/industries', ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description], [
+    \App\Support\Site\Schema::page(['path' => '/industries', 'type' => 'CollectionPage', 'name' => 'Industry Marketing Services of GTech Digital', 'description' => $p->meta_description, 'mainEntity' => \App\Support\Site\Schema::abs('/industries').'#list']),
+    \App\Support\Site\Schema::breadcrumb('/industries', [['Industries', '/industries']]),
+    \App\Support\Site\Schema::itemList('/industries', 'Industries GTech Digital serves', $R::industries()->map(fn ($i) => [$i->name, "/industries/{$i->slug}"])->all()),
+]))
 @section('content')
 <section class="ih-hero">
 <div class="wrap ih-hero-in">

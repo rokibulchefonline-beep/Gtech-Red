@@ -126,11 +126,19 @@ The website is being rebuilt in Blade with the same HTML, CSS and behaviour as t
 | 2. Layout and shared parts: header and mega menu, footer, contact popup, cookie banner, back-to-top, "Let's Talk", scroll motion, forms | Done. Preview at `/blade-preview` |
 | 3. Page templates: every page of the website (home, about, contact, both hubs, 35 services, 10 industries, case studies, blog, legal pages, 404) and their behaviour (in-page tabs, sliders, testimonials, count-ups, charts, videos, share and newsletter) | Done. Every page's HTML matches the Next.js build |
 | 4. Behaviour check: 35 interaction scenarios (scrolling, sliders, rotation, count-ups, videos, share, newsletter, search, forms, popup, menus, cookie banner) give the same result as the website; no JS errors on any page | Done. Tools in `scripts/parity/` |
-| 5. SEO tags, structured data and sitemap, 6. Caching, 7. Full visual check | Next |
+| 5. SEO: titles, descriptions, canonicals, robots, Open Graph and Twitter tags, the JSON-LD graph on every page, the panel's SEO overrides, `sitemap.xml`, `robots.txt` and the old-address redirects | Done. Same output as the website on all 67 pages, with the fixes below |
+| 6. Caching, 7. Full visual check | Next |
+
+SEO fixes compared with the Next.js output:
+
+- Canonical links and share images use full `https://www.gtechdigital.co.uk/...` addresses (the website printed relative
+  canonicals and `localhost` image addresses).
+- Every page has a canonical link and Open Graph and Twitter tags, so shared links show a title, description and image.
+- The sitemap leaves out pages set to noindex and gives each page a `lastmod` date from its last edit.
 
 The Blade pages are served at the same addresses as the website (`/`, `/services/local-seo`, `/blogs`...). Until
 `GTECH_BLADE_LIVE=true` they are sent with `X-Robots-Tag: noindex`, so search engines ignore them while the
-Next.js website is still live. The blog search (`?q=`) and topic filter (`?category=`) run on the server.
+Next.js website is still live, and `robots.txt` blocks all crawlers. The blog search (`?q=`) and topic filter (`?category=`) run on the server.
 
 - **Styles:** `public/css/site.css` is linked to the website's `app/globals.css`, so both front ends share one stylesheet.
 - **Images and videos:** linked from the website's `public/` folder. Run `php artisan gtech:link-assets` after cloning or deploying.

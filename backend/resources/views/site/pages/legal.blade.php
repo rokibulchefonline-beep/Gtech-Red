@@ -2,8 +2,11 @@
 @extends('site.layout')
 @php($slug = fn ($s) => trim(preg_replace('/[^a-z0-9]+/', '-', strtolower($s)), '-'))
 @php($secs = $p->sections ?? [])
-@section('title', $p->name.' | GTech Digital')
-@section('description', $p->meta_description)
+@php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
+@php($seo = \App\Support\Site\Seo::make("/{$p->slug}", ['title' => $p->name, 'description' => $p->meta_description], [
+    \App\Support\Site\Schema::page(['path' => "/{$p->slug}", 'name' => $p->name, 'description' => $p->meta_description, 'speakable' => false]),
+    \App\Support\Site\Schema::breadcrumb("/{$p->slug}", [[$p->name, "/{$p->slug}"]]),
+]))
 @section('content')
 <section class="sp-hero compact">
 <div class="wrap sp-hero-in">

@@ -6,8 +6,13 @@
 @php($name = $d->client ?: $d->title)
 @php($metrics = (array) $d->metrics)
 @php($svc = $R::uri($used[0]->name ?? ''))
-@section('title', $d->meta_title ?: "$name Case Study | GTech Digital")
-@section('description', $d->meta_description ?: $d->excerpt)
+@php($path = "/case-studies/{$d->slug}")
+@php($headline = "$name Case Study".($metrics ? ': '.implode(' and ', array_map(fn ($m) => "{$m['value']} {$m['label']}", array_slice($metrics, 0, 2))) : ''))
+@php($seo = \App\Support\Site\Seo::make($path, ['title' => $d->meta_title ?: "$headline | GTech Digital", 'absolute' => true, 'description' => $d->meta_description ?: $d->excerpt, 'og' => ['type' => 'article', 'title' => $headline, 'description' => $d->excerpt, 'image' => $d->image]], [
+    \App\Support\Site\Schema::page(['path' => $path, 'name' => $headline, 'description' => (string) $d->excerpt, 'mainEntity' => \App\Support\Site\Schema::abs($path).'#article', 'image' => $d->image, 'about' => $used->pluck('name')->all(), 'modified' => $d->updated_at?->format('Y-m-d')]),
+    \App\Support\Site\Schema::breadcrumb($path, [['Case Studies', '/case-studies'], [$name, $path]]),
+    \App\Support\Site\Schema::article(['path' => $path, 'headline' => $headline, 'description' => $d->meta_description ?: ($d->excerpt ?: ''), 'image' => $d->image, 'keywords' => $used->pluck('name')->all(), 'modified' => $d->updated_at?->format('Y-m-d')]),
+]))
 @section('content')
 <section class="cs-hero">
 <div class="wrap cs-hero-in{{ $d->image ? ' has-img' : '' }}">

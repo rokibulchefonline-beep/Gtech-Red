@@ -2,8 +2,16 @@
 @extends('site.layout')
 @php($R = \App\Support\Site\Repo::class)
 @php($name = $ind->name)
-@section('title', $p->meta_title)
-@section('description', $p->meta_description)
+@php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
+@php($path = "/industries/{$p->slug}")
+@php($kw = \App\Support\Site\Schema::keywords($p->slug))
+@php($title0 = trim(explode('|', $p->meta_title)[0]))
+@php($seo = \App\Support\Site\Seo::make($path, ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description, 'og' => ['image' => $p->hero['motion'] ?? '']], [
+    \App\Support\Site\Schema::page(['path' => $path, 'name' => $title0, 'description' => $p->meta_description, 'mainEntity' => \App\Support\Site\Schema::abs($path).'#service', 'about' => $kw?->ent, 'image' => $p->hero['motion'] ?? '']),
+    \App\Support\Site\Schema::breadcrumb($path, [['Industries', '/industries'], [$name, $path]]),
+    \App\Support\Site\Schema::service(['path' => $path, 'slug' => $p->slug, 'name' => $title0, 'description' => $p->meta_description, 'category' => 'Industry marketing', 'audience' => "$name businesses", 'related' => \App\Support\Site\Schema::relatedFor($p->slug, $p->related ?? [])]),
+    \App\Support\Site\Schema::faq($path, $p->faqs ?? []),
+]))
 @section('content')
 @include('site.c.sp-hero', ['crumbs' => [['Industries', '/industries']], 'second' => ['#services', 'See What We Do'], 'alt' => "$name marketing results dashboard", 'icon' => $ind->icon])
 @foreach ($p->sections ?? [] as $s)@include('site.c.block', ['s' => $s, 'slug' => $p->slug, 'name' => $name])@endforeach

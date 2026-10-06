@@ -8,8 +8,11 @@
 @php($how = $sec('how'))
 @php($howSteps = $sec('how-steps')['steps'] ?? [])
 @php($howBase = [['Discover & Plan', 'We audit your website, ads and competitors, then agree clear goals and a plan built around your numbers.'], ['Build & Launch', 'Our team designs, develops and launches your campaigns, website or software, with fast feedback at every stage.'], ['Measure & Grow', 'We track every lead and sale, report in plain English and keep improving so results compound month after month.']])
-@section('title', $p->meta_title)
-@section('description', $p->meta_description)
+@php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
+@php($seo = \App\Support\Site\Seo::make('/', ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description], [
+    \App\Support\Site\Schema::page(['path' => '/', 'name' => $p->meta_title, 'description' => $p->meta_description, 'mainEntity' => \App\Support\Site\Schema::org()]),
+    \App\Support\Site\Schema::itemList('/', 'GTech Digital services', $R::groups()->map(fn ($g) => [$g->title, "/services/{$g->slug}"])->all()),
+]))
 @section('content')
 <div class="no-hl">
 <section class="hero-video">

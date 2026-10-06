@@ -50,8 +50,8 @@ class SeoEntryResource extends Resource
     {
         $custom = trim((string) ($data['schema_custom'] ?? ''));
         if ($custom !== '') {
-            $json = json_decode($custom, true);
-            if (! is_array($json)) throw ValidationException::withMessages(['data.schema_custom' => 'This is not valid JSON.']);
+            // Same rules the pages apply before printing it (an object or list of objects, each with an @type).
+            if ($err = \App\Support\Site\Schema::validateCustom($custom)) throw ValidationException::withMessages(['data.schema_custom' => $err]);
             if (str_contains(strtolower($custom), '</script')) throw ValidationException::withMessages(['data.schema_custom' => 'Remove any script tags.']);
         }
         $data['schema_custom'] = $custom;

@@ -5,8 +5,12 @@
 @php($cut = $secs->search(fn ($s) => $s['id'] === 'reviews'))
 @php($cut = $cut === false ? $secs->count() - 1 : $cut)
 @php($cases = $R::caseStudies(6))
-@section('title', $p->meta_title)
-@section('description', $p->meta_description)
+@php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
+@php($seo = \App\Support\Site\Seo::make('/about', ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description], [
+    \App\Support\Site\Schema::page(['path' => '/about', 'type' => 'AboutPage', 'name' => 'About GTech Digital', 'description' => $p->meta_description, 'mainEntity' => \App\Support\Site\Schema::org(), 'about' => ['Digital marketing agency', 'Web design', 'Custom software']]),
+    \App\Support\Site\Schema::breadcrumb('/about', [['About Us', '/about']]),
+    \App\Support\Site\Schema::faq('/about', $p->faqs ?? []),
+]))
 @section('content')
 <section class="sp-hero">
 <div class="wrap sp-hero-in">

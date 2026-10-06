@@ -1,8 +1,12 @@
 {{-- /contact (app/contact/page.tsx). $p Page --}}
 @extends('site.layout')
 @php($next = collect($p->sections ?? [])->firstWhere('id', 'next') ?? ['heading' => '', 'steps' => []])
-@section('title', $p->meta_title)
-@section('description', $p->meta_description)
+@php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
+@php($seo = \App\Support\Site\Seo::make('/contact', ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description], [
+    \App\Support\Site\Schema::page(['path' => '/contact', 'type' => 'ContactPage', 'name' => 'Contact GTech Digital', 'description' => $p->meta_description, 'mainEntity' => \App\Support\Site\Schema::org()]),
+    \App\Support\Site\Schema::breadcrumb('/contact', [['Contact', '/contact']]),
+    \App\Support\Site\Schema::faq('/contact', $p->faqs ?? []),
+]))
 @section('content')
 <section class="sp-hero compact">
 <div class="wrap sp-hero-in">

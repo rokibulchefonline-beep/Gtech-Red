@@ -4,8 +4,13 @@
 @php($info = require resource_path('data/services-hub.php'))
 @php($sec = fn ($id) => collect($p->sections)->firstWhere('id', $id) ?? ['heading' => ''])
 @php($all = $R::allItems())
-@section('title', $p->meta_title)
-@section('description', $p->meta_description)
+@php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
+@php($seo = \App\Support\Site\Seo::make('/services', ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description], [
+    \App\Support\Site\Schema::page(['path' => '/services', 'type' => 'CollectionPage', 'name' => 'GTech Digital Services', 'description' => $p->meta_description, 'mainEntity' => \App\Support\Site\Schema::abs('/services').'#list', 'about' => ['Digital marketing', 'Web design and development', 'Custom software development', 'Branding']]),
+    \App\Support\Site\Schema::breadcrumb('/services', [['Services', '/services']]),
+    \App\Support\Site\Schema::itemList('/services', 'GTech Digital services', $R::groups()->flatMap(fn ($g) => [[$g->title, "/services/{$g->slug}"], ...$g->items->map(fn ($it) => [$it->name, "/services/{$it->slug}"])->all()])->all()),
+    \App\Support\Site\Schema::faq('/services', $p->faqs ?? []),
+]))
 @section('content')
 <section class="sp-hero">
 <div class="wrap sp-hero-in">
