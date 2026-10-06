@@ -111,3 +111,22 @@ The Next.js website still reads pages through the same API until the Blade front
 | `php artisan gtech:seed-content [--force] [--no-demo]` | Load all website content (safe to repeat) |
 | `php artisan gtech:create-admin <email>` | Create a super admin, or reset an existing user's password |
 | `php artisan test` | Run the backend tests |
+
+## Blade front end (in progress)
+
+The website is being rebuilt in Blade with the same HTML, CSS and behaviour as the Next.js version.
+
+| Phase | Status |
+|---|---|
+| 1. All content in MySQL | Done |
+| 2. Layout and shared parts: header and mega menu, footer, contact popup, cookie banner, back-to-top, "Let's Talk", scroll motion, forms | Done. Preview at `/blade-preview` |
+| 3. Page templates | Next |
+
+- **Styles:** `public/css/site.css` is linked to the website's `app/globals.css`, so both front ends share one stylesheet.
+- **Images and videos:** linked from the website's `public/` folder. Run `php artisan gtech:link-assets` after cloning or deploying.
+- **Behaviour:** `public/js/site.js` holds plain JavaScript ports of the React components (menus, popup, forms, cookie consent, back-to-top, scroll motion).
+- **Blade helpers:**
+  - `@icon('lucide:check', 16)` renders the same SVG icons.
+  - `@hl($heading)` renders the two-tone headings, matching the website's highlighter on all 1,010 headings in the content.
+  - `@rt($html)` cleans rich text, matching the website's sanitiser on 1,618 samples.
+- **Updating icons:** after adding icons to the website, run `npx tsx scripts/export-icons.ts` from the repository root.

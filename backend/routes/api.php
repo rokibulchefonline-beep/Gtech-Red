@@ -18,3 +18,9 @@ Route::prefix('v1')->group(function () {
     });
     Route::get('settings', [FormController::class, 'settings']);
 });
+
+// Same addresses the website forms already use, so the Blade pages post exactly like the Next.js ones.
+Route::middleware('throttle:60,1')->group(function () {
+    Route::post('contact', [FormController::class, 'contact']);
+    Route::post('subscribe', [FormController::class, 'subscribe']);
+});

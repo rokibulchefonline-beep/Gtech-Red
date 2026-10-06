@@ -974,3 +974,6 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 .hero-head .hero-sub{align-self:center;max-width:480px;margin:0;font-size:clamp(14px,1.3vw,18px);line-height:1.45}
 .hero-title .hero-last{align-self:center}
 @media(max-width:640px){.hero-head .hero-sub{margin:18px 0 0;max-width:none}}
+
+/* Elements hidden with the hidden attribute stay hidden even when a class sets display */
+[hidden]{display:none!important}
