@@ -1,0 +1,1 @@
+<svg class="how-line" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><path d="M175 120 C 250 20, 330 20, 420 92 S 570 190, 660 100 S 740 40, 830 100" pathLength="1" fill="none" stroke="#c9ccd6" stroke-width="2" stroke-dasharray="0.012 0.014"></path></svg>

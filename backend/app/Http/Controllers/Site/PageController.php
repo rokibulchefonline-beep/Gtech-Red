@@ -52,4 +52,16 @@ class PageController extends Controller
         abort_unless($d, 404);
         return view('site.pages.case-study', compact('d'));
     }
+
+    public function blogs(): View
+    {
+        return view('site.pages.blogs');
+    }
+
+    public function post(string $slug): View
+    {
+        $p = Repo::posts()->firstWhere('slug', $slug);
+        abort_unless($p, 404);
+        return view('site.pages.post', compact('p'));
+    }
 }

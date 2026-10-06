@@ -1,0 +1,76 @@
+{{-- Home page (app/page.tsx). $p Page --}}
+@extends('site.layout')
+@php($R = \App\Support\Site\Repo::class)
+@php($lines = explode('|', $p->hero['h1'] ?? ''))
+@php($sec = fn ($id) => $R::homeSection($id))
+@php($who = $sec('who'))
+@php($svc = $sec('services'))
+@php($how = $sec('how'))
+@php($howSteps = $sec('how-steps')['steps'] ?? [])
+@php($howBase = [['Discover & Plan', 'We audit your website, ads and competitors, then agree clear goals and a plan built around your numbers.'], ['Build & Launch', 'Our team designs, develops and launches your campaigns, website or software, with fast feedback at every stage.'], ['Measure & Grow', 'We track every lead and sale, report in plain English and keep improving so results compound month after month.']])
+@section('title', $p->meta_title)
+@section('description', $p->meta_description)
+@section('content')
+<div class="no-hl">
+<section class="hero-video">
+<div class="hero-yt" aria-hidden="true" data-hero-video></div>
+<div class="wrap">
+<div class="hero-head">
+<h1 class="hero-title">@foreach ($lines as $i => $l)<span{!! $i === count($lines) - 1 && $i > 0 ? ' class="hero-last"' : '' !!}>@if (str_contains($l, '[['))@hl($l)@else{{ trim($l) ?: ' ' }}@endif</span>@endforeach</h1>
+<p class="hero-sub">@rt($p->hero['lead'] ?? '')</p>
+</div>
+<div class="hero-ctas">
+<a class="btn-red" href="/contact">Let&#x27;s Talk</a>
+<a class="btn-outline" href="/services">Our Services</a>
+</div>
+@include('site.c.stats', ['hero' => true])
+</div>
+</section>
+@include('site.c.partner-strip')
+<section class="who">
+<div class="wrap who-grid">
+@include('site.c.intro-video')
+<div class="who-body">
+<h2>@if (str_contains($who['heading'], '[['))@hl($who['heading'])@else{{ $who['heading'] }}@endif</h2>
+<p class="who-text">@rt($who['paras'][0] ?? '')</p>
+<ul class="who-points">@foreach ($who['bullets'] ?? [] as $pt)<li>@include('site.c.tick')<span>@rt($pt)</span></li>@endforeach</ul>
+<div class="who-btns">
+<a class="btn" href="/about">More about us</a>
+<a class="btn-line" href="/contact">Contact us</a>
+</div>
+</div>
+</div>
+</section>
+<section class="ourservices">
+<div class="wrap">
+<h2>@hl($svc['heading'])</h2>
+<p class="os-sub">@rt($svc['text'] ?? '')</p>
+<div class="svc-stack " data-stack>@foreach ($R::coreServices() as $i => $s)<article class="svc-card " style="--i:{{ $i }}"><div class="svc-text"><h3>{{ $s->title }}</h3><p>{{ $s->line }}</p><ul>@foreach ((array) $s->points as $pt)<li>@include('site.c.tick'){{ $pt }}</li>@endforeach</ul><a class="svc-link" href="/services/{{ $s->slug }}">Learn more &rarr;</a></div><div class="svc-media">@if ($s->image)<img src="{{ $s->image }}" alt="{{ $s->title }}" loading="lazy">@else @icon($R::item($s->slug)['item']->icon ?? $R::group($s->slug)?->icon ?? '', 110)@endif</div></article>@endforeach</div>
+</div>
+</section>
+<section class="how " data-inview="0.25">
+<div class="wrap">
+<h2>@hl($how['heading'])</h2>
+<p class="how-sub">@rt($how['text'] ?? '')</p>
+<div class="how-grid">
+@include('site.c.home.how-line')
+@foreach ($howBase as $n => [$t, $x])<div class="how-step"><div class="how-art">@include('site.c.home.how-art-'.($n + 1))</div><h3>{{ $howSteps[$n]['title'] ?? $t }}</h3><p>{{ $howSteps[$n]['text'] ?? $x }}</p></div>@endforeach
+</div>
+</div>
+</section>
+@include('site.c.home.brands')
+<section class="cases">
+<div class="wrap">
+<h2>@hl('Digital Marketing [[Case Studies]]')</h2>
+<p class="os-sub">See how we help brands grow with results you can measure.</p>
+@include('site.c.case-carousel', ['docs' => $R::caseStudies(6)])
+<p class="cases-all"><a class="btn-dark" href="/case-studies">View All Case Studies</a></p>
+</div>
+</section>
+<section class="results " data-inview="0.2"><div class="wrap"><h2>Tired of Excuses Instead of <span class="red">Results?</span></h2><p class="results-sub"><strong>See what better growth looks like</strong> with GTech Digital</p>
+@include('site.c.home.results-grid')
+</div></section>
+@include('site.c.home.testimonials')
+@include('site.c.inquiry')
+</div>
+@endsection

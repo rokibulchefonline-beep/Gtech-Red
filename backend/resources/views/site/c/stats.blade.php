@@ -1,0 +1,2 @@
+{{-- Company numbers that count up when seen (StatsBar.tsx; counting in site.js). $hero --}}
+<section class="{{ !empty($hero) ? 'stats stats-hero' : 'stats' }}" aria-label="GTech Digital in numbers" data-stats><div class="wrap stats-grid">@foreach (\App\Support\Site\Repo::stats() as $s)<div class="stat"><strong data-count="{{ (float) $s->value }}" data-dec="{{ $s->decimals }}" data-suffix="{{ $s->suffix }}">{{ number_format(0, $s->decimals) }}{{ $s->suffix }}</strong><span>{{ $s->label }}</span></div>@endforeach</div></section>

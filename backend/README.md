@@ -65,6 +65,10 @@ php artisan optimize
 
 Point the web server's document root at `backend/public`.
 
+Some image folders in `public/` share their name with a page (`public/services/` and `/services`). Let only real
+files bypass Laravel: the included `public/.htaccess` does this on Apache. On nginx use
+`try_files $uri /index.php?$query_string;` (without `$uri/`).
+
 ## Move the data from MongoDB
 
 Follow **[docs/EXPORT-FROM-MONGODB.md](docs/EXPORT-FROM-MONGODB.md)**: export to JSON, then run `php artisan gtech:import-mongo`.
@@ -120,7 +124,12 @@ The website is being rebuilt in Blade with the same HTML, CSS and behaviour as t
 |---|---|
 | 1. All content in MySQL | Done |
 | 2. Layout and shared parts: header and mega menu, footer, contact popup, cookie banner, back-to-top, "Let's Talk", scroll motion, forms | Done. Preview at `/blade-preview` |
-| 3. Page templates | Next |
+| 3. Page templates: every page of the website (home, about, contact, both hubs, 35 services, 10 industries, case studies, blog, legal pages, 404) and their behaviour (in-page tabs, sliders, testimonials, count-ups, charts, videos, share and newsletter) | Done. Every page's HTML matches the Next.js build |
+| 4. Remaining polish, 5. SEO tags, structured data and sitemap, 6. Caching, 7. Full visual check | Next |
+
+The Blade pages are served at the same addresses as the website (`/`, `/services/local-seo`, `/blogs`...). Until
+`GTECH_BLADE_LIVE=true` they are sent with `X-Robots-Tag: noindex`, so search engines ignore them while the
+Next.js website is still live. The blog search (`?q=`) and topic filter (`?category=`) run on the server.
 
 - **Styles:** `public/css/site.css` is linked to the website's `app/globals.css`, so both front ends share one stylesheet.
 - **Images and videos:** linked from the website's `public/` folder. Run `php artisan gtech:link-assets` after cloning or deploying.

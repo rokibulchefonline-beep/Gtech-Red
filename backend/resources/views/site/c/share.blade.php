@@ -1,0 +1,4 @@
+{{-- Share links (blog/ShareButtons.tsx; copy button in site.js). $url, $title --}}
+@php($u = \App\Support\Site\Repo::uri($url))
+@php($t = \App\Support\Site\Repo::uri($title))
+<div class="bl-share"><span>Share:</span>@foreach ([['LinkedIn', 'simple-icons:linkedin', "https://www.linkedin.com/sharing/share-offsite/?url=$u"], ['Facebook', 'simple-icons:facebook', "https://www.facebook.com/sharer/sharer.php?u=$u"], ['X', 'simple-icons:x', "https://x.com/intent/post?url=$u&text=$t"], ['WhatsApp', 'simple-icons:whatsapp', "https://wa.me/?text=$t%20$u"]] as [$n, $ic, $h])<a href="{{ $h }}" target="_blank" rel="noopener noreferrer" aria-label="Share on {{ $n }}">@icon($ic, 16)</a>@endforeach<button type="button" aria-label="Copy link" data-copy="{{ $url }}">@icon('lucide:link', 16)<template>@icon('lucide:check', 16)</template></button></div>
