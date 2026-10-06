@@ -947,3 +947,7 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 
 .ih-lead{max-width:680px}.ih-hero h1{max-width:900px}
 @media(min-width:1001px){.ih-card:last-child:nth-child(3n+1){grid-column:1/-1;flex-direction:row}.ih-card:last-child:nth-child(3n+1) .ih-img{flex:0 0 36%;aspect-ratio:4/3}.ih-card:last-child:nth-child(3n+1) .ih-body{justify-content:center;padding:36px}}
+
+/* Brands heading matches every other section heading; logos in full colour */
+.brands h2{font-size:var(--t-h2);line-height:1.15;letter-spacing:-.035em;margin:0 auto 34px}
+.brand-cell{filter:none;opacity:1}
