@@ -13,6 +13,15 @@ Route::view('/blade-preview', 'site.preview');
 Route::middleware(MinifySiteHtml::class)->group(function () {
     Route::get('/services/{slug}', [PageController::class, 'service'])->where('slug', '[a-z0-9-]+');
     Route::get('/industries/{slug}', [PageController::class, 'industry'])->where('slug', '[a-z0-9-]+');
+    Route::get('/services', [PageController::class, 'main'])->defaults('slug', 'services-hub');
+    Route::get('/industries', [PageController::class, 'main'])->defaults('slug', 'industries-hub');
+    Route::get('/about', [PageController::class, 'main'])->defaults('slug', 'about');
+    Route::get('/contact', [PageController::class, 'main'])->defaults('slug', 'contact');
+    Route::get('/case-studies', [PageController::class, 'caseStudies']);
+    Route::get('/case-studies/{slug}', [PageController::class, 'caseStudy'])->where('slug', '[a-z0-9-]+');
+    foreach (['terms', 'privacy-policy', 'cookie-policy'] as $legal) {
+        Route::get("/$legal", [PageController::class, 'legal'])->defaults('slug', $legal);
+    }
 });
 
 Route::get('/api/media/{id}', [MediaController::class, 'show'])->where('id', '[A-Za-z0-9_-]+');

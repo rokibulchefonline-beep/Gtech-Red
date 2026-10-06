@@ -25,4 +25,31 @@ class PageController extends Controller
         abort_unless($p && $p->published && $ind, 404);
         return view('site.pages.industry', compact('p', 'ind'));
     }
+
+    public function legal(string $slug): View
+    {
+        $p = Repo::page("legal~$slug");
+        abort_unless($p && $p->published, 404);
+        return view('site.pages.legal', compact('p'));
+    }
+
+    /** Main pages stored as "page~<slug>": home, about, contact and the two hubs. */
+    public function main(string $slug): View
+    {
+        $p = Repo::page("page~$slug");
+        abort_unless($p && $p->published, 404);
+        return view("site.pages.$slug", compact('p'));
+    }
+
+    public function caseStudies(): View
+    {
+        return view('site.pages.case-studies');
+    }
+
+    public function caseStudy(string $slug): View
+    {
+        $d = Repo::caseStudy($slug);
+        abort_unless($d, 404);
+        return view('site.pages.case-study', compact('d'));
+    }
 }
