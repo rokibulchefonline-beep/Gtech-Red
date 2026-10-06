@@ -955,7 +955,17 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 .sp-media-cta .btn-red{display:inline-flex;align-items:center;gap:10px;box-shadow:none}
 .sp-media-cta .btn-red:hover{box-shadow:0 10px 26px rgba(232,32,47,.35)}
 
-/* Home hero: two lines on desktop, a little larger */
-.hero-head{max-width:none}
-.hero-head .hero-title,.hero-head .hero-title span{font-size:clamp(36px,5.6vw,78px)!important;line-height:1.04}
+/* Home hero: bold uppercase Poppins headline, three lines, intro text beside the last line */
+.hero-head{max-width:1000px}
+.hero-head .hero-title,.hero-head .hero-title span{font-family:Poppins,Inter,system-ui,sans-serif!important;font-weight:700!important;text-transform:uppercase;letter-spacing:-.01em!important;line-height:1.02;font-size:clamp(32px,4.8vw,66px)!important}
 @media(min-width:1024px){.hero-head .hero-title span{white-space:nowrap}}
+.hero-head .hero-sub{font-family:Poppins,Inter,sans-serif;font-weight:500;font-size:clamp(15px,1.45vw,20px);line-height:1.4;letter-spacing:0}
+.hero-ctas .btn-red,.hero-ctas .btn-outline{font-family:Poppins,Inter,sans-serif;font-weight:600}
+
+/* Back to top: sits just above the Let's Talk button */
+.to-top{position:fixed;right:24px;bottom:84px;z-index:60;width:46px;height:46px;display:grid;place-items:center;background:#111;color:#fff;border:1px solid rgba(255,255,255,.85);border-radius:0;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s,transform .3s,visibility .3s,background .2s}
+.to-top.on{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--pink)}
+.to-top:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+@media(max-width:600px){.to-top{right:16px;bottom:76px;width:42px;height:42px}.float-talk{right:16px;bottom:16px}}
+.hero-title span .hl,.hero-title span span{display:inline!important;grid-column:auto}

@@ -3,6 +3,7 @@ import { uiIcons } from '@/lib/icons';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import BackToTop from '@/components/BackToTop';
 import Footer from '@/components/Footer';
 import ContactModal from '@/components/ContactModal';
 import CookieBanner from '@/components/CookieBanner';
@@ -31,7 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
         {/* Google Consent Mode v2 defaults: everything non-essential denied until the visitor opts in. */}
         <script dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});" }} />
         {tag && <script dangerouslySetInnerHTML={{ __html: tag }} />}
@@ -39,7 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <SiteChrome
           header={<Header />}
-          footer={<><Footer /><ContactModal phone={st.contact.phone} email={st.contact.email} /><CookieBanner /><Link className="float-talk" href="/contact"><Icon name={uiIcons.chat} size={18} /> Let&apos;s Talk</Link></>}
+          footer={<><Footer /><ContactModal phone={st.contact.phone} email={st.contact.email} /><CookieBanner /><BackToTop /><Link className="float-talk" href="/contact"><Icon name={uiIcons.chat} size={18} /> Let&apos;s Talk</Link></>}
         >
           {children}
         </SiteChrome>
