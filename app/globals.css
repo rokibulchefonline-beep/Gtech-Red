@@ -900,3 +900,50 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 .brands h2{margin:0 auto 28px;font-size:clamp(20px,2.4vw,30px);line-height:1.25}
 .brand-marquee+.brand-marquee{margin-top:6px}
 .brand-track.rev{animation-direction:reverse;animation-duration:140s}
+
+/* Blog hero: full width */
+.bl-hero-wrap{padding:0;background:#fff}
+.bl-hero{padding:84px 24px 68px}
+.bl-hero .hl,.bl-hero .red{color:var(--hl-dark)!important}
+.bl-hero>p,.bl-hero>form,.bl-hero>div{margin-left:auto;margin-right:auto}
+
+/* Industries hub: premium layout */
+.ih-hero{position:relative;overflow:hidden;color:#fff;background:#0c0407 url(/bg/dark-mesh.webp) center/cover;padding:96px 0 88px}
+.ih-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 420px at 85% 10%,rgba(232,32,47,.45),transparent 70%),linear-gradient(180deg,rgba(12,4,7,.55),rgba(12,4,7,.85))}
+.ih-hero-in{position:relative}
+.ih-hero .sp-crumbs{margin-bottom:26px;color:#e9c9ce}.ih-hero .sp-crumbs a,.ih-hero .sp-crumbs b{color:#fff}
+.ih-hero h1{color:#fff;margin:0 0 20px;max-width:900px}
+.ih-hero .hl,.ih-hero .red{color:var(--hl-dark)!important}
+.ih-lead{max-width:680px;margin:0 0 26px;color:#f3dfe2;font-size:clamp(16px,1.5vw,19px)}
+.ih-points{list-style:none;margin:0 0 32px;padding:0;display:flex;flex-wrap:wrap;gap:12px 28px}
+.ih-points li{display:flex;align-items:center;gap:10px;color:#fff;font-weight:500}
+.ih-btns{display:flex;flex-wrap:wrap;gap:12px}
+.ih-how{background:#fff;border-bottom:1px solid #f0f0f3}
+.ih-how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.ih-how-grid>div{padding:36px 32px;border-left:1px solid #f0f0f3}.ih-how-grid>div:first-child{border-left:0;padding-left:0}
+.ih-how-ico{display:grid;place-items:center;width:46px;height:46px;background:#fff0f1;color:var(--pink);margin-bottom:14px}
+.ih-how h3{margin:0 0 6px;font-size:18px}.ih-how p{margin:0;color:#5b606b;font-size:15px}
+.ih-sec{background:#faf9f9;padding:80px 0}
+.ih-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ih-card{display:flex;flex-direction:column;background:#fff;border:1px solid #ececf0;border-top:1px solid #ececf0;padding:0;overflow:hidden;gap:0;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.ih-card.wide{grid-column:span 2;flex-direction:row}
+.ih-img{position:relative;display:block;aspect-ratio:4/3;background:#ffe9ec;overflow:hidden}
+.ih-card.wide .ih-img{flex:1.2;aspect-ratio:auto;min-height:300px}
+.ih-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.ih-card:hover .ih-img img{transform:scale(1.06)}
+.ih-img::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(20,0,3,.35))}
+.ih-chip{position:absolute;z-index:1;left:16px;bottom:16px;display:grid;place-items:center;width:42px;height:42px;background:#fff;color:var(--pink);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.ih-body{display:flex;flex-direction:column;gap:10px;padding:26px 26px 28px;flex:1}
+.ih-card.wide .ih-body{flex:1;justify-content:center;padding:36px}
+.ih-card h2{font-size:22px;margin:0}.ih-card p{margin:0;color:#5b606b;font-size:15px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.ih-more{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:6px;font-weight:500;color:var(--pink)}
+.ih-card:hover{transform:translateY(-6px);box-shadow:0 26px 54px rgba(20,0,3,.12)}
+@media(max-width:1000px){.ih-grid{grid-template-columns:1fr 1fr}.ih-card.wide{grid-column:span 2}.ih-how-grid{grid-template-columns:1fr}.ih-how-grid>div{border-left:0;padding:22px 0;border-top:1px solid #f0f0f3}.ih-how-grid>div:first-child{border-top:0}}
+@media(max-width:640px){.ih-hero{padding:64px 0 56px}.ih-grid{grid-template-columns:1fr}.ih-card.wide{grid-column:auto;flex-direction:column}.ih-card.wide .ih-img{min-height:0;aspect-ratio:4/3}.ih-card.wide .ih-body{padding:26px}.ih-sec{padding:56px 0}}
+/* CTA under Z-pattern sections */
+.sp-media-cta{margin-top:26px}
+
+.ih-card.wide{grid-column:auto;flex-direction:column}
+
+.ih-lead{max-width:680px}.ih-hero h1{max-width:900px}
+@media(min-width:1001px){.ih-card:last-child:nth-child(3n+1){grid-column:1/-1;flex-direction:row}.ih-card:last-child:nth-child(3n+1) .ih-img{flex:0 0 36%;aspect-ratio:4/3}.ih-card:last-child:nth-child(3n+1) .ih-body{justify-content:center;padding:36px}}

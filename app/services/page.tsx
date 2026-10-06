@@ -79,7 +79,6 @@ export default async function ServicesHub() {
                 <img src={info?.image} alt={`${title} results dashboard`} loading="lazy" width={800} height={600} />
               </div>
               <div className="sz-copy">
-                <span className="sz-ico"><Icon name={groupIcons[g.slug]} size={24} /></span>
                 <h2><Hl>{info?.h2 ?? `${title} Services`}</Hl></h2>
                 <Rt as="p" html={info?.line ?? g.intro} />
                 <ul className="sz-points">{info?.points.map((p) => <li key={p}><Tick /><Rt html={p} /></li>)}</ul>

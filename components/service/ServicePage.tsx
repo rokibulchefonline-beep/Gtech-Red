@@ -8,13 +8,12 @@ import { findGroup, findItem, industries, site } from '@/lib/data';
 import { groupIcons, industryIcons, serviceIcons, uiIcons } from '@/lib/icons';
 import { caseStudiesFor } from '@/lib/mongo';
 import { getClients } from '@/lib/content';
-import SemanticLinks from '@/components/SemanticLinks';
 import TocBar from '@/components/TocBar';
 import Hl from '@/components/Hl';
 import { Rt } from '@/components/Rt';
 import Schema from '@/components/Schema';
-import { seoMap } from '@/content/seo-map';
 import { semanticLinksFor } from '@/lib/link-graph';
+import { seoMap } from '@/content/seo-map';
 import { BASE, breadcrumbNode, faqNode, pageNode, serviceNode } from '@/lib/schema';
 
 export const Tick = () => <span className="tick"><Icon name={uiIcons.check} size={13} /></span>;
@@ -28,6 +27,13 @@ export function Head({ s, center = true, intro }: { s: { heading: string }; cent
       {intro && <Rt as="p" className="sp-intro" html={intro} />}
     </div>
   );
+}
+
+/** A call-to-action label that fits the page (and varies a little from section to section). */
+function ctaLabel(slug: string, name: string, id: string) {
+  if (slug === 'about') return 'Work With Us';
+  const opts = [`Get a Free ${name} Audit`, `Talk to Our ${name} Team`, `Get a ${name} Quote`];
+  return opts[[...id].reduce((n, c) => n + c.charCodeAt(0), 0) % opts.length];
 }
 
 export async function Block({ s, slug, name }: { s: Section; slug: string; name: string }) {
@@ -53,7 +59,9 @@ export async function Block({ s, slug, name }: { s: Section; slug: string; name:
     case 'media':
       return (
         <section id={s.id} className={`sp-sec ${s.tone === 'grey' ? 'sp-grey' : ''} ${s.flip ? 'flip' : ''}`}><div className="wrap sp-media">
-          <div className="sp-media-copy"><Head s={s} center={false} /><Paras p={s.paras} /><List b={s.bullets} /></div>
+          <div className="sp-media-copy"><Head s={s} center={false} /><Paras p={s.paras} /><List b={s.bullets} />
+            <p className="sp-media-cta"><Link className="sp-btn-red" href={`/contact?service=${encodeURIComponent(name)}`}>{ctaLabel(slug, name, s.id)} <Icon name={uiIcons.arrowRight} size={16} /></Link></p>
+          </div>
           <div className="sp-media-frame">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={s.image} alt={s.alt} loading="lazy" width={960} height={720} />
@@ -220,7 +228,6 @@ export default function ServicePage({ c }: { c: ServiceContent }) {
 
       <FaqSection title={`Frequently Asked Questions About ${short}`} faqs={c.faqs} />
 
-      <SemanticLinks slug={c.slug} name={short} />
 
       <section className="sp-sec sp-grey"><div className="wrap">
         <Head s={{ heading: `Services Related to ${short}` }} />

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import SemanticLinks from '@/components/SemanticLinks';
 import TocBar from '@/components/TocBar';
 import Icon from '@/components/Icon';
 import InquirySection from '@/components/InquirySection';
@@ -61,7 +60,6 @@ export default function IndustryPage({ c }: { c: ServiceContent }) {
 
       <FaqSection title={`Frequently Asked Questions About ${c.short}`} faqs={c.faqs} />
 
-      <SemanticLinks slug={c.slug} name={c.short ?? name} />
 
       <section className="sp-sec sp-grey"><div className="wrap">
         <Head s={{ heading: `Recommended Services for ${name} Businesses` }} />
