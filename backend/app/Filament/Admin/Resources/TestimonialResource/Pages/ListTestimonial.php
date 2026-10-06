@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Filament\Admin\Resources\TestimonialResource\Pages;
+
+use App\Filament\Admin\Resources\TestimonialResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ListRecords;
+
+class ListTestimonial extends ListRecords
+{
+    protected static string $resource = TestimonialResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [Actions\CreateAction::make()];
+    }
+}

@@ -58,7 +58,7 @@ Then run:
 ```bash
 php artisan migrate --force
 php artisan storage:link
-php artisan gtech:sync-pages          # lists every website page in the Page editor
+php artisan gtech:seed-content        # loads every page, menu, stat, testimonial and the keyword map
 php artisan gtech:create-admin you@example.com --name="Your Name"   # only if you are not importing users
 php artisan optimize
 ```
@@ -82,22 +82,32 @@ Follow **[docs/EXPORT-FROM-MONGODB.md](docs/EXPORT-FROM-MONGODB.md)**: export to
 
 To roll back, remove the two `LARAVEL_*` variables and redeploy. The site goes back to MongoDB.
 
-## Keeping page text in sync
+## Where content lives (Blade move, phase 1)
 
-The Page editor shows the built-in copy from the website code (`database/data/page-base.json`).
-After changing page text in the website code, regenerate it from the repository root:
+All website content is in MySQL and edited in the panel. The database is the single source of truth.
 
-```bash
-npm run export:pages
-```
+| Content | Table | Panel screen |
+|---|---|---|
+| Main pages, services, industries and legal pages | `pages` | Website content → Pages |
+| Services menu (categories and services) | `service_groups`, `service_items` | Site structure → Services menu |
+| Industries list | `industries` | Site structure → Industries list |
+| Home service cards | `core_services` | Site structure → Home service cards |
+| Company numbers | `stats` | Site structure → Company numbers |
+| Testimonials | `testimonials` | Site structure → Testimonials |
+| Keyword map and internal links | `seo_keywords` | Site structure → Keyword map |
+| Budgets list and company legal details | `settings` (`forms`, `company`) | Site settings |
 
-Then commit the file.
+`gtech:seed-content` loads the original copy from `database/data/content.json`, which was exported from the old
+code with `npm run export:content`. It only fills what is missing and never overwrites edits, unless you pass `--force`.
+**Restore original** on a page puts that single page back to its launch copy.
+
+The Next.js website still reads pages through the same API until the Blade front end replaces it.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
 | `php artisan gtech:import-mongo <folder> [--dry-run] [--auth-secret=...]` | Import a MongoDB export (safe to repeat) |
-| `php artisan gtech:sync-pages` | Add any new website pages to the Page editor |
+| `php artisan gtech:seed-content [--force] [--no-demo]` | Load all website content (safe to repeat) |
 | `php artisan gtech:create-admin <email>` | Create a super admin, or reset an existing user's password |
 | `php artisan test` | Run the backend tests |

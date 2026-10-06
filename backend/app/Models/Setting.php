@@ -28,6 +28,8 @@ class Setting extends Model
         'seo' => ['titleSuffix' => ' | GTech Digital', 'defaultDescription' => '', 'ogImage' => ''],
         'smtp' => ['host' => '', 'port' => 587, 'secure' => false, 'user' => '', 'pass' => '', 'fromName' => 'GTech Digital', 'fromEmail' => '', 'notifyTo' => '', 'autoReply' => true],
         'publish' => ['deployHook' => ''],
+        'forms' => ['budgets' => []],
+        'company' => ['legalName' => '', 'number' => '', 'address' => '', 'ico' => ''],
     ];
 
     /** All groups merged over the defaults. */

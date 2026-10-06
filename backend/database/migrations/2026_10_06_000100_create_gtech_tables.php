@@ -95,20 +95,6 @@ return new class extends Migration
             });
         }
 
-        // Page copy overrides, keyed like the website expects: "service~seo", "industry~finance", "page~home".
-        Schema::create('page_contents', function (Blueprint $t) {
-            $t->string('key', 120)->primary();
-            $t->string('kind', 20)->default('service');
-            $t->string('slug', 80);
-            $t->string('meta_title', 120)->default('');
-            $t->string('meta_description', 300)->default('');
-            $t->string('focus_keyword', 80)->default('');
-            $t->json('hero')->nullable();
-            $t->json('sections')->nullable();
-            $t->json('faqs')->nullable();
-            $t->timestamps();
-        });
-
         // Per-page SEO overrides, keyed by the encoded path ("home", "services~seo").
         Schema::create('seo_entries', function (Blueprint $t) {
             $t->string('key', 200)->primary();
@@ -175,7 +161,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        foreach (['settings', 'media', 'subscribers', 'leads', 'seo_entries', 'page_contents', 'clients', 'partners', 'case_studies', 'posts', 'categories'] as $t) {
+        foreach (['settings', 'media', 'subscribers', 'leads', 'seo_entries', 'clients', 'partners', 'case_studies', 'posts', 'categories'] as $t) {
             Schema::dropIfExists($t);
         }
         Schema::table('users', fn (Blueprint $t) => $t->dropColumn(['role', 'active', 'legacy_id']));

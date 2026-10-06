@@ -7,7 +7,8 @@ use App\Models\Category;
 use App\Models\Client;
 use App\Models\Lead;
 use App\Models\Media;
-use App\Models\PageContent;
+use App\Models\Page;
+use App\Support\Content;
 use App\Models\Partner;
 use App\Models\Post;
 use App\Models\SeoEntry;
@@ -48,6 +49,8 @@ class ImportMongo extends Command
         }
 
         $dry = (bool) $this->option('dry-run');
+        // Page edits from the old admin are applied on top of the full page content, so load that first.
+        if (! $dry && ! Page::query()->exists()) $this->call('gtech:seed-content', ['--no-demo' => true]);
         foreach (self::FILES as $name) {
             $file = $this->findFile($dir, $name);
             if (! $file) {
@@ -233,14 +236,17 @@ class ImportMongo extends Command
 
     private function importClients(array $d): void { $this->logo(Client::class, $d); }
 
+    /** Old page edits (overrides) are merged into the full page content. */
     private function importPageContent(array $d): void
     {
-        $m = PageContent::query()->updateOrCreate(['key' => self::id($d)], [
-            'kind' => self::s($d, 'kind', 20) ?: 'service', 'slug' => self::s($d, 'slug', 80), 'meta_title' => self::s($d, 'metaTitle', 120),
-            'meta_description' => self::s($d, 'metaDescription', 300), 'focus_keyword' => self::s($d, 'focusKeyword', 80),
-            'hero' => is_array($d['hero'] ?? null) ? $d['hero'] : [], 'sections' => is_array($d['sections'] ?? null) ? $d['sections'] : [], 'faqs' => self::list($d, 'faqs'),
-        ]);
-        self::stamp($m, $d);
+        $page = Page::query()->find(self::id($d));
+        if (! $page) {
+            if ($this->option('dry-run')) return;
+            throw new \RuntimeException('no page for '.self::id($d));
+        }
+        $merged = Content::mergeOverride($page->only(['meta_title', 'meta_description', 'focus_keyword', 'hero', 'sections', 'faqs']), $d);
+        $page->fill($merged)->save();
+        self::stamp($page, $d);
     }
 
     private function importSeo(array $d): void

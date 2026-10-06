@@ -6,7 +6,7 @@ use App\Models\CaseStudy;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Media;
-use App\Models\PageContent;
+use App\Models\Page;
 use App\Models\Partner;
 use App\Models\Post;
 use App\Models\SeoEntry;
@@ -27,7 +27,6 @@ class LegacyDocs
         'categories' => Category::class,
         'partners' => Partner::class,
         'clients' => Client::class,
-        'page_content' => PageContent::class,
         'seo' => SeoEntry::class,
         'media' => Media::class,
     ];
@@ -40,6 +39,7 @@ class LegacyDocs
             $match = ! isset($filter['_id']) || $filter['_id'] === 'site';
             return $countOnly ? ['total' => $match ? 1 : 0] : ['rows' => $match ? [$doc] : []];
         }
+        if ($coll === 'page_content') return self::pageContent($filter, $limit, $countOnly);
         $class = self::COLLECTIONS[$coll] ?? null;
         if (! $class) throw new \InvalidArgumentException("Unknown collection: $coll");
 
@@ -55,6 +55,35 @@ class LegacyDocs
         }
         $rows = $q->skip(max(0, $skip))->take(min(500, max(1, $limit ?: 100)))->get();
         return ['rows' => $rows->map(fn (Model $m) => self::doc($m))->all()];
+    }
+
+    /**
+     * The website's page "overrides", now served from the full page content in `pages`. Giving every editable field
+     * as an override renders exactly the same page, and edits made in the panel show up.
+     */
+    private static function pageContent(array $filter, int $limit, bool $countOnly): array
+    {
+        $q = Page::query()->whereIn('kind', ['page', 'service', 'industry']);
+        foreach ($filter as $field => $cond) {
+            $col = ['_id' => 'key', 'kind' => 'kind', 'slug' => 'slug'][$field] ?? null;
+            if (! $col) throw new \InvalidArgumentException("Unknown field: $field");
+            is_array($cond) && isset($cond['$in']) ? $q->whereIn($col, (array) $cond['$in']) : $q->where($col, $cond);
+        }
+        if ($countOnly) return ['total' => $q->count()];
+        return ['rows' => $q->orderBy('sort')->take(min(500, max(1, $limit ?: 100)))->get()->map(fn (Page $p) => self::pageDoc($p))->all()];
+    }
+
+    public static function pageDoc(Page $p): array
+    {
+        $sections = [];
+        foreach ((array) $p->sections as $s) {
+            $e = array_intersect_key((array) $s, array_flip(['heading', 'intro', 'text', 'paras', 'bullets', 'cards', 'steps', 'stats', 'reviews', 'items']));
+            if ($e && isset($s['id'])) $sections[$s['id']] = $e;
+        }
+        $hero = array_intersect_key((array) $p->hero, array_flip(['h1', 'keyword', 'lead', 'points']));
+        return ['_id' => $p->key, 'kind' => $p->kind, 'slug' => $p->slug, 'metaTitle' => $p->meta_title, 'metaDescription' => $p->meta_description,
+            'focusKeyword' => $p->focus_keyword, 'hero' => $hero, 'sections' => (object) $sections, 'faqs' => (array) $p->faqs,
+            'updatedAt' => $p->updated_at?->format(DATE_ATOM)];
     }
 
     /** camelCase field from the website -> database column (or null when unknown). */

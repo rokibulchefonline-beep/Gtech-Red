@@ -17,7 +17,7 @@ Export these 12 collections from your database. Some may be missing or empty: sk
 | `case_studies` | Case studies |
 | `partners` | Partner badges |
 | `clients` | Client logos |
-| `page_content` | Your edits to page text |
+| `page_content` | Your edits to page text (merged into the full pages) |
 | `seo` | SEO overrides per page |
 | `leads` | Form enquiries |
 | `subscribers` | Newsletter sign-ups |
@@ -102,7 +102,7 @@ For a collection that doesn't exist, it prints `0 records`, which is fine.
 
    ```bash
    php artisan gtech:import-mongo storage/app/import --auth-secret="YOUR_OLD_AUTH_SECRET"
-   php artisan gtech:sync-pages
+   php artisan gtech:seed-content
    ```
 
    - It prints a table: collection, how many were in the file, and how many were imported. The numbers should match what Compass or `mongoexport` reported.

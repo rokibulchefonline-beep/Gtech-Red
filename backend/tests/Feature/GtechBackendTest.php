@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Auth\LegacyAwareUserProvider;
 use App\Filament\Admin\Resources;
 use App\Models\Lead;
-use App\Models\PageContent;
+use App\Models\Page;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -41,22 +41,24 @@ class GtechBackendTest extends TestCase
 
     public function test_every_panel_screen_loads_for_a_super_admin(): void
     {
-        Artisan::call('gtech:sync-pages');
+        Artisan::call('gtech:seed-content');
         Post::create(['title' => 'Hello', 'slug' => 'hello', 'status' => 'published', 'body' => '<p>x</p>']);
         Lead::create(['name' => 'L', 'email' => 'l@example.com']);
         $this->actingAs($this->admin());
         foreach (['/admin', '/admin/settings'] as $url) $this->get($url)->assertOk();
         foreach ([Resources\PostResource::class, Resources\CaseStudyResource::class, Resources\CategoryResource::class, Resources\PartnerResource::class,
-            Resources\ClientResource::class, Resources\PageContentResource::class, Resources\SeoEntryResource::class, Resources\LeadResource::class,
+            Resources\ClientResource::class, Resources\PageResource::class, Resources\ServiceGroupResource::class, Resources\IndustryResource::class,
+            Resources\CoreServiceResource::class, Resources\StatResource::class, Resources\TestimonialResource::class, Resources\SeoKeywordResource::class, Resources\SeoEntryResource::class, Resources\LeadResource::class,
             Resources\SubscriberResource::class, Resources\MediaResource::class, Resources\UserResource::class] as $r) {
             $this->get($r::getUrl("index"))->assertOk();
         }
         $this->get(Resources\PostResource::getUrl('create'))->assertOk();
         $this->get(Resources\PostResource::getUrl('edit', ['record' => Post::first()]))->assertOk();
         $this->get(Resources\LeadResource::getUrl('edit', ['record' => Lead::first()]))->assertOk();
-        foreach (['page~home', 'service~search-engine-optimization', 'industry~healthcare', 'page~about'] as $key) {
-            $this->get(Resources\PageContentResource::getUrl('edit', ['record' => PageContent::find($key)]))->assertOk()->assertSee('Main heading');
+        foreach (['page~home', 'service~search-engine-optimization', 'industry~healthcare', 'page~about', 'legal~terms'] as $key) {
+            $this->get(Resources\PageResource::getUrl('edit', ['record' => Page::find($key)]))->assertOk()->assertSee('Main heading');
         }
+        $this->get(Resources\ServiceGroupResource::getUrl('edit', ['record' => \App\Models\ServiceGroup::first()]))->assertOk()->assertSee('Services in this category');
     }
 
     public function test_roles_limit_what_people_see(): void
@@ -68,19 +70,55 @@ class GtechBackendTest extends TestCase
         $this->get('/admin/settings')->assertForbidden();
     }
 
-    public function test_page_editor_stores_only_changes(): void
+    public function test_seed_loads_all_content_once(): void
     {
-        Artisan::call('gtech:sync-pages');
-        $rec = PageContent::find('service~local-seo');
-        $state = Resources\PageContentResource::beforeFill($rec->toArray());
+        Artisan::call('gtech:seed-content');
+        $this->assertSame(53, Page::count());
+        $this->assertSame(5, \App\Models\ServiceGroup::count());
+        $this->assertSame(30, \App\Models\ServiceItem::count());
+        $this->assertSame(10, \App\Models\Industry::count());
+        $this->assertSame(6, Post::count());
+        Page::find('page~home')->update(['meta_title' => 'Mine']);
+        Artisan::call('gtech:seed-content');
+        $this->assertSame('Mine', Page::find('page~home')->meta_title, 'a second run must not overwrite edits');
+        $this->assertSame(6, Post::count());
+    }
+
+    public function test_page_editor_round_trip_keeps_layout_and_saves_edits(): void
+    {
+        Artisan::call('gtech:seed-content');
+        $rec = Page::find('service~local-seo');
+        $before = $rec->sections;
+        $state = Resources\PageResource::beforeFill($rec->toArray());
         $this->assertNotEmpty($state['hero']['h1']);
-        $this->assertSame([], Resources\PageContentResource::beforeSave($state, $rec)['sections']);
         $state['hero']['h1'] = 'Local SEO [[That Works]]';
-        $state['secs'][1]['heading'] = 'New [[heading]]';
-        $out = Resources\PageContentResource::beforeSave($state, $rec);
+        $state['secs'][0]['heading'] = 'New [[heading]]';
+        $out = Resources\PageResource::beforeSave($state, $rec);
         $this->assertSame('Local SEO [[That Works]]', $out['hero']['h1']);
-        $this->assertSame(['heading' => 'New [[heading]]'], $out['sections'][$state['secs'][1]['id']]);
-        $this->assertArrayNotHasKey('lead', $out['hero']);
+        $i = $state['secs'][0]['idx'];
+        $this->assertSame('New [[heading]]', $out['sections'][$i]['heading']);
+        $this->assertSame($before[$i]['type'], $out['sections'][$i]['type']);
+        $this->assertCount(count($before), $out['sections']);
+        foreach ($before as $k => $sec) {
+            foreach (['image', 'icon', 'cards', 'steps'] as $f) if (isset($sec[$f]) && $f !== 'cards' && $f !== 'steps') $this->assertSame($sec[$f], $out['sections'][$k][$f]);
+            foreach (['cards', 'steps'] as $f) if (isset($sec[$f])) $this->assertSame(array_column($sec[$f], 'icon'), array_column($out['sections'][$k][$f], 'icon'));
+        }
+        $this->assertTrue(Resources\PageResource::restore($rec->fill($out)));
+    }
+
+    public function test_old_page_edits_are_merged_into_pages_and_served_to_the_website(): void
+    {
+        config(['gtech.api_token' => 'secret-token-1']);
+        Artisan::call('gtech:seed-content');
+        $p = Page::find('service~local-seo');
+        $sid = $p->sections[0]['id'];
+        $merged = \App\Support\Content::mergeOverride($p->only(['meta_title', 'meta_description', 'focus_keyword', 'hero', 'sections', 'faqs']),
+            ['hero' => ['h1' => 'Edited [[H1]]'], 'sections' => [$sid => ['heading' => 'Edited heading']], 'faqs' => []]);
+        $p->fill($merged)->save();
+        $doc = $this->withHeader('X-Api-Key', 'secret-token-1')->postJson('/api/v1/query', ['coll' => 'page_content', 'filter' => ['_id' => 'service~local-seo'], 'limit' => 1])->json('rows.0');
+        $this->assertSame('Edited [[H1]]', $doc['hero']['h1']);
+        $this->assertSame('Edited heading', $doc['sections'][$sid]['heading']);
+        $this->assertNotEmpty($doc['faqs']);
     }
 
     public function test_query_api_needs_the_token_and_returns_old_document_shape(): void

@@ -18,7 +18,7 @@
     "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "build:next": "next build",
     "seo:audit": "tsx scripts/seo-audit.ts",
-    "export:pages": "tsx scripts/export-page-base.ts"
+    "export:content": "tsx scripts/export-content.ts"
   },
   "dependencies": {
     "jose": "^6.2.12",
