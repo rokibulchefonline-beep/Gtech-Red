@@ -107,6 +107,30 @@ code with `npm run export:content`. It only fills what is missing and never over
 
 The Next.js website still reads pages through the same API until the Blade front end replaces it.
 
+## Speed and caching
+
+- **Page cache.** Public pages are stored as finished HTML and served without touching the database. Saving
+  anything in the panel (a page, menu, post, case study, setting or SEO entry) refreshes every page on its next
+  visit, so edits show straight away. Pages are also refreshed every 12 hours, and when a scheduled post goes live.
+  Search results (`/blogs?q=`) are always rendered fresh.
+- **Settings** (`.env`): `GTECH_PAGE_CACHE=false` turns the cache off, `GTECH_PAGE_CACHE_TTL` sets the refresh time
+  in seconds, `GTECH_PAGE_CACHE_STORE` picks a cache store. Use `CACHE_STORE=redis` or `file` in production;
+  the `database` store works but adds a query per page.
+- **Changed the database directly** (not through the panel)? Run `php artisan cache:clear`.
+- **No cookies.** Public pages start no session and set no cookies, so a CDN such as Cloudflare can cache them and
+  bots never fill the sessions table.
+- **Browsers** keep pages but check back on each visit; an unchanged page costs a `304 Not Modified` with no body.
+- **Static files.** `public/.htaccess` compresses text files and lets browsers keep `site.css` and `site.js` for a
+  year (they are linked with a version number) and images and videos for a week. On nginx:
+
+  ```nginx
+  gzip on; gzip_types text/css application/javascript application/json image/svg+xml text/xml application/xml;
+  location ~* \.(css|js)$ { expires 1y; add_header Cache-Control "public, immutable"; try_files $uri /index.php?$query_string; }
+  location ~* \.(webp|png|jpe?g|gif|svg|ico|mp4|webm|woff2?)$ { expires 7d; try_files $uri /index.php?$query_string; }
+  ```
+- **On every deploy** run `php artisan optimize` (config, routes, views and events are cached) and keep PHP OPcache
+  on. Run `php artisan optimize:clear` before editing `.env` on the server.
+
 ## Commands
 
 | Command | What it does |
@@ -127,7 +151,8 @@ The website is being rebuilt in Blade with the same HTML, CSS and behaviour as t
 | 3. Page templates: every page of the website (home, about, contact, both hubs, 35 services, 10 industries, case studies, blog, legal pages, 404) and their behaviour (in-page tabs, sliders, testimonials, count-ups, charts, videos, share and newsletter) | Done. Every page's HTML matches the Next.js build |
 | 4. Behaviour check: 35 interaction scenarios (scrolling, sliders, rotation, count-ups, videos, share, newsletter, search, forms, popup, menus, cookie banner) give the same result as the website; no JS errors on any page | Done. Tools in `scripts/parity/` |
 | 5. SEO: titles, descriptions, canonicals, robots, Open Graph and Twitter tags, the JSON-LD graph on every page, the panel's SEO overrides, `sitemap.xml`, `robots.txt` and the old-address redirects | Done. Same output as the website on all 67 pages, with the fixes below |
-| 6. Caching, 7. Full visual check | Next |
+| 6. Caching: full-page cache that refreshes itself on every save, no cookies or sessions on public pages, 304 responses for unchanged pages, compression and long browser caching for CSS, JS and images | Done |
+| 7. Full visual check | Next |
 
 SEO fixes compared with the Next.js output:
 

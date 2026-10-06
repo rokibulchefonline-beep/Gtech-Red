@@ -3,13 +3,22 @@
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\Site\PageController;
 use App\Http\Controllers\Site\SeoController;
+use App\Http\Middleware\CacheSitePage;
 use App\Http\Middleware\MinifySiteHtml;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Illuminate\Support\Facades\Route;
 
 // Blade move, phase 2: shared layout preview (header, footer, popup, cookie banner). Pages arrive in phase 3.
 Route::view('/blade-preview', 'site.preview');
 // Blade move, phase 3: public page templates.
-Route::middleware(MinifySiteHtml::class)->group(function () {
+// Public pages need no session or cookies (forms post to the API), so those middleware are left out: no
+// Set-Cookie headers, no session rows, and the pages can be cached by browsers and CDNs.
+$noSession = [StartSession::class, ShareErrorsFromSession::class, ValidateCsrfToken::class, AddQueuedCookiesToResponse::class, EncryptCookies::class];
+Route::middleware([CacheSitePage::class, MinifySiteHtml::class])->withoutMiddleware($noSession)->group(function () {
     Route::get('/', [PageController::class, 'main'])->defaults('slug', 'home');
     Route::get('/services/{slug}', [PageController::class, 'service'])->where('slug', '[a-z0-9-]+');
     Route::get('/industries/{slug}', [PageController::class, 'industry'])->where('slug', '[a-z0-9-]+');
@@ -26,8 +35,10 @@ Route::middleware(MinifySiteHtml::class)->group(function () {
     }
 });
 
-Route::get('/sitemap.xml', [SeoController::class, 'sitemap']);
-Route::get('/robots.txt', [SeoController::class, 'robots']);
+Route::withoutMiddleware($noSession)->group(function () {
+    Route::get('/sitemap.xml', [SeoController::class, 'sitemap']);
+    Route::get('/robots.txt', [SeoController::class, 'robots']);
+});
 
 // Old addresses (next.config.mjs on the website).
 Route::redirect('/quote', '/contact', 308);

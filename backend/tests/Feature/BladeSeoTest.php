@@ -46,7 +46,7 @@ class BladeSeoTest extends TestCase
         $this->assertStringContainsString('"a'.chr(92).'u003c/script>"', $html);
         $this->assertStringNotContainsString('<loc>https://www.gtechdigital.co.uk/services/local-seo</loc>', $this->get('/sitemap.xml')->getContent());
 
-        SeoEntry::query()->whereKey('services~local-seo')->update(['schema_off' => true, 'schema_custom' => '']);
+        SeoEntry::query()->find('services~local-seo')->update(['schema_off' => true, 'schema_custom' => '']);
         $this->assertStringNotContainsString('application/ld+json', $this->get('/services/local-seo')->getContent());
     }
 
