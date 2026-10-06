@@ -268,13 +268,15 @@
     if (d.readyState === 'complete') add(); else window.addEventListener('load', add);
   });
 
-  // Intro video: play/pause button.
+  // Intro video: play/pause button. The icon and label follow the intended state, as in the React component.
   each('[data-video-toggle]', function (btn) {
-    var v = btn.parentElement.querySelector('video');
+    var v = btn.parentElement.querySelector('video'), playing = true;
     btn.addEventListener('click', function () {
       if (!v) return;
-      if (v.paused) { v.play(); btn.setAttribute('aria-label', 'Pause video'); } else { v.pause(); btn.setAttribute('aria-label', 'Play video'); }
-      swapIcon(btn);
+      var was = playing;
+      if (v.paused) { var r = v.play(); if (r && r.catch) r.catch(function () {}); playing = true; } else { v.pause(); playing = false; }
+      if (playing !== was) swapIcon(btn);
+      btn.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
     });
   });
 
