@@ -9,15 +9,32 @@ class Lead extends Model
 {
     use \App\Models\Concerns\BlankNotNull;
 
-    public const STATUSES = ['new' => 'New', 'contacted' => 'Contacted', 'qualified' => 'Qualified', 'won' => 'Won', 'lost' => 'Lost'];
+    /** Stages that always exist (the others are set in Site settings > Leads). */
+    public const FIXED = ['new' => 'New', 'won' => 'Won', 'lost' => 'Lost'];
 
     /** Statuses that need no more follow-up. */
     public const CLOSED = ['won', 'lost'];
 
+    /** Pipeline stages in order: key => label. */
+    public static function statuses(): array
+    {
+        return once(function () {
+            $out = [];
+            foreach ((array) (Setting::group('pipeline')['stages'] ?? []) as $s) if (! empty($s['key'])) $out[$s['key']] = ($s['label'] ?? '') ?: ucfirst($s['key']);
+            // The fixed stages are always there: New first, Won and Lost last.
+            return ['new' => $out['new'] ?? 'New'] + array_diff_key($out, self::FIXED) + ['won' => $out['won'] ?? 'Won', 'lost' => $out['lost'] ?? 'Lost'];
+        });
+    }
+
+    public function statusLabel(): string
+    {
+        return self::statuses()[$this->status] ?? ucfirst((string) $this->status);
+    }
+
     protected $table = 'leads';
 
     protected $fillable = ['legacy_id','name','business','email','phone','service','budget','designation','company_size','website','postcode','message','source','status','notes','assignee','value',
-        'assigned_to','next_action_at','next_action','channel','origin','landing_path','form_path','utm_campaign'];
+        'assigned_to','next_action_at','next_action','channel','origin','landing_path','form_path','utm_campaign','contact_id','consent_text','ip'];
 
     protected function casts(): array
     {
@@ -25,6 +42,7 @@ class Lead extends Model
     }
 
     public function owner() { return $this->belongsTo(User::class, 'assigned_to'); }
+    public function contact() { return $this->belongsTo(Contact::class); }
     public function activities() { return $this->hasMany(LeadActivity::class)->latest('created_at')->latest('id'); }
 
     /** Leads a user may see: everyone's with "See everyone's leads", otherwise only the ones assigned to them. */

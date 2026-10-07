@@ -75,7 +75,12 @@
         .then(function (r) { return r.json(); })
         .then(function (res) { if (res.ok) { show(true, ok); form.reset(); } else show(false, res.error || 'Something went wrong.'); })
         .catch(function () { show(false, form.getAttribute('data-form') === 'inquiry' ? 'Network error. Please try again.' : 'Network error. Try again.'); })
-        .then(function () { btn.disabled = false; btn.textContent = btn.getAttribute('data-label'); });
+        .then(function () {
+          btn.disabled = false; btn.textContent = btn.getAttribute('data-label');
+          // A Turnstile token works once: get a fresh one for the next send.
+          var ts = form.querySelector('.cf-turnstile');
+          if (ts && window.turnstile) { try { window.turnstile.reset(ts); } catch (e) {} }
+        });
     });
   }
   d.querySelectorAll('form[data-form="contact"],form[data-form="inquiry"]').forEach(bindForm);
@@ -97,6 +102,7 @@
     lastFocus = from;
     modal = tpl.content.firstElementChild.cloneNode(true);
     d.body.insertBefore(modal, tpl);
+    if (window.turnstile) modal.querySelectorAll('.cf-turnstile').forEach(function (el) { try { window.turnstile.render(el); } catch (e) {} });
     var sel = modal.querySelector('select[name="service"]');
     if (service && Array.prototype.some.call(sel.options, function (o) { return o.value === service; })) sel.value = service;
     bindForm(modal.querySelector('form'));

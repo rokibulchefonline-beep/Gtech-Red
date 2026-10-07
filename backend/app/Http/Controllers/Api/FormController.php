@@ -7,6 +7,7 @@ use App\Models\Lead;
 use App\Models\Setting;
 use App\Models\Subscriber;
 use App\Support\Crm\LeadRouting;
+use App\Support\Crm\Turnstile;
 use App\Support\SiteMailer;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,14 @@ class FormController extends Controller
         $service = $v('service');
         $bad = ! $name || ! $business || ! $phone || ! $service || ! filter_var($email, FILTER_VALIDATE_EMAIL) || ($v('source') !== 'inquiry' && ! $v('budget'));
         if ($bad) return response()->json(['ok' => false, 'error' => 'Fill all required fields with a valid email.'], 400);
+        if (! Turnstile::passes($v('cf-turnstile-response'), $r->ip())) {
+            return response()->json(['ok' => false, 'error' => 'Please complete the "I am human" check and send again.'], 400);
+        }
+        // More than 5 enquiries an hour from one network is not a person.
+        if (\Illuminate\Support\Facades\RateLimiter::tooManyAttempts($rk = 'leads-ip:'.$r->ip(), 5)) {
+            return response()->json(['ok' => false, 'error' => 'We have already received several enquiries from you. Please call or email us instead.'], 429);
+        }
+        \Illuminate\Support\Facades\RateLimiter::hit($rk, 3600);
 
         // Where the lead came from: the website visit (analytics) it belongs to, and the page the form was on.
         $sid = $v('sid');
@@ -39,6 +48,9 @@ class FormController extends Controller
             'channel' => $visit->channel ?? '', 'origin' => mb_substr($visit->source ?? '', 0, 80), 'landing_path' => mb_substr($visit->landing_path ?? '', 0, 300),
             'utm_campaign' => mb_substr($visit->utm_campaign ?? '', 0, 120), 'form_path' => mb_substr($formPath, 0, 300),
             'assigned_to' => LeadRouting::pickOwner(),
+            // What the person was told about their data when they sent the form (UK GDPR transparency).
+            'consent_text' => mb_substr(strip_tags(preg_replace('/\[([^\]]+)\]\(([^)]*)\)/', '$1 ($2)', (string) (Setting::group('forms')['privacyNotice'] ?? ''))), 0, 600),
+            'ip' => (string) $r->ip(),
         ]);
 
         if ($visit) {

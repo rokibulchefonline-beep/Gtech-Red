@@ -290,6 +290,8 @@ a{color:inherit;text-decoration:none}
 .iq-field input:focus,.iq-field select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(232,32,47,.12)}
 .iq-submit{width:100%;margin-top:6px;border-radius:0;padding:15px 30px;font-size:15px}
 .iq-submit:disabled{opacity:.6}
+.form-notice{margin:10px 0 0;font-size:12px;line-height:1.5;color:#6b6b6b;text-align:center}.form-notice a{color:inherit;text-decoration:underline}
+.cf-turnstile{margin:6px 0 4px;min-height:65px}
 @media(max-width:1000px){.iq-grid{grid-template-columns:1fr;gap:40px}}
 @media(max-width:520px){.iq{padding:64px 0}.iq-form{padding:24px 18px}}
 

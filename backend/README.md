@@ -192,6 +192,18 @@ All page addresses stay the same, so no redirects are needed beyond the old ones
     the page the form was on.
   - **Site settings → Leads**: assign new enquiries automatically (taking turns), post them to a Slack, Google Chat
     or Teams channel, and turn the morning reminder email on or off.
+  - *Pipeline* (Leads → Pipeline): the leads as a board, one column per stage; drag a card to move it (on a phone, use
+    "Move to"). Stages are renamed, added or reordered in **Site settings → Leads**; New, Won and Lost always exist.
+  - *Send email* on a lead: write an email or start from a template (Leads → Email templates, with placeholders such as
+    `{first_name}`). It goes out through the SMTP account, replies come back to the sender, and it is logged on the timeline.
+  - *Contacts*: one per email address, so someone who enquires again joins their earlier enquiries. Duplicates under
+    another address can be merged.
+  - *Data protection (UK GDPR)*: each form shows a short privacy notice (Site settings → Forms), saved with the lead.
+    On a contact, **Download their data** gives a file for a subject access request and **Erase their data** deletes
+    their enquiries, timeline and newsletter subscription (a record without personal details is kept). Lost leads
+    can be deleted automatically after 6 months to 3 years (Site settings → Leads).
+  - *Spam protection*: honeypot field, at most 5 enquiries an hour per network, and optional Cloudflare Turnstile
+    (Site settings → Forms: paste the site and secret keys from Cloudflare → Turnstile).
   - The morning reminder (weekdays at 8am UK time) needs Laravel's scheduler: add a cron job (in Plesk: Scheduled
     tasks) that runs every minute: `cd /path/to/backend && php artisan schedule:run`.
 

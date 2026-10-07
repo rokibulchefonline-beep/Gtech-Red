@@ -9,6 +9,12 @@ use App\Notifications\LeadAssigned;
 /** Writes every change to a lead onto its timeline, and emails people when a lead is assigned to them. */
 class LeadObserver
 {
+    /** Same email address, same contact: a second enquiry joins the first one's person. */
+    public function creating(Lead $lead): void
+    {
+        if (! $lead->contact_id) $lead->contact_id = \App\Models\Contact::forLead($lead)?->id;
+    }
+
     public function created(Lead $lead): void
     {
         $where = $lead->form_path ? ' on '.$lead->form_path : '';
@@ -27,8 +33,8 @@ class LeadObserver
     public function updated(Lead $lead): void
     {
         if ($lead->wasChanged('status')) {
-            $from = Lead::STATUSES[$lead->getOriginal('status')] ?? $lead->getOriginal('status');
-            $lead->log('status', "$from → ".(Lead::STATUSES[$lead->status] ?? $lead->status));
+            $from = Lead::statuses()[$lead->getOriginal('status')] ?? $lead->getOriginal('status');
+            $lead->log('status', "$from → ".(Lead::statuses()[$lead->status] ?? $lead->status));
         }
         if ($lead->wasChanged('assigned_to')) $this->assigned($lead, $lead->getOriginal('assigned_to'));
         if ($lead->wasChanged(['next_action_at', 'next_action'])) {

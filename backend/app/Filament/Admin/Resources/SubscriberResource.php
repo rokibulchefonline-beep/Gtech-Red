@@ -23,7 +23,7 @@ class SubscriberResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
     protected static ?string $navigationGroup = 'Leads';
     protected static ?string $navigationLabel = 'Newsletter';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 5;
 
 
     public static function canCreate(): bool { return false; }

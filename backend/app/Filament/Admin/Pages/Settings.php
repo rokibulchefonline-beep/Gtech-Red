@@ -37,6 +37,8 @@ class Settings extends Page implements HasForms
         $s = Setting::all_();
         $s['smtp']['pass'] = '';
         $s['smtp']['hasPass'] = (bool) (Setting::group('smtp')['pass'] ?? '');
+        $s['forms']['turnstileSecret'] = '';
+        $s['forms']['hasSecret'] = (bool) (Setting::group('forms')['turnstileSecret'] ?? '');
         $this->form->fill($s);
     }
 
@@ -94,6 +96,28 @@ class Settings extends Page implements HasForms
                         ->rule(fn () => fn ($attr, $v, $fail) => $v && ! \App\Support\Crm\LeadRouting::validWebhook((string) $v) ? $fail('Use the https:// webhook address from Slack, Google Chat or Microsoft Teams.') : null)
                         ->helperText('Posts every new lead to a Slack, Google Chat or Microsoft Teams channel. Create an "incoming webhook" in that app and paste its address here.'),
                     Forms\Components\Toggle::make('leads.reminders')->label('Email each person their due follow-ups every weekday morning'),
+                    Forms\Components\Repeater::make('pipeline.stages')->label('Pipeline stages')->reorderable()->grid(3)->addActionLabel('Add a stage')
+                        ->schema([
+                            Forms\Components\Hidden::make('key'),
+                            Forms\Components\TextInput::make('label')->hiddenLabel()->required()->maxLength(30),
+                        ])
+                        ->deleteAction(fn ($action) => $action->hidden(fn (array $arguments, Forms\Components\Repeater $component) => in_array($component->getState()[$arguments['item']]['key'] ?? '', array_keys(\App\Models\Lead::FIXED), true)))
+                        ->helperText('Rename, add, remove or reorder the stages of the Pipeline board. New, Won and Lost always exist (New first, Won and Lost last). A stage that still has leads cannot be removed.'),
+                    Forms\Components\Select::make('leads.retainMonths')->label('Delete lost leads automatically')
+                        ->options([0 => 'Never', 6 => 'After 6 months', 12 => 'After 12 months', 24 => 'After 2 years', 36 => 'After 3 years'])->selectablePlaceholder(false)
+                        ->helperText('Data protection: lost leads untouched for this long are deleted every night, with their timeline. Leads in any other stage are kept.'),
+                ]),
+                Forms\Components\Tabs\Tab::make('Forms')->schema([
+                    Forms\Components\Textarea::make('forms.privacyNotice')->label('Privacy notice under every form')->rows(2)->maxLength(500)
+                        ->helperText('Tells people how their details are used (UK GDPR). Write [link text](/privacy-policy) for a link. It is saved with every lead. Leave empty to hide it.'),
+                    Forms\Components\Fieldset::make('Spam protection: Cloudflare Turnstile (optional)')->schema([
+                        Forms\Components\Placeholder::make('tshelp')->hiddenLabel()->columnSpanFull()
+                            ->content('A free "I am human" check from Cloudflare, usually invisible to people. Create a widget for your domain in Cloudflare > Turnstile and paste its two keys here. Both keys are needed; remove the site key to turn it off.'),
+                        Forms\Components\TextInput::make('forms.turnstileSite')->label('Site key')->maxLength(100),
+                        Forms\Components\TextInput::make('forms.turnstileSecret')->label('Secret key')->password()->revealable()->maxLength(200)
+                            ->helperText(fn ($get) => $get('forms.hasSecret') ? 'A secret key is saved. Leave empty to keep it.' : 'No secret key saved yet.'),
+                        Forms\Components\Hidden::make('forms.hasSecret'),
+                    ])->columns(2),
                 ]),
                 Forms\Components\Tabs\Tab::make('Security')->schema([
                     Forms\Components\Radio::make('security.require2fa')->label('Require two-factor sign-in')
@@ -109,6 +133,27 @@ class Settings extends Page implements HasForms
         ]);
     }
 
+    /** Pipeline stages from the form: keys for new ones, New/Won/Lost kept in place. Null (and a message) when a removed stage still has leads. */
+    private static function stages(array $rows): ?array
+    {
+        $out = [];
+        foreach (array_values($rows) as $r) {
+            $label = trim((string) ($r['label'] ?? ''));
+            if ($label === '') continue;
+            $key = ($r['key'] ?? '') ?: \Illuminate\Support\Str::slug($label, '_');
+            while (isset($out[$key]) || ($key !== ($r['key'] ?? '') && isset(\App\Models\Lead::FIXED[$key]))) $key .= '_2';
+            $out[$key] = ['key' => $key, 'label' => $label];
+        }
+        foreach (\App\Models\Lead::FIXED as $k => $l) $out[$k] ??= ['key' => $k, 'label' => $l];
+        $ordered = [$out['new'], ...array_values(array_diff_key($out, \App\Models\Lead::FIXED)), $out['won'], $out['lost']];
+        $removed = \App\Models\Lead::query()->whereNotIn('status', array_column($ordered, 'key'))->pluck('status')->unique();
+        if ($removed->isNotEmpty()) {
+            Notification::make()->title('Not saved')->body('Leads are still in the stage '.$removed->map(fn ($k) => '"'.(\App\Models\Lead::statuses()[$k] ?? $k).'"')->implode(', ').'. Move them first.')->danger()->send();
+            return null;
+        }
+        return $ordered;
+    }
+
     public static function canEdit(): bool
     {
         return (bool) auth()->user()?->hasPerm('settings.edit');
@@ -121,6 +166,12 @@ class Settings extends Page implements HasForms
         $oldPass = Setting::group('smtp')['pass'] ?? '';
         $data['smtp']['pass'] = filled($data['smtp']['pass'] ?? null) ? Crypt::encryptString($data['smtp']['pass']) : $oldPass;
         unset($data['smtp']['hasPass']);
+        $oldSecret = Setting::group('forms')['turnstileSecret'] ?? '';
+        $data['forms']['turnstileSecret'] = filled($data['forms']['turnstileSecret'] ?? null) ? Crypt::encryptString(trim($data['forms']['turnstileSecret'])) : $oldSecret;
+        $data['forms']['budgets'] = Setting::group('forms')['budgets'] ?? [];
+        unset($data['forms']['hasSecret']);
+        if (($stages = self::stages((array) ($data['pipeline']['stages'] ?? []))) === null) return;
+        $data['pipeline']['stages'] = $stages;
         foreach (array_keys(Setting::DEFAULTS) as $group) {
             if (array_key_exists($group, $data)) Setting::put($group, array_is_list(Setting::DEFAULTS[$group]) ? array_values((array) $data[$group]) : (array) $data[$group]);
         }

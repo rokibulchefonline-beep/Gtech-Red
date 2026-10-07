@@ -28,12 +28,18 @@ class Setting extends Model
         'seo' => ['titleSuffix' => ' | GTech Digital', 'defaultDescription' => '', 'ogImage' => ''],
         'smtp' => ['host' => '', 'port' => 587, 'secure' => false, 'user' => '', 'pass' => '', 'fromName' => 'GTech Digital', 'fromEmail' => '', 'notifyTo' => '', 'autoReply' => true],
         'publish' => ['deployHook' => ''],
-        'forms' => ['budgets' => []],
+        // Website forms: the privacy notice under each form, and Cloudflare Turnstile spam protection (secret encrypted).
+        'forms' => ['budgets' => [], 'privacyNotice' => 'We use your details only to reply to your enquiry. See our [Privacy Policy](/privacy-policy).', 'turnstileSite' => '', 'turnstileSecret' => ''],
         'company' => ['legalName' => '', 'number' => '', 'address' => '', 'ico' => ''],
         // Two-factor sign-in: off, managers (people who can manage users) or everyone.
         'security' => ['require2fa' => 'off'],
         // New enquiries: automatic assignment (off or round_robin over the chosen user ids) and a chat webhook.
-        'leads' => ['autoAssign' => 'off', 'assignees' => [], 'webhook' => '', 'reminders' => true],
+        'leads' => ['autoAssign' => 'off', 'assignees' => [], 'webhook' => '', 'reminders' => true, 'retainMonths' => 0],
+        // Pipeline stages (Leads > Pipeline). "new", "won" and "lost" always exist; the others can be renamed or removed.
+        'pipeline' => ['stages' => [
+            ['key' => 'new', 'label' => 'New'], ['key' => 'contacted', 'label' => 'Contacted'], ['key' => 'qualified', 'label' => 'Qualified'],
+            ['key' => 'proposal', 'label' => 'Proposal sent'], ['key' => 'won', 'label' => 'Won'], ['key' => 'lost', 'label' => 'Lost'],
+        ]],
     ];
 
     /** All groups merged over the defaults. */

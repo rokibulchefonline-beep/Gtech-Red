@@ -36,7 +36,16 @@ class SiteComposer
             'menu' => ServiceGroup::query()->with('items')->orderBy('sort')->get(),
             'industryList' => Industry::query()->orderBy('sort')->get(),
             'budgets' => $s['forms']['budgets'] ?? [],
+            // Under every form: the privacy notice ([text](/link) becomes a link), and Turnstile when set up.
+            'formNotice' => self::notice((string) ($s['forms']['privacyNotice'] ?? '')),
+            'turnstile' => $safe((string) ($s['forms']['turnstileSite'] ?? ''), '/^[0-9A-Za-z_-]{10,100}$/'),
         ];
+    }
+
+    private static function notice(string $text): string
+    {
+        $html = e(trim($text));
+        return preg_replace_callback('/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^)\s]*)\)/', fn ($m) => '<a href="'.$m[2].'">'.$m[1].'</a>', $html);
     }
 
     /** Forget cached data (after saving in the panel, or between tests). */

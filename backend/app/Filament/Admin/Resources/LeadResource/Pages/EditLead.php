@@ -14,7 +14,11 @@ class EditLead extends EditRecord
     {
         $lead = $this->record;
         return [
-            Actions\Action::make('email')->label('Email')->icon('heroicon-o-envelope')->color('gray')->visible((bool) $lead->email)
+            \App\Support\Crm\LeadMailer::action(Actions\Action::class, function () {
+                $this->dispatch('refresh-lead-form');
+                $this->dispatch('$refresh')->to(\App\Filament\Admin\Resources\LeadResource\RelationManagers\ActivitiesRelationManager::class);
+            }),
+            Actions\Action::make('email')->label('Email app')->icon('heroicon-o-envelope')->color('gray')->visible((bool) $lead->email)
                 ->url('mailto:'.$lead->email.'?subject='.rawurlencode('Your enquiry about '.$lead->service)),
             Actions\Action::make('call')->label('Call')->icon('heroicon-o-phone')->color('gray')->visible((bool) $lead->phone)
                 ->url('tel:+'.$lead->phoneDigits()),

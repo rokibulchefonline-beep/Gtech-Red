@@ -40,10 +40,12 @@ class SiteMailer
         }
     }
 
-    public static function send(string $to, string $subject, string $html, ?string $replyTo = null): void
+    /** $plain: a personal email (no branded heading), e.g. a reply to a lead. */
+    public static function send(string $to, string $subject, string $html, ?string $replyTo = null, bool $plain = false): void
     {
         $mailer = self::configure() ? Mail::mailer('site') : Mail::mailer();
-        $mailer->html(self::shell($subject, $html), function ($m) use ($to, $subject, $replyTo) {
+        $body = $plain ? '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#222;max-width:640px">'.$html.'</div>' : self::shell($subject, $html);
+        $mailer->html($body, function ($m) use ($to, $subject, $replyTo) {
             $m->to($to)->subject($subject);
             if ($replyTo) $m->replyTo($replyTo);
         });

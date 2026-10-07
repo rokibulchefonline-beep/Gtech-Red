@@ -12,7 +12,7 @@ class Permissions
         'media' => ['label' => 'Media library', 'actions' => ['view' => 'View', 'create' => 'Upload', 'delete' => 'Delete']],
         'seo' => ['label' => 'SEO and redirects', 'hint' => 'SEO overrides, keyword map and redirects', 'actions' => ['view' => 'View', 'create' => 'Create', 'edit' => 'Edit', 'delete' => 'Delete']],
         'structure' => ['label' => 'Site structure', 'hint' => 'Services menu, industries, numbers, testimonials, logos, categories', 'actions' => ['view' => 'View', 'create' => 'Create', 'edit' => 'Edit', 'delete' => 'Delete']],
-        'leads' => ['label' => 'Leads', 'hint' => 'Without "See everyone\'s" a user sees only the leads assigned to them.', 'actions' => ['view' => 'View', 'all' => 'See everyone\'s', 'edit' => 'Update', 'assign' => 'Assign', 'delete' => 'Delete', 'export' => 'Export CSV']],
+        'leads' => ['label' => 'Leads', 'hint' => 'Without "See everyone\'s" a user sees only the leads assigned to them.', 'actions' => ['view' => 'View', 'all' => 'See everyone\'s', 'edit' => 'Update', 'assign' => 'Assign', 'templates' => 'Manage email templates', 'delete' => 'Delete and erase (GDPR)', 'export' => 'Export']],
         'subscribers' => ['label' => 'Newsletter subscribers', 'actions' => ['view' => 'View', 'delete' => 'Delete', 'export' => 'Export CSV']],
         'analytics' => ['label' => 'Analytics', 'actions' => ['view' => 'View']],
         'settings' => ['label' => 'Site settings', 'hint' => 'Contact details, tracking codes, email (SMTP)', 'actions' => ['view' => 'View', 'edit' => 'Edit']],
@@ -27,7 +27,7 @@ class Permissions
         return $out;
     }
 
-    private static function sections(array $sections, array $actions = ['view', 'all', 'create', 'edit', 'assign', 'publish', 'delete', 'export', 'manage']): array
+    private static function sections(array $sections, array $actions = ['view', 'all', 'create', 'edit', 'assign', 'templates', 'publish', 'delete', 'export', 'manage']): array
     {
         return array_values(array_filter(self::all(), fn ($p) => in_array(strtok($p, '.'), $sections, true) && in_array(substr($p, strpos($p, '.') + 1), $actions, true)));
     }

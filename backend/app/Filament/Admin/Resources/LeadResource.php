@@ -22,7 +22,6 @@ class LeadResource extends Resource
 {
     use HooksDefault, Perms;
 
-    public const STATUSES = Lead::STATUSES;
 
     protected static string $section = 'leads';
     protected static ?string $model = Lead::class;
@@ -52,6 +51,16 @@ class LeadResource extends Resource
         return User::query()->where('active', true)->orderBy('name')->get()->filter(fn (User $u) => $u->hasPerm('leads.view'))->pluck('name', 'id')->all();
     }
 
+    /** Links to the same person's other enquiries (those this user may see) and their contact page. */
+    public static function otherEnquiries(Lead $r): HtmlString
+    {
+        $links = static::getEloquentQuery()->where('contact_id', $r->contact_id)->whereKeyNot($r->id)->latest()->get()
+            ->map(fn (Lead $o) => '<a class="text-primary-600 underline" href="'.e(self::getUrl('edit', ['record' => $o])).'">'.e($o->created_at?->format('j M Y').' · '.$o->service.' · '.$o->statusLabel()).'</a>')
+            ->implode('<br>');
+        $contact = auth()->user()?->hasPerm('leads.all') ? '<br><a class="text-primary-600 underline" href="'.e(ContactResource::getUrl('view', ['record' => $r->contact_id])).'">Open the contact</a>' : '';
+        return new HtmlString(($links ?: 'Assigned to someone else.').$contact);
+    }
+
     public static function canAssign(): bool
     {
         return (bool) auth()->user()?->hasPerm('leads.assign');
@@ -78,12 +87,18 @@ class LeadResource extends Resource
                     return implode(' · ', $bits);
                 })->columnSpanFull(),
                 Forms\Components\Placeholder::make('when')->label('Received')->content(fn (?Lead $r) => $r?->created_at?->format('d M Y, H:i').' via '.$r?->source.' form'.($r?->form_path ? ' on '.$r->form_path : '')),
+                Forms\Components\Placeholder::make('others')->label('Other enquiries from this person')->columnSpanFull()
+                    ->visible(fn (?Lead $r) => $r?->contact_id && Lead::query()->where('contact_id', $r->contact_id)->whereKeyNot($r->id)->exists())
+                    ->content(fn (?Lead $r) => self::otherEnquiries($r)),
+                Forms\Components\Placeholder::make('privacy')->label('Privacy notice shown with the form')->columnSpanFull()
+                    ->visible(fn (?Lead $r) => filled($r?->consent_text))
+                    ->content(fn (?Lead $r) => $r->consent_text.($r->ip ? ' (sent from '.$r->ip.')' : '')),
                 Forms\Components\Placeholder::make('response')->label('First response')->content(fn (?Lead $r) => ! $r ? '' : ($r->first_contacted_at
                     ? $r->first_contacted_at->diffForHumans($r->created_at, \Carbon\CarbonInterface::DIFF_ABSOLUTE).' after the enquiry'
                     : ($r->status === 'new' ? 'Not contacted yet' : '-'))),
             ])->columns(2),
             Forms\Components\Section::make('Follow-up')->schema([
-                Forms\Components\Select::make('status')->options(self::STATUSES)->required()->selectablePlaceholder(false),
+                Forms\Components\Select::make('status')->options(fn () => Lead::statuses())->required()->selectablePlaceholder(false),
                 Forms\Components\Select::make('assigned_to')->label('Assigned to')->options(fn () => self::ownerOptions())->placeholder('Nobody')
                     ->disabled(fn () => ! self::canAssign())->dehydrated(fn () => self::canAssign())
                     ->helperText(fn () => self::canAssign() ? 'They get an email with the lead.' : null),
@@ -106,7 +121,7 @@ class LeadResource extends Resource
                 Tables\Columns\TextColumn::make('name')->searchable(['name', 'business', 'email', 'phone'])->sortable()->description(fn (Lead $r) => $r->business),
                 Tables\Columns\TextColumn::make('email')->url(fn (Lead $r) => 'mailto:'.$r->email)->description(fn (Lead $r) => $r->phone)->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('service')->searchable()->wrap()->visibleFrom('lg')->description(fn (Lead $r) => $r->originLabel() ? 'via '.$r->originLabel() : null),
-                Tables\Columns\SelectColumn::make('status')->options(self::STATUSES)->selectablePlaceholder(false)->disabled(fn () => ! static::allows('edit')),
+                Tables\Columns\SelectColumn::make('status')->options(fn () => Lead::statuses())->selectablePlaceholder(false)->disabled(fn () => ! static::allows('edit')),
                 Tables\Columns\TextColumn::make('owner.name')->label('Assigned to')->placeholder('Nobody')->visibleFrom('md'),
                 Tables\Columns\TextColumn::make('next_action_at')->label('Follow-up')->date('D j M')->sortable()->placeholder('-')
                     ->description(fn (Lead $r) => $r->next_action_at ? str($r->next_action)->limit(40) : null)
@@ -117,7 +132,7 @@ class LeadResource extends Resource
             ])
             ->filters([
                 Tables\Filters\Filter::make('mine')->label('Assigned to me')->toggle()->query(fn (Builder $query) => $query->where('assigned_to', $me())),
-                Tables\Filters\SelectFilter::make('status')->options(self::STATUSES)->multiple(),
+                Tables\Filters\SelectFilter::make('status')->options(fn () => Lead::statuses())->multiple(),
                 Tables\Filters\SelectFilter::make('follow_up')->label('Follow-up')->options(['due' => 'Due today or overdue', 'overdue' => 'Overdue', 'none' => 'Open, with no follow-up set'])
                     ->query(fn (Builder $query, array $data) => match ($data['value'] ?? null) {
                         'due' => $query->due(), 'overdue' => $query->due(false),
