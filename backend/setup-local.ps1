@@ -47,7 +47,16 @@ if ($firstRun) {
     Run 'php' @('artisan', 'gtech:create-admin')
 }
 
-Step 'Starting. Admin panel: http://127.0.0.1:8000/admin   Website: http://127.0.0.1:8000'
+# A free port from 8000 (an old window may still hold 8000).
+$port = 8000
+while ($port -lt 8020) {
+    try { $l = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, $port); $l.Start(); $l.Stop(); break } catch { $port++ }
+}
+$url = "http://127.0.0.1:$port"
+
+Step "Starting. Admin panel: $url/admin   Website: $url"
 Write-Host 'Keep this window open while you use it. Close it (or press Ctrl+C) to stop.' -ForegroundColor Yellow
-Start-Job { Start-Sleep -Seconds 3; Start-Process 'http://127.0.0.1:8000/admin' } | Out-Null   # opens the browser once the server is up
-php artisan serve --port=8000
+Start-Job -ArgumentList "$url/admin" { param($u) Start-Sleep -Seconds 3; Start-Process $u } | Out-Null   # opens the browser once the server is up
+# PHP's own web server, started directly (php artisan serve fails on some Windows setups).
+Set-Location public
+php -S "127.0.0.1:$port" ..\server.php
