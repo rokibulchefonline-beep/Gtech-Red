@@ -110,4 +110,35 @@ class SeoFixesTest extends TestCase
         $a->update(['name' => 'Sam Writer-Jones']);
         $this->assertSame('Sam Writer-Jones', \App\Models\Post::query()->where('slug', 'aeo-geo-guide')->value('author'));
     }
+
+    public function test_one_clean_address_per_page(): void
+    {
+        // Called directly: the test client itself drops trailing slashes before sending.
+        $mw = new \App\Http\Middleware\CanonicalUrl;
+        foreach (['/services/local-seo/' => '/services/local-seo', '/Services/Local-SEO' => '/services/local-seo', '/index.php' => '/', '/index.php/about' => '/about',
+            '/blogs/?page=2' => '/blogs?page=2', '/services//local-seo' => '/services/local-seo', '/About/?utm_source=x' => '/about?utm_source=x'] as $from => $to) {
+            $r = $mw->handle(\Illuminate\Http\Request::create($from), fn () => response('page'));
+            $this->assertSame([301, $to], [$r->getStatusCode(), $r->headers->get('Location')], $from);
+        }
+        foreach (['/services/local-seo', '/', '/logo.png', '/Admin/Login', '/storage/media/A.PNG'] as $keep) {
+            $this->assertSame('page', $mw->handle(\Illuminate\Http\Request::create($keep), fn () => response('page'))->getContent(), $keep);
+        }
+        $this->get('/Services/Local-SEO')->assertStatus(301)->assertHeader('Location', '/services/local-seo');
+        $this->get('/services/local-seo')->assertOk();
+        $this->get('/admin/login')->assertOk();
+    }
+
+    public function test_language_icons_llms_and_unique_ids(): void
+    {
+        $home = $this->get('/')->assertOk()->getContent();
+        $this->assertStringContainsString('<html lang="en-GB">', $home);
+        $this->assertStringContainsString('<link rel="apple-touch-icon" href="/apple-touch-icon.png">', $home);
+        $this->assertStringContainsString('media="print" onload="this.media=\'all\'"', $home);
+        preg_match_all('/\sid="([^"]+)"/', preg_replace('#<template\b.*?</template>#s', '', $home), $m);
+        $this->assertSame([], array_keys(array_filter(array_count_values($m[1]), fn ($n) => $n > 1)), 'duplicate ids');
+        $llms = $this->get('/llms.txt')->assertOk()->assertHeader('Content-Type', 'text/plain; charset=UTF-8')->getContent();
+        $this->assertStringStartsWith('# GTech Digital', $llms);
+        $this->assertStringContainsString('(https://www.gtechdigital.co.uk/services/local-seo)', $llms);
+        $this->assertStringContainsString('0330 380 1000', $llms);
+    }
 }

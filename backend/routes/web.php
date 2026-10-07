@@ -45,6 +45,7 @@ Route::get('/preview/page/{token}/frame', [\App\Http\Controllers\Site\PreviewCon
 Route::withoutMiddleware($noSession)->group(function () {
     Route::get('/sitemap.xml', [SeoController::class, 'sitemap']);
     Route::get('/robots.txt', [SeoController::class, 'robots']);
+    Route::get('/llms.txt', [SeoController::class, 'llms']);
 });
 
 // Old addresses (next.config.mjs on the website).

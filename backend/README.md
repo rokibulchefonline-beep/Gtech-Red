@@ -185,6 +185,14 @@ All page addresses are the same as on the old site, and the old addresses still 
   - **Schema markup**: the page, blog post and case study editors have a *Schema markup* section showing the
     automatic schema the page outputs, links to test it in Google, a switch to turn it off, and your own JSON-LD
     with ready-made templates (FAQ, How-to, Product, Review, Video, Event, Local business). Saved in SEO overrides.
+- **Contact details and Google Business Profile**: *Site settings > Contact* holds the email, two phone numbers,
+  opening hours and the Google Business Profile address (street, town, postcode, Maps link). Write the address
+  exactly as on the profile. It shows on the contact page (and the footer if switched on) and in the schema.
+- **Blog authors**: *Blog > Authors* holds the real people who write (job title, bio, photo, LinkedIn). Pick the
+  author on each post; the post links to their page at `/blogs/author/{name}` with Person schema.
+- **Crawling**: one clean address per page (trailing slashes, capitals and `/index.php` redirect), the blog
+  list is paged 12 at a time, every image gets its size automatically, pages without a picture share
+  `public/og-default.jpg` (or the image in *SEO defaults*), and `/llms.txt` lists the site for AI assistants.
 - **Google Tag Manager**: *Site settings > Tracking > Google Tag Manager ID* (set to `GTM-NRPJVVSH`). Enter only the
   ID; the site adds the head script and the `<noscript>` part after `<body>` to every page. Leave it empty to remove.
 - **Day / Night** buttons at the top right switch the admin between the white and the dark look (dark is the default).

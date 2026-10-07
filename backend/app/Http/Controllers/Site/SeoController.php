@@ -21,6 +21,31 @@ class SeoController extends Controller
         return response($body, 200, ['Content-Type' => 'text/plain; charset=UTF-8']);
     }
 
+    /** /llms.txt: a plain summary of the site and its main pages for AI assistants (llmstxt.org). */
+    public function llms(): Response
+    {
+        $base = rtrim((string) config('gtech.public_url'), '/');
+        $s = \App\Models\Setting::all_();
+        $c = \App\Support\Site\Contact::get();
+        $link = fn (string $title, string $path, string $note = '') => "- [$title]($base$path)".($note !== '' ? ": $note" : '');
+        $out = ['# '.($s['general']['siteName'] ?? 'GTech Digital'), '',
+            '> '.($s['seo']['defaultDescription'] ?: 'GTech Digital is a UK digital agency providing digital marketing, SEO, Google Ads, social media marketing, web design and development, custom software development and branding services.'), '',
+            'Contact: '.implode(' · ', array_filter([$c['email'], ...array_column($c['phones'], 'label'), $c['address'] ? implode(', ', $c['address']) : 'Serving businesses across the UK'])), '',
+            '## Services', ''];
+        foreach (Repo::groups() as $g) {
+            $out[] = $link($g->title, "/services/{$g->slug}", (string) $g->intro);
+            foreach ($g->items as $it) $out[] = '  '.$link($it->name, "/services/{$it->slug}", (string) $it->blurb);
+        }
+        $out = [...$out, '', '## Industries', ''];
+        foreach (Repo::industries() as $i) $out[] = $link($i->name, "/industries/{$i->slug}");
+        $out = [...$out, '', '## Case studies', ''];
+        foreach (Repo::caseStudies(20) as $cs) $out[] = $link($cs->title, "/case-studies/{$cs->slug}", (string) $cs->excerpt);
+        $out = [...$out, '', '## Latest articles', ''];
+        foreach (Repo::posts()->take(20) as $p) if (! $p->noindex) $out[] = $link($p->title, "/blogs/{$p->slug}", (string) $p->excerpt);
+        $out = [...$out, '', '## Company', '', $link('About us', '/about'), $link('Contact', '/contact'), $link('Privacy policy', '/privacy-policy'), ''];
+        return response(preg_replace('/[ \t]+$/m', '', implode("\n", $out)), 200, ['Content-Type' => 'text/plain; charset=UTF-8']);
+    }
+
     public function sitemap(): Response
     {
         $base = config('gtech.public_url');
