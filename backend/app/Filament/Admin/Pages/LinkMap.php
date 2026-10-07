@@ -25,6 +25,11 @@ class LinkMap extends Page
     /** Categorical colours (validated palette, shared with Analytics): light and dark mode. */
     private const PALETTE = [['#2a78d6', '#3987e5'], ['#eb6834', '#d95926'], ['#1baf7a', '#199e70'], ['#eda100', '#c98500'], ['#e87ba4', '#d55181'], ['#4a3aa7', '#9085e9'], ['#008300', '#2e9a2e'], ['#e34948', '#e66767']];
 
+    protected function getHeaderActions(): array
+    {
+        return [\Filament\Actions\Action::make('rebuild')->label('Rebuild now')->icon('heroicon-o-arrow-path')->color('gray')->action(fn () => Audit::site(true))];
+    }
+
     public static function canAccess(): bool
     {
         return (bool) auth()->user()?->hasPerm('seo.view');
@@ -39,9 +44,11 @@ class LinkMap extends Page
 
         // Clusters around the centre: each service category, then industries, then landing pages if there are any.
         $clusters = Repo::groups()->pluck('title', 'slug')->all() + ['industries' => 'Industries'];
+        if ($nodes->contains(fn ($n) => $n['kind'] === 'case')) $clusters['cases'] = 'Case studies';
+        if ($nodes->contains(fn ($n) => $n['kind'] === 'post')) $clusters['blog'] = 'Blog posts';
         if ($nodes->contains(fn ($n) => $n['kind'] === 'landing')) $clusters['landing'] = 'Landing pages';
         $colour = [];
-        foreach (array_keys($clusters) as $i => $c) $colour[$c] = $i % count(self::PALETTE);
+        foreach (array_keys($clusters) as $i => $c) $colour[$c] = $i < count(self::PALETTE) ? $i : null; // a 9th group is drawn in grey
 
         $pos = ['/' => [0, 0, 22]];
         $keys = array_keys($clusters);
@@ -50,11 +57,17 @@ class LinkMap extends Page
             $span = M_PI * 2 / count($keys) - 0.12;
             $hub = $c === 'industries' ? '/industries' : "/services/$c";
             if ($nodes->has($hub)) $pos[$hub] = [cos($a0) * 150, sin($a0) * 150, 15];
-            $kids = $nodes->filter(fn ($n) => $n['cluster'] === $c && $n['id'] !== $hub && in_array($n['kind'], ['service', 'industry', 'landing'], true))->values();
+            $kids = $nodes->filter(fn ($n) => $n['cluster'] === $c && $n['id'] !== $hub && in_array($n['kind'], ['service', 'industry', 'landing', 'post', 'case'], true))->values();
+            // Many pages in a group (blog posts) are spread over up to six rings.
+            $rings = max(2, min(6, (int) ceil($kids->count() / 16)));
+            $perRing = (int) ceil($kids->count() / $rings);
             foreach ($kids as $j => $k) {
-                $aa = $a0 - $span / 2 + ($kids->count() > 1 ? $j / ($kids->count() - 1) * $span : $span / 2);
-                $rad = 320 + ($j % 2) * 70;
-                $pos[$k['id']] = [cos($aa) * $rad, sin($aa) * $rad, 7 + min(7, ($stats[$k['id']]['in'] ?? 0) * 0.9)];
+                $ring = $j % $rings;
+                $idx = intdiv($j, $rings);
+                $aa = $a0 - $span / 2 + ($perRing > 1 ? $idx / ($perRing - 1) * $span : $span / 2);
+                $rad = 300 + $ring * ($rings > 2 ? 34 : 70);
+                $small = in_array($k['kind'], ['post', 'case'], true);
+                $pos[$k['id']] = [cos($aa) * $rad, sin($aa) * $rad, ($small ? 4 : 7) + min($small ? 5 : 7, ($stats[$k['id']]['in'] ?? 0) * 0.9)];
             }
         }
         foreach (['/services', '/case-studies', '/blogs', '/about', '/contact'] as $i => $id) $pos[$id] = [cos($i * 1.256 + 0.6) * 70, sin($i * 1.256 + 0.6) * 70, 8];
@@ -71,19 +84,31 @@ class LinkMap extends Page
         foreach ($pos as $id => [$x, $y, $r]) {
             if (! $nodes->has($id)) continue;
             $n = $nodes[$id];
-            $outNodes[$id] = ['id' => $id, 'label' => $n['label'], 'x' => round($x, 1), 'y' => round($y, 1), 'r' => round($r, 1),
+            $outNodes[$id] = ['id' => $id, 'label' => $n['label'], 'x' => round($x, 1), 'y' => round($y, 1), 'r' => round($r, 1), 'post' => in_array($n['kind'], ['post', 'case'], true),
                 'c' => $n['cluster'] === 'site' ? null : ($colour[$n['cluster']] ?? null), 'in' => $stats[$id]['in'] ?? 0, 'out' => $stats[$id]['out'] ?? 0];
         }
         $edges = array_values(array_filter($g['edges'], fn ($e) => isset($outNodes[$e['from']], $outNodes[$e['to']]) && ! in_array($e['type'], ['home', 'hub', 'breadcrumb', 'sector-peer'], true)));
+        $edges = array_map(fn ($e) => $e + ['post' => $outNodes[$e['from']]['post'] || $outNodes[$e['to']]['post']], $edges);
         $links = [];
         foreach ($edges as $e) {
             $links[$e['from']]['out'][] = [$e['to'], $outNodes[$e['to']]['label'], $e['anchor'], LinkGraph::TYPES[$e['type']] ?? $e['type']];
             $links[$e['to']]['in'][] = [$e['from'], $outNodes[$e['from']]['label'], $e['anchor'], LinkGraph::TYPES[$e['type']] ?? $e['type']];
         }
         $info = [];
-        foreach ($outNodes as $id => $n) $info[$id] = ['label' => $n['label'], 'edit' => $edit($id), 'view' => \App\Filament\Support\SiteLink::to($id), 'out' => $links[$id]['out'] ?? [], 'in' => $links[$id]['in'] ?? []];
+        $postIds = \App\Models\Post::query()->pluck('id', 'slug');
+        $caseIds = \App\Models\CaseStudy::query()->pluck('id', 'slug');
+        foreach ($outNodes as $id => $n) {
+            $url = match (true) {
+                str_starts_with($id, '/blogs/') && isset($postIds[substr($id, 7)]) => \App\Filament\Admin\Resources\PostResource::getUrl('edit', ['record' => $postIds[substr($id, 7)]]),
+                str_starts_with($id, '/case-studies/') && isset($caseIds[substr($id, 14)]) => \App\Filament\Admin\Resources\CaseStudyResource::getUrl('edit', ['record' => $caseIds[substr($id, 14)]]),
+                default => $n['post'] ? null : $edit($id),
+            };
+            $info[$id] = ['label' => $n['label'], 'edit' => $url, 'view' => \App\Filament\Support\SiteLink::to($id), 'out' => $links[$id]['out'] ?? [], 'in' => $links[$id]['in'] ?? [], 'post' => $n['post']];
+        }
+        $posts = count(array_filter($outNodes, fn ($n) => $n['post']));
 
         return ['nodes' => $outNodes, 'edges' => $edges, 'info' => $info, 'clusters' => $clusters, 'colour' => $colour, 'palette' => self::PALETTE,
-            'types' => array_intersect_key(LinkGraph::TYPES, array_flip(['semantic', 'related', 'industries', 'sector-services', 'category-list']))];
+            'postCount' => $posts, 'builtAt' => $a['at'], 'broken' => LinkGraph::broken($g),
+            'types' => array_intersect_key(LinkGraph::TYPES, array_flip(['content', 'semantic', 'related', 'industries', 'sector-services', 'cases', 'category-list']))];
     }
 }

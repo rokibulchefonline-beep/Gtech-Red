@@ -13,4 +13,10 @@ class CreatePost extends CreateRecord
     {
         return PostResource::beforeSave($data);
     }
+
+    /** The Schema markup panel is saved with the page's SEO override once the post exists. */
+    protected function afterCreate(): void
+    {
+        \App\Filament\Support\SchemaPanel::save('/blogs/'.$this->record->slug, $this->data['schema'] ?? null);
+    }
 }

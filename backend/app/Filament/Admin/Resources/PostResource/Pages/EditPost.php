@@ -8,6 +8,13 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditPost extends EditRecord
 {
+    use \App\Filament\Support\HasSchemaPanel;
+
+    protected function schemaPath(): string
+    {
+        return '/blogs/'.$this->record->slug;
+    }
+
     protected static string $resource = PostResource::class;
 
     protected function getHeaderActions(): array
@@ -21,11 +28,16 @@ class EditPost extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        return PostResource::beforeFill($data);
+        return $this->fillSchema(PostResource::beforeFill($data));
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
         return PostResource::beforeSave($data, $this->record);
+    }
+
+    protected function afterSave(): void
+    {
+        $this->saveSchema();
     }
 }

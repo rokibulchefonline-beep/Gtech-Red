@@ -32,7 +32,7 @@ class BladePagesTest extends TestCase
             '/services/local-seo' => 'class="sp-faq-aside"',
             '/services/social-media-marketing' => 'Services Related to',
             '/industries' => 'Explore Industries',
-            '/industries/healthcare' => 'Other industries we serve:',
+            '/industries/travel' => 'Other industries we serve:',
             '/about' => 'id="case-studies"',
             '/contact' => 'Get in touch',
             '/case-studies' => 'Digital Marketing Case Studies of',

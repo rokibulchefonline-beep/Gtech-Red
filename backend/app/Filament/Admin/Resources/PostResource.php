@@ -66,6 +66,7 @@ class PostResource extends Resource
                     Forms\Components\TextInput::make('canonical')->url()->maxLength(500),
                     Forms\Components\Toggle::make('noindex')->label('Hide from search engines'),
                 ]),
+                \App\Filament\Support\SchemaPanel::section(fn (Forms\Get $get) => '/blogs/'.$get('slug'), fn (Forms\Get $get) => $get('title'), 'BlogPosting (article), WebPage, BreadcrumbList'),
             ])->columnSpan(['lg' => 2]),
             Forms\Components\Group::make([
                 Forms\Components\Section::make('SEO check')->schema([
@@ -127,6 +128,7 @@ class PostResource extends Resource
     public static function beforeSave(array $data, $record = null): array
     {
         $data['format'] = 'html';
+        unset($data['schema']);
         if (is_string($data['body'] ?? null)) $data['body'] = \App\Support\Html::listsForSite($data['body']);
         $data['categories'] = array_values($data['categories'] ?? []);
         $data['category'] = $data['categories'][0] ?? 'Insights';

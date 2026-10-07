@@ -16,17 +16,24 @@
         @endforeach
     </x-filament::tabs>
 
-    @if ($tab === 'pages')
+    @if (in_array($tab, ['pages', 'posts'], true))
         <div class="flex flex-wrap items-center gap-3">
-            <x-filament::input.wrapper class="w-64"><x-filament::input type="search" wire:model.live.debounce.300ms="q" placeholder="Search pages or keywords" /></x-filament::input.wrapper>
-            <x-filament::input.wrapper class="w-44"><x-filament::input.select wire:model.live="kind">
-                <option value="">All pages</option><option value="service">Services</option><option value="industry">Industries</option><option value="landing">Landing pages</option>
-            </x-filament::input.select></x-filament::input.wrapper>
+            <x-filament::input.wrapper class="w-64"><x-filament::input type="search" wire:model.live.debounce.300ms="q" :placeholder="$tab === 'posts' ? 'Search posts or keywords' : 'Search pages or keywords'" /></x-filament::input.wrapper>
+            @if ($tab === 'pages')
+                <x-filament::input.wrapper class="w-44"><x-filament::input.select wire:model.live="kind">
+                    <option value="">All pages</option><option value="service">Services</option><option value="industry">Industries</option><option value="landing">Landing pages</option>
+                </x-filament::input.select></x-filament::input.wrapper>
+            @endif
             <x-filament::input.wrapper class="w-52"><x-filament::input.select wire:model.live="sort">
-                <option value="total">Lowest overall first</option><option value="seo">Lowest SEO first</option><option value="aeo">Lowest AEO first</option><option value="geo">Lowest GEO first</option><option value="name">A to Z</option>
+                <option value="total">Lowest score first</option>
+                @if ($tab === 'pages')<option value="seo">Lowest SEO first</option><option value="aeo">Lowest AEO first</option><option value="geo">Lowest GEO first</option>@endif
+                <option value="name">A to Z</option>
             </x-filament::input.select></x-filament::input.wrapper>
-            <span class="text-sm text-gray-500 dark:text-gray-400">Click a page to see every check and how to fix it.</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{ number_format($total) }} {{ $tab === 'posts' ? str('post')->plural($total) : str('page')->plural($total) }}. Click one to see every check and how to fix it.</span>
         </div>
+    @endif
+
+    @if ($tab === 'pages')
         <div class="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-900 dark:ring-white/10">
             <table class="w-full text-left text-sm">
                 <thead class="bg-gray-50 text-gray-950 dark:bg-white/5 dark:text-white"><tr>
@@ -79,23 +86,41 @@
             </table>
         </div>
     @elseif ($tab === 'posts')
-        <div class="grid gap-4 lg:grid-cols-2">
-            @foreach ($posts as $p)
-                <x-filament::section wire:key="p-{{ $p['id'] }}" compact>
-                    <x-slot name="heading">{{ $p['title'] }}</x-slot>
-                    <x-slot name="description">{{ $p['path'] }} · {{ $p['words'] }} words · focus keyword: {{ $p['keyword'] ?: 'not set' }}</x-slot>
-                    <x-slot name="headerEnd"><x-filament::badge :color="$tone($p['score'])">{{ $p['score'] }}</x-filament::badge></x-slot>
-                    <ul class="space-y-1.5">
-                        @foreach ($p['checks'] as $c)
-                            <li class="flex gap-2 text-sm">
-                                <x-filament::icon :icon="$icon[$c['level']][0]" class="mt-0.5 h-4 w-4 shrink-0 {{ $icon[$c['level']][1] }}" />
-                                <span class="text-gray-800 dark:text-gray-200">{{ $c['label'] }}@if ($c['level'] !== 'pass' && $c['hint'])<span class="block text-xs text-gray-500 dark:text-gray-400">{{ $c['hint'] }}</span>@endif</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                    <div class="mt-3"><x-filament::link :href="\App\Filament\Admin\Resources\PostResource::getUrl('edit', ['record' => $p['id']])" icon="heroicon-m-pencil-square">Edit this post</x-filament::link></div>
-                </x-filament::section>
-            @endforeach
+        <div class="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-900 dark:ring-white/10">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-gray-50 text-gray-950 dark:bg-white/5 dark:text-white"><tr>
+                    <th class="px-4 py-3 font-semibold">Post</th><th class="hidden px-4 py-3 font-semibold md:table-cell">Focus keyword</th>
+                    <th class="hidden px-3 py-3 text-center font-semibold sm:table-cell">Words</th><th class="px-3 py-3 text-center font-semibold">Score</th>
+                </tr></thead>
+                <tbody class="divide-y divide-gray-100 dark:divide-white/10">
+                    @forelse ($posts as $p)
+                        <tr wire:key="pr-{{ $p['id'] }}" wire:click="toggle(@js($p['path']))" class="cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5">
+                            <td class="px-4 py-3"><p class="font-medium text-gray-950 dark:text-white">{{ $p['title'] }}</p><p class="text-xs text-gray-500 dark:text-gray-400">{{ $p['path'] }}</p></td>
+                            <td class="hidden px-4 py-3 md:table-cell {{ $p['keyword'] ? 'text-gray-700 dark:text-gray-300' : 'text-danger-600 dark:text-danger-400' }}">{{ $p['keyword'] ?: 'Not set' }}</td>
+                            <td class="hidden px-3 py-3 text-center text-gray-700 sm:table-cell dark:text-gray-300">{{ number_format($p['words']) }}</td>
+                            <td class="px-3 py-3 text-center"><x-filament::badge class="inline-flex" :color="$tone($p['score'])">{{ $p['score'] }}</x-filament::badge></td>
+                        </tr>
+                        @if ($open === $p['path'])
+                            <tr wire:key="pd-{{ $p['id'] }}"><td colspan="4" class="bg-gray-50 px-4 py-4 dark:bg-white/5">
+                                <ul class="grid gap-x-6 gap-y-1.5 md:grid-cols-2">
+                                    @foreach ($p['checks'] as $c)
+                                        <li class="flex gap-2 text-sm">
+                                            <x-filament::icon :icon="$icon[$c['level']][0]" class="mt-0.5 h-4 w-4 shrink-0 {{ $icon[$c['level']][1] }}" />
+                                            <span class="text-gray-800 dark:text-gray-200">{{ $c['label'] }}@if ($c['level'] !== 'pass' && $c['hint'])<span class="block text-xs text-gray-500 dark:text-gray-400">{{ $c['hint'] }}</span>@endif</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <div class="mt-3 flex gap-4">
+                                    <x-filament::link :href="\App\Filament\Admin\Resources\PostResource::getUrl('edit', ['record' => $p['id']])" icon="heroicon-m-pencil-square">Edit this post</x-filament::link>
+                                    <x-filament::link :href="\App\Filament\Support\SiteLink::to($p['path'])" target="_blank" icon="heroicon-m-arrow-top-right-on-square">View</x-filament::link>
+                                </div>
+                            </td></tr>
+                        @endif
+                    @empty
+                        <tr><td colspan="4" class="px-4 py-6 text-center text-gray-500">No posts match.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     @elseif ($tab === 'keywords')
         @if ($a['conflicts'])
@@ -145,5 +170,20 @@
                 </tbody>
             </table>
         </div>
+    @endif
+
+    @if (in_array($tab, ['pages', 'posts'], true) && $pages > 1)
+        <nav class="flex flex-wrap items-center justify-between gap-3 text-sm" aria-label="Pages">
+            <span class="text-gray-500 dark:text-gray-400">{{ ($this->p - 1) * $perPage + 1 }}–{{ min($this->p * $perPage, $total) }} of {{ number_format($total) }}</span>
+            <div class="flex flex-wrap items-center gap-1">
+                <x-filament::button size="sm" color="gray" wire:click="goTo({{ $this->p - 1 }})" :disabled="$this->p <= 1" icon="heroicon-m-chevron-left">Previous</x-filament::button>
+                @foreach (collect(range(1, $pages))->filter(fn ($n) => $n === 1 || $n === $pages || abs($n - $this->p) <= 2) as $n)
+                    @if (! $loop->first && $n - $prevN > 1)<span class="px-1 text-gray-400">…</span>@endif
+                    <x-filament::button size="sm" :color="$n === $this->p ? 'primary' : 'gray'" wire:click="goTo({{ $n }})">{{ $n }}</x-filament::button>
+                    @php($prevN = $n)
+                @endforeach
+                <x-filament::button size="sm" color="gray" wire:click="goTo({{ $this->p + 1 }})" :disabled="$this->p >= $pages" icon="heroicon-m-chevron-right" icon-position="after">Next</x-filament::button>
+            </div>
+        </nav>
     @endif
 </x-filament-panels::page>

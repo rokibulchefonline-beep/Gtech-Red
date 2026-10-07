@@ -30,6 +30,21 @@ class SeoAudit extends Page
     #[Url] public string $kind = '';
     #[Url] public string $sort = 'total';
     #[Url] public ?string $open = null;
+    #[Url] public int $p = 1;
+
+    public const PER_PAGE = 25;
+
+    /** A new search, filter, sort or tab starts at page 1. */
+    public function updated(string $name): void
+    {
+        if (in_array($name, ['q', 'kind', 'sort', 'tab'], true)) { $this->p = 1; $this->open = null; }
+    }
+
+    public function goTo(int $page): void
+    {
+        $this->p = max(1, $page);
+        $this->open = null;
+    }
 
     public static function canAccess(): bool
     {
@@ -62,13 +77,18 @@ class SeoAudit extends Page
             && ($q === '' || str_contains(mb_strtolower($p['name'].' '.$p['path'].' '.$p['keyword']), $q))));
         $sort = in_array($this->sort, ['total', 'seo', 'aeo', 'geo', 'name'], true) ? $this->sort : 'total';
         usort($rows, fn ($x, $y) => $sort === 'name' ? strcmp($x['name'], $y['name']) : $x['scores'][$sort] <=> $y['scores'][$sort]);
-        $posts = $a['posts'];
-        usort($posts, fn ($x, $y) => $x['score'] <=> $y['score']);
+        $posts = array_values(array_filter($a['posts'], fn ($p) => $q === '' || str_contains(mb_strtolower($p['title'].' '.$p['path'].' '.$p['keyword']), $q)));
+        usort($posts, fn ($x, $y) => match ($sort) { 'name' => strcmp($x['title'], $y['title']), default => $x['score'] <=> $y['score'] });
+        // One page of results for the open tab.
+        $list = $this->tab === 'posts' ? $posts : $rows;
+        $pages = max(1, (int) ceil(count($list) / self::PER_PAGE));
+        $this->p = min(max(1, $this->p), $pages);
+        $slice = fn (array $l) => array_slice($l, ($this->p - 1) * self::PER_PAGE, self::PER_PAGE);
         $g = $a['graph'];
         $linkRows = array_values(array_filter($g['nodes'], fn ($n) => in_array($n['kind'], ['service', 'industry', 'category', 'landing'], true)));
         usort($linkRows, fn ($x, $y) => ($g['stats'][$x['id']]['in'] ?? 0) <=> ($g['stats'][$y['id']]['in'] ?? 0));
         return [
-            'a' => $a, 'rows' => $rows, 'posts' => $posts, 'map' => SeoKeyword::query()->get()->keyBy('slug'),
+            'a' => $a, 'rows' => $slice($rows), 'posts' => $slice($posts), 'total' => count($list), 'pages' => $pages, 'perPage' => self::PER_PAGE, 'map' => SeoKeyword::query()->get()->keyBy('slug'),
             'linkRows' => $linkRows, 'stats' => $g['stats'], 'tabs' => self::TABS,
         ];
     }

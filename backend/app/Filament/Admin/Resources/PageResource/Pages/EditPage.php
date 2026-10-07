@@ -18,6 +18,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EditPage extends EditRecord
 {
+    use \App\Filament\Support\HasSchemaPanel;
+
+    protected function schemaPath(): string
+    {
+        return $this->record->path;
+    }
+
     protected static string $resource = PageResource::class;
 
     /** What the next save does: publish, draft or schedule. */
@@ -31,7 +38,7 @@ class EditPage extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        return PageResource::beforeFill(array_merge($data, $this->record->withDraft()->attributesToArray()));
+        return $this->fillSchema(PageResource::beforeFill(array_merge($data, $this->record->withDraft()->attributesToArray())));
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
@@ -65,6 +72,7 @@ class EditPage extends EditRecord
 
     protected function afterSave(): void
     {
+        $this->saveSchema();
         $this->saveMode = 'draft';
         $this->scheduleAt = null;
     }

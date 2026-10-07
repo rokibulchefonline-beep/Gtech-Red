@@ -55,7 +55,7 @@ class GtechBackendTest extends TestCase
         $this->get(Resources\PostResource::getUrl('create'))->assertOk();
         $this->get(Resources\PostResource::getUrl('edit', ['record' => Post::first()]))->assertOk();
         $this->get(Resources\LeadResource::getUrl('edit', ['record' => Lead::first()]))->assertOk();
-        foreach (['page~home', 'service~search-engine-optimization', 'industry~healthcare', 'page~about', 'legal~terms'] as $key) {
+        foreach (['page~home', 'service~search-engine-optimization', 'industry~travel', 'page~about', 'legal~terms'] as $key) {
             $this->get(Resources\PageResource::getUrl('edit', ['record' => Page::find($key)]))->assertOk()->assertSee('Main heading');
         }
         $this->get(Resources\ServiceGroupResource::getUrl('edit', ['record' => \App\Models\ServiceGroup::first()]))->assertOk()->assertSee('Services in this category');
@@ -73,10 +73,10 @@ class GtechBackendTest extends TestCase
     public function test_seed_loads_all_content_once(): void
     {
         Artisan::call('gtech:seed-content');
-        $this->assertSame(53, Page::count());
+        $this->assertSame(50, Page::count());
         $this->assertSame(5, \App\Models\ServiceGroup::count());
         $this->assertSame(30, \App\Models\ServiceItem::count());
-        $this->assertSame(10, \App\Models\Industry::count());
+        $this->assertSame(7, \App\Models\Industry::count());
         $this->assertSame(6, Post::count());
         Page::find('page~home')->update(['meta_title' => 'Mine']);
         Artisan::call('gtech:seed-content');

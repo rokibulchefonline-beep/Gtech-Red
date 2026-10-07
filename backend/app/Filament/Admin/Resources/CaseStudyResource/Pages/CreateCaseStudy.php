@@ -13,4 +13,10 @@ class CreateCaseStudy extends CreateRecord
     {
         return CaseStudyResource::beforeSave($data);
     }
+
+    /** The Schema markup panel is saved with the page's SEO override once the post exists. */
+    protected function afterCreate(): void
+    {
+        \App\Filament\Support\SchemaPanel::save('/case-studies/'.$this->record->slug, $this->data['schema'] ?? null);
+    }
 }

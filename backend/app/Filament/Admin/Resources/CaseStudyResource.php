@@ -56,6 +56,7 @@ class CaseStudyResource extends Resource
                     Forms\Components\TextInput::make('meta_title')->label('SEO title')->maxLength(120),
                     Forms\Components\Textarea::make('meta_description')->rows(2)->maxLength(300),
                 ]),
+                \App\Filament\Support\SchemaPanel::section(fn (Forms\Get $get) => '/case-studies/'.$get('slug'), fn (Forms\Get $get) => $get('title'), 'Article (case study), WebPage, BreadcrumbList'),
             ])->columnSpan(['lg' => 2]),
             Forms\Components\Group::make([
                 Forms\Components\Section::make('Publish')->schema([
@@ -80,6 +81,7 @@ class CaseStudyResource extends Resource
 
     public static function beforeSave(array $data, $record = null): array
     {
+        unset($data['schema']);
         $data['client'] = $data['client'] ?: $data['title'];
         return $data;
     }

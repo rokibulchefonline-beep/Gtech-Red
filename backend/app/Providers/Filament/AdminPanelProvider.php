@@ -34,6 +34,7 @@ class AdminPanelProvider extends PanelProvider
             ->font('Inter')
             // Dark by default; anyone can switch to light (or follow their device) from the avatar menu.
             ->defaultThemeMode(\Filament\Enums\ThemeMode::Dark)
+            ->renderHook(\Filament\View\PanelsRenderHook::USER_MENU_BEFORE, fn () => view('filament.admin.partials.theme-toggle'))
             // My account (name, email, password), two-factor sign-in with an authenticator app, and signed-in devices.
             ->plugin(\Jeffgreco13\FilamentBreezy\BreezyCore::make()
                 ->myProfile(shouldRegisterUserMenu: true, userMenuLabel: 'My account', slug: 'my-account')

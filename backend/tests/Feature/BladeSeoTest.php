@@ -57,7 +57,7 @@ class BladeSeoTest extends TestCase
         $xml = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8')->getContent();
         $this->assertSame(1, substr_count($xml, '<loc>https://www.gtechdigital.co.uk</loc>'));
         $this->assertStringContainsString('<loc>https://www.gtechdigital.co.uk/services/local-seo</loc>', $xml);
-        $this->assertStringContainsString('<loc>https://www.gtechdigital.co.uk/industries/healthcare</loc>', $xml);
+        $this->assertStringContainsString('<loc>https://www.gtechdigital.co.uk/industries/travel</loc>', $xml);
 
         $this->get('/robots.txt')->assertOk()->assertSee('Disallow: /', false);
         config(['gtech.blade_live' => true]);

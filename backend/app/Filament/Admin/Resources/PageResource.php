@@ -123,6 +123,8 @@ class PageResource extends Resource
                     Forms\Components\Textarea::make('meta_description')->rows(3)->maxLength(320)->helperText('Best under 160 characters.'),
                     Forms\Components\Toggle::make('data.noindex')->label('Hide from search engines (noindex)')->visible($landing)
                         ->helperText('For pages only meant for ads or emails.'),
+                    \App\Filament\Support\SchemaPanel::section(fn (Get $get) => Page::query()->find($get('key'))?->path ?? '/', fn (Get $get) => Page::query()->find($get('key'))?->name ?? '',
+                        fn (Get $get) => \App\Filament\Support\SchemaPanel::autoTypes(Page::query()->find($get('key')))),
                 ]),
             ]),
         ]);
@@ -190,6 +192,8 @@ class PageResource extends Resource
                     Forms\Components\TextInput::make('focus_keyword')->maxLength(80),
                     Forms\Components\TextInput::make('meta_title')->label('SEO title')->maxLength(160)->helperText('Best under 60 characters.'),
                     Forms\Components\Textarea::make('meta_description')->rows(3)->maxLength(320)->helperText('Best under 160 characters.'),
+                    \App\Filament\Support\SchemaPanel::section(fn (Get $get) => Page::query()->find($get('key'))?->path ?? '/', fn (Get $get) => Page::query()->find($get('key'))?->name ?? '',
+                        fn (Get $get) => \App\Filament\Support\SchemaPanel::autoTypes(Page::query()->find($get('key')))),
                 ]),
             ]),
         ]);
@@ -235,6 +239,7 @@ class PageResource extends Resource
     /** Form state -> database row. $record is the page with its draft applied. */
     public static function beforeSave(array $data, Page $record): array
     {
+        unset($data['schema']);
         return $record->usesBuilder() ? self::builderRow($data, $record) : self::fixedRow($data, $record);
     }
 

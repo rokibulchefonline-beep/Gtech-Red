@@ -169,13 +169,18 @@ All page addresses are the same as on the old site, and the old addresses still 
   - *SEO dashboard*: overall, SEO, AEO (answer engines) and GEO (AI engines) scores, the commonest problems, the
     weakest pages and posts, search and AI traffic, AI crawlers, and index health.
   - *SEO audit*: every check for every service, industry and landing page, with how to fix it; the blog posts;
-    the keyword and entity map; internal links (orphans, broken semantic links, keyword conflicts). Re-runs every
-    10 minutes or straight after a content change ("Run again" forces it).
-  - *Internal link map*: the pages and their body links drawn as a map; click a page to see its links in and out.
+    the keyword and entity map; internal links (orphans, broken links, keyword conflicts). Pages and posts are
+    shown 25 at a time with search and sorting, so it copes with thousands of posts. Re-runs straight after any
+    content change ("Run again" forces it).
+  - *Internal link map*: every page, blog post and case study with the links between them, including links written
+    in the text. Rebuilt by itself whenever content is saved; search for a page, click it to see its links in and out.
   - *Keyword map*, *SEO overrides* and *Redirects* are in the same menu.
   - The blog post editor has an **SEO check** panel (score and checks), and its link box can **link to any page of
     the site** from a searchable list.
-- **Dark mode** is the default; switch to light (or "system") from the avatar menu.
+  - **Schema markup**: the page, blog post and case study editors have a *Schema markup* section showing the
+    automatic schema the page outputs, links to test it in Google, a switch to turn it off, and your own JSON-LD
+    with ready-made templates (FAQ, How-to, Product, Review, Video, Event, Local business). Saved in SEO overrides.
+- **Day / Night** buttons at the top right switch the admin between the white and the dark look (dark is the default).
 
 - **Pages (page builder):**
   - *Service, industry and landing pages* are built from sections: **Add a section** picks from the library (text,

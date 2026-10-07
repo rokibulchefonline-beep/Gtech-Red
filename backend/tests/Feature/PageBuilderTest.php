@@ -109,7 +109,7 @@ class PageBuilderTest extends TestCase
     public function test_scheduled_changes_go_live_on_time(): void
     {
         $this->editor();
-        $p = Page::find('industry~finance') ?? Page::query()->where('kind', 'industry')->first();
+        $p = Page::find('industry~travel') ?? Page::query()->where('kind', 'industry')->first();
         $p->saveDraft(array_merge($p->only(Page::DRAFTABLE), ['meta_description' => 'Scheduled description']), now()->addHour());
         $this->assertSame(0, Page::publishDue());
         $this->travel(61)->minutes();

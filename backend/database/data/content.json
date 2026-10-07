@@ -324,20 +324,12 @@
        "text": "Online stores and product brands."
       },
       {
-       "slug": "healthcare",
-       "text": "Clinics, dentists and wellness."
-      },
-      {
        "slug": "hospitality-hotels",
        "text": "Restaurants, venues and hotels."
       },
       {
        "slug": "real-estate",
        "text": "Agents, developers and landlords."
-      },
-      {
-       "slug": "finance",
-       "text": "Advisers, accountants and lenders."
       },
       {
        "slug": "technology-saas",
@@ -973,16 +965,8 @@
        "text": "\"Near me\" visibility and commission-free direct bookings."
       },
       {
-       "slug": "healthcare",
-       "text": "Expert, trustworthy content for sensitive health searches."
-      },
-      {
        "slug": "real-estate",
        "text": "Area and property pages that capture local buyers."
-      },
-      {
-       "slug": "finance",
-       "text": "Compliant, authoritative content for regulated firms."
       },
       {
        "slug": "b2b-marketing",
@@ -1362,10 +1346,6 @@
       {
        "slug": "hospitality-hotels",
        "text": "Direct booking campaigns that beat the commission of booking sites."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Policy-compliant ads for clinics and private healthcare providers."
       },
       {
        "slug": "real-estate",
@@ -1751,10 +1731,6 @@
        "text": "TripAdvisor, Google and booking-site reviews that fill tables and rooms."
       },
       {
-       "slug": "healthcare",
-       "text": "Sensitive, compliant responses that protect patient trust."
-      },
-      {
        "slug": "e-commerce",
        "text": "Trustpilot and product reviews that lift conversion and ad CTR."
       },
@@ -1765,10 +1741,6 @@
       {
        "slug": "real-estate",
        "text": "Agent reviews that win more instructions and valuations."
-      },
-      {
-       "slug": "finance",
-       "text": "Reputation care for regulated firms where trust is everything."
       }
      ]
     }
@@ -2146,18 +2118,6 @@
        "text": "Buying guides and category content that lift organic sales."
       },
       {
-       "slug": "finance",
-       "text": "Clear, compliant explainers reviewed by qualified experts."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Accurate, reviewed health content that patients trust."
-      },
-      {
-       "slug": "education",
-       "text": "Course and career guides that attract the right students."
-      },
-      {
        "slug": "b2b-marketing",
        "text": "Thought leadership and case studies for long sales cycles."
       }
@@ -2522,10 +2482,6 @@
       {
        "slug": "e-commerce",
        "text": "Product and gift-guide features that link to category pages."
-      },
-      {
-       "slug": "finance",
-       "text": "Expert commentary in trusted finance and business press."
       },
       {
        "slug": "technology-saas",
@@ -2913,10 +2869,6 @@
       {
        "slug": "e-commerce",
        "text": "Catalogue, Shopping and retargeting ads that drive profitable sales."
-      },
-      {
-       "slug": "education",
-       "text": "Enrolment campaigns targeting students and parents."
       },
       {
        "slug": "travel",
@@ -3310,16 +3262,8 @@
        "text": "Trial and demo growth with CAC and LTV targets."
       },
       {
-       "slug": "finance",
-       "text": "Compliant campaigns for regulated financial products."
-      },
-      {
        "slug": "travel",
        "text": "Seasonal budgets that follow demand and booking windows."
-      },
-      {
-       "slug": "education",
-       "text": "Enrolment campaigns timed to intake periods."
       },
       {
        "slug": "b2b-marketing",
@@ -3703,10 +3647,6 @@
        "text": "LinkedIn content and ads that reach decision-makers."
       },
       {
-       "slug": "education",
-       "text": "Student-focused content on TikTok and Instagram."
-      },
-      {
        "slug": "travel",
        "text": "Inspiring destination content that books trips."
       },
@@ -4084,20 +4024,12 @@
        "text": "Valuation and viewing leads from local homeowners."
       },
       {
-       "slug": "healthcare",
-       "text": "Policy-compliant ads for clinics and treatments."
-      },
-      {
        "slug": "e-commerce",
        "text": "Catalogue and Advantage+ campaigns for online stores."
       },
       {
        "slug": "automotive",
        "text": "Stock and finance offers for local dealers."
-      },
-      {
-       "slug": "education",
-       "text": "Course and open-day campaigns for parents and adult learners."
       }
      ]
     }
@@ -4469,20 +4401,12 @@
        "text": "Food, venue and room content that drives bookings."
       },
       {
-       "slug": "healthcare",
-       "text": "Aesthetics and wellness content that builds trust."
-      },
-      {
        "slug": "travel",
        "text": "Destination Reels that inspire trips."
       },
       {
        "slug": "real-estate",
        "text": "Property tours and area guides that win instructions."
-      },
-      {
-       "slug": "education",
-       "text": "Campus life and course content for students."
       }
      ]
     }
@@ -4848,18 +4772,6 @@
       {
        "slug": "technology-saas",
        "text": "Demo and trial campaigns aimed at buying committees."
-      },
-      {
-       "slug": "finance",
-       "text": "Compliant thought leadership for financial firms."
-      },
-      {
-       "slug": "education",
-       "text": "Executive education and corporate training campaigns."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Reaching NHS and private healthcare decision-makers."
       },
       {
        "slug": "real-estate",
@@ -5233,10 +5145,6 @@
       {
        "slug": "hospitality-hotels",
        "text": "Food and venue videos that go viral locally."
-      },
-      {
-       "slug": "education",
-       "text": "Student-led content that drives applications."
       },
       {
        "slug": "travel",
@@ -5627,14 +5535,6 @@
       {
        "slug": "real-estate",
        "text": "Interior and home ideas for buyers and renovators."
-      },
-      {
-       "slug": "education",
-       "text": "Study tips and resources that build an audience."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Wellness and lifestyle content people save."
       }
      ]
     }
@@ -6008,20 +5908,12 @@
        "text": "Fast stores with simple checkout."
       },
       {
-       "slug": "healthcare",
-       "text": "Clinic sites with online booking and compliance."
-      },
-      {
        "slug": "hospitality-hotels",
        "text": "Restaurant and hotel sites that take bookings."
       },
       {
        "slug": "real-estate",
        "text": "Property search and valuation tools."
-      },
-      {
-       "slug": "finance",
-       "text": "Secure, compliant sites for financial firms."
       },
       {
        "slug": "technology-saas",
@@ -6390,14 +6282,6 @@
      "heading": "WordPress Development Services by Industry",
      "items": [
       {
-       "slug": "education",
-       "text": "School and course sites staff can update."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Clinic sites with booking and treatment pages."
-      },
-      {
        "slug": "b2b-marketing",
        "text": "Content-rich sites that generate leads."
       },
@@ -6408,10 +6292,6 @@
       {
        "slug": "hospitality-hotels",
        "text": "Menus, rooms and bookings in one place."
-      },
-      {
-       "slug": "finance",
-       "text": "Secure, compliant WordPress for advisers."
       }
      ]
     }
@@ -6776,20 +6656,8 @@
      "heading": "PHP Development Services by Industry",
      "items": [
       {
-       "slug": "finance",
-       "text": "Secure portals and calculators."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Patient booking and records tools."
-      },
-      {
        "slug": "travel",
        "text": "Booking engines and supplier APIs."
-      },
-      {
-       "slug": "education",
-       "text": "Learning portals and enrolment systems."
       },
       {
        "slug": "automotive",
@@ -7162,14 +7030,6 @@
      "heading": "CMS Development Services by Industry",
      "items": [
       {
-       "slug": "education",
-       "text": "Large sites with many departments and editors."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Treatment and location content kept accurate."
-      },
-      {
        "slug": "technology-saas",
        "text": "Headless CMS for product and docs sites."
       },
@@ -7180,10 +7040,6 @@
       {
        "slug": "real-estate",
        "text": "Developments, listings and area guides."
-      },
-      {
-       "slug": "finance",
-       "text": "Approval workflows for compliant content."
       }
      ]
     }
@@ -7550,18 +7406,6 @@
       {
        "slug": "technology-saas",
        "text": "Multi-tenant SaaS with subscription billing."
-      },
-      {
-       "slug": "finance",
-       "text": "Secure client portals and calculators."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Booking, records and patient portals."
-      },
-      {
-       "slug": "education",
-       "text": "Course, enrolment and learning platforms."
       },
       {
        "slug": "real-estate",
@@ -7943,20 +7787,8 @@
        "text": "Checkout and payment testing every month."
       },
       {
-       "slug": "healthcare",
-       "text": "Secure booking forms and patient data."
-      },
-      {
-       "slug": "finance",
-       "text": "Security and compliance kept up to date."
-      },
-      {
        "slug": "hospitality-hotels",
        "text": "Booking systems kept online at busy times."
-      },
-      {
-       "slug": "education",
-       "text": "Large sites kept fast and accessible."
       },
       {
        "slug": "b2b-marketing",
@@ -8329,20 +8161,12 @@
        "text": "Trade portals with account pricing."
       },
       {
-       "slug": "healthcare",
-       "text": "Supplements and pharmacy with compliant checkout."
-      },
-      {
        "slug": "hospitality-hotels",
        "text": "Online ordering, vouchers and gift cards."
       },
       {
        "slug": "automotive",
        "text": "Parts catalogues with vehicle lookup."
-      },
-      {
-       "slug": "education",
-       "text": "Course sales and digital downloads."
       }
      ]
     }
@@ -8706,14 +8530,6 @@
      "nav": "Industries",
      "heading": "Website Design Services by Industry",
      "items": [
-      {
-       "slug": "healthcare",
-       "text": "Calm, trustworthy designs that drive bookings."
-      },
-      {
-       "slug": "finance",
-       "text": "Clear, credible designs for regulated firms."
-      },
       {
        "slug": "b2b-marketing",
        "text": "Lead-focused sites for complex services."
@@ -9089,10 +8905,6 @@
      "heading": "Local SEO Services by Industry",
      "items": [
       {
-       "slug": "healthcare",
-       "text": "Clinics, dentists and pharmacies found nearby."
-      },
-      {
        "slug": "hospitality-hotels",
        "text": "Restaurants and hotels top of Maps."
       },
@@ -9103,14 +8915,6 @@
       {
        "slug": "automotive",
        "text": "Garages and dealers that win local searches."
-      },
-      {
-       "slug": "finance",
-       "text": "Accountants and advisers trusted locally."
-      },
-      {
-       "slug": "education",
-       "text": "Schools, tutors and colleges found by parents."
       }
      ]
     }
@@ -9487,10 +9291,6 @@
        "text": "Car parts and accessories by vehicle."
       },
       {
-       "slug": "healthcare",
-       "text": "Supplements and health products."
-      },
-      {
        "slug": "technology-saas",
        "text": "Electronics and software stores."
       },
@@ -9860,18 +9660,6 @@
      "nav": "Industries",
      "heading": "Custom Software Services by Industry",
      "items": [
-      {
-       "slug": "healthcare",
-       "text": "Booking, patient and compliance systems."
-      },
-      {
-       "slug": "finance",
-       "text": "Secure portals, calculators and workflows."
-      },
-      {
-       "slug": "education",
-       "text": "Learning platforms and admin tools."
-      },
       {
        "slug": "travel",
        "text": "Booking engines and supplier integrations."
@@ -10251,18 +10039,6 @@
        "text": "Landlord, tenant and agent portals."
       },
       {
-       "slug": "education",
-       "text": "Learner portals and course management."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Patient booking and practice dashboards."
-      },
-      {
-       "slug": "finance",
-       "text": "Client portals with secure documents."
-      },
-      {
        "slug": "b2b-marketing",
        "text": "Partner and reseller portals."
       },
@@ -10637,16 +10413,8 @@
        "text": "Ordering, booking and loyalty apps."
       },
       {
-       "slug": "healthcare",
-       "text": "Appointment and wellbeing apps."
-      },
-      {
        "slug": "e-commerce",
        "text": "Shopping apps with push offers."
-      },
-      {
-       "slug": "education",
-       "text": "Learning and student apps."
       },
       {
        "slug": "travel",
@@ -11021,14 +10789,6 @@
       {
        "slug": "e-commerce",
        "text": "Store, stock, courier and accounts in sync."
-      },
-      {
-       "slug": "finance",
-       "text": "Secure data feeds and client systems."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Booking, records and billing connected."
       },
       {
        "slug": "travel",
@@ -11419,14 +11179,6 @@
       {
        "slug": "automotive",
        "text": "Stock, servicing and customer records."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Patients, appointments and billing."
-      },
-      {
-       "slug": "education",
-       "text": "Enquiries, enrolments and fees."
       }
      ]
     }
@@ -11799,18 +11551,6 @@
        "text": "PropTech for agents and landlords."
       },
       {
-       "slug": "finance",
-       "text": "FinTech tools with secure data."
-      },
-      {
-       "slug": "healthcare",
-       "text": "HealthTech and practice software."
-      },
-      {
-       "slug": "education",
-       "text": "EdTech platforms and learning tools."
-      },
-      {
        "slug": "hospitality-hotels",
        "text": "Booking and ordering platforms."
       }
@@ -12181,20 +11921,8 @@
        "text": "B2B and B2C software start-ups."
       },
       {
-       "slug": "finance",
-       "text": "FinTech pilots and calculators."
-      },
-      {
-       "slug": "healthcare",
-       "text": "HealthTech apps and booking tools."
-      },
-      {
        "slug": "real-estate",
        "text": "PropTech marketplaces and portals."
-      },
-      {
-       "slug": "education",
-       "text": "EdTech and learning apps."
       },
       {
        "slug": "e-commerce",
@@ -12566,20 +12294,12 @@
        "text": "Positioning and growth plans for SaaS."
       },
       {
-       "slug": "finance",
-       "text": "Trustworthy brands for financial firms."
-      },
-      {
        "slug": "hospitality-hotels",
        "text": "Memorable brands for venues and hotels."
       },
       {
        "slug": "e-commerce",
        "text": "Brands and CRO that grow online sales."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Calm, credible brands for clinics."
       },
       {
        "slug": "b2b-marketing",
@@ -12954,14 +12674,6 @@
       {
        "slug": "technology-saas",
        "text": "Clear, modern brands for tech companies."
-      },
-      {
-       "slug": "finance",
-       "text": "Trustworthy brands for advisers and firms."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Calm, credible clinic and wellness brands."
       },
       {
        "slug": "real-estate",
@@ -13340,18 +13052,6 @@
       {
        "slug": "e-commerce",
        "text": "Profitable growth for online brands."
-      },
-      {
-       "slug": "finance",
-       "text": "Compliant growth plans for financial firms."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Patient acquisition strategy for clinics."
-      },
-      {
-       "slug": "education",
-       "text": "Enrolment strategy for providers."
       }
      ]
     }
@@ -13720,24 +13420,12 @@
        "text": "Product, basket and checkout optimisation."
       },
       {
-       "slug": "finance",
-       "text": "Quote and application forms that convert."
-      },
-      {
        "slug": "technology-saas",
        "text": "Sign-up and trial-to-paid improvements."
       },
       {
        "slug": "travel",
        "text": "Booking flows that drop fewer customers."
-      },
-      {
-       "slug": "education",
-       "text": "Course pages and enquiry forms."
-      },
-      {
-       "slug": "healthcare",
-       "text": "Booking journeys patients complete."
       }
      ]
     }
@@ -14106,16 +13794,8 @@
        "text": "SEO, Shopping and paid social that sell."
       },
       {
-       "slug": "healthcare",
-       "text": "Patient acquisition for clinics."
-      },
-      {
        "slug": "real-estate",
        "text": "Valuation and viewing leads."
-      },
-      {
-       "slug": "finance",
-       "text": "Compliant lead generation."
       },
       {
        "slug": "hospitality-hotels",
@@ -14457,294 +14137,6 @@
     "facebook-marketing",
     "tiktok-marketing",
     "conversion-rate-optimization"
-   ],
-   "data": {}
-  },
-  {
-   "key": "industry~education",
-   "kind": "industry",
-   "slug": "education",
-   "name": "Education Marketing",
-   "sort": 41,
-   "path": "/industries/education",
-   "metaTitle": "Education Marketing Agency UK | Student Recruitment",
-   "metaDescription": "UK education marketing agency helping schools, colleges and universities recruit students with SEO, paid ads, social media and accessible websites.",
-   "hero": {
-    "keyword": "Education Marketing",
-    "title": "Education Marketing That",
-    "highlight": "Fills Courses",
-    "lead": "GTech Digital provides education marketing services for UK schools, colleges, universities and training providers, using course SEO, Google Ads, TikTok and Instagram campaigns and accessible websites to turn enquiries into enrolments.",
-    "points": [
-     "Free recruitment audit",
-     "Student and parent journeys",
-     "Enquiries tracked to enrolment"
-    ],
-    "motion": "/services/ind-education.webp",
-    "h1": "Education Marketing Services of [[GTech Digital]]"
-   },
-   "sections": [
-    {
-     "type": "logos",
-     "id": "clients"
-    },
-    {
-     "type": "text",
-     "id": "overview",
-     "nav": "Overview",
-     "heading": "What Is Education Marketing and Why Does It Matter?",
-     "paras": [
-      "Students research courses on Google, TikTok and Instagram, while parents compare options carefully. Winning both means being visible where they search and making it easy to enquire, visit and apply."
-     ],
-     "bullets": [
-      "Course search visibility and local SEO",
-      "Social campaigns that speak to students",
-      "Accessible websites and enquiry journeys"
-     ]
-    },
-    {
-     "type": "impact",
-     "id": "impact",
-     "heading": "Education Marketing Results and Key Statistics",
-     "text": "The numbers behind the work we do for UK education businesses.",
-     "stats": [
-      {
-       "value": "+58%",
-       "label": "Average growth in open day bookings"
-      },
-      {
-       "value": "£46",
-       "label": "Average cost per enquiry"
-      },
-      {
-       "value": "29%",
-       "label": "Average enquiry to enrolment"
-      },
-      {
-       "value": "98%",
-       "label": "Average site accessibility score"
-      }
-     ]
-    },
-    {
-     "type": "media",
-     "id": "growth",
-     "nav": "Enquiries",
-     "heading": "Education Marketing: Student Recruitment and Course Enquiries",
-     "image": "/pages/industries/education/growth.webp",
-     "alt": "Course enquiries growing with enrolments, cost per enquiry and open day bookings",
-     "paras": [
-      "We plan campaigns around your intake calendar so enquiries peak when you need them most."
-     ],
-     "bullets": [
-      "Course and subject SEO",
-      "Open day and event campaigns",
-      "Clearing and late-intake ads",
-      "Enrolment tracking"
-     ]
-    },
-    {
-     "type": "media",
-     "id": "channels",
-     "nav": "Channels",
-     "heading": "Education Marketing: Channels That Reach Students and Parents",
-     "image": "/pages/industries/education/channels.webp",
-     "alt": "How students find you: course search, Google Ads, TikTok, Instagram, email and local search",
-     "paras": [
-      "Students live on TikTok and Instagram, parents on Google and Facebook. We reach both with the right message."
-     ],
-     "bullets": [
-      "TikTok and Instagram for students",
-      "Google and Facebook for parents",
-      "Student-led content",
-      "Email nurture to enrolment"
-     ],
-     "flip": true,
-     "tone": "grey"
-    },
-    {
-     "type": "media",
-     "id": "journey",
-     "nav": "Journey",
-     "heading": "Education Marketing: Student Journey from Open Day to Enrolment",
-     "image": "/pages/industries/education/journey.webp",
-     "alt": "Student journey from course page visits to enquiries, open days and enrolments",
-     "paras": [
-      "We remove friction from course pages, prospectus requests and applications so more interest turns into places filled."
-     ],
-     "bullets": [
-      "Course finder and filters",
-      "Prospectus and open day forms",
-      "Fast follow-up and CRM",
-      "Application tracking"
-     ]
-    },
-    {
-     "type": "media",
-     "id": "trust",
-     "nav": "Accessibility",
-     "heading": "Education Marketing: Accessible and Safeguarding-aware Websites",
-     "image": "/pages/industries/education/trust.webp",
-     "alt": "Education website checklist with accessibility, course finder, CRM and safeguarding",
-     "paras": [
-      "Education websites must be accessible and trustworthy. We design to WCAG 2.2 AA and handle content with care."
-     ],
-     "bullets": [
-      "WCAG 2.2 AA accessibility",
-      "Safeguarding-aware content",
-      "Easy editing for staff",
-      "Secure forms and GDPR"
-     ],
-     "flip": true,
-     "tone": "grey"
-    },
-    {
-     "type": "cards",
-     "id": "services",
-     "nav": "What we do",
-     "heading": "Our Education Marketing Services and Solutions",
-     "cards": [
-      {
-       "icon": "lucide:search",
-       "title": "Course SEO",
-       "text": "Rank for subjects and courses."
-      },
-      {
-       "icon": "simple-icons:googleads",
-       "title": "Google Ads",
-       "text": "Open day and clearing campaigns."
-      },
-      {
-       "icon": "simple-icons:tiktok",
-       "title": "TikTok & Instagram",
-       "text": "Content students watch."
-      },
-      {
-       "icon": "simple-icons:facebook",
-       "title": "Parent Campaigns",
-       "text": "Facebook and search for parents."
-      },
-      {
-       "icon": "lucide:monitor",
-       "title": "Education Websites",
-       "text": "Accessible and easy to edit."
-      },
-      {
-       "icon": "lucide:database",
-       "title": "CRM & Enquiries",
-       "text": "Every lead followed up."
-      },
-      {
-       "icon": "lucide:smartphone",
-       "title": "Learning Apps",
-       "text": "Portals and student apps."
-      },
-      {
-       "icon": "lucide:chart-column-increasing",
-       "title": "Reporting",
-       "text": "Enquiries to enrolments."
-      }
-     ]
-    },
-    {
-     "type": "steps",
-     "id": "process",
-     "nav": "Process",
-     "heading": "How Our Education Marketing Process Works, Step by Step",
-     "intro": "A clear, repeatable process for UK education businesses.",
-     "steps": [
-      {
-       "title": "Discover",
-       "text": "Your goals, customers and competitors."
-      },
-      {
-       "title": "Audit",
-       "text": "A free review of your site, ads and tracking."
-      },
-      {
-       "title": "Plan",
-       "text": "Channels, budget and a clear 90-day roadmap."
-      },
-      {
-       "title": "Launch",
-       "text": "Campaigns and pages go live, fully tracked."
-      },
-      {
-       "title": "Report",
-       "text": "Plain-English results tied to leads and revenue."
-      },
-      {
-       "title": "Grow",
-       "text": "We scale what works and fix what does not."
-      }
-     ]
-    },
-    {
-     "type": "cases",
-     "id": "case-studies",
-     "nav": "Case studies",
-     "heading": "Education Marketing Case Studies and Results"
-    },
-    {
-     "type": "reviews",
-     "id": "reviews",
-     "nav": "Reviews",
-     "heading": "Education Marketing Client Reviews and Testimonials",
-     "reviews": [
-      {
-       "name": "Karen S",
-       "role": "Director, Training Provider",
-       "text": "Course enquiries are up 60% and our cost per enrolment has dropped."
-      },
-      {
-       "name": "Mark P",
-       "role": "Marketing Lead, College",
-       "text": "Our open days were fully booked for the first time in years."
-      },
-      {
-       "name": "Laura F",
-       "role": "Content Lead, University",
-       "text": "The new site is accessible, fast and easy for 40 editors to update."
-      }
-     ]
-    }
-   ],
-   "faqs": [
-    {
-     "q": "How do you recruit more students online?",
-     "a": "By combining course SEO, targeted ads around key intake dates, social content students engage with and fast, simple enquiry journeys tracked through to enrolment. Student recruitment marketing works best when every campaign is planned around your application deadlines."
-    },
-    {
-     "q": "Do you work with schools and universities?",
-     "a": "Yes. We do university marketing, school marketing and support for independent schools, colleges and private training providers, adapting tone, channels and compliance to each audience."
-    },
-    {
-     "q": "Can you target parents and students separately?",
-     "a": "Yes. We create separate messages and channels for students and parents, as each decides differently. Students respond to short video and peer stories, while parents look for results, safeguarding and fees."
-    },
-    {
-     "q": "Is our website accessible?",
-     "a": "We audit and build to WCAG 2.2 AA, which is required for many public sector education bodies. Accessible sites also rank better and are easier for every applicant to use on any device."
-    },
-    {
-     "q": "Do you help with clearing?",
-     "a": "Yes. We run fast, flexible clearing campaigns with landing pages, Google Ads and call tracking that go live in days, and we align messaging with UCAS deadlines and your available places."
-    },
-    {
-     "q": "Do you need a contract?",
-     "a": "No. GTech Digital runs education marketing on rolling monthly terms, although we plan campaign activity around your intake calendar, so spend is focused on the months that matter most."
-    },
-    {
-     "q": "How do open day campaigns work?",
-     "a": "Open day campaigns combine email, social and paid ads that drive bookings, plus a simple booking form and reminder messages that reduce no-shows. We measure bookings, attendance and enrolments, so you can see exactly which channels fill your events."
-    }
-   ],
-   "related": [
-    "search-engine-optimization",
-    "google-ads",
-    "tiktok-marketing",
-    "instagram-marketing",
-    "website-design",
-    "cms-development"
    ],
    "data": {}
   },
@@ -15321,294 +14713,6 @@
     "website-design",
     "reputation-management",
     "web-application-development"
-   ],
-   "data": {}
-  },
-  {
-   "key": "industry~healthcare",
-   "kind": "industry",
-   "slug": "healthcare",
-   "name": "Healthcare Marketing",
-   "sort": 44,
-   "path": "/industries/healthcare",
-   "metaTitle": "Healthcare Marketing Agency UK | Clinic & Dental Marketing",
-   "metaDescription": "UK healthcare marketing agency for private clinics, dentists and aesthetics: compliant SEO, Google Ads, reviews and booking websites that attract new patients.",
-   "hero": {
-    "keyword": "Healthcare Marketing",
-    "title": "Healthcare Marketing for",
-    "highlight": "More Patients",
-    "lead": "GTech Digital provides healthcare marketing services for UK private clinics, dentists and healthcare providers, combining local SEO, compliant Google and Meta ads, reviews and online booking to attract new patients.",
-    "points": [
-     "Free clinic audit",
-     "ASA and CQC-aware",
-     "Bookings tracked"
-    ],
-    "motion": "/services/ind-healthcare.webp",
-    "h1": "Healthcare Marketing Services of [[GTech Digital]]"
-   },
-   "sections": [
-    {
-     "type": "logos",
-     "id": "clients"
-    },
-    {
-     "type": "text",
-     "id": "overview",
-     "nav": "Overview",
-     "heading": "What Is Healthcare Marketing and Why Does It Matter?",
-     "paras": [
-      "Patients choose healthcare providers carefully, reading reviews and comparing clinics before they book. Your marketing must build trust, follow strict advertising rules and make booking simple."
-     ],
-     "bullets": [
-      "Local visibility for treatments and conditions",
-      "Compliant ads that follow ASA and CAP rules",
-      "Calm, accessible websites with online booking"
-     ]
-    },
-    {
-     "type": "impact",
-     "id": "impact",
-     "heading": "Healthcare Marketing Results and Key Statistics",
-     "text": "The numbers behind the work we do for UK healthcare businesses.",
-     "stats": [
-      {
-       "value": "1,480",
-       "label": "Average new patients a year"
-      },
-      {
-       "value": "+72%",
-       "label": "Average growth in online bookings"
-      },
-      {
-       "value": "£28",
-       "label": "Average cost per new patient"
-      },
-      {
-       "value": "4.9",
-       "label": "Average Google rating"
-      }
-     ]
-    },
-    {
-     "type": "media",
-     "id": "growth",
-     "nav": "Patients",
-     "heading": "Healthcare Marketing: Patient Acquisition and Online Bookings",
-     "image": "/pages/industries/healthcare/growth.webp",
-     "alt": "New patient bookings growing with online bookings, calls and cost per patient",
-     "paras": [
-      "We focus on the treatments that matter most to your clinic and track every booking back to its source."
-     ],
-     "bullets": [
-      "Treatment-focused campaigns",
-      "Online booking integration",
-      "Call tracking",
-      "Cost per patient reporting"
-     ]
-    },
-    {
-     "type": "media",
-     "id": "channels",
-     "nav": "Channels",
-     "heading": "Healthcare Marketing: Local Search, Google Maps and Patient Channels",
-     "image": "/pages/industries/healthcare/channels.webp",
-     "alt": "How patients find you: Google Maps, SEO, Google Ads, Meta ads, reviews and recall emails",
-     "paras": [
-      "Most patients start with Google. We put your clinic at the top of local results, Maps and AI answers."
-     ],
-     "bullets": [
-      "Local SEO and Google Maps",
-      "Treatment and condition content",
-      "Google and Meta ads",
-      "Review generation"
-     ],
-     "flip": true,
-     "tone": "grey"
-    },
-    {
-     "type": "media",
-     "id": "journey",
-     "nav": "Booking",
-     "heading": "Healthcare Marketing: Patient Journey and Appointment Booking",
-     "image": "/pages/industries/healthcare/journey.webp",
-     "alt": "Patient journey from treatment page visits to bookings and attended appointments",
-     "paras": [
-      "Clear treatment pages, transparent pricing and 24/7 online booking turn interest into appointments."
-     ],
-     "bullets": [
-      "Treatment and price pages",
-      "24/7 online booking",
-      "Reminder and recall emails",
-      "Reduced no-shows"
-     ]
-    },
-    {
-     "type": "media",
-     "id": "trust",
-     "nav": "Compliance",
-     "heading": "Healthcare Marketing: ASA, CQC and GDPR Compliant Marketing",
-     "image": "/pages/industries/healthcare/trust.webp",
-     "alt": "Compliant healthcare marketing checklist with ASA, CQC, GDPR and clinician review",
-     "paras": [
-      "Healthcare advertising is tightly regulated. We follow ASA, CAP and professional body guidance and protect patient data."
-     ],
-     "bullets": [
-      "ASA and CAP code compliance",
-      "CQC and GMC-aware content",
-      "Clinician-reviewed copy",
-      "GDPR-safe forms"
-     ],
-     "flip": true,
-     "tone": "grey"
-    },
-    {
-     "type": "cards",
-     "id": "services",
-     "nav": "What we do",
-     "heading": "Our Healthcare Marketing Services and Solutions",
-     "cards": [
-      {
-       "icon": "lucide:map-pin",
-       "title": "Local SEO",
-       "text": "Top of Maps for treatments."
-      },
-      {
-       "icon": "lucide:search",
-       "title": "Healthcare SEO",
-       "text": "Trustworthy treatment content."
-      },
-      {
-       "icon": "simple-icons:googleads",
-       "title": "Google Ads",
-       "text": "Compliant patient campaigns."
-      },
-      {
-       "icon": "simple-icons:instagram",
-       "title": "Social Media",
-       "text": "Educational, on-brand content."
-      },
-      {
-       "icon": "lucide:star",
-       "title": "Reviews",
-       "text": "More patient reviews."
-      },
-      {
-       "icon": "lucide:calendar-check",
-       "title": "Online Booking",
-       "text": "Integrated booking systems."
-      },
-      {
-       "icon": "lucide:monitor",
-       "title": "Clinic Websites",
-       "text": "Calm and accessible."
-      },
-      {
-       "icon": "lucide:chart-column-increasing",
-       "title": "Reporting",
-       "text": "Patients and revenue."
-      }
-     ]
-    },
-    {
-     "type": "steps",
-     "id": "process",
-     "nav": "Process",
-     "heading": "How Our Healthcare Marketing Process Works, Step by Step",
-     "intro": "A clear, repeatable process for UK healthcare businesses.",
-     "steps": [
-      {
-       "title": "Discover",
-       "text": "Your goals, customers and competitors."
-      },
-      {
-       "title": "Audit",
-       "text": "A free review of your site, ads and tracking."
-      },
-      {
-       "title": "Plan",
-       "text": "Channels, budget and a clear 90-day roadmap."
-      },
-      {
-       "title": "Launch",
-       "text": "Campaigns and pages go live, fully tracked."
-      },
-      {
-       "title": "Report",
-       "text": "Plain-English results tied to leads and revenue."
-      },
-      {
-       "title": "Grow",
-       "text": "We scale what works and fix what does not."
-      }
-     ]
-    },
-    {
-     "type": "cases",
-     "id": "case-studies",
-     "nav": "Case studies",
-     "heading": "Healthcare Marketing Case Studies and Results"
-    },
-    {
-     "type": "reviews",
-     "id": "reviews",
-     "nav": "Reviews",
-     "heading": "Healthcare Marketing Client Reviews and Testimonials",
-     "reviews": [
-      {
-       "name": "Anita G",
-       "role": "Practice Manager, Dental Clinic",
-       "text": "New patient calls from Google have more than doubled in six months."
-      },
-      {
-       "name": "Fatima Z",
-       "role": "Director, Aesthetics Clinic",
-       "text": "Patients now book online at any time, and our diary stays full."
-      },
-      {
-       "name": "Dr James L",
-       "role": "Owner, Physiotherapy Practice",
-       "text": "Professional, compliant marketing that our team is proud of."
-      }
-     ]
-    }
-   ],
-   "faqs": [
-    {
-     "q": "How can a private clinic attract more patients?",
-     "a": "Rank in local search and Google Maps, collect genuine reviews, publish clear treatment and price information and offer easy online booking. Targeted ads speed up results."
-    },
-    {
-     "q": "Are there rules for healthcare advertising?",
-     "a": "Yes. UK healthcare ads must follow ASA and CAP codes, and some treatments, such as prescription medicines, cannot be advertised to the public. We keep campaigns compliant."
-    },
-    {
-     "q": "Do you work with dentists?",
-     "a": "Yes. Our dental marketing work covers dental practices, aesthetics clinics, physiotherapists, opticians and other private healthcare providers, using compliant treatment pages, local SEO and online booking to bring in new patients."
-    },
-    {
-     "q": "Can you integrate our booking system?",
-     "a": "Yes. We connect most clinic booking systems to your website and track bookings in GA4, so you can see which searches, ads and reviews lead to appointments that are actually attended."
-    },
-    {
-     "q": "How do you handle patient data?",
-     "a": "We use secure, GDPR-compliant forms and never put sensitive health data into ad platforms. Tracking is configured to protect patient privacy, and we review consent and data flows with your practice manager."
-    },
-    {
-     "q": "Do you need a contract?",
-     "a": "No. GTech Digital runs clinic marketing on rolling monthly terms. We suggest at least four months for private healthcare SEO, because trust, reviews and rankings take time to build."
-    },
-    {
-     "q": "How do you optimise a clinic's Google Business Profile?",
-     "a": "A strong Google Business Profile lists the right categories, treatments, opening hours, photos and booking link, and collects genuine reviews. It is the biggest driver of local clicks and calls, so we set it up carefully and keep it updated every week."
-    }
-   ],
-   "related": [
-    "local-seo",
-    "search-engine-optimization",
-    "google-ads",
-    "reputation-management",
-    "website-design",
-    "facebook-marketing"
    ],
    "data": {}
   },
@@ -16471,294 +15575,6 @@
     "facebook-marketing",
     "google-ads",
     "reputation-management",
-    "website-design",
-    "web-application-development"
-   ],
-   "data": {}
-  },
-  {
-   "key": "industry~finance",
-   "kind": "industry",
-   "slug": "finance",
-   "name": "Financial Services Marketing",
-   "sort": 48,
-   "path": "/industries/finance",
-   "metaTitle": "Financial Marketing Agency UK | Compliant Marketing",
-   "metaDescription": "UK financial marketing agency for advisers, brokers, accountants and lenders: compliant SEO, Google Ads, LinkedIn and secure websites that win clients.",
-   "hero": {
-    "keyword": "Financial Marketing",
-    "title": "Financial Marketing That",
-    "highlight": "Wins Clients",
-    "lead": "GTech Digital provides financial marketing for UK advisers, mortgage brokers, accountants and lenders, combining financial SEO, Google and LinkedIn ads and FCA-compliant content to win qualified client enquiries.",
-    "points": [
-     "Free marketing audit",
-     "FCA-aware campaigns",
-     "Compliance sign-off built in"
-    ],
-    "motion": "/services/ind-finance.webp",
-    "h1": "Financial Marketing Services of [[GTech Digital]]"
-   },
-   "sections": [
-    {
-     "type": "logos",
-     "id": "clients"
-    },
-    {
-     "type": "text",
-     "id": "overview",
-     "nav": "Overview",
-     "heading": "What Is Financial Services Marketing and Why Does It Matter?",
-     "paras": [
-      "Financial decisions are high-stakes, so clients research carefully and look for expertise and trust. Marketing must be clear, fair and not misleading, and it needs a reliable compliance process."
-     ],
-     "bullets": [
-      "Expert content that ranks for financial questions",
-      "Compliant ads with the right risk warnings",
-      "Secure websites, calculators and portals"
-     ]
-    },
-    {
-     "type": "impact",
-     "id": "impact",
-     "heading": "Financial Services Marketing Results and Key Statistics",
-     "text": "The numbers behind the work we do for UK finance businesses.",
-     "stats": [
-      {
-       "value": "+68%",
-       "label": "Average growth in new clients"
-      },
-      {
-       "value": "£52",
-       "label": "Average cost per enquiry"
-      },
-      {
-       "value": "47%",
-       "label": "Average consultation to client"
-      },
-      {
-       "value": "100%",
-       "label": "Campaigns with compliance sign-off"
-      }
-     ]
-    },
-    {
-     "type": "media",
-     "id": "growth",
-     "nav": "Enquiries",
-     "heading": "Financial Services Marketing: Client Growth and Qualified Enquiries",
-     "image": "/pages/industries/finance/growth.webp",
-     "alt": "Qualified financial enquiries growing with new clients, cost per enquiry and compliance sign-off",
-     "paras": [
-      "We target people actively looking for advice, mortgages or accounting help, and filter out poor-fit leads."
-     ],
-     "bullets": [
-      "High-intent search campaigns",
-      "Callback and booking forms",
-      "Lead qualification",
-      "Cost per client reporting"
-     ]
-    },
-    {
-     "type": "media",
-     "id": "channels",
-     "nav": "Channels",
-     "heading": "Financial Services Marketing: Search, LinkedIn and Review Channels",
-     "image": "/pages/industries/finance/channels.webp",
-     "alt": "How clients find you: SEO, Google Ads, LinkedIn, guides, reviews and email",
-     "paras": [
-      "Helpful guides and calculators earn rankings and trust, while Google and LinkedIn reach people ready to act."
-     ],
-     "bullets": [
-      "Financial SEO and guides",
-      "Google Ads for advice searches",
-      "LinkedIn for B2B finance",
-      "Trustpilot and Google reviews"
-     ],
-     "flip": true,
-     "tone": "grey"
-    },
-    {
-     "type": "media",
-     "id": "journey",
-     "nav": "Journey",
-     "heading": "Financial Services Marketing: Client Journey from Research to Consultation",
-     "image": "/pages/industries/finance/journey.webp",
-     "alt": "Financial client journey from guide visits to enquiries, consultations and new clients",
-     "paras": [
-      "Clear explanations, calculators and fast callbacks guide people from research to a first consultation."
-     ],
-     "bullets": [
-      "Calculators and tools",
-      "Consultation booking",
-      "Callbacks within the hour",
-      "Email nurture"
-     ]
-    },
-    {
-     "type": "media",
-     "id": "trust",
-     "nav": "Compliance",
-     "heading": "Financial Services Marketing: FCA Financial Promotions and Consumer Duty Compliance",
-     "image": "/pages/industries/finance/trust.webp",
-     "alt": "Compliant financial marketing checklist with FCA rules, Consumer Duty, risk warnings and sign-off",
-     "paras": [
-      "We build FCA financial promotion rules and Consumer Duty into every page and campaign, with a clear sign-off workflow."
-     ],
-     "bullets": [
-      "FCA financial promotions rules",
-      "Consumer Duty-friendly content",
-      "Risk warnings and disclaimers",
-      "Secure forms and portals"
-     ],
-     "flip": true,
-     "tone": "grey"
-    },
-    {
-     "type": "cards",
-     "id": "services",
-     "nav": "What we do",
-     "heading": "Our Financial Services Marketing Services and Solutions",
-     "cards": [
-      {
-       "icon": "lucide:search",
-       "title": "Financial SEO",
-       "text": "Expert content that ranks."
-      },
-      {
-       "icon": "simple-icons:googleads",
-       "title": "Google Ads",
-       "text": "Compliant lead campaigns."
-      },
-      {
-       "icon": "simple-icons:linkedin",
-       "title": "LinkedIn",
-       "text": "B2B finance marketing."
-      },
-      {
-       "icon": "lucide:calculator",
-       "title": "Calculators",
-       "text": "Tools that generate leads."
-      },
-      {
-       "icon": "lucide:star",
-       "title": "Reviews",
-       "text": "Trustpilot and Google."
-      },
-      {
-       "icon": "lucide:shield-check",
-       "title": "Compliance Workflow",
-       "text": "Sign-off built in."
-      },
-      {
-       "icon": "lucide:monitor",
-       "title": "Secure Websites",
-       "text": "Fast and trustworthy."
-      },
-      {
-       "icon": "lucide:app-window",
-       "title": "Client Portals",
-       "text": "Documents and onboarding."
-      }
-     ]
-    },
-    {
-     "type": "steps",
-     "id": "process",
-     "nav": "Process",
-     "heading": "How Our Financial Services Marketing Process Works, Step by Step",
-     "intro": "A clear, repeatable process for UK finance businesses.",
-     "steps": [
-      {
-       "title": "Discover",
-       "text": "Your goals, customers and competitors."
-      },
-      {
-       "title": "Audit",
-       "text": "A free review of your site, ads and tracking."
-      },
-      {
-       "title": "Plan",
-       "text": "Channels, budget and a clear 90-day roadmap."
-      },
-      {
-       "title": "Launch",
-       "text": "Campaigns and pages go live, fully tracked."
-      },
-      {
-       "title": "Report",
-       "text": "Plain-English results tied to leads and revenue."
-      },
-      {
-       "title": "Grow",
-       "text": "We scale what works and fix what does not."
-      }
-     ]
-    },
-    {
-     "type": "cases",
-     "id": "case-studies",
-     "nav": "Case studies",
-     "heading": "Financial Services Marketing Case Studies and Results"
-    },
-    {
-     "type": "reviews",
-     "id": "reviews",
-     "nav": "Reviews",
-     "heading": "Financial Services Marketing Client Reviews and Testimonials",
-     "reviews": [
-      {
-       "name": "Mark S",
-       "role": "CEO, Financial Advisers",
-       "text": "Enquiries are up and compliance signs off campaigns without rework."
-      },
-      {
-       "name": "Helen G",
-       "role": "Director, Mortgage Broker",
-       "text": "Our guides rank on page one and bring in steady, quality leads."
-      },
-      {
-       "name": "Tom A",
-       "role": "Partner, Accountancy Firm",
-       "text": "New client enquiries grew by two thirds in a year."
-      }
-     ]
-    }
-   ],
-   "faqs": [
-    {
-     "q": "How do financial advisers get more clients online?",
-     "a": "Publish expert content that answers common questions, rank in local and national search, collect reviews and run compliant Google Ads, with fast follow-up on every enquiry."
-    },
-    {
-     "q": "Are financial promotions regulated?",
-     "a": "Yes. Financial promotions must be clear, fair and not misleading under FCA rules, and Consumer Duty applies to communications with retail clients. We build campaigns to meet these standards."
-    },
-    {
-     "q": "Do you work with accountants?",
-     "a": "Yes. Our accountant marketing and financial adviser marketing work covers accountants, financial advisers, mortgage and insurance brokers, wealth managers and lenders, with content written for each audience."
-    },
-    {
-     "q": "Can our compliance team approve content?",
-     "a": "Yes. We build a sign-off step into every campaign and keep an audit trail of approvals, so your compliance team reviews each ad, page and email before it goes live."
-    },
-    {
-     "q": "Do you build client portals?",
-     "a": "Yes. We build secure portals for documents, onboarding and messaging, so clients can upload information, sign forms and message your team safely, which reduces email attachments and speeds up onboarding."
-    },
-    {
-     "q": "Do you need a contract?",
-     "a": "No. GTech Digital runs financial marketing on rolling monthly terms. Compliance reviews and trust building take time, so we recommend six months, but you can stop with a month's notice."
-    },
-    {
-     "q": "What is FCA compliant marketing?",
-     "a": "FCA compliant marketing means every financial promotion is clear, fair and not misleading, includes the right risk warnings and meets Consumer Duty. Our mortgage broker marketing and adviser campaigns follow these rules and include a documented approval step."
-    }
-   ],
-   "related": [
-    "search-engine-optimization",
-    "google-ads",
-    "linkedin-marketing",
-    "content-marketing",
     "website-design",
     "web-application-development"
    ],
@@ -17762,12 +16578,6 @@
    "sort": 0
   },
   {
-   "slug": "education",
-   "name": "Education",
-   "icon": "lucide:graduation-cap",
-   "sort": 1
-  },
-  {
    "slug": "b2b-marketing",
    "name": "B2B Marketing",
    "icon": "lucide:handshake",
@@ -17778,12 +16588,6 @@
    "name": "Automotive",
    "icon": "lucide:car",
    "sort": 3
-  },
-  {
-   "slug": "healthcare",
-   "name": "Healthcare",
-   "icon": "lucide:heart-pulse",
-   "sort": 4
   },
   {
    "slug": "hospitality-hotels",
@@ -17802,12 +16606,6 @@
    "name": "Real Estate",
    "icon": "lucide:building-2",
    "sort": 7
-  },
-  {
-   "slug": "finance",
-   "name": "Finance",
-   "icon": "lucide:landmark",
-   "sort": 8
   },
   {
    "slug": "technology-saas",
@@ -18268,11 +17066,6 @@
      "why": "Local authority signals"
     },
     {
-     "target": "i:healthcare",
-     "anchor": "healthcare marketing",
-     "why": "Local SEO for clinics"
-    },
-    {
      "target": "i:real-estate",
      "anchor": "property marketing",
      "why": "Local SEO for agents"
@@ -18360,11 +17153,6 @@
      "target": "search-engine-optimization",
      "anchor": "SEO services",
      "why": "Organic + paid synergy"
-    },
-    {
-     "target": "i:finance",
-     "anchor": "financial services marketing",
-     "why": "Compliant PPC"
     }
    ]
   },
@@ -18399,11 +17187,6 @@
      "target": "content-marketing",
      "anchor": "content marketing",
      "why": "Publish proof and thought leadership"
-    },
-    {
-     "target": "i:healthcare",
-     "anchor": "healthcare marketing",
-     "why": "Patient trust"
     },
     {
      "target": "i:hospitality-hotels",
@@ -19460,45 +18243,6 @@
    ]
   },
   {
-   "slug": "education",
-   "kw": "education marketing agency uk",
-   "sec": [
-    "student recruitment marketing",
-    "university marketing",
-    "school marketing",
-    "course seo",
-    "open day campaigns"
-   ],
-   "ent": [
-    "UCAS",
-    "WCAG",
-    "TikTok",
-    "prospectus"
-   ],
-   "links": [
-    {
-     "target": "search-engine-optimization",
-     "anchor": "course SEO",
-     "why": "Rank for courses"
-    },
-    {
-     "target": "social-media-marketing",
-     "anchor": "student social media",
-     "why": "Reach students"
-    },
-    {
-     "target": "website-design",
-     "anchor": "accessible website design",
-     "why": "WCAG 2.2"
-    },
-    {
-     "target": "google-ads",
-     "anchor": "Google Ads",
-     "why": "Clearing and intake"
-    }
-   ]
-  },
-  {
    "slug": "b2b-marketing",
    "kw": "b2b marketing agency uk",
    "sec": [
@@ -19573,46 +18317,6 @@
      "target": "reputation-management",
      "anchor": "review management",
      "why": "Dealer reviews"
-    }
-   ]
-  },
-  {
-   "slug": "healthcare",
-   "kw": "healthcare marketing agency uk",
-   "sec": [
-    "dental marketing",
-    "clinic marketing",
-    "patient acquisition",
-    "private healthcare seo",
-    "online booking"
-   ],
-   "ent": [
-    "CQC",
-    "GMC",
-    "ASA",
-    "GDPR",
-    "Google Business Profile"
-   ],
-   "links": [
-    {
-     "target": "local-seo",
-     "anchor": "clinic local SEO",
-     "why": "Be found locally"
-    },
-    {
-     "target": "reputation-management",
-     "anchor": "patient reviews",
-     "why": "Trust signals"
-    },
-    {
-     "target": "google-ads",
-     "anchor": "Google Ads",
-     "why": "Treatment searches"
-    },
-    {
-     "target": "website-design",
-     "anchor": "clinic website design",
-     "why": "Easy booking"
     }
    ]
   },
@@ -19731,46 +18435,6 @@
      "target": "facebook-marketing",
      "anchor": "Facebook ads",
      "why": "Landlord campaigns"
-    }
-   ]
-  },
-  {
-   "slug": "finance",
-   "kw": "financial marketing agency uk",
-   "sec": [
-    "financial services marketing",
-    "financial adviser marketing",
-    "mortgage broker marketing",
-    "accountant marketing",
-    "fca compliant marketing",
-    "consumer duty"
-   ],
-   "ent": [
-    "FCA",
-    "Consumer Duty",
-    "financial promotions",
-    "Trustpilot"
-   ],
-   "links": [
-    {
-     "target": "search-engine-optimization",
-     "anchor": "financial SEO",
-     "why": "Authority content"
-    },
-    {
-     "target": "google-ads",
-     "anchor": "Google Ads",
-     "why": "Compliant PPC"
-    },
-    {
-     "target": "linkedin-marketing",
-     "anchor": "LinkedIn marketing",
-     "why": "B2B finance"
-    },
-    {
-     "target": "reputation-management",
-     "anchor": "reputation management",
-     "why": "Trust"
     }
    ]
   },
@@ -20009,7 +18673,6 @@
      "marketing-advisory",
      "conversion-rate-optimization",
      "digital-marketing",
-     "finance",
      "b2b-marketing",
      "real-estate"
     ],
@@ -20071,8 +18734,7 @@
      "branding-strategy",
      "branding",
      "hospitality-hotels",
-     "travel",
-     "education"
+     "travel"
     ],
     "image": "/case/arta.webp",
     "title": "Arta",
@@ -20198,9 +18860,7 @@
      "marketing-advisory",
      "branding",
      "digital-marketing",
-     "healthcare",
      "automotive",
-     "education",
      "b2b-marketing"
     ],
     "image": "/case/demo-brand-five.webp",
@@ -20261,8 +18921,6 @@
      "marketing-advisory",
      "e-commerce",
      "real-estate",
-     "finance",
-     "healthcare",
      "automotive"
     ],
     "image": "/case/demo-brand-six.webp",
