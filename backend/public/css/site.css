@@ -979,3 +979,20 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 
 /* Elements hidden with the hidden attribute stay hidden even when a class sets display */
 [hidden]{display:none!important}
+
+/* ---- Section spacing: one rhythm for every section ------------------------------------------------------
+   Text columns (image and text, features, text sections): heading -> text 18px, paragraph -> paragraph 14px,
+   paragraph -> list 18px, list -> button 28px. Centred headings above cards, steps and tables: 40px (28px on
+   phones), with the intro 14px under the heading. */
+.sp-head h2{margin-bottom:0}
+.sp-head h2+.sp-intro{margin-top:14px}
+.sp-head .sp-intro{margin-bottom:0}
+.sp-head{margin-bottom:40px}
+.sp-media-copy .sp-head,.sp-feat .sp-head{margin-bottom:18px}
+.sp-media-copy>p,.sp-split-body>p,.sp-feat>div>p{margin:0 0 14px}
+.sp-media-copy>p:last-child,.sp-split-body>p:last-child,.sp-feat>div>p:last-child{margin-bottom:0}
+.sp-media-copy .sp-list,.sp-split-body .sp-list{margin-top:18px}
+.sp-media-copy .sp-media-cta,.sp-feat>div>.btn{margin-top:28px}
+.sp-feat>div>.btn{display:inline-block}
+.sp-split-head h2+.sp-eyebrow,.sp-split-head .sp-eyebrow+h2{margin-top:12px}
+@media(max-width:600px){.sp-head{margin-bottom:28px}.sp-media-copy .sp-head,.sp-feat .sp-head{margin-bottom:14px}.sp-media-copy .sp-media-cta,.sp-feat>div>.btn{margin-top:22px}}
