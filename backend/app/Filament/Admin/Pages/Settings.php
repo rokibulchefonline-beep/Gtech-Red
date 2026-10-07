@@ -52,10 +52,26 @@ class Settings extends Page implements HasForms
                     Forms\Components\TextInput::make('general.siteUrl')->label('Website address')->url()->maxLength(200),
                 ]),
                 Forms\Components\Tabs\Tab::make('Contact')->schema([
-                    Forms\Components\TextInput::make('contact.email')->email()->maxLength(160),
-                    Forms\Components\TextInput::make('contact.phone')->maxLength(40),
-                    Forms\Components\Textarea::make('contact.address')->rows(2)->maxLength(300),
+                    Forms\Components\TextInput::make('contact.email')->label('Email')->email()->maxLength(160),
+                    Forms\Components\Grid::make(2)->schema([
+                        Forms\Components\TextInput::make('contact.phone')->label('Main phone')->tel()->maxLength(40)->helperText('Shown first, and used in Google\'s business details.'),
+                        Forms\Components\TextInput::make('contact.phone2')->label('Second phone (optional)')->tel()->maxLength(40),
+                    ]),
                     Forms\Components\TextInput::make('contact.hours')->label('Opening hours')->maxLength(80),
+                    Forms\Components\Fieldset::make('Google Business Profile address')->columns(2)->schema([
+                        Forms\Components\Placeholder::make('gbp_help')->hiddenLabel()->columnSpanFull()
+                            ->content('Copy the address exactly as it is on your Google Business Profile. The same name, address and phone on the website and the profile helps you show in Google Maps and local results.'),
+                        Forms\Components\TextInput::make('contact.street')->label('Street address')->maxLength(160)->columnSpanFull()->placeholder('e.g. Unit 5, 10 High Street'),
+                        Forms\Components\TextInput::make('contact.city')->label('Town / city')->maxLength(80),
+                        Forms\Components\TextInput::make('contact.region')->label('County (optional)')->maxLength(80),
+                        Forms\Components\TextInput::make('contact.postcode')->label('Postcode')->maxLength(12),
+                        Forms\Components\Select::make('contact.country')->label('Country')->options(['GB' => 'United Kingdom'])->default('GB')->selectablePlaceholder(false),
+                        Forms\Components\TextInput::make('contact.mapsUrl')->label('Google Maps link to your profile')->url()->maxLength(500)->columnSpanFull()
+                            ->placeholder('https://maps.app.goo.gl/... or https://www.google.com/maps?cid=...')
+                            ->helperText('In Google Maps open your business, click Share and copy the link. Adds a "Get directions" link and connects the website to the profile.'),
+                        Forms\Components\Toggle::make('contact.showAddress')->label('Show the address on the contact page')->default(true),
+                        Forms\Components\Toggle::make('contact.showAddressFooter')->label('Show it in the footer too'),
+                    ]),
                     Forms\Components\Repeater::make('socials')->label('Social profiles')->schema([
                         Forms\Components\Select::make('name')->options(array_combine($n = ['LinkedIn', 'Facebook', 'Instagram', 'X', 'YouTube', 'TikTok', 'Pinterest'], $n))->required(),
                         Forms\Components\TextInput::make('url')->url()->required()->maxLength(300),

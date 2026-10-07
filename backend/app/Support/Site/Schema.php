@@ -39,9 +39,10 @@ class Schema
             '@type' => ['Organization', 'ProfessionalService'], '@id' => self::org(), 'name' => $s['general']['siteName'], 'url' => self::base().'/',
             'logo' => ['@type' => 'ImageObject', 'url' => self::base().'/logo.png'], 'image' => self::base().'/logo.png',
             'description' => 'GTech Digital is a UK digital agency providing digital marketing, SEO, Google Ads, social media marketing, web design and development, custom software development and branding services.',
-            'email' => $c['email'], 'telephone' => $c['phone'], 'priceRange' => '££', 'areaServed' => ['@type' => 'Country', 'name' => 'United Kingdom'], 'slogan' => $s['general']['tagline'],
-            ...(! empty($c['address']) ? ['address' => ['@type' => 'PostalAddress', 'streetAddress' => $c['address'], 'addressCountry' => 'GB']] : []),
-            'contactPoint' => ['@type' => 'ContactPoint', 'contactType' => 'sales', 'email' => $c['email'], 'telephone' => $c['phone'], 'areaServed' => 'GB', 'availableLanguage' => 'English'],
+            'email' => $c['email'], 'telephone' => Contact::tel((string) $c['phone']), 'priceRange' => '££', 'areaServed' => ['@type' => 'Country', 'name' => 'United Kingdom'], 'slogan' => $s['general']['tagline'],
+            ...(($ct = Contact::get())['postal'] ? ['address' => $ct['postal']] : []),
+            ...($ct['mapsUrl'] ? ['hasMap' => $ct['mapsUrl']] : []),
+            'contactPoint' => array_map(fn ($ph) => ['@type' => 'ContactPoint', 'contactType' => 'sales', 'email' => $c['email'], 'telephone' => $ph['tel'], 'areaServed' => 'GB', 'availableLanguage' => 'English'], $ct['phones']),
             'sameAs' => array_values(array_filter(array_map(fn ($x) => $x['url'] ?? '', $s['socials'] ?? []))),
             'knowsAbout' => ['Digital marketing', 'Search engine optimisation', 'Answer engine optimisation', 'Generative engine optimisation', 'Google Ads', 'Social media marketing', 'Web design', 'Web development', 'Custom software development', 'Branding'],
         ];

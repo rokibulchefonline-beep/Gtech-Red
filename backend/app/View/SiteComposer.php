@@ -36,6 +36,7 @@ class SiteComposer
                 'gtm' => $safe((string) ($s['tracking']['gtmId'] ?? ''), '/^GTM-[A-Z0-9]+$/'), 'ga4' => $safe((string) ($s['tracking']['ga4Id'] ?? ''), '/^G-[A-Z0-9]+$/'),
                 'pixel' => $safe((string) ($s['tracking']['metaPixelId'] ?? ''), '/^\d{5,20}$/'),
             ],
+            'contact' => \App\Support\Site\Contact::get(),
             'menu' => ServiceGroup::query()->with('items')->orderBy('sort')->get(),
             'industryList' => Industry::query()->orderBy('sort')->get(),
             'budgets' => $s['forms']['budgets'] ?? [],
