@@ -12,7 +12,11 @@ class EditCaseStudy extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        return [Actions\DeleteAction::make()];
+        return [
+            Actions\Action::make('history')->label('Version history')->icon('heroicon-o-clock')->color('gray')
+                ->url(fn () => \App\Filament\Admin\Pages\VersionHistory::urlFor($this->record)),
+            Actions\DeleteAction::make(),
+        ];
     }
 
     protected function mutateFormDataBeforeFill(array $data): array

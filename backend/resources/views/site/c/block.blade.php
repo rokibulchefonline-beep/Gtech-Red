@@ -65,7 +65,7 @@
 </div></section>
 @break
 @case('cases')
-@php($docs = $R::caseStudiesFor($slug, 6))
+@php($docs = ($s['service'] ?? '') === '*' ? $R::caseStudies(6) : $R::caseStudiesFor(($s['service'] ?? '') ?: $slug, 6))
 @if ($docs->count())
 <section id="{{ $s['id'] }}" class="sp-sec cases"><div class="wrap">
 @include('site.c.head', ['heading' => $s['heading'], 'intro' => $s['intro'] ?? null])

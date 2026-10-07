@@ -27,6 +27,12 @@ class Repo
 
     public static function flush(): void { self::$memo = []; }
 
+    /** Uses this copy of a page for the rest of the request (the panel's preview of unsaved changes). */
+    public static function put(Page $p): void
+    {
+        self::$memo["page:{$p->key}"] = $p;
+    }
+
     public static function page(string $key): ?Page
     {
         return self::once("page:$key", fn () => Page::query()->find($key));

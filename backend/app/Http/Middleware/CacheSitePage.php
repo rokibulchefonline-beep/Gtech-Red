@@ -18,6 +18,10 @@ class CacheSitePage
 {
     public function handle(Request $request, Closure $next): Response
     {
+        // Pages scheduled in the panel go live on the first visit after their time (the scheduler does it too).
+        if (\Illuminate\Support\Facades\Cache::add('pages:due-check', 1, 20)) {
+            try { \App\Models\Page::publishDue(); } catch (\Throwable $e) { report($e); }
+        }
         $query = $request->query();
         $cacheable = PageCache::enabled() && $request->isMethod('GET') && (! $query || array_keys($query) === ['category']);
         if (! $cacheable) return $this->finish($request, $next($request), false);

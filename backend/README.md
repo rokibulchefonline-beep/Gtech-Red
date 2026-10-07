@@ -165,6 +165,21 @@ All page addresses stay the same, so no redirects are needed beyond the old ones
 
 ## Admin panel notes
 
+- **Pages (page builder):**
+  - *Service, industry and landing pages* are built from sections: **Add a section** picks from the library (text,
+    image and text, cards, features, steps, table, results in numbers, impact, reviews, case studies, industries,
+    client logos); sections can be moved, copied and removed. The home, about, contact, hub and legal pages keep their
+    designed layout, so you edit their words and images.
+  - *New landing pages*: **New landing page** at any free address (e.g. `/free-seo-audit`), blank or copied from an
+    existing page. They start unpublished, appear in the sitemap once published, and can be hidden from search engines.
+  - *Drafts*: **Save draft** keeps changes off the website; **Preview** shows the unsaved page at desktop, tablet and
+    phone width; **Publish changes** puts them live, or **Schedule** publishes them at a set time. People without the
+    "Publish" permission can only save drafts.
+  - *Version history* (pages, blog posts, case studies): every published version is kept (the last 60). Compare any
+    version with the current one, word by word, and restore it (a page is restored into its draft).
+- **Scheduled tasks:** scheduled pages are also published by the scheduler (`php artisan schedule:run` every minute,
+  see Leads below), and on the first visit after their time even without it.
+
 - **Leads (CRM):**
   - *Assigned to*: the owner gets an email with the lead. People without "See everyone's leads" (the Sales role)
     see only their own leads, everywhere in the panel.

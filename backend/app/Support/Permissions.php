@@ -6,7 +6,7 @@ namespace App\Support;
 class Permissions
 {
     public const SECTIONS = [
-        'pages' => ['label' => 'Pages', 'hint' => 'Home, services, industries and other page copy', 'actions' => ['view' => 'View', 'edit' => 'Edit']],
+        'pages' => ['label' => 'Pages', 'hint' => 'Without "Publish" a user can only save drafts for someone else to publish.', 'actions' => ['view' => 'View', 'create' => 'Create landing pages', 'edit' => 'Edit', 'publish' => 'Publish', 'delete' => 'Delete landing pages']],
         'posts' => ['label' => 'Blog posts', 'hint' => 'Without "Edit any" a user edits only their own posts. Without "Publish" they can only save drafts.', 'actions' => ['view' => 'View', 'create' => 'Write', 'edit' => 'Edit any', 'publish' => 'Publish', 'delete' => 'Delete']],
         'case_studies' => ['label' => 'Case studies', 'actions' => ['view' => 'View', 'create' => 'Create', 'edit' => 'Edit', 'delete' => 'Delete']],
         'media' => ['label' => 'Media library', 'actions' => ['view' => 'View', 'create' => 'Upload', 'delete' => 'Delete']],
@@ -41,7 +41,7 @@ class Permissions
             'admin' => ['name' => 'Admin', 'description' => 'Everything except users and roles.', 'perms' => self::sections(array_diff(array_keys(self::SECTIONS), ['users']))],
             'editor' => ['name' => 'Editor', 'description' => 'All website content.', 'perms' => self::sections($content)],
             'author' => ['name' => 'Author', 'description' => 'Writes blog posts as drafts for an editor to publish.', 'perms' => ['posts.view', 'posts.create', 'media.view', 'media.create']],
-            'seo' => ['name' => 'SEO manager', 'description' => 'SEO fields, redirects, page copy and analytics.', 'perms' => [...self::sections(['seo']), 'pages.view', 'pages.edit', 'posts.view', 'posts.edit', 'case_studies.view', 'analytics.view']],
+            'seo' => ['name' => 'SEO manager', 'description' => 'SEO fields, redirects, page copy and analytics.', 'perms' => [...self::sections(['seo']), 'pages.view', 'pages.edit', 'pages.publish', 'posts.view', 'posts.edit', 'case_studies.view', 'analytics.view']],
             'sales_manager' => ['name' => 'Sales manager', 'description' => 'All leads and subscribers, with exports and analytics.', 'perms' => [...self::sections(['leads', 'subscribers']), 'analytics.view']],
             'sales' => ['name' => 'Sales', 'description' => 'Works the leads assigned to them.', 'perms' => ['leads.view', 'leads.edit']],
             'viewer' => ['name' => 'Viewer', 'description' => 'Read-only access to content, leads and analytics.', 'perms' => [...self::sections(array_keys(self::SECTIONS), ['view']), 'leads.all']],

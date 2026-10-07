@@ -50,13 +50,15 @@ class PageCache
 
     /**
      * How long a page may be kept: the configured time, but never past the moment the next scheduled blog post
-     * goes live (that changes the blog list, the post page and the sitemap without anyone saving anything).
+     * goes live, or a page scheduled in the panel is published (that changes the blog list, the post page and the sitemap without anyone saving anything).
      */
     public static function ttl(): int
     {
         $ttl = (int) config('gtech.page_cache.ttl');
-        $next = self::store()->remember('site-page:next-scheduled:'.self::version(), 300, fn () => Post::query()
-            ->where('status', 'scheduled')->where('date', '>', now())->min('date'));
+        $next = self::store()->remember('site-page:next-scheduled:'.self::version(), 300, fn () => collect([
+            Post::query()->where('status', 'scheduled')->where('date', '>', now())->min('date'),
+            \App\Models\Page::query()->where('publish_at', '>', now())->min('publish_at'),
+        ])->filter()->min());
         if ($next) $ttl = min($ttl, max(1, now()->diffInSeconds(\Illuminate\Support\Carbon::parse($next), false)));
         return max(1, (int) $ttl);
     }

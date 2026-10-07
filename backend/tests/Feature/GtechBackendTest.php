@@ -84,26 +84,47 @@ class GtechBackendTest extends TestCase
         $this->assertSame(6, Post::count());
     }
 
-    public function test_page_editor_round_trip_keeps_layout_and_saves_edits(): void
+    public function test_page_builder_round_trip_keeps_every_page_unchanged(): void
     {
         Artisan::call('gtech:seed-content');
+        foreach (Page::query()->whereIn('kind', Page::BUILDER_KINDS)->get() as $rec) {
+            $state = Resources\PageResource::beforeFill($rec->attributesToArray());
+            $out = Resources\PageResource::beforeSave($state, $rec);
+            $this->assertEquals($rec->sections, $out['sections'], "Sections of {$rec->key} changed on a save without edits");
+            $this->assertEquals($rec->hero, $out['hero'], "Hero of {$rec->key} changed");
+            $this->assertEquals($rec->faqs, $out['faqs'], "FAQs of {$rec->key} changed");
+            $this->assertEquals((array) $rec->related, $out['related']);
+        }
+
+        // An edit lands where it should, and a moved section keeps its id.
         $rec = Page::find('service~local-seo');
+        $state = Resources\PageResource::beforeFill($rec->attributesToArray());
+        $keys = array_keys($state['sections']);
+        $state['sections'][$keys[1]]['data']['heading'] = 'New [[heading]]';
+        $state['sections'] = [$keys[1] => $state['sections'][$keys[1]]] + $state['sections'];
+        $out = Resources\PageResource::beforeSave($state, $rec);
+        $this->assertSame('New [[heading]]', $out['sections'][0]['heading']);
+        $this->assertSame($rec->sections[1]['id'], $out['sections'][0]['id']);
+        $this->assertCount(count($rec->sections), $out['sections']);
+    }
+
+    public function test_fixed_layout_editor_round_trip_keeps_layout_and_saves_edits(): void
+    {
+        Artisan::call('gtech:seed-content');
+        $rec = Page::find('page~about');
         $before = $rec->sections;
         $state = Resources\PageResource::beforeFill($rec->toArray());
         $this->assertNotEmpty($state['hero']['h1']);
-        $state['hero']['h1'] = 'Local SEO [[That Works]]';
+        $state['hero']['h1'] = 'About [[Us]]';
         $state['secs'][0]['heading'] = 'New [[heading]]';
         $out = Resources\PageResource::beforeSave($state, $rec);
-        $this->assertSame('Local SEO [[That Works]]', $out['hero']['h1']);
+        $this->assertSame('About [[Us]]', $out['hero']['h1']);
         $i = $state['secs'][0]['idx'];
         $this->assertSame('New [[heading]]', $out['sections'][$i]['heading']);
-        $this->assertSame($before[$i]['type'], $out['sections'][$i]['type']);
+        $this->assertSame($before[$i]['type'] ?? null, $out['sections'][$i]['type'] ?? null);
         $this->assertCount(count($before), $out['sections']);
-        foreach ($before as $k => $sec) {
-            foreach (['image', 'icon', 'cards', 'steps'] as $f) if (isset($sec[$f]) && $f !== 'cards' && $f !== 'steps') $this->assertSame($sec[$f], $out['sections'][$k][$f]);
-            foreach (['cards', 'steps'] as $f) if (isset($sec[$f])) $this->assertSame(array_column($sec[$f], 'icon'), array_column($out['sections'][$k][$f], 'icon'));
-        }
-        $this->assertTrue(Resources\PageResource::restore($rec->fill($out)));
+        $this->assertTrue(Resources\PageResource::restore($rec));
+        $this->assertTrue($rec->fresh()->hasDraft());
     }
 
     public function test_old_page_edits_are_merged_into_pages_and_served_to_the_website(): void

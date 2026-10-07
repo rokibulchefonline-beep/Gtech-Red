@@ -33,7 +33,13 @@ Route::middleware([\App\Http\Middleware\RecordBotHits::class, CacheSitePage::cla
     foreach (['terms', 'privacy-policy', 'cookie-policy'] as $legal) {
         Route::get("/$legal", [PageController::class, 'legal'])->defaults('slug', $legal);
     }
+    // Landing pages made in the panel (/<slug>). A fallback route, so every other address in the app wins.
+    Route::fallback([PageController::class, 'landing']);
 });
+
+// The panel's preview of unsaved page changes (signed-in staff only).
+Route::get('/preview/page/{token}', [\App\Http\Controllers\Site\PreviewController::class, 'show'])->where('token', '[A-Za-z0-9]{40}');
+Route::get('/preview/page/{token}/frame', [\App\Http\Controllers\Site\PreviewController::class, 'frame'])->where('token', '[A-Za-z0-9]{40}');
 
 Route::withoutMiddleware($noSession)->group(function () {
     Route::get('/sitemap.xml', [SeoController::class, 'sitemap']);
