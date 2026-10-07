@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
             \Livewire\Livewire::component($name, $class);
         }
 
+        \App\Models\Lead::observe(\App\Observers\LeadObserver::class);
+
         Auth::provider('legacy-eloquent', fn ($app, array $config) => new LegacyAwareUserProvider($app['hash'], $config['model']));
 
         // Public website (Blade): shared data and the same helpers the React site used.

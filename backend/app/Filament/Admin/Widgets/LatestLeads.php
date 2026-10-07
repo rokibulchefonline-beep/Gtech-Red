@@ -10,7 +10,7 @@ use Filament\Widgets\TableWidget;
 
 class LatestLeads extends TableWidget
 {
-    protected static ?int $sort = 2;
+    protected static ?int $sort = 3;
     protected int|string|array $columnSpan = 'full';
     protected static ?string $heading = 'Latest leads';
 
@@ -21,11 +21,12 @@ class LatestLeads extends TableWidget
 
     public function table(Table $table): Table
     {
-        return $table->query(Lead::query()->latest()->limit(6))->paginated(false)->columns([
+        return $table->query(Lead::query()->visibleTo(auth()->user())->with('owner')->latest()->limit(6))->paginated(false)->columns([
             Tables\Columns\TextColumn::make('name')->description(fn (Lead $r) => $r->business),
             Tables\Columns\TextColumn::make('service'),
-            Tables\Columns\TextColumn::make('status')->badge(),
+            Tables\Columns\TextColumn::make('status')->badge()->formatStateUsing(fn (string $state) => Lead::STATUSES[$state] ?? $state),
+            Tables\Columns\TextColumn::make('owner.name')->label('Assigned to')->placeholder('Nobody')->visibleFrom('md'),
             Tables\Columns\TextColumn::make('created_at')->since()->label('Received'),
-        ])->recordUrl(fn (Lead $r) => LeadResource::getUrl('edit', ['record' => $r]));
+        ])->recordUrl(fn (Lead $r) => LeadResource::getUrl(LeadResource::canEdit($r) ? 'edit' : 'view', ['record' => $r]));
     }
 }

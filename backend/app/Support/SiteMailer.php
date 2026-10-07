@@ -54,7 +54,8 @@ class SiteMailer
         $s = Setting::all_();
         $e = fn ($v) => e((string) $v);
         $rows = collect(['Name' => $lead->name, 'Business' => $lead->business, 'Email' => $lead->email, 'Phone' => $lead->phone, 'Service' => $lead->service,
-            'Budget' => $lead->budget, 'Website' => $lead->website, 'Message' => $lead->message])
+            'Budget' => $lead->budget, 'Website' => $lead->website, 'Message' => $lead->message,
+            'Came from' => $lead->originLabel().($lead->utm_campaign ? " · campaign {$lead->utm_campaign}" : ''), 'Landing page' => $lead->landing_path, 'Assigned to' => $lead->owner?->name])
             ->filter()->map(fn ($v, $k) => "<tr><td style=\"padding:6px 12px 6px 0;color:#666\">$k</td><td style=\"padding:6px 0\"><b>{$e($v)}</b></td></tr>")->implode('');
         $to = $s['smtp']['notifyTo'] ?: ($s['contact']['email'] ?? '');
         if ($to) self::send($to, "New lead: {$lead->name} ({$lead->service})", "<table>$rows</table>", $lead->email);

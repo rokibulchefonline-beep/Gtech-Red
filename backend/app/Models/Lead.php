@@ -2,19 +2,65 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Lead extends Model
 {
     use \App\Models\Concerns\BlankNotNull;
 
+    public const STATUSES = ['new' => 'New', 'contacted' => 'Contacted', 'qualified' => 'Qualified', 'won' => 'Won', 'lost' => 'Lost'];
+
+    /** Statuses that need no more follow-up. */
+    public const CLOSED = ['won', 'lost'];
+
     protected $table = 'leads';
 
-    protected $fillable = ['legacy_id','name','business','email','phone','service','budget','designation','company_size','website','postcode','message','source','status','notes','assignee','value'];
+    protected $fillable = ['legacy_id','name','business','email','phone','service','budget','designation','company_size','website','postcode','message','source','status','notes','assignee','value',
+        'assigned_to','next_action_at','next_action','channel','origin','landing_path','form_path','utm_campaign'];
 
     protected function casts(): array
     {
-        return ['value'=>'decimal:2'];
+        return ['value' => 'decimal:2', 'next_action_at' => 'datetime', 'first_contacted_at' => 'datetime'];
+    }
+
+    public function owner() { return $this->belongsTo(User::class, 'assigned_to'); }
+    public function activities() { return $this->hasMany(LeadActivity::class)->latest('created_at')->latest('id'); }
+
+    /** Leads a user may see: everyone's with "See everyone's leads", otherwise only the ones assigned to them. */
+    public function scopeVisibleTo(Builder $q, ?User $user): Builder
+    {
+        if (! $user) return $q->whereRaw('1 = 0');
+        return $user->hasPerm('leads.all') ? $q : $q->where('assigned_to', $user->id);
+    }
+
+    /** Open leads whose follow-up date has passed (or is today, with $includeToday). */
+    public function scopeDue(Builder $q, bool $includeToday = true): Builder
+    {
+        return $q->whereNotIn('status', self::CLOSED)->whereNotNull('next_action_at')
+            ->where('next_action_at', '<', $includeToday ? now()->endOfDay() : now()->startOfDay());
+    }
+
+    public function isOverdue(): bool
+    {
+        return $this->next_action_at && ! in_array($this->status, self::CLOSED, true) && $this->next_action_at->lt(now()->startOfDay());
+    }
+
+    /** "Google (Search)", "ChatGPT (AI assistant)", "Direct". */
+    public function originLabel(): string
+    {
+        if (! $this->channel) return '';
+        $ch = $this->channel === 'AI' ? 'AI assistant' : $this->channel;
+        return $this->origin && $this->origin !== $this->channel ? "{$this->origin} ($ch)" : $ch;
+    }
+
+    public function log(string $type, string $body = '', ?int $userId = null, ?\DateTimeInterface $at = null): LeadActivity
+    {
+        $a = new LeadActivity(['type' => $type, 'body' => $body, 'user_id' => $userId ?? auth()->id()]);
+        $a->lead_id = $this->id;
+        if ($at) $a->created_at = $at;
+        $a->save();
+        return $a;
     }
 
     /** Phone number for tel: and WhatsApp links: digits only, UK numbers starting with 0 written with +44. */

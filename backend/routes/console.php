@@ -6,3 +6,6 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+// Needs the server's cron to run "php artisan schedule:run" every minute (see README).
+\Illuminate\Support\Facades\Schedule::command('leads:remind')->weekdays()->at('08:00')->timezone('Europe/London');

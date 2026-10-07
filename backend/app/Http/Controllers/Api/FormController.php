@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Lead;
 use App\Models\Setting;
 use App\Models\Subscriber;
+use App\Support\Crm\LeadRouting;
 use App\Support\SiteMailer;
 use Illuminate\Http\Request;
 
@@ -25,20 +26,27 @@ class FormController extends Controller
         $bad = ! $name || ! $business || ! $phone || ! $service || ! filter_var($email, FILTER_VALIDATE_EMAIL) || ($v('source') !== 'inquiry' && ! $v('budget'));
         if ($bad) return response()->json(['ok' => false, 'error' => 'Fill all required fields with a valid email.'], 400);
 
+        // Where the lead came from: the website visit (analytics) it belongs to, and the page the form was on.
+        $sid = $v('sid');
+        $visit = preg_match('/^[a-f0-9]{32}$/', $sid) ? \App\Models\AnalyticsVisit::query()->where('sid', $sid)->first() : null;
+        $formPath = (string) parse_url((string) $r->headers->get('referer'), PHP_URL_PATH);
+
         $lead = Lead::create([
             'name' => mb_substr($name, 0, 120), 'business' => mb_substr($business, 0, 160), 'email' => mb_substr($email, 0, 160), 'phone' => mb_substr($phone, 0, 40),
             'service' => mb_substr($service, 0, 120), 'budget' => mb_substr($v('budget'), 0, 60), 'designation' => mb_substr($v('designation'), 0, 80),
             'company_size' => mb_substr($v('size'), 0, 40), 'website' => mb_substr($v('website'), 0, 200), 'postcode' => mb_substr($v('postcode'), 0, 20),
             'message' => mb_substr($v('message'), 0, 3000), 'source' => $v('source') ?: 'contact', 'status' => 'new', 'notes' => '', 'assignee' => '',
+            'channel' => $visit->channel ?? '', 'origin' => mb_substr($visit->source ?? '', 0, 80), 'landing_path' => mb_substr($visit->landing_path ?? '', 0, 300),
+            'utm_campaign' => mb_substr($visit->utm_campaign ?? '', 0, 120), 'form_path' => mb_substr($formPath, 0, 300),
+            'assigned_to' => LeadRouting::pickOwner(),
         ]);
 
-        // Link the lead to the website visit it came from (analytics: leads by source and landing page).
-        $sid = $v('sid');
-        if (preg_match('/^[a-f0-9]{32}$/', $sid) && ($visit = \App\Models\AnalyticsVisit::query()->where('sid', $sid)->first())) {
+        if ($visit) {
             $lead->forceFill(['visit_id' => $visit->id])->saveQuietly();
             if (! $visit->lead_id) $visit->forceFill(['lead_id' => $lead->id])->save();
         }
 
+        try { LeadRouting::alert($lead); } catch (\Throwable $e) { report($e); }
         // Email is best effort: the lead is already saved.
         try { SiteMailer::newLead($lead); } catch (\Throwable $e) { report($e); }
         return response()->json(['ok' => true]);

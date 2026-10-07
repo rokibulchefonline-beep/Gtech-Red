@@ -12,7 +12,7 @@ class Permissions
         'media' => ['label' => 'Media library', 'actions' => ['view' => 'View', 'create' => 'Upload', 'delete' => 'Delete']],
         'seo' => ['label' => 'SEO and redirects', 'hint' => 'SEO overrides, keyword map and redirects', 'actions' => ['view' => 'View', 'create' => 'Create', 'edit' => 'Edit', 'delete' => 'Delete']],
         'structure' => ['label' => 'Site structure', 'hint' => 'Services menu, industries, numbers, testimonials, logos, categories', 'actions' => ['view' => 'View', 'create' => 'Create', 'edit' => 'Edit', 'delete' => 'Delete']],
-        'leads' => ['label' => 'Leads', 'actions' => ['view' => 'View', 'edit' => 'Update', 'delete' => 'Delete', 'export' => 'Export CSV']],
+        'leads' => ['label' => 'Leads', 'hint' => 'Without "See everyone\'s" a user sees only the leads assigned to them.', 'actions' => ['view' => 'View', 'all' => 'See everyone\'s', 'edit' => 'Update', 'assign' => 'Assign', 'delete' => 'Delete', 'export' => 'Export CSV']],
         'subscribers' => ['label' => 'Newsletter subscribers', 'actions' => ['view' => 'View', 'delete' => 'Delete', 'export' => 'Export CSV']],
         'analytics' => ['label' => 'Analytics', 'actions' => ['view' => 'View']],
         'settings' => ['label' => 'Site settings', 'hint' => 'Contact details, tracking codes, email (SMTP)', 'actions' => ['view' => 'View', 'edit' => 'Edit']],
@@ -27,7 +27,7 @@ class Permissions
         return $out;
     }
 
-    private static function sections(array $sections, array $actions = ['view', 'create', 'edit', 'publish', 'delete', 'export', 'manage']): array
+    private static function sections(array $sections, array $actions = ['view', 'all', 'create', 'edit', 'assign', 'publish', 'delete', 'export', 'manage']): array
     {
         return array_values(array_filter(self::all(), fn ($p) => in_array(strtok($p, '.'), $sections, true) && in_array(substr($p, strpos($p, '.') + 1), $actions, true)));
     }
@@ -43,8 +43,8 @@ class Permissions
             'author' => ['name' => 'Author', 'description' => 'Writes blog posts as drafts for an editor to publish.', 'perms' => ['posts.view', 'posts.create', 'media.view', 'media.create']],
             'seo' => ['name' => 'SEO manager', 'description' => 'SEO fields, redirects, page copy and analytics.', 'perms' => [...self::sections(['seo']), 'pages.view', 'pages.edit', 'posts.view', 'posts.edit', 'case_studies.view', 'analytics.view']],
             'sales_manager' => ['name' => 'Sales manager', 'description' => 'All leads and subscribers, with exports and analytics.', 'perms' => [...self::sections(['leads', 'subscribers']), 'analytics.view']],
-            'sales' => ['name' => 'Sales', 'description' => 'Works the leads.', 'perms' => ['leads.view', 'leads.edit']],
-            'viewer' => ['name' => 'Viewer', 'description' => 'Read-only access to content, leads and analytics.', 'perms' => self::sections(array_keys(self::SECTIONS), ['view'])],
+            'sales' => ['name' => 'Sales', 'description' => 'Works the leads assigned to them.', 'perms' => ['leads.view', 'leads.edit']],
+            'viewer' => ['name' => 'Viewer', 'description' => 'Read-only access to content, leads and analytics.', 'perms' => [...self::sections(array_keys(self::SECTIONS), ['view']), 'leads.all']],
         ];
     }
 

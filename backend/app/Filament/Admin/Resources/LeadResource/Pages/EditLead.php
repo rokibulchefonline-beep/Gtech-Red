@@ -24,6 +24,14 @@ class EditLead extends EditRecord
         ];
     }
 
+    /** The timeline can change the status and follow-up (logging a call, say): show the new values. */
+    #[\Livewire\Attributes\On('refresh-lead-form')]
+    public function refreshLead(): void
+    {
+        $this->record->refresh();
+        $this->refreshFormData(['status', 'next_action_at', 'next_action']);
+    }
+
     public function getTitle(): string
     {
         return 'Lead: '.$this->record->name;

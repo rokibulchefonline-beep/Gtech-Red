@@ -83,6 +83,18 @@ class Settings extends Page implements HasForms
                     Forms\Components\TextInput::make('smtp.notifyTo')->label('Send lead alerts to')->email()->maxLength(160),
                     Forms\Components\Toggle::make('smtp.autoReply')->label('Send an automatic reply to the person who enquired'),
                 ])->columns(2),
+                Forms\Components\Tabs\Tab::make('Leads')->schema([
+                    Forms\Components\Radio::make('leads.autoAssign')->label('Assign new enquiries')
+                        ->options(['off' => 'No, someone assigns them by hand', 'round_robin' => 'Automatically, taking turns between the people below'])->default('off')->live(),
+                    Forms\Components\CheckboxList::make('leads.assignees')->label('Take turns between')->columns(2)
+                        ->options(fn () => \App\Filament\Admin\Resources\LeadResource::ownerOptions())
+                        ->visible(fn ($get) => $get('leads.autoAssign') === 'round_robin')
+                        ->helperText('Each person gets an email when a lead is assigned to them. Deactivated users are skipped.'),
+                    Forms\Components\TextInput::make('leads.webhook')->label('Chat alert webhook (optional)')->url()->maxLength(500)
+                        ->rule(fn () => fn ($attr, $v, $fail) => $v && ! \App\Support\Crm\LeadRouting::validWebhook((string) $v) ? $fail('Use the https:// webhook address from Slack, Google Chat or Microsoft Teams.') : null)
+                        ->helperText('Posts every new lead to a Slack, Google Chat or Microsoft Teams channel. Create an "incoming webhook" in that app and paste its address here.'),
+                    Forms\Components\Toggle::make('leads.reminders')->label('Email each person their due follow-ups every weekday morning'),
+                ]),
                 Forms\Components\Tabs\Tab::make('Security')->schema([
                     Forms\Components\Radio::make('security.require2fa')->label('Require two-factor sign-in')
                         ->options(['off' => 'No, people choose for themselves (in My account)', 'managers' => 'For people who can manage users (recommended at least)', 'everyone' => 'For everyone'])

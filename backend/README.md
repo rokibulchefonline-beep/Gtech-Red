@@ -16,7 +16,7 @@ Visitors ──> Next.js website (Cloudflare) ──reads at build──> Larave
 |---|---|
 | **Website content** | Pages (edit the copy of every service, industry and main page, with `[[red]]` heading highlights), case studies, SEO overrides, partner badges, client logos and the media library |
 | **Blog** | Posts (rich-text editor, featured image, SEO fields, scheduling) and categories |
-| **Leads** | Form enquiries (status, notes, deal value, CSV export) and newsletter subscribers (CSV export) |
+| **Leads** | Form enquiries with owner, follow-up date, timeline and source; newsletter subscribers (CSV export) |
 | **Settings** | Site settings (contact details, tracking IDs, SMTP email with a test button, deploy hook), users and roles |
 | **Dashboard** | Stats, latest leads and the **Publish site** button |
 
@@ -164,6 +164,21 @@ All page addresses stay the same, so no redirects are needed beyond the old ones
   on. Run `php artisan optimize:clear` before editing `.env` on the server.
 
 ## Admin panel notes
+
+- **Leads (CRM):**
+  - *Assigned to*: the owner gets an email with the lead. People without "See everyone's leads" (the Sales role)
+    see only their own leads, everywhere in the panel.
+  - *Timeline*: **Log activity** records a call, email, meeting or note, and can set the next follow-up in the same
+    step. Logging a call, email or meeting moves a "New" lead to "Contacted" and records the first-response time.
+    Status, owner, follow-up and deal value changes are added automatically.
+  - *Follow-ups*: the dashboard's **My follow-ups** lists what is due today or overdue, new leads assigned to you and
+    new leads nobody has taken. The leads list filters by owner, follow-up and source.
+  - *Source*: each lead records where the visitor came from (Google, ChatGPT, a campaign...), the landing page and
+    the page the form was on.
+  - **Site settings → Leads**: assign new enquiries automatically (taking turns), post them to a Slack, Google Chat
+    or Teams channel, and turn the morning reminder email on or off.
+  - The morning reminder (weekdays at 8am UK time) needs Laravel's scheduler: add a cron job (in Plesk: Scheduled
+    tasks) that runs every minute: `cd /path/to/backend && php artisan schedule:run`.
 
 - **Emails** (password reset, lead alerts, auto-replies) are sent with the SMTP account in **Site settings → Email**
   and go out straight away (`QUEUE_CONNECTION=sync`). If you prefer a background queue, set `QUEUE_CONNECTION=database`

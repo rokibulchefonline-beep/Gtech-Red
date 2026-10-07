@@ -32,6 +32,8 @@ class Setting extends Model
         'company' => ['legalName' => '', 'number' => '', 'address' => '', 'ico' => ''],
         // Two-factor sign-in: off, managers (people who can manage users) or everyone.
         'security' => ['require2fa' => 'off'],
+        // New enquiries: automatic assignment (off or round_robin over the chosen user ids) and a chat webhook.
+        'leads' => ['autoAssign' => 'off', 'assignees' => [], 'webhook' => '', 'reminders' => true],
     ];
 
     /** All groups merged over the defaults. */
