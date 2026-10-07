@@ -47,16 +47,27 @@ if ($firstRun) {
     Run 'php' @('artisan', 'gtech:create-admin')
 }
 
-# A free port from 8000 (an old window may still hold 8000).
-$port = 8000
-while ($port -lt 8020) {
-    try { $l = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, $port); $l.Start(); $l.Stop(); break } catch { $port++ }
+# Something already answering on a port (e.g. this site still running in another window) means it is taken.
+function PortBusy($p) {
+    $c = New-Object System.Net.Sockets.TcpClient
+    try { $c.Connect('127.0.0.1', $p); return $true } catch { } finally { $c.Close() }
+    try { $l = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, $p); $l.Start(); $l.Stop(); return $false } catch { return $true }
 }
-$url = "http://127.0.0.1:$port"
 
-Step "Starting. Admin panel: $url/admin   Website: $url"
 Write-Host 'Keep this window open while you use it. Close it (or press Ctrl+C) to stop.' -ForegroundColor Yellow
-Start-Job -ArgumentList "$url/admin" { param($u) Start-Sleep -Seconds 3; Start-Process $u } | Out-Null   # opens the browser once the server is up
-# PHP's own web server, started directly (php artisan serve fails on some Windows setups).
 Set-Location public
-php -S "127.0.0.1:$port" ..\server.php
+# PHP's own web server, started directly (php artisan serve fails on some Windows setups). If a port cannot be
+# used, the next one is tried.
+for ($port = 8000; $port -lt 8020; $port++) {
+    if (PortBusy $port) { Write-Host "Port $port is in use, trying $($port + 1)..." -ForegroundColor DarkGray; continue }
+    $url = "http://127.0.0.1:$port"
+    Step "Starting. Admin panel: $url/admin   Website: $url"
+    Start-Job -ArgumentList "$url/admin" { param($u) Start-Sleep -Seconds 3; Start-Process $u } | Out-Null   # opens the browser once the server is up
+    $started = Get-Date
+    php -S "127.0.0.1:$port" ..\server.php
+    # A server that stops within a few seconds never started: try the next port. Otherwise it was stopped on purpose.
+    if (((Get-Date) - $started).TotalSeconds -gt 5) { exit 0 }
+    Get-Job | Remove-Job -Force
+    Write-Host "Could not start on port $port, trying $($port + 1)..." -ForegroundColor DarkGray
+}
+Write-Host 'No free port found between 8000 and 8019. Restart the computer and try again.' -ForegroundColor Red
