@@ -20,5 +20,5 @@
 @include('site.c.head', ['heading' => "Services Related to $short"])
 <div class="sp-related">@foreach ($p->related ?? [] as $r)@php($it = $R::item($r)['item'] ?? null)@if ($it)@include('site.c.rel-card')@endif @endforeach</div>
 </div></section>
-@include('site.c.inquiry')
+@include('site.c.inquiry', ['compact' => true, 'service' => $name])
 @endsection

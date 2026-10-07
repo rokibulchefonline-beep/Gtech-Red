@@ -996,3 +996,18 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 .sp-feat>div>.btn{display:inline-block}
 .sp-split-head h2+.sp-eyebrow,.sp-split-head .sp-eyebrow+h2{margin-top:12px}
 @media(max-width:600px){.sp-head{margin-bottom:28px}.sp-media-copy .sp-head,.sp-feat .sp-head{margin-bottom:14px}.sp-media-copy .sp-media-cta,.sp-feat>div>.btn{margin-top:22px}}
+
+/* Compact "Get a free proposal" band on service pages: shorter, fields side by side. */
+.iq-compact{padding:56px 0}
+.iq-compact .iq-grid{grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:48px}
+.iq-compact h2{font-size:clamp(26px,3vw,36px)}
+.iq-compact .iq-rule{margin:14px 0 18px}
+.iq-compact .iq-copy>p:not(.iq-eyebrow){margin:0;font-size:15.5px}
+.iq-compact .iq-form>.alert[hidden]{display:none}
+.iq-compact .iq-form{padding:22px;display:grid;grid-template-columns:1fr 1fr;column-gap:12px}
+.iq-compact .iq-form>.alert,.iq-compact .iq-form>.iq-wide,.iq-compact .iq-form>.cf-turnstile,.iq-compact .iq-form>button,.iq-compact .iq-form>p,.iq-compact .iq-form>small{grid-column:1/-1}
+.iq-compact .iq-field{margin-bottom:12px}
+.iq-compact .iq-field input:not(.hp),.iq-compact .iq-field select{height:46px}
+.iq-compact .iq-submit{margin-top:2px;padding:13px 24px}
+@media(max-width:1000px){.iq-compact .iq-grid{grid-template-columns:1fr;gap:24px}}
+@media(max-width:560px){.iq-compact{padding:44px 0}.iq-compact .iq-form{grid-template-columns:1fr;padding:18px}}

@@ -131,7 +131,8 @@ class Repo
     public static function ctaLabel(string $slug, string $name, string $id): string
     {
         if ($slug === 'about') return 'Work With Us';
-        $opts = ["Get a Free $name Audit", "Talk to Our $name Team", "Get a $name Quote"];
+        // Short labels: the service is already clear from the page.
+        $opts = ['Get a Free Audit', 'Talk to Our Team', 'Get a Quote'];
         return $opts[array_sum(array_map('ord', str_split($id))) % 3];
     }
 
