@@ -6,6 +6,35 @@
   var d = document;
   var reduced = function () { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; };
 
+  // ---- Analytics: first-party page views, no cookies ---------------------------------------------------
+  // The visit id lives only in this tab (sessionStorage). Staff browsers (anyone who opened the admin panel) are not counted.
+  var sid = '';
+  (function () {
+    var staff = false;
+    try { staff = localStorage.getItem('gt_staff') === '1'; } catch (e) {}
+    try { sid = sessionStorage.getItem('gt_sid') || ''; } catch (e) {}
+    if (!/^[a-f0-9]{32}$/.test(sid)) {
+      var b = new Uint8Array(16); (window.crypto || window.msCrypto).getRandomValues(b);
+      sid = Array.prototype.map.call(b, function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
+      try { sessionStorage.setItem('gt_sid', sid); } catch (e) {}
+    }
+    if (staff || !window.fetch) return;
+    var pv = 0, shown = Date.now(), total = 0;
+    fetch('/api/t', { method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
+      body: JSON.stringify({ sid: sid, p: location.pathname, r: document.referrer, q: location.search }) })
+      .then(function (r) { return r.status === 200 ? r.json() : null; }).then(function (j) { if (j && j.pv) pv = j.pv; }).catch(function () {});
+    var send = function () {
+      if (!pv) return;
+      var sec = Math.round((total + (shown ? Date.now() - shown : 0)) / 1000);
+      var body = JSON.stringify({ sid: sid, pv: pv, sec: sec });
+      if (navigator.sendBeacon) navigator.sendBeacon('/api/t', body); else fetch('/api/t', { method: 'POST', body: body, keepalive: true });
+    };
+    d.addEventListener('visibilitychange', function () {
+      if (d.visibilityState === 'hidden') { if (shown) { total += Date.now() - shown; shown = 0; } send(); } else shown = Date.now();
+    });
+    window.addEventListener('pagehide', send);
+  })();
+
   // ---- Header: hover menus on desktop (with a short close delay), tap to toggle on mobile -------------
   var nav = d.querySelector('.nav'), burger = d.querySelector('.burger'), timer = null;
   var desktop = function () { return window.matchMedia('(min-width: 901px)').matches; };
@@ -38,6 +67,7 @@
       var btn = form.querySelector('.iq-submit'), alert = form.querySelector('.alert');
       var data = {}; new FormData(form).forEach(function (v, k) { data[k] = v; });
       if (form.getAttribute('data-form') === 'inquiry') data.source = 'inquiry';
+      if (sid) data.sid = sid; // links the lead to this visit in Analytics
       btn.disabled = true; btn.textContent = 'Sending...';
       var ok = form.getAttribute('data-form') === 'inquiry' ? 'Thank you. Our team will contact you shortly.' : 'Thanks. We will send your proposal within 24 hours.';
       var show = function (good, text) { alert.hidden = false; alert.className = 'alert ' + (good ? 'ok' : 'err'); alert.textContent = text; };

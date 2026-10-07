@@ -50,6 +50,13 @@ class LeadResource extends Resource
                 Forms\Components\Placeholder::make('site')->label('Website / postcode')->content(fn (?Lead $r) => $r ? new HtmlString(trim(
                     ($r->website ? '<a class="text-primary-600 underline" target="_blank" rel="noopener noreferrer" href="'.e(preg_match('#^https?://#i', $r->website) ? $r->website : 'https://'.$r->website).'">'.e($r->website).'</a> ' : '').e($r->postcode)) ?: '-') : ''),
                 Forms\Components\Placeholder::make('msg')->label('Message')->content(fn (?Lead $r) => $r?->message ?: '-')->columnSpanFull(),
+                Forms\Components\Placeholder::make('origin')->label('Came from')->content(function (?Lead $r) {
+                    $v = $r?->visit_id ? \App\Models\AnalyticsVisit::query()->find($r->visit_id) : null;
+                    if (! $v) return 'Not known (sent before analytics, or from a browser that blocks scripts)';
+                    $bits = array_filter([$v->source.($v->channel !== $v->source ? ' ('.($v->channel === 'AI' ? 'AI assistant' : $v->channel).')' : ''),
+                        $v->utm_campaign ? 'campaign "'.$v->utm_campaign.'"' : '', 'landed on '.$v->landing_path, $v->pageviews.' '.str('page')->plural($v->pageviews).' viewed', $v->device]);
+                    return implode(' · ', $bits);
+                })->columnSpanFull(),
                 Forms\Components\Placeholder::make('when')->label('Received')->content(fn (?Lead $r) => $r?->created_at?->format('d M Y, H:i').' via '.$r?->source),
             ])->columns(2),
             Forms\Components\Section::make('Follow-up')->schema([

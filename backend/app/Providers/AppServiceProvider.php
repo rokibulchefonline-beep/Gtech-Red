@@ -24,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer('site.*', SiteComposer::class);
         Blade::directive('icon', fn ($e) => "<?php echo \\App\\Support\\Site\\Icons::svg($e); ?>");
         Blade::directive('hl', fn ($e) => "<?php echo \\App\\Support\\Site\\Hl::html($e); ?>");
+        // Separate rate limits, so page-view reporting can never use up a visitor's allowance for the forms.
+        \Illuminate\Support\Facades\RateLimiter::for('forms', fn ($r) => \Illuminate\Cache\RateLimiting\Limit::perMinute(20)->by('forms|'.$r->ip()));
+        \Illuminate\Support\Facades\RateLimiter::for('track', fn ($r) => \Illuminate\Cache\RateLimiting\Limit::perMinute(300)->by('track|'.$r->ip()));
+
         // Password reset and other notifications are sent with the SMTP account from Site settings > Email.
         \Illuminate\Support\Facades\Event::listen(\Illuminate\Notifications\Events\NotificationSending::class, fn () => \App\Support\SiteMailer::useAsDefault());
 

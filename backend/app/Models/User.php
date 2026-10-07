@@ -16,8 +16,8 @@ class User extends Authenticatable implements FilamentUser
 
     /** Same roles and permissions as the old admin. */
     public const ROLES = [
-        'super_admin' => ['label' => 'Super admin', 'perms' => ['content', 'leads', 'settings', 'users']],
-        'admin' => ['label' => 'Admin', 'perms' => ['content', 'leads', 'settings']],
+        'super_admin' => ['label' => 'Super admin', 'perms' => ['content', 'leads', 'settings', 'users', 'analytics']],
+        'admin' => ['label' => 'Admin', 'perms' => ['content', 'leads', 'settings', 'analytics']],
         'editor' => ['label' => 'Editor', 'perms' => ['content']],
         'sales' => ['label' => 'Sales', 'perms' => ['leads']],
     ];

@@ -32,6 +32,13 @@ class FormController extends Controller
             'message' => mb_substr($v('message'), 0, 3000), 'source' => $v('source') ?: 'contact', 'status' => 'new', 'notes' => '', 'assignee' => '',
         ]);
 
+        // Link the lead to the website visit it came from (analytics: leads by source and landing page).
+        $sid = $v('sid');
+        if (preg_match('/^[a-f0-9]{32}$/', $sid) && ($visit = \App\Models\AnalyticsVisit::query()->where('sid', $sid)->first())) {
+            $lead->forceFill(['visit_id' => $visit->id])->saveQuietly();
+            if (! $visit->lead_id) $visit->forceFill(['lead_id' => $lead->id])->save();
+        }
+
         // Email is best effort: the lead is already saved.
         try { SiteMailer::newLead($lead); } catch (\Throwable $e) { report($e); }
         return response()->json(['ok' => true]);

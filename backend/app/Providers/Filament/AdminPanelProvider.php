@@ -59,9 +59,10 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([Authenticate::class])
-            // On phones and small tablets the menu starts closed, so the page is visible straight away.
+            // On phones and small tablets the menu starts closed, so the page is visible straight away. The gt_staff flag stops
+            // this browser's own visits to the website being counted in Analytics.
             ->renderHook(\Filament\View\PanelsRenderHook::BODY_END, fn () => new \Illuminate\Support\HtmlString(
-                "<script>document.addEventListener('alpine:initialized',function(){if(window.innerWidth<1024&&window.Alpine&&Alpine.store('sidebar'))Alpine.store('sidebar').close()})</script>"
+                "<script>try{localStorage.setItem('gt_staff','1')}catch(e){}document.addEventListener('alpine:initialized',function(){if(window.innerWidth<1024&&window.Alpine&&Alpine.store('sidebar'))Alpine.store('sidebar').close()})</script>"
             ));
     }
 }

@@ -12,7 +12,7 @@ Route::prefix('v1')->group(function () {
     });
 
     // Public forms (called by the website's own API routes or directly by the browser).
-    Route::middleware('throttle:60,1')->group(function () {
+    Route::middleware('throttle:forms')->group(function () {
         Route::post('contact', [FormController::class, 'contact']);
         Route::post('subscribe', [FormController::class, 'subscribe']);
     });
@@ -20,7 +20,10 @@ Route::prefix('v1')->group(function () {
 });
 
 // Same addresses the website forms already use, so the Blade pages post exactly like the Next.js ones.
-Route::middleware('throttle:60,1')->group(function () {
+Route::middleware('throttle:forms')->group(function () {
     Route::post('contact', [FormController::class, 'contact']);
     Route::post('subscribe', [FormController::class, 'subscribe']);
 });
+
+// Website analytics (page views and time on page from public/js/site.js).
+Route::post('t', \App\Http\Controllers\Api\TrackController::class)->middleware('throttle:track');

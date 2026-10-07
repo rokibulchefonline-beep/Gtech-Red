@@ -18,7 +18,7 @@ Route::view('/blade-preview', 'site.preview');
 // Public pages need no session or cookies (forms post to the API), so those middleware are left out: no
 // Set-Cookie headers, no session rows, and the pages can be cached by browsers and CDNs.
 $noSession = [StartSession::class, ShareErrorsFromSession::class, ValidateCsrfToken::class, AddQueuedCookiesToResponse::class, EncryptCookies::class];
-Route::middleware([CacheSitePage::class, MinifySiteHtml::class])->withoutMiddleware($noSession)->group(function () {
+Route::middleware([\App\Http\Middleware\RecordBotHits::class, CacheSitePage::class, MinifySiteHtml::class])->withoutMiddleware($noSession)->group(function () {
     Route::get('/', [PageController::class, 'main'])->defaults('slug', 'home');
     Route::get('/services/{slug}', [PageController::class, 'service'])->where('slug', '[a-z0-9-]+');
     Route::get('/industries/{slug}', [PageController::class, 'industry'])->where('slug', '[a-z0-9-]+');
