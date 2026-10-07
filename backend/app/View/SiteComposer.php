@@ -14,10 +14,13 @@ class SiteComposer
         'YouTube' => 'simple-icons:youtube', 'TikTok' => 'simple-icons:tiktok', 'Pinterest' => 'simple-icons:pinterest'];
 
     private static ?array $data = null;
+    private static ?int $version = null;
 
     public function compose(View $view): void
     {
-        self::$data ??= self::load();
+        // Loaded once per content version, so a saved menu, industry or setting shows straight away.
+        $v = \App\Support\Site\PageCache::version();
+        if (self::$data === null || self::$version !== $v) { self::$data = self::load(); self::$version = $v; }
         $view->with(self::$data);
     }
 

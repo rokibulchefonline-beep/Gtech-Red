@@ -134,8 +134,13 @@ only fills what is missing and never overwrites edits, unless you pass `--force`
 1. Point the domain at the server (document root `backend/public`) and keep `APP_URL` on the site's address.
 2. In `.env` keep `GTECH_BLADE_LIVE=true` (the default in `.env.example`): search engines may index the pages and
    `robots.txt` lists the sitemap. Set it to `false` on a test copy to keep it out of Google.
-3. Run `php artisan optimize`.
-4. Check a few pages, then submit `https://www.gtechdigital.co.uk/sitemap.xml` in Google Search Console.
+3. Security: in `.env` set `APP_ENV=production` and `APP_DEBUG=false` (debug pages show internal details), serve
+   the site over HTTPS (session cookies then become secure-only and HSTS is sent), and give the `storage/` and
+   `bootstrap/cache/` folders write access for the web server only. On nginx, add
+   `location ~* \.svg$ { add_header Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline'; sandbox"; }`
+   (Apache gets this from `public/.htaccess`). Uploaded SVGs are also cleaned of scripts when saved.
+4. Run `php artisan optimize`.
+5. Check a few pages, then submit `https://www.gtechdigital.co.uk/sitemap.xml` in Google Search Console.
 
 All page addresses are the same as on the old site, and the old addresses still redirect.
 
@@ -180,6 +185,8 @@ All page addresses are the same as on the old site, and the old addresses still 
   - **Schema markup**: the page, blog post and case study editors have a *Schema markup* section showing the
     automatic schema the page outputs, links to test it in Google, a switch to turn it off, and your own JSON-LD
     with ready-made templates (FAQ, How-to, Product, Review, Video, Event, Local business). Saved in SEO overrides.
+- **Google Tag Manager**: *Site settings > Tracking > Google Tag Manager ID* (set to `GTM-NRPJVVSH`). Enter only the
+  ID; the site adds the head script and the `<noscript>` part after `<body>` to every page. Leave it empty to remove.
 - **Day / Night** buttons at the top right switch the admin between the white and the dark look (dark is the default).
 
 - **Pages (page builder):**

@@ -38,4 +38,9 @@
     <FilesMatch "\.(webp|png|jpe?g|gif|svg|ico|mp4|webm|woff2?)$">
         Header set Cache-Control "public, max-age=604800"
     </FilesMatch>
+    # An SVG opened on its own can never run scripts on this site (uploads are also cleaned when saved).
+    <FilesMatch "\.svg$">
+        Header set Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline'; sandbox"
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
 </IfModule>

@@ -62,7 +62,9 @@ class Settings extends Page implements HasForms
                     ])->columns(2)->defaultItems(0),
                 ]),
                 Forms\Components\Tabs\Tab::make('Tracking')->schema([
-                    Forms\Components\TextInput::make('tracking.gtmId')->label('Google Tag Manager ID')->placeholder('GTM-XXXXXXX')->maxLength(20),
+                    Forms\Components\TextInput::make('tracking.gtmId')->label('Google Tag Manager ID')->placeholder('GTM-XXXXXXX')->maxLength(20)
+                        ->regex('/^GTM-[A-Z0-9]+$/')->validationMessages(['regex' => 'Use the container ID only, like GTM-NRPJVVSH (not the whole code).'])
+                        ->helperText('Only the ID, not the code. The website adds both Google Tag Manager snippets to every page itself: the script high in the <head> (just after Google Consent Mode) and the <noscript> part straight after <body>. Leave empty to remove it.'),
                     Forms\Components\TextInput::make('tracking.ga4Id')->label('Google Analytics 4 ID')->placeholder('G-XXXXXXXXXX')->maxLength(20),
                     Forms\Components\TextInput::make('tracking.metaPixelId')->label('Meta Pixel ID')->maxLength(30),
                 ]),

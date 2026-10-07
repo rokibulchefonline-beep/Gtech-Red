@@ -28,6 +28,8 @@
 @endif
 </head>
 <body>
+@if ($site['gtm'])<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ $site['gtm'] }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+@endif
 <div id="scroll-progress" aria-hidden="true"></div>
 @include('site.partials.header')
 <main>@yield('content')</main>

@@ -24,7 +24,7 @@ class Setting extends Model
         'general' => ['siteName' => 'GTech Digital', 'tagline' => 'Digital marketing, web and software agency', 'siteUrl' => 'https://www.gtechdigital.co.uk'],
         'contact' => ['email' => '', 'phone' => '', 'address' => '', 'hours' => 'Mon to Fri, 9am to 6pm'],
         'socials' => [],
-        'tracking' => ['gtmId' => '', 'ga4Id' => '', 'metaPixelId' => ''],
+        'tracking' => ['gtmId' => 'GTM-NRPJVVSH', 'ga4Id' => '', 'metaPixelId' => ''],
         'seo' => ['titleSuffix' => ' | GTech Digital', 'defaultDescription' => '', 'ogImage' => ''],
         'smtp' => ['host' => '', 'port' => 587, 'secure' => false, 'user' => '', 'pass' => '', 'fromName' => 'GTech Digital', 'fromEmail' => '', 'notifyTo' => '', 'autoReply' => true],
         'publish' => ['deployHook' => ''],
@@ -64,12 +64,24 @@ class Setting extends Model
         static::query()->updateOrCreate(['key' => $key], ['value' => $value]);
     }
 
-    /** Settings that are safe to send to the public website (no SMTP credentials, no deploy hook). */
+    /**
+     * Settings that are safe to send to the public website. An allow-list, so a new settings group (or a new secret
+     * in an existing one) is private until it is added here.
+     */
+    public const PUBLIC = [
+        'general' => true, 'contact' => true, 'socials' => true, 'tracking' => true, 'seo' => true, 'company' => true,
+        'forms' => ['budgets', 'privacyNotice', 'turnstileSite'],
+    ];
+
     public static function publicView(): array
     {
-        $s = static::all_();
-        unset($s['smtp'], $s['publish']);
-        return $s;
+        $out = [];
+        foreach (static::all_() as $group => $v) {
+            $allow = self::PUBLIC[$group] ?? false;
+            if ($allow === true) $out[$group] = $v;
+            elseif (is_array($allow) && is_array($v)) $out[$group] = array_intersect_key($v, array_flip($allow));
+        }
+        return $out;
     }
 
     public static function smtpPassword(): string

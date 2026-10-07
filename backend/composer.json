@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "awcodes/filament-tiptap-editor": "^3.5",
+        "enshrined/svg-sanitize": "^1.0",
         "filament/filament": "^3.3",
         "jeffgreco13/filament-breezy": "^2.4",
         "laravel/framework": "^12.0",
