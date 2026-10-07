@@ -19,7 +19,9 @@ foreach ($tool in 'php', 'composer') {
 
 $firstRun = -not (Test-Path '.env')
 
-if (-not (Test-Path 'vendor\autoload.php')) {
+# First run, or composer.lock changed since the last install (a git pull added a package).
+$installed = 'vendor\composer\installed.json'
+if (-not (Test-Path 'vendor\autoload.php') -or -not (Test-Path $installed) -or ((Get-Item 'composer.lock').LastWriteTime -gt (Get-Item $installed).LastWriteTime)) {
     Step 'Installing the parts the app needs (takes a few minutes the first time)'
     Run 'composer' @('install', '--no-interaction')
 }
