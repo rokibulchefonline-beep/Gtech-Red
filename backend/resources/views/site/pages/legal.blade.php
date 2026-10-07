@@ -3,7 +3,7 @@
 @php($slug = fn ($s) => trim(preg_replace('/[^a-z0-9]+/', '-', strtolower($s)), '-'))
 @php($secs = $p->sections ?? [])
 @php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
-@php($seo = \App\Support\Site\Seo::make("/{$p->slug}", ['title' => $p->name, 'description' => $p->meta_description], [
+@php($seo = \App\Support\Site\Seo::make("/{$p->slug}", ['title' => $p->meta_title ?: $p->name, 'absolute' => (bool) $p->meta_title, 'description' => $p->meta_description], [
     \App\Support\Site\Schema::page(['path' => "/{$p->slug}", 'name' => $p->name, 'description' => $p->meta_description, 'speakable' => false]),
     \App\Support\Site\Schema::breadcrumb("/{$p->slug}", [[$p->name, "/{$p->slug}"]]),
 ]))

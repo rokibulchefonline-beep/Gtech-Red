@@ -84,6 +84,13 @@ class PageController extends Controller
         return view('site.pages.blogs');
     }
 
+    public function author(string $slug): View
+    {
+        $a = Repo::authors()->firstWhere('slug', $slug);
+        abort_unless($a, 404);
+        return view('site.pages.author', compact('a'));
+    }
+
     public function post(string $slug): View
     {
         $p = Repo::posts()->firstWhere('slug', $slug);

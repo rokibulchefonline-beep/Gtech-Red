@@ -12,7 +12,7 @@
 <p class="sp-updated">Reviewed by GTech Digital specialists · Updated {{ now()->format('F Y') }}</p>
 @if (!empty($p->hero['motion']))
 <div class="sp-hero-show">
-<img src="{{ $p->hero['motion'] ?? '' }}" alt="{{ $alt }}" width="800" height="600">
+<img src="{{ $p->hero['motion'] ?? '' }}" alt="{{ $alt }}" width="800" height="600" fetchpriority="high" decoding="async">
 <span class="sp-float a">@icon($icon, 20){{ $name }}</span>
 <span class="sp-float b">@icon('lucide:trending-up', 20)Revenue-focused</span>
 </div>

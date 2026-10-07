@@ -96,8 +96,8 @@
    "name": "About",
    "sort": 1,
    "path": "/about",
-   "metaTitle": "About GTech Digital | UK Digital Marketing, Web & Software Agency",
-   "metaDescription": "Meet GTech Digital, a UK agency combining digital marketing, web design and custom software under one roof, with certified specialists and a focus on measurable growth.",
+   "metaTitle": "About GTech Digital | UK Digital Marketing & Software Agency",
+   "metaDescription": "Meet GTech Digital, a UK agency combining digital marketing, web design and custom software under one roof, with certified specialists focused on growth.",
    "hero": {
     "h1": "About [[GTech Digital]]: UK Digital Marketing, Web and Software Agency",
     "lead": "GTech Digital is a UK digital agency that provides digital marketing, SEO, Google Ads, social media, web design and development, custom software and branding services, helping businesses get found, win customers and grow revenue.",
@@ -374,7 +374,7 @@
    "name": "Contact",
    "sort": 2,
    "path": "/contact",
-   "metaTitle": "Contact GTech Digital | Get a Free Proposal | UK Digital Agency",
+   "metaTitle": "Contact GTech Digital | Free Proposal from a UK Agency",
    "metaDescription": "Contact GTech Digital for a free audit and tailored proposal for SEO, Google Ads, social media, web design or custom software. We reply within one working day.",
    "hero": {
     "h1": "Contact [[GTech Digital]] for a Free Marketing Audit and Proposal",
@@ -619,11 +619,11 @@
    "name": "Industries hub",
    "sort": 4,
    "path": "/industries",
-   "metaTitle": "Industries We Serve | Sector Marketing & Software | GTech Digital",
-   "metaDescription": "GTech Digital helps UK businesses in ecommerce, healthcare, hospitality, property, finance, education, travel, automotive, B2B and SaaS grow with tailored marketing, websites and software.",
+   "metaTitle": "Industries We Serve | Sector Marketing | GTech Digital",
+   "metaDescription": "GTech Digital helps UK businesses in ecommerce, hospitality, property, travel, automotive, B2B and SaaS grow with tailored marketing, websites and software.",
    "hero": {
     "h1": "Industry Marketing Services of [[GTech Digital]]",
-    "lead": "GTech Digital provides industry-specific digital marketing, web design and software services for UK businesses in ecommerce, healthcare, hospitality, property, finance, education, travel, automotive, B2B and SaaS.",
+    "lead": "GTech Digital provides industry-specific digital marketing, web design and software services for UK businesses in ecommerce, hospitality, property, travel, automotive, B2B and SaaS.",
     "motion": "",
     "points": [
      "Sector-specific strategy",
@@ -15875,8 +15875,8 @@
    "name": "Privacy Policy",
    "sort": 50,
    "path": "/privacy-policy",
-   "metaTitle": "",
-   "metaDescription": "How GTech Digital collects, uses and protects your personal data, and the rights you have under UK data protection law.",
+   "metaTitle": "Privacy Policy: How GTech Digital Handles Your Data",
+   "metaDescription": "How GTech Digital collects, uses and protects your personal data, how long we keep it, and the rights you have under UK data protection law.",
    "hero": {
     "h1": "Privacy Policy",
     "lead": "How GTech Digital collects, uses and protects your personal data, and the rights you have under UK data protection law.",
@@ -16045,8 +16045,8 @@
    "name": "Terms and Conditions",
    "sort": 51,
    "path": "/terms",
-   "metaTitle": "",
-   "metaDescription": "The terms that apply when you use the GTech Digital website and when you engage us for services.",
+   "metaTitle": "Terms and Conditions for GTech Digital Services",
+   "metaDescription": "The terms that apply when you use the GTech Digital website and when you engage us for digital marketing, web design or software services in the UK.",
    "hero": {
     "h1": "Terms and Conditions",
     "lead": "The terms that apply when you use the GTech Digital website and when you engage us for services.",
@@ -16205,8 +16205,8 @@
    "name": "Cookie Policy",
    "sort": 52,
    "path": "/cookie-policy",
-   "metaTitle": "",
-   "metaDescription": "What cookies are, which ones the GTech Digital website uses and how you can control them.",
+   "metaTitle": "Cookie Policy: How GTech Digital Uses Cookies",
+   "metaDescription": "What cookies are, which ones the GTech Digital website uses, why we use them, and how you can accept, refuse or change your cookie choices at any time.",
    "hero": {
     "h1": "Cookie Policy",
     "lead": "What cookies are, which ones the GTech Digital website uses and how you can control them.",
@@ -18541,7 +18541,8 @@
     "date": "2026-09-24",
     "image": "/posts/aeo-geo-guide.webp",
     "featured": true,
-    "body": "More people now get answers without clicking a single link. Google shows AI Overviews at the top of many searches, and tools like ChatGPT, Perplexity and Gemini answer questions directly. If your business is not mentioned in those answers, you are invisible to a growing share of buyers.\n\nThe good news is that the foundations are familiar. Answer engine optimisation (AEO) and generative engine optimisation (GEO) build on good SEO, with a stronger focus on clear answers, trusted sources and consistent facts about your brand.\n\n## What Is AEO?\n\nAnswer engine optimisation means structuring your content so search engines can lift a clear, direct answer from it. It is how you win featured snippets, People Also Ask boxes and voice answers.\n\n- Answer one question per section, in the first one or two sentences\n- Use the question as a heading, written the way people ask it\n- Add FAQ and HowTo schema where it genuinely fits\n- Keep answers short, factual and free of fluff\n\n## What Is GEO?\n\nGenerative engine optimisation is about being cited or recommended inside AI-generated answers. Large language models build their answers from sources they trust, so GEO focuses on authority and consistency across the web, not just your own site.\n\n- Be mentioned on trusted third-party sites, directories and press\n- Keep your name, services and locations consistent everywhere\n- Publish original data, expert opinion and clear comparisons\n- Make your About, service and pricing pages easy to understand\n\n## How AI Chooses Which Brands to Mention\n\nAI tools tend to recommend brands that appear repeatedly in reliable sources, with clear and consistent descriptions. Reviews, case studies, expert quotes and structured data all help models understand who you are and when you are relevant.\n\n**In short:** if humans and search engines already trust you, AI tools are far more likely to mention you.\n\n## A Simple AEO and GEO Checklist\n\n- Audit the questions your customers ask and answer each one clearly\n- Add Organization, Service and FAQ schema to key pages\n- Earn mentions on industry sites, local directories and news outlets\n- Collect reviews on Google and trusted review platforms\n- Track brand mentions in AI tools every month\n\n## How Long Does It Take?\n\nStructured answers can be picked up within weeks. Building the authority that earns AI recommendations usually takes three to six months of steady work, much like traditional SEO.\n\n## Where to Start\n\nStart with your most valuable service pages. Make sure each one clearly explains what you do, who it is for, what it costs and why you are trusted. That single step improves SEO, AEO and GEO at the same time."
+    "body": "More people now get answers without clicking a single link. Google shows AI Overviews at the top of many searches, and tools like ChatGPT, Perplexity and Gemini answer questions directly. If your business is not mentioned in those answers, you are invisible to a growing share of buyers.\n\nThe good news is that the foundations are familiar. Answer engine optimisation (AEO) and generative engine optimisation (GEO) build on good SEO, with a stronger focus on clear answers, trusted sources and consistent facts about your brand.\n\n## What Is AEO?\n\nAnswer engine optimisation means structuring your content so search engines can lift a clear, direct answer from it. It is how you win featured snippets, People Also Ask boxes and voice answers.\n\n- Answer one question per section, in the first one or two sentences\n- Use the question as a heading, written the way people ask it\n- Add FAQ and HowTo schema where it genuinely fits\n- Keep answers short, factual and free of fluff\n\n## What Is GEO?\n\nGenerative engine optimisation is about being cited or recommended inside AI-generated answers. Large language models build their answers from sources they trust, so GEO focuses on authority and consistency across the web, not just your own site.\n\n- Be mentioned on trusted third-party sites, directories and press\n- Keep your name, services and locations consistent everywhere\n- Publish original data, expert opinion and clear comparisons\n- Make your About, service and pricing pages easy to understand\n\n## How AI Chooses Which Brands to Mention\n\nAI tools tend to recommend brands that appear repeatedly in reliable sources, with clear and consistent descriptions. Reviews, case studies, expert quotes and structured data all help models understand who you are and when you are relevant.\n\n**In short:** if humans and search engines already trust you, AI tools are far more likely to mention you.\n\n## A Simple AEO and GEO Checklist\n\n- Audit the questions your customers ask and answer each one clearly\n- Add Organization, Service and FAQ schema to key pages\n- Earn mentions on industry sites, local directories and news outlets\n- Collect reviews on Google and trusted review platforms\n- Track brand mentions in AI tools every month\n\n## How Long Does It Take?\n\nStructured answers can be picked up within weeks. Building the authority that earns AI recommendations usually takes three to six months of steady work, much like traditional SEO.\n\n## Where to Start\n\nStart with your most valuable service pages. Make sure each one clearly explains what you do, who it is for, what it costs and why you are trusted. That single step improves SEO, AEO and GEO at the same time.",
+    "metaTitle": "AEO and GEO: How to Get Your Business Into AI Answers"
    },
    {
     "slug": "local-seo-checklist",
@@ -18577,7 +18578,8 @@
     "category": "Social Media",
     "date": "2026-08-27",
     "image": "/posts/social-media-strategy.webp",
-    "body": "Many businesses post on social media every week but cannot say what it brings in. A good strategy connects every post, ad and reply to a business goal.\n\n## Start With One Clear Goal\n\nChoose the main job social media should do for you: brand awareness, leads, online sales or customer loyalty. Your goal decides which platforms, content and metrics matter.\n\n## Choose the Right Platforms\n\nYou do not need to be everywhere.\n\n- **Facebook:** local audiences and adults over 30\n- **Instagram:** visual products, lifestyle and hospitality\n- **LinkedIn:** B2B services and recruitment\n- **TikTok:** younger audiences and products that are easy to demonstrate\n- **Pinterest:** home, fashion, food and planned purchases\n\n## Plan Content Pillars\n\nContent pillars are three to five themes you post about regularly. For example: tips and education, behind the scenes, customer stories, offers and community.\n\n## Mix Organic and Paid\n\nOrganic posts build trust with your followers. Paid social reaches new people and drives sales. Most growing brands boost their best organic posts as ads, which keeps costs low and results authentic.\n\n## Measure What Matters\n\n- Reach and engagement show whether content is working\n- Clicks, leads and sales show whether it is profitable\n- Use tracking links, the Meta Pixel and GA4 to connect social to revenue\n\n## Review and Improve Monthly\n\nEach month, look at your best and worst posts, double down on what works and drop what does not. Small, consistent improvements beat sudden bursts of activity."
+    "body": "Many businesses post on social media every week but cannot say what it brings in. A good strategy connects every post, ad and reply to a business goal.\n\n## Start With One Clear Goal\n\nChoose the main job social media should do for you: brand awareness, leads, online sales or customer loyalty. Your goal decides which platforms, content and metrics matter.\n\n## Choose the Right Platforms\n\nYou do not need to be everywhere.\n\n- **Facebook:** local audiences and adults over 30\n- **Instagram:** visual products, lifestyle and hospitality\n- **LinkedIn:** B2B services and recruitment\n- **TikTok:** younger audiences and products that are easy to demonstrate\n- **Pinterest:** home, fashion, food and planned purchases\n\n## Plan Content Pillars\n\nContent pillars are three to five themes you post about regularly. For example: tips and education, behind the scenes, customer stories, offers and community.\n\n## Mix Organic and Paid\n\nOrganic posts build trust with your followers. Paid social reaches new people and drives sales. Most growing brands boost their best organic posts as ads, which keeps costs low and results authentic.\n\n## Measure What Matters\n\n- Reach and engagement show whether content is working\n- Clicks, leads and sales show whether it is profitable\n- Use tracking links, the Meta Pixel and GA4 to connect social to revenue\n\n## Review and Improve Monthly\n\nEach month, look at your best and worst posts, double down on what works and drop what does not. Small, consistent improvements beat sudden bursts of activity.",
+    "metaTitle": "How to Build a Social Media Strategy That Drives Sales"
    },
    {
     "slug": "custom-software-vs-off-the-shelf",

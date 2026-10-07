@@ -71,7 +71,7 @@ class SeedContent extends Command
                     'title' => $p['title'], 'slug' => $p['slug'], 'excerpt' => $p['excerpt'] ?? '', 'body' => $p['body'] ?? '', 'format' => $p['format'] ?? 'md',
                     'category' => $p['category'] ?? 'Insights', 'categories' => [$p['category'] ?? 'Insights'], 'tags' => $p['tags'] ?? [], 'image' => $p['image'] ?? '',
                     'image_alt' => $p['imageAlt'] ?? '', 'author' => $p['author'] ?? 'GTech Editorial Team', 'featured' => (bool) ($p['featured'] ?? false),
-                    'status' => 'published', 'date' => $p['date'] ?? now(),
+                    'status' => 'published', 'date' => $p['date'] ?? now(), 'meta_title' => $p['metaTitle'] ?? '',
                 ]);
                 $rows[] = $this->demo('Demo case studies', CaseStudy::class, Content::get('demo.caseStudies'), fn ($c) => [
                     'title' => $c['title'], 'slug' => $c['slug'], 'client' => $c['client'] ?? $c['title'], 'industry' => $c['industry'] ?? '', 'duration' => $c['duration'] ?? '',

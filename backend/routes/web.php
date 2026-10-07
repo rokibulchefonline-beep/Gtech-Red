@@ -30,6 +30,7 @@ Route::middleware([\App\Http\Middleware\RecordBotHits::class, CacheSitePage::cla
     Route::get('/case-studies/{slug}', [PageController::class, 'caseStudy'])->where('slug', '[a-z0-9-]+');
     Route::get('/blogs', [PageController::class, 'blogs']);
     Route::get('/blogs/{slug}', [PageController::class, 'post'])->where('slug', '[a-z0-9-]+');
+    Route::get('/blogs/author/{slug}', [PageController::class, 'author'])->where('slug', '[a-z0-9-]+');
     foreach (['terms', 'privacy-policy', 'cookie-policy'] as $legal) {
         Route::get("/$legal", [PageController::class, 'legal'])->defaults('slug', $legal);
     }

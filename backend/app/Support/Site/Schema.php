@@ -146,8 +146,19 @@ class Schema
             '@type' => $o['type'] ?? 'Article', '@id' => self::abs($p).'#article', 'headline' => $o['headline'], 'description' => $o['description'], 'mainEntityOfPage' => self::ref(self::pageId($p)), 'url' => self::abs($p), 'inLanguage' => 'en-GB',
             ...(! empty($o['image']) ? ['image' => self::abs($o['image'])] : []), ...(! empty($o['published']) ? ['datePublished' => $o['published']] : []), 'dateModified' => $o['modified'] ?? $o['published'] ?? self::today(),
             ...(! empty($o['section']) ? ['articleSection' => $o['section']] : []), ...(! empty($o['keywords']) ? ['keywords' => implode(', ', $o['keywords'])] : []), ...(! empty($o['words']) ? ['wordCount' => $o['words']] : []),
-            'author' => ! empty($o['author']) ? ['@type' => 'Organization', 'name' => $o['author'], 'url' => self::base().'/about'] : self::ref(self::org()), 'publisher' => self::ref(self::org()), 'isPartOf' => self::ref(self::pageId($p)),
+            'author' => ($o['person'] ?? null) instanceof \App\Models\Author ? self::ref(self::abs($o['person']->path()).'#person')
+                : (! empty($o['author']) ? ['@type' => 'Organization', 'name' => $o['author'], 'url' => self::base().'/about'] : self::ref(self::org())), 'publisher' => self::ref(self::org()), 'isPartOf' => self::ref(self::pageId($p)),
         ];
+    }
+
+    /** A blog author as a schema.org Person, with their profile page and links. */
+    public static function person(\App\Models\Author $a): array
+    {
+        return array_filter([
+            '@type' => 'Person', '@id' => self::abs($a->path()).'#person', 'name' => $a->name, 'url' => self::abs($a->path()),
+            'jobTitle' => $a->job_title ?: null, 'description' => $a->bio ?: null, 'image' => $a->photo ? self::abs($a->photo) : null,
+            'worksFor' => self::ref(self::org()), 'sameAs' => $a->profiles() ?: null, 'knowsAbout' => array_values((array) $a->expertise) ?: null,
+        ]);
     }
 
     public static function graph(array $nodes): array

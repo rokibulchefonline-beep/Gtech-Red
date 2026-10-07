@@ -21,6 +21,7 @@ class MinifySiteHtml
         if ($res->isSuccessful() && str_contains($type, 'text/html') && method_exists($res, 'getContent')) {
             $html = (string) $res->getContent();
             $html = preg_replace('/>\s*\n\s*</', '><', $html);
+            $html = \App\Support\Site\ImageDims::add($html);
             $res->setContent(trim($html));
             // Keep search engines off the Blade pages until they go live, so they never compete with the website.
             if (! config('gtech.blade_live')) $res->headers->set('X-Robots-Tag', 'noindex, nofollow');

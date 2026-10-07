@@ -79,7 +79,11 @@ class PostResource extends Resource
                     Forms\Components\DateTimePicker::make('date')->label('Publish date')->helperText('Scheduled posts go live after this date.'),
                     Forms\Components\Select::make('visibility')->options(['public' => 'Public', 'private' => 'Private'])->default('public'),
                     Forms\Components\Toggle::make('featured')->label('Feature on the blog page'),
-                    Forms\Components\TextInput::make('author')->default('GTech Editorial Team')->maxLength(80),
+                    Forms\Components\Select::make('author')->label('Author')
+                        ->options(fn (?Post $record) => \App\Models\Author::query()->orderBy('sort')->orderBy('name')->pluck('name', 'name')->all()
+                            + [\App\Support\Site\Blog::AUTHOR => \App\Support\Site\Blog::AUTHOR.' (no person)'] + ($record?->author ? [$record->author => $record->author] : []))
+                        ->default(fn () => \App\Models\Author::query()->orderBy('sort')->value('name') ?: \App\Support\Site\Blog::AUTHOR)->searchable()->selectablePlaceholder(false)
+                        ->helperText(fn () => \App\Models\Author::query()->exists() ? 'Add or edit people under Blog > Authors.' : 'Add the real people who write under Blog > Authors; a named author with a bio ranks better than a team name.'),
                 ]),
                 Forms\Components\Section::make('Categories and tags')->schema([
                     Forms\Components\Select::make('categories')->multiple()->options(fn () => Category::query()->orderBy('name')->pluck('name', 'name'))

@@ -8,7 +8,9 @@
 @php($svc = $R::uri($used[0]->name ?? ''))
 @php($path = "/case-studies/{$d->slug}")
 @php($headline = "$name Case Study".($metrics ? ': '.implode(' and ', array_map(fn ($m) => "{$m['value']} {$m['label']}", array_slice($metrics, 0, 2))) : ''))
-@php($seo = \App\Support\Site\Seo::make($path, ['title' => $d->meta_title ?: "$headline | GTech Digital", 'absolute' => true, 'description' => $d->meta_description ?: $d->excerpt, 'og' => ['type' => 'article', 'title' => $headline, 'description' => $d->excerpt, 'image' => $d->image]], [
+@php($short = "$name Case Study".($metrics ? ": {$metrics[0]['value']} {$metrics[0]['label']}" : ''))
+@php($metaDesc = $d->meta_description ?: \App\Support\Site\Seo::fillDescription((string) $d->excerpt, "How GTech Digital helped $name".($used->count() ? ' with '.$used->take(2)->pluck('name')->implode(' and ') : '').($metrics ? ': '.implode(', ', array_map(fn ($m) => "{$m['value']} {$m['label']}", array_slice($metrics, 0, 2))) : '').'.'))
+@php($seo = \App\Support\Site\Seo::make($path, ['title' => $d->meta_title ?: (mb_strlen($headline) <= \App\Support\Site\Seo::TITLE_MAX ? $headline : $short), 'description' => $metaDesc, 'og' => ['type' => 'article', 'title' => $headline, 'description' => $d->excerpt, 'image' => $d->image]], [
     \App\Support\Site\Schema::page(['path' => $path, 'name' => $headline, 'description' => (string) $d->excerpt, 'mainEntity' => \App\Support\Site\Schema::abs($path).'#article', 'image' => $d->image, 'about' => $used->pluck('name')->all(), 'modified' => $d->updated_at?->format('Y-m-d')]),
     \App\Support\Site\Schema::breadcrumb($path, [['Case Studies', '/case-studies'], [$name, $path]]),
     \App\Support\Site\Schema::article(['path' => $path, 'headline' => $headline, 'description' => $d->meta_description ?: ($d->excerpt ?: ''), 'image' => $d->image, 'keywords' => $used->pluck('name')->all(), 'modified' => $d->updated_at?->format('Y-m-d')]),
@@ -26,7 +28,7 @@
 <a class="sp-btn-line light" href="#results">See the Results</a>
 </div>
 </div>
-@if ($d->image)<div class="cs-hero-art"><img src="{{ $d->image }}" alt="{{ $d->image_alt ?: "$name case study" }}"></div>@endif
+@if ($d->image)<div class="cs-hero-art"><img src="{{ $d->image }}" alt="{{ $d->image_alt ?: "$name case study" }}" fetchpriority="high" decoding="async"></div>@endif
 </div>
 </section>
 @if ($metrics)

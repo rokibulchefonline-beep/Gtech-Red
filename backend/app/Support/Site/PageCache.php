@@ -17,7 +17,7 @@ class PageCache
         \App\Models\Page::class, \App\Models\ServiceGroup::class, \App\Models\ServiceItem::class, \App\Models\Industry::class,
         \App\Models\CoreService::class, \App\Models\Stat::class, \App\Models\Testimonial::class, \App\Models\SeoKeyword::class,
         \App\Models\Post::class, \App\Models\Category::class, \App\Models\CaseStudy::class, \App\Models\Partner::class,
-        \App\Models\Client::class, \App\Models\SeoEntry::class, \App\Models\Setting::class,
+        \App\Models\Client::class, \App\Models\SeoEntry::class, \App\Models\Setting::class, \App\Models\Author::class,
     ];
 
     public static function store(): \Illuminate\Contracts\Cache\Repository

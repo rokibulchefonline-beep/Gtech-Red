@@ -105,6 +105,11 @@ class Repo
     }
 
     /** Live posts: published, or scheduled with a date that has passed; public only; newest first. */
+    public static function authors(): Collection
+    {
+        return self::once('authors', fn () => \App\Models\Author::query()->orderBy('sort')->orderBy('name')->get());
+    }
+
     public static function posts(): Collection
     {
         return self::once('posts', fn () => Post::query()->whereIn('status', ['published', 'scheduled'])->get()

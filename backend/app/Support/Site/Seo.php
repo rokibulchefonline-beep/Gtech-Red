@@ -14,6 +14,18 @@ use App\Models\SeoEntry;
  */
 class Seo
 {
+    public const TITLE_MAX = 60;
+
+    /** A description of at least $min characters: the given text, completed with $more when it is too short. */
+    public static function fillDescription(string $text, string $more, int $min = 120, int $max = 160): string
+    {
+        $text = trim($text);
+        if (mb_strlen($text) < $min && $more !== '') $text = trim(rtrim($text, '.').($text !== '' ? '. ' : '').$more);
+        if (mb_strlen($text) <= $max) return $text;
+        $cut = mb_substr($text, 0, $max - 1);
+        return rtrim(mb_substr($cut, 0, (int) (mb_strrpos($cut, ' ') ?: $max - 1)), ' ,;:.').'…';
+    }
+
     /**
      * @param array{title:string, absolute?:bool, description?:string, canonical?:string, noindex?:bool, keywords?:array,
      *   og?:array{type?:string,title?:string,description?:string,image?:string,published?:string,author?:string}} $base
@@ -23,7 +35,8 @@ class Seo
     {
         $o = SeoEntry::query()->find(SeoEntry::keyFor($path));
         $name = \App\Models\Setting::all_()['general']['siteName'] ?? 'GTech Digital';
-        $title = ($base['absolute'] ?? false) ? $base['title'] : $base['title'].' | '.$name;
+        // "| GTech Digital" is added only while the title still fits in Google's ~60 characters.
+        $title = ($base['absolute'] ?? false) || mb_strlen($base['title'].' | '.$name) > self::TITLE_MAX ? $base['title'] : $base['title'].' | '.$name;
         if ($o?->title) $title = $o->title;
         $description = $o?->description ?: ($base['description'] ?? '');
         $canonical = Schema::abs($o?->canonical ?: ($base['canonical'] ?? $path));
@@ -33,7 +46,9 @@ class Seo
         // An override image replaces the page's Open Graph block, as on the website.
         if ($o?->og_image) $og = ['image' => $o->og_image];
         $ogTitle = $og['title'] ?? ($o?->title ?: $base['title']);
-        $image = ! empty($og['image']) ? Schema::abs($og['image']) : '';
+        // Pages without their own picture share the default image (Site settings > SEO defaults, else the built-in one).
+        $fallback = (string) (\App\Models\Setting::all_()['seo']['ogImage'] ?? '') ?: '/og-default.jpg';
+        $image = Schema::abs(! empty($og['image']) ? $og['image'] : $fallback);
 
         $scripts = [];
         if (! $o?->schema_off) $scripts[] = Schema::json(Schema::graph($nodes));
