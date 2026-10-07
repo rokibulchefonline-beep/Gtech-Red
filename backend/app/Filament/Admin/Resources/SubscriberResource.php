@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources;
 
+use App\Filament\Support\Perms;
 use App\Filament\Admin\Resources\SubscriberResource\Pages;
 use App\Filament\Support\Csv;
 use App\Filament\Support\HooksDefault;
@@ -15,15 +16,15 @@ use Filament\Tables\Table;
 
 class SubscriberResource extends Resource
 {
-    use HooksDefault;
+    use HooksDefault, Perms;
 
+    protected static string $section = 'subscribers';
     protected static ?string $model = Subscriber::class;
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
     protected static ?string $navigationGroup = 'Leads';
     protected static ?string $navigationLabel = 'Newsletter';
     protected static ?int $navigationSort = 2;
 
-    public static function canViewAny(): bool { return (bool) auth()->user()?->hasPerm('leads'); }
 
     public static function canCreate(): bool { return false; }
 
@@ -43,7 +44,7 @@ class SubscriberResource extends Resource
 
     public static function exportAction(): Action
     {
-        return Action::make('export')->label('Export CSV')->icon('heroicon-o-arrow-down-tray')->color('gray')
+        return Action::make('export')->label('Export CSV')->icon('heroicon-o-arrow-down-tray')->visible(fn () => (bool) auth()->user()?->hasPerm('subscribers.export'))->color('gray')
             ->action(fn () => Csv::download('newsletter-'.now()->format('Y-m-d').'.csv', ['Email', 'Source', 'Joined'],
                 Subscriber::query()->latest()->cursor()->map(fn ($s) => [$s->email, $s->source, $s->created_at?->format('Y-m-d')])));
     }

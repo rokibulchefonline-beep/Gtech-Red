@@ -20,14 +20,34 @@ Visitors ──> Next.js website (Cloudflare) ──reads at build──> Larave
 | **Settings** | Site settings (contact details, tracking IDs, SMTP email with a test button, deploy hook), users and roles |
 | **Dashboard** | Stats, latest leads and the **Publish site** button |
 
-Roles match the old admin:
+**Users and roles** (Settings → Users, Settings → Roles). Each role is a set of permissions per section (view,
+create, edit, publish, delete, export…), editable in the panel. Built-in roles:
 
-| Role | Can manage |
+| Role | Can do |
 |---|---|
-| super admin | everything |
-| admin | content, leads, settings |
-| editor | content |
-| sales | leads |
+| super admin | everything (cannot be edited) |
+| admin | everything except users and roles |
+| editor | all content, blog and SEO, including publishing |
+| author | write blog drafts and edit only their own posts; media |
+| SEO manager | SEO overrides, redirects, page copy, post SEO fields, analytics |
+| sales manager | all leads and subscribers, exports, analytics |
+| sales | view and work the leads |
+| viewer | read-only access to every section |
+
+- **Invites:** add a user with *Send an invitation* on; they get an email link (valid 24 hours) to set their own
+  password. *Resend invitation* is on the user's row.
+- **Sign-in protection:** 8 wrong passwords lock that account for 15 minutes. Every sign-in, failure and lock is
+  logged and shown on the user's page with their last sign-in.
+- **Two-factor (2FA):** everyone can turn it on in **My account** (avatar menu), with any authenticator app.
+  Site settings → Security can require it for managers or for everyone; they are asked to set it up at next sign-in.
+  My account also changes name, email and password and can sign out other browsers.
+
+**Analytics** (Analytics in the menu): first-party and cookieless, so no consent banner is needed. It records every
+visit to the Blade website and shows where it came from: search engines (Google, Bing, Yahoo, DuckDuckGo…), AI
+assistants (ChatGPT, Perplexity, Claude, Gemini, Copilot, Grok…), social, email, referral sites, paid campaigns
+(`utm_*`, `gclid`, `fbclid`…) and direct. Pages, landing pages, referrers, campaigns, devices, countries and leads per
+source are reported; AI crawler hits are counted separately, and staff browsers are excluded once they sign in.
+It only collects data once the Blade site is live.
 
 ## Requirements
 

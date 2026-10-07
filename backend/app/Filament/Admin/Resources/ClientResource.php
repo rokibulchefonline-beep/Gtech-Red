@@ -18,7 +18,7 @@ class ClientResource extends Resource
 {
     use HooksDefault, Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'structure';
     protected static ?string $model = Client::class;
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
     protected static ?string $navigationGroup = 'Website content';

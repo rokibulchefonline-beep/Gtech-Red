@@ -18,7 +18,7 @@ class CategoryResource extends Resource
 {
     use HooksDefault, Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'structure';
     protected static ?string $model = Category::class;
     protected static ?string $navigationIcon = 'heroicon-o-tag';
     protected static ?string $navigationGroup = 'Blog';

@@ -17,7 +17,7 @@ class SeoEntryResource extends Resource
 {
     use Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'seo';
     protected static ?string $model = SeoEntry::class;
     protected static ?string $navigationIcon = 'heroicon-o-magnifying-glass';
     protected static ?string $navigationGroup = 'Website content';

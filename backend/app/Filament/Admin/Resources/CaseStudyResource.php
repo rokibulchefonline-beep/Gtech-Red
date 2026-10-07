@@ -20,7 +20,7 @@ class CaseStudyResource extends Resource
 {
     use HooksDefault, Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'case_studies';
     protected static ?string $model = CaseStudy::class;
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
     protected static ?string $navigationGroup = 'Website content';

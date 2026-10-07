@@ -7,5 +7,6 @@ export default {
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
         './vendor/awcodes/filament-tiptap-editor/resources/**/*.blade.php',
+        './vendor/jeffgreco13/filament-breezy/resources/**/*.blade.php',
     ],
 }

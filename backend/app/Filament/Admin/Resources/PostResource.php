@@ -24,7 +24,19 @@ class PostResource extends Resource
 {
     use HooksDefault, Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'posts';
+
+    /** "Edit any" edits every post; otherwise a writer edits only the posts they created. */
+    public static function canEdit(\Illuminate\Database\Eloquent\Model $record): bool
+    {
+        $u = auth()->user();
+        return (bool) $u && ($u->hasPerm('posts.edit') || ($u->hasPerm('posts.create') && $record->created_by === $u->id));
+    }
+
+    public static function canPublish(): bool
+    {
+        return (bool) auth()->user()?->hasPerm('posts.publish');
+    }
     protected static ?string $model = Post::class;
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $navigationGroup = 'Blog';
@@ -57,7 +69,9 @@ class PostResource extends Resource
             ])->columnSpan(['lg' => 2]),
             Forms\Components\Group::make([
                 Forms\Components\Section::make('Publish')->schema([
-                    Forms\Components\Select::make('status')->options(['draft' => 'Draft', 'published' => 'Published', 'scheduled' => 'Scheduled'])->default('draft')->required(),
+                    Forms\Components\Select::make('status')->options(fn (?Post $record) => self::canPublish() || ($record && $record->status !== 'draft') ? ['draft' => 'Draft', 'published' => 'Published', 'scheduled' => 'Scheduled'] : ['draft' => 'Draft'])->default('draft')->required()->selectablePlaceholder(false)
+                        ->disabled(fn (?Post $record) => ! self::canPublish() && $record && $record->status !== 'draft')->dehydrated(fn (?Post $record) => self::canPublish() || ! $record || $record->status === 'draft')
+                        ->helperText(fn () => self::canPublish() ? null : 'Save as a draft; an editor publishes it.'),
                     Forms\Components\DateTimePicker::make('date')->label('Publish date')->helperText('Scheduled posts go live after this date.'),
                     Forms\Components\Select::make('visibility')->options(['public' => 'Public', 'private' => 'Private'])->default('public'),
                     Forms\Components\Toggle::make('featured')->label('Feature on the blog page'),
@@ -89,7 +103,13 @@ class PostResource extends Resource
         $data['format'] = 'html';
         $data['categories'] = array_values($data['categories'] ?? []);
         $data['category'] = $data['categories'][0] ?? 'Insights';
-        if (($data['status'] ?? '') === 'published' && empty($data['date'])) $data['date'] = now();
+        if (! self::canPublish()) {
+            // Writers without "Publish" keep new posts as drafts and cannot change a live post's status.
+            if (! $record) $data['status'] = 'draft';
+            else unset($data['status']);
+        }
+        if (! $record) $data['created_by'] = auth()->id();
+        if (($data['status'] ?? $record?->status) === 'published' && empty($data['date']) && empty($record?->date)) $data['date'] = now();
         return $data;
     }
 

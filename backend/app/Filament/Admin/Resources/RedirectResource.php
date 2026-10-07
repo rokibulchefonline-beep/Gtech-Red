@@ -16,7 +16,7 @@ class RedirectResource extends Resource
 {
     use Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'seo';
     protected static ?string $model = Redirect::class;
     protected static ?string $navigationIcon = 'heroicon-o-arrow-uturn-right';
     protected static ?string $navigationGroup = 'Website content';

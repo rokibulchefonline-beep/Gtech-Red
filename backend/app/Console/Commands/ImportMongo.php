@@ -179,7 +179,7 @@ class ImportMongo extends Command
         $u = User::query()->where('legacy_id', self::id($d))->orWhere('email', $email)->first() ?? new User;
         $u->forceFill([
             'legacy_id' => self::id($d), 'name' => self::s($d, 'name', 80) ?: explode('@', $email)[0], 'email' => $email,
-            'role' => array_key_exists($d['role'] ?? '', User::ROLES) ? $d['role'] : 'editor',
+            'role' => \App\Models\Role::query()->where('key', $d['role'] ?? '')->exists() ? $d['role'] : 'editor',
             'active' => ($d['active'] ?? true) !== false,
             // Old PBKDF2 hash is kept as is; it is upgraded to bcrypt on the first login.
             'password' => self::s($d, 'passwordHash', 255) ?: bcrypt(bin2hex(random_bytes(16))),

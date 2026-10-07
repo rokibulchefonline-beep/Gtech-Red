@@ -30,6 +30,8 @@ class Setting extends Model
         'publish' => ['deployHook' => ''],
         'forms' => ['budgets' => []],
         'company' => ['legalName' => '', 'number' => '', 'address' => '', 'ico' => ''],
+        // Two-factor sign-in: off, managers (people who can manage users) or everyone.
+        'security' => ['require2fa' => 'off'],
     ];
 
     /** All groups merged over the defaults. */

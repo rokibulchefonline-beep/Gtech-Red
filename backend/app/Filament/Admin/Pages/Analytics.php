@@ -28,7 +28,7 @@ class Analytics extends Page
 
     public static function canAccess(): bool
     {
-        return (bool) auth()->user()?->hasPerm('analytics');
+        return (bool) auth()->user()?->hasPerm('analytics.view');
     }
 
     public function filter(string $key, string $value): void

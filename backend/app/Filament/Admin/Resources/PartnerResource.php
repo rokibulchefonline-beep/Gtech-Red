@@ -18,7 +18,7 @@ class PartnerResource extends Resource
 {
     use HooksDefault, Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'structure';
     protected static ?string $model = Partner::class;
     protected static ?string $navigationIcon = 'heroicon-o-check-badge';
     protected static ?string $navigationGroup = 'Website content';

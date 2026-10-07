@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources;
 
+use App\Filament\Support\Perms;
 use App\Filament\Admin\Resources\LeadResource\Pages;
 use App\Filament\Support\Csv;
 use App\Filament\Support\HooksDefault;
@@ -17,17 +18,17 @@ use Filament\Tables\Table;
 
 class LeadResource extends Resource
 {
-    use HooksDefault;
+    use HooksDefault, Perms;
 
     public const STATUSES = ['new' => 'New', 'contacted' => 'Contacted', 'qualified' => 'Qualified', 'won' => 'Won', 'lost' => 'Lost'];
 
+    protected static string $section = 'leads';
     protected static ?string $model = Lead::class;
     protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
     protected static ?string $navigationGroup = 'Leads';
     protected static ?string $navigationLabel = 'Leads';
     protected static ?int $navigationSort = 1;
 
-    public static function canViewAny(): bool { return (bool) auth()->user()?->hasPerm('leads'); }
 
     public static function canCreate(): bool { return false; }
 
@@ -86,7 +87,7 @@ class LeadResource extends Resource
 
     public static function exportAction(): Action
     {
-        return Action::make('export')->label('Export CSV')->icon('heroicon-o-arrow-down-tray')->color('gray')
+        return Action::make('export')->label('Export CSV')->icon('heroicon-o-arrow-down-tray')->color('gray')->visible(fn () => (bool) auth()->user()?->hasPerm('leads.export'))
             ->action(fn () => Csv::download('leads-'.now()->format('Y-m-d').'.csv',
                 ['Received', 'Name', 'Business', 'Email', 'Phone', 'Service', 'Budget', 'Website', 'Postcode', 'Message', 'Source', 'Status', 'Assignee', 'Value', 'Notes'],
                 Lead::query()->latest()->cursor()->map(fn (Lead $l) => [$l->created_at?->format('Y-m-d H:i'), $l->name, $l->business, $l->email, $l->phone, $l->service, $l->budget, $l->website, $l->postcode, $l->message, $l->source, $l->status, $l->assignee, $l->value, $l->notes])));

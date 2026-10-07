@@ -10,7 +10,7 @@ class Post extends Model
 
     protected $table = 'posts';
 
-    protected $fillable = ['legacy_id','title','slug','excerpt','body','format','category','categories','tags','post_format','visibility','allow_comments','allow_pingbacks','custom_fields','image','image_alt','author','featured','status','date','meta_title','meta_description','focus_keyword','canonical','noindex'];
+    protected $fillable = ['created_by', 'legacy_id','title','slug','excerpt','body','format','category','categories','tags','post_format','visibility','allow_comments','allow_pingbacks','custom_fields','image','image_alt','author','featured','status','date','meta_title','meta_description','focus_keyword','canonical','noindex'];
 
     protected function casts(): array
     {

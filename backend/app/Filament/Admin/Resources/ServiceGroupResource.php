@@ -16,7 +16,7 @@ class ServiceGroupResource extends Resource
 {
     use Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'structure';
     protected static ?string $model = ServiceGroup::class;
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
     protected static ?string $navigationGroup = 'Site structure';

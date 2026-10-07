@@ -16,7 +16,7 @@ class SeoKeywordResource extends Resource
 {
     use Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'seo';
     protected static ?string $model = SeoKeyword::class;
     protected static ?string $navigationIcon = 'heroicon-o-key';
     protected static ?string $navigationGroup = 'Site structure';

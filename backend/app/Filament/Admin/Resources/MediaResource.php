@@ -19,7 +19,7 @@ class MediaResource extends Resource
 {
     use HooksDefault, Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'media';
     protected static ?string $model = Media::class;
     protected static ?string $navigationIcon = 'heroicon-o-photo';
     protected static ?string $navigationGroup = 'Website content';
@@ -54,7 +54,7 @@ class MediaResource extends Resource
 
     public static function uploadAction(): Action
     {
-        return Action::make('upload')->label('Upload images')->icon('heroicon-o-arrow-up-tray')
+        return Action::make('upload')->label('Upload images')->icon('heroicon-o-arrow-up-tray')->visible(fn () => (bool) auth()->user()?->hasPerm('media.create'))
             ->form([Forms\Components\FileUpload::make('files')->multiple()->image()->maxSize(4096)->disk('public')->directory('media')->storeFileNamesIn('names')
                 ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/svg+xml'])->required()])
             ->action(function (array $data) {

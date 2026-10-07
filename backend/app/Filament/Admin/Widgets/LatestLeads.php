@@ -16,7 +16,7 @@ class LatestLeads extends TableWidget
 
     public static function canView(): bool
     {
-        return (bool) auth()->user()?->hasPerm('leads');
+        return (bool) auth()->user()?->hasPerm('leads.view');
     }
 
     public function table(Table $table): Table

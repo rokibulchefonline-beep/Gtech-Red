@@ -15,11 +15,13 @@ class SiteStats extends StatsOverviewWidget
 
     protected function getStats(): array
     {
-        return [
-            Stat::make('New leads', Lead::query()->where('status', 'new')->count())->description(Lead::query()->where('created_at', '>=', now()->subDays(7))->count().' in the last 7 days')->color('danger'),
-            Stat::make('Blog posts', Post::query()->where('status', 'published')->count())->description(Post::query()->where('status', 'draft')->count().' drafts'),
-            Stat::make('Case studies', CaseStudy::query()->where('status', 'published')->count())->description('published'),
-            Stat::make('Newsletter', Subscriber::query()->count())->description('subscribers'),
-        ];
+        $u = auth()->user();
+        // Each number only for people allowed to see that section.
+        return array_values(array_filter([
+            $u?->hasPerm('leads.view') ? Stat::make('New leads', Lead::query()->where('status', 'new')->count())->description(Lead::query()->where('created_at', '>=', now()->subDays(7))->count().' in the last 7 days')->color('danger') : null,
+            $u?->hasPerm('posts.view') ? Stat::make('Blog posts', Post::query()->where('status', 'published')->count())->description(Post::query()->where('status', 'draft')->count().' drafts') : null,
+            $u?->hasPerm('case_studies.view') ? Stat::make('Case studies', CaseStudy::query()->where('status', 'published')->count())->description('published') : null,
+            $u?->hasPerm('subscribers.view') ? Stat::make('Newsletter', Subscriber::query()->count())->description('subscribers') : null,
+        ]));
     }
 }

@@ -29,7 +29,7 @@ class Settings extends Page implements HasForms
 
     public static function canAccess(): bool
     {
-        return (bool) auth()->user()?->hasPerm('settings');
+        return (bool) auth()->user()?->hasPerm('settings.view');
     }
 
     public function mount(): void
@@ -42,7 +42,7 @@ class Settings extends Page implements HasForms
 
     public function form(Form $form): Form
     {
-        return $form->statePath('data')->schema([
+        return $form->statePath('data')->disabled(fn () => ! self::canEdit())->schema([
             Forms\Components\Tabs::make()->tabs([
                 Forms\Components\Tabs\Tab::make('General')->schema([
                     Forms\Components\TextInput::make('general.siteName')->label('Site name')->required()->maxLength(80),
@@ -83,6 +83,12 @@ class Settings extends Page implements HasForms
                     Forms\Components\TextInput::make('smtp.notifyTo')->label('Send lead alerts to')->email()->maxLength(160),
                     Forms\Components\Toggle::make('smtp.autoReply')->label('Send an automatic reply to the person who enquired'),
                 ])->columns(2),
+                Forms\Components\Tabs\Tab::make('Security')->schema([
+                    Forms\Components\Radio::make('security.require2fa')->label('Require two-factor sign-in')
+                        ->options(['off' => 'No, people choose for themselves (in My account)', 'managers' => 'For people who can manage users (recommended at least)', 'everyone' => 'For everyone'])
+                        ->helperText('With two-factor sign-in, people also enter a 6-digit code from an authenticator app (Google Authenticator, Microsoft Authenticator, 1Password...). Anyone required to use it is asked to set it up at their next sign-in.')
+                        ->default('off'),
+                ]),
                 Forms\Components\Tabs\Tab::make('Publishing')->visible(fn () => ! config('gtech.blade_live'))->schema([
                     Forms\Components\TextInput::make('publish.deployHook')->label('Cloudflare deploy hook URL')->url()->maxLength(500)
                         ->helperText('Cloudflare > Workers & Pages > your site > Settings > Builds > Deploy hooks. "Publish site" calls this URL.'),
@@ -91,8 +97,14 @@ class Settings extends Page implements HasForms
         ]);
     }
 
+    public static function canEdit(): bool
+    {
+        return (bool) auth()->user()?->hasPerm('settings.edit');
+    }
+
     public function save(): void
     {
+        abort_unless(self::canEdit(), 403);
         $data = $this->form->getState();
         $oldPass = Setting::group('smtp')['pass'] ?? '';
         $data['smtp']['pass'] = filled($data['smtp']['pass'] ?? null) ? Crypt::encryptString($data['smtp']['pass']) : $oldPass;
@@ -107,7 +119,7 @@ class Settings extends Page implements HasForms
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('test')->label('Send test email')->icon('heroicon-o-paper-airplane')->color('gray')
+            Action::make('test')->label('Send test email')->icon('heroicon-o-paper-airplane')->color('gray')->visible(fn () => self::canEdit())
                 ->form([Forms\Components\TextInput::make('to')->email()->required()->default(fn () => auth()->user()?->email)])
                 ->action(function (array $data) {
                     try {
@@ -118,7 +130,7 @@ class Settings extends Page implements HasForms
                     }
                 }),
             Action::make('publish')->label('Publish site')->icon('heroicon-o-rocket-launch')->requiresConfirmation()
-                ->visible(fn () => ! config('gtech.blade_live'))->action(fn () => Publisher::publish()),
+                ->visible(fn () => ! config('gtech.blade_live') && (bool) auth()->user()?->hasPerm('pages.edit'))->action(fn () => Publisher::publish()),
         ];
     }
 }

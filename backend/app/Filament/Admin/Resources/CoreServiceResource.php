@@ -16,7 +16,7 @@ class CoreServiceResource extends Resource
 {
     use Perms;
 
-    protected static string $perm = 'content';
+    protected static string $section = 'structure';
     protected static ?string $model = CoreService::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Site structure';

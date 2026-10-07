@@ -30,7 +30,7 @@ class PageResource extends Resource
     private const RICH = ['bold', 'italic', 'underline', 'link', 'undo', 'redo'];
     private const KINDS = ['page' => 'Main page', 'service' => 'Service', 'industry' => 'Industry', 'legal' => 'Legal'];
 
-    protected static string $perm = 'content';
+    protected static string $section = 'pages';
     protected static ?string $model = Page::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Website content';
