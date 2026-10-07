@@ -60,14 +60,17 @@ class PostResource extends Resource
                         ->maxContentWidth('3xl')->extraInputAttributes(['style' => 'min-height: 24rem;']),
                 ]),
                 Forms\Components\Section::make('Search engines')->collapsible()->schema([
-                    Forms\Components\TextInput::make('focus_keyword')->maxLength(80),
-                    Forms\Components\TextInput::make('meta_title')->label('SEO title')->maxLength(120)->helperText('Best under 60 characters. Leave empty to use the post title.'),
-                    Forms\Components\Textarea::make('meta_description')->rows(2)->maxLength(300)->helperText('Best under 160 characters.'),
+                    Forms\Components\TextInput::make('focus_keyword')->maxLength(80)->live(onBlur: true),
+                    Forms\Components\TextInput::make('meta_title')->label('SEO title')->maxLength(120)->live(onBlur: true)->helperText('Best under 60 characters. Leave empty to use the post title.'),
+                    Forms\Components\Textarea::make('meta_description')->rows(2)->maxLength(300)->live(onBlur: true)->helperText('Best under 160 characters.'),
                     Forms\Components\TextInput::make('canonical')->url()->maxLength(500),
                     Forms\Components\Toggle::make('noindex')->label('Hide from search engines'),
                 ]),
             ])->columnSpan(['lg' => 2]),
             Forms\Components\Group::make([
+                Forms\Components\Section::make('SEO check')->schema([
+                    Forms\Components\Placeholder::make('seo_check')->hiddenLabel()->content(fn (Forms\Get $get, ?Post $record) => self::seoCheck($get, $record)),
+                ])->description('Updates as you edit the search fields, and fully on save.')->collapsible(),
                 Forms\Components\Section::make('Publish')->schema([
                     Forms\Components\Select::make('status')->options(fn (?Post $record) => self::canPublish() || ($record && $record->status !== 'draft') ? ['draft' => 'Draft', 'published' => 'Published', 'scheduled' => 'Scheduled'] : ['draft' => 'Draft'])->default('draft')->required()->selectablePlaceholder(false)
                         ->disabled(fn (?Post $record) => ! self::canPublish() && $record && $record->status !== 'draft')->dehydrated(fn (?Post $record) => self::canPublish() || ! $record || $record->status === 'draft')
@@ -91,16 +94,40 @@ class PostResource extends Resource
         ])->columns(3);
     }
 
+    /** The editor's SEO score and checks for the post as it is in the form (SEO > SEO audit uses the same checks). */
+    public static function seoCheck(Forms\Get $get, ?Post $record): \Illuminate\Support\HtmlString
+    {
+        // Form values are normally strings; the editor's state can briefly be its JSON document, so fall back to the saved post.
+        $v = fn (string $k) => is_scalar($x = $get($k)) ? (string) $x : (string) ($record?->{$k} ?? '');
+        $p = new Post(['title' => $v('title'), 'slug' => $v('slug'), 'body' => $v('body'), 'excerpt' => $v('excerpt'),
+            'focus_keyword' => $v('focus_keyword'), 'meta_title' => $v('meta_title'), 'meta_description' => $v('meta_description'),
+            'image' => $v('image'), 'image_alt' => $v('image_alt'), 'noindex' => (bool) $get('noindex')]);
+        $p->format = 'html';
+        $p->id = $record?->id;
+        $r = \App\Support\Seo\Audit::post($p);
+        $col = fn (string $l) => ['pass' => '#16a34a', 'warn' => '#d97706', 'fail' => '#dc2626'][$l];
+        $mark = ['pass' => '✓', 'warn' => '!', 'fail' => '✕'];
+        $tone = $r['score'] >= 85 ? 'pass' : ($r['score'] >= 65 ? 'warn' : 'fail');
+        $html = '<p style="font-size:28px;font-weight:600;color:'.$col($tone).'">'.$r['score'].'<span style="font-size:14px;color:#888">/100</span></p><ul style="font-size:13px;line-height:1.45;margin-top:6px">';
+        foreach ($r['checks'] as $c) {
+            $html .= '<li style="display:flex;gap:6px;margin:5px 0"><b style="color:'.$col($c['level']).';width:12px;flex:none">'.$mark[$c['level']].'</b><span>'.e($c['label'])
+                .($c['level'] !== 'pass' && $c['hint'] ? '<br><small style="opacity:.7">'.e($c['hint']).'</small>' : '').'</span></li>';
+        }
+        return new \Illuminate\Support\HtmlString($html.'</ul>');
+    }
+
     /** Markdown posts (imported or seeded) open as HTML, so the editor shows real headings and paragraphs. */
     public static function beforeFill(array $data): array
     {
         if (($data['format'] ?? 'html') !== 'html') $data['body'] = Blog::markdownToHtml((string) ($data['body'] ?? ''));
+        $data['body'] = \App\Support\Html::listsForEditor($data['body'] ?? '');
         return $data;
     }
 
     public static function beforeSave(array $data, $record = null): array
     {
         $data['format'] = 'html';
+        if (is_string($data['body'] ?? null)) $data['body'] = \App\Support\Html::listsForSite($data['body']);
         $data['categories'] = array_values($data['categories'] ?? []);
         $data['category'] = $data['categories'][0] ?? 'Insights';
         if (! self::canPublish()) {

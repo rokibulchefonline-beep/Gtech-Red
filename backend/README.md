@@ -165,6 +165,18 @@ All page addresses are the same as on the old site, and the old addresses still 
 
 ## Admin panel notes
 
+- **SEO menu:**
+  - *SEO dashboard*: overall, SEO, AEO (answer engines) and GEO (AI engines) scores, the commonest problems, the
+    weakest pages and posts, search and AI traffic, AI crawlers, and index health.
+  - *SEO audit*: every check for every service, industry and landing page, with how to fix it; the blog posts;
+    the keyword and entity map; internal links (orphans, broken semantic links, keyword conflicts). Re-runs every
+    10 minutes or straight after a content change ("Run again" forces it).
+  - *Internal link map*: the pages and their body links drawn as a map; click a page to see its links in and out.
+  - *Keyword map*, *SEO overrides* and *Redirects* are in the same menu.
+  - The blog post editor has an **SEO check** panel (score and checks), and its link box can **link to any page of
+    the site** from a searchable list.
+- **Dark mode** is the default; switch to light (or "system") from the avatar menu.
+
 - **Pages (page builder):**
   - *Service, industry and landing pages* are built from sections: **Add a section** picks from the library (text,
     image and text, cards, features, steps, table, results in numbers, impact, reviews, case studies, industries,

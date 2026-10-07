@@ -32,6 +32,8 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('favicon.ico'))
             ->colors(['primary' => Color::hex('#e8202f'), 'gray' => Color::Zinc])
             ->font('Inter')
+            // Dark by default; anyone can switch to light (or follow their device) from the avatar menu.
+            ->defaultThemeMode(\Filament\Enums\ThemeMode::Dark)
             // My account (name, email, password), two-factor sign-in with an authenticator app, and signed-in devices.
             ->plugin(\Jeffgreco13\FilamentBreezy\BreezyCore::make()
                 ->myProfile(shouldRegisterUserMenu: true, userMenuLabel: 'My account', slug: 'my-account')
@@ -43,6 +45,7 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
                 NavigationGroup::make('Website content'),
+                NavigationGroup::make('SEO'),
                 NavigationGroup::make('Site structure')->collapsed(),
                 NavigationGroup::make('Blog'),
                 NavigationGroup::make('Leads'),

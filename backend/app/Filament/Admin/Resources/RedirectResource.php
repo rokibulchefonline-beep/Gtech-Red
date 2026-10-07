@@ -19,9 +19,9 @@ class RedirectResource extends Resource
     protected static string $section = 'seo';
     protected static ?string $model = Redirect::class;
     protected static ?string $navigationIcon = 'heroicon-o-arrow-uturn-right';
-    protected static ?string $navigationGroup = 'Website content';
+    protected static ?string $navigationGroup = 'SEO';
     protected static ?string $navigationLabel = 'Redirects';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {

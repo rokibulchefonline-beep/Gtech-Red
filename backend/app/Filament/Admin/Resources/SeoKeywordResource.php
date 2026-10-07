@@ -19,10 +19,10 @@ class SeoKeywordResource extends Resource
     protected static string $section = 'seo';
     protected static ?string $model = SeoKeyword::class;
     protected static ?string $navigationIcon = 'heroicon-o-key';
-    protected static ?string $navigationGroup = 'Site structure';
+    protected static ?string $navigationGroup = 'SEO';
     protected static ?string $navigationLabel = 'Keyword map';
     protected static ?string $modelLabel = 'keyword entry';
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
