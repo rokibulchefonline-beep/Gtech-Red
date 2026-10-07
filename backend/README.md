@@ -56,6 +56,16 @@ It only collects data once the Blade site is live.
 - Composer 2.
 - Any PHP host works: a VPS, Laravel Forge, Cloudways, or cPanel hosting with SSH access.
 
+## Try it on a Windows computer
+
+1. Install **Laravel Herd for Windows** (herd.laravel.com) and open it once. It provides PHP and Composer.
+2. Download this branch as a ZIP from GitHub and extract it (for example to `C:\Sites`).
+3. Open the `backend` folder and double-click **`start-windows.bat`**.
+
+The first run installs everything, creates a local SQLite database with the website content and asks for your admin
+email and password; then the panel opens at http://127.0.0.1:8000/admin. Later runs just start it. Keep the window
+open while you use it. This copy lives only on your computer (no real leads arrive there).
+
 ## Install on the server
 
 ```bash
