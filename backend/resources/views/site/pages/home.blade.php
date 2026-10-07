@@ -61,7 +61,7 @@
 </div>
 </div>
 </section>
-@include('site.c.home.brands')
+@if (\App\Support\Site\Repo::clients())@include('site.c.home.brands')@endif
 <section class="cases">
 <div class="wrap">
 <h2>@hl('Digital Marketing [[Case Studies]]')</h2>

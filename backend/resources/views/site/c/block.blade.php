@@ -2,10 +2,12 @@
 @php($R = \App\Support\Site\Repo::class)
 @switch($s['type'])
 @case('logos')
+@if ($R::clients())
 <section class="sp-logos" aria-label="Clients"><div class="wrap">
 <p>Trusted by growing UK brands</p>
 <div class="sp-logo-row">@foreach (array_slice($R::clients(), 0, 6) as $b)<img src="{{ $b['logo'] }}" alt="{{ $b['name'] }}" loading="lazy">@endforeach</div>
 </div></section>
+@endif
 @break
 @case('text')
 <section id="{{ $s['id'] }}" class="sp-sec"><div class="wrap sp-split">
