@@ -54,7 +54,16 @@ function PortBusy($p) {
     try { $l = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, $p); $l.Start(); $l.Stop(); return $false } catch { return $true }
 }
 
+Step 'Preparing (cached settings, routes and templates make every page much faster)'
+Run 'php' @('artisan', 'optimize')
+
+# PHP's code cache (OPcache) is usually off for the command line on Windows; without it every request re-reads
+# hundreds of files. Turn it on for this server.
+$phpFlags = @('-d', 'opcache.enable_cli=1', '-d', 'opcache.validate_timestamps=1', '-d', 'opcache.revalidate_freq=0', '-d', 'opcache.memory_consumption=256', '-d', 'opcache.max_accelerated_files=20000', '-d', 'realpath_cache_size=4096K')
+if ((php -r "echo extension_loaded('Zend OPcache') ? 1 : 0;") -ne '1') { $phpFlags = @('-d', 'zend_extension=opcache') + $phpFlags }
+
 Write-Host 'Keep this window open while you use it. Close it (or press Ctrl+C) to stop.' -ForegroundColor Yellow
+Write-Host 'The first page after starting can take a few seconds while PHP warms up; after that pages are quick.' -ForegroundColor Yellow
 Set-Location public
 # PHP's own web server, started directly (php artisan serve fails on some Windows setups). If a port cannot be
 # used, the next one is tried.
@@ -64,7 +73,7 @@ for ($port = 8000; $port -lt 8020; $port++) {
     Step "Starting. Admin panel: $url/admin   Website: $url"
     Start-Job -ArgumentList "$url/admin" { param($u) Start-Sleep -Seconds 3; Start-Process $u } | Out-Null   # opens the browser once the server is up
     $started = Get-Date
-    php -S "127.0.0.1:$port" ..\server.php
+    php @phpFlags -S "127.0.0.1:$port" ..\server.php
     # A server that stops within a few seconds never started: try the next port. Otherwise it was stopped on purpose.
     if (((Get-Date) - $started).TotalSeconds -gt 5) { exit 0 }
     Get-Job | Remove-Job -Force
