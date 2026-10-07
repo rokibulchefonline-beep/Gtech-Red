@@ -1,13 +1,12 @@
-# GTech Digital: Laravel backend and admin panel
+# GTech Digital: website and admin panel
 
-Laravel 12 + MySQL + Filament 3. This replaces the old Next.js admin and MongoDB. The public website stays on
-Next.js (Cloudflare) and reads its content from this backend when it builds.
+Laravel 12 + MySQL + Filament 3. One app serves the public website (Blade templates) and the admin panel at
+`/admin`. It replaces the old Next.js site, its admin and MongoDB.
 
 ```
-Visitors ──> Next.js website (Cloudflare) ──reads at build──> Laravel API (/api/v1/query)
-                    │                                                │
-                    └── contact / newsletter forms ──> Laravel ──> MySQL <── Admin panel (/admin)
-                                                                        └── "Publish site" ─> Cloudflare deploy hook
+Visitors ──> (Cloudflare, optional) ──> Laravel ──> MySQL <── Admin panel (/admin)
+                                          │
+                                          └── forms, analytics, emails (SMTP), scheduled tasks (cron)
 ```
 
 ## What's in the panel (/admin)
@@ -17,8 +16,8 @@ Visitors ──> Next.js website (Cloudflare) ──reads at build──> Larave
 | **Website content** | Pages (edit the copy of every service, industry and main page, with `[[red]]` heading highlights), case studies, SEO overrides, partner badges, client logos and the media library |
 | **Blog** | Posts (rich-text editor, featured image, SEO fields, scheduling) and categories |
 | **Leads** | Form enquiries with owner, follow-up date, timeline and source; newsletter subscribers (CSV export) |
-| **Settings** | Site settings (contact details, tracking IDs, SMTP email with a test button, deploy hook), users and roles |
-| **Dashboard** | Stats, latest leads and the **Publish site** button |
+| **Settings** | Site settings (contact details, tracking IDs, SMTP email with a test button, leads, forms, security), users and roles |
+| **Dashboard** | Stats, my follow-ups and the latest leads |
 
 **Users and roles** (Settings → Users, Settings → Roles). Each role is a set of permissions per section (view,
 create, edit, publish, delete, export…), editable in the panel. Built-in roles:
@@ -47,7 +46,7 @@ visit to the Blade website and shows where it came from: search engines (Google,
 assistants (ChatGPT, Perplexity, Claude, Gemini, Copilot, Grok…), social, email, referral sites, paid campaigns
 (`utm_*`, `gclid`, `fbclid`…) and direct. Pages, landing pages, referrers, campaigns, devices, countries and leads per
 source are reported; AI crawler hits are counted separately, and staff browsers are excluded once they sign in.
-It only collects data once the Blade site is live.
+It only collects data on the live website.
 
 ## Requirements
 
@@ -103,20 +102,15 @@ files bypass Laravel: the included `public/.htaccess` does this on Apache. On ng
 
 Follow **[docs/EXPORT-FROM-MONGODB.md](docs/EXPORT-FROM-MONGODB.md)**: export to JSON, then run `php artisan gtech:import-mongo`.
 
-## Connect the website (Cloudflare)
+## Cloudflare in front (optional)
 
-1. In the Cloudflare project, open **Settings → Variables and Secrets** and add:
-   - `LARAVEL_API_URL`: this backend's address, e.g. `https://admin.gtechdigital.co.uk`.
-   - `LARAVEL_API_TOKEN`: the same value as `GTECH_API_TOKEN`. Add it as a **Secret**.
+Cloudflare cannot run this app (it needs PHP, MySQL and cron), but it can sit in front of the server:
 
-   Add both in **Build** and in **Runtime** variables.
-2. Redeploy. The website now reads content from Laravel. `/admin` on the website redirects to the new panel, and forms save into Laravel.
-3. In the panel, open **Site settings → Publishing** and paste the Cloudflare deploy hook. **Publish site** then rebuilds the website.
-4. Once everything checks out, you can remove `MONGODB_URI` from Cloudflare and pause the Atlas cluster.
+1. In Cloudflare DNS, point the domain (an **A record**) at the server's IP with the orange cloud (Proxied) on.
+2. **SSL/TLS → Full (strict)**, with a free Cloudflare Origin Certificate installed on the server.
+3. A cache rule that **bypasses the cache** for `/admin*`, `/livewire*`, `/preview*` and `/api*`.
 
-To roll back, remove the two `LARAVEL_*` variables and redeploy. The site goes back to MongoDB.
-
-## Where content lives (Blade move, phase 1)
+## Where content lives
 
 All website content is in MySQL and edited in the panel. The database is the single source of truth.
 
@@ -131,23 +125,19 @@ All website content is in MySQL and edited in the panel. The database is the sin
 | Keyword map and internal links | `seo_keywords` | Site structure → Keyword map |
 | Budgets list and company legal details | `settings` (`forms`, `company`) | Site settings |
 
-`gtech:seed-content` loads the original copy from `database/data/content.json`, which was exported from the old
-code with `npm run export:content`. It only fills what is missing and never overwrites edits, unless you pass `--force`.
+`gtech:seed-content` loads the original copy from `database/data/content.json` (exported from the old site). It
+only fills what is missing and never overwrites edits, unless you pass `--force`.
 **Restore original** on a page puts that single page back to its launch copy.
 
-The Next.js website still reads pages through the same API until the Blade front end replaces it.
+## Going live
 
-## Switching the website to Blade
-
-1. Point the website's domain at this Laravel app (document root `backend/public`). Keep `APP_URL` on the address
-   the panel should use.
-2. In `.env` set `GTECH_BLADE_LIVE=true`. This removes the `noindex` header and opens `robots.txt` with the sitemap.
+1. Point the domain at the server (document root `backend/public`) and keep `APP_URL` on the site's address.
+2. In `.env` keep `GTECH_BLADE_LIVE=true` (the default in `.env.example`): search engines may index the pages and
+   `robots.txt` lists the sitemap. Set it to `false` on a test copy to keep it out of Google.
 3. Run `php artisan optimize`.
 4. Check a few pages, then submit `https://www.gtechdigital.co.uk/sitemap.xml` in Google Search Console.
-5. The Cloudflare (Next.js) project and its "Publish site" deploy hook are no longer needed. Content edits show on the
-   site straight away.
 
-All page addresses stay the same, so no redirects are needed beyond the old ones already in place.
+All page addresses are the same as on the old site, and the old addresses still redirect.
 
 ## Speed and caching
 
@@ -237,37 +227,16 @@ All page addresses stay the same, so no redirects are needed beyond the old ones
 | `php artisan gtech:create-admin <email>` | Create a super admin, or reset an existing user's password |
 | `php artisan test` | Run the backend tests |
 
-## Blade front end
+## Website front end
 
-The website has been rebuilt in Blade with the same HTML, CSS and behaviour as the Next.js version. It is ready to
-replace the Next.js site; see **Switching the website to Blade** below.
+The public pages are Blade templates in `resources/views/site` with the same HTML, CSS and behaviour as the old
+Next.js site (checked page by page and pixel by pixel on all 67 pages before it was removed), plus SEO fixes: full
+canonical and share-image addresses, Open Graph and Twitter tags on every page, and `lastmod` dates in the sitemap.
 
-| Phase | Status |
-|---|---|
-| 1. All content in MySQL | Done |
-| 2. Layout and shared parts: header and mega menu, footer, contact popup, cookie banner, back-to-top, "Let's Talk", scroll motion, forms | Done. Preview at `/blade-preview` |
-| 3. Page templates: every page of the website (home, about, contact, both hubs, 35 services, 10 industries, case studies, blog, legal pages, 404) and their behaviour (in-page tabs, sliders, testimonials, count-ups, charts, videos, share and newsletter) | Done. Every page's HTML matches the Next.js build |
-| 4. Behaviour check: 35 interaction scenarios (scrolling, sliders, rotation, count-ups, videos, share, newsletter, search, forms, popup, menus, cookie banner) give the same result as the website; no JS errors on any page | Done. Tools in `scripts/parity/` |
-| 5. SEO: titles, descriptions, canonicals, robots, Open Graph and Twitter tags, the JSON-LD graph on every page, the panel's SEO overrides, `sitemap.xml`, `robots.txt` and the old-address redirects | Done. Same output as the website on all 67 pages, with the fixes below |
-| 6. Caching: full-page cache that refreshes itself on every save, no cookies or sessions on public pages, 304 responses for unchanged pages, compression and long browser caching for CSS, JS and images | Done |
-| 7. Full visual check: all 67 pages at 1352, 900 and 390 px, full page including header and footer, compared pixel by pixel with the website | Done. Same page heights everywhere; at most 0.012% of pixels differ (text edges and the resized logo) |
-
-SEO fixes compared with the Next.js output:
-
-- Canonical links and share images use full `https://www.gtechdigital.co.uk/...` addresses (the website printed relative
-  canonicals and `localhost` image addresses).
-- Every page has a canonical link and Open Graph and Twitter tags, so shared links show a title, description and image.
-- The sitemap leaves out pages set to noindex and gives each page a `lastmod` date from its last edit.
-
-The Blade pages are served at the same addresses as the website (`/`, `/services/local-seo`, `/blogs`...). Until
-`GTECH_BLADE_LIVE=true` they are sent with `X-Robots-Tag: noindex`, so search engines ignore them while the
-Next.js website is still live, and `robots.txt` blocks all crawlers. The blog search (`?q=`) and topic filter (`?category=`) run on the server.
-
-- **Styles:** `public/css/site.css` is linked to the website's `app/globals.css`, so both front ends share one stylesheet.
-- **Images and videos:** linked from the website's `public/` folder. Run `php artisan gtech:link-assets` after cloning or deploying.
-- **Behaviour:** `public/js/site.js` holds plain JavaScript ports of the React components (menus, popup, forms, cookie consent, back-to-top, scroll motion).
-- **Blade helpers:**
-  - `@icon('lucide:check', 16)` renders the same SVG icons.
-  - `@hl($heading)` renders the two-tone headings, matching the website's highlighter on all 1,010 headings in the content.
-  - `@rt($html)` cleans rich text, matching the website's sanitiser on 1,618 samples.
-- **Updating icons:** after adding icons to the website, run `npx tsx scripts/export-icons.ts` from the repository root.
+- **Styles:** `public/css/site.css`. **Behaviour:** `public/js/site.js` (menus, popup, forms, cookie consent,
+  back-to-top, scroll motion, analytics).
+- **Images and videos:** `public/bg`, `case`, `pages`, `partners`, `posts`, `services`, `videos`. Uploads from the
+  media library go to `storage/app/public` (run `php artisan storage:link` once).
+- **Blade helpers:** `@icon('lucide:check', 16)` (icons from `resources/data/icons.json`), `@hl($heading)` (two-tone
+  headings with `[[red words]]`) and `@rt($html)` (cleaned rich text).
+- With `GTECH_BLADE_LIVE=false` every page is sent with `X-Robots-Tag: noindex` and `robots.txt` blocks crawlers.

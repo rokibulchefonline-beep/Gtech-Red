@@ -23,14 +23,3 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 
-# Linked from the website folder by `php artisan gtech:link-assets`
-/public/bg
-/public/case
-/public/logo.png
-/public/pages
-/public/partners
-/public/posts
-/public/services
-/public/videos
-/public/cta-bg.webp
-/public/css/site.css
