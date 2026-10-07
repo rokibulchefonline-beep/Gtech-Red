@@ -16,7 +16,7 @@ class SeoController extends Controller
         $base = config('gtech.public_url');
         // Until the Blade pages replace the website, keep crawlers off this copy of it.
         $body = config('gtech.blade_live')
-            ? "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /admin/\n\nSitemap: $base/sitemap.xml\n"
+            ? "User-Agent: *\nAllow: /\nAllow: /api/media/\nDisallow: /api/\nDisallow: /admin/\n\nSitemap: $base/sitemap.xml\n"
             : "User-Agent: *\nDisallow: /\n";
         return response($body, 200, ['Content-Type' => 'text/plain; charset=UTF-8']);
     }

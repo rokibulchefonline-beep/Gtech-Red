@@ -25,7 +25,7 @@ a{color:inherit;text-decoration:none}
 .mega-tabs a.on{background:#fff;color:#000}
 .mega-body{padding:0 30px}
 .mega-pane{display:none}.mega-pane.on{display:block}
-.mega-pane h4{margin:0 0 14px;font-size:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.3)}
+.mega-pane h4,.mega-pane .mega-h{margin:0 0 14px;font-size:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.3)}
 .mega-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 20px}
 .mega-grid a{display:flex;align-items:center;gap:10px;font-size:12px}
 .mega-grid i{font-style:normal;width:26px;height:26px;flex:none;background:#fff;color:var(--purple);border-radius:0;display:grid;place-items:center;font-weight:600}
@@ -279,8 +279,8 @@ a{color:inherit;text-decoration:none}
 .iq-rule{display:block;width:34px;height:4px;background:#fff;margin:16px 0 24px}
 .iq-copy>p:not(.iq-eyebrow){margin:0 0 30px;max-width:480px;font-size:16px;line-height:1.7;color:#e7e7ea}
 .iq-form{background:#fff;color:#161616;border-radius:0;padding:32px 30px 28px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.iq-form h3{margin:0 0 22px;text-align:center;font-size:24px;line-height:1.2;font-weight:600}
-.iq-form h3 .red{font-weight:500}
+.iq-form h3,.iq-form .iq-form-title{margin:0 0 22px;text-align:center;font-size:24px;line-height:1.2;font-weight:600}
+.iq-form h3 .red,.iq-form .iq-form-title .red{font-weight:500}
 .iq-field{position:relative;margin-bottom:14px}
 .iq-field>svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--pink);pointer-events:none}
 .iq-field input:not(.hp),.iq-field select{display:block;width:100%;height:50px;padding:0 16px 0 46px;border:1px solid #e4e6ec;border-radius:0;background:#fff;font:inherit;font-size:14.5px;font-weight:500;color:#161616;outline:none;transition:border-color .2s,box-shadow .2s}
@@ -702,7 +702,7 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 @keyframes megaIn{from{opacity:0}to{opacity:1}}
 .dd-t{cursor:pointer}.dd.open>.dd-t{color:var(--pink)}
 .mega-all{margin-top:6px;border-top:1px solid rgba(255,255,255,.3);padding-top:14px!important}
-.mega-pane h4 a:hover{text-decoration:underline}
+.mega-pane h4 a:hover,.mega-pane .mega-h a:hover{text-decoration:underline}
 
 /* Footer */
 .ft{background:#0d0d10;color:#b9b9c2;font-size:14.5px;padding-top:70px}
@@ -718,8 +718,8 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 .ft-social{display:flex;gap:8px}
 .ft-social a{width:38px;height:38px;display:grid;place-items:center;background:#1b1b20;color:#fff;transition:background .2s}.ft-social a:hover{background:var(--pink)}
 .ft-col{display:flex;flex-direction:column;gap:11px}
-.ft-col h3{color:#fff;font-size:15px;font-weight:600;margin:0 0 8px;padding-bottom:12px;position:relative}
-.ft-col h3::after{content:"";position:absolute;left:0;bottom:0;width:28px;height:2px;background:var(--pink)}
+.ft-col h3,.ft .ft-col p.ft-h{color:#fff;font-size:15px;font-weight:600;margin:0 0 8px;padding-bottom:12px;position:relative}
+.ft-col h3::after,.ft .ft-col p.ft-h::after{content:"";position:absolute;left:0;bottom:0;width:28px;height:2px;background:var(--pink)}
 .ft-col a{color:#b9b9c2;transition:color .2s,transform .2s;width:fit-content}.ft-col a:hover{color:#fff;transform:translateX(3px)}
 .ft-more{display:inline-flex;align-items:center;gap:6px;color:var(--pink)!important;font-weight:600}
 .ft-contact a,.ft-contact span{display:flex;align-items:flex-start;gap:10px;line-height:1.45;word-break:break-word}
@@ -1016,3 +1016,11 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 .contact-addr{font-style:normal;line-height:1.55}
 .contact-map{display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:14px;font-weight:600;color:var(--pink)}
 .contact-map:hover{text-decoration:underline}
+
+/* Blog list page numbers. */
+.bl-pager{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:40px 0 0}
+.bl-pager ol{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.bl-pager a,.bl-pager span{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:40px;height:40px;padding:0 12px;border:1px solid #e4e6ec;font-weight:600;font-size:14px;color:#161616}
+.bl-pager a:hover{border-color:var(--pink);color:var(--pink)}
+.bl-pager [aria-current]{background:var(--pink);border-color:var(--pink);color:#fff}
+.bl-pager .gap{display:flex;align-items:center;padding:0 2px;color:#8a8f99}

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
  * 304 Not Modified when the page has not changed (ETag).
  *
  * Only plain GET requests are cached: addresses with a query string are rendered fresh, except the blog topic
- * filter (?category=), so random search terms cannot fill the cache.
+ * filter (?category=) and page number (?page=), so random search terms cannot fill the cache.
  */
 class CacheSitePage
 {
@@ -23,10 +23,12 @@ class CacheSitePage
             try { \App\Models\Page::publishDue(); } catch (\Throwable $e) { report($e); }
         }
         $query = $request->query();
-        $cacheable = PageCache::enabled() && $request->isMethod('GET') && (! $query || array_keys($query) === ['category']);
+        $listing = ! array_diff(array_keys($query), ['category', 'page']) && (! isset($query['page']) || ctype_digit((string) $query['page']))
+            && is_string($query['category'] ?? '') && preg_match('/^[a-z0-9-]{0,60}$/', (string) ($query['category'] ?? ''));
+        $cacheable = PageCache::enabled() && $request->isMethod('GET') && (! $query || $listing);
         if (! $cacheable) return $this->finish($request, $next($request), false);
 
-        $key = PageCache::key($request->getPathInfo().($query ? '?category='.$request->query('category') : ''));
+        $key = PageCache::key($request->getPathInfo().($query ? '?category='.($query['category'] ?? '').'&page='.($query['page'] ?? '') : ''));
         $hit = PageCache::store()->get($key);
         if ($hit) {
             $res = response($hit['body'], 200, $hit['headers']);

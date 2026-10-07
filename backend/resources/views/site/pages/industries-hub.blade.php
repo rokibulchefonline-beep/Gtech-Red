@@ -18,7 +18,7 @@
 <div class="ih-btns"><a class="sp-btn-red" href="/contact">Book a Free Audit</a><a class="sp-btn-line light" href="#sectors">Explore Industries</a></div>
 </div>
 </section>
-<section class="ih-how"><div class="wrap ih-how-grid">@foreach ($how as [$ic, $t, $x])<div><span class="ih-how-ico">@icon($ic, 22)</span><h3>{{ $t }}</h3><p>{{ $x }}</p></div>@endforeach</div></section>
+<section class="ih-how"><h2 class="sr-only">How we work with every sector</h2><div class="wrap ih-how-grid">@foreach ($how as [$ic, $t, $x])<div><span class="ih-how-ico">@icon($ic, 22)</span><h3>{{ $t }}</h3><p>{{ $x }}</p></div>@endforeach</div></section>
 <section id="sectors" class="ih-sec"><div class="wrap">
 <div class="ih-grid">@foreach ($R::industries() as $i)<a href="/industries/{{ $i->slug }}" class="ih-card"><span class="ih-img"><img src="/pages/industries/{{ $i->slug }}/growth.webp" alt="{{ $i->name }} marketing results dashboard" loading="lazy" width="800" height="600"><span class="ih-chip">@icon($i->icon, 18)</span></span><span class="ih-body"><h2>{{ $i->name }}</h2><p>{{ preg_replace('/<[^>]+>/', '', $R::page("industry~{$i->slug}")?->hero['lead'] ?? '') }}</p><span class="ih-more">Explore {{ $i->name }} @icon('lucide:arrow-right', 16)</span></span></a>@endforeach</div>
 </div></section>
