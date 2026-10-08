@@ -101,6 +101,18 @@ class LeadCrmTest extends TestCase
         $this->get(LeadResource::getUrl('edit', ['record' => $theirs]))->assertOk();
     }
 
+    public function test_the_details_page_shows_the_summary_notes_to_everyone_who_can_see_leads(): void
+    {
+        $lead = $this->lead(['notes' => 'Wants a full SEO audit before March. Budget approved by the MD.']);
+        $this->actingAs($this->user('viewer'));
+        $this->get(LeadResource::getUrl('view', ['record' => $lead]))->assertOk()
+            ->assertSee('Summary notes')->assertSee('Wants a full SEO audit before March.', false);
+        $rep = $this->user('sales');
+        $lead->update(['assigned_to' => $rep->id]);
+        $this->actingAs($rep);
+        $this->get(LeadResource::getUrl('view', ['record' => $lead]))->assertOk()->assertSee('Wants a full SEO audit', false);
+    }
+
     public function test_a_viewer_can_open_leads_read_only(): void
     {
         $lead = $this->lead();

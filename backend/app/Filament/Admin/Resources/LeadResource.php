@@ -111,6 +111,37 @@ class LeadResource extends Resource
         ]);
     }
 
+    /** The lead's details page (View): everything about the enquiry, with the summary and follow-up in full. */
+    public static function infolist(\Filament\Infolists\Infolist $infolist): \Filament\Infolists\Infolist
+    {
+        return $infolist->schema([
+            Infolists\Components\Section::make('Summary')->schema([
+                Infolists\Components\TextEntry::make('notes')->label('Summary notes')->placeholder('No summary yet. Use Edit to add one.')
+                    ->columnSpanFull()->extraAttributes(['class' => 'whitespace-pre-line']),
+            ])->icon('heroicon-o-document-text'),
+            Infolists\Components\Section::make('Enquiry')->schema([
+                Infolists\Components\TextEntry::make('name'),
+                Infolists\Components\TextEntry::make('business')->placeholder('-'),
+                Infolists\Components\TextEntry::make('email')->copyable()->placeholder('-'),
+                Infolists\Components\TextEntry::make('phone')->copyable()->placeholder('-'),
+                Infolists\Components\TextEntry::make('service')->placeholder('-'),
+                Infolists\Components\TextEntry::make('budget')->placeholder('-'),
+                Infolists\Components\TextEntry::make('website')->placeholder('-'),
+                Infolists\Components\TextEntry::make('postcode')->placeholder('-'),
+                Infolists\Components\TextEntry::make('message')->placeholder('-')->columnSpanFull()->extraAttributes(['class' => 'whitespace-pre-line']),
+                Infolists\Components\TextEntry::make('created_at')->label('Received')->dateTime('D j M Y, H:i'),
+                Infolists\Components\TextEntry::make('originLabel')->label('Came from')->state(fn (Lead $r) => $r->originLabel()),
+            ])->columns(3),
+            Infolists\Components\Section::make('Follow-up')->schema([
+                Infolists\Components\TextEntry::make('status')->formatStateUsing(fn ($state, Lead $r) => $r->statusLabel())->badge(),
+                Infolists\Components\TextEntry::make('owner.name')->label('Assigned to')->placeholder('Nobody'),
+                Infolists\Components\TextEntry::make('value')->label('Deal value (£)')->placeholder('-'),
+                Infolists\Components\TextEntry::make('next_action_at')->label('Next follow-up')->date('D j M Y')->placeholder('-'),
+                Infolists\Components\TextEntry::make('next_action')->label('What to do')->placeholder('-'),
+            ])->columns(3),
+        ]);
+    }
+
     public static function table(Table $table): Table
     {
         $me = fn () => auth()->id();
@@ -122,6 +153,8 @@ class LeadResource extends Resource
                 Tables\Columns\TextColumn::make('email')->url(fn (Lead $r) => 'mailto:'.$r->email)->description(fn (Lead $r) => $r->phone)->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('service')->searchable()->wrap()->visibleFrom('lg')->description(fn (Lead $r) => $r->originLabel() ? 'via '.$r->originLabel() : null),
                 Tables\Columns\SelectColumn::make('status')->options(fn () => Lead::statuses())->selectablePlaceholder(false)->disabled(fn () => ! static::allows('edit')),
+                Tables\Columns\TextColumn::make('notes')->label('Summary')->limit(70)->wrap()->toggleable()
+                    ->tooltip(fn (Lead $r) => $r->notes)->placeholder('-')->visibleFrom('xl'),
                 Tables\Columns\TextColumn::make('owner.name')->label('Assigned to')->placeholder('Nobody')->visibleFrom('md'),
                 Tables\Columns\TextColumn::make('next_action_at')->label('Follow-up')->date('D j M')->sortable()->placeholder('-')
                     ->description(fn (Lead $r) => $r->next_action_at ? str($r->next_action)->limit(40) : null)
@@ -145,8 +178,8 @@ class LeadResource extends Resource
                 Tables\Filters\SelectFilter::make('channel')->label('Source')->options(fn () => Lead::query()->where('channel', '!=', '')->distinct()->orderBy('channel')->pluck('channel', 'channel')->all()),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->label('Open'),
-                Tables\Actions\ViewAction::make()->label('Open')->visible(fn (Lead $r) => ! static::canEdit($r)),
+                Tables\Actions\ViewAction::make()->label('View')->icon('heroicon-o-eye'),
+                Tables\Actions\EditAction::make()->label('Edit')->visible(fn (Lead $r) => static::canEdit($r)),
                 Tables\Actions\DeleteAction::make()->iconButton(),
             ])
             ->bulkActions([
