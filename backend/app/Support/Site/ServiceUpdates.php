@@ -270,8 +270,20 @@ class ServiceUpdates
     {
         foreach (self::REMOVE as $slug) self::remove($slug);
         foreach (self::added() as $slug => $s) self::add($slug, $s);
+        self::placeAfter('aeo-geo', 'search-engine-optimization');
         PageCache::flush();
         Repo::flush();
+    }
+
+    /** Puts a service straight after another one in its menu column, keeping the others in order. */
+    private static function placeAfter(string $slug, string $after): void
+    {
+        $item = ServiceItem::query()->where('slug', $slug)->first();
+        if (! $item) return;
+        $list = ServiceItem::query()->where('group_slug', $item->group_slug)->where('slug', '!=', $slug)->orderBy('sort')->orderBy('id')->get()->values();
+        $pos = $list->search(fn ($i) => $i->slug === $after);
+        $list->splice($pos === false ? $list->count() : $pos + 1, 0, [$item]);
+        foreach ($list->values() as $n => $i) if ((int) $i->sort !== $n) $i->forceFill(['sort' => $n])->save();
     }
 
     private static function add(string $slug, array $s): void
