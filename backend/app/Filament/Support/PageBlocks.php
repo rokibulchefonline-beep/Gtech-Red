@@ -41,14 +41,10 @@ class PageBlocks
         return '';
     }
 
+    /** Icons offered before typing (the ones the site uses): key => name. */
     public static function iconOptions(): array
     {
-        static $o = null;
-        if ($o === null) {
-            $keys = array_keys(json_decode((string) file_get_contents(resource_path('data/icons.json')), true) ?: []);
-            $o = array_combine($keys, array_map(fn ($k) => Str::of($k)->after(':')->replace('-', ' ')->ucfirst()->toString(), $keys));
-        }
-        return $o;
+        return collect(\App\Support\Site\Icons::popular())->mapWithKeys(fn ($k) => [$k => \App\Support\Site\Icons::name($k)])->all();
     }
 
     private static function heading(bool $required = true): Forms\Components\TextInput
@@ -82,8 +78,7 @@ class PageBlocks
 
     private static function iconSelect(): Forms\Components\Select
     {
-        return Forms\Components\Select::make('icon')->options(fn () => self::iconOptions())->searchable()->placeholder('No icon')
-            ->allowHtml()->getOptionLabelUsing(fn ($value) => self::iconOptions()[$value] ?? $value);
+        return IconPicker::make('icon');
     }
 
     /** @return Block[] */

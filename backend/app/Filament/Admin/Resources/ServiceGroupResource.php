@@ -30,14 +30,14 @@ class ServiceGroupResource extends Resource
             Forms\Components\TextInput::make('title')->required()->maxLength(120),
             Forms\Components\TextInput::make('slug')->label('Page address')->prefix('/services/')->required()->maxLength(80)->unique(ignoreRecord: true)->rule('regex:/^[a-z0-9-]+$/')->disabledOn('edit'),
             Forms\Components\Textarea::make('intro')->rows(2)->maxLength(400),
-            Forms\Components\TextInput::make('icon')->helperText('Icon name, e.g. lucide:search. Leave as it is unless you know the icon set.')->maxLength(80),
+            \App\Filament\Support\IconPicker::make('icon'),
             Forms\Components\Repeater::make('items')->label('Services in this category')->relationship('items')->orderColumn('sort')->collapsible()->collapsed()
                 ->itemLabel(fn (array $state) => $state['name'] ?? null)
                 ->schema([
                     Forms\Components\TextInput::make('name')->required()->maxLength(120),
                     Forms\Components\TextInput::make('slug')->label('Page address')->prefix('/services/')->required()->maxLength(80)->rule('regex:/^[a-z0-9-]+$/'),
                     Forms\Components\TextInput::make('blurb')->label('Short description')->maxLength(300),
-                    Forms\Components\TextInput::make('icon')->maxLength(80),
+                    \App\Filament\Support\IconPicker::make('icon'),
                 ])->columns(2),
         ])->columns(1);
     }

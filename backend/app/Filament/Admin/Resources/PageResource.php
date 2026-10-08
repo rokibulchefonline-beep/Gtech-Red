@@ -29,6 +29,8 @@ class PageResource extends Resource
 
     private const ITEM_FIELDS = ['cards', 'steps', 'stats', 'reviews', 'items'];
     private const ITEM_KEYS = ['title', 'text', 'value', 'label', 'name', 'role'];
+    /** Item fields the fixed-layout form edits: the text ones and the icon. */
+    private const ITEM_EDIT = ['icon', ...self::ITEM_KEYS];
     private const RICH = ['bold', 'italic', 'underline', 'link', 'undo', 'redo'];
     private const KINDS = Page::KINDS;
 
@@ -91,7 +93,7 @@ class PageResource extends Resource
                         Forms\Components\TextInput::make('data.secondLabel')->label('Second button')->placeholder('Get a Free Proposal')->maxLength(40),
                         Forms\Components\TextInput::make('data.secondHref')->label('Second button link')->placeholder('#inquiry')->maxLength(200)
                             ->helperText('A section anchor such as #inquiry, or an address such as /case-studies.'),
-                        Forms\Components\Select::make('data.icon')->label('Badge icon')->options(fn () => \App\Filament\Support\PageBlocks::iconOptions())->searchable(),
+                        \App\Filament\Support\IconPicker::make('data.icon', 'Badge icon'),
                     ])->columns(2),
                     Forms\Components\Fieldset::make('Landing page options')->visible($landing)->schema([
                         Forms\Components\Toggle::make('data.focus')->label('Focus page: hide the site menu and footer')
@@ -182,6 +184,7 @@ class PageResource extends Resource
                                 ->addable(false)->deletable(false)->reorderable(false)->grid(2)->visible(self::has('items'))
                                 ->schema([
                                     Forms\Components\Hidden::make('_f'), Forms\Components\Hidden::make('_k'),
+                                    \App\Filament\Support\IconPicker::make('icon')->visible(fn (Get $get) => in_array('icon', (array) $get('_k'), true)),
                                     ...array_map(fn ($k) => Forms\Components\TextInput::make($k)->label(ucfirst($k))->maxLength(800)
                                         ->visible(fn (Get $get) => in_array($k, (array) $get('_k'), true)), self::ITEM_KEYS),
                                 ]),
@@ -247,8 +250,8 @@ class PageResource extends Resource
             $items = [];
             foreach (self::ITEM_FIELDS as $f) {
                 foreach ((array) ($s[$f] ?? []) as $j => $it) {
-                    $keys = array_values(array_intersect(self::ITEM_KEYS, array_keys((array) $it)));
-                    if ($keys) $items[] = ['_f' => "$f:$j", '_k' => $keys] + array_intersect_key((array) $it, array_flip($keys));
+                    $keys = array_values(array_intersect(self::ITEM_EDIT, array_keys((array) $it)));
+                    if (array_diff($keys, ['icon'])) $items[] = ['_f' => "$f:$j", '_k' => $keys] + array_intersect_key((array) $it, array_flip($keys));
                 }
             }
             if ($items) $has[] = 'items';

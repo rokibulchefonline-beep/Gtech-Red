@@ -29,7 +29,7 @@ class IndustryResource extends Resource
         return $form->schema([
             Forms\Components\TextInput::make('name')->required()->maxLength(120),
             Forms\Components\TextInput::make('slug')->label('Page address')->prefix('/industries/')->required()->maxLength(80)->unique(ignoreRecord: true)->rule('regex:/^[a-z0-9-]+$/')->disabledOn('edit'),
-            Forms\Components\TextInput::make('icon')->maxLength(80),
+            \App\Filament\Support\IconPicker::make('icon'),
         ])->columns(2);
     }
 
