@@ -37,7 +37,7 @@ return [
     */
     'media_action' => App\Filament\Support\SiteMediaAction::class,
     //    'media_action' => Awcodes\Curator\Actions\MediaAction::class,
-    'edit_media_action' => FilamentTiptapEditor\Actions\EditMediaAction::class,
+    'edit_media_action' => App\Filament\Support\SiteEditMediaAction::class,
     'link_action' => App\Filament\Support\SimpleLinkAction::class,
     'grid_builder_action' => FilamentTiptapEditor\Actions\GridBuilderAction::class,
     'oembed_action' => FilamentTiptapEditor\Actions\OEmbedAction::class,

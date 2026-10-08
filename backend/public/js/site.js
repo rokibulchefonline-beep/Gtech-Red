@@ -305,16 +305,22 @@
     cards.forEach(function (c) { o.observe(c); });
   });
 
-  // Home hero background video: added after load so it never blocks first paint; fades in once playing.
-  each('[data-hero-video]', function (box) {
-    var add = function () {
-      var id = '4YKT1KJbzuQ', f = d.createElement('iframe');
-      f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&loop=1&playlist=' + id + '&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0';
-      f.title = 'Background video'; f.tabIndex = -1; f.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
-      f.addEventListener('load', function () { setTimeout(function () { f.className = 'on'; }, 1800); });
-      box.appendChild(f);
+  // Home hero background video (glowing UK network map): loaded after the page, smaller file on phones,
+  // poster only for people who prefer less motion; paused when the hero is off screen.
+  each('[data-hero-video]', function (v) {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var start = function () {
+      var src = window.innerWidth < 900 ? v.getAttribute('data-src-sm') : v.getAttribute('data-src');
+      // MP4 (H.264) for almost every browser; WebM for the few without H.264.
+      if (!v.canPlayType('video/mp4; codecs="avc1.640028"')) src = src.replace(/\.mp4$/, '.webm');
+      v.src = src;
+      v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { var r = v.play(); if (r && r.catch) r.catch(function () {}); } else v.pause(); });
+      }).observe(v);
     };
-    if (d.readyState === 'complete') add(); else window.addEventListener('load', add);
+    if (d.readyState === 'complete') start(); else window.addEventListener('load', start);
   });
 
   // Intro video: play/pause button. The icon and label follow the intended state, as in the React component.

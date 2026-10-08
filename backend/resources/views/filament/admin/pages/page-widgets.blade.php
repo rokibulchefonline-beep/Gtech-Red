@@ -32,7 +32,7 @@
                     </x-slot>
                     <div class="space-y-3 text-sm">
                         <div class="overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-white/10" style="height:240px;position:relative">
-                            <iframe src="{{ url('/preview/widget/'.$w['key']) }}" title="Preview: {{ $w['name'] }}" loading="lazy" tabindex="-1" aria-hidden="true"
+                            <iframe data-widget-preview data-src="{{ url('/preview/widget/'.$w['key']) }}" title="Preview: {{ $w['name'] }}" tabindex="-1" aria-hidden="true"
                                 style="width:250%;height:600px;border:0;transform:scale(.4);transform-origin:0 0;pointer-events:none"></iframe>
                         </div>
                         <p><a class="font-medium text-primary-600 hover:underline dark:text-primary-400" href="{{ url('/preview/widget/'.$w['key']) }}" target="_blank" rel="noopener">Open full preview ↗</a>
@@ -57,4 +57,19 @@
         </div>
     </div>
 @endforeach
+{{-- Previews load one at a time: loading them all at once makes Windows servers fail while the page templates are first compiled. --}}
+<script>
+(function () {
+    var frames = Array.prototype.slice.call(document.querySelectorAll('[data-widget-preview]'));
+    var next = function () {
+        var f = frames.shift();
+        if (!f) return;
+        var done = false, go = function () { if (!done) { done = true; next(); } };
+        f.addEventListener('load', go, { once: true });
+        setTimeout(go, 8000);
+        f.src = f.getAttribute('data-src');
+    };
+    next();
+})();
+</script>
 </x-filament-panels::page>
