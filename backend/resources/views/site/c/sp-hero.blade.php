@@ -9,7 +9,6 @@
 <a class="sp-btn-line" href="{{ $second[0] }}">{{ $second[1] }}</a>
 </div>
 <ul class="sp-hero-points">@foreach ($p->hero['points'] ?? [] as $pt)<li>@include('site.c.tick'){{ $pt }}</li>@endforeach</ul>
-<p class="sp-updated">Reviewed by GTech Digital specialists · Updated {{ now()->format('F Y') }}</p>
 @if (!empty($p->hero['motion']))
 <div class="sp-hero-show">
 <img src="{{ $p->hero['motion'] ?? '' }}" alt="{{ $alt }}" width="800" height="600" fetchpriority="high" decoding="async">
