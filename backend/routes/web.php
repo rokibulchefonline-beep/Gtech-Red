@@ -41,6 +41,7 @@ Route::middleware([\App\Http\Middleware\RecordBotHits::class, CacheSitePage::cla
 // The panel's preview of unsaved page changes (signed-in staff only).
 Route::get('/preview/page/{token}', [\App\Http\Controllers\Site\PreviewController::class, 'show'])->where('token', '[A-Za-z0-9]{40}');
 Route::get('/preview/page/{token}/frame', [\App\Http\Controllers\Site\PreviewController::class, 'frame'])->where('token', '[A-Za-z0-9]{40}');
+Route::get('/preview/widget/{type}', [\App\Http\Controllers\Site\PreviewController::class, 'widget'])->where('type', '[a-z]+');
 
 Route::withoutMiddleware($noSession)->group(function () {
     Route::get('/sitemap.xml', [SeoController::class, 'sitemap']);

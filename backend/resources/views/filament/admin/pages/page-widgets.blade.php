@@ -16,7 +16,7 @@
 </div>
 
 <p class="text-sm text-gray-600 dark:text-gray-400">
-    To add a widget, open a page in <b>Website content</b> → <b>Pages</b> (or a landing page), go to the <b>Sections</b> tab and click <b>Add a section</b>.
+    To add a widget, open a page in <b>Website content</b> → <b>Pages</b> (or a landing page), go to the <b>Sections</b> tab (on designed pages such as Home, About or Industries: the <b>Section order</b> tab) and click <b>Add a section</b> or <b>Insert a section here</b>.
     Sections keep their order and can be moved, copied or removed there.
 </p>
 
@@ -31,6 +31,12 @@
                         Used in {{ $w['used'] }} {{ \Illuminate\Support\Str::plural('section', $w['used']) }}@if ($w['pageTotal']) on {{ $w['pageTotal'] }} {{ \Illuminate\Support\Str::plural('page', $w['pageTotal']) }}@endif
                     </x-slot>
                     <div class="space-y-3 text-sm">
+                        <div class="overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-white/10" style="height:240px;position:relative">
+                            <iframe src="{{ url('/preview/widget/'.$w['key']) }}" title="Preview: {{ $w['name'] }}" loading="lazy" tabindex="-1" aria-hidden="true"
+                                style="width:250%;height:600px;border:0;transform:scale(.4);transform-origin:0 0;pointer-events:none"></iframe>
+                        </div>
+                        <p><a class="font-medium text-primary-600 hover:underline dark:text-primary-400" href="{{ url('/preview/widget/'.$w['key']) }}" target="_blank" rel="noopener">Open full preview ↗</a>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">· example content, shown with the website's design</span></p>
                         <p><b>What it is for:</b> {{ $w['use'] }}</p>
                         <p><b>Best used:</b> {{ $w['best'] }}</p>
                         <div>

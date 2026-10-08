@@ -148,7 +148,50 @@ class WidgetCatalog
                 'tips' => ['Replies go to the leads list, the same as every other form.', 'Only one enquiry form per page is needed: the page already ends with one.'],
                 'example' => 'Heading "Get a free Local SEO audit", the form underneath.',
             ],
+            'html' => [
+                'name' => 'Custom HTML', 'group' => 'Layout',
+                'use' => 'Your own HTML and CSS, for anything the other widgets do not cover: a custom banner, an embed, a special layout.',
+                'best' => 'One-off designs, partner embeds (maps or booking widgets in an iframe), badges or special offers.',
+                'fields' => ['Name (panel only)', 'HTML', 'CSS (applies to this section only)', 'Full width', 'Label for the "On this page" bar'],
+                'tips' => ['Scripts and onclick-style handlers are removed for safety; use an iframe for third-party embeds.', 'Your CSS only affects this section, so it cannot break the rest of the page.', 'Check the result on a phone with Preview before publishing.'],
+                'example' => 'An offer banner: <div class="offer"><h2>20% off audits</h2></div> with the CSS .offer { background: #e8202f; color: #fff }.',
+            ],
         ];
+    }
+
+    /** Example content for the widget preview (Page builder widgets > Preview). */
+    public static function sample(string $type): ?array
+    {
+        $cards = [['icon' => 'lucide:search', 'title' => 'Keyword research', 'text' => 'The searches your buyers use, mapped to the right pages.'],
+            ['icon' => 'lucide:settings-2', 'title' => 'Technical SEO', 'text' => 'Speed, crawling and Core Web Vitals fixed.'],
+            ['icon' => 'lucide:pen-line', 'title' => 'Content', 'text' => 'Pages and guides that rank and convert.'],
+            ['icon' => 'lucide:chart-column-increasing', 'title' => 'Reporting', 'text' => 'Rankings, traffic and leads every month.']];
+        $s = match ($type) {
+            'text' => ['heading' => 'What Is [[Local SEO]]?', 'paras' => ['Local SEO helps your business appear when people nearby search for what you offer, in Google Maps and the local results.'], 'bullets' => ['Google Business Profile', 'Reviews and ratings', 'Local citations']],
+            'media' => ['heading' => 'Rank Higher [[in Your Town]]', 'paras' => ['We optimise your profile, pages and reviews so you show up in the map pack.'], 'bullets' => ['Map pack visibility', 'More calls and visits'], 'image' => '/pages/seo/onpage.webp', 'alt' => 'Example image'],
+            'cards' => ['heading' => 'What\'s [[Included]]', 'intro' => 'Everything you need, in one plan.', 'cards' => $cards],
+            'features' => ['heading' => 'Why Our [[Approach Works]]', 'intro' => 'A short story on the left, features on the right.', 'paras' => ['We focus on the work that moves leads and revenue.'], 'cards' => array_slice($cards, 0, 4)],
+            'steps' => ['heading' => 'How It [[Works]]', 'steps' => [['title' => 'Free audit', 'text' => 'We review your site and competitors.'], ['title' => 'Proposal', 'text' => 'A clear plan and fixed quote.'], ['title' => 'Launch', 'text' => 'We get to work, fastest wins first.'], ['title' => 'Monthly review', 'text' => 'Results and next steps in plain English.']]],
+            'table' => ['heading' => 'Compare [[Plans]]', 'columns' => ['', 'Starter', 'Growth'], 'rows' => [['Keyword research', 'Yes', 'Yes'], ['Pages optimised', '5', '20'], ['Monthly report', 'Yes', 'Yes']], 'note' => 'Every plan is on rolling monthly terms.'],
+            'metrics' => ['heading' => 'Results [[in Numbers]]', 'metrics' => [['label' => 'Organic traffic', 'value' => '+180%', 'text' => 'In 12 months'], ['label' => 'Leads', 'value' => '2.4x', 'text' => 'From search'], ['label' => 'Keywords', 'value' => '320', 'text' => 'On page one']]],
+            'impact' => ['heading' => 'Our Clients [[Grow Faster]]', 'text' => 'Measured on leads and revenue, not clicks.', 'stats' => [['value' => '3.4x', 'label' => 'Return on ad spend'], ['value' => '2.1M', 'label' => 'People reached']]],
+            'reviews' => ['heading' => 'What Our Clients Say'],
+            'cases' => ['heading' => 'Results From Our [[Clients]]', 'service' => '*'],
+            'industries' => ['heading' => 'Industries [[We Serve]]', 'items' => \App\Models\Industry::query()->limit(3)->get()->map(fn ($i) => ['slug' => $i->slug, 'text' => 'Marketing built around how this sector buys.'])->all()],
+            'logos' => [],
+            'cta' => ['heading' => 'Ready for [[More Enquiries]]?', 'text' => 'Get a free audit and a clear plan within 24 hours.', 'button' => 'Get a Free Audit', 'link' => '#', 'tone' => 'red'],
+            'faq' => ['heading' => 'Common [[Questions]]', 'items' => [['title' => 'How long does SEO take?', 'text' => 'Most campaigns show clear progress in 3 to 6 months.'], ['title' => 'Do I need a long contract?', 'text' => 'No. We work on rolling monthly terms.']]],
+            'video' => ['heading' => 'See How We [[Work]]', 'video' => 'youtube:aqz-KE-bpKQ', 'caption' => 'Example video.'],
+            'pricing' => ['heading' => 'Simple [[Pricing]]', 'plans' => [
+                ['name' => 'Starter', 'price' => '£299', 'period' => 'per month', 'text' => 'For one location.', 'features' => ['Google Business Profile', 'Monthly report'], 'highlight' => false, 'button' => 'Get started', 'link' => '#'],
+                ['name' => 'Growth', 'price' => '£599', 'period' => 'per month', 'text' => 'For growing businesses.', 'features' => ['Everything in Starter', 'Content each month'], 'highlight' => true, 'button' => 'Get started', 'link' => '#'],
+            ]],
+            'html' => ['heading' => 'Offer banner', 'html' => '<div class="offer"><h2>Spring offer: 20% off website audits</h2><p>Book before the end of the month.</p><a href="/contact">Claim the offer</a></div>',
+                'css' => '.offer { background: linear-gradient(135deg, #e8202f, #7a0d16); color: #fff; border-radius: 20px; padding: 40px; text-align: center } .offer h2 { color: #fff; margin: 0 0 8px } .offer a { display: inline-block; margin-top: 12px; background: #fff; color: #e8202f; padding: 10px 22px; border-radius: 999px; font-weight: 600; text-decoration: none }'],
+            'form' => ['heading' => 'Get a Free [[Audit]]', 'intro' => 'Tell us about your goals.'],
+            default => null,
+        };
+        return $s === null ? null : ['type' => $type, 'id' => 'preview-'.$type] + $s;
     }
 
     /** Groups in the order they appear in the admin. */

@@ -14,6 +14,73 @@
     \App\Support\Site\Schema::itemList('/', 'GTech Digital services', $R::groups()->map(fn ($g) => [$g->title, "/services/{$g->slug}"])->all()),
     ...(!empty($p->faqs) ? [\App\Support\Site\Schema::faq('/', $p->faqs)] : []),
 ]))
+@section('d-partners')
+@include('site.c.partner-strip')
+@endsection
+@section('d-who')
+<section class="who">
+<div class="wrap who-grid">
+@include('site.c.intro-video')
+<div class="who-body">
+<h2>@if (str_contains($who['heading'], '[['))@hl($who['heading'])@else{{ $who['heading'] }}@endif</h2>
+<p class="who-text">@rt($who['paras'][0] ?? '')</p>
+<ul class="who-points">@foreach ($who['bullets'] ?? [] as $pt)<li>@include('site.c.tick')<span>@rt($pt)</span></li>@endforeach</ul>
+<div class="who-btns">
+<a class="btn" href="/about">More about us</a>
+<a class="btn-line" href="/contact">Contact us</a>
+</div>
+</div>
+</div>
+</section>
+@endsection
+@section('d-services')
+<section class="ourservices">
+<div class="wrap">
+<h2>@hl($svc['heading'])</h2>
+<p class="os-sub">@rt($svc['text'] ?? '')</p>
+<div class="svc-stack " data-stack>@foreach ($R::coreServices() as $i => $s)<article class="svc-card " style="--i:{{ $i }}"><div class="svc-text"><h3>{{ $s->title }}</h3><p>{{ $s->line }}</p><ul>@foreach ((array) $s->points as $pt)<li>@include('site.c.tick'){{ $pt }}</li>@endforeach</ul><a class="svc-link" href="/services/{{ $s->slug }}">Learn more &rarr;</a></div><div class="svc-media">@if ($s->image)<img src="{{ $s->image }}" alt="{{ $s->title }}" loading="lazy">@else @icon($R::item($s->slug)['item']->icon ?? $R::group($s->slug)?->icon ?? '', 110)@endif</div></article>@endforeach</div>
+</div>
+</section>
+@endsection
+@section('d-how')
+<section class="how " data-inview="0.25">
+<div class="wrap">
+<h2>@hl($how['heading'])</h2>
+<p class="how-sub">@rt($how['text'] ?? '')</p>
+<div class="how-grid">
+@include('site.c.home.how-line')
+@foreach ($howBase as $n => [$t, $x])<div class="how-step"><div class="how-art">@include('site.c.home.how-art-'.($n + 1))</div><h3>{{ $howSteps[$n]['title'] ?? $t }}</h3><p>{{ $howSteps[$n]['text'] ?? $x }}</p></div>@endforeach
+</div>
+</div>
+</section>
+@endsection
+@section('d-brands')
+@if (\App\Support\Site\Repo::clients())@include('site.c.home.brands')@endif
+@endsection
+@section('d-cases')
+<section class="cases">
+<div class="wrap">
+<h2>@hl('Digital Marketing [[Case Studies]]')</h2>
+<p class="os-sub">See how we help brands grow with results you can measure.</p>
+@include('site.c.case-carousel', ['docs' => $R::caseStudies(6)])
+<p class="cases-all"><a class="btn-dark" href="/case-studies">View All Case Studies</a></p>
+</div>
+</section>
+@endsection
+@section('d-results')
+<section class="results " data-inview="0.2"><div class="wrap"><h2>Tired of Excuses Instead of <span class="red">Results?</span></h2><p class="results-sub"><strong>See what better growth looks like</strong> with GTech Digital</p>
+@include('site.c.home.results-grid')
+</div></section>
+@endsection
+@section('d-testimonials')
+@include('site.c.home.testimonials')
+@endsection
+@section('d-faq')
+@if (!empty($p->faqs))@include('site.c.faq', ['title' => 'Frequently Asked Questions About GTech Digital', 'faqs' => $p->faqs])@endif
+@endsection
+@section('d-inquiry')
+@include('site.c.inquiry')
+@endsection
 @section('content')
 <div class="no-hl">
 <section class="hero-video">
@@ -30,52 +97,6 @@
 @include('site.c.stats', ['hero' => true])
 </div>
 </section>
-@include('site.c.partner-strip')
-<section class="who">
-<div class="wrap who-grid">
-@include('site.c.intro-video')
-<div class="who-body">
-<h2>@if (str_contains($who['heading'], '[['))@hl($who['heading'])@else{{ $who['heading'] }}@endif</h2>
-<p class="who-text">@rt($who['paras'][0] ?? '')</p>
-<ul class="who-points">@foreach ($who['bullets'] ?? [] as $pt)<li>@include('site.c.tick')<span>@rt($pt)</span></li>@endforeach</ul>
-<div class="who-btns">
-<a class="btn" href="/about">More about us</a>
-<a class="btn-line" href="/contact">Contact us</a>
-</div>
-</div>
-</div>
-</section>
-<section class="ourservices">
-<div class="wrap">
-<h2>@hl($svc['heading'])</h2>
-<p class="os-sub">@rt($svc['text'] ?? '')</p>
-<div class="svc-stack " data-stack>@foreach ($R::coreServices() as $i => $s)<article class="svc-card " style="--i:{{ $i }}"><div class="svc-text"><h3>{{ $s->title }}</h3><p>{{ $s->line }}</p><ul>@foreach ((array) $s->points as $pt)<li>@include('site.c.tick'){{ $pt }}</li>@endforeach</ul><a class="svc-link" href="/services/{{ $s->slug }}">Learn more &rarr;</a></div><div class="svc-media">@if ($s->image)<img src="{{ $s->image }}" alt="{{ $s->title }}" loading="lazy">@else @icon($R::item($s->slug)['item']->icon ?? $R::group($s->slug)?->icon ?? '', 110)@endif</div></article>@endforeach</div>
-</div>
-</section>
-<section class="how " data-inview="0.25">
-<div class="wrap">
-<h2>@hl($how['heading'])</h2>
-<p class="how-sub">@rt($how['text'] ?? '')</p>
-<div class="how-grid">
-@include('site.c.home.how-line')
-@foreach ($howBase as $n => [$t, $x])<div class="how-step"><div class="how-art">@include('site.c.home.how-art-'.($n + 1))</div><h3>{{ $howSteps[$n]['title'] ?? $t }}</h3><p>{{ $howSteps[$n]['text'] ?? $x }}</p></div>@endforeach
-</div>
-</div>
-</section>
-@if (\App\Support\Site\Repo::clients())@include('site.c.home.brands')@endif
-<section class="cases">
-<div class="wrap">
-<h2>@hl('Digital Marketing [[Case Studies]]')</h2>
-<p class="os-sub">See how we help brands grow with results you can measure.</p>
-@include('site.c.case-carousel', ['docs' => $R::caseStudies(6)])
-<p class="cases-all"><a class="btn-dark" href="/case-studies">View All Case Studies</a></p>
-</div>
-</section>
-<section class="results " data-inview="0.2"><div class="wrap"><h2>Tired of Excuses Instead of <span class="red">Results?</span></h2><p class="results-sub"><strong>See what better growth looks like</strong> with GTech Digital</p>
-@include('site.c.home.results-grid')
-</div></section>
-@include('site.c.home.testimonials')
-@if (!empty($p->faqs))@include('site.c.faq', ['title' => 'Frequently Asked Questions About GTech Digital', 'faqs' => $p->faqs])@endif
-@include('site.c.inquiry')
+@include('site.c.layout', ['p' => $p, 'slug' => 'home', 'name' => 'GTech Digital'])
 </div>
 @endsection

@@ -27,4 +27,12 @@ class PreviewController extends Controller
         $view = PageController::render($this->page($token)) ?? abort(404);
         return response($view->render())->header('X-Robots-Tag', 'noindex, nofollow')->header('Cache-Control', 'no-store');
     }
+
+    /** One page builder widget with example content (Page builder widgets in the panel). */
+    public function widget(string $type): Response
+    {
+        abort_unless(auth()->user()?->hasPerm('pages.view'), 403);
+        $s = \App\Filament\Support\WidgetCatalog::sample($type) ?? abort(404);
+        return response()->view('site.widget-preview', ['s' => $s])->header('X-Robots-Tag', 'noindex, nofollow')->header('Cache-Control', 'no-store');
+    }
 }

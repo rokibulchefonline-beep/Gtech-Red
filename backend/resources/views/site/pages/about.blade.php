@@ -2,8 +2,6 @@
 @extends('site.layout')
 @php($R = \App\Support\Site\Repo::class)
 @php($secs = collect($p->sections ?? []))
-@php($cut = $secs->search(fn ($s) => $s['id'] === 'reviews'))
-@php($cut = $cut === false ? $secs->count() - 1 : $cut)
 @php($cases = $R::caseStudies(6))
 @php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
 @php($seo = \App\Support\Site\Seo::make('/about', ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description], [
@@ -11,6 +9,24 @@
     \App\Support\Site\Schema::breadcrumb('/about', [['About Us', '/about']]),
     \App\Support\Site\Schema::faq('/about', $p->faqs ?? []),
 ]))
+@section('d-partners')
+<div class="sp-after-hero">@include('site.c.partner-strip')</div>
+@endsection
+@section('d-cases')
+@if ($cases->count())
+<section id="case-studies" class="sp-sec cases"><div class="wrap">
+@include('site.c.head', ['heading' => 'Case Studies and Client Results'])
+@include('site.c.case-carousel', ['docs' => $cases])
+<p class="cases-all"><a class="btn-dark" href="/case-studies">View All Case Studies</a></p>
+</div></section>
+@endif
+@endsection
+@section('d-faq')
+@include('site.c.faq', ['title' => 'Frequently Asked Questions About GTech Digital', 'faqs' => $p->faqs ?? []])
+@endsection
+@section('d-inquiry')
+@include('site.c.inquiry')
+@endsection
 @section('content')
 <section class="sp-hero">
 <div class="wrap sp-hero-in">
@@ -25,16 +41,5 @@
 <div class="sp-hero-show about-video">@include('site.c.intro-video')</div>
 </div>
 </section>
-<div class="sp-after-hero">@include('site.c.partner-strip')</div>
-@foreach ($secs->slice(0, $cut) as $s)@include('site.c.block', ['s' => $s, 'slug' => 'about', 'name' => 'GTech Digital'])@endforeach
-@if ($cases->count())
-<section id="case-studies" class="sp-sec cases"><div class="wrap">
-@include('site.c.head', ['heading' => 'Case Studies and Client Results'])
-@include('site.c.case-carousel', ['docs' => $cases])
-<p class="cases-all"><a class="btn-dark" href="/case-studies">View All Case Studies</a></p>
-</div></section>
-@endif
-@foreach ($secs->slice($cut) as $s)@include('site.c.block', ['s' => $s, 'slug' => 'about', 'name' => 'GTech Digital'])@endforeach
-@include('site.c.faq', ['title' => 'Frequently Asked Questions About GTech Digital', 'faqs' => $p->faqs ?? []])
-@include('site.c.inquiry')
+@include('site.c.layout', ['p' => $p, 'slug' => 'about', 'name' => 'GTech Digital'])
 @endsection

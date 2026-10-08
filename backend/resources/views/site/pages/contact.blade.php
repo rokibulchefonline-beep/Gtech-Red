@@ -7,15 +7,7 @@
     \App\Support\Site\Schema::breadcrumb('/contact', [['Contact', '/contact']]),
     \App\Support\Site\Schema::faq('/contact', $p->faqs ?? []),
 ]))
-@section('content')
-<section class="sp-hero compact">
-<div class="wrap sp-hero-in">
-<nav class="sp-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>Contact</b></nav>
-<h1>@hl($p->hero['h1'] ?? '')</h1>
-<p class="sp-lead">@rt($p->hero['lead'] ?? '')</p>
-<ul class="sp-hero-points">@foreach ($p->hero['points'] ?? [] as $pt)<li>@include('site.c.tick'){{ $pt }}</li>@endforeach</ul>
-</div>
-</section>
+@section('d-form')
 <section id="form" class="sp-sec contact-sec"><div class="wrap contact-grid">
 @include('site.partials.contact-form', ['service' => (string) request()->query('service', '')])
 <aside class="contact-aside">
@@ -31,6 +23,21 @@
 <ol class="contact-next">@foreach ($next['steps'] ?? [] as $i => $n)<li><span>{{ $i + 1 }}</span><div><b>{{ $n['title'] }}</b><p>{{ $n['text'] }}</p></div></li>@endforeach</ol>
 </aside>
 </div></section>
+@endsection
+@section('d-partners')
 @include('site.c.partner-strip')
+@endsection
+@section('d-faq')
 @include('site.c.faq', ['title' => 'Frequently Asked Questions About Getting in Touch', 'faqs' => $p->faqs ?? []])
+@endsection
+@section('content')
+<section class="sp-hero compact">
+<div class="wrap sp-hero-in">
+<nav class="sp-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>Contact</b></nav>
+<h1>@hl($p->hero['h1'] ?? '')</h1>
+<p class="sp-lead">@rt($p->hero['lead'] ?? '')</p>
+<ul class="sp-hero-points">@foreach ($p->hero['points'] ?? [] as $pt)<li>@include('site.c.tick'){{ $pt }}</li>@endforeach</ul>
+</div>
+</section>
+@include('site.c.layout', ['p' => $p, 'slug' => 'contact', 'name' => 'GTech Digital'])
 @endsection

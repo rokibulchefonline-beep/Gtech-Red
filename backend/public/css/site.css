@@ -663,7 +663,7 @@ html{scroll-behavior:smooth}[id]{scroll-margin-top:140px}
 .ih-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .ih-card{display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid #ececf0;border-top:4px solid var(--pink);padding:28px 26px;transition:box-shadow .25s,transform .25s}
 .ih-card:hover{box-shadow:0 18px 44px rgba(0,0,0,.08);transform:translateY(-3px)}
-.ih-card h2{font-size:21px;margin:4px 0 0}.ih-card p{margin:0;color:#5b606b;font-size:15px;line-height:1.6}
+.ih-card h2,.ih-card h3{font-size:21px;margin:4px 0 0}.ih-card p{margin:0;color:#5b606b;font-size:15px;line-height:1.6}
 .ih-more{display:inline-flex;align-items:center;gap:6px;margin-top:auto;padding-top:6px;color:var(--pink);font-weight:600;font-size:14px}
 .ind-others{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:40px;padding-top:28px;border-top:1px solid #e6e6ea}
 .ind-others p{margin:0 6px 0 0;font-weight:600}
@@ -937,7 +937,7 @@ body{font-size:16px;line-height:1.6;font-family:Inter,system-ui,-apple-system,"S
 .ih-chip{position:absolute;z-index:1;left:16px;bottom:16px;display:grid;place-items:center;width:42px;height:42px;background:#fff;color:var(--pink);box-shadow:0 8px 20px rgba(0,0,0,.18)}
 .ih-body{display:flex;flex-direction:column;gap:10px;padding:26px 26px 28px;flex:1}
 .ih-card.wide .ih-body{flex:1;justify-content:center;padding:36px}
-.ih-card h2{font-size:22px;margin:0}.ih-card p{margin:0;color:#5b606b;font-size:15px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.ih-card h2,.ih-card h3{font-size:22px;margin:0}.ih-card p{margin:0;color:#5b606b;font-size:15px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .ih-more{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:6px;font-weight:500;color:var(--pink)}
 .ih-card:hover{transform:translateY(-6px);box-shadow:0 26px 54px rgba(20,0,3,.12)}
 @media(max-width:1000px){.ih-grid{grid-template-columns:1fr 1fr}.ih-card.wide{grid-column:span 2}.ih-how-grid{grid-template-columns:1fr}.ih-how-grid>div{border-left:0;padding:22px 0;border-top:1px solid #f0f0f3}.ih-how-grid>div:first-child{border-top:0}}

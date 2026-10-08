@@ -23,7 +23,7 @@ class PageBlocks
         'text' => 'Text', 'media' => 'Image and text', 'cards' => 'Cards', 'features' => 'Features', 'steps' => 'Steps',
         'table' => 'Table', 'metrics' => 'Results in numbers', 'impact' => 'Impact (headline numbers)', 'reviews' => 'Reviews',
         'cases' => 'Case studies', 'industries' => 'Industries', 'logos' => 'Client logos',
-        'cta' => 'Call to action banner', 'faq' => 'FAQ accordion', 'video' => 'Video', 'pricing' => 'Pricing plans', 'form' => 'Enquiry form',
+        'cta' => 'Call to action banner', 'faq' => 'FAQ accordion', 'video' => 'Video', 'pricing' => 'Pricing plans', 'form' => 'Enquiry form', 'html' => 'Custom HTML',
     ];
 
     /** A link a section may use: an anchor (#inquiry), a site address (/contact) or a secure web address. */
@@ -204,6 +204,15 @@ class PageBlocks
                 ], 'Add plan', 1),
                 self::nav(),
             ]),
+            Block::make('html')->label(self::LABELS['html'])->icon('heroicon-o-code-bracket')->schema([
+                Forms\Components\TextInput::make('heading')->label('Name (for the panel only)')->maxLength(120)->helperText('Not shown on the website.'),
+                Forms\Components\Textarea::make('html')->label('HTML')->rows(12)->required()->extraInputAttributes(['style' => 'font-family:monospace;font-size:13px'])
+                    ->helperText('Any HTML. Scripts and event handlers (onclick, …) are removed for safety.'),
+                Forms\Components\Textarea::make('css')->label('CSS (optional)')->rows(8)->extraInputAttributes(['style' => 'font-family:monospace;font-size:13px'])
+                    ->helperText('Applies to this section only: write selectors as usual, e.g. .box { color: red }.'),
+                Forms\Components\Toggle::make('full')->label('Full width (no page margins or padding)'),
+                self::nav(),
+            ]),
             Block::make('form')->label(self::LABELS['form'])->icon('heroicon-o-envelope-open')->schema([
                 self::heading(), self::intro(),
                 Forms\Components\Placeholder::make('form_help')->hiddenLabel()
@@ -247,10 +256,10 @@ class PageBlocks
     }
 
     /** Builder state -> stored sections. Every section gets a unique id (its anchor, e.g. #local-seo-benefits). */
-    public static function fromBuilder(array $state): array
+    public static function fromBuilder(array $state, array $reserved = []): array
     {
         $out = [];
-        $ids = [];
+        $ids = $reserved;
         foreach (array_values($state) as $n => $b) {
             $type = $b['type'] ?? '';
             if (! isset(self::LABELS[$type])) continue;
@@ -316,6 +325,11 @@ class PageBlocks
                 case 'faq':
                     $s['items'] = $clean((array) ($d['items'] ?? []), ['title', 'text']);
                     break;
+                case 'html':
+                    $s['html'] = self::cleanHtml((string) ($d['html'] ?? ''));
+                    $s['css'] = self::cleanCss((string) ($d['css'] ?? ''));
+                    if (! empty($d['full'])) $s['full'] = true;
+                    break;
                 case 'video':
                     $s['video'] = self::videoId(trim((string) ($d['url'] ?? '')));
                     $s['caption'] = trim((string) ($d['caption'] ?? ''));
@@ -334,5 +348,59 @@ class PageBlocks
             $out[] = $s;
         }
         return $out;
+    }
+
+    /** Designed page order (App\Support\Site\Layout items) -> builder state; designed parts become "designed" blocks. */
+    public static function layoutToBuilder(array $items): array
+    {
+        $out = [];
+        foreach ($items as $it) {
+            if (($it['type'] ?? '') === 'designed') $out[(string) Str::uuid()] = ['type' => 'designed', 'data' => ['key' => $it['key']]];
+            else $out += self::toBuilder([$it]);
+        }
+        return $out;
+    }
+
+    /** Builder state -> designed page order. Widget ids never clash with the designed parts' anchors. */
+    public static function layoutFromBuilder(array $state, array $designed): array
+    {
+        $reserved = array_map(fn ($k) => str_starts_with($k, 'sec:') ? substr($k, 4) : $k, array_keys($designed));
+        $widgets = self::fromBuilder(array_filter($state, fn ($b) => ($b['type'] ?? '') !== 'designed'), $reserved);
+        $out = [];
+        foreach (array_values($state) as $b) {
+            if (($b['type'] ?? '') === 'designed') {
+                $k = (string) ($b['data']['key'] ?? '');
+                if (isset($designed[$k]) && ! in_array($k, array_column(array_filter($out, fn ($o) => $o['type'] === 'designed'), 'key'), true)) $out[] = ['type' => 'designed', 'key' => $k];
+            } elseif (isset(self::LABELS[$b['type'] ?? ''])) {
+                $out[] = array_shift($widgets);
+            }
+        }
+        return $out;
+    }
+
+    /** The block for a designed part of the page: it can be moved or removed, and its words are edited in the Sections tab. */
+    public static function designedBlock(array $designed): Block
+    {
+        return Block::make('designed')->label(fn (?array $state) => 'Designed section'.($state && isset($designed[$state['key'] ?? '']) ? ': '.$designed[$state['key']] : ''))
+            ->icon('heroicon-o-sparkles')->schema([
+                Forms\Components\Select::make('key')->label('Which designed section')->options($designed)->required()->selectablePlaceholder(false)
+                    ->helperText('Part of this page\'s own design. Move it with the arrows or remove it to hide it; edit its words in the Sections tab.'),
+            ]);
+    }
+
+    /** Custom HTML: everything except scripts, event handlers and javascript: links. */
+    public static function cleanHtml(string $html): string
+    {
+        $html = preg_replace('~<(script|object|embed)\b[\s\S]*?</\1\s*>~i', '', $html);
+        $html = preg_replace('~</?(script|object|embed|base|meta)\b[^>]*>~i', '', $html);
+        $html = preg_replace('~\son[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)~i', '', $html);
+        $html = preg_replace('~(href|src|action|formaction|xlink:href)\s*=\s*(["\']?)\s*(javascript|vbscript|data:text/html)[^"\'>\s]*~i', '$1=$2#', $html);
+        return trim($html);
+    }
+
+    /** Custom CSS: it cannot close its own style tag or load script. */
+    public static function cleanCss(string $css): string
+    {
+        return trim(preg_replace(['~</?\s*style[^>]*>~i', '~<[^>]*>~', '~expression\s*\(|javascript:|@import~i'], '', $css));
     }
 }

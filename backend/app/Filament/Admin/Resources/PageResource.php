@@ -187,6 +187,14 @@ class PageResource extends Resource
                                 ]),
                         ]),
                 ]),
+                Forms\Components\Tabs\Tab::make('Section order')->schema([
+                    Forms\Components\Placeholder::make('orderhelp')->hiddenLabel()->content('Move sections up or down, remove them, or insert a new section from the widget library between them. Designed sections keep their look; edit their words in the Sections tab.'),
+                    Forms\Components\Builder::make('layout')->hiddenLabel()->blocks(fn (Get $get) => [\App\Filament\Support\PageBlocks::designedBlock(self::designedFor($get('key'))), ...\App\Filament\Support\PageBlocks::blocks()])
+                        ->addActionLabel('Add a section')->addBetweenActionLabel('Insert a section here')->blockNumbers(false)
+                        ->collapsible()->collapsed(fn (?\Filament\Forms\ComponentContainer $item) => ! $item || filled($item->getRawState()['id'] ?? $item->getRawState()['key'] ?? null))
+                        ->cloneable()->reorderableWithButtons()->blockPickerColumns(3)->blockPickerWidth('3xl')->blockPreviews(false)
+                        ->deleteAction(fn ($action) => $action->requiresConfirmation()->modalDescription('Remove this section from the page? A designed section can be added back with Add a section > Designed section.')),
+                ]),
                 Forms\Components\Tabs\Tab::make('FAQs')->visible(fn (Get $get) => in_array($get('kind'), ['service', 'industry', 'page'], true) && $get('key') !== 'page~home')->schema([
                     Forms\Components\Placeholder::make('faqhelp')->hiddenLabel()->content('These also feed Google\'s FAQ rich results. Keep answers to 40-60 words.'),
                     Forms\Components\Repeater::make('faqs')->hiddenLabel()->schema([
@@ -203,6 +211,13 @@ class PageResource extends Resource
                 ]),
             ]),
         ]);
+    }
+
+    /** Designed parts of a page, by its key. */
+    private static function designedFor(?string $key): array
+    {
+        $p = $key ? Page::query()->find($key) : null;
+        return $p ? \App\Support\Site\Layout::designed($p) : [];
     }
 
     private static function siteUrl(?Page $r): string
@@ -225,6 +240,8 @@ class PageResource extends Resource
             'focus_keyword' => $data['focus_keyword'], 'hero' => (array) $data['hero'], 'faqs' => (array) $data['faqs'],
             'updated' => $data['data']['updated'] ?? '', 'secs' => [],
         ];
+        $layoutPage = (new Page)->forceFill(['key' => $data['key'], 'kind' => $data['kind'], 'sections' => (array) $data['sections'], 'data' => (array) $data['data']]);
+        $state['layout'] = \App\Filament\Support\PageBlocks::layoutToBuilder(\App\Support\Site\Layout::items($layoutPage));
         foreach ((array) $data['sections'] as $i => $s) {
             $has = array_values(array_filter(['heading', 'intro', 'text', 'paras', 'bullets', 'after', 'image'], fn ($f) => array_key_exists($f, $s)));
             $items = [];
@@ -298,6 +315,13 @@ class PageResource extends Resource
 
         $data_ = (array) $record->data;
         if ($record->kind === 'legal') $data_['updated'] = trim((string) ($data['updated'] ?? ''));
+        if (array_key_exists('layout', $data)) {
+            $designed = \App\Support\Site\Layout::designed($record->forceFill(['sections' => $sections]));
+            $layout = \App\Filament\Support\PageBlocks::layoutFromBuilder((array) $data['layout'], $designed);
+            // The original order is not stored, so designed sections added to the page later still show.
+            if ($layout === array_map(fn ($k) => ['type' => 'designed', 'key' => $k], array_keys($designed))) unset($data_['layout']);
+            else $data_['layout'] = $layout;
+        }
 
         return [
             'name' => $record->name, 'related' => (array) $record->related,
