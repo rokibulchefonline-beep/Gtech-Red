@@ -77,11 +77,8 @@
 @endif
 @break
 @case('reviews')
-<section id="{{ $s['id'] }}" class="sp-sec sp-bg-dark"><div class="wrap">
-@include('site.c.head', ['heading' => $s['heading'], 'intro' => $s['intro'] ?? null])
-@php($reviews = $R::reviewsFor(($slug ?? '').'#'.$s['id']) ?: ($s['reviews'] ?? []))
-<div class="sp-reviews">@foreach ($reviews as $r)<figure class="sp-review"><div class="sp-stars">@for ($k = 0; $k < 5; $k++)@icon('lucide:star', 18)@endfor</div><blockquote>“{{ $r['text'] }}”</blockquote><figcaption><span class="sp-avatar">{{ mb_substr($r['name'], 0, 1) }}</span><span><b>{{ $r['name'] }}</b><small>{{ $r['role'] }}</small></span></figcaption></figure>@endforeach</div>
-</div></section>
+{{-- Every page shows the same client testimonials slider as the home page (Website content > Testimonials). --}}
+@include('site.c.home.testimonials', ['id' => $s['id']])
 @break
 @case('industries')
 <section id="{{ $s['id'] }}" class="sp-sec sp-grey"><div class="wrap">

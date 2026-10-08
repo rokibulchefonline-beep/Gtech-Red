@@ -147,7 +147,7 @@ class PageBlocks
             Block::make('reviews')->label(self::LABELS['reviews'])->icon('heroicon-o-chat-bubble-left-right')->schema([
                 self::heading(), self::intro(),
                 Forms\Components\Placeholder::make('reviews_help')->hiddenLabel()
-                    ->content('Shows three of the shared client testimonials from Website content > Testimonials, rotating from page to page. The reviews below are only used if there are no testimonials.'),
+                    ->content('Shows the client testimonials slider from the home page. Edit the testimonials in Website content > Testimonials; the reviews below are not shown.'),
                 $grid('reviews', 'Fallback reviews', [Forms\Components\TextInput::make('name')->required()->maxLength(80), Forms\Components\TextInput::make('role')->label('Role and company')->maxLength(120),
                     Forms\Components\Textarea::make('text')->label('Review')->required()->rows(3)->maxLength(800)->columnSpanFull()], 'Add review', 0),
                 self::nav(),
