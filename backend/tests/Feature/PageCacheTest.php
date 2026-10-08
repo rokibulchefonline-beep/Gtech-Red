@@ -35,7 +35,7 @@ class PageCacheTest extends TestCase
     public function test_pages_are_cached_and_refresh_when_content_is_saved(): void
     {
         $this->get('/services/local-seo')->assertHeader('X-Page-Cache', 'MISS');
-        $this->get('/services/local-seo')->assertHeader('X-Page-Cache', 'HIT')->assertSee('Local SEO Services of', false);
+        $this->get('/services/local-seo')->assertHeader('X-Page-Cache', 'HIT')->assertSee('Local SEO That Puts You on the', false);
 
         $p = Page::query()->find('service~local-seo');
         $p->hero = ['h1' => 'A Brand New [[Heading]]'] + $p->hero;

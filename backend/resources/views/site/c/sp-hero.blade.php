@@ -2,7 +2,7 @@
 <section class="sp-hero">
 <div class="wrap sp-hero-in">
 <nav class="sp-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>@foreach ($crumbs as [$l, $h])<a href="{{ $h }}">{{ $l }}</a><span>/</span>@endforeach<b>{{ $name }}</b></nav>
-<h1>@hl($p->hero['h1'] ?? (($p->hero['keyword'] ?? $name).' Services of [[GTech Digital]]'))</h1>
+<h1>@hl($p->hero['h1'] ?? (($p->hero['keyword'] ?? $name).' Services That [[Deliver Results]]'))</h1>
 <p class="sp-lead">@rt($p->hero['lead'] ?? '')</p>
 <div class="sp-hero-btns">
 <a class="sp-btn-red" href="/contact?service={{ \App\Support\Site\Repo::uri($service ?? $name) }}">{{ $cta ?? 'Book a Free Audit' }}</a>

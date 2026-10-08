@@ -28,7 +28,7 @@
 @section('content')
 <section class="bl-hero-wrap">
 <div class="bl-hero">
-<h1>Digital Marketing Blog of <span class="hl">GTech Digital</span></h1>
+<h1>Digital Marketing <span class="hl">Insights and Guides</span></h1>
 <p>The GTech Digital blog shares practical guides on SEO, AI search, Google Ads, social media marketing, web design and custom software, written by our UK specialists.</p>
 <form class="bl-search" action="/blogs" role="search">@if ($category)<input type="hidden" name="category" value="{{ $category }}">@endif @icon('lucide:search', 18)<label class="sr-only" for="bl-q">Search articles</label><input id="bl-q" name="q" value="{{ $q }}" placeholder="Search articles..."><button type="submit">Search</button></form>
 <nav class="bl-cats" aria-label="Categories"><a href="/blogs" class="{{ !$category ? 'on' : '' }}">All Posts</a>@foreach ($cats as $c)<a href="/blogs?category={{ $B::slugify($c) }}" class="{{ $category === $B::slugify($c) ? 'on' : '' }}">{{ $c }}</a>@endforeach</nav>

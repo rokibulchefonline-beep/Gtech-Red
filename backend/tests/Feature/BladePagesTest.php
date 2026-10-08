@@ -35,7 +35,7 @@ class BladePagesTest extends TestCase
             '/industries/travel' => 'Other industries we serve:',
             '/about' => 'id="case-studies"',
             '/contact' => 'Get in touch',
-            '/case-studies' => 'Digital Marketing Case Studies of',
+            '/case-studies' => 'Digital Marketing Case Studies and',
             '/blogs' => 'Popular Posts',
             '/terms' => 'Last updated:',
             '/privacy-policy' => 'Table of Contents',

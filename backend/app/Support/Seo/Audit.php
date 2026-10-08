@@ -61,7 +61,7 @@ class Audit
         $name = $p->name;
         $keyword = ($entry?->focus_keyword ?: $p->focus_keyword) ?: ($map?->kw ?: ($p->hero['keyword'] ?? $name));
         $core = self::core($keyword) ?: $keyword;
-        $h1 = self::plain((string) ($p->hero['h1'] ?? (($p->hero['keyword'] ?? $name).' Services of GTech Digital')));
+        $h1 = self::plain((string) ($p->hero['h1'] ?? (($p->hero['keyword'] ?? $name).' Services That Deliver Results')));
         ['text' => $text, 'h2' => $h2] = self::body($p);
         $w = self::words($text);
         $lead = self::plain((string) ($p->hero['lead'] ?? ''));
