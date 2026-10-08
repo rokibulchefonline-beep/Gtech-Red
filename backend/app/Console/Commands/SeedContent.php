@@ -87,6 +87,7 @@ class SeedContent extends Command
         $this->table(['Content', 'Loaded', 'Kept (already there)'], $rows);
         // The service changes (see ServiceUpdates) apply to a fresh install too.
         \App\Support\Site\ServiceUpdates::apply();
+        \App\Support\Site\HomeContent::apply();
         return self::SUCCESS;
     }
 

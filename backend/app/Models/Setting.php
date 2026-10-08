@@ -25,7 +25,7 @@ class Setting extends Model
         // Contact details. The address is the Google Business Profile address, written exactly as on the profile (same
         // name, address and phone everywhere helps local rankings); shown on the contact page and in the schema.
         'contact' => ['email' => 'info@gtechdigital.co.uk', 'phone' => '0330 380 1000', 'phone2' => '0203 598 5956', 'address' => '', 'hours' => 'Mon to Fri, 9am to 6pm',
-            'street' => '', 'city' => '', 'region' => '', 'postcode' => '', 'country' => 'GB', 'mapsUrl' => '', 'showAddress' => true, 'showAddressFooter' => false],
+            'street' => '', 'city' => '', 'region' => '', 'postcode' => '', 'country' => 'GB', 'mapsUrl' => '', 'lat' => '', 'lng' => '', 'showAddress' => true, 'showAddressFooter' => false],
         'socials' => [],
         'tracking' => ['gtmId' => 'GTM-NRPJVVSH', 'ga4Id' => '', 'metaPixelId' => ''],
         'seo' => ['titleSuffix' => ' | GTech Digital', 'defaultDescription' => '', 'ogImage' => ''],

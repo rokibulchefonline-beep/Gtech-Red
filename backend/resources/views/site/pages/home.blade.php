@@ -12,6 +12,7 @@
 @php($seo = \App\Support\Site\Seo::make('/', ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description], [
     \App\Support\Site\Schema::page(['path' => '/', 'name' => $p->meta_title, 'description' => $p->meta_description, 'mainEntity' => \App\Support\Site\Schema::org()]),
     \App\Support\Site\Schema::itemList('/', 'GTech Digital services', $R::groups()->map(fn ($g) => [$g->title, "/services/{$g->slug}"])->all()),
+    ...(!empty($p->faqs) ? [\App\Support\Site\Schema::faq('/', $p->faqs)] : []),
 ]))
 @section('content')
 <div class="no-hl">
@@ -74,6 +75,7 @@
 @include('site.c.home.results-grid')
 </div></section>
 @include('site.c.home.testimonials')
+@if (!empty($p->faqs))@include('site.c.faq', ['title' => 'Frequently Asked Questions About GTech Digital', 'faqs' => $p->faqs])@endif
 @include('site.c.inquiry')
 </div>
 @endsection

@@ -30,6 +30,7 @@ class Contact
             'hours' => (string) ($c['hours'] ?? ''),
             'address' => $lines,
             'mapsUrl' => preg_match('#^https://#', $maps) ? $maps : '',
+            'geo' => is_numeric($c['lat'] ?? null) && is_numeric($c['lng'] ?? null) ? ['@type' => 'GeoCoordinates', 'latitude' => (float) $c['lat'], 'longitude' => (float) $c['lng']] : null,
             'showAddress' => (bool) ($c['showAddress'] ?? true) && $lines,
             'showAddressFooter' => (bool) ($c['showAddressFooter'] ?? false) && $lines,
             'postal' => ($c['street'] ?? '') !== '' ? array_filter(['@type' => 'PostalAddress', 'streetAddress' => $c['street'], 'addressLocality' => $c['city'] ?? '',

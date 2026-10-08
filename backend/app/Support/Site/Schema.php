@@ -36,15 +36,20 @@ class Schema
         $s = Setting::all_();
         $c = $s['contact'];
         return [
-            '@type' => ['Organization', 'ProfessionalService'], '@id' => self::org(), 'name' => $s['general']['siteName'], 'url' => self::base().'/',
-            'logo' => ['@type' => 'ImageObject', 'url' => self::base().'/logo.png'], 'image' => self::base().'/logo.png',
+            '@type' => ['Organization', 'ProfessionalService'], '@id' => self::org(), 'name' => $s['general']['siteName'], 'alternateName' => 'Global Tech Digital', 'foundingDate' => '2014', 'url' => self::base().'/',
+            'logo' => ['@type' => 'ImageObject', 'url' => self::base().'/logo.png', 'width' => 140, 'height' => 46], 'image' => self::base().'/logo.png',
             'description' => 'GTech Digital is a UK digital agency providing digital marketing, SEO, Google Ads, social media marketing, web design and development, custom software development and branding services.',
-            'email' => $c['email'], 'telephone' => Contact::tel((string) $c['phone']), 'priceRange' => '££', 'areaServed' => ['@type' => 'Country', 'name' => 'United Kingdom'], 'slogan' => $s['general']['tagline'],
+            'email' => $c['email'], 'telephone' => Contact::tel((string) $c['phone']), 'priceRange' => '££', 'areaServed' => ['@type' => 'Country', 'name' => 'United Kingdom'], 'slogan' => 'Get found on Google and in AI answers, and grow with ads, websites and software.',
             ...(($ct = Contact::get())['postal'] ? ['address' => $ct['postal']] : []),
             ...($ct['mapsUrl'] ? ['hasMap' => $ct['mapsUrl']] : []),
+            ...($ct['geo'] ? ['geo' => $ct['geo']] : []),
             'contactPoint' => array_map(fn ($ph) => ['@type' => 'ContactPoint', 'contactType' => 'sales', 'email' => $c['email'], 'telephone' => $ph['tel'], 'areaServed' => 'GB', 'availableLanguage' => 'English'], $ct['phones']),
             'sameAs' => array_values(array_filter(array_map(fn ($x) => $x['url'] ?? '', $s['socials'] ?? []))),
-            'knowsAbout' => ['Digital marketing', 'Search engine optimisation', 'Answer engine optimisation', 'Generative engine optimisation', 'Google Ads', 'Social media marketing', 'Web design', 'Web development', 'Custom software development', 'Branding'],
+            'knowsAbout' => ['Digital marketing', 'Search engine optimisation', 'Answer engine optimisation', 'Generative engine optimisation', 'Local SEO', 'Google Ads', 'Social media marketing', 'Web design', 'Web development', 'UI/UX design', 'Custom software development', 'Branding', 'Print design', 'Conversion rate optimisation'],
+            'hasOfferCatalog' => ['@type' => 'OfferCatalog', 'name' => 'GTech Digital services', 'itemListElement' => Repo::groups()->map(fn ($g) => [
+                '@type' => 'OfferCatalog', 'name' => $g->title, 'url' => self::base().'/services/'.$g->slug,
+                'itemListElement' => $g->items->map(fn ($i) => ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => $i->name, 'url' => self::base().'/services/'.$i->slug]])->values()->all(),
+            ])->values()->all()],
         ];
     }
 
