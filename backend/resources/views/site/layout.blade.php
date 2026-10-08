@@ -35,9 +35,9 @@
 @if ($site['gtm'])<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ $site['gtm'] }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 @endif
 <div id="scroll-progress" aria-hidden="true"></div>
-@include('site.partials.header')
+@unless (!empty($focus))@include('site.partials.header')@endunless
 <main>@yield('content')</main>
-@include('site.partials.footer')
+@unless (!empty($focus))@include('site.partials.footer')@endunless
 @include('site.partials.contact-modal')
 @include('site.partials.cookie-banner')
 <button type="button" class="to-top" aria-label="Back to top" tabindex="-1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>

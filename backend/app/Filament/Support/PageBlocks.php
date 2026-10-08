@@ -23,7 +23,23 @@ class PageBlocks
         'text' => 'Text', 'media' => 'Image and text', 'cards' => 'Cards', 'features' => 'Features', 'steps' => 'Steps',
         'table' => 'Table', 'metrics' => 'Results in numbers', 'impact' => 'Impact (headline numbers)', 'reviews' => 'Reviews',
         'cases' => 'Case studies', 'industries' => 'Industries', 'logos' => 'Client logos',
+        'cta' => 'Call to action banner', 'faq' => 'FAQ accordion', 'video' => 'Video', 'pricing' => 'Pricing plans', 'form' => 'Enquiry form',
     ];
+
+    /** A link a section may use: an anchor (#inquiry), a site address (/contact) or a secure web address. */
+    public static function link(mixed $v, string $fallback = '/contact'): string
+    {
+        $v = trim((string) $v);
+        return preg_match('~^(#|/(?!/)|https://)~', $v) ? $v : $fallback;
+    }
+
+    /** "youtube:ID" or "vimeo:ID" from a video address, or '' when it is not a YouTube or Vimeo link. */
+    public static function videoId(string $url): string
+    {
+        if (preg_match('~(?:youtube\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/)|youtu\.be/)([A-Za-z0-9_-]{11})~', $url, $m)) return 'youtube:'.$m[1];
+        if (preg_match('~vimeo\.com/(?:video/)?(\d{6,12})~', $url, $m)) return 'vimeo:'.$m[1];
+        return '';
+    }
 
     public static function iconOptions(): array
     {
@@ -150,6 +166,47 @@ class PageBlocks
             Block::make('logos')->label(self::LABELS['logos'])->icon('heroicon-o-building-storefront')->schema([
                 Forms\Components\Placeholder::make('logos_help')->hiddenLabel()->content('Shows six client logos from Website content > Client logos. Nothing to fill in.'),
             ]),
+            Block::make('cta')->label(self::LABELS['cta'])->icon('heroicon-o-megaphone')->schema([
+                self::heading(), Forms\Components\Textarea::make('text')->label('Supporting line (optional)')->rows(2)->maxLength(300),
+                Forms\Components\TextInput::make('button')->label('Button text')->required()->maxLength(40)->default('Get a Free Proposal'),
+                Forms\Components\TextInput::make('link')->label('Button link')->required()->maxLength(200)->default('#inquiry')
+                    ->helperText('An anchor such as #inquiry, or an address such as /contact or https://...'),
+                Forms\Components\Select::make('tone')->label('Colour')->options(['red' => 'Red', 'dark' => 'Dark'])->default('red')->selectablePlaceholder(false),
+                self::nav(),
+            ]),
+            Block::make('faq')->label(self::LABELS['faq'])->icon('heroicon-o-question-mark-circle')->schema([
+                self::heading(), self::intro(),
+                $grid('items', 'Questions and answers', [Forms\Components\TextInput::make('title')->label('Question')->required()->maxLength(250)->columnSpanFull(),
+                    Forms\Components\Textarea::make('text')->label('Answer')->required()->rows(3)->maxLength(1000)->columnSpanFull()], 'Add question', 1),
+                self::nav(),
+            ]),
+            Block::make('video')->label(self::LABELS['video'])->icon('heroicon-o-play-circle')->schema([
+                self::heading(), self::intro(),
+                Forms\Components\TextInput::make('url')->label('YouTube or Vimeo link')->required()->url()->maxLength(300)
+                    ->placeholder('https://www.youtube.com/watch?v=...')
+                    ->helperText('Plays inside the page. Only YouTube and Vimeo links are accepted.'),
+                Forms\Components\TextInput::make('caption')->label('Caption (optional)')->maxLength(200),
+                self::nav(),
+            ]),
+            Block::make('pricing')->label(self::LABELS['pricing'])->icon('heroicon-o-currency-pound')->schema([
+                self::heading(), self::intro(),
+                $grid('plans', 'Plans', [Forms\Components\TextInput::make('name')->label('Plan name')->required()->maxLength(60),
+                    Forms\Components\TextInput::make('price')->required()->maxLength(30)->placeholder('£499'),
+                    Forms\Components\TextInput::make('period')->maxLength(30)->placeholder('per month'),
+                    Forms\Components\Textarea::make('text')->label('Short description')->rows(2)->maxLength(300)->columnSpanFull(),
+                    Forms\Components\Repeater::make('features')->label('What is included')->simple(Forms\Components\TextInput::make('html')->maxLength(200)->required())
+                        ->defaultItems(0)->reorderable()->addActionLabel('Add item')->columnSpanFull(),
+                    Forms\Components\Toggle::make('highlight')->label('Highlight as most popular'),
+                    Forms\Components\TextInput::make('button')->label('Button text')->maxLength(40)->default('Get started'),
+                    Forms\Components\TextInput::make('link')->label('Button link')->maxLength(200)->default('#inquiry'),
+                ], 'Add plan', 1),
+                self::nav(),
+            ]),
+            Block::make('form')->label(self::LABELS['form'])->icon('heroicon-o-envelope-open')->schema([
+                self::heading(), self::intro(),
+                Forms\Components\Placeholder::make('form_help')->hiddenLabel()
+                    ->content('Shows the enquiry form used across the site, with this page\'s service already chosen.'),
+            ]),
         ];
         // Each section keeps its id (the #anchor links and the "On this page" bar point to it).
         // The collapsed list shows each section's type and heading.
@@ -247,6 +304,29 @@ class PageBlocks
                     break;
                 case 'industries':
                     $s['items'] = $clean((array) ($d['items'] ?? []), ['slug', 'text']);
+                    break;
+                case 'cta':
+                    $s['text'] = trim((string) ($d['text'] ?? ''));
+                    $s['button'] = trim((string) ($d['button'] ?? '')) ?: 'Get in touch';
+                    $s['link'] = self::link($d['link'] ?? '', '#inquiry');
+                    $s['tone'] = ($d['tone'] ?? '') === 'dark' ? 'dark' : 'red';
+                    break;
+                case 'faq':
+                    $s['items'] = $clean((array) ($d['items'] ?? []), ['title', 'text']);
+                    break;
+                case 'video':
+                    $s['video'] = self::videoId(trim((string) ($d['url'] ?? '')));
+                    $s['caption'] = trim((string) ($d['caption'] ?? ''));
+                    break;
+                case 'pricing':
+                    $s['plans'] = array_values(array_map(fn ($p) => [
+                        'name' => trim((string) ($p['name'] ?? '')), 'price' => trim((string) ($p['price'] ?? '')),
+                        'period' => trim((string) ($p['period'] ?? '')), 'text' => trim((string) ($p['text'] ?? '')),
+                        'features' => array_values(array_filter(array_map(fn ($x) => trim(self::scalar($x)), (array) ($p['features'] ?? [])))),
+                        'highlight' => ! empty($p['highlight']),
+                        'button' => trim((string) ($p['button'] ?? '')) ?: 'Get started',
+                        'link' => self::link($p['link'] ?? '', '#inquiry'),
+                    ], (array) ($d['plans'] ?? [])));
                     break;
             }
             $out[] = $s;

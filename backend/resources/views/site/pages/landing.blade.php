@@ -3,6 +3,7 @@
 @php($R = \App\Support\Site\Repo::class)
 @php($d = (array) $p->data)
 @php($name = $p->name)
+@php($focus = !empty($d['focus']))
 @php($service = ($d['service'] ?? '') ?: $name)
 @php(\App\Support\Site\Schema::$modified = $p->updated_at?->format('Y-m-d'))
 @php($path = $p->path)
@@ -22,4 +23,11 @@
 </div></section>
 @endif
 @include('site.c.inquiry')
+@if (!empty($d['stickyCta']))
+@php($tel = $contact['phones'][0]['tel'] ?? '')
+<div class="lp-sticky" aria-label="Quick contact">
+<a class="btn-red" href="{{ ($d['secondHref'] ?? '') ?: '#inquiry' }}">{{ ($d['cta'] ?? '') ?: 'Book a Free Audit' }}</a>
+@if ($tel)<a class="btn-outline" href="tel:{{ $tel }}">@icon('lucide:phone', 16) Call</a>@endif
+</div>
+@endif
 @endsection

@@ -89,4 +89,46 @@
 <p class="sp-inds-all"><a href="/industries">View all industries @icon('lucide:arrow-right', 15)</a></p>
 </div></section>
 @break
+@case('cta')
+<section id="{{ $s['id'] }}" class="sp-cta {{ ($s['tone'] ?? 'red') === 'dark' ? 'dark' : '' }}"><div class="wrap sp-cta-in">
+<div><h2>@hl($s['heading'])</h2>@if (!empty($s['text']))<p>{{ $s['text'] }}</p>@endif</div>
+<a class="btn-red" href="{{ $s['link'] }}">{{ $s['button'] }} @icon('lucide:arrow-right', 15)</a>
+</div></section>
+@break
+@case('faq')
+<section id="{{ $s['id'] }}" class="sp-sec"><div class="wrap" style="max-width:860px">
+@include('site.c.head', ['heading' => $s['heading'], 'intro' => $s['intro'] ?? null])
+<div class="sp-acc">@foreach ($s['items'] as $it)<details class="sp-acc-item"><summary>{{ $it['title'] }}</summary><p>{{ $it['text'] }}</p></details>@endforeach</div>
+</div></section>
+@break
+@case('video')
+@php([$host, $vid] = array_pad(explode(':', (string) ($s['video'] ?? ''), 2), 2, ''))
+@if ($vid !== '')
+<section id="{{ $s['id'] }}" class="sp-sec sp-grey"><div class="wrap" style="max-width:960px">
+@include('site.c.head', ['heading' => $s['heading'], 'intro' => $s['intro'] ?? null])
+<div class="sp-video"><iframe src="{{ $host === 'vimeo' ? 'https://player.vimeo.com/video/'.$vid : 'https://www.youtube-nocookie.com/embed/'.$vid }}" title="{{ strip_tags($s['heading']) }}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+@if (!empty($s['caption']))<p class="sp-note">{{ $s['caption'] }}</p>@endif
+</div></section>
+@endif
+@break
+@case('pricing')
+<section id="{{ $s['id'] }}" class="sp-sec sp-grey"><div class="wrap">
+@include('site.c.head', ['heading' => $s['heading'], 'intro' => $s['intro'] ?? null])
+<div class="sp-plans">@foreach ($s['plans'] as $pl)
+<article class="sp-plan {{ !empty($pl['highlight']) ? 'hot' : '' }}">
+@if (!empty($pl['highlight']))<span class="sp-plan-tag">Most popular</span>@endif
+<h3>{{ $pl['name'] }}</h3>
+<p class="sp-plan-price"><b>{{ $pl['price'] }}</b>@if (!empty($pl['period']))<span>{{ $pl['period'] }}</span>@endif</p>
+@if (!empty($pl['text']))<p class="sp-plan-text">{{ $pl['text'] }}</p>@endif
+<ul class="sp-plan-list">@foreach ($pl['features'] as $f)<li>@include('site.c.tick'){{ $f }}</li>@endforeach</ul>
+<a class="{{ !empty($pl['highlight']) ? 'btn-red' : 'btn-outline' }}" href="{{ $pl['link'] }}">{{ $pl['button'] }}</a>
+</article>@endforeach</div>
+</div></section>
+@break
+@case('form')
+<section id="{{ $s['id'] }}" class="iq iq-compact"><div class="wrap iq-grid">
+<div class="iq-copy"><h2>@hl($s['heading'])</h2><span class="iq-rule"></span>@if (!empty($s['intro']))<p>{{ strip_tags($s['intro']) }}</p>@endif</div>
+@include('site.partials.inquiry-form', ['compact' => true, 'service' => $name])
+</div></section>
+@break
 @endswitch

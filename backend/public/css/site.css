@@ -1045,3 +1045,46 @@ img.bp-author-logo{border-radius:50%;object-fit:cover}
 .bp-author-role{margin:-4px 0 10px;font-weight:600;color:var(--pink)}
 .bp-author-more{margin-left:auto;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-weight:600;font-size:14px;color:var(--pink)}.bp-author-more:hover{text-decoration:underline}
 @media(max-width:640px){.au-hero{padding:100px 0 40px}.au-card{grid-template-columns:1fr;gap:18px}.au-photo{width:110px;height:110px}}
+
+
+/* Page builder widgets: call to action, FAQ accordion, video, pricing. */
+.sp-cta{background:var(--pink);color:#fff;padding:0}
+.sp-cta.dark{background:#0d0d10}
+.sp-cta-in{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;padding:56px 24px}
+.sp-cta h2{margin:0 0 8px;color:#fff;font-size:clamp(24px,3vw,34px);line-height:1.15}
+.sp-cta p{margin:0;color:#ffe3e5;line-height:1.6;max-width:640px}
+.sp-cta .btn-red{background:#fff;color:#0d0d10;box-shadow:none;white-space:nowrap}
+.sp-cta .btn-red:hover{background:#f2f2f5;color:#0d0d10}
+.sp-acc{border-top:1px solid #e4e6ec}
+.sp-acc-item{border-bottom:1px solid #e4e6ec;padding:18px 0}
+.sp-acc-item summary{cursor:pointer;font-weight:600;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.sp-acc-item summary::-webkit-details-marker{display:none}
+.sp-acc-item summary::after{content:'+';color:var(--pink);font-size:22px;line-height:1}
+.sp-acc-item[open] summary::after{content:'\2212'}
+.sp-acc-item p{margin:12px 0 0;line-height:1.7;color:#3d3d46}
+.sp-video{position:relative;aspect-ratio:16/9;background:#000}
+.sp-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.sp-plans{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:8px}
+.sp-plan{background:#fff;padding:34px 28px;border:1px solid #e4e6ec;display:flex;flex-direction:column;position:relative}
+.sp-plan.hot{border:2px solid var(--pink)}
+.sp-plan-tag{position:absolute;top:-13px;left:24px;background:var(--pink);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;text-transform:uppercase;letter-spacing:.06em}
+.sp-plan h3{margin:0 0 10px;font-size:22px}
+.sp-plan-price{margin:0}
+.sp-plan-price b{font-size:40px;font-weight:600}
+.sp-plan-price span{margin-left:8px;color:#6b7280}
+.sp-plan-text{color:#3d3d46;line-height:1.6;margin:12px 0 0}
+.sp-plan-list{list-style:none;padding:0;margin:20px 0;display:grid;gap:10px}
+.sp-plan .btn-red,.sp-plan .btn-outline{margin-top:auto;text-align:center}
+@media(max-width:700px){.sp-cta-in{padding:44px 0}}
+
+/* Landing pages: the bar at the bottom of phones (only when switched on in the page). */
+.lp-sticky{display:none}
+@media(max-width:700px){
+  .lp-sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#fff;box-shadow:0 -6px 24px rgba(0,0,0,.18)}
+  .lp-sticky a{flex:1;text-align:center;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:13px 10px}
+  .lp-sticky .btn-outline{background:#fff;color:#161616;border:1px solid #d6d9e0}
+  body:has(.lp-sticky){padding-bottom:76px}
+}
+.sp-plan-list li{display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.sp-plan-list li svg{flex:none;margin-top:4px;color:var(--pink)}
+.sp-cta .hl,.sp-cta .red{color:#fff;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}

@@ -93,6 +93,12 @@ class PageResource extends Resource
                             ->helperText('A section anchor such as #inquiry, or an address such as /case-studies.'),
                         Forms\Components\Select::make('data.icon')->label('Badge icon')->options(fn () => \App\Filament\Support\PageBlocks::iconOptions())->searchable(),
                     ])->columns(2),
+                    Forms\Components\Fieldset::make('Landing page options')->visible($landing)->schema([
+                        Forms\Components\Toggle::make('data.focus')->label('Focus page: hide the site menu and footer')
+                            ->helperText('For adverts and email campaigns: visitors can only read the page and send the form, so nothing takes them away.'),
+                        Forms\Components\Toggle::make('data.stickyCta')->label('Show a call and enquiry bar at the bottom on phones')
+                            ->helperText('Keeps the main button and a Call button on screen while people scroll on a phone.'),
+                    ])->columns(2),
                 ]),
                 Forms\Components\Tabs\Tab::make('Sections')->schema([
                     Forms\Components\Builder::make('sections')->hiddenLabel()->blocks(\App\Filament\Support\PageBlocks::blocks())
