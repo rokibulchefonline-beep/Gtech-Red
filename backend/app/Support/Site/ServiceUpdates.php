@@ -295,16 +295,110 @@ class ServiceUpdates
             'meta_title' => $s['meta_title'], 'meta_description' => $s['meta_description'], 'focus_keyword' => $s['keyword'],
             'hero' => ['keyword' => $s['keyword'], 'title' => $s['title'], 'highlight' => $s['highlight'], 'lead' => $s['lead'],
                 'motion' => $s['motion'], 'points' => $s['points'], 'h1' => $s['h1']],
-            'sections' => self::sections($s),
-            'faqs' => $s['faqs'], 'related' => $s['related'], 'data' => [],
+            'sections' => self::sections($s + ['slug' => $slug]),
+            'faqs' => [...$s['faqs'], ...(self::extras($slug)['faqs'] ?? [])], 'related' => $s['related'], 'data' => [],
         ]);
+    }
+
+    /**
+     * Per service: the "On this page" labels, four headline numbers, six process steps, the pricing intro and
+     * cards, the page whose client reviews are shown, and the extra FAQs, so each page matches the others.
+     */
+    private static function extras(string $slug): array
+    {
+        return [
+            'ui-ux-design' => [
+                'nav' => ['what-is-ux' => 'UI/UX design', 'journey' => 'Journey mapping', 'prototype' => 'Prototyping', 'testing' => 'Usability testing', 'system' => 'Design system',
+                    'services' => "What's included", 'process' => 'Process', 'case-studies' => 'Case studies', 'compare' => 'UI/UX vs web design', 'pricing' => 'Pricing', 'reviews' => 'Reviews', 'industries' => 'Industries'],
+                'stats' => [['value' => '5', 'label' => 'Users in every test round'], ['value' => '3', 'label' => 'Test rounds before build'], ['value' => '100%', 'label' => 'Screens tested on mobile'], ['value' => '1', 'label' => 'Design system per project']],
+                'steps' => [
+                    ['title' => 'Discover', 'text' => 'Goals, users and a review of your current site or app.'],
+                    ['title' => 'Research', 'text' => 'Interviews, analytics and the questions customers ask.'],
+                    ['title' => 'Map', 'text' => 'User journeys and the points where people get stuck.'],
+                    ['title' => 'Design', 'text' => 'Wireframes, then a clickable prototype in your brand.'],
+                    ['title' => 'Test', 'text' => 'Real users try it; we fix what they struggle with.'],
+                    ['title' => 'Hand over', 'text' => 'Final designs, design system and specs for developers.'],
+                ],
+                'pricing_intro' => 'Most UK UI/UX projects range from about £2,500 for a focused redesign to £15,000+ for a full web or mobile app. Your fixed quote depends on:',
+                'pricing' => [
+                    ['icon' => 'lucide:layers', 'title' => 'Number of screens', 'text' => 'A landing page, a full website or a whole app.'],
+                    ['icon' => 'lucide:users', 'title' => 'Research depth', 'text' => 'Analytics review only, or interviews with your customers.'],
+                    ['icon' => 'lucide:flask-conical', 'title' => 'Testing rounds', 'text' => 'How many rounds of usability testing we run.'],
+                    ['icon' => 'lucide:layout-dashboard', 'title' => 'Design system', 'text' => 'Screens only, or a reusable system for future work.'],
+                ],
+                'reviews_from' => 'service~website-design',
+                'faqs' => [
+                    ['q' => 'How much does UI/UX design cost in the UK?', 'a' => 'A focused redesign of key pages usually starts from about £2,500, and a full web or mobile app design can be £15,000 or more. We give a fixed quote after a short discovery call, based on the number of screens, research and testing rounds.'],
+                    ['q' => 'What do I receive at the end of a UI/UX project?', 'a' => 'Final designs for every screen, a clickable prototype, a design system with colours, type and components, and specifications your developers can build from. You own all the files.'],
+                ],
+            ],
+            'print-media' => [
+                'nav' => ['what-is-print' => 'Print design', 'files' => 'Print-ready files', 'stationery' => 'Stationery', 'poster' => 'Posters and signage', 'packaging' => 'Packaging',
+                    'services' => "What's included", 'process' => 'Process', 'case-studies' => 'Case studies', 'compare' => 'Which format', 'pricing' => 'Pricing', 'reviews' => 'Reviews', 'industries' => 'Industries'],
+                'stats' => [['value' => '3', 'label' => 'Proofs before print'], ['value' => '3 mm', 'label' => 'Bleed on every file'], ['value' => '300 dpi', 'label' => 'Image resolution checked'], ['value' => '100%', 'label' => 'Files checked before printing']],
+                'steps' => [
+                    ['title' => 'Brief', 'text' => 'What the piece is for, quantity, size and deadline.'],
+                    ['title' => 'Concept', 'text' => 'Two or three design directions to choose from.'],
+                    ['title' => 'Copy', 'text' => 'Headlines and text agreed and checked.'],
+                    ['title' => 'Refine', 'text' => 'Revisions on the chosen direction.'],
+                    ['title' => 'Proof', 'text' => 'A print-ready proof for your sign-off.'],
+                    ['title' => 'Print', 'text' => 'Files sent to the printer and the order checked.'],
+                ],
+                'pricing_intro' => 'Print design in the UK typically ranges from about £150 for a flyer or business card to £1,500+ for a multi-page brochure or packaging range. Printing is quoted separately. Your fixed design quote depends on:',
+                'pricing' => [
+                    ['icon' => 'lucide:file-text', 'title' => 'Number of pieces', 'text' => 'A single flyer or a full set of stationery.'],
+                    ['icon' => 'lucide:layers', 'title' => 'Pages and format', 'text' => 'Page count, folds, die-cuts and special sizes.'],
+                    ['icon' => 'lucide:palette', 'title' => 'Brand work', 'text' => 'Using your brand guide, or creating the look first.'],
+                    ['icon' => 'lucide:package', 'title' => 'Packaging', 'text' => 'Dielines, labels and print checks for each box.'],
+                ],
+                'reviews_from' => 'service~branding',
+                'faqs' => [
+                    ['q' => 'How much does print design cost?', 'a' => 'A flyer or business card design typically starts from about £150, and a multi-page brochure or packaging range can be £1,500 or more. Printing is quoted separately, so you can compare printers.'],
+                    ['q' => 'How long does a print project take?', 'a' => 'A business card or flyer usually takes a few days from brief to approved proof. A brochure or packaging range takes two to four weeks. Printing and delivery are added on top.'],
+                ],
+            ],
+            'aeo-geo' => [
+                'nav' => ['what-is-aeo-geo' => 'AEO & GEO', 'ai-answers' => 'AI recommendations', 'answer-content' => 'Answer-first content', 'entity' => 'Entity', 'tracking' => 'AI tracking',
+                    'services' => "What's included", 'process' => 'Process', 'case-studies' => 'Case studies', 'compare' => 'SEO vs AEO vs GEO', 'pricing' => 'Pricing', 'reviews' => 'Reviews', 'industries' => 'Industries'],
+                'stats' => [['value' => '4', 'label' => 'AI tools tracked'], ['value' => '50+', 'label' => 'Customer questions tracked'], ['value' => '12', 'label' => 'Monthly AI visibility reports a year'], ['value' => '10+', 'label' => 'Years in search']],
+                'steps' => [
+                    ['title' => 'Audit', 'text' => 'Where you appear in AI answers today.'],
+                    ['title' => 'Research', 'text' => 'The questions that bring you customers.'],
+                    ['title' => 'Structure', 'text' => 'Schema, entity details and consistent listings.'],
+                    ['title' => 'Optimise', 'text' => 'Answer-first pages and FAQs AI tools can quote.'],
+                    ['title' => 'Build trust', 'text' => 'Reviews, mentions and citations from trusted sites.'],
+                    ['title' => 'Track', 'text' => 'Monthly AI visibility report and next steps.'],
+                ],
+                'pricing_intro' => 'Most UK AEO and GEO programmes range from about £750 to £4,000+ per month, often alongside SEO. Your fixed quote depends on:',
+                'pricing' => [
+                    ['icon' => 'lucide:search', 'title' => 'Questions tracked', 'text' => 'How many customer questions and AI tools we monitor.'],
+                    ['icon' => 'lucide:file-text', 'title' => 'Content needed', 'text' => 'New answer pages and FAQs written each month.'],
+                    ['icon' => 'lucide:map-pin', 'title' => 'Location scope', 'text' => 'One town, several branches or the whole UK.'],
+                    ['icon' => 'lucide:star', 'title' => 'Authority gap', 'text' => 'How many reviews and mentions you need to catch up.'],
+                ],
+                'reviews_from' => 'service~search-engine-optimization',
+                'faqs' => [
+                    ['q' => 'How much do AEO and GEO cost in the UK?', 'a' => 'Most programmes range from about £750 to £4,000+ per month, depending on how many questions and AI tools we track, the content needed and your locations. They are often combined with SEO for better value.'],
+                    ['q' => 'Which AI tools do you optimise for?', 'a' => 'ChatGPT, Google AI Overviews and AI Mode, Perplexity, Gemini and Microsoft Copilot. We track your mentions and citations in each one every month.'],
+                ],
+            ],
+        ][$slug] ?? [];
     }
 
     /** The page's sections in the page builder's format; reviews and industries come from the site's own data. */
     private static function sections(array $s): array
     {
-        return PageBlocks::fromBuilder(array_map(function (array $sec) use ($s) {
+        $x = self::extras($s['slug'] ?? '');
+        return PageBlocks::fromBuilder(array_map(function (array $sec) use ($s, $x) {
             $data = $sec;
+            if (isset($x['nav'][$sec['id']])) $data['nav'] = $x['nav'][$sec['id']];
+            if ($sec['type'] === 'impact' && isset($x['stats'])) $data['stats'] = $x['stats'];
+            if ($sec['type'] === 'steps' && isset($x['steps'])) $data['steps'] = $x['steps'];
+            if ($sec['id'] === 'pricing' && isset($x['pricing'])) { $data['cards'] = $x['pricing']; $data['intro'] = $x['pricing_intro']; }
+            if ($sec['type'] === 'reviews' && isset($x['reviews_from'])) {
+                $from = collect((array) Page::query()->find($x['reviews_from'])?->sections)->firstWhere('type', 'reviews');
+                if (! empty($from['reviews'])) { $data['reviews'] = $from['reviews']; return ['type' => 'reviews', 'data' => $data]; }
+            }
             if ($sec['type'] === 'reviews') $data['reviews'] = self::reviews($s['testimonials'] ?? []);
             if ($sec['type'] === 'industries') $data['items'] = array_map(fn ($i) => ['slug' => $i[0], 'text' => $i[1]], $s['industries'] ?? []);
             return ['type' => $sec['type'], 'data' => $data];
