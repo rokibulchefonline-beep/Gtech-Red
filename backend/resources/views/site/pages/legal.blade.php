@@ -21,7 +21,7 @@
 <div class="bp-cta"><p class="bl-side-title light">Questions?</p><p>Contact us about this policy or your data at any time.</p><a class="bp-cta-btn" href="/contact">Contact Us</a></div>
 </div></aside>
 <article class="bp-body lg-body">
-@foreach ($secs as $s)<section><h2 id="{{ $slug($s['heading']) }}">{{ $s['heading'] }}</h2>@foreach ($s['paras'] ?? [] as $t)<p>{{ $t }}</p>@endforeach @if (!empty($s['bullets']))<ul>@foreach ($s['bullets'] as $t)<li>{{ $t }}</li>@endforeach</ul>@endif @foreach ($s['after'] ?? [] as $t)<p>{{ $t }}</p>@endforeach</section>@endforeach
+@foreach ($secs as $s)<section><h2 id="{{ $slug($s['heading']) }}">{{ $s['heading'] }}</h2>@foreach ($s['paras'] ?? [] as $t)<p>{{ \App\Support\Site\LegalContent::fill($t) }}</p>@endforeach @if (!empty($s['bullets']))<ul>@foreach ($s['bullets'] as $t)<li>{{ \App\Support\Site\LegalContent::fill($t) }}</li>@endforeach</ul>@endif @foreach ($s['after'] ?? [] as $t)<p>{{ \App\Support\Site\LegalContent::fill($t) }}</p>@endforeach</section>@endforeach
 </article>
 </div>
 @endsection
