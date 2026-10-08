@@ -62,7 +62,8 @@ class HomeContent
             return $s;
         }, (array) $p->sections);
         $hero = (array) $p->hero;
-        $hero['h1'] = $swap($hero['h1'] ?? '', ['Digital Marketing|Agency [[for Scalable]]|[[Growth]]'], 'GTech Digital|UK Digital Marketing|[[Agency for Growth]]');
+        // The owner kept the original H1.
+        $hero['h1'] = $swap($hero['h1'] ?? '', ['GTech Digital|UK Digital Marketing|[[Agency for Growth]]'], 'Digital Marketing|Agency [[for Scalable]]|[[Growth]]');
         $hero['lead'] = $swap($hero['lead'] ?? '', ['GTech Digital helps UK businesses grow with smart, conversion-focused marketing.',
             'GTech Digital is a UK digital marketing agency that gets businesses found on Google and in AI answers, and grows them with ads, websites and software.'],
             'GTech Digital is a London-based digital marketing agency that gets UK businesses found on Google and in AI answers, and grows them with ads, websites and software.');
