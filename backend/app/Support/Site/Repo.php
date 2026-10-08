@@ -127,6 +127,19 @@ class Repo
         return self::once('stats', fn () => Stat::query()->orderBy('sort')->get());
     }
 
+    /**
+     * The shared client testimonials (Website content > Testimonials) for one page section: $n of them, starting at a
+     * different place for each page, so every page shows real reviews and they rotate across the site.
+     */
+    public static function reviewsFor(string $key, int $n = 3): array
+    {
+        $all = self::testimonials()->values();
+        if ($all->isEmpty()) return [];
+        $start = crc32($key) % $all->count();
+        return collect(range(0, min($n, $all->count()) - 1))->map(fn ($i) => $all[($start + $i) % $all->count()])
+            ->map(fn (Testimonial $t) => ['name' => $t->name, 'role' => (string) $t->title, 'text' => (string) $t->text])->all();
+    }
+
     public static function testimonials(): Collection
     {
         return self::once('testimonials', fn () => Testimonial::query()->where('visible', true)->orderBy('sort')->get());
