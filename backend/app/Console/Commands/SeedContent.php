@@ -88,6 +88,7 @@ class SeedContent extends Command
         // The service changes (see ServiceUpdates) apply to a fresh install too.
         \App\Support\Site\ServiceUpdates::apply();
         \App\Support\Site\HomeContent::apply();
+        \App\Support\Site\DigitalMarketingContent::apply();
         if (! in_array('Changes to These Terms', array_column((array) Page::query()->find('legal~terms')?->sections, 'heading'), true)) \App\Support\Site\LegalContent::apply();
         return self::SUCCESS;
     }
