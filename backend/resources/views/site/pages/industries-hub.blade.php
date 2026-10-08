@@ -8,6 +8,7 @@
 @php($seo = \App\Support\Site\Seo::make('/industries', ['title' => $p->meta_title, 'absolute' => true, 'description' => $p->meta_description], [
     \App\Support\Site\Schema::page(['path' => '/industries', 'type' => 'CollectionPage', 'name' => 'Industry Marketing Services of GTech Digital', 'description' => $p->meta_description, 'mainEntity' => \App\Support\Site\Schema::abs('/industries').'#list']),
     \App\Support\Site\Schema::breadcrumb('/industries', [['Industries', '/industries']]),
+    ...(!empty($p->faqs) ? [\App\Support\Site\Schema::faq('/industries', $p->faqs)] : []),
     \App\Support\Site\Schema::itemList('/industries', 'Industries GTech Digital serves', $R::industries()->map(fn ($i) => [$i->name, "/industries/{$i->slug}"])->all()),
 ]))
 @section('d-how')
@@ -18,6 +19,9 @@
 @if (!empty($sectors['heading']))@include('site.c.head', ['heading' => $sectors['heading'], 'intro' => $sectors['intro'] ?? null])@endif
 <div class="ih-grid">@foreach ($R::industries() as $i)<a href="/industries/{{ $i->slug }}" class="ih-card"><span class="ih-img"><img src="/pages/industries/{{ $i->slug }}/growth.webp" alt="{{ $i->name }} marketing results dashboard" loading="lazy" width="800" height="600"><span class="ih-chip">@icon($i->icon, 18)</span></span><span class="ih-body"><h3>{{ $i->name }}</h3><p>{{ preg_replace('/<[^>]+>/', '', $R::page("industry~{$i->slug}")?->hero['lead'] ?? '') }}</p><span class="ih-more">Explore {{ $i->name }} @icon('lucide:arrow-right', 16)</span></span></a>@endforeach</div>
 </div></section>
+@endsection
+@section('d-faq')
+@if (!empty($p->faqs))@include('site.c.faq', ['title' => 'Frequently Asked Questions About Industry Marketing', 'faqs' => $p->faqs])@endif
 @endsection
 @section('d-inquiry')
 @include('site.c.inquiry')

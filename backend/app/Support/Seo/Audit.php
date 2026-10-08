@@ -22,7 +22,8 @@ class Audit
         return $m[0];
     }
 
-    private static function norm(string $t): string { return str_replace('&', 'and', mb_strtolower($t)); }
+    /** Lower case, "&" read as "and", and "UI/UX" read the same as "UI UX". */
+    private static function norm(string $t): string { return preg_replace('/\s+/', ' ', str_replace(['&', '/'], ['and', ' '], mb_strtolower($t))); }
     private static function has(string $hay, string $needle): bool { return $needle !== '' && str_contains(self::norm($hay), self::norm($needle)); }
     /** Text without tags. Only real tags are removed: a "<" in the copy (e.g. "< 3 months") is kept. */
     private static function plain(string $s): string
@@ -92,7 +93,7 @@ class Audit
         $add('h2-kw', 'SEO', count($kwHeads) >= 3 ? 'pass' : (count($kwHeads) >= 1 ? 'warn' : 'fail'), 'Subheadings with keywords ('.count($kwHeads).'/'.count($h2).')', 2, null, 'Include the primary or a related keyword in more section headings.');
         $add('h2-count', 'SEO', count($h2) >= 8 ? 'pass' : (count($h2) >= 5 ? 'warn' : 'fail'), 'Page structure ('.count($h2).' sections)', 1);
         $add('words', 'SEO', count($w) >= 800 ? 'pass' : (count($w) >= 600 ? 'warn' : 'fail'), 'Content depth ('.count($w).' words)', 2, 'Aim for 800+ words of useful, non-repetitive copy.', 'Add detail, examples or FAQs.');
-        $dens = $w ? (substr_count(mb_strtolower($text), mb_strtolower($core)) / count($w)) * 100 : 0;
+        $dens = $w ? (substr_count(self::norm($text), self::norm($core)) / count($w)) * 100 : 0;
         $add('density', 'SEO', $dens >= 0.3 && $dens <= 2.5 ? 'pass' : ($dens > 3.5 ? 'fail' : 'warn'), 'Keyword density '.number_format($dens, 2).'%', 1, 'Keep between about 0.3% and 2.5%.');
         $lo = $linkStats['out'] ?? 0;
         $li = $linkStats['in'] ?? 0;

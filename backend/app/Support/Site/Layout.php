@@ -18,7 +18,7 @@ class Layout
         'page~about' => ['partners' => 'Partner logos strip', 'cases' => 'Case studies slider', 'faq' => 'FAQs', 'inquiry' => 'Enquiry form'],
         'page~contact' => ['form' => 'Contact form and details', 'partners' => 'Partner logos strip', 'faq' => 'FAQs'],
         'page~services-hub' => ['groups' => 'Service categories (tabs and sections)', 'why' => 'Why choose us', 'process' => 'Our process', 'faq' => 'FAQs', 'inquiry' => 'Enquiry form'],
-        'page~industries-hub' => ['how' => 'How we work with every sector', 'sectors' => 'Industry cards', 'inquiry' => 'Enquiry form'],
+        'page~industries-hub' => ['how' => 'How we work with every sector', 'sectors' => 'Industry cards', 'faq' => 'FAQs', 'inquiry' => 'Enquiry form'],
         'legal' => ['content' => 'Policy text with contents list'],
     ];
 

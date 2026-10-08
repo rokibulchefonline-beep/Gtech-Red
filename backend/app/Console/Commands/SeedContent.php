@@ -92,6 +92,7 @@ class SeedContent extends Command
         \App\Support\Site\SeoContent::apply();
         \App\Support\Site\Headings::apply();
         \App\Support\Site\IndustriesHubContent::apply();
+        \App\Support\Site\Content\ContentReview::apply();
         if (! in_array('Changes to These Terms', array_column((array) Page::query()->find('legal~terms')?->sections, 'heading'), true)) \App\Support\Site\LegalContent::apply();
         return self::SUCCESS;
     }
