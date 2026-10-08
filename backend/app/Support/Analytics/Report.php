@@ -124,4 +124,76 @@ class Report
         return DB::table('analytics_bot_hits')->where('kind', 'ai')->whereBetween('hit_at', [$this->from, $this->to])
             ->selectRaw('path k, count(*) hits, count(distinct bot) bots')->groupBy('k')->orderByDesc('hits')->limit(15)->get()->map(fn ($r) => (array) $r)->all();
     }
+
+    /** The same report for the period just before this one (for "vs previous period"). */
+    public function previous(): self
+    {
+        $p = new self($this->days, $this->channel, $this->source, $this->page);
+        $len = $this->from->diffInSeconds($this->to);
+        $p->to = $this->from->copy()->subSecond();
+        $p->from = $p->to->copy()->subSeconds((int) $len);
+        return $p;
+    }
+
+    /** Visits, visitors, page views and leads per day (per month for a year), for the main chart and sparklines. */
+    public function daily(): array
+    {
+        $monthly = $this->days > 92;
+        $fmt = $monthly ? '%Y-%m' : '%Y-%m-%d';
+        $sql = fn (string $col) => DB::getDriverName() === 'sqlite' ? "strftime('$fmt', $col)" : "DATE_FORMAT($col, '$fmt')";
+        $v = $this->visits()->selectRaw($sql('v.started_at').' b, count(*) visits, count(distinct v.visitor) people, sum(case when v.lead_id is not null then 1 else 0 end) leads')->groupBy('b')->get()->keyBy('b');
+        $p = $this->views()->selectRaw($sql('p.viewed_at').' b, count(*) n')->groupBy('b')->pluck('n', 'b');
+        $out = [];
+        for ($d = $this->from->copy(); $d <= $this->to; $monthly ? $d->addMonth() : $d->addDay()) {
+            $k = $d->format($monthly ? 'Y-m' : 'Y-m-d');
+            $out[$k] = ['visits' => (int) ($v[$k]->visits ?? 0), 'people' => (int) ($v[$k]->people ?? 0), 'views' => (int) ($p[$k] ?? 0), 'leads' => (int) ($v[$k]->leads ?? 0)];
+        }
+        return ['monthly' => $monthly, 'points' => $out];
+    }
+
+    /** Visits by day of the week (Mon-Sun) and hour (0-23), site time. */
+    public function heatmap(): array
+    {
+        $grid = array_fill(0, 7, array_fill(0, 24, 0));
+        $tz = config('app.timezone');
+        foreach ($this->visits()->orderBy('v.id')->limit(100000)->pluck('v.started_at') as $t) {
+            $c = Carbon::parse($t)->setTimezone($tz);
+            $grid[$c->dayOfWeekIso - 1][$c->hour]++;
+        }
+        return $grid;
+    }
+
+    /** Visits → looked at 2+ pages → reached the contact page or a form → became a lead. */
+    public function funnel(): array
+    {
+        $all = (clone $this->visits())->count();
+        $engaged = (clone $this->visits())->where('v.pageviews', '>=', 2)->count();
+        $contact = (clone $this->visits())->where(fn ($q) => $q->whereNotNull('v.lead_id')->orWhereExists(fn ($e) => $e->from('analytics_pageviews as c')->whereColumn('c.visit_id', 'v.id')->where('c.path', '/contact')))->count();
+        $leads = (clone $this->visits())->whereNotNull('v.lead_id')->count();
+        return [['Visits', $all], ['Viewed 2+ pages', $engaged], ['Reached contact', $contact], ['Became a lead', $leads]];
+    }
+
+    /** New visitors (first seen in this period) and returning ones. */
+    public function newReturning(): array
+    {
+        $people = $this->visits()->distinct()->pluck('v.visitor');
+        if ($people->isEmpty()) return ['new' => 0, 'returning' => 0];
+        $returning = 0;
+        foreach ($people->chunk(1000) as $chunk) {
+            $returning += DB::table('analytics_visits')->whereIn('visitor', $chunk)->where('started_at', '<', $this->from)->distinct()->count('visitor');
+        }
+        return ['new' => $people->count() - $returning, 'returning' => $returning];
+    }
+
+    /** People on the site in the last five minutes, and the latest page views. */
+    public static function live(): array
+    {
+        $since = now()->subMinutes(5);
+        $active = DB::table('analytics_visits')->where('last_seen_at', '>=', $since)->count();
+        $recent = DB::table('analytics_pageviews as p')->join('analytics_visits as v', 'v.id', '=', 'p.visit_id')->orderByDesc('p.viewed_at')->limit(8)
+            ->get(['p.path', 'p.viewed_at', 'v.source', 'v.channel', 'v.device', 'v.country']);
+        $pages = DB::table('analytics_pageviews as p')->join('analytics_visits as v', 'v.id', '=', 'p.visit_id')->where('v.last_seen_at', '>=', $since)->where('p.viewed_at', '>=', $since)
+            ->selectRaw('p.path k, count(distinct v.id) n')->groupBy('k')->orderByDesc('n')->limit(5)->get();
+        return ['active' => $active, 'recent' => $recent, 'pages' => $pages];
+    }
 }

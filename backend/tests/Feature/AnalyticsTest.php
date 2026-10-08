@@ -97,4 +97,37 @@ class AnalyticsTest extends TestCase
         $admin = User::query()->create(['name' => 'A', 'email' => 'a@example.com', 'password' => bcrypt('p-'.uniqid()), 'role' => 'admin', 'active' => true]);
         $this->actingAs($admin)->get('/admin/analytics')->assertOk()->assertSee('Visits by channel');
     }
+
+    public function test_dashboard_compares_periods_and_shows_charts(): void
+    {
+        $add = function (string $at, string $channel, int $pv, ?int $lead = null, string $visitor = 'v1') {
+            $id = \Illuminate\Support\Facades\DB::table('analytics_visits')->insertGetId(['sid' => md5(uniqid('', true)), 'visitor' => substr(md5($visitor), 0, 16), 'started_at' => $at, 'last_seen_at' => $at,
+                'landing_path' => '/', 'channel' => $channel, 'source' => $channel === 'Search' ? 'Google' : 'Direct', 'device' => 'mobile', 'browser' => 'Chrome', 'pageviews' => $pv, 'seconds' => 60, 'lead_id' => $lead]);
+            for ($i = 0; $i < $pv; $i++) \Illuminate\Support\Facades\DB::table('analytics_pageviews')->insert(['visit_id' => $id, 'path' => $i ? '/contact' : '/', 'viewed_at' => $at, 'seconds' => 30]);
+        };
+        $add(now()->subDays(40)->toDateTimeString(), 'Direct', 1, null, 'old');
+        $add(now()->subDays(2)->toDateTimeString(), 'Search', 3, 1, 'old');
+        $add(now()->subDay()->toDateTimeString(), 'Search', 1, null, 'new');
+        $add(now()->subMinute()->toDateTimeString(), 'Direct', 2, null, 'live');
+
+        $r = new \App\Support\Analytics\Report(30);
+        $this->assertSame(3, $r->totals()['visits']);
+        $this->assertSame(1, $r->previous()->totals()['visits']);
+        $this->assertSame(['new' => 2, 'returning' => 1], $r->newReturning());
+        $this->assertSame([['Visits', 3], ['Viewed 2+ pages', 2], ['Reached contact', 2], ['Became a lead', 1]], $r->funnel());
+        $this->assertSame(3, array_sum(array_map('array_sum', $r->heatmap())));
+        $this->assertSame(1, \App\Support\Analytics\Report::live()['active']);
+        $this->assertSame(200.0, \App\Filament\Admin\Pages\Analytics::change(3, 1));
+
+        $admin = User::query()->create(['name' => 'A', 'email' => 'a@example.com', 'password' => bcrypt('p-'.uniqid()), 'role' => 'admin', 'active' => true]);
+        $this->actingAs($admin);
+        \Livewire\Livewire::test(\App\Filament\Admin\Pages\Analytics::class)
+            ->assertSee('Right now')->assertSee('Conversion funnel')->assertSee('When people visit')->assertSee('200%')
+            ->set('metric', 'leads')->assertSee('Leads, this period')
+            ->set('stacked', true)->assertSee('Visits per day by channel', false)
+            ->set('tab', 'content')->assertSee('Landing pages')
+            ->set('tab', 'ai')->assertSee('AI bots reading your site')
+            ->set('tab', 'audience')->assertSee('Browsers')
+            ->callAction('export')->assertFileDownloaded();
+    }
 }

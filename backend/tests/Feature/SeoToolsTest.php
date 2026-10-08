@@ -100,7 +100,7 @@ class SeoToolsTest extends TestCase
         foreach ([SeoDashboard::getUrl(), SeoAudit::getUrl(), SeoAudit::getUrl(['tab' => 'posts']), SeoAudit::getUrl(['tab' => 'keywords']), SeoAudit::getUrl(['tab' => 'links']), LinkMap::getUrl()] as $url) {
             $this->get($url)->assertOk();
         }
-        Livewire::test(SeoAudit::class)->set('q', 'local-seo')->call('toggle', '/services/local-seo')->assertSee('Primary keyword in the SEO title');
+        Livewire::test(SeoAudit::class)->set('tab', 'pages')->set('q', 'local-seo')->call('toggle', '/services/local-seo')->assertSee('Primary keyword in the SEO title');
         $this->as('sales');
         $this->get(SeoDashboard::getUrl())->assertForbidden();
         $this->get(LinkMap::getUrl())->assertForbidden();

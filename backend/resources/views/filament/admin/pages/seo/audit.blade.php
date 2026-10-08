@@ -3,7 +3,8 @@
     @php($tone = fn ($n) => \App\Filament\Admin\Pages\SeoDashboard::tone($n))
     @php($icon = ['pass' => ['heroicon-m-check-circle', 'text-success-600 dark:text-success-400'], 'warn' => ['heroicon-m-exclamation-circle', 'text-warning-600 dark:text-warning-400'], 'fail' => ['heroicon-m-x-circle', 'text-danger-600 dark:text-danger-400']])
 
-    <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+    @php($crawlTab = in_array($tab, ['health', 'broken', 'linking', 'external'], true))
+    <div @class(['grid grid-cols-2 gap-4 lg:grid-cols-4', 'hidden' => $crawlTab])>
         @include('filament.admin.pages.seo.score', ['n' => $s['total'], 'label' => 'Overall', 'sub' => $s['pages'].' pages, '.$s['failing'].' failing checks'])
         @include('filament.admin.pages.seo.score', ['n' => $s['seo'], 'label' => 'SEO'])
         @include('filament.admin.pages.seo.score', ['n' => $s['aeo'], 'label' => 'AEO (answers)'])
@@ -15,6 +16,10 @@
             <x-filament::tabs.item :active="$tab === $k" wire:click="$set('tab', '{{ $k }}')">{{ $label }}</x-filament::tabs.item>
         @endforeach
     </x-filament::tabs>
+
+    @if ($crawlTab)
+        @include('filament.admin.pages.seo.crawl')
+    @endif
 
     @if (in_array($tab, ['pages', 'posts'], true))
         <div class="flex flex-wrap items-center gap-3">
@@ -146,7 +151,7 @@
                 </tbody>
             </table>
         </div>
-    @else
+    @elseif ($tab === 'links')
         @foreach ([['Orphan pages', 'No page body links to these, so search engines see them as unimportant.', $a['orphans'], 'danger'], ['Broken semantic links', 'Keyword map links to pages that do not exist or are not published.', $a['broken'], 'danger']] as [$h, $d, $list, $c])
             <div class="rounded-xl p-4 text-sm ring-1 {{ $list ? 'bg-danger-50 text-danger-800 ring-danger-600/20 dark:bg-danger-400/10 dark:text-danger-300' : 'bg-success-50 text-success-800 ring-success-600/20 dark:bg-success-400/10 dark:text-success-300' }}">
                 <b>{{ $h }}: {{ count($list) }}</b> · {{ $d }}

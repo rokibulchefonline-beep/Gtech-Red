@@ -14,3 +14,5 @@ Artisan::command('inspire', function () {
 \Illuminate\Support\Facades\Schedule::call(fn () => \App\Support\Crm\Gdpr::purgeOld())->name('leads:purge-old')->dailyAt('03:15');
 // Email dashboard: copy new mail from the IMAP inbox (only when set up in Site settings > Email).
 \Illuminate\Support\Facades\Schedule::command('gtech:fetch-mail')->everyFiveMinutes()->withoutOverlapping()->when(fn () => \App\Support\Mail\Inbox::enabled());
+// SEO audit > Site health: crawl every page and check every link each night, and email new broken links.
+\Illuminate\Support\Facades\Schedule::command('gtech:crawl --alert')->dailyAt('02:30')->timezone('Europe/London')->withoutOverlapping();
