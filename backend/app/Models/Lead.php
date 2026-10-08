@@ -44,6 +44,8 @@ class Lead extends Model
     public function owner() { return $this->belongsTo(User::class, 'assigned_to'); }
     public function contact() { return $this->belongsTo(Contact::class); }
     public function activities() { return $this->hasMany(LeadActivity::class)->latest('created_at')->latest('id'); }
+    /** Calls, emails and meetings: each time someone followed the lead up. */
+    public function followUps() { return $this->hasMany(LeadActivity::class)->whereIn('type', LeadActivity::FOLLOW_UPS); }
 
     /** Leads a user may see: everyone's with "See everyone's leads", otherwise only the ones assigned to them. */
     public function scopeVisibleTo(Builder $q, ?User $user): Builder

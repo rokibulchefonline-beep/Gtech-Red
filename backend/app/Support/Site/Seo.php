@@ -53,6 +53,8 @@ class Seo
         $scripts = [];
         if (! $o?->schema_off) $scripts[] = Schema::json(Schema::graph($nodes));
         if ($o?->schema_custom && ! Schema::validateCustom($o->schema_custom)) $scripts[] = Schema::json(json_decode($o->schema_custom));
+        // SEO > Additional schema: rules for every page, a type of page or one address.
+        foreach (\App\Models\SchemaRule::forPage($path, $canonical, (string) ($o?->title ?: $base['title']), (string) $description) as $extra) $scripts[] = Schema::json($extra);
 
         return [
             'title' => $title, 'description' => $description, 'canonical' => $canonical,

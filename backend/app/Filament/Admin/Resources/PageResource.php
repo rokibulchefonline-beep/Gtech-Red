@@ -177,7 +177,7 @@ class PageResource extends Resource
                             Forms\Components\Repeater::make('paras')->label('Paragraphs')->simple(self::rich('html'))->defaultItems(0)->visible(self::has('paras'))->addActionLabel('Add paragraph'),
                             Forms\Components\Repeater::make('bullets')->label('Bullet points')->simple(Forms\Components\TextInput::make('html')->maxLength(800))->defaultItems(0)->visible(self::has('bullets'))->addActionLabel('Add bullet'),
                             Forms\Components\Repeater::make('after')->label('Paragraphs after the list')->simple(self::rich('html'))->defaultItems(0)->visible(self::has('after'))->addActionLabel('Add paragraph'),
-                            Forms\Components\Group::make([ImageField::make('image', 'Section image'), Forms\Components\TextInput::make('alt')->label('Image alt text')->maxLength(200)])->visible(self::has('image')),
+                            Forms\Components\Group::make([ImageField::make('image', 'Section image', 'alt'), Forms\Components\TextInput::make('alt')->label('Image alt text')->maxLength(200)])->visible(self::has('image')),
                             Forms\Components\Repeater::make('items')->label('Cards, steps and numbers (text only, the layout stays the same)')
                                 ->addable(false)->deletable(false)->reorderable(false)->grid(2)->visible(self::has('items'))
                                 ->schema([

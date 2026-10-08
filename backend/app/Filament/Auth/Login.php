@@ -17,6 +17,17 @@ class Login extends BaseLogin
     public const MAX_FAILURES = 8;
     public const LOCK_MINUTES = 15;
 
+    /** Email with an envelope icon; password with a lock icon and a show/hide eye button. */
+    protected function getEmailFormComponent(): \Filament\Forms\Components\Component
+    {
+        return parent::getEmailFormComponent()->prefixIcon('heroicon-o-envelope');
+    }
+
+    protected function getPasswordFormComponent(): \Filament\Forms\Components\Component
+    {
+        return parent::getPasswordFormComponent()->prefixIcon('heroicon-o-lock-closed')->revealable();
+    }
+
     public function authenticate(): ?LoginResponse
     {
         $email = mb_strtolower(trim((string) ($this->data['email'] ?? '')));

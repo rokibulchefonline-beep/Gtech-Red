@@ -39,6 +39,11 @@ class Settings extends Page implements HasForms
         $s['smtp']['hasPass'] = (bool) (Setting::group('smtp')['pass'] ?? '');
         $s['forms']['turnstileSecret'] = '';
         $s['forms']['hasSecret'] = (bool) (Setting::group('forms')['turnstileSecret'] ?? '');
+        $s['imap'] = Setting::group('imap') + ['enabled' => false, 'port' => 993, 'encryption' => 'ssl', 'folder' => 'INBOX'];
+        $s['imap']['hasPass'] = (bool) ($s['imap']['pass'] ?? '');
+        $s['imap']['pass'] = '';
+        $s['forms']['recaptchaSecret'] = '';
+        $s['forms']['hasRecaptchaSecret'] = (bool) (Setting::group('forms')['recaptchaSecret'] ?? '');
         $this->form->fill($s);
     }
 
@@ -95,13 +100,26 @@ class Settings extends Page implements HasForms
                     Forms\Components\TextInput::make('smtp.port')->numeric()->default(587),
                     Forms\Components\Toggle::make('smtp.secure')->label('Use SSL (port 465)'),
                     Forms\Components\TextInput::make('smtp.user')->label('Username')->maxLength(160),
-                    Forms\Components\TextInput::make('smtp.pass')->label('Password')->password()->revealable()->maxLength(200)
+                    Forms\Components\TextInput::make('smtp.pass')->label('Password')->password()->revealable()->prefixIcon('heroicon-o-lock-closed')->maxLength(200)
                         ->helperText(fn ($get) => $get('smtp.hasPass') ? 'A password is saved. Leave empty to keep it.' : 'No password saved yet.'),
                     Forms\Components\Hidden::make('smtp.hasPass'),
                     Forms\Components\TextInput::make('smtp.fromName')->label('From name')->maxLength(80),
                     Forms\Components\TextInput::make('smtp.fromEmail')->label('From email')->email()->maxLength(160),
                     Forms\Components\TextInput::make('smtp.notifyTo')->label('Send lead alerts to')->email()->maxLength(160),
                     Forms\Components\Toggle::make('smtp.autoReply')->label('Send an automatic reply to the person who enquired'),
+                    Forms\Components\Fieldset::make('Inbox (IMAP) for the Email dashboard')->columnSpanFull()->schema([
+                        Forms\Components\Placeholder::make('imaphelp')->hiddenLabel()->columnSpanFull()
+                            ->content('Shows the mailbox\'s received email in Email > Email dashboard. Mail is copied, never deleted. Gmail: imap.gmail.com, port 993, SSL, with an app password. Microsoft 365: outlook.office365.com, port 993, SSL.'),
+                        Forms\Components\Toggle::make('imap.enabled')->label('Show received email in the Email dashboard')->columnSpanFull(),
+                        Forms\Components\TextInput::make('imap.host')->label('IMAP host')->placeholder('imap.gmail.com')->maxLength(120)->prefixIcon('heroicon-o-server'),
+                        Forms\Components\TextInput::make('imap.port')->label('Port')->numeric()->default(993),
+                        Forms\Components\Select::make('imap.encryption')->label('Security')->options(['ssl' => 'SSL (port 993)', 'tls' => 'STARTTLS (port 143)', 'none' => 'None'])->default('ssl')->selectablePlaceholder(false),
+                        Forms\Components\TextInput::make('imap.folder')->label('Folder')->default('INBOX')->maxLength(80),
+                        Forms\Components\TextInput::make('imap.user')->label('Username')->maxLength(160)->placeholder('Same as SMTP')->prefixIcon('heroicon-o-user'),
+                        Forms\Components\TextInput::make('imap.pass')->label('Password')->password()->revealable()->prefixIcon('heroicon-o-lock-closed')->maxLength(200)
+                            ->helperText(fn ($get) => $get('imap.hasPass') ? 'A password is saved. Leave empty to keep it.' : 'Leave empty to use the SMTP password.'),
+                        Forms\Components\Hidden::make('imap.hasPass'),
+                    ])->columns(2),
                 ])->columns(2),
                 Forms\Components\Tabs\Tab::make('Leads')->schema([
                     Forms\Components\Radio::make('leads.autoAssign')->label('Assign new enquiries')
@@ -132,9 +150,21 @@ class Settings extends Page implements HasForms
                         Forms\Components\Placeholder::make('tshelp')->hiddenLabel()->columnSpanFull()
                             ->content('A free "I am human" check from Cloudflare, usually invisible to people. Create a widget for your domain in Cloudflare > Turnstile and paste its two keys here. Both keys are needed; remove the site key to turn it off.'),
                         Forms\Components\TextInput::make('forms.turnstileSite')->label('Site key')->maxLength(100),
-                        Forms\Components\TextInput::make('forms.turnstileSecret')->label('Secret key')->password()->revealable()->maxLength(200)
+                        Forms\Components\TextInput::make('forms.turnstileSecret')->label('Secret key')->password()->revealable()->prefixIcon('heroicon-o-lock-closed')->maxLength(200)
                             ->helperText(fn ($get) => $get('forms.hasSecret') ? 'A secret key is saved. Leave empty to keep it.' : 'No secret key saved yet.'),
                         Forms\Components\Hidden::make('forms.hasSecret'),
+                    ])->columns(2),
+                    Forms\Components\Fieldset::make('Spam protection: Google reCAPTCHA (optional)')->schema([
+                        Forms\Components\Placeholder::make('rchelp')->hiddenLabel()->columnSpanFull()
+                            ->content(new \Illuminate\Support\HtmlString('Google\'s free check. Register your domain at <a class="text-primary-600 underline" href="https://www.google.com/recaptcha/admin/create" target="_blank" rel="noopener">google.com/recaptcha/admin</a>, choose the same type as here, and paste its two keys. Use either Turnstile or reCAPTCHA; if both are set, forms must pass both. Remove the site key to turn it off.')),
+                        Forms\Components\Radio::make('forms.recaptchaVersion')->label('Type')->default('v2')->live()->columnSpanFull()
+                            ->options(['v2' => 'v2 "I\'m not a robot" checkbox', 'v3' => 'v3 invisible (a score for every send, no box to tick)']),
+                        Forms\Components\TextInput::make('forms.recaptchaSite')->label('Site key')->maxLength(100)->prefixIcon('heroicon-o-key'),
+                        Forms\Components\TextInput::make('forms.recaptchaSecret')->label('Secret key')->password()->revealable()->prefixIcon('heroicon-o-lock-closed')->maxLength(200)
+                            ->helperText(fn ($get) => $get('forms.hasRecaptchaSecret') ? 'A secret key is saved. Leave empty to keep it.' : 'No secret key saved yet.'),
+                        Forms\Components\Select::make('forms.recaptchaScore')->label('v3: lowest score to accept')->visible(fn ($get) => $get('forms.recaptchaVersion') === 'v3')
+                            ->options(['0.3' => '0.3 (lets more through)', '0.5' => '0.5 (Google\'s suggestion)', '0.7' => '0.7 (stricter)'])->default('0.5')->selectablePlaceholder(false),
+                        Forms\Components\Hidden::make('forms.hasRecaptchaSecret'),
                     ])->columns(2),
                 ]),
                 Forms\Components\Tabs\Tab::make('Security')->schema([
@@ -188,6 +218,14 @@ class Settings extends Page implements HasForms
         $data['forms']['turnstileSecret'] = filled($data['forms']['turnstileSecret'] ?? null) ? Crypt::encryptString(trim($data['forms']['turnstileSecret'])) : $oldSecret;
         $data['forms']['budgets'] = Setting::group('forms')['budgets'] ?? [];
         unset($data['forms']['hasSecret']);
+        $imapOld = Setting::group('imap');
+        $imap = (array) ($data['imap'] ?? []);
+        $imap['pass'] = filled($imap['pass'] ?? null) ? Crypt::encryptString($imap['pass']) : ($imapOld['pass'] ?? '');
+        unset($imap['hasPass'], $data['imap']);
+        Setting::put('imap', $imap + array_intersect_key($imapOld, ['lastChecked' => 1]));
+        $oldRc = Setting::group('forms')['recaptchaSecret'] ?? '';
+        $data['forms']['recaptchaSecret'] = filled($data['forms']['recaptchaSecret'] ?? null) ? Crypt::encryptString(trim($data['forms']['recaptchaSecret'])) : $oldRc;
+        unset($data['forms']['hasRecaptchaSecret']);
         if (($stages = self::stages((array) ($data['pipeline']['stages'] ?? []))) === null) return;
         $data['pipeline']['stages'] = $stages;
         foreach (array_keys(Setting::DEFAULTS) as $group) {

@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login(\App\Filament\Auth\Login::class)
-            ->passwordReset()
+            ->passwordReset(resetAction: \App\Filament\Auth\ResetPassword::class)
             ->brandName('GTech Digital Admin')
             ->favicon(asset('favicon.ico'))
             ->colors(['primary' => Color::hex('#e8202f'), 'gray' => Color::Zinc])
@@ -50,6 +50,8 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make('Site structure')->collapsed(),
                 NavigationGroup::make('Blog'),
                 NavigationGroup::make('Leads'),
+                NavigationGroup::make('Email'),
+                NavigationGroup::make('Image tools')->collapsed(),
                 NavigationGroup::make('Settings'),
             ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')

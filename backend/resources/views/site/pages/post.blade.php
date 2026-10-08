@@ -35,7 +35,7 @@
 <div class="bp-meta">@if ($person?->photo)<img class="bp-avatar" src="{{ $person->photo }}" alt="" width="44" height="44">@else<span class="bp-avatar" aria-hidden="true">{{ mb_substr($by, 0, 1) }}</span>@endif<span><b>@if ($person)<a href="{{ $person->path() }}" rel="author">{{ $person->name }}</a>@else{{ $by }}@endif</b><small>@icon('lucide:calendar-days', 14)<time datetime="{{ $date }}">{{ $B::date($p) }}</time>@if ($modified > $date) · Updated <time datetime="{{ $modified }}">{{ \Illuminate\Support\Carbon::parse($modified)->format('j M Y') }}</time>@endif @icon('lucide:clock', 14){{ $mins }} min read</small></span></div>
 @include('site.c.share', ['url' => $url, 'title' => $p->title])
 </div>
-<div class="bp-top-img"><img src="{{ $p->image ?: '/posts/default.webp' }}" alt="{{ $p->image_alt ?: $p->title }}" width="1200" height="675" fetchpriority="high" decoding="async"></div>
+<figure class="bp-top-img"><img src="{{ $p->image ?: '/posts/default.webp' }}" alt="{{ $p->image_alt ?: $p->title }}" width="1200" height="675" fetchpriority="high" decoding="async">@if ($p->image_caption)<figcaption class="bp-caption">{{ $p->image_caption }}</figcaption>@endif</figure>
 </div></header>
 <div class="wrap bp-layout">
 <aside class="bp-left"><div class="bp-sticky">
@@ -43,7 +43,7 @@
 <div class="bp-cta"><p class="bl-side-title light">Free Growth Audit</p><p>Find out what is holding your website and marketing back. Free, with no obligation.</p><a class="bp-cta-btn" href="/contact">Get My Free Audit</a></div>
 </div></aside>
 <article class="bp-body">
-@if ($html)<div class="bp-html">{!! \App\Support\Site\Sanitizer::clean($p->body) !!}</div>@else @include('site.c.post-body', ['blocks' => $B::parse((string) $p->body)])@endif
+@if ($html)<div class="bp-html">{!! $B::captions(\App\Support\Site\Sanitizer::clean($p->body)) !!}</div>@else @include('site.c.post-body', ['blocks' => $B::parse((string) $p->body)])@endif
 <div class="bp-share-end">@include('site.c.share', ['url' => $url, 'title' => $p->title])</div>
 <section class="bp-author" aria-label="About the author">
 @if ($person)

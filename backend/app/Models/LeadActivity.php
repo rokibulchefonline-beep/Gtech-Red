@@ -14,8 +14,11 @@ class LeadActivity extends Model
 
     public const ICONS = [
         'created' => 'heroicon-o-inbox-arrow-down', 'note' => 'heroicon-o-pencil-square', 'call' => 'heroicon-o-phone', 'email' => 'heroicon-o-envelope',
-        'meeting' => 'heroicon-o-users', 'status' => 'heroicon-o-flag', 'assigned' => 'heroicon-o-user-plus', 'follow_up' => 'heroicon-o-calendar-days', 'value' => 'heroicon-o-banknotes',
+        'meeting' => 'heroicon-o-users', 'summary' => 'heroicon-o-document-text', 'status' => 'heroicon-o-flag', 'assigned' => 'heroicon-o-user-plus', 'follow_up' => 'heroicon-o-calendar-days', 'value' => 'heroicon-o-banknotes',
     ];
+
+    /** Activities that count as following the lead up (a response to the person). */
+    public const FOLLOW_UPS = ['call', 'email', 'meeting'];
 
     protected $fillable = ['lead_id', 'user_id', 'type', 'body'];
 
@@ -24,6 +27,6 @@ class LeadActivity extends Model
 
     public function label(): string
     {
-        return self::LOGGABLE[$this->type] ?? ['created' => 'Enquiry received', 'status' => 'Status', 'assigned' => 'Assigned', 'follow_up' => 'Follow-up', 'value' => 'Deal value'][$this->type] ?? ucfirst($this->type);
+        return self::LOGGABLE[$this->type] ?? ['created' => 'Enquiry received', 'summary' => 'Summary updated', 'status' => 'Status', 'assigned' => 'Assigned', 'follow_up' => 'Follow-up', 'value' => 'Deal value'][$this->type] ?? ucfirst($this->type);
     }
 }

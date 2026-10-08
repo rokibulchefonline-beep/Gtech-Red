@@ -71,7 +71,7 @@ class CaseStudyResource extends Resource
                     Forms\Components\TagsInput::make('services')->placeholder('e.g. Search Engine Optimization'),
                 ]),
                 Forms\Components\Section::make('Images')->schema([
-                    ImageField::make('image', 'Banner image'),
+                    ImageField::make('image', 'Banner image', 'image_alt'),
                     Forms\Components\TextInput::make('image_alt')->label('Alt text')->maxLength(200),
                     ImageField::make('logo', 'Client logo'),
                 ]),

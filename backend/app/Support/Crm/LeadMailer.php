@@ -37,7 +37,7 @@ class LeadMailer
             ->action(function (Lead $record, array $data) use ($after) {
                 $me = auth()->user();
                 try {
-                    \App\Support\SiteMailer::send($record->email, $data['subject'], (string) $data['body'], $me?->email, plain: true);
+                    \App\Support\SiteMailer::send($record->email, $data['subject'], (string) $data['body'], $me?->email, plain: true, context: ['lead_id' => $record->id]);
                     if (! empty($data['copy']) && $me?->email) \App\Support\SiteMailer::send($me->email, 'Copy: '.$data['subject'], (string) $data['body'], null, plain: true);
                 } catch (\Throwable $e) {
                     Notification::make()->title('The email was not sent')->body($e->getMessage())->danger()->persistent()->send();

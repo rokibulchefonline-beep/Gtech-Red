@@ -35,12 +35,13 @@ class AuthorResource extends Resource
                 Forms\Components\Textarea::make('bio')->rows(4)->maxLength(800)->columnSpanFull()
                     ->helperText('2-4 sentences: experience, what they specialise in, results or qualifications.'),
                 Forms\Components\TagsInput::make('expertise')->label('Topics they know')->placeholder('Add a topic')->columnSpanFull(),
-                Forms\Components\Group::make([ImageField::make('photo', 'Photo (square, at least 200 px)')])->columnSpanFull(),
+                Forms\Components\Group::make([ImageField::make('photo', 'Photo', preset: 'avatar')])->columnSpanFull(),
                 Forms\Components\TextInput::make('linkedin')->label('LinkedIn profile')->url()->maxLength(300)->placeholder('https://www.linkedin.com/in/...'),
                 Forms\Components\TextInput::make('x')->label('X (Twitter) profile')->url()->maxLength(300),
                 Forms\Components\TextInput::make('website')->label('Personal website')->url()->maxLength(300),
                 Forms\Components\TextInput::make('sort')->numeric()->default(0)->label('Order'),
             ]),
+            \App\Filament\Support\SchemaPanel::section(fn (Forms\Get $get) => '/blogs/author/'.($get('slug') ?: \Illuminate\Support\Str::slug((string) $get('name'))), fn (Forms\Get $get) => (string) $get('name'), 'ProfilePage, Person, BreadcrumbList'),
         ]);
     }
 

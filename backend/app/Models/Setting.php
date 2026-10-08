@@ -32,8 +32,10 @@ class Setting extends Model
         'smtp' => ['host' => '', 'port' => 587, 'secure' => false, 'user' => '', 'pass' => '', 'fromName' => 'GTech Digital', 'fromEmail' => '', 'notifyTo' => '', 'autoReply' => true],
         'publish' => ['deployHook' => ''],
         // Website forms: the privacy notice under each form, and Cloudflare Turnstile spam protection (secret encrypted).
-        'forms' => ['budgets' => [], 'privacyNotice' => 'We use your details only to reply to your enquiry. See our [Privacy Policy](/privacy-policy).', 'turnstileSite' => '', 'turnstileSecret' => ''],
+        'forms' => ['budgets' => [], 'privacyNotice' => 'We use your details only to reply to your enquiry. See our [Privacy Policy](/privacy-policy).', 'turnstileSite' => '', 'turnstileSecret' => '', 'recaptchaSite' => '', 'recaptchaSecret' => '', 'recaptchaVersion' => 'v2', 'recaptchaScore' => 0.5],
         'company' => ['legalName' => '', 'number' => '', 'address' => '', 'ico' => ''],
+        // Email dashboard inbox (IMAP). The password is encrypted; empty means "use the SMTP password".
+        'imap' => ['enabled' => false, 'host' => '', 'port' => 993, 'encryption' => 'ssl', 'user' => '', 'pass' => '', 'folder' => 'INBOX', 'lastChecked' => ''],
         // Two-factor sign-in: off, managers (people who can manage users) or everyone.
         'security' => ['require2fa' => 'off'],
         // New enquiries: automatic assignment (off or round_robin over the chosen user ids) and a chat webhook.
@@ -73,7 +75,7 @@ class Setting extends Model
      */
     public const PUBLIC = [
         'general' => true, 'contact' => true, 'socials' => true, 'tracking' => true, 'seo' => true, 'company' => true,
-        'forms' => ['budgets', 'privacyNotice', 'turnstileSite'],
+        'forms' => ['budgets', 'privacyNotice', 'turnstileSite', 'recaptchaSite', 'recaptchaVersion'],
     ];
 
     public static function publicView(): array

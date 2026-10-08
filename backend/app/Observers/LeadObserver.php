@@ -40,6 +40,10 @@ class LeadObserver
         if ($lead->wasChanged(['next_action_at', 'next_action'])) {
             $lead->log('follow_up', $lead->next_action_at ? 'Set for '.$lead->next_action_at->format('D j M Y').($lead->next_action ? ": {$lead->next_action}" : '') : 'Cleared');
         }
+        // Every version of the summary notes is kept on the timeline (Summary history).
+        if ($lead->wasChanged('notes') && trim((string) $lead->notes) !== trim((string) $lead->getOriginal('notes'))) {
+            $lead->log('summary', trim((string) $lead->notes) !== '' ? (string) $lead->notes : '(cleared)');
+        }
         if ($lead->wasChanged('value') && (float) $lead->value != (float) $lead->getOriginal('value')) {
             $lead->log('value', '£'.number_format((float) $lead->value, 2));
         }

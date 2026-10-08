@@ -42,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Password reset and other notifications are sent with the SMTP account from Site settings > Email.
         \Illuminate\Support\Facades\Event::listen(\Illuminate\Notifications\Events\NotificationSending::class, fn () => \App\Support\SiteMailer::useAsDefault());
+        // Email dashboard: every email the site sends is recorded under Sent.
+        \Illuminate\Support\Facades\Event::listen(\Illuminate\Mail\Events\MessageSent::class, [\App\Support\Mail\MailLog::class, 'sent']);
 
         // Any content change refreshes the cached public pages.
         foreach (\App\Support\Site\PageCache::MODELS as $model) {

@@ -10,7 +10,7 @@ class Media extends Model
 
     protected $table = 'media';
 
-    protected $fillable = ['legacy_id','name','type','size','path','uploaded_by'];
+    protected $fillable = ['legacy_id','name','alt','caption','type','size','path','uploaded_by'];
 
     protected function casts(): array
     {

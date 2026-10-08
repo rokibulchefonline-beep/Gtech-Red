@@ -1088,3 +1088,8 @@ img.bp-author-logo{border-radius:50%;object-fit:cover}
 .sp-plan-list li{display:flex;gap:10px;align-items:flex-start;line-height:1.5}
 .sp-plan-list li svg{flex:none;margin-top:4px;color:var(--pink)}
 .sp-cta .hl,.sp-cta .red{color:#fff;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+
+/* Image captions (blog featured image and article images): a little smaller than body text */
+.bp-top-img{margin:0}.bp-caption,.bp-html figcaption{margin:10px 0 0;font-size:.875em;line-height:1.5;color:#6b7280;text-align:center}
+.bp-html figure{margin:28px 0}.bp-html figure img{display:block;margin:0 auto;max-width:100%;height:auto}
+.au-photo,.bp-avatar,.bp-author-logo{object-fit:cover;aspect-ratio:1/1}

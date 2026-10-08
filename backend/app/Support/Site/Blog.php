@@ -135,4 +135,13 @@ class Blog
             };
         }, self::parse($md)));
     }
+
+    /** Article images with a caption (the "Caption" field in the editor's image box) get it shown underneath. */
+    public static function captions(string $html): string
+    {
+        return (string) preg_replace_callback('~(?:<p>\s*)?(<img\b[^>]*\btitle="([^"]+)"[^>]*>)(?:\s*</p>)?~i', function ($m) {
+            $img = preg_replace('~\stitle="[^"]*"~i', '', $m[1]);
+            return '<figure>'.$img.'<figcaption>'.$m[2].'</figcaption></figure>';
+        }, $html);
+    }
 }

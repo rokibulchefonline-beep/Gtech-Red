@@ -69,6 +69,14 @@
       if (form.getAttribute('data-form') === 'inquiry') data.source = 'inquiry';
       if (sid) data.sid = sid; // links the lead to this visit in Analytics
       btn.disabled = true; btn.textContent = 'Sending...';
+      // Google reCAPTCHA: v2 puts its token in the form; v3 is asked for one now.
+      var rc = window.gtRecaptcha;
+      if (rc && rc.v3 && !data['g-recaptcha-response'] && window.grecaptcha && grecaptcha.execute) {
+        grecaptcha.ready(function () {
+          grecaptcha.execute(rc.key, { action: 'submit' }).then(function (t) { data['g-recaptcha-response'] = t; send(); }, function () { send(); });
+        });
+      } else send();
+      function send() {
       var ok = form.getAttribute('data-form') === 'inquiry' ? 'Thank you. Our team will contact you shortly.' : 'Thanks. We will send your proposal within 24 hours.';
       var show = function (good, text) { alert.hidden = false; alert.className = 'alert ' + (good ? 'ok' : 'err'); alert.textContent = text; };
       fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
@@ -80,7 +88,11 @@
           // A Turnstile token works once: get a fresh one for the next send.
           var ts = form.querySelector('.cf-turnstile');
           if (ts && window.turnstile) { try { window.turnstile.reset(ts); } catch (e) {} }
+          var g = form.querySelector('.g-recaptcha');
+          if (g && window.grecaptcha && g.getAttribute('data-wid') !== null) { try { grecaptcha.reset(+g.getAttribute('data-wid')); } catch (e) {} }
+          else if (g && window.grecaptcha) { try { grecaptcha.reset(); } catch (e) {} }
         });
+      }
     });
   }
   d.querySelectorAll('form[data-form="contact"],form[data-form="inquiry"]').forEach(bindForm);
@@ -103,6 +115,7 @@
     modal = tpl.content.firstElementChild.cloneNode(true);
     d.body.insertBefore(modal, tpl);
     if (window.turnstile) modal.querySelectorAll('.cf-turnstile').forEach(function (el) { try { window.turnstile.render(el); } catch (e) {} });
+    if (window.grecaptcha && grecaptcha.render) modal.querySelectorAll('.g-recaptcha').forEach(function (el) { try { el.setAttribute('data-wid', grecaptcha.render(el, { sitekey: el.getAttribute('data-sitekey') })); } catch (e) {} });
     var sel = modal.querySelector('select[name="service"]');
     if (service && Array.prototype.some.call(sel.options, function (o) { return o.value === service; })) sel.value = service;
     bindForm(modal.querySelector('form'));

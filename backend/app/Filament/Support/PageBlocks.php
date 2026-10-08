@@ -100,7 +100,7 @@ class PageBlocks
             ]),
             Block::make('media')->label(self::LABELS['media'])->icon('heroicon-o-photo')->schema([
                 self::heading(), self::paras(), self::bullets(),
-                ImageField::make('image', 'Image'),
+                ImageField::make('image', 'Image', 'alt'),
                 Forms\Components\TextInput::make('alt')->label('Image alt text')->maxLength(200)->required()->helperText('Describe the image for search engines and screen readers.'),
                 Forms\Components\Grid::make(2)->schema([
                     Forms\Components\Toggle::make('flip')->label('Image on the left'),

@@ -12,3 +12,5 @@ Artisan::command('inspire', function () {
 \Illuminate\Support\Facades\Schedule::call(fn () => \App\Models\Page::publishDue())->name('pages:publish-due')->everyMinute();
 // Lost leads older than the retention period in Site settings > Leads (off unless set).
 \Illuminate\Support\Facades\Schedule::call(fn () => \App\Support\Crm\Gdpr::purgeOld())->name('leads:purge-old')->dailyAt('03:15');
+// Email dashboard: copy new mail from the IMAP inbox (only when set up in Site settings > Email).
+\Illuminate\Support\Facades\Schedule::command('gtech:fetch-mail')->everyFiveMinutes()->withoutOverlapping()->when(fn () => \App\Support\Mail\Inbox::enabled());

@@ -92,8 +92,9 @@ class PostResource extends Resource
                     Forms\Components\TagsInput::make('tags')->separator(','),
                 ]),
                 Forms\Components\Section::make('Featured image')->schema([
-                    ImageField::make('image'),
-                    Forms\Components\TextInput::make('image_alt')->label('Alt text')->maxLength(200)->helperText('Describe the image for screen readers and Google.'),
+                    ImageField::make('image', 'Image', 'image_alt', 'blog'),
+                    Forms\Components\TextInput::make('image_alt')->label('Alt text')->maxLength(200)->helperText('Filled from the file name when you upload; change it to describe the image for screen readers and Google.'),
+                    Forms\Components\TextInput::make('image_caption')->label('Caption (optional)')->maxLength(250)->helperText('Shown under the image in smaller text.'),
                 ]),
             ])->columnSpan(['lg' => 1]),
         ])->columns(3);

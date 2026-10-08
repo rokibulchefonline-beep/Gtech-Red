@@ -44,6 +44,7 @@
 <a class="float-talk" href="/contact">@icon('lucide:message-circle', 18) Let&#x27;s Talk</a>
 <script src="{{ asset('js/site.js') }}?v={{ @filemtime(public_path('js/site.js')) }}" defer></script>
 @if ($turnstile)<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>@endif
+@if ($recaptcha)<script>window.gtRecaptcha = {!! json_encode(['key' => $recaptcha, 'v3' => $recaptchaV3]) !!};</script><script src="https://www.google.com/recaptcha/api.js{{ $recaptchaV3 ? '?render='.$recaptcha : '' }}" async defer></script>@endif
 @stack('scripts')
 </body>
 </html>

@@ -29,6 +29,9 @@ class FormController extends Controller
         if (! Turnstile::passes($v('cf-turnstile-response'), $r->ip())) {
             return response()->json(['ok' => false, 'error' => 'Please complete the "I am human" check and send again.'], 400);
         }
+        if (! \App\Support\Crm\Recaptcha::passes($v('g-recaptcha-response'), $r->ip())) {
+            return response()->json(['ok' => false, 'error' => 'Please complete the "I\'m not a robot" check and send again.'], 400);
+        }
         // More than 5 enquiries an hour from one network is not a person.
         if (\Illuminate\Support\Facades\RateLimiter::tooManyAttempts($rk = 'leads-ip:'.$r->ip(), 5)) {
             return response()->json(['ok' => false, 'error' => 'We have already received several enquiries from you. Please call or email us instead.'], 429);

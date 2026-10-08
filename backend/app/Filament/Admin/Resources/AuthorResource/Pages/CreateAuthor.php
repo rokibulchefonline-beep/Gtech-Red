@@ -10,4 +10,15 @@ class CreateAuthor extends CreateRecord
 {
     protected static string $resource = AuthorResource::class;
 
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        unset($data['schema']);
+        return $data;
+    }
+
+    protected function afterCreate(): void
+    {
+        \App\Filament\Support\SchemaPanel::save('/blogs/author/'.$this->record->slug, $this->data['schema'] ?? null);
+    }
+
 }

@@ -43,7 +43,7 @@ class UserResource extends Resource
             Forms\Components\Toggle::make('invite')->label('Email an invitation')->default(true)->live()->dehydrated(false)
                 ->visible(fn (string $operation) => $operation === 'create')
                 ->helperText('They get a link to set their own password, so you never share one.'),
-            Forms\Components\TextInput::make('password')->password()->revealable()->minLength(10)
+            Forms\Components\TextInput::make('password')->password()->revealable()->prefixIcon('heroicon-o-lock-closed')->minLength(10)
                 ->rule('regex:/^(?=.*[A-Za-z])(?=.*\d).+$/')->validationMessages(['regex' => 'Use letters and numbers.'])
                 ->visible(fn (string $operation, Get $get) => $operation === 'edit' || ! $get('invite'))
                 ->required(fn (string $operation, Get $get) => $operation === 'create' && ! $get('invite'))->dehydrated(fn ($state) => filled($state))

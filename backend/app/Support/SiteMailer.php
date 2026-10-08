@@ -40,15 +40,37 @@ class SiteMailer
         }
     }
 
-    /** $plain: a personal email (no branded heading), e.g. a reply to a lead. */
-    public static function send(string $to, string $subject, string $html, ?string $replyTo = null, bool $plain = false): void
+    /** The address emails are sent from. */
+    public static function fromAddress(): string
+    {
+        $s = Setting::group('smtp');
+        return (string) (($s['fromEmail'] ?? '') ?: ($s['user'] ?? '') ?: config('mail.from.address'));
+    }
+
+    /** Extra details for the Email dashboard record of the next email sent (lead_id, user_id). */
+    public static array $context = [];
+
+    /**
+     * $plain: a personal email (no branded heading), e.g. a reply to a lead. $to may hold several addresses
+     * (comma separated); $cc likewise. Every send is recorded in the Email dashboard (Sent), failures too.
+     */
+    public static function send(string $to, string $subject, string $html, ?string $replyTo = null, bool $plain = false, ?string $cc = null, array $context = []): void
     {
         $mailer = self::configure() ? Mail::mailer('site') : Mail::mailer();
         $body = $plain ? '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#222;max-width:640px">'.$html.'</div>' : self::shell($subject, $html);
-        $mailer->html($body, function ($m) use ($to, $subject, $replyTo) {
-            $m->to($to)->subject($subject);
-            if ($replyTo) $m->replyTo($replyTo);
-        });
+        self::$context = $context + ['body' => $html];
+        try {
+            $mailer->html($body, function ($m) use ($to, $subject, $replyTo, $cc) {
+                $m->to(\App\Models\Email::addresses($to))->subject($subject);
+                if ($cc && ($list = \App\Models\Email::addresses($cc))) $m->cc($list);
+                if ($replyTo) $m->replyTo($replyTo);
+            });
+        } catch (\Throwable $e) {
+            \App\Support\Mail\MailLog::failed($to, $cc, $subject, $html, $e->getMessage(), self::$context);
+            self::$context = [];
+            throw $e;
+        }
+        self::$context = [];
     }
 
     public static function newLead(Lead $lead): void
