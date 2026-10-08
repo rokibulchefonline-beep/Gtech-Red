@@ -27,8 +27,45 @@ class HomeContent
         ['q' => 'What is the difference between SEO, AEO and GEO?'], ['q' => 'How long does it take to see results?'], ['q' => 'Do you work with small businesses?'],
         ['q' => 'Do you lock clients into long contracts?'], ['q' => 'How do you report results?']];
 
+    /** Services hub (/services): AEO & GEO, UI/UX and print in the copy, no Marketing Advisory, eight FAQs. */
+    public static function servicesHub(): void
+    {
+        $p = Page::query()->find('page~services-hub');
+        if (! $p) return;
+        $swap = fn ($cur, array $old, $new) => in_array($cur, [...$old, $new], true) ? $new : $cur;
+        $hero = (array) $p->hero;
+        $hero['lead'] = $swap($hero['lead'] ?? '', ['GTech Digital is a UK digital agency offering 30+ services across digital marketing, social media marketing, web design and development, custom software development and branding, all delivered by one joined-up team.'],
+            'GTech Digital is a London-based digital agency offering 30+ services across SEO, AEO & GEO, paid ads, social media, web design, custom software and branding, all delivered by one joined-up team.');
+        $sections = array_map(function (array $s) use ($swap) {
+            if (($s['id'] ?? '') === 'group-digital-marketing') {
+                $s['heading'] = $swap($s['heading'] ?? '', ['Digital Marketing Services: SEO, Google Ads and Content'], 'Digital Marketing Services: SEO, AEO & GEO and Google Ads');
+                if (($s['bullets'] ?? []) === ['SEO, local SEO and AI search', 'Google Ads and paid media', 'Content, links and reviews']) $s['bullets'] = ['SEO, local SEO, AEO and GEO', 'Google Ads and paid media', 'Content, links and reviews'];
+            }
+            if (($s['id'] ?? '') === 'group-branding-strategy') {
+                $s['heading'] = $swap($s['heading'] ?? '', ['Branding and Strategy Services: Identity, Advisory and CRO'], 'Branding and Strategy Services: Identity, UI/UX, Print and CRO');
+                if (($s['bullets'] ?? []) === ['Brand identity and guidelines', 'Marketing advisory', 'Conversion rate optimisation']) $s['bullets'] = ['Brand identity and guidelines', 'UI/UX design and print media', 'Conversion rate optimisation'];
+            }
+            return $s;
+        }, (array) $p->sections);
+        $faqs = (array) $p->faqs;
+        $extra = [
+            ['q' => 'What is the difference between SEO, AEO and GEO?', 'a' => 'SEO helps your pages rank in Google results. AEO makes your content the direct answer in snippets and voice search. GEO gets your brand cited in AI tools such as ChatGPT, Gemini and Google AI Overviews. We offer all three, usually together.'],
+            ['q' => 'How much do your services cost?', 'a' => 'Ongoing marketing usually ranges from about £500 to £5,000+ per month, and websites or software are quoted as fixed-price projects. We send a fixed quote after a free audit, so you know the full cost before you start.'],
+            ['q' => 'How quickly can you start?', 'a' => 'Most projects start within one to two weeks of accepting a proposal. We begin with an audit and a kick-off call, then agree priorities and timelines so you see progress from the first month.'],
+        ];
+        $have = array_column($faqs, 'q');
+        foreach ($extra as $f) if (! in_array($f['q'], $have, true)) $faqs[] = $f;
+        $p->forceFill([
+            'meta_description' => $swap($p->meta_description, ['Explore every GTech Digital service: SEO, Google Ads, social media, web design, custom software and branding, delivered by one UK team.'],
+                'Explore every GTech Digital service: SEO, AEO & GEO, Google Ads, social media, web design, custom software, UI/UX and branding, from one UK team.'),
+            'hero' => $hero, 'sections' => $sections, 'faqs' => $faqs,
+        ]);
+        if ($p->isDirty()) $p->save();
+    }
+
     public static function apply(): void
     {
+        self::servicesHub();
         // The Google Business Profile address (Site settings > Contact), unless one was already entered there.
         $c = (array) (\App\Models\Setting::query()->find('contact')?->value ?? []);
         if (empty($c['street'])) \App\Models\Setting::put('contact', array_merge(\App\Models\Setting::group('contact'), [
