@@ -79,7 +79,11 @@ class AdminPanelProvider extends PanelProvider
                 ."<script>(function(){function flush(el){try{var d=window.Alpine&&Alpine.\$data(el);if(!d||!el.__typedAt||Date.now()-el.__typedAt>1000||typeof d.editor!=='function')return;el.__typedAt=0;clearTimeout(d.timeOut);d.timeOut=null;var ed=d.editor();if(ed)d.state=ed.isEmpty?null:ed.getJSON()}catch(e){}}"
                 ."document.addEventListener('input',function(e){var w=e.target.closest&&e.target.closest('.tiptap-wrapper');if(w)w.__typedAt=Date.now()},true);function all(){document.querySelectorAll('.tiptap-wrapper').forEach(flush)}"
                 ."document.addEventListener('focusout',function(e){var w=e.target.closest&&e.target.closest('.tiptap-wrapper');if(w)flush(w)},true);"
-                ."document.addEventListener('submit',all,true);document.addEventListener('pointerdown',function(e){var t=e.target;if(t.closest&&t.closest('button,a')&&!t.closest('.tiptap-wrapper,.fi-modal'))all()},true)})()</script>"
+                ."document.addEventListener('submit',all,true);"
+                // The editor plugin reloads its content whenever the form state comes back from the server and then focuses itself,
+                // which pulled people back into the article (e.g. when picking categories) and made the link and table menus blink.
+                // Reload only when the content really changed, and never take the focus.
+                ."function patch(){if(!window.Alpine)return;document.querySelectorAll('.tiptap-wrapper').forEach(function(el){var d;try{d=Alpine.\$data(el)}catch(e){return}if(!d||d.__gtPatched||typeof d.editor!=='function'||!d.editor())return;d.__gtPatched=true;d.updateEditorContent=function(content){var ed=this.editor();if(!ed||!ed.isEditable)return;try{if(content&&typeof content==='object'&&JSON.stringify(content)===JSON.stringify(ed.getJSON()))return;if(typeof content==='string'&&content===ed.getHTML())return}catch(e){}var had=ed.isFocused,sel=ed.state.selection;ed.commands.setContent(content,false);if(had){try{ed.commands.setTextSelection({from:sel.from,to:sel.to})}catch(e){}}}})}setInterval(patch,500);document.addEventListener('focusin',patch,true);document.addEventListener('pointerdown',function(e){var t=e.target;if(t.closest&&t.closest('button,a')&&!t.closest('.tiptap-wrapper,.fi-modal'))all()},true)})()</script>"
             ));
     }
 }
