@@ -18,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Admin uploads: Livewire's temporary uploads stop at 12 MB by default; the hero video allows up to 50 MB.
+        // (Each field still sets its own smaller limit, e.g. images.)
+        config(['livewire.temporary_file_upload.rules' => ['required', 'file', 'max:51200']]);
+
         // Breezy registers its My account components only while a panel boots, which Livewire's update route
         // skips, so their actions failed with 419. Register them for every request.
         foreach (['personal_info' => \Jeffgreco13\FilamentBreezy\Livewire\PersonalInfo::class, 'update_password' => \Jeffgreco13\FilamentBreezy\Livewire\UpdatePassword::class,

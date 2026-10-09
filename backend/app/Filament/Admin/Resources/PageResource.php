@@ -180,10 +180,10 @@ class PageResource extends Resource
                             ->rule(fn () => fn ($a, $v, $fail) => filled($v) && ! \App\Support\Site\HeroVideo::safeUrl($v) ? $fail('Use a full https:// address or a /storage/… path.') : null),
                         Forms\Components\FileUpload::make('hero.video__upload')->label('Upload a video')->dehydrated(false)->live()
                             ->visible(fn (Get $get) => $get('hero.video_type') === 'file')
-                            ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/quicktime'])->maxSize(102400)->disk('public')->directory('media')
+                            ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/quicktime'])->maxSize(51200)->disk('public')->directory('media')
                             ->helperText(fn () => (\App\Support\VideoTools::ffmpeg()
-                                ? 'MP4, WebM or MOV. It is compressed automatically (1280 px, no sound, starts playing straight away) and a poster is made from it.'
-                                : 'MP4 or WebM, ideally under 5 MB and 10 to 20 seconds, without sound. (Install ffmpeg on the server and uploads are compressed automatically.)')
+                                ? 'MP4, WebM or MOV, up to 50 MB. It is compressed automatically (1280 px, no sound, starts playing straight away) and a poster is made from it.'
+                                : 'MP4 or WebM, up to 50 MB (ideally under 5 MB and 10 to 20 seconds, without sound). (Install ffmpeg on the server and uploads are compressed automatically.)')
                                 .' Uploads above the server limit (PHP upload_max_filesize) fail; on Herd raise it in Settings > PHP.')
                             ->afterStateUpdated(function ($state, \Filament\Forms\Set $set, Get $get) {
                                 if (! $state instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) return;
