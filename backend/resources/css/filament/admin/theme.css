@@ -3,3 +3,14 @@
 @import '/vendor/awcodes/filament-tiptap-editor/resources/css/plugin.css';
 
 @config 'tailwind.config.js';
+
+/* Article editor: links must stand out from the text in Day and Night mode. */
+.fi-body .tiptap-editor .ProseMirror a {
+    color: #c8102e;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+}
+.dark .fi-body .tiptap-editor .ProseMirror a, .dark.fi-body .tiptap-editor .ProseMirror a {
+    color: #ff8a95;
+}

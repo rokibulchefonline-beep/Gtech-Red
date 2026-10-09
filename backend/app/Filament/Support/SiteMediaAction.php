@@ -37,6 +37,8 @@ class SiteMediaAction extends MediaAction
                 ->helperText('JPG, JPEG or WebP, at most 250 KB (larger photos are compressed when "Optimise automatically" is ticked).')
                 ->disk($component->getDisk())->directory($component->getDirectory())->visibility('public')
                 ->acceptedFileTypes(['image/jpeg', 'image/webp'])->image()->maxFiles(1)->maxSize(10240)->required()->live()
+                ->imageResizeTargetWidth('1920')->imageResizeTargetHeight('1920')->imageResizeMode('contain')->imageResizeUpscale(false)
+                ->validationMessages(['uploaded' => ImageField::UPLOAD_FAILED])
                 ->afterStateUpdated(function ($state, Set $set, Get $get) {
                     if (! $state instanceof TemporaryUploadedFile) return;
                     $set('type', 'image');

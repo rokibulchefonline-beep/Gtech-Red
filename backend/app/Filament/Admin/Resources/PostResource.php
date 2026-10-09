@@ -55,7 +55,7 @@ class PostResource extends Resource
                         ->unique(ignoreRecord: true)->rule('regex:/^[a-z0-9-]+$/')->helperText('Lowercase words separated by hyphens. If you change it later, the old address keeps working (a redirect is added).'),
                     Forms\Components\Textarea::make('excerpt')->rows(2)->maxLength(400)->helperText('One or two sentences shown on the blog list.'),
                     // Images get alt text (click an image, then the edit button); links can be edited in place.
-                    TiptapEditor::make('body')->label('Article')->required()->columnSpanFull()
+                    \App\Filament\Support\ArticleEditor::make('body')->label('Article')->required()->columnSpanFull()
                         ->profile('blog')->disk('public')->directory('media')->output(TiptapOutput::Html)
                         ->maxContentWidth('3xl')->extraInputAttributes(['style' => 'min-height: 24rem;']),
                 ]),

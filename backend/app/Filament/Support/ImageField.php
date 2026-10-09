@@ -25,6 +25,9 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
  */
 class ImageField
 {
+    /** Shown when the server refuses a file (usually PHP's upload_max_filesize). Photos are shrunk to 1920 px in the browser first, so this is rare. */
+    public const UPLOAD_FAILED = 'The image could not be uploaded, usually because it is larger than the server allows. Try a smaller image, or raise upload_max_filesize in PHP (Herd: Settings > PHP > Max file upload size).';
+
     public static function make(string $field, string $label = 'Image', ?string $alt = null, string $preset = 'any'): Group
     {
         $blog = $preset === 'blog';
@@ -42,6 +45,8 @@ class ImageField
             Checkbox::make($field.'__optimise')->label('Optimise automatically (WebP, under 250 KB)')->dehydrated(false)->hidden($avatar)
                 ->afterStateHydrated(fn (Checkbox $component, $state) => $state === null ? $component->state(true) : null),
             FileUpload::make($field.'__upload')->label('Upload a new image')->image()->maxSize(10240)->helperText($help)
+                ->imageResizeTargetWidth('1920')->imageResizeTargetHeight('1920')->imageResizeMode('contain')->imageResizeUpscale(false)
+                ->validationMessages(['uploaded' => self::UPLOAD_FAILED])
                 ->acceptedFileTypes($types)
                 ->disk('public')->directory('media')->dehydrated(false)->live()
                 ->afterStateUpdated(function (?TemporaryUploadedFile $state, Set $set, Get $get) use ($field, $alt, $blog, $avatar) {

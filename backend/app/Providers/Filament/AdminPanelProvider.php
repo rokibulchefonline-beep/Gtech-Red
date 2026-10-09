@@ -74,6 +74,12 @@ class AdminPanelProvider extends PanelProvider
             // this browser's own visits to the website being counted in Analytics.
             ->renderHook(\Filament\View\PanelsRenderHook::BODY_END, fn () => new \Illuminate\Support\HtmlString(
                 "<script>try{localStorage.setItem('gt_staff','1')}catch(e){}document.addEventListener('alpine:initialized',function(){if(window.innerWidth<1024&&window.Alpine&&Alpine.store('sidebar'))Alpine.store('sidebar').close()})</script>"
+                // Article editor (ArticleEditor) copies the text into the form after a short pause; copy it straight away when
+                // the editor loses focus or a form is sent, so Save never misses the last words typed.
+                ."<script>(function(){function flush(el){try{var d=window.Alpine&&Alpine.\$data(el);if(!d||!el.__typedAt||Date.now()-el.__typedAt>1000||typeof d.editor!=='function')return;el.__typedAt=0;clearTimeout(d.timeOut);d.timeOut=null;var ed=d.editor();if(ed)d.state=ed.isEmpty?null:ed.getJSON()}catch(e){}}"
+                ."document.addEventListener('input',function(e){var w=e.target.closest&&e.target.closest('.tiptap-wrapper');if(w)w.__typedAt=Date.now()},true);function all(){document.querySelectorAll('.tiptap-wrapper').forEach(flush)}"
+                ."document.addEventListener('focusout',function(e){var w=e.target.closest&&e.target.closest('.tiptap-wrapper');if(w)flush(w)},true);"
+                ."document.addEventListener('submit',all,true);document.addEventListener('pointerdown',function(e){var t=e.target;if(t.closest&&t.closest('button,a')&&!t.closest('.tiptap-wrapper,.fi-modal'))all()},true)})()</script>"
             ));
     }
 }
