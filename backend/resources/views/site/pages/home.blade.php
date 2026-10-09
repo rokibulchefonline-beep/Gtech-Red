@@ -84,7 +84,7 @@
 @section('content')
 <div class="no-hl">
 <section class="hero-video">
-<div class="hero-bg" aria-hidden="true"><video class="hero-bg-v" muted loop playsinline preload="none" poster="/videos/uk-network-poster.webp?v=2" data-hero-video data-src="/videos/uk-network.mp4?v=2" data-src-sm="/videos/uk-network-720.mp4?v=2"></video></div>
+<div class="hero-bg" aria-hidden="true"><video class="hero-bg-v" muted loop playsinline preload="none" poster="/videos/uk-network-poster.webp?v=4" data-hero-video data-src="/videos/uk-network.mp4?v=4" data-src-sm="/videos/uk-network-720.mp4?v=4"></video></div>
 <div class="wrap">
 <div class="hero-head">
 <h1 class="hero-title">@foreach ($lines as $i => $l)<span{!! $i === count($lines) - 1 && $i > 0 ? ' class="hero-last"' : '' !!}>@if (str_contains($l, '[['))@hl($l)@else{{ trim($l) ?: ' ' }}@endif</span>@endforeach</h1>
