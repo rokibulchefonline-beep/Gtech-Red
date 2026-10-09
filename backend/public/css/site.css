@@ -1106,3 +1106,17 @@ img.bp-author-logo{border-radius:50%;object-fit:cover}
 .hdr .nav .btn.sm.line{background:none;color:var(--pink);border:2px solid var(--pink);padding:6px 18px;margin-right:-8px}.hdr .nav .btn.sm.line:hover{background:var(--pink);color:#fff}
 /* Floating chat button: icon only */
 .float-talk{width:56px;height:56px;padding:0;justify-content:center;border-radius:50%}
+/* Client logo strip (service and industry pages): endless, even row of logos */
+.sp-logos{padding:110px 0 48px}
+.sp-logos .sp-logos-h{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 0 26px}
+.sp-logos-h span{flex:0 1 90px;height:1px;background:linear-gradient(90deg,transparent,#e3dadc)}.sp-logos-h span:last-child{transform:scaleX(-1)}
+.sp-marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.sp-marquee-track{display:flex;gap:18px;width:max-content;animation:sp-marquee 38s linear infinite}
+.sp-marquee:hover .sp-marquee-track{animation-play-state:paused}
+.sp-logo-tile{flex:none;display:flex;align-items:center;justify-content:center;width:168px;height:84px;padding:14px 20px;background:#fff;border:1px solid #f0e6e8;transition:border-color .3s,box-shadow .3s}
+.sp-logo-tile img{max-width:100%;max-height:48px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.7;transition:filter .3s,opacity .3s}
+.sp-logo-tile:hover{border-color:#f3c7cd;box-shadow:0 10px 24px rgba(176,18,44,.08)}.sp-logo-tile:hover img{filter:none;opacity:1}
+.sp-marquee.static{-webkit-mask-image:none;mask-image:none}.sp-marquee.static .sp-marquee-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}
+@keyframes sp-marquee{to{transform:translateX(calc(-50% - 9px))}}
+@media(prefers-reduced-motion:reduce){.sp-marquee-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.sp-marquee-track>[aria-hidden]{display:none}.sp-marquee{-webkit-mask-image:none;mask-image:none}}
+@media(max-width:600px){.sp-logos{padding:90px 0 36px}.sp-logo-tile{width:132px;height:68px}.sp-logo-tile img{max-height:38px}}

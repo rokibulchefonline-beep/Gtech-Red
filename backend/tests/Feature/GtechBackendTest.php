@@ -73,9 +73,9 @@ class GtechBackendTest extends TestCase
     public function test_seed_loads_all_content_once(): void
     {
         Artisan::call('gtech:seed-content');
-        $this->assertSame(52, Page::count());
+        $this->assertSame(53, Page::count());
         $this->assertSame(5, \App\Models\ServiceGroup::count());
-        $this->assertSame(32, \App\Models\ServiceItem::count());
+        $this->assertSame(33, \App\Models\ServiceItem::count());
         $this->assertSame(7, \App\Models\Industry::count());
         $this->assertSame(6, Post::count());
         Page::find('page~home')->update(['meta_title' => 'Mine']);

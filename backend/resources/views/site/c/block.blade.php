@@ -3,9 +3,13 @@
 @switch($s['type'])
 @case('logos')
 @if ($R::clients())
+@php($logos = $R::clients())
 <section class="sp-logos" aria-label="Clients"><div class="wrap">
-<p>Trusted by growing UK brands</p>
-<div class="sp-logo-row">@foreach (array_slice($R::clients(), 0, 6) as $b)<img src="{{ $b['logo'] }}" alt="{{ $b['name'] }}" loading="lazy">@endforeach</div>
+<p class="sp-logos-h"><span></span>Trusted by growing UK brands<span></span></p>
+<div class="sp-marquee{{ count($logos) < 5 ? ' static' : '' }}"><div class="sp-marquee-track">
+@foreach ($logos as $b)<div class="sp-logo-tile"><img src="{{ $b['logo'] }}" alt="{{ $b['name'] }}" loading="lazy" decoding="async"></div>@endforeach
+@if (count($logos) >= 5)@foreach ($logos as $b)<div class="sp-logo-tile" aria-hidden="true"><img src="{{ $b['logo'] }}" alt="" loading="lazy" decoding="async"></div>@endforeach @endif
+</div></div>
 </div></section>
 @endif
 @break
