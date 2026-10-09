@@ -39,8 +39,7 @@
 <fieldset class="au-pick"><legend>What do you want to achieve?</legend>@foreach ($goals as $g)<label><input type="checkbox" name="goals" value="{{ $g }}"><span>{{ $g }}</span></label>@endforeach</fieldset>
 <fieldset class="au-pick"><legend>What should we look at first?</legend>@foreach ($areas as $a)<label><input type="checkbox" name="areas" value="{{ $a }}"><span>{{ $a }}</span></label>@endforeach</fieldset>
 <div class="cf-grid">
-<div class="iq-field">@icon('lucide:map-pin', 18)<input name="location" placeholder="Where your customers are (e.g. London, UK-wide)" aria-label="Where your customers are"></div>
-<div class="iq-field">@icon('lucide:wallet', 18)<select name="budget" aria-label="Monthly marketing budget"><option value="" selected>Monthly budget (optional)</option>@foreach ($budgets as $b)<option>{{ $b }}</option>@endforeach</select></div>
+<div class="iq-field cf-wide">@icon('lucide:wallet', 18)<select name="budget" aria-label="Monthly marketing budget"><option value="" selected>Monthly budget (optional)</option>@foreach ($budgets as $b)<option>{{ $b }}</option>@endforeach</select></div>
 <div class="iq-field cf-wide">@icon('lucide:users', 18)<input name="competitors" placeholder="Main competitors, if you know them (websites or names)" aria-label="Main competitors"></div>
 <div class="iq-field cf-wide">@icon('lucide:message-square', 18)<textarea name="message" rows="3" placeholder="Anything else we should know?" aria-label="Anything else we should know"></textarea></div>
 </div>
