@@ -316,10 +316,37 @@
     var start = function () {
       var id = el.getAttribute('data-yt');
       if (id) {
-        var f = d.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&loop=1&playlist=' + id + '&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0';
-        f.title = 'Background video'; f.tabIndex = -1; f.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
-        f.addEventListener('load', function () { setTimeout(function () { f.className = 'on'; }, 1800); });
+        // YouTube shows its own buttons (pause, previous/next, title, end screen) whenever the video buffers, pauses
+        // or reaches the end. Talk to the player directly: show it only while it is really playing, and jump back to
+        // the start just before the end instead of letting YouTube loop (which flashes the end screen and controls).
+        var f = d.createElement('iframe'), yt = 'https://www.youtube-nocookie.com', dur = 0, timer = null;
+        f.src = yt + '/embed/' + id + '?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=' + encodeURIComponent(location.origin);
+        f.title = 'Background video'; f.tabIndex = -1; f.setAttribute('allow', 'autoplay; encrypted-media');
+        var cmd = function (func, args) { try { f.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), yt); } catch (e) {} };
+        var show = function (on) {
+          clearTimeout(timer);
+          // A short wait before showing hides the first frames, where YouTube still draws its title and buttons.
+          if (on) timer = setTimeout(function () { f.className = 'on'; }, 900); else f.className = '';
+        };
+        window.addEventListener('message', function (e) {
+          if (e.source !== f.contentWindow) return;
+          var m; try { m = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (x) { return; }
+          if (!m) return;
+          var info = m.info || {};
+          if (m.event === 'onReady') cmd('playVideo');
+          var st = m.event === 'onStateChange' ? m.info : info.playerState;
+          if (typeof st === 'number') {
+            if (st === 1) show(true);
+            else if (st === 0) { show(false); cmd('seekTo', [0, true]); cmd('playVideo'); }
+            else if (st === 2 || st === 3 || st === -1) show(false);
+          }
+          if (info.duration) dur = info.duration;
+          if (dur && typeof info.currentTime === 'number' && info.currentTime > dur - 0.8) cmd('seekTo', [0, true]);
+        });
+        f.addEventListener('load', function () {
+          try { f.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'gt-hero' }), yt); } catch (e) {}
+          cmd('addEventListener', ['onStateChange']);
+        });
         el.appendChild(f);
         return;
       }
