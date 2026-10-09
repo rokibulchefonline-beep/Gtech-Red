@@ -313,7 +313,7 @@
     var start = function () {
       var src = window.innerWidth < 900 ? v.getAttribute('data-src-sm') : v.getAttribute('data-src');
       // MP4 (H.264) for almost every browser; WebM for the few without H.264.
-      if (!v.canPlayType('video/mp4; codecs="avc1.640028"')) src = src.replace(/\.mp4$/, '.webm');
+      if (!v.canPlayType('video/mp4; codecs="avc1.640028"')) src = src.replace(/\.mp4(\?|$)/, '.webm$1');
       v.src = src;
       v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
       var p = v.play(); if (p && p.catch) p.catch(function () {});

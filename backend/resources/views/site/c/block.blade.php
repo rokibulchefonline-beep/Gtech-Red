@@ -127,6 +127,6 @@
 <section id="{{ $s['id'] }}" class="sp-html {{ empty($s['full']) ? 'sp-sec' : '' }}">@if (!empty($s['css']))<style>#{{ $s['id'] }} { {!! $s['css'] !!} }</style>@endif<div class="{{ empty($s['full']) ? 'wrap' : '' }}">{!! $s['html'] ?? '' !!}</div></section>
 @break
 @case('form')
-@include('site.c.inquiry', ['service' => $name])
+@include('site.c.inquiry', ['service' => $name, 'id' => $s['id'], 'heading' => ($s['heading'] ?? '') ?: null, 'intro' => ($s['intro'] ?? '') ?: null])
 @break
 @endswitch
