@@ -30,8 +30,26 @@ class HeroVideo
     /** An http(s) or site-relative address with no characters that could break out of an attribute or CSS url(). */
     public static function safeUrl(mixed $v): string
     {
-        $v = trim((string) $v);
+        $v = self::local(trim((string) $v));
         return preg_match('~^(https?://|/)[^\s\'"()<>\\\\]+$~i', $v) ? $v : '';
+    }
+
+    /**
+     * Files on this site saved with a full address (from APP_URL, e.g. http://192.168.1.20/storage/...) become
+     * site-relative, so they load on whatever domain the site is opened on. Also covers private network addresses.
+     */
+    public static function local(string $v): string
+    {
+        if (! preg_match('~^https?://~i', $v)) return $v;
+        $host = strtolower((string) parse_url($v, PHP_URL_HOST));
+        $own = strtolower((string) parse_url((string) config('app.url'), PHP_URL_HOST));
+        $private = filter_var($host, FILTER_VALIDATE_IP) && ! filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+        if ($host === $own || $private || $host === 'localhost' || str_ends_with($host, '.test')) {
+            $path = (string) parse_url($v, PHP_URL_PATH);
+            $q = parse_url($v, PHP_URL_QUERY);
+            return $path.($q ? '?'.$q : '');
+        }
+        return $v;
     }
 
     /** The video id from a YouTube link (watch, youtu.be, shorts, embed) or a bare id. */

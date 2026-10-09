@@ -192,9 +192,10 @@ class PageResource extends Resource
                                 $path = $state->store('media', 'public');
                                 if ($done = \App\Support\VideoTools::optimise($disk->path($path))) {
                                     $path = 'media/'.basename($done[0]);
-                                    if ($done[1] && blank($get('hero.video_poster'))) $set('hero.video_poster', $disk->url('media/'.basename($done[1])));
+                                    if ($done[1] && blank($get('hero.video_poster'))) $set('hero.video_poster', '/storage/media/'.basename($done[1]));
                                 }
-                                $set('hero.video_url', $disk->url($path));
+                                // Site-relative, so it works on any domain (APP_URL may be a local address the visitor cannot reach).
+                                $set('hero.video_url', '/storage/'.$path);
                                 \Filament\Notifications\Notification::make()->success()->title('Video uploaded ('.round($disk->size($path) / 1048576, 1).' MB)')
                                     ->body($disk->size($path) > 8 * 1048576 ? 'This is large for a background video and will slow the page on slow connections. Aim for under 5 MB.' : 'Save the page to use it.')->send();
                             }),
