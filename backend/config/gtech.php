@@ -1,13 +1,11 @@
 <?php
 
 return [
-    // Shared secret the Next.js website sends (X-Api-Key) when it reads content at build time.
-    'api_token' => env('GTECH_API_TOKEN', ''),
-    // Public address of the Next.js website, used for CORS and "View site" links.
+    // The website's address, used for "View on website" links in the panel.
     'site_url' => env('GTECH_SITE_URL', 'https://www.gtechdigital.co.uk'),
     // The website's public address, used in share links, canonical URLs and structured data.
     'public_url' => rtrim(env('GTECH_PUBLIC_URL', 'https://www.gtechdigital.co.uk'), '/'),
-    // Set to true when the Blade pages replace the Next.js website. Until then they are sent with noindex.
+    // true on the live site. false on a local or test copy, whose pages are sent with noindex so Google ignores them.
     'blade_live' => (bool) env('GTECH_BLADE_LIVE', false),
     // Full-page cache for the public pages. Pages refresh by themselves when content is saved in the panel.
     'page_cache' => [

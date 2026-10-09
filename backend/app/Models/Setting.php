@@ -30,9 +30,8 @@ class Setting extends Model
         'tracking' => ['gtmId' => 'GTM-NRPJVVSH', 'ga4Id' => '', 'metaPixelId' => ''],
         'seo' => ['titleSuffix' => ' | GTech Digital', 'defaultDescription' => '', 'ogImage' => ''],
         'smtp' => ['host' => '', 'port' => 587, 'secure' => false, 'user' => '', 'pass' => '', 'fromName' => 'GTech Digital', 'fromEmail' => '', 'notifyTo' => '', 'autoReply' => true],
-        'publish' => ['deployHook' => ''],
-        // Website forms: the privacy notice under each form, and Cloudflare Turnstile spam protection (secret encrypted).
-        'forms' => ['budgets' => [], 'privacyNotice' => 'We use your details only to reply to your enquiry. See our [Privacy Policy](/privacy-policy).', 'turnstileSite' => '', 'turnstileSecret' => '', 'recaptchaSite' => '', 'recaptchaSecret' => '', 'recaptchaVersion' => 'v2', 'recaptchaScore' => 0.5],
+        // Website forms: the privacy notice under each form, and Google reCAPTCHA spam protection (secret encrypted).
+        'forms' => ['budgets' => [], 'privacyNotice' => 'We use your details only to reply to your enquiry. See our [Privacy Policy](/privacy-policy).', 'recaptchaSite' => '', 'recaptchaSecret' => '', 'recaptchaVersion' => 'v2', 'recaptchaScore' => 0.5],
         'company' => ['legalName' => '', 'number' => '', 'address' => '', 'ico' => ''],
         // Two-factor sign-in: off, managers (people who can manage users) or everyone.
         'security' => ['require2fa' => 'off'],
@@ -65,26 +64,6 @@ class Setting extends Model
     public static function put(string $key, array $value): void
     {
         static::query()->updateOrCreate(['key' => $key], ['value' => $value]);
-    }
-
-    /**
-     * Settings that are safe to send to the public website. An allow-list, so a new settings group (or a new secret
-     * in an existing one) is private until it is added here.
-     */
-    public const PUBLIC = [
-        'general' => true, 'contact' => true, 'socials' => true, 'tracking' => true, 'seo' => true, 'company' => true,
-        'forms' => ['budgets', 'privacyNotice', 'turnstileSite', 'recaptchaSite', 'recaptchaVersion'],
-    ];
-
-    public static function publicView(): array
-    {
-        $out = [];
-        foreach (static::all_() as $group => $v) {
-            $allow = self::PUBLIC[$group] ?? false;
-            if ($allow === true) $out[$group] = $v;
-            elseif (is_array($allow) && is_array($v)) $out[$group] = array_intersect_key($v, array_flip($allow));
-        }
-        return $out;
     }
 
     public static function smtpPassword(): string

@@ -79,11 +79,4 @@ class AdminFixesTest extends TestCase
         $this->assertSame('447700900123', (new Lead(['phone' => '+44 7700 900123']))->phoneDigits());
     }
 
-    public function test_publish_site_button_only_before_go_live(): void
-    {
-        $u = User::query()->create(['name' => 'Admin', 'email' => 'a@example.com', 'password' => bcrypt('x-'.uniqid()), 'role' => 'super_admin', 'active' => true]);
-        $this->actingAs($u)->get('/admin')->assertOk()->assertSee('Publish site')->assertDontSee('Refresh website');
-        config(['gtech.blade_live' => true]);
-        $this->actingAs($u)->get('/admin')->assertOk()->assertDontSee('Publish site')->assertSee('Refresh website');
-    }
 }

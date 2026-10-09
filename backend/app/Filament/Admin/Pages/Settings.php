@@ -4,7 +4,6 @@ namespace App\Filament\Admin\Pages;
 
 use App\Filament\Support\ImageField;
 use App\Models\Setting;
-use App\Support\Publisher;
 use App\Support\SiteMailer;
 use Filament\Actions\Action;
 use Filament\Forms;
@@ -37,8 +36,6 @@ class Settings extends Page implements HasForms
         $s = Setting::all_();
         $s['smtp']['pass'] = '';
         $s['smtp']['hasPass'] = (bool) (Setting::group('smtp')['pass'] ?? '');
-        $s['forms']['turnstileSecret'] = '';
-        $s['forms']['hasSecret'] = (bool) (Setting::group('forms')['turnstileSecret'] ?? '');
         $s['forms']['recaptchaSecret'] = '';
         $s['forms']['hasRecaptchaSecret'] = (bool) (Setting::group('forms')['recaptchaSecret'] ?? '');
         $this->form->fill($s);
@@ -130,14 +127,6 @@ class Settings extends Page implements HasForms
                 Forms\Components\Tabs\Tab::make('Forms')->schema([
                     Forms\Components\Textarea::make('forms.privacyNotice')->label('Privacy notice under every form')->rows(2)->maxLength(500)
                         ->helperText('Tells people how their details are used (UK GDPR). Write [link text](/privacy-policy) for a link. It is saved with every lead. Leave empty to hide it.'),
-                    Forms\Components\Fieldset::make('Spam protection: Cloudflare Turnstile (optional)')->schema([
-                        Forms\Components\Placeholder::make('tshelp')->hiddenLabel()->columnSpanFull()
-                            ->content('A free "I am human" check from Cloudflare, usually invisible to people. Create a widget for your domain in Cloudflare > Turnstile and paste its two keys here. Both keys are needed; remove the site key to turn it off.'),
-                        Forms\Components\TextInput::make('forms.turnstileSite')->label('Site key')->maxLength(100),
-                        Forms\Components\TextInput::make('forms.turnstileSecret')->label('Secret key')->password()->revealable()->prefixIcon('heroicon-o-lock-closed')->maxLength(200)
-                            ->helperText(fn ($get) => $get('forms.hasSecret') ? 'A secret key is saved. Leave empty to keep it.' : 'No secret key saved yet.'),
-                        Forms\Components\Hidden::make('forms.hasSecret'),
-                    ])->columns(2),
                     Forms\Components\Fieldset::make('Spam protection: Google reCAPTCHA (optional)')->schema([
                         Forms\Components\Placeholder::make('rchelp')->hiddenLabel()->columnSpanFull()
                             ->content(new \Illuminate\Support\HtmlString('Google\'s free check. Register your domain at <a class="text-primary-600 underline" href="https://www.google.com/recaptcha/admin/create" target="_blank" rel="noopener">google.com/recaptcha/admin</a>, choose the same type as here, and paste its two keys. Use either Turnstile or reCAPTCHA; if both are set, forms must pass both. Remove the site key to turn it off.')),
@@ -156,10 +145,6 @@ class Settings extends Page implements HasForms
                         ->options(['off' => 'No, people choose for themselves (in My account)', 'managers' => 'For people who can manage users (recommended at least)', 'everyone' => 'For everyone'])
                         ->helperText('With two-factor sign-in, people also enter a 6-digit code from an authenticator app (Google Authenticator, Microsoft Authenticator, 1Password...). Anyone required to use it is asked to set it up at their next sign-in.')
                         ->default('off'),
-                ]),
-                Forms\Components\Tabs\Tab::make('Publishing')->visible(fn () => ! config('gtech.blade_live'))->schema([
-                    Forms\Components\TextInput::make('publish.deployHook')->label('Cloudflare deploy hook URL')->url()->maxLength(500)
-                        ->helperText('Cloudflare > Workers & Pages > your site > Settings > Builds > Deploy hooks. "Publish site" calls this URL.'),
                 ]),
             ]),
         ]);
@@ -198,10 +183,7 @@ class Settings extends Page implements HasForms
         $oldPass = Setting::group('smtp')['pass'] ?? '';
         $data['smtp']['pass'] = filled($data['smtp']['pass'] ?? null) ? Crypt::encryptString($data['smtp']['pass']) : $oldPass;
         unset($data['smtp']['hasPass']);
-        $oldSecret = Setting::group('forms')['turnstileSecret'] ?? '';
-        $data['forms']['turnstileSecret'] = filled($data['forms']['turnstileSecret'] ?? null) ? Crypt::encryptString(trim($data['forms']['turnstileSecret'])) : $oldSecret;
         $data['forms']['budgets'] = Setting::group('forms')['budgets'] ?? [];
-        unset($data['forms']['hasSecret']);
         $oldRc = Setting::group('forms')['recaptchaSecret'] ?? '';
         $data['forms']['recaptchaSecret'] = filled($data['forms']['recaptchaSecret'] ?? null) ? Crypt::encryptString(trim($data['forms']['recaptchaSecret'])) : $oldRc;
         unset($data['forms']['hasRecaptchaSecret']);
@@ -227,8 +209,6 @@ class Settings extends Page implements HasForms
                         Notification::make()->title('Email failed')->body($e->getMessage())->danger()->send();
                     }
                 }),
-            Action::make('publish')->label('Publish site')->icon('heroicon-o-rocket-launch')->requiresConfirmation()
-                ->visible(fn () => ! config('gtech.blade_live') && (bool) auth()->user()?->hasPerm('pages.edit'))->action(fn () => Publisher::publish()),
         ];
     }
 }

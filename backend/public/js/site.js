@@ -86,9 +86,7 @@
         .catch(function () { show(false, form.getAttribute('data-form') === 'inquiry' ? 'Network error. Please try again.' : 'Network error. Try again.'); })
         .then(function () {
           btn.disabled = false; btn.textContent = btn.getAttribute('data-label');
-          // A Turnstile token works once: get a fresh one for the next send.
-          var ts = form.querySelector('.cf-turnstile');
-          if (ts && window.turnstile) { try { window.turnstile.reset(ts); } catch (e) {} }
+          // A reCAPTCHA token works once: get a fresh one for the next send.
           var g = form.querySelector('.g-recaptcha');
           if (g && window.grecaptcha && g.getAttribute('data-wid') !== null) { try { grecaptcha.reset(+g.getAttribute('data-wid')); } catch (e) {} }
           else if (g && window.grecaptcha) { try { grecaptcha.reset(); } catch (e) {} }
@@ -115,7 +113,6 @@
     lastFocus = from;
     modal = tpl.content.firstElementChild.cloneNode(true);
     d.body.insertBefore(modal, tpl);
-    if (window.turnstile) modal.querySelectorAll('.cf-turnstile').forEach(function (el) { try { window.turnstile.render(el); } catch (e) {} });
     if (window.grecaptcha && grecaptcha.render) modal.querySelectorAll('.g-recaptcha').forEach(function (el) { try { el.setAttribute('data-wid', grecaptcha.render(el, { sitekey: el.getAttribute('data-sitekey') })); } catch (e) {} });
     var sel = modal.querySelector('select[name="service"]');
     if (service && Array.prototype.some.call(sel.options, function (o) { return o.value === service; })) sel.value = service;

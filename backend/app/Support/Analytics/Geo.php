@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use MaxMind\Db\Reader;
 
 /**
- * The visitor's country (two-letter code). From the hosting's own header when there is one (Cloudflare, CloudFront,
- * Vercel), otherwise looked up on this server in the free DB-IP country database (gtech:geoip-update). Only the
+ * The visitor's country (two-letter code). From the hosting's own header when there is one, otherwise looked up on this server in the free DB-IP country database (gtech:geoip-update). Only the
  * country is kept; the IP address is not stored.
  */
 class Geo
@@ -22,7 +21,7 @@ class Geo
 
     public static function country(Request $r): string
     {
-        foreach (['CF-IPCountry', 'CloudFront-Viewer-Country', 'X-Vercel-IP-Country', 'X-Country-Code'] as $h) {
+        foreach (['X-Country-Code', 'CloudFront-Viewer-Country'] as $h) {
             if ($c = self::clean($r->header($h))) return $c;
         }
         return self::lookup((string) $r->ip());

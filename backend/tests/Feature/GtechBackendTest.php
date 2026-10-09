@@ -129,40 +129,24 @@ class GtechBackendTest extends TestCase
 
     public function test_old_page_edits_are_merged_into_pages_and_served_to_the_website(): void
     {
-        config(['gtech.api_token' => 'secret-token-1']);
         Artisan::call('gtech:seed-content');
         $p = Page::find('service~local-seo');
         $sid = $p->sections[0]['id'];
         $merged = \App\Support\Content::mergeOverride($p->only(['meta_title', 'meta_description', 'focus_keyword', 'hero', 'sections', 'faqs']),
             ['hero' => ['h1' => 'Edited [[H1]]'], 'sections' => [$sid => ['heading' => 'Edited heading']], 'faqs' => []]);
         $p->fill($merged)->save();
-        $doc = $this->withHeader('X-Api-Key', 'secret-token-1')->postJson('/api/v1/query', ['coll' => 'page_content', 'filter' => ['_id' => 'service~local-seo'], 'limit' => 1])->json('rows.0');
-        $this->assertSame('Edited [[H1]]', $doc['hero']['h1']);
-        $this->assertSame('Edited heading', $doc['sections'][$sid]['heading']);
-        $this->assertNotEmpty($doc['faqs']);
-    }
-
-    public function test_query_api_needs_the_token_and_returns_old_document_shape(): void
-    {
-        config(['gtech.api_token' => 'secret-token-1']);
-        Post::create(['legacy_id' => 'abc123', 'title' => 'Hello', 'slug' => 'hello', 'status' => 'published', 'body' => '<p>x</p>', 'meta_title' => 'MT']);
-        Post::create(['title' => 'Draft', 'slug' => 'draft', 'status' => 'draft']);
-        $this->postJson('/api/v1/query', ['coll' => 'posts'])->assertUnauthorized();
-        $res = $this->withHeader('X-Api-Key', 'secret-token-1')->postJson('/api/v1/query', ['coll' => 'posts', 'filter' => ['status' => ['$in' => ['published', 'scheduled']]], 'limit' => 10]);
-        $res->assertOk()->assertJsonCount(1, 'rows')->assertJsonPath('rows.0._id', 'abc123')->assertJsonPath('rows.0.metaTitle', 'MT');
-        $this->withHeader('X-Api-Key', 'secret-token-1')->postJson('/api/v1/query', ['coll' => 'posts', 'count' => true])->assertJsonPath('total', 2);
-        $this->withHeader('X-Api-Key', 'secret-token-1')->postJson('/api/v1/query', ['coll' => 'users'])->assertStatus(422);
-        $s = $this->withHeader('X-Api-Key', 'secret-token-1')->postJson('/api/v1/query', ['coll' => 'settings', 'filter' => ['_id' => 'site']])->json('rows.0');
-        $this->assertArrayNotHasKey('smtp', $s);
+        \App\Support\Site\PageCache::flush();
+        \App\Support\Site\Repo::flush();
+        $this->get('/services/local-seo')->assertOk()->assertSee('Edited');
     }
 
     public function test_contact_form_saves_a_lead(): void
     {
-        $this->postJson('/api/v1/contact', ['name' => 'Jo', 'business' => 'Co', 'email' => 'jo@example.com', 'phone' => '0700', 'service' => 'SEO', 'budget' => '£1k'])->assertOk();
+        $this->postJson('/api/contact', ['name' => 'Jo', 'business' => 'Co', 'email' => 'jo@example.com', 'phone' => '0700', 'service' => 'SEO', 'budget' => '£1k'])->assertOk();
         $this->assertSame('new', Lead::first()->status);
-        $this->postJson('/api/v1/contact', ['name' => 'Jo'])->assertStatus(400);
-        $this->postJson('/api/v1/subscribe', ['email' => 'a@example.com'])->assertOk();
-        $this->postJson('/api/v1/subscribe', ['email' => 'a@example.com'])->assertOk();
+        $this->postJson('/api/contact', ['name' => 'Jo'])->assertStatus(400);
+        $this->postJson('/api/subscribe', ['email' => 'a@example.com'])->assertOk();
+        $this->postJson('/api/subscribe', ['email' => 'a@example.com'])->assertOk();
         $this->assertDatabaseCount('subscribers', 1);
     }
 }

@@ -43,7 +43,6 @@
 <button type="button" class="to-top" aria-label="Back to top" tabindex="-1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
 <a class="float-talk" href="/contact" aria-label="Let&#x27;s talk" title="Let&#x27;s talk">@icon('lucide:message-circle', 24)</a>
 <script src="{{ asset('js/site.js') }}?v={{ @filemtime(public_path('js/site.js')) }}" defer></script>
-@if ($turnstile)<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>@endif
 @if ($recaptcha)<script>window.gtRecaptcha = {!! json_encode(['key' => $recaptcha, 'v3' => $recaptchaV3]) !!};</script><script src="https://www.google.com/recaptcha/api.js{{ $recaptchaV3 ? '?render='.$recaptcha : '' }}" async defer></script>@endif
 @stack('scripts')
 </body>

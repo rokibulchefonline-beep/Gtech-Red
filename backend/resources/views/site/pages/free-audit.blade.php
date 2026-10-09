@@ -43,7 +43,7 @@
 <div class="iq-field cf-wide">@icon('lucide:users', 18)<input name="competitors" placeholder="Main competitors, if you know them (websites or names)" aria-label="Main competitors"></div>
 <div class="iq-field cf-wide">@icon('lucide:message-square', 18)<textarea name="message" rows="3" placeholder="Anything else we should know?" aria-label="Anything else we should know"></textarea></div>
 </div>
-@if ($turnstile)<div class="cf-turnstile" data-sitekey="{{ $turnstile }}"></div>@endif @if ($recaptcha && ! $recaptchaV3)<div class="g-recaptcha" data-sitekey="{{ $recaptcha }}"></div>@endif
+@if ($recaptcha && ! $recaptchaV3)<div class="g-recaptcha" data-sitekey="{{ $recaptcha }}"></div>@endif
 <button class="btn iq-submit" type="submit" data-label="Request my free audit">Request my free audit</button>@if ($formNotice)<p class="form-notice">{!! $formNotice !!}</p>@endif</form>
 <aside class="contact-aside">
 <h3>What you get</h3>

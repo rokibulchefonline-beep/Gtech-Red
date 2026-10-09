@@ -311,7 +311,7 @@
 <div class="grid gap-4 lg:grid-cols-3">
     @include('filament.admin.pages.partials.an-table', ['title' => 'Devices', 'rows' => $devices, 'cols' => [['k', 'Device', 'text'], ['visits', 'Visits', 'num'], ['ppv', 'Pages / visit', 'dec'], ['leads', 'Leads', 'num']], 'bar' => 'visits'])
     @include('filament.admin.pages.partials.an-table', ['title' => 'Browsers', 'rows' => $browsers, 'cols' => [['k', 'Browser', 'text'], ['visits', 'Visits', 'num'], ['leads', 'Leads', 'num']], 'bar' => 'visits'])
-    @include('filament.admin.pages.partials.an-table', ['title' => 'Countries', 'hint' => 'Where visitors are browsing from. Only the country is kept, never the IP address. IP geolocation by DB-IP (db-ip.com).', 'rows' => $countries, 'empty' => 'No countries yet. Run php artisan gtech:geoip-update once on the server (or use Cloudflare).', 'cols' => [['k', 'Country', 'text'], ['visits', 'Visits', 'num'], ['leads', 'Leads', 'num']], 'bar' => 'visits'])
+    @include('filament.admin.pages.partials.an-table', ['title' => 'Countries', 'hint' => 'Where visitors are browsing from. Only the country is kept, never the IP address. IP geolocation by DB-IP (db-ip.com).', 'rows' => $countries, 'empty' => 'No countries yet. Run php artisan gtech:geoip-update once on the server.', 'cols' => [['k', 'Country', 'text'], ['visits', 'Visits', 'num'], ['leads', 'Leads', 'num']], 'bar' => 'visits'])
 </div>
 @endif
 </div>

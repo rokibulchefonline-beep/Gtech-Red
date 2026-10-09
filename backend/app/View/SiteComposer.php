@@ -40,9 +40,8 @@ class SiteComposer
             'menu' => ServiceGroup::query()->with('items')->orderBy('sort')->get(),
             'industryList' => Industry::query()->orderBy('sort')->get(),
             'budgets' => $s['forms']['budgets'] ?? [],
-            // Under every form: the privacy notice ([text](/link) becomes a link), and Turnstile when set up.
+            // Under every form: the privacy notice ([text](/link) becomes a link), and Google reCAPTCHA when set up.
             'formNotice' => self::notice((string) ($s['forms']['privacyNotice'] ?? '')),
-            'turnstile' => $safe((string) ($s['forms']['turnstileSite'] ?? ''), '/^[0-9A-Za-z_-]{10,100}$/'),
             'recaptcha' => $safe((string) ($s['forms']['recaptchaSite'] ?? ''), '/^[0-9A-Za-z_-]{20,100}$/'),
             'recaptchaV3' => ($s['forms']['recaptchaVersion'] ?? 'v2') === 'v3',
         ];

@@ -66,19 +66,6 @@ class CrmStep5Test extends TestCase
             ->assertDontSee('cf-turnstile');
     }
 
-    public function test_turnstile_blocks_forms_without_a_valid_token(): void
-    {
-        Setting::put('forms', ['turnstileSite' => '0x4AAAAAAAAtestsitekey', 'turnstileSecret' => Crypt::encryptString('secret'), 'privacyNotice' => '']);
-        Http::fake(['challenges.cloudflare.com/*' => Http::sequence()->push(['success' => false])->push(['success' => true])]);
-        $this->submit()->assertStatus(400);                                   // no token
-        $this->submit(['cf-turnstile-response' => 'bad'])->assertStatus(400); // Cloudflare says no
-        $this->submit(['cf-turnstile-response' => 'good'])->assertOk();
-        $this->assertSame(1, Lead::query()->count());
-        \App\View\SiteComposer::flush();
-        \Illuminate\Support\Facades\Artisan::call('gtech:seed-content');
-        $this->get('/contact')->assertSee('class="cf-turnstile" data-sitekey="0x4AAAAAAAAtestsitekey"', false)->assertSee('challenges.cloudflare.com/turnstile');
-    }
-
     public function test_too_many_enquiries_from_one_network_are_refused(): void
     {
         foreach (range(1, 5) as $i) $this->submit(['email' => "p$i@example.com"])->assertOk();

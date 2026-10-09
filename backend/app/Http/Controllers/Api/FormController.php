@@ -7,7 +7,6 @@ use App\Models\Lead;
 use App\Models\Setting;
 use App\Models\Subscriber;
 use App\Support\Crm\LeadRouting;
-use App\Support\Crm\Turnstile;
 use App\Support\SiteMailer;
 use Illuminate\Http\Request;
 
@@ -27,9 +26,6 @@ class FormController extends Controller
         $service = $audit ? 'Free audit' : $v('service');
         $bad = ! $name || ! $business || ! $phone || ! $service || ! filter_var($email, FILTER_VALIDATE_EMAIL) || (! in_array($v('source'), ['inquiry', 'audit'], true) && ! $v('budget')) || ($audit && ! $v('website'));
         if ($bad) return response()->json(['ok' => false, 'error' => 'Fill all required fields with a valid email.'], 400);
-        if (! Turnstile::passes($v('cf-turnstile-response'), $r->ip())) {
-            return response()->json(['ok' => false, 'error' => 'Please complete the "I am human" check and send again.'], 400);
-        }
         if (! \App\Support\Crm\Recaptcha::passes($v('g-recaptcha-response'), $r->ip())) {
             return response()->json(['ok' => false, 'error' => 'Please complete the "I\'m not a robot" check and send again.'], 400);
         }
@@ -88,11 +84,5 @@ class FormController extends Controller
         if (! filter_var($email, FILTER_VALIDATE_EMAIL)) return response()->json(['ok' => false, 'error' => 'Enter a valid email address.'], 400);
         Subscriber::firstOrCreate(['email' => $email], ['source' => 'blog']);
         return response()->json(['ok' => true]);
-    }
-
-    /** Public, non-secret settings for the website (contact details, tracking ids, socials). */
-    public function settings()
-    {
-        return response()->json(['ok' => true, 'settings' => Setting::publicView()]);
     }
 }

@@ -21,16 +21,6 @@ class SecuritySmokeTest extends TestCase
         Filament::setCurrentPanel(Filament::getPanel('admin'));
     }
 
-    public function test_public_settings_never_contain_secrets(): void
-    {
-        Setting::query()->updateOrCreate(['key' => 'forms'], ['value' => ['turnstileSite' => 'site-key', 'turnstileSecret' => 'TOP-SECRET', 'privacyNotice' => 'x']]);
-        Setting::query()->updateOrCreate(['key' => 'leads'], ['value' => ['webhook' => 'https://hooks.example/SECRET']]);
-        Setting::query()->updateOrCreate(['key' => 'smtp'], ['value' => ['pass' => 'enc-SECRET']]);
-        \Illuminate\Support\Facades\Cache::flush();
-        $this->getJson('/api/v1/settings')->assertOk()->assertJsonPath('settings.forms.turnstileSite', 'site-key')
-            ->assertDontSee('SECRET')->assertJsonMissingPath('settings.leads')->assertJsonMissingPath('settings.smtp');
-    }
-
     public function test_wrong_passwords_are_throttled_then_lock_the_account(): void
     {
         User::factory()->create(['email' => 'boss@example.com', 'password' => bcrypt('Right-pass-12345'), 'role' => 'admin', 'active' => true]);
@@ -53,15 +43,6 @@ class SecuritySmokeTest extends TestCase
         $this->get('/admin/settings')->assertForbidden();
         $this->actingAs(User::factory()->create(['role' => 'admin', 'active' => false]));
         $this->get('/admin')->assertForbidden();
-    }
-
-    public function test_content_api_needs_the_token(): void
-    {
-        config(['gtech.api_token' => 'tok-123']);
-        $this->postJson('/api/v1/query')->assertUnauthorized();
-        $this->postJson('/api/v1/query', [], ['X-Api-Key' => 'nope'])->assertUnauthorized();
-        config(['gtech.api_token' => '']);
-        $this->postJson('/api/v1/query', [], ['X-Api-Key' => ''])->assertUnauthorized();
     }
 
     public function test_uploaded_svgs_lose_their_scripts(): void

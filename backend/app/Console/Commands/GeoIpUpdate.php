@@ -33,7 +33,7 @@ class GeoIpUpdate extends Command
             $this->info('Country database updated ('.$month->format('F Y').', '.round(strlen($data) / 1048576, 1).' MB).');
             return self::SUCCESS;
         }
-        $this->error('Could not download the country database. Visitors still get a country when the site runs behind Cloudflare.');
+        $this->error('Could not download the country database. Check the server can reach download.db-ip.com, then try again.');
         return self::FAILURE;
     }
 }

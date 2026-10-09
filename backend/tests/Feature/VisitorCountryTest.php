@@ -14,7 +14,7 @@ class VisitorCountryTest extends TestCase
     public function test_country_comes_from_the_hosting_header_and_is_saved_on_the_visit(): void
     {
         $sid = str_repeat('a', 32);
-        $this->withHeaders(['CF-IPCountry' => 'gb', 'User-Agent' => 'Mozilla/5.0 Chrome/120'])
+        $this->withHeaders(['X-Country-Code' => 'gb', 'User-Agent' => 'Mozilla/5.0 Chrome/120'])
             ->postJson('/api/t', ['t' => 'pv', 'sid' => $sid, 'p' => '/', 'r' => '', 'q' => ''])->assertOk();
         $this->assertSame('GB', AnalyticsVisit::query()->where('sid', $sid)->value('country'));
     }
