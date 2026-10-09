@@ -85,7 +85,10 @@ class Report
     public function landing(): array { return $this->group($this->visits(), 'v.landing_path', 15); }
     public function devices(): array { return $this->group($this->visits(), 'v.device', 5); }
     public function browsers(): array { return $this->group($this->visits(), 'v.browser', 8); }
-    public function countries(): array { return $this->group($this->visits()->where('v.country', '!=', ''), 'v.country', 10); }
+    public function countries(): array
+    {
+        return array_map(fn ($r) => ['k' => Geo::label((string) $r['k'])] + $r, $this->group($this->visits()->where('v.country', '!=', ''), 'v.country', 15));
+    }
 
     public function campaigns(): array
     {

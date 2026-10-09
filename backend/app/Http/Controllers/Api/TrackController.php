@@ -36,7 +36,6 @@ class TrackController extends Controller
             $referrer = mb_substr((string) ($d['r'] ?? ''), 0, 500);
             $own = preg_replace('/^www\./', '', strtolower((string) parse_url(config('gtech.public_url'), PHP_URL_HOST)));
             $src = Classifier::source($referrer, $q, $own);
-            $country = strtoupper((string) $request->header('CF-IPCountry', ''));
             $visit = AnalyticsVisit::query()->create([
                 'sid' => $sid, 'started_at' => $now, 'last_seen_at' => $now, 'landing_path' => $path,
                 'visitor' => substr(hash('sha256', $request->ip().'|'.$ua.'|'.$now->format('Y-m-d').'|'.config('app.key')), 0, 16),
@@ -44,7 +43,7 @@ class TrackController extends Controller
                 'referrer' => $src['referrer_host'] !== '' ? $referrer : '', 'click_id' => $src['click_id'],
                 'utm_source' => mb_substr($q['utm_source'] ?? '', 0, 100), 'utm_medium' => mb_substr($q['utm_medium'] ?? '', 0, 100),
                 'utm_campaign' => $q['utm_campaign'] ?? '', 'utm_term' => $q['utm_term'] ?? '', 'utm_content' => $q['utm_content'] ?? '',
-                'device' => Classifier::device($ua), 'browser' => Classifier::browser($ua), 'country' => preg_match('/^[A-Z]{2}$/', $country) && $country !== 'XX' ? $country : '',
+                'device' => Classifier::device($ua), 'browser' => Classifier::browser($ua), 'country' => \App\Support\Analytics\Geo::country($request),
             ]);
         }
         $pv = DB::table('analytics_pageviews')->insertGetId(['visit_id' => $visit->id, 'path' => $path, 'viewed_at' => $now]);

@@ -92,7 +92,7 @@ class LeadResource extends Resource
                     $v = $r?->visit_id ? \App\Models\AnalyticsVisit::query()->find($r->visit_id) : null;
                     if (! $v) return $r?->originLabel() ?: 'Not known (sent before analytics, or from a browser that blocks scripts)';
                     $bits = array_filter([$v->source.($v->channel !== $v->source ? ' ('.($v->channel === 'AI' ? 'AI assistant' : $v->channel).')' : ''),
-                        $v->utm_campaign ? 'campaign "'.$v->utm_campaign.'"' : '', 'landed on '.$v->landing_path, $v->pageviews.' '.str('page')->plural($v->pageviews).' viewed', $v->device]);
+                        $v->utm_campaign ? 'campaign "'.$v->utm_campaign.'"' : '', 'landed on '.$v->landing_path, $v->pageviews.' '.str('page')->plural($v->pageviews).' viewed', $v->device, $v->country ? \App\Support\Analytics\Geo::label($v->country) : '']);
                     return implode(' · ', $bits);
                 })->columnSpanFull(),
                 Forms\Components\Placeholder::make('when')->label('Received')->content(fn (?Lead $r) => $r?->created_at?->format('d M Y, H:i').' via '.$r?->source.' form'.($r?->form_path ? ' on '.$r->form_path : '')),
