@@ -3,17 +3,21 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "awcodes/filament-tiptap-editor": "^3.5",
         "enshrined/svg-sanitize": "^1.0",
         "filament/filament": "^3.3",
         "jeffgreco13/filament-breezy": "^2.4",
-        "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1",
-        "webklex/php-imap": "^6.2"
+        "laravel/framework": "^13.0",
+        "laravel/tinker": "^3.0",
+        "webklex/php-imap": "^6.2",
+        "laravel/ai": "^1.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -88,5 +92,14 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/filament-breezy",
+            "options": {
+                "symlink": false
+            }
+        }
+    ]
 }

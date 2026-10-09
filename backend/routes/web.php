@@ -7,6 +7,7 @@ use App\Http\Middleware\CacheSitePage;
 use App\Http\Middleware\MinifySiteHtml;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -17,7 +18,7 @@ Route::view('/blade-preview', 'site.preview');
 // Blade move, phase 3: public page templates.
 // Public pages need no session or cookies (forms post to the API), so those middleware are left out: no
 // Set-Cookie headers, no session rows, and the pages can be cached by browsers and CDNs.
-$noSession = [StartSession::class, ShareErrorsFromSession::class, ValidateCsrfToken::class, AddQueuedCookiesToResponse::class, EncryptCookies::class];
+$noSession = [StartSession::class, ShareErrorsFromSession::class, ValidateCsrfToken::class, PreventRequestForgery::class, AddQueuedCookiesToResponse::class, EncryptCookies::class];
 Route::middleware([\App\Http\Middleware\RecordBotHits::class, CacheSitePage::class, MinifySiteHtml::class])->withoutMiddleware($noSession)->group(function () {
     Route::get('/', [PageController::class, 'main'])->defaults('slug', 'home');
     Route::get('/services/{slug}', [PageController::class, 'service'])->where('slug', '[a-z0-9-]+');
