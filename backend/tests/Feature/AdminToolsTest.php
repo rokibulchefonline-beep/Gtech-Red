@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Filament\Admin\Pages\EmailDashboard;
 use App\Filament\Admin\Pages\Tools\ImageConverter;
 use App\Filament\Admin\Pages\Tools\ImageResizer;
 use App\Filament\Admin\Resources\LeadResource\Pages\ListLead;
@@ -190,49 +189,6 @@ class AdminToolsTest extends TestCase
         $this->assertSame('sent', $e->folder);
         $this->assertSame($lead->id, $e->lead_id);
         $this->assertStringContainsString('amy@example.com', $e->to);
-    }
-
-    public function test_email_dashboard_send_reply_trash_restore_and_drafts(): void
-    {
-        $me = $this->admin();
-        $lead = Lead::query()->create(['name' => 'Amy Lee', 'business' => 'Lee Dental', 'email' => 'amy@example.com', 'phone' => '07700', 'service' => 'SEO']);
-        $in = Email::query()->create(['folder' => 'inbox', 'status' => 'received', 'from_email' => 'amy@example.com', 'from_name' => 'Amy Lee', 'to' => 'hello@gtech.test',
-            'subject' => 'Question about SEO', 'body' => '<p>How long does it take?</p><script>alert(1)</script>', 'lead_id' => $lead->id, 'sent_at' => now()]);
-
-        $page = Livewire::test(EmailDashboard::class)->call('setFolder', 'inbox')->assertSee('Question about SEO')
-            ->call('open', $in->id)->assertSee('How long does it take?')->assertSee('sandbox=', false);
-        $this->assertNotNull($in->fresh()->read_at);
-
-        $page->call('reply', $in->id)->assertSet('composing', true)->assertSet('compose.to', 'amy@example.com')->assertSet('compose.subject', 'Re: Question about SEO')
-            ->set('compose.body', '<p>About 3 months.</p>')->call('send')->assertHasNoErrors()->assertSet('composing', false);
-        $sent = Email::query()->where('subject', 'Re: Question about SEO')->firstOrFail();
-        $this->assertSame([$me->id, $lead->id, 'sent'], [$sent->user_id, $sent->lead_id, $sent->folder]);
-        $this->assertTrue($lead->activities()->where('type', 'email')->exists());
-
-        $page->call('trash', $sent->id);
-        $this->assertSame('trash', $sent->fresh()->folder);
-        $page->call('restore', $sent->id);
-        $this->assertSame('sent', $sent->fresh()->folder);
-
-        $page->call('write')->set('compose.to', 'bob@example.com')->set('compose.subject', 'Draft one')->set('compose.body', '<p>Later</p>')->call('saveDraft');
-        $draft = Email::query()->where('folder', 'draft')->firstOrFail();
-        $page->call('open', $draft->id)->assertSet('compose.draft_id', $draft->id)->call('send')->assertHasNoErrors();
-        $this->assertNull($draft->fresh());
-        $this->assertDatabaseHas('emails', ['subject' => 'Draft one', 'folder' => 'sent']);
-
-        $page->call('trash', $in->id)->call('setFolder', 'trash')->call('emptyTrash');
-        $this->assertNull($in->fresh());
-        $this->get('/admin/email')->assertOk()->assertSee('Write email');
-    }
-
-    public function test_email_dashboard_access_follows_the_role(): void
-    {
-        $other = User::factory()->create(['role' => 'super_admin', 'active' => true]);
-        Email::query()->create(['folder' => 'sent', 'status' => 'sent', 'to' => 'x@example.com', 'subject' => 'Someone else\'s', 'body' => '<p>x</p>', 'user_id' => $other->id, 'sent_at' => now()]);
-        $this->admin('editor');
-        $this->get('/admin/email')->assertForbidden();
-        $this->admin('sales');
-        $this->get('/admin/email')->assertOk()->assertDontSee('Someone else\'s');
     }
 
     public function test_google_recaptcha_protects_the_forms(): void

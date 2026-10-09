@@ -39,9 +39,6 @@ class Settings extends Page implements HasForms
         $s['smtp']['hasPass'] = (bool) (Setting::group('smtp')['pass'] ?? '');
         $s['forms']['turnstileSecret'] = '';
         $s['forms']['hasSecret'] = (bool) (Setting::group('forms')['turnstileSecret'] ?? '');
-        $s['imap'] = Setting::group('imap') + ['enabled' => false, 'port' => 993, 'encryption' => 'ssl', 'folder' => 'INBOX'];
-        $s['imap']['hasPass'] = (bool) ($s['imap']['pass'] ?? '');
-        $s['imap']['pass'] = '';
         $s['forms']['recaptchaSecret'] = '';
         $s['forms']['hasRecaptchaSecret'] = (bool) (Setting::group('forms')['recaptchaSecret'] ?? '');
         $this->form->fill($s);
@@ -107,19 +104,6 @@ class Settings extends Page implements HasForms
                     Forms\Components\TextInput::make('smtp.fromEmail')->label('From email')->email()->maxLength(160),
                     Forms\Components\TextInput::make('smtp.notifyTo')->label('Send lead alerts to')->email()->maxLength(160),
                     Forms\Components\Toggle::make('smtp.autoReply')->label('Send an automatic reply to the person who enquired'),
-                    Forms\Components\Fieldset::make('Inbox (IMAP) for the Email dashboard')->columnSpanFull()->schema([
-                        Forms\Components\Placeholder::make('imaphelp')->hiddenLabel()->columnSpanFull()
-                            ->content('Shows the mailbox\'s received email in Email > Email dashboard. Mail is copied, never deleted. Gmail: imap.gmail.com, port 993, SSL, with an app password. Microsoft 365: outlook.office365.com, port 993, SSL.'),
-                        Forms\Components\Toggle::make('imap.enabled')->label('Show received email in the Email dashboard')->columnSpanFull(),
-                        Forms\Components\TextInput::make('imap.host')->label('IMAP host')->placeholder('imap.gmail.com')->maxLength(120)->prefixIcon('heroicon-o-server'),
-                        Forms\Components\TextInput::make('imap.port')->label('Port')->numeric()->default(993),
-                        Forms\Components\Select::make('imap.encryption')->label('Security')->options(['ssl' => 'SSL (port 993)', 'tls' => 'STARTTLS (port 143)', 'none' => 'None'])->default('ssl')->selectablePlaceholder(false),
-                        Forms\Components\TextInput::make('imap.folder')->label('Folder')->default('INBOX')->maxLength(80),
-                        Forms\Components\TextInput::make('imap.user')->label('Username')->maxLength(160)->placeholder('Same as SMTP')->prefixIcon('heroicon-o-user'),
-                        Forms\Components\TextInput::make('imap.pass')->label('Password')->password()->revealable()->prefixIcon('heroicon-o-lock-closed')->maxLength(200)
-                            ->helperText(fn ($get) => $get('imap.hasPass') ? 'A password is saved. Leave empty to keep it.' : 'Leave empty to use the SMTP password.'),
-                        Forms\Components\Hidden::make('imap.hasPass'),
-                    ])->columns(2),
                 ])->columns(2),
                 Forms\Components\Tabs\Tab::make('Leads')->schema([
                     Forms\Components\Radio::make('leads.autoAssign')->label('Assign new enquiries')
@@ -218,11 +202,6 @@ class Settings extends Page implements HasForms
         $data['forms']['turnstileSecret'] = filled($data['forms']['turnstileSecret'] ?? null) ? Crypt::encryptString(trim($data['forms']['turnstileSecret'])) : $oldSecret;
         $data['forms']['budgets'] = Setting::group('forms')['budgets'] ?? [];
         unset($data['forms']['hasSecret']);
-        $imapOld = Setting::group('imap');
-        $imap = (array) ($data['imap'] ?? []);
-        $imap['pass'] = filled($imap['pass'] ?? null) ? Crypt::encryptString($imap['pass']) : ($imapOld['pass'] ?? '');
-        unset($imap['hasPass'], $data['imap']);
-        Setting::put('imap', $imap + array_intersect_key($imapOld, ['lastChecked' => 1]));
         $oldRc = Setting::group('forms')['recaptchaSecret'] ?? '';
         $data['forms']['recaptchaSecret'] = filled($data['forms']['recaptchaSecret'] ?? null) ? Crypt::encryptString(trim($data['forms']['recaptchaSecret'])) : $oldRc;
         unset($data['forms']['hasRecaptchaSecret']);

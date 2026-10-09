@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * One email in the Email dashboard: sent by the website or a person (Sent), received over IMAP (Inbox), saved
+ * One email sent by the website (kept as a log; lead emails also show on the lead timeline). Older rows may be: sent by the website or a person (Sent), received over IMAP (Inbox), saved
  * unsent (Drafts) or moved to Trash. Every email the site sends is recorded automatically.
  */
 class Email extends Model

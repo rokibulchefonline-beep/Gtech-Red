@@ -16,7 +16,6 @@
         "jeffgreco13/filament-breezy": "^2.4",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
-        "webklex/php-imap": "^6.2",
         "laravel/ai": "^1.2"
     },
     "require-dev": {
