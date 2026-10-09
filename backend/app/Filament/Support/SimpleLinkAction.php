@@ -41,13 +41,14 @@ class SimpleLinkAction extends LinkAction
                     type: 'link',
                     statePath: $component->getStatePath(),
                     href: trim($data['href']),
-                    id: '',
-                    hreflang: '',
-                    target: $data['new_tab'] ? '_blank' : '',
-                    rel: $data['new_tab'] ? 'noopener noreferrer' : '',
-                    referrerpolicy: '',
+                    // null, not '': an empty id="" makes the editor show a "#" anchor marker before the link.
+                    id: null,
+                    hreflang: null,
+                    target: $data['new_tab'] ? '_blank' : null,
+                    rel: $data['new_tab'] ? 'noopener noreferrer' : null,
+                    referrerpolicy: null,
                     as_button: false,
-                    button_theme: '',
+                    button_theme: null,
                     coordinates: $arguments['coordinates'] ?? [],
                 );
                 $component->state($component->getState());

@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    /** Empty link attributes left by the editor (id="" made it show a "#" before every link). */
+    public static function tidyLinks(?string $html): ?string
+    {
+        if ($html === null || ! str_contains($html, '<a ')) return $html;
+        return preg_replace_callback('/<a\s[^>]*>/i', fn ($m) => preg_replace('/\s(?:id|rel|hreflang|target|referrerpolicy|data-as-button-theme)=""|\sdata-as-button="false"/i', '', $m[0]), $html);
+    }
+
     use \App\Models\Concerns\BlankNotNull, \App\Models\Concerns\HasRevisions;
 
     /** Attributes kept in the version history. */
@@ -22,6 +30,7 @@ class Post extends Model
 
     protected static function booted(): void
     {
+        static::saving(fn (self $p) => $p->body = self::tidyLinks($p->body));
         // A changed address keeps working: the old one redirects to the new one.
         static::updated(function (self $m) {
             if ($m->wasChanged('slug') && $m->getOriginal('slug')) Redirect::moved('/blogs/'.$m->getOriginal('slug'), '/blogs/'.$m->slug);

@@ -14,3 +14,5 @@
 .dark .fi-body .tiptap-editor .ProseMirror a, .dark.fi-body .tiptap-editor .ProseMirror a {
     color: #ff8a95;
 }
+/* The plugin marks anchor links (with an id) with "#"; never for an empty id. */
+.fi-body .tiptap-editor .ProseMirror a[id=""]::before { content: none; }
