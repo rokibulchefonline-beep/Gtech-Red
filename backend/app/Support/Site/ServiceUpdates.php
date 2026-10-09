@@ -27,6 +27,89 @@ class ServiceUpdates
     public static function added(): array
     {
         return [
+            'restaurant-digital-marketing' => [
+                'name' => 'Restaurant Digital Marketing', 'group' => 'digital-marketing', 'icon' => 'lucide:utensils-crossed', 'sort' => 3,
+                'blurb' => 'Fill tables and grow direct orders with restaurant SEO, local search, Meta and Google Ads.',
+                'meta_title' => 'Restaurant Digital Marketing Agency UK | SEO, Local SEO and Ads',
+                'meta_description' => 'Restaurant digital marketing in the UK: restaurant SEO, Google Business Profile and local SEO, Meta and Google Ads that bring more bookings, walk-ins and commission-free online orders.',
+                'keyword' => 'restaurant digital marketing', 'title' => 'Restaurant Digital Marketing Services', 'motion' => '/services/ind-hospitality-hotels.webp',
+                'highlight' => 'Full Tables', 'h1' => 'Restaurant Digital Marketing for [[Full Tables]] and More Direct Orders',
+                'lead' => 'We help restaurants, cafes and takeaways get found when hungry people search nearby, then turn those searches into bookings, walk-ins and online orders you keep the full margin on.',
+                'points' => ['Restaurant SEO and Google Maps', 'Meta and Google Ads within your delivery area', 'More direct orders, less platform commission'],
+                'related' => ['local-seo', 'google-ads', 'facebook-marketing', 'instagram-marketing', 'reputation-management', 'website-design'],
+                'testimonials' => [],
+                'industries' => [],
+                'faqs' => [
+                    ['q' => 'What does restaurant digital marketing include?', 'a' => 'It covers everything that brings diners to you online: your Google Business Profile and map ranking, your website and menu pages, reviews, Meta (Facebook and Instagram) ads, Google Ads, and the tracking that shows which of them brought bookings and orders. We run them as one plan for your restaurant.'],
+                    ['q' => 'How do I get my restaurant to show up in "restaurants near me"?', 'a' => 'Google ranks nearby restaurants mostly on relevance, distance and prominence. You cannot change your distance, so we work on the rest: a complete Google Business Profile with the right categories, menu and photos, a steady flow of good reviews with replies, consistent name, address and phone everywhere, and a fast website with a page for each cuisine and area you serve.'],
+                    ['q' => 'Can you help us take more orders without Deliveroo, Just Eat or Uber Eats?', 'a' => 'Yes. We keep you on the platforms where they bring new customers, and grow commission-free orders through your own website and ordering link: Google ordering buttons, Meta ads to past customers, and offers that move regulars to order direct.'],
+                    ['q' => 'Are Meta ads or Google Ads better for a restaurant?', 'a' => 'They do different jobs. Google Ads catches people already searching, such as "pizza delivery near me" or "Indian restaurant Shoreditch". Meta ads put your food in front of local people before they search, which suits new openings, set menus and events. Most restaurants do best with a small, tightly targeted budget on both.'],
+                    ['q' => 'How much should a restaurant spend on digital marketing?', 'a' => 'Many independent UK restaurants spend roughly 3 to 6 per cent of sales on marketing. A typical starting point is a monthly management fee plus an ad budget of a few hundred pounds, focused on a 2 to 5 mile radius. We size it to your covers, average spend and delivery area.'],
+                    ['q' => 'How quickly will we see results?', 'a' => 'Ads can bring bookings and orders within days. Google Business Profile and review work usually shows in map rankings within 4 to 8 weeks, and restaurant SEO builds over 3 to 6 months.'],
+                ],
+                'sections' => [
+                    ['type' => 'logos', 'id' => 'clients'],
+                    ['type' => 'text', 'id' => 'what-is', 'heading' => 'What is [[restaurant digital marketing]]?',
+                        'paras' => ['Most people choose where to eat on their phone, often within an hour of eating. They search "near me", check the map, scan photos and reviews, look at the menu, then book, order or walk in.',
+                            'Restaurant digital marketing makes sure you are the obvious choice at each of those moments, and that the order or booking comes to you directly wherever possible.'],
+                        'bullets' => ['Show up on Google Maps and in "near me" searches', 'Menus, photos and reviews that make people choose you', 'Ads that reach hungry people within your delivery radius', 'Bookings and orders tracked back to where they came from']],
+                    ['type' => 'impact', 'id' => 'in-numbers', 'heading' => 'Restaurant marketing, in [[numbers]]', 'text' => 'What we focus on for every restaurant.',
+                        'stats' => [['value' => '3', 'label' => 'map pack spots we aim for in your area'], ['value' => '2-5', 'label' => 'mile radius most ad budgets focus on'], ['value' => '0%', 'label' => 'commission on the direct orders we grow']]],
+                    ['type' => 'media', 'id' => 'restaurant-seo', 'heading' => 'Restaurant SEO: be found for what people crave', 'image' => '/pages/seo/onpage.webp',
+                        'alt' => 'Restaurant website page optimised for cuisine and area searches',
+                        'paras' => ['People search by craving and place: "best ramen in Manchester", "halal burgers near me", "vegan brunch Brighton". We build pages for each cuisine, dish and area you serve, with your menu as real text Google can read rather than a PDF.',
+                            'We add restaurant schema (opening hours, menu, price range, cuisine), speed up the site for phones, and earn local links from food guides and neighbourhood sites.'],
+                        'bullets' => ['Cuisine, dish and area pages', 'Crawlable menu with restaurant schema', 'Fast mobile pages with clear Book and Order buttons'], 'flip' => false],
+                    ['type' => 'media', 'id' => 'local-seo', 'heading' => 'Local SEO and Google Business Profile for restaurants', 'image' => '/pages/local-seo/gbp.webp',
+                        'alt' => 'Google Business Profile for a restaurant with menu, photos, reviews and order button', 'tone' => 'grey',
+                        'paras' => ['Your Google Business Profile is often seen more than your website. We set the right primary category, add your menu, dishes and fresh photos every week, turn on booking and ordering links, and post offers and events.',
+                            'We also fix your listings on Apple Maps, Bing, TripAdvisor and food directories so your name, address and phone match everywhere, which helps you climb the map pack.'],
+                        'bullets' => ['Profile categories, menu and attributes', 'Weekly photos and posts', 'Consistent citations across maps and directories']],
+                    ['type' => 'media', 'id' => 'reviews-growth', 'heading' => 'Reviews that win the table', 'image' => '/pages/local-seo/reviews.webp',
+                        'alt' => 'Restaurant reviews dashboard with ratings and replies', 'flip' => true,
+                        'paras' => ['Diners compare star ratings before they compare menus. We set up a simple way for happy guests to leave a Google review (QR codes on bills and follow-up messages), and reply to every review in your voice, so a bad night does not define you.'],
+                        'bullets' => ['QR codes and follow-ups for more reviews', 'Replies to every review', 'Alerts for negative reviews the same day']],
+                    ['type' => 'media', 'id' => 'meta-ads', 'heading' => 'Meta ads: put your food in front of local diners', 'image' => '/pages/facebook/ads.webp',
+                        'alt' => 'Facebook and Instagram ads for a restaurant targeted to a local radius', 'tone' => 'grey',
+                        'paras' => ['Facebook and Instagram are where food sells on looks. We run short video and photo ads of your best dishes to people within a few miles, timed for lunch and dinner, with offers for new openings, set menus, events and quiet nights.',
+                            'Past customers and website visitors see reminder ads that bring them back to order direct.'],
+                        'bullets' => ['Radius and time-of-day targeting', 'Dish videos and Reels', 'Retargeting past customers to order direct']],
+                    ['type' => 'media', 'id' => 'google-ads', 'heading' => 'Google Ads for bookings and orders right now', 'image' => '/pages/google-ads/search.webp',
+                        'alt' => 'Google search ad for a restaurant with call and directions buttons', 'flip' => true,
+                        'paras' => ['When someone searches "takeaway near me" at 7pm, they are ready to order. Google Ads puts you at the top with call, directions and order buttons, limited to your delivery area and opening hours so no budget is wasted when you are closed.',
+                            'Performance Max and local campaigns add Google Maps and YouTube, and every call, booking and order is tracked.'],
+                        'bullets' => ['Search ads for high-intent food searches', 'Ads only during opening hours', 'Calls, bookings and orders tracked']],
+                    ['type' => 'cards', 'id' => 'services', 'heading' => 'What is [[included]] for your restaurant', 'cards' => [
+                        ['icon' => 'lucide:search', 'title' => 'Restaurant SEO', 'text' => 'Cuisine and area pages, a crawlable menu and restaurant schema.'],
+                        ['icon' => 'lucide:map-pin', 'title' => 'Local SEO', 'text' => 'Google Business Profile, map pack rankings and citations.'],
+                        ['icon' => 'lucide:star', 'title' => 'Reviews', 'text' => 'More Google reviews and a reply to every one.'],
+                        ['icon' => 'simple-icons:meta', 'title' => 'Meta ads', 'text' => 'Facebook and Instagram ads for local diners and past customers.'],
+                        ['icon' => 'simple-icons:googleads', 'title' => 'Google Ads', 'text' => 'Search and Maps ads for people ready to book or order.'],
+                        ['icon' => 'lucide:shopping-bag', 'title' => 'Direct ordering', 'text' => 'More commission-free orders through your own website.'],
+                        ['icon' => 'lucide:camera', 'title' => 'Food content', 'text' => 'Photos, short videos and posts that make your dishes sell.'],
+                        ['icon' => 'lucide:chart-line', 'title' => 'Tracking and reports', 'text' => 'Bookings, orders and calls by channel, every month.'],
+                    ]],
+                    ['type' => 'steps', 'id' => 'process', 'heading' => 'How we grow your restaurant, [[step by step]]', 'steps' => [
+                        ['title' => 'Audit', 'text' => 'Your profile, website, reviews, ads and competitors nearby.'],
+                        ['title' => 'Fix the basics', 'text' => 'Google Business Profile, menu, tracking and booking links.'],
+                        ['title' => 'Launch ads', 'text' => 'Meta and Google Ads within your radius and opening hours.'],
+                        ['title' => 'Grow', 'text' => 'SEO pages, reviews and content every month.'],
+                        ['title' => 'Report', 'text' => 'Bookings, orders and cost per cover, in plain English.'],
+                    ]],
+                    ['type' => 'cases', 'id' => 'case-studies', 'heading' => 'Results from our [[marketing]] work', 'service' => '*'],
+                    ['type' => 'table', 'id' => 'compare', 'heading' => 'Delivery apps or direct orders: where should your marketing send people?',
+                        'columns_text' => ' | Delivery apps | Your own website and ordering',
+                        'rows_text' => "Commission per order | Typically 15 to 35 per cent | None, only card fees\nCustomer data | Kept by the platform | Yours, for offers and repeat orders\nNew customers | Good for discovery | Grows with SEO, ads and reviews\nBest use | A source of new diners | Where regulars should order",
+                        'note' => 'Most restaurants keep the apps for discovery and use marketing to move regulars to order direct.'],
+                    ['type' => 'cards', 'id' => 'pricing', 'heading' => 'What shapes the cost of [[restaurant marketing]]', 'cards' => [
+                        ['icon' => 'lucide:store', 'title' => 'Number of sites', 'text' => 'One restaurant or several locations.'],
+                        ['icon' => 'lucide:radius', 'title' => 'Area', 'text' => 'Your delivery radius and how busy your area is.'],
+                        ['icon' => 'lucide:megaphone', 'title' => 'Ad budget', 'text' => 'How much goes to Meta and Google each month.'],
+                        ['icon' => 'lucide:camera', 'title' => 'Content', 'text' => 'Whether we shoot food photos and videos for you.'],
+                    ]],
+                    ['type' => 'reviews', 'id' => 'reviews', 'heading' => 'What our [[clients]] say'],
+                ],
+            ],
             'ui-ux-design' => [
                 'name' => 'UI/UX Design', 'group' => 'branding-strategy', 'icon' => 'lucide:layout-dashboard', 'sort' => 3,
                 'blurb' => 'Research-led interfaces that are easy to use and turn visitors into customers.',
@@ -271,6 +354,7 @@ class ServiceUpdates
         foreach (self::REMOVE as $slug) self::remove($slug);
         foreach (self::added() as $slug => $s) self::add($slug, $s);
         self::placeAfter('aeo-geo', 'search-engine-optimization');
+        self::placeAfter('restaurant-digital-marketing', 'local-seo');
         PageCache::flush();
         Repo::flush();
     }
@@ -307,6 +391,30 @@ class ServiceUpdates
     private static function extras(string $slug): array
     {
         return [
+            'restaurant-digital-marketing' => [
+                'nav' => ['what-is' => 'Overview', 'restaurant-seo' => 'Restaurant SEO', 'local-seo' => 'Local SEO', 'reviews-growth' => 'Reviews', 'meta-ads' => 'Meta ads',
+                    'google-ads' => 'Google Ads', 'services' => "What's included", 'process' => 'Process', 'case-studies' => 'Case studies', 'compare' => 'Apps vs direct', 'pricing' => 'Pricing', 'reviews' => 'Reviews'],
+                'stats' => [['value' => '3', 'label' => 'Map pack spots we target'], ['value' => '2-5', 'label' => 'Mile ad radius'], ['value' => '0%', 'label' => 'Commission on direct orders'], ['value' => '100%', 'label' => 'Bookings and orders tracked']],
+                'steps' => [
+                    ['title' => 'Audit', 'text' => 'Profile, website, reviews, ads and nearby competitors.'],
+                    ['title' => 'Basics', 'text' => 'Google Business Profile, menu, booking and order links.'],
+                    ['title' => 'Tracking', 'text' => 'Calls, bookings and orders measured by channel.'],
+                    ['title' => 'Ads', 'text' => 'Meta and Google Ads within your radius and hours.'],
+                    ['title' => 'SEO and reviews', 'text' => 'Cuisine pages, citations and more Google reviews.'],
+                    ['title' => 'Report', 'text' => 'Monthly results and the next month\'s plan.'],
+                ],
+                'pricing_intro' => 'Most independent UK restaurants invest from about £500 a month in management plus a few hundred pounds of ad budget; groups with several sites spend more. Your fixed quote depends on:',
+                'pricing' => [
+                    ['icon' => 'lucide:store', 'title' => 'Number of sites', 'text' => 'One restaurant or a group of locations.'],
+                    ['icon' => 'lucide:map-pin', 'title' => 'Area and competition', 'text' => 'How many restaurants compete near you.'],
+                    ['icon' => 'lucide:megaphone', 'title' => 'Ad budget', 'text' => 'Your monthly spend on Meta and Google Ads.'],
+                    ['icon' => 'lucide:camera', 'title' => 'Food content', 'text' => 'Photos and short videos, shot by us or supplied.'],
+                ],
+                'reviews_from' => 'service~local-seo',
+                'faqs' => [
+                    ['q' => 'Do you work with takeaways and cafes as well as restaurants?', 'a' => 'Yes. We work with restaurants, takeaways, cafes, bars and small groups. The plan changes with how you sell: takeaways focus more on direct orders and delivery areas, sit-down restaurants on bookings and reviews.'],
+                ],
+            ],
             'ui-ux-design' => [
                 'nav' => ['what-is-ux' => 'UI/UX design', 'journey' => 'Journey mapping', 'prototype' => 'Prototyping', 'testing' => 'Usability testing', 'system' => 'Design system',
                     'services' => "What's included", 'process' => 'Process', 'case-studies' => 'Case studies', 'compare' => 'UI/UX vs web design', 'pricing' => 'Pricing', 'reviews' => 'Reviews', 'industries' => 'Industries'],
