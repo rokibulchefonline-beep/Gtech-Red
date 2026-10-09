@@ -65,8 +65,9 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = form.querySelector('.iq-submit'), alert = form.querySelector('.alert');
-      var data = {}; new FormData(form).forEach(function (v, k) { data[k] = v; });
+      var data = {}; new FormData(form).forEach(function (v, k) { data[k] = data[k] !== undefined ? [].concat(data[k], v) : v; });
       if (form.getAttribute('data-form') === 'inquiry') data.source = 'inquiry';
+      if (form.getAttribute('data-form') === 'audit') data.source = 'audit';
       if (sid) data.sid = sid; // links the lead to this visit in Analytics
       btn.disabled = true; btn.textContent = 'Sending...';
       // Google reCAPTCHA: v2 puts its token in the form; v3 is asked for one now.
@@ -77,7 +78,7 @@
         });
       } else send();
       function send() {
-      var ok = form.getAttribute('data-form') === 'inquiry' ? 'Thank you. Our team will contact you shortly.' : 'Thanks. We will send your proposal within 24 hours.';
+      var ok = form.getAttribute('data-form') === 'audit' ? 'Thank you. We will email you within one working day to confirm your audit.' : form.getAttribute('data-form') === 'inquiry' ? 'Thank you. Our team will contact you shortly.' : 'Thanks. We will send your proposal within 24 hours.';
       var show = function (good, text) { alert.hidden = false; alert.className = 'alert ' + (good ? 'ok' : 'err'); alert.textContent = text; };
       fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
         .then(function (r) { return r.json(); })
@@ -95,7 +96,7 @@
       }
     });
   }
-  d.querySelectorAll('form[data-form="contact"],form[data-form="inquiry"]').forEach(bindForm);
+  d.querySelectorAll('form[data-form="contact"],form[data-form="inquiry"],form[data-form="audit"]').forEach(bindForm);
   // On the /contact page the service comes from ?service= in the URL.
   var q = new URLSearchParams(window.location.search).get('service');
   if (q) d.querySelectorAll('main form[data-form="contact"] select[name="service"]').forEach(function (s) {

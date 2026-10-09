@@ -55,4 +55,5 @@
 <div class="bl-box"><p class="bl-side-title">Browse Topics</p><ul class="bl-topics">@foreach ($cats as $c)<li><a href="/blogs?category={{ $B::slugify($c) }}">{{ $c }}<span>{{ $all->filter(fn ($p) => ($p->category ?: 'Insights') === $c)->count() }}</span></a></li>@endforeach</ul></div>
 </aside>
 </section>
+@include('site.c.inquiry')
 @endsection

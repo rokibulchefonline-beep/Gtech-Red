@@ -9,4 +9,5 @@
 @section('content')
 @include('site.c.page-head', ['title' => 'Digital Marketing Case Studies and [[Results]]', 'sub' => 'GTech Digital case studies show measurable results from SEO, Google Ads, social media, web design and custom software projects for UK businesses.'])
 <section class="wrap block"><h2 class="sr-only">Client results</h2><div class="case-grid">@foreach (\App\Support\Site\Repo::caseStudies() as $i => $d)@include('site.c.case-card', ['doc' => $d, 'index' => $i])@endforeach</div></section>
+@include('site.c.inquiry')
 @endsection

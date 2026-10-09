@@ -58,7 +58,7 @@ class SeoController extends Controller
             if ($p && ! $p->published) return;
             $urls[] = [$path, $lastmod ?? $p?->updated_at?->format('Y-m-d'), $freq, $priority];
         };
-        foreach (['', '/services', '/about', '/contact', '/case-studies', '/industries', '/blogs', '/privacy-policy', '/terms', '/cookie-policy'] as $p) $add($p, 'monthly', $p === '' ? '1' : '0.7');
+        foreach (['', '/services', '/about', '/contact', '/free-audit', '/case-studies', '/industries', '/blogs', '/privacy-policy', '/terms', '/cookie-policy'] as $p) $add($p, 'monthly', $p === '' ? '1' : '0.7');
         foreach ($pages->where('kind', 'service')->sortBy('sort') as $p) $add($p->path, 'monthly', '0.8');
         foreach ($pages->where('kind', 'industry')->sortBy('sort') as $p) $add($p->path, 'monthly', '0.7');
         foreach ($pages->where('kind', 'landing')->sortBy('name') as $p) if (empty(((array) $p->data)['noindex'])) $add($p->path, 'monthly', '0.6');

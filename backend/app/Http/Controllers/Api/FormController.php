@@ -23,8 +23,9 @@ class FormController extends Controller
         $business = $v('business') ?: $v('company');
         $phone = trim($v('countryCode').' '.$v('phone'));
         $email = $v('email');
-        $service = $v('service');
-        $bad = ! $name || ! $business || ! $phone || ! $service || ! filter_var($email, FILTER_VALIDATE_EMAIL) || ($v('source') !== 'inquiry' && ! $v('budget'));
+        $audit = $v('source') === 'audit';
+        $service = $audit ? 'Free audit' : $v('service');
+        $bad = ! $name || ! $business || ! $phone || ! $service || ! filter_var($email, FILTER_VALIDATE_EMAIL) || (! in_array($v('source'), ['inquiry', 'audit'], true) && ! $v('budget')) || ($audit && ! $v('website'));
         if ($bad) return response()->json(['ok' => false, 'error' => 'Fill all required fields with a valid email.'], 400);
         if (! Turnstile::passes($v('cf-turnstile-response'), $r->ip())) {
             return response()->json(['ok' => false, 'error' => 'Please complete the "I am human" check and send again.'], 400);
@@ -54,6 +55,7 @@ class FormController extends Controller
             // What the person was told about their data when they sent the form (UK GDPR transparency).
             'consent_text' => mb_substr(strip_tags(preg_replace('/\[([^\]]+)\]\(([^)]*)\)/', '$1 ($2)', (string) (Setting::group('forms')['privacyNotice'] ?? ''))), 0, 600),
             'ip' => (string) $r->ip(),
+            'details' => $audit ? self::auditDetails($r) : null,
         ]);
 
         if ($visit) {
@@ -65,6 +67,18 @@ class FormController extends Controller
         // Email is best effort: the lead is already saved.
         try { SiteMailer::newLead($lead); } catch (\Throwable $e) { report($e); }
         return response()->json(['ok' => true]);
+    }
+
+    /** The free audit form's extra answers. */
+    private static function auditDetails(Request $r): array
+    {
+        $list = fn ($x) => array_values(array_filter(array_map(fn ($s) => mb_substr(trim((string) $s), 0, 80), is_array($x) ? $x : explode(',', (string) $x))));
+        return array_filter([
+            'goals' => array_slice($list($r->input('goals')), 0, 10),
+            'areas' => array_slice($list($r->input('areas')), 0, 10),
+            'competitors' => mb_substr(trim((string) $r->input('competitors', '')), 0, 600),
+            'location' => mb_substr(trim((string) $r->input('location', '')), 0, 120),
+        ]);
     }
 
     public function subscribe(Request $r)

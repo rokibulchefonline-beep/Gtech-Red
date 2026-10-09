@@ -61,6 +61,13 @@ class LeadResource extends Resource
         return new HtmlString(($links ?: 'Assigned to someone else.').$contact);
     }
 
+    /** The extra answers of a free audit request, as a short list. */
+    public static function detailsHtml(?Lead $r): string
+    {
+        $labels = ['goals' => 'Goals', 'areas' => 'Check first', 'competitors' => 'Competitors', 'location' => 'Target area'];
+        return collect((array) $r?->details)->map(fn ($v, $k) => '<b>'.e($labels[$k] ?? $k).':</b> '.e(is_array($v) ? implode(', ', $v) : $v))->implode('<br>');
+    }
+
     public static function canAssign(): bool
     {
         return (bool) auth()->user()?->hasPerm('leads.assign');
@@ -78,6 +85,8 @@ class LeadResource extends Resource
                 Forms\Components\Placeholder::make('svc')->label('Service and budget')->content(fn (?Lead $r) => $r ? trim("{$r->service} · {$r->budget}", ' ·') : ''),
                 Forms\Components\Placeholder::make('site')->label('Website / postcode')->content(fn (?Lead $r) => $r ? new HtmlString(trim(
                     ($r->website ? '<a class="text-primary-600 underline" target="_blank" rel="noopener noreferrer" href="'.e(preg_match('#^https?://#i', $r->website) ? $r->website : 'https://'.$r->website).'">'.e($r->website).'</a> ' : '').e($r->postcode)) ?: '-') : ''),
+                Forms\Components\Placeholder::make('audit')->label('Audit request')->columnSpanFull()->visible(fn (?Lead $r) => filled($r?->details))
+                    ->content(fn (?Lead $r) => new HtmlString(self::detailsHtml($r))),
                 Forms\Components\Placeholder::make('msg')->label('Message')->content(fn (?Lead $r) => $r?->message ?: '-')->columnSpanFull(),
                 Forms\Components\Placeholder::make('origin')->label('Came from')->content(function (?Lead $r) {
                     $v = $r?->visit_id ? \App\Models\AnalyticsVisit::query()->find($r->visit_id) : null;
@@ -141,6 +150,8 @@ class LeadResource extends Resource
                 Infolists\Components\TextEntry::make('budget')->placeholder('-'),
                 Infolists\Components\TextEntry::make('website')->placeholder('-'),
                 Infolists\Components\TextEntry::make('postcode')->placeholder('-'),
+                Infolists\Components\TextEntry::make('details')->label('Audit request')->columnSpanFull()->visible(fn (Lead $r) => filled($r->details))
+                    ->state(fn (Lead $r) => new HtmlString(self::detailsHtml($r)))->html(),
                 Infolists\Components\TextEntry::make('message')->placeholder('-')->columnSpanFull()->extraAttributes(['class' => 'whitespace-pre-line']),
                 Infolists\Components\TextEntry::make('created_at')->label('Received')->dateTime('D j M Y, H:i'),
                 Infolists\Components\TextEntry::make('originLabel')->label('Came from')->state(fn (Lead $r) => $r->originLabel()),

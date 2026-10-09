@@ -53,7 +53,7 @@
 <h1>@hl($p->hero['h1'] ?? '')</h1>
 <p class="sp-lead">@rt($p->hero['lead'] ?? '')</p>
 <div class="sp-hero-btns">
-<a class="sp-btn-red" href="/contact">Book a Free Audit</a>
+<a class="sp-btn-red" href="/free-audit">Book a Free Audit</a>
 <a class="sp-btn-line" href="#digital-marketing">Explore Services</a>
 </div>
 <ul class="sp-hero-points">@foreach ($p->hero['points'] ?? [] as $pt)<li>@include('site.c.tick'){{ $pt }}</li>@endforeach</ul>

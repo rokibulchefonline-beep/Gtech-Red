@@ -34,11 +34,11 @@ class Lead extends Model
     protected $table = 'leads';
 
     protected $fillable = ['legacy_id','name','business','email','phone','service','budget','designation','company_size','website','postcode','message','source','status','notes','assignee','value',
-        'assigned_to','next_action_at','next_action','channel','origin','landing_path','form_path','utm_campaign','contact_id','consent_text','ip'];
+        'assigned_to','next_action_at','next_action','channel','origin','landing_path','form_path','utm_campaign','contact_id','consent_text','ip','details'];
 
     protected function casts(): array
     {
-        return ['value' => 'decimal:2', 'next_action_at' => 'datetime', 'first_contacted_at' => 'datetime'];
+        return ['value' => 'decimal:2', 'next_action_at' => 'datetime', 'first_contacted_at' => 'datetime', 'details' => 'array'];
     }
 
     public function owner() { return $this->belongsTo(User::class, 'assigned_to'); }

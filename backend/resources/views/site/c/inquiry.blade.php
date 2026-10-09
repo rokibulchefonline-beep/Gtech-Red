@@ -1,6 +1,6 @@
 {{-- "Request a Free Proposal" with the short form. $compact (service pages): a shorter band, the service chosen already. --}}
 @php($h = \App\Support\Site\Repo::homeSection('inquiry'))
-@php($compact = $compact ?? false)
+@php($compact = false) {{-- One design on every page; $service (on service pages) is chosen in the form already. --}}
 <section class="iq{{ $compact ? ' iq-compact' : '' }}" id="inquiry">
 <div class="wrap iq-grid">
 <div class="iq-copy">

@@ -26,6 +26,7 @@ Route::middleware([\App\Http\Middleware\RecordBotHits::class, CacheSitePage::cla
     Route::get('/industries', [PageController::class, 'main'])->defaults('slug', 'industries-hub');
     Route::get('/about', [PageController::class, 'main'])->defaults('slug', 'about');
     Route::get('/contact', [PageController::class, 'main'])->defaults('slug', 'contact');
+    Route::view('/free-audit', 'site.pages.free-audit');
     Route::get('/case-studies', [PageController::class, 'caseStudies']);
     Route::get('/case-studies/{slug}', [PageController::class, 'caseStudy'])->where('slug', '[a-z0-9-]+');
     Route::get('/blogs', [PageController::class, 'blogs']);
