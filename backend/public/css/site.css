@@ -82,11 +82,11 @@ a{color:inherit;text-decoration:none}
 .hero-yt{position:absolute;inset:0;overflow:hidden;container-type:size;pointer-events:none;background:#0a0a0a}
 .hero-yt iframe{position:absolute;top:50%;left:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.2);border:0;opacity:0;transition:opacity 1.2s}
 .hero-yt iframe.on{opacity:1}
-.hero-video::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,5,11,.88) 0%,rgba(3,5,11,.62) 38%,rgba(3,5,11,.12) 72%,rgba(3,5,11,0) 100%);z-index:1}
-.hero-bg{position:absolute;inset:0;overflow:hidden;background:#04060d url(/videos/uk-network-poster.webp?v=4) 70% center/cover no-repeat;pointer-events:none}
-.hero-bg-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;opacity:0;transition:opacity 1s}
+.hero-video::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.35));z-index:1}
+.hero-bg{position:absolute;inset:0;overflow:hidden;background:#0a0a0a center/cover no-repeat;pointer-events:none}
+.hero-bg-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s}
 .hero-bg-v.on{opacity:1}
-@media(max-width:900px){.hero-bg,.hero-bg-v{background-position:86% center;object-position:86% center}.hero-video::before{background:linear-gradient(180deg,rgba(3,5,11,.55),rgba(3,5,11,.85))}}
+@media(max-width:900px){.hero-video::before{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.8))}}
 .hero-video .wrap{position:relative;z-index:2;padding-bottom:90px;padding-top:120px}
 @media(max-width:640px){.hero-video{min-height:0;align-items:center}.hero-video .wrap{padding-top:64px;padding-bottom:56px}}
 .hero-head{display:grid;grid-template-columns:auto 1fr;column-gap:28px;align-items:end;max-width:1000px}
@@ -1106,8 +1106,3 @@ img.bp-author-logo{border-radius:50%;object-fit:cover}
 .hdr .nav .btn.sm.line{background:none;color:var(--pink);border:2px solid var(--pink);padding:6px 18px;margin-right:-8px}.hdr .nav .btn.sm.line:hover{background:var(--pink);color:#fff}
 /* Floating chat button: icon only */
 .float-talk{width:56px;height:56px;padding:0;justify-content:center;border-radius:50%}
-/* Home hero: the numbers sit across the bottom edge of the hero */
-.hero-video{overflow:visible;margin-bottom:64px}
-.hero-video .wrap{padding-bottom:0}
-.stats.stats-hero{position:relative;margin-top:56px;margin-bottom:-64px;background:#120d16;backdrop-filter:none;box-shadow:0 24px 50px rgba(0,0,0,.28)}
-@media(max-width:640px){.hero-video{margin-bottom:48px}.stats.stats-hero{margin-bottom:-48px}}

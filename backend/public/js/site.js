@@ -306,22 +306,32 @@
     cards.forEach(function (c) { o.observe(c); });
   });
 
-  // Home hero background video (glowing UK network map): loaded after the page, smaller file on phones,
-  // poster only for people who prefer less motion; paused when the hero is off screen.
-  each('[data-hero-video]', function (v) {
+  // Home hero background video (YouTube or a video file, set in the admin). Loaded only after the page has finished
+  // loading so it never slows the first paint; skipped on phones (unless allowed), with Data Saver on and for people who
+  // prefer less motion (they see the poster); a video file is paused while the hero is off screen.
+  each('[data-hero-video]', function (el) {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var c = navigator.connection; if (c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || ''))) return;
+    if (window.innerWidth < 900 && el.getAttribute('data-mobile') !== '1') return;
     var start = function () {
-      var src = window.innerWidth < 900 ? v.getAttribute('data-src-sm') : v.getAttribute('data-src');
-      // MP4 (H.264) for almost every browser; WebM for the few without H.264.
-      if (!v.canPlayType('video/mp4; codecs="avc1.640028"')) src = src.replace(/\.mp4(\?|$)/, '.webm$1');
-      v.src = src;
-      v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      var id = el.getAttribute('data-yt');
+      if (id) {
+        var f = d.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&loop=1&playlist=' + id + '&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0';
+        f.title = 'Background video'; f.tabIndex = -1; f.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+        f.addEventListener('load', function () { setTimeout(function () { f.className = 'on'; }, 1800); });
+        el.appendChild(f);
+        return;
+      }
+      el.src = el.getAttribute('data-src');
+      el.addEventListener('playing', function () { el.classList.add('on'); }, { once: true });
+      var p = el.play(); if (p && p.catch) p.catch(function () {});
       if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { var r = v.play(); if (r && r.catch) r.catch(function () {}); } else v.pause(); });
-      }).observe(v);
+        es.forEach(function (e) { if (e.isIntersecting) { var r = el.play(); if (r && r.catch) r.catch(function () {}); } else el.pause(); });
+      }).observe(el);
     };
-    if (d.readyState === 'complete') start(); else window.addEventListener('load', start);
+    var later = function () { (window.requestIdleCallback || function (fn) { setTimeout(fn, 1) })(start, { timeout: 2500 }); };
+    if (d.readyState === 'complete') later(); else window.addEventListener('load', later);
   });
 
   // Intro video: play/pause button. The icon and label follow the intended state, as in the React component.

@@ -167,6 +167,41 @@ class PageResource extends Resource
                     Forms\Components\TagsInput::make('hero.points')->label('Highlights (short points)')->placeholder('Add a point and press Enter')->hidden($isHome)
                         ->visible(fn (Get $get) => $get('kind') !== 'legal'),
                     Forms\Components\TextInput::make('updated')->label('Last updated (shown on the page)')->maxLength(40)->visible(fn (Get $get) => $get('kind') === 'legal'),
+                    Forms\Components\Fieldset::make('Background video')->visible($isHome)->columns(1)->schema([
+                        Forms\Components\Radio::make('hero.video_type')->label('Video')->inline()->live()->default('youtube')
+                            ->options(['youtube' => 'YouTube link', 'file' => 'Video file (upload or address)', 'none' => 'No video (poster image only)']),
+                        Forms\Components\TextInput::make('hero.video_youtube')->label('YouTube link')->maxLength(200)
+                            ->placeholder('https://www.youtube.com/watch?v=… (empty = the original video)')
+                            ->visible(fn (Get $get) => ($get('hero.video_type') ?? 'youtube') === 'youtube')
+                            ->rule(fn () => fn ($a, $v, $fail) => filled($v) && ! \App\Support\Site\HeroVideo::youtubeId((string) $v) ? $fail('That does not look like a YouTube link.') : null),
+                        Forms\Components\TextInput::make('hero.video_url')->label('Video file address')->maxLength(500)
+                            ->placeholder('Upload below, or paste an .mp4 / .webm address')
+                            ->visible(fn (Get $get) => $get('hero.video_type') === 'file')
+                            ->rule(fn () => fn ($a, $v, $fail) => filled($v) && ! \App\Support\Site\HeroVideo::safeUrl($v) ? $fail('Use a full https:// address or a /storage/… path.') : null),
+                        Forms\Components\FileUpload::make('hero.video__upload')->label('Upload a video')->dehydrated(false)->live()
+                            ->visible(fn (Get $get) => $get('hero.video_type') === 'file')
+                            ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/quicktime'])->maxSize(102400)->disk('public')->directory('media')
+                            ->helperText(fn () => (\App\Support\VideoTools::ffmpeg()
+                                ? 'MP4, WebM or MOV. It is compressed automatically (1280 px, no sound, starts playing straight away) and a poster is made from it.'
+                                : 'MP4 or WebM, ideally under 5 MB and 10 to 20 seconds, without sound. (Install ffmpeg on the server and uploads are compressed automatically.)')
+                                .' Uploads above the server limit (PHP upload_max_filesize) fail; on Herd raise it in Settings > PHP.')
+                            ->afterStateUpdated(function ($state, \Filament\Forms\Set $set, Get $get) {
+                                if (! $state instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) return;
+                                $set('hero.video__upload', null);
+                                $disk = \Illuminate\Support\Facades\Storage::disk('public');
+                                $path = $state->store('media', 'public');
+                                if ($done = \App\Support\VideoTools::optimise($disk->path($path))) {
+                                    $path = 'media/'.basename($done[0]);
+                                    if ($done[1] && blank($get('hero.video_poster'))) $set('hero.video_poster', $disk->url('media/'.basename($done[1])));
+                                }
+                                $set('hero.video_url', $disk->url($path));
+                                \Filament\Notifications\Notification::make()->success()->title('Video uploaded ('.round($disk->size($path) / 1048576, 1).' MB)')
+                                    ->body($disk->size($path) > 8 * 1048576 ? 'This is large for a background video and will slow the page on slow connections. Aim for under 5 MB.' : 'Save the page to use it.')->send();
+                            }),
+                        ImageField::make('hero.video_poster', 'Poster image (shown until the video plays, and on phones)'),
+                        Forms\Components\Toggle::make('hero.video_mobile')->label('Also play the video on phones')
+                            ->helperText('Off is faster: phones show the poster image and save their data.')->visible(fn (Get $get) => ($get('hero.video_type') ?? 'youtube') !== 'none'),
+                    ]),
                 ]),
                 Forms\Components\Tabs\Tab::make('Sections')->schema([
                     Forms\Components\Repeater::make('secs')->hiddenLabel()->addable(false)->deletable(false)->reorderable(false)->collapsible()->collapsed()
@@ -298,6 +333,10 @@ class PageResource extends Resource
         if (array_key_exists('keyword', $h)) $hero['keyword'] = trim((string) $h['keyword']);
         $hero['lead'] = Html::inline($h['lead'] ?? '');
         if (array_key_exists('points', $h)) $hero['points'] = array_values(array_filter(array_map('trim', (array) $h['points'])));
+        if ($record->key === 'page~home') {
+            foreach (['video_type', 'video_youtube', 'video_url', 'video_poster'] as $k) if (array_key_exists($k, $h)) $hero[$k] = trim((string) $h[$k]);
+            if (array_key_exists('video_mobile', $h)) $hero['video_mobile'] = (bool) $h['video_mobile'];
+        }
 
         $sections = (array) $record->sections;
         foreach ($data['secs'] ?? [] as $s) {

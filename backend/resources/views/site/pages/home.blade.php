@@ -84,7 +84,14 @@
 @section('content')
 <div class="no-hl">
 <section class="hero-video">
-<div class="hero-bg" aria-hidden="true"><video class="hero-bg-v" muted loop playsinline preload="none" poster="/videos/uk-network-poster.webp?v=4" data-hero-video data-src="/videos/uk-network.mp4?v=4" data-src-sm="/videos/uk-network-720.mp4?v=4"></video></div>
+@php($hv = \App\Support\Site\HeroVideo::for($p))
+@if ($hv['type'] === 'youtube')
+<div class="hero-yt" aria-hidden="true" data-hero-video data-yt="{{ $hv['id'] }}" data-mobile="{{ $hv['mobile'] ? 1 : 0 }}"@if ($hv['poster']) style="background:#0a0a0a url('{{ $hv['poster'] }}') center/cover no-repeat"@endif></div>
+@elseif ($hv['type'] === 'file')
+<div class="hero-bg" aria-hidden="true"@if ($hv['poster']) style="background-image:url('{{ $hv['poster'] }}')"@endif><video class="hero-bg-v" muted loop playsinline preload="none"@if ($hv['poster']) poster="{{ $hv['poster'] }}"@endif data-hero-video data-src="{{ $hv['src'] }}" data-mobile="{{ $hv['mobile'] ? 1 : 0 }}"></video></div>
+@else
+<div class="hero-bg" aria-hidden="true"@if ($hv['poster']) style="background-image:url('{{ $hv['poster'] }}')"@endif></div>
+@endif
 <div class="wrap">
 <div class="hero-head">
 <h1 class="hero-title">@foreach ($lines as $i => $l)<span{!! $i === count($lines) - 1 && $i > 0 ? ' class="hero-last"' : '' !!}>@if (str_contains($l, '[['))@hl($l)@else{{ trim($l) ?: ' ' }}@endif</span>@endforeach</h1>
