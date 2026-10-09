@@ -5,7 +5,7 @@
 @if ($R::clients())
 @php($logos = $R::clients())
 <section class="sp-logos" aria-label="Clients"><div class="wrap">
-<p class="sp-logos-h"><span></span>Trusted by growing UK brands<span></span></p>
+<h2 class="sp-logos-title">@hl('Experience Working with Industry [[Leading Brands]].')</h2>
 <div class="sp-marquee{{ count($logos) < 5 ? ' static' : '' }}"><div class="sp-marquee-track">
 @foreach ($logos as $b)<div class="sp-logo-tile"><img src="{{ $b['logo'] }}" alt="{{ $b['name'] }}" loading="lazy" decoding="async"></div>@endforeach
 @if (count($logos) >= 5)@foreach ($logos as $b)<div class="sp-logo-tile" aria-hidden="true"><img src="{{ $b['logo'] }}" alt="" loading="lazy" decoding="async"></div>@endforeach @endif

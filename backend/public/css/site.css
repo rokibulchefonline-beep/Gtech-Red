@@ -1120,3 +1120,5 @@ img.bp-author-logo{border-radius:50%;object-fit:cover}
 @keyframes sp-marquee{to{transform:translateX(calc(-50% - 9px))}}
 @media(prefers-reduced-motion:reduce){.sp-marquee-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.sp-marquee-track>[aria-hidden]{display:none}.sp-marquee{-webkit-mask-image:none;mask-image:none}}
 @media(max-width:600px){.sp-logos{padding:90px 0 36px}.sp-logo-tile{width:132px;height:68px}.sp-logo-tile img{max-height:38px}}
+.sp-logos .sp-logos-title{margin:0 auto 34px;max-width:900px;font-size:clamp(26px,3.2vw,40px);line-height:1.2;font-weight:500;letter-spacing:-.02em;color:#0b0b0e;text-transform:none}
+.sp-logos-title .hl,.sp-logos-title .red{color:var(--hl)}
