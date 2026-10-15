@@ -1128,3 +1128,8 @@ img.bp-author-logo{border-radius:50%;object-fit:cover}
 .sp-bg-dark::after{content:"";position:absolute;left:50%;top:0;width:min(560px,70%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(255,77,90,.7),transparent);pointer-events:none}
 .sp-bg-dark .sp-card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border-color:rgba(255,255,255,.09);backdrop-filter:none}
 .sp-bg-dark .sp-card:hover{border-color:rgba(255,77,90,.45);transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+/* Single blog post: use the full screen width so the article is not squeezed between the two sidebars */
+.wrap.bp-layout{max-width:1440px;grid-template-columns:240px minmax(0,1fr) 290px;gap:48px}
+.bp-body{font-size:18px;line-height:1.8}
+@media(max-width:1300px){.wrap.bp-layout{grid-template-columns:220px minmax(0,1fr) 260px;gap:36px}}
+@media(max-width:1100px){.wrap.bp-layout{grid-template-columns:1fr;gap:28px}}
