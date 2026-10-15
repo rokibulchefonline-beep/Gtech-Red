@@ -12,7 +12,7 @@ class EditPost extends EditRecord
 
     protected function schemaPath(): string
     {
-        return '/blogs/'.$this->record->slug;
+        return '/blog/'.$this->record->slug;
     }
 
     protected static string $resource = PostResource::class;

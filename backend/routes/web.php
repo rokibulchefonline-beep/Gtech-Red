@@ -30,9 +30,10 @@ Route::middleware([\App\Http\Middleware\RecordBotHits::class, CacheSitePage::cla
     Route::view('/free-audit', 'site.pages.free-audit');
     Route::get('/case-studies', [PageController::class, 'caseStudies']);
     Route::get('/case-studies/{slug}', [PageController::class, 'caseStudy'])->where('slug', '[a-z0-9-]+');
-    Route::get('/blogs', [PageController::class, 'blogs']);
-    Route::get('/blogs/{slug}', [PageController::class, 'post'])->where('slug', '[a-z0-9-]+');
-    Route::get('/blogs/author/{slug}', [PageController::class, 'author'])->where('slug', '[a-z0-9-]+');
+    // Same addresses as the current website (/blog/<post>), so links and rankings carry over unchanged.
+    Route::get('/blog', [PageController::class, 'blogs']);
+    Route::get('/blog/{slug}', [PageController::class, 'post'])->where('slug', '[a-z0-9-]+');
+    Route::get('/blog/author/{slug}', [PageController::class, 'author'])->where('slug', '[a-z0-9-]+');
     foreach (['terms', 'privacy-policy', 'cookie-policy'] as $legal) {
         Route::get("/$legal", [PageController::class, 'legal'])->defaults('slug', $legal);
     }
@@ -53,8 +54,9 @@ Route::withoutMiddleware($noSession)->group(function () {
 
 // Old addresses (next.config.mjs on the website).
 Route::redirect('/quote', '/contact', 308);
-Route::redirect('/blog', '/blogs', 308);
-Route::get('/blog/{slug}', fn (string $slug) => redirect('/blogs/'.$slug, 308))->where('slug', '[A-Za-z0-9-]+');
+// /blogs was used by the new site during development: send it to /blog.
+Route::get('/blogs', fn () => redirect('/blog'.(request()->getQueryString() ? '?'.request()->getQueryString() : ''), 301));
+Route::get('/blogs/{path}', fn (string $path) => redirect('/blog/'.$path, 301))->where('path', '[A-Za-z0-9/-]+');
 Route::get('/services/{group}/{item}', fn (string $group, string $item) => redirect('/services/'.$item, 308))->where(['group' => '[a-z0-9-]+', 'item' => '[a-z0-9-]+']);
 
 Route::get('/api/media/{id}', [MediaController::class, 'show'])->where('id', '[A-Za-z0-9_-]+');

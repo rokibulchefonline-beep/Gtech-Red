@@ -52,9 +52,9 @@ class PageCacheTest extends TestCase
 
     public function test_only_plain_addresses_and_topic_filters_are_cached(): void
     {
-        $this->get('/blogs?q=seo')->assertOk()->assertHeaderMissing('X-Page-Cache');
-        $this->get('/blogs?category=seo')->assertHeader('X-Page-Cache', 'MISS');
-        $this->get('/blogs?category=seo')->assertHeader('X-Page-Cache', 'HIT');
+        $this->get('/blog?q=seo')->assertOk()->assertHeaderMissing('X-Page-Cache');
+        $this->get('/blog?category=seo')->assertHeader('X-Page-Cache', 'MISS');
+        $this->get('/blog?category=seo')->assertHeader('X-Page-Cache', 'HIT');
         $this->get('/services/not-a-page')->assertNotFound()->assertHeaderMissing('X-Page-Cache');
     }
 

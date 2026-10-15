@@ -63,8 +63,8 @@ class SimpleLinkAction extends LinkAction
         foreach (\App\Models\Page::query()->where('published', true)->orderBy('sort')->orderBy('name')->get(['kind', 'name', 'path']) as $p) {
             $out[$kinds[$p->kind] ?? 'Pages'][$p->path] = $p->name;
         }
-        foreach (['/case-studies' => 'Case studies', '/blogs' => 'Blog'] as $path => $name) $out['Main pages'][$path] = $name;
-        $out['Blog posts'] = \App\Support\Site\Repo::posts()->mapWithKeys(fn ($p) => ['/blogs/'.$p->slug => $p->title])->all();
+        foreach (['/case-studies' => 'Case studies', '/blog' => 'Blog'] as $path => $name) $out['Main pages'][$path] = $name;
+        $out['Blog posts'] = \App\Support\Site\Repo::posts()->mapWithKeys(fn ($p) => ['/blog/'.$p->slug => $p->title])->all();
         $out['Case studies'] = \App\Support\Site\Repo::caseStudies(200)->mapWithKeys(fn ($c) => ['/case-studies/'.$c->slug => $c->title])->all();
         return array_filter(array_merge(array_intersect_key(array_flip($kinds), $out), $out));
     }

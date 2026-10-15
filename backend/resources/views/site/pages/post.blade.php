@@ -1,4 +1,4 @@
-{{-- /blogs/{slug} (app/blogs/[slug]/page.tsx). $p Post --}}
+{{-- /blog/{slug} (app/blog/[slug]/page.tsx). $p Post --}}
 @extends('site.layout')
 @php($B = \App\Support\Site\Blog::class)
 @php($R = \App\Support\Site\Repo::class)
@@ -9,9 +9,9 @@
 @php($others = $all->reject(fn ($x) => $x->slug === $p->slug))
 @php($recent = $others->take(5))
 @php($more = $others->filter(fn ($x) => ($x->category ?: 'Insights') === $cat)->concat($others->filter(fn ($x) => ($x->category ?: 'Insights') !== $cat))->take(3))
-@php($url = config('gtech.public_url').'/blogs/'.$p->slug)
+@php($url = config('gtech.public_url').'/blog/'.$p->slug)
 @php($mins = $B::readTime((string) $p->body, $html))
-@php($path = "/blogs/{$p->slug}")
+@php($path = "/blog/{$p->slug}")
 @php($date = ($p->date ?? $p->created_at)?->format('Y-m-d'))
 @php($tags = array_values(array_filter((array) $p->tags)))
 @php($t = $p->meta_title ?: $p->title)
@@ -21,15 +21,15 @@
 @php($modified = collect([$date, $p->updated_at?->format('Y-m-d')])->filter()->max())
 @php($seo = \App\Support\Site\Seo::make($path, ['title' => $t, 'description' => $dsc, 'canonical' => $p->canonical ?: $path, 'noindex' => (bool) $p->noindex, 'keywords' => $tags, 'og' => ['type' => 'article', 'title' => $t, 'description' => $dsc, 'image' => $p->image ?: '/posts/default.webp', 'published' => $date, 'author' => $by]], [
     \App\Support\Site\Schema::page(['path' => $path, 'name' => $p->title, 'description' => (string) $p->excerpt, 'mainEntity' => \App\Support\Site\Schema::abs($path).'#article', 'image' => $p->image ?: '/posts/default.webp', 'published' => $date, 'modified' => $modified]),
-    \App\Support\Site\Schema::breadcrumb($path, [['Blog', '/blogs'], [$p->title, $path]]),
+    \App\Support\Site\Schema::breadcrumb($path, [['Blog', '/blog'], [$p->title, $path]]),
     \App\Support\Site\Schema::article(['path' => $path, 'type' => 'BlogPosting', 'headline' => $p->title, 'description' => $dsc, 'image' => $p->image ?: '/posts/default.webp', 'published' => $date, 'modified' => $modified, 'section' => $cat, 'keywords' => $tags, 'words' => $B::words((string) $p->body, $html), 'author' => $by, 'person' => $person]),
     ...($person ? [\App\Support\Site\Schema::person($person)] : []),
 ]))
 @section('content')
 <header class="bp-top"><div class="wrap bp-top-in">
 <div class="bp-top-copy">
-<nav class="sp-crumbs left" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blogs">Blog</a><span>/</span><b>{{ $cat }}</b></nav>
-<a class="bl-tag" href="/blogs?category={{ $B::slugify($cat) }}">{{ $cat }}</a>
+<nav class="sp-crumbs left" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog">Blog</a><span>/</span><b>{{ $cat }}</b></nav>
+<a class="bl-tag" href="/blog?category={{ $B::slugify($cat) }}">{{ $cat }}</a>
 <h1>{{ $p->title }}</h1>
 <p class="bp-excerpt">{{ $p->excerpt }}</p>
 <div class="bp-meta">@if ($person?->photo)<img class="bp-avatar" src="{{ $person->photo }}" alt="" width="44" height="44">@else<span class="bp-avatar" aria-hidden="true">{{ mb_substr($by, 0, 1) }}</span>@endif<span><b>@if ($person)<a href="{{ $person->path() }}" rel="author">{{ $person->name }}</a>@else{{ $by }}@endif</b><small>@icon('lucide:calendar-days', 14)<time datetime="{{ $date }}">{{ $B::date($p) }}</time>@if ($modified > $date) · Updated <time datetime="{{ $modified }}">{{ \Illuminate\Support\Carbon::parse($modified)->format('j M Y') }}</time>@endif @icon('lucide:clock', 14){{ $mins }} min read</small></span></div>
@@ -67,7 +67,7 @@
 </section>
 </article>
 <aside class="bp-right"><div class="bp-sticky">
-<div class="bl-box"><p class="bl-side-title">Recent Posts</p><ul class="bp-recent">@foreach ($recent as $r)<li><a href="/blogs/{{ $r->slug }}"><img src="{{ $r->image ?: '/posts/default.webp' }}" alt="" width="96" height="54" loading="lazy"><span><b>{{ $r->title }}</b><small>{{ $B::date($r) }}</small></span></a></li>@endforeach</ul></div>
+<div class="bl-box"><p class="bl-side-title">Recent Posts</p><ul class="bp-recent">@foreach ($recent as $r)<li><a href="/blog/{{ $r->slug }}"><img src="{{ $r->image ?: '/posts/default.webp' }}" alt="" width="96" height="54" loading="lazy"><span><b>{{ $r->title }}</b><small>{{ $B::date($r) }}</small></span></a></li>@endforeach</ul></div>
 <div class="bl-box"><p class="bl-side-title">Our Services</p><ul class="bp-services">@foreach ($R::groups() as $g)<li><a href="/services/{{ $g->slug }}">@icon($g->icon, 18){{ $g->title }}</a></li>@endforeach</ul></div>
 </div></aside>
 </div>

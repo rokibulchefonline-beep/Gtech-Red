@@ -18,7 +18,7 @@ class CreateAuthor extends CreateRecord
 
     protected function afterCreate(): void
     {
-        \App\Filament\Support\SchemaPanel::save('/blogs/author/'.$this->record->slug, $this->data['schema'] ?? null);
+        \App\Filament\Support\SchemaPanel::save('/blog/author/'.$this->record->slug, $this->data['schema'] ?? null);
     }
 
 }

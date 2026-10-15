@@ -41,19 +41,19 @@ class SeoFixesTest extends TestCase
     {
         foreach (range(1, 20) as $i) \App\Models\Post::create(['title' => "Paged $i", 'slug' => "paged-$i", 'status' => 'published', 'body' => '<p>x</p>', 'date' => now()->subDays(30 + $i)]);
         \App\Support\Site\Repo::flush();
-        $first = $this->get('/blogs')->assertOk()->getContent();
-        $this->assertStringContainsString('href="/blogs?page=2" rel="next"', $first);
-        $two = $this->get('/blogs?page=2')->assertOk()->getContent();
-        $this->assertStringContainsString('<link rel="canonical" href="https://www.gtechdigital.co.uk/blogs?page=2">', $two);
+        $first = $this->get('/blog')->assertOk()->getContent();
+        $this->assertStringContainsString('href="/blog?page=2" rel="next"', $first);
+        $two = $this->get('/blog?page=2')->assertOk()->getContent();
+        $this->assertStringContainsString('<link rel="canonical" href="https://www.gtechdigital.co.uk/blog?page=2">', $two);
         $this->assertStringContainsString('rel="prev"', $two);
         $this->assertStringContainsString('<title>Blog – Page 2 | GTech Digital</title>', $two);
-        $this->get('/blogs?page=99')->assertNotFound();
-        $this->assertStringContainsString('noindex', $this->get('/blogs?q=paged')->getContent());
+        $this->get('/blog?page=99')->assertNotFound();
+        $this->assertStringContainsString('noindex', $this->get('/blog?q=paged')->getContent());
     }
 
     public function test_menu_and_footer_titles_are_not_headings_and_the_outline_starts_with_h1(): void
     {
-        foreach (['/', '/contact', '/case-studies', '/industries', '/blogs', '/services/local-seo'] as $u) {
+        foreach (['/', '/contact', '/case-studies', '/industries', '/blog', '/services/local-seo'] as $u) {
             $html = $this->get($u)->assertOk()->getContent();
             $html = preg_replace('#<template\b.*?</template>#s', '', $html);
             preg_match_all('#<h([1-6])\b#', $html, $m);
@@ -78,7 +78,7 @@ class SeoFixesTest extends TestCase
 
     public function test_titles_fit_and_every_page_has_a_share_image(): void
     {
-        foreach (['/', '/about', '/contact', '/industries', '/blogs', '/terms', '/cookie-policy', '/case-studies/chefonline', '/blogs/aeo-geo-guide'] as $u) {
+        foreach (['/', '/about', '/contact', '/industries', '/blog', '/terms', '/cookie-policy', '/case-studies/chefonline', '/blog/aeo-geo-guide'] as $u) {
             $html = $this->get($u)->assertOk()->getContent();
             preg_match('#<title>(.*?)</title>#', $html, $t);
             $this->assertLessThanOrEqual(60, mb_strlen(html_entity_decode($t[1])), "$u title: {$t[1]}");
@@ -95,17 +95,17 @@ class SeoFixesTest extends TestCase
         $a = \App\Models\Author::create(['name' => 'Sam Writer', 'job_title' => 'Head of SEO', 'bio' => 'Ten years of SEO for UK firms.', 'linkedin' => 'https://www.linkedin.com/in/sam']);
         \App\Models\Post::query()->where('slug', 'aeo-geo-guide')->update(['author' => 'Sam Writer']);
         \App\Support\Site\Repo::flush();
-        $post = $this->get('/blogs/aeo-geo-guide')->assertOk()->getContent();
-        $this->assertStringContainsString('<a href="/blogs/author/sam-writer" rel="author">Sam Writer</a>', $post);
+        $post = $this->get('/blog/aeo-geo-guide')->assertOk()->getContent();
+        $this->assertStringContainsString('<a href="/blog/author/sam-writer" rel="author">Sam Writer</a>', $post);
         $this->assertMatchesRegularExpression('#<time datetime="\d{4}-\d\d-\d\d">#', $post);
-        $this->assertStringContainsString('"author":{"@id":"https://www.gtechdigital.co.uk/blogs/author/sam-writer#person"}', $post);
+        $this->assertStringContainsString('"author":{"@id":"https://www.gtechdigital.co.uk/blog/author/sam-writer#person"}', $post);
         $this->assertStringContainsString('"@type":"Person"', $post);
-        $page = $this->get('/blogs/author/sam-writer')->assertOk()->getContent();
+        $page = $this->get('/blog/author/sam-writer')->assertOk()->getContent();
         $this->assertStringContainsString('<h1>Sam Writer</h1>', $page);
         $this->assertStringContainsString('"@type":"ProfilePage"', $page);
         $this->assertStringContainsString('"sameAs":["https://www.linkedin.com/in/sam"]', $page);
-        $this->assertStringContainsString('/blogs/author/sam-writer', $this->get('/sitemap.xml')->getContent());
-        $this->get('/blogs/author/nobody')->assertNotFound();
+        $this->assertStringContainsString('/blog/author/sam-writer', $this->get('/sitemap.xml')->getContent());
+        $this->get('/blog/author/nobody')->assertNotFound();
         // Renaming keeps the posts.
         $a->update(['name' => 'Sam Writer-Jones']);
         $this->assertSame('Sam Writer-Jones', \App\Models\Post::query()->where('slug', 'aeo-geo-guide')->value('author'));
@@ -116,7 +116,7 @@ class SeoFixesTest extends TestCase
         // Called directly: the test client itself drops trailing slashes before sending.
         $mw = new \App\Http\Middleware\CanonicalUrl;
         foreach (['/services/local-seo/' => '/services/local-seo', '/Services/Local-SEO' => '/services/local-seo', '/index.php' => '/', '/index.php/about' => '/about',
-            '/blogs/?page=2' => '/blogs?page=2', '/services//local-seo' => '/services/local-seo', '/About/?utm_source=x' => '/about?utm_source=x'] as $from => $to) {
+            '/blog/?page=2' => '/blog?page=2', '/services//local-seo' => '/services/local-seo', '/About/?utm_source=x' => '/about?utm_source=x'] as $from => $to) {
             $r = $mw->handle(\Illuminate\Http\Request::create($from), fn () => response('page'));
             $this->assertSame([301, $to], [$r->getStatusCode(), $r->headers->get('Location')], $from);
         }

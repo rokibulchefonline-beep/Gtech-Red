@@ -297,7 +297,7 @@ class ImportBlog extends Command
         if ($imgs !== $local) $problems[] = ($imgs - $local).' article image(s) could not be downloaded';
         if ($p['image'] && $image === '') $problems[] = 'featured image could not be downloaded';
         if (! $p['image']) $problems[] = 'the old post has no featured image';
-        $this->report[] = ['slug' => $saved->slug, 'title' => $saved->title, 'old_url' => $p['url'], 'new_url' => '/blogs/'.$saved->slug,
+        $this->report[] = ['slug' => $saved->slug, 'title' => $saved->title, 'old_url' => $p['url'], 'new_url' => '/blog/'.$saved->slug,
             'words' => $words((string) $saved->body), 'links' => $count('/<a\s[^>]*href=/i', (string) $saved->body), 'images' => $imgs,
             'featured_image' => $image, 'ok' => ! $problems, 'problems' => $problems];
     }

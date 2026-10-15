@@ -59,13 +59,13 @@ class SeoEditorsTest extends TestCase
     public function test_schema_panel_saves_custom_json_ld_that_appears_on_the_page(): void
     {
         Post::create(['title' => 'Guide', 'slug' => 'guide', 'status' => 'published', 'body' => '<p>x</p>']);
-        SchemaPanel::save('/blogs/guide', ['off' => false, 'custom' => '{"@context":"https://schema.org","@type":"HowTo","name":"Do it"}']);
-        $this->assertSame('{"@context":"https://schema.org","@type":"HowTo","name":"Do it"}', SchemaPanel::fill('/blogs/guide')['custom']);
-        $this->get('/blogs/guide')->assertOk()->assertSee('"@type":"HowTo"', false);
+        SchemaPanel::save('/blog/guide', ['off' => false, 'custom' => '{"@context":"https://schema.org","@type":"HowTo","name":"Do it"}']);
+        $this->assertSame('{"@context":"https://schema.org","@type":"HowTo","name":"Do it"}', SchemaPanel::fill('/blog/guide')['custom']);
+        $this->get('/blog/guide')->assertOk()->assertSee('"@type":"HowTo"', false);
 
         // Nothing set: no empty override is created.
-        SchemaPanel::save('/blogs/other', ['off' => false, 'custom' => '']);
-        $this->assertNull(SeoEntry::query()->find(SeoEntry::keyFor('/blogs/other')));
+        SchemaPanel::save('/blog/other', ['off' => false, 'custom' => '']);
+        $this->assertNull(SeoEntry::query()->find(SeoEntry::keyFor('/blog/other')));
     }
 
     public function test_the_audit_pages_through_many_posts(): void
@@ -82,9 +82,9 @@ class SeoEditorsTest extends TestCase
         $this->assertSame([['/services/local-seo', 'local SEO']], LinkGraph::links('<p><a href="https://gtechdigital.co.uk/services/local-seo/?x=1">local SEO</a> <a href="/images/a.png">img</a> <a href="https://other.com/x">x</a></p>'));
         Post::create(['title' => 'Linky', 'slug' => 'linky', 'status' => 'published', 'body' => '<p>Try <a href="/services/local-seo">local SEO</a> and <a href="/services/nope">this</a>.</p>']);
         $g = LinkGraph::build();
-        $this->assertArrayHasKey('/blogs/linky', $g['nodes']);
-        $this->assertNotEmpty(array_filter($g['edges'], fn ($e) => $e['from'] === '/blogs/linky' && $e['to'] === '/services/local-seo' && $e['type'] === 'content'));
-        $this->assertContains('/blogs/linky → /services/nope (link in the text: “this”)', LinkGraph::broken($g));
+        $this->assertArrayHasKey('/blog/linky', $g['nodes']);
+        $this->assertNotEmpty(array_filter($g['edges'], fn ($e) => $e['from'] === '/blog/linky' && $e['to'] === '/services/local-seo' && $e['type'] === 'content'));
+        $this->assertContains('/blog/linky → /services/nope (link in the text: “this”)', LinkGraph::broken($g));
         // The link map gets the graph as a list of nodes: the same count.
         $this->assertCount(1, LinkGraph::broken(['nodes' => array_values($g['nodes']), 'edges' => $g['edges']]));
     }

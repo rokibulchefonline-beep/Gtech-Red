@@ -14,7 +14,7 @@ class EditAuthor extends EditRecord
 
     protected function schemaPath(): string
     {
-        return '/blogs/author/'.$this->record->slug;
+        return '/blog/author/'.$this->record->slug;
     }
 
     protected function mutateFormDataBeforeFill(array $data): array

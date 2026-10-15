@@ -39,8 +39,8 @@ class LinkGraph
 
         $node('/', 'Home', 'home', 'site');
         foreach (['/services' => 'Services', '/industries' => 'Industries'] as $id => $l) $node($id, $l, 'hub', 'site');
-        foreach (['/case-studies' => 'Case studies', '/blogs' => 'Blog', '/about' => 'About', '/contact' => 'Contact'] as $id => $l) $node($id, $l, 'page', 'site');
-        foreach (['/services' => 'Services', '/industries' => 'Industries', '/case-studies' => 'Case studies', '/blogs' => 'Blog', '/about' => 'About us', '/contact' => 'Contact'] as $to => $l) $add('/', $to, 'home', $l);
+        foreach (['/case-studies' => 'Case studies', '/blog' => 'Blog', '/about' => 'About', '/contact' => 'Contact'] as $id => $l) $node($id, $l, 'page', 'site');
+        foreach (['/services' => 'Services', '/industries' => 'Industries', '/case-studies' => 'Case studies', '/blog' => 'Blog', '/about' => 'About us', '/contact' => 'Contact'] as $to => $l) $add('/', $to, 'home', $l);
 
         foreach (Repo::groups() as $g) {
             $gid = "/services/{$g->slug}";
@@ -77,7 +77,7 @@ class LinkGraph
         }
         // Blog posts and case studies, with the links written in them.
         $posts = Repo::posts();
-        foreach ($posts as $p) $node("/blogs/{$p->slug}", $p->title, 'post', 'blog');
+        foreach ($posts as $p) $node("/blog/{$p->slug}", $p->title, 'post', 'blog');
         $cases = Repo::caseStudies(1000);
         foreach ($cases as $c) $node("/case-studies/{$c->slug}", $c->title, 'case', 'cases');
         $text = [];
@@ -92,7 +92,7 @@ class LinkGraph
                 foreach ($cases->filter(fn ($c) => in_array($svc, (array) $c->services, true))->take(6) as $c) $add($p->path, "/case-studies/{$c->slug}", 'cases', $c->title);
             }
         }
-        foreach ($posts as $p) $text["/blogs/{$p->slug}"] = $p->format === 'html' ? (string) $p->body : \App\Support\Site\Blog::markdownToHtml((string) $p->body);
+        foreach ($posts as $p) $text["/blog/{$p->slug}"] = $p->format === 'html' ? (string) $p->body : \App\Support\Site\Blog::markdownToHtml((string) $p->body);
         foreach ($cases as $c) $text["/case-studies/{$c->slug}"] = implode(' ', array_filter([(string) $c->body, (string) $c->challenge, (string) $c->solution, ...array_filter((array) $c->results, 'is_string')]));
         $redirects = \App\Models\Redirect::query()->pluck('to_path', 'from_path')->all();
         foreach ($text as $from => $html) {

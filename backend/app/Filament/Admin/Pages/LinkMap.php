@@ -70,7 +70,7 @@ class LinkMap extends Page
                 $pos[$k['id']] = [cos($aa) * $rad, sin($aa) * $rad, ($small ? 4 : 7) + min($small ? 5 : 7, ($stats[$k['id']]['in'] ?? 0) * 0.9)];
             }
         }
-        foreach (['/services', '/case-studies', '/blogs', '/about', '/contact'] as $i => $id) $pos[$id] = [cos($i * 1.256 + 0.6) * 70, sin($i * 1.256 + 0.6) * 70, 8];
+        foreach (['/services', '/case-studies', '/blog', '/about', '/contact'] as $i => $id) $pos[$id] = [cos($i * 1.256 + 0.6) * 70, sin($i * 1.256 + 0.6) * 70, 8];
 
         $edit = function (string $id): ?string {
             $key = match (true) {
@@ -99,7 +99,7 @@ class LinkMap extends Page
         $caseIds = \App\Models\CaseStudy::query()->pluck('id', 'slug');
         foreach ($outNodes as $id => $n) {
             $url = match (true) {
-                str_starts_with($id, '/blogs/') && isset($postIds[substr($id, 7)]) => \App\Filament\Admin\Resources\PostResource::getUrl('edit', ['record' => $postIds[substr($id, 7)]]),
+                str_starts_with($id, '/blog/') && isset($postIds[substr($id, 6)]) => \App\Filament\Admin\Resources\PostResource::getUrl('edit', ['record' => $postIds[substr($id, 6)]]),
                 str_starts_with($id, '/case-studies/') && isset($caseIds[substr($id, 14)]) => \App\Filament\Admin\Resources\CaseStudyResource::getUrl('edit', ['record' => $caseIds[substr($id, 14)]]),
                 default => $n['post'] ? null : $edit($id),
             };

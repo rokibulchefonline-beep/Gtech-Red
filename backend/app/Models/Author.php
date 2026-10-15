@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-/** A blog author (Blog > Authors). Posts name their author; the author page is /blogs/author/{slug}. */
+/** A blog author (Blog > Authors). Posts name their author; the author page is /blog/author/{slug}. */
 class Author extends Model
 {
     use \App\Models\Concerns\BlankNotNull;
@@ -30,7 +30,7 @@ class Author extends Model
 
     public function path(): string
     {
-        return '/blogs/author/'.$this->slug;
+        return '/blog/author/'.$this->slug;
     }
 
     /** Profile links for the page and the schema (sameAs). */

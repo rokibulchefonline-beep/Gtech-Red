@@ -33,7 +33,7 @@ class Post extends Model
         static::saving(fn (self $p) => $p->body = self::tidyLinks($p->body));
         // A changed address keeps working: the old one redirects to the new one.
         static::updated(function (self $m) {
-            if ($m->wasChanged('slug') && $m->getOriginal('slug')) Redirect::moved('/blogs/'.$m->getOriginal('slug'), '/blogs/'.$m->slug);
+            if ($m->wasChanged('slug') && $m->getOriginal('slug')) Redirect::moved('/blog/'.$m->getOriginal('slug'), '/blog/'.$m->slug);
         });
     }
 }

@@ -1,4 +1,4 @@
-{{-- /blogs/author/{slug}: an author's profile and articles (12 a page). $a Author --}}
+{{-- /blog/author/{slug}: an author's profile and articles (12 a page). $a Author --}}
 @extends('site.layout')
 @php($B = \App\Support\Site\Blog::class)
 @php($S = \App\Support\Site\Schema::class)
@@ -15,12 +15,12 @@
 @php($seo = \App\Support\Site\Seo::make($path, ['title' => "{$a->name}, $role".($page > 1 ? " – Page $page" : ''), 'description' => $desc, 'canonical' => $pageUrl($page),
     'og' => ['type' => 'profile', 'image' => $a->photo ?: '']], [
     $S::page(['path' => $path, 'type' => 'ProfilePage', 'name' => $a->name, 'description' => $desc, 'mainEntity' => $S::abs($path).'#person']),
-    $S::breadcrumb($path, [['Blog', '/blogs'], [$a->name, $path]]),
+    $S::breadcrumb($path, [['Blog', '/blog'], [$a->name, $path]]),
     $S::person($a),
 ]))
 @section('content')
 <section class="au-hero"><div class="wrap au-hero-in">
-<nav class="sp-crumbs left" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blogs">Blog</a><span>/</span><b>{{ $a->name }}</b></nav>
+<nav class="sp-crumbs left" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog">Blog</a><span>/</span><b>{{ $a->name }}</b></nav>
 <div class="au-card">
 @if ($a->photo)<img class="au-photo" src="{{ $a->photo }}" alt="{{ $a->name }}" width="140" height="140" fetchpriority="high">@else<span class="au-photo au-initial" aria-hidden="true">{{ mb_substr($a->name, 0, 1) }}</span>@endif
 <div>

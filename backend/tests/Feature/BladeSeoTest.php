@@ -64,7 +64,7 @@ class BladeSeoTest extends TestCase
         $this->get('/robots.txt')->assertSee('Sitemap: https://www.gtechdigital.co.uk/sitemap.xml', false)->assertSee('Disallow: /admin/', false);
 
         $this->get('/quote')->assertStatus(308)->assertRedirect('/contact');
-        $this->get('/blog/some-post')->assertStatus(308)->assertRedirect('/blogs/some-post');
+        $this->get('/blogs/some-post')->assertStatus(301)->assertRedirect('/blog/some-post');
         $this->get('/services/digital-marketing/local-seo')->assertStatus(308)->assertRedirect('/services/local-seo');
     }
 

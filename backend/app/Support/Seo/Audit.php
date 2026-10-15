@@ -224,7 +224,7 @@ class Audit
         $c('Images have alt text', $noAlt === 0 && ($p->image === '' || $p->image === null || filled($p->image_alt)), 'Describe each image for search engines and screen readers.');
         $c('Can be indexed', ! $p->noindex);
         $pts = array_sum(array_map(fn ($x) => $x['level'] === 'pass' ? 1 : ($x['level'] === 'warn' ? 0.5 : 0), $checks));
-        return ['id' => $p->id, 'title' => $p->title, 'path' => '/blogs/'.$p->slug, 'keyword' => $p->focus_keyword, 'words' => count($w),
+        return ['id' => $p->id, 'title' => $p->title, 'path' => '/blog/'.$p->slug, 'keyword' => $p->focus_keyword, 'words' => count($w),
             'score' => (int) round($pts / max(1, count($checks)) * 100), 'checks' => $checks];
     }
 }

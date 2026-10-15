@@ -53,13 +53,13 @@ class AnalyticsTest extends TestCase
     public function test_a_visit_its_pages_time_and_lead_are_recorded(): void
     {
         $sid = str_repeat('c', 32);
-        $pv = $this->postJson('/api/t', ['sid' => $sid, 'p' => '/blogs/aeo-geo-guide', 'r' => 'https://www.perplexity.ai/search/x', 'q' => '?utm_campaign=autumn'], ['User-Agent' => self::UA])->json('pv');
+        $pv = $this->postJson('/api/t', ['sid' => $sid, 'p' => '/blog/aeo-geo-guide', 'r' => 'https://www.perplexity.ai/search/x', 'q' => '?utm_campaign=autumn'], ['User-Agent' => self::UA])->json('pv');
         $this->postJson('/api/t', ['sid' => $sid, 'pv' => $pv, 'sec' => 75], ['User-Agent' => self::UA])->assertNoContent();
         $this->postJson('/api/t', ['sid' => $sid, 'p' => '/contact', 'r' => '', 'q' => ''], ['User-Agent' => self::UA])->assertOk();
         $this->postJson('/api/t', ['sid' => $sid, 'p' => '/admin/leads', 'r' => '', 'q' => ''], ['User-Agent' => self::UA]); // never counted
 
         $v = AnalyticsVisit::query()->firstOrFail();
-        $this->assertSame(['AI', 'Perplexity', '/blogs/aeo-geo-guide', 'autumn', 2, 75], [$v->channel, $v->source, $v->landing_path, $v->utm_campaign, $v->pageviews, $v->seconds]);
+        $this->assertSame(['AI', 'Perplexity', '/blog/aeo-geo-guide', 'autumn', 2, 75], [$v->channel, $v->source, $v->landing_path, $v->utm_campaign, $v->pageviews, $v->seconds]);
 
         $this->postJson('/api/contact', ['name' => 'Amy Lee', 'business' => 'Lee Dental', 'email' => 'amy@example.com', 'phone' => '07700 900123', 'service' => 'Local SEO', 'budget' => 'Under £500', 'sid' => $sid])->assertOk();
         $this->assertNotNull($v->fresh()->lead_id);

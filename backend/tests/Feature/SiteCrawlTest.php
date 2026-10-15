@@ -38,10 +38,10 @@ class SiteCrawlTest extends TestCase
         $run = (new Crawler())->run('test');
         $this->assertSame('done', $run->status, (string) $run->message);
         $this->assertGreaterThan(50, $run->pages);
-        $broken = DB::table('crawl_links')->where('run_id', $run->id)->where('ok', false)->where('from_path', '/blogs/crawl-me')->pluck('status', 'url');
+        $broken = DB::table('crawl_links')->where('run_id', $run->id)->where('ok', false)->where('from_path', '/blog/crawl-me')->pluck('status', 'url');
         $this->assertEquals(['/services/no-such-service' => 404, 'https://dead.example.com/page' => 404, '/pages/missing.webp' => 404], $broken->all());
         $this->assertSame(404, (int) DB::table('crawl_pages')->where('run_id', $run->id)->where('path', '/services/no-such-service')->value('status'));
-        $post = DB::table('crawl_pages')->where('run_id', $run->id)->where('path', '/blogs/crawl-me')->first();
+        $post = DB::table('crawl_pages')->where('run_id', $run->id)->where('path', '/blog/crawl-me')->first();
         $this->assertSame(200, (int) $post->status);
         $this->assertGreaterThan(0, $post->inbound);
         $this->assertGreaterThanOrEqual(2, $post->out_external);
@@ -63,7 +63,7 @@ class SiteCrawlTest extends TestCase
             ->set('tab', 'health')->assertSee('Error pages')->assertSee('/services/no-such-service')
             ->set('tab', 'broken')->assertSee('https://dead.example.com/page')->assertSee('/pages/missing.webp')
             ->set('show', 'images')->assertDontSee('https://dead.example.com/page')
-            ->set('show', 'all')->set('tab', 'linking')->set('q', 'crawl-me')->call('toggle', '/blogs/crawl-me')->assertSee('Linked from')
+            ->set('show', 'all')->set('tab', 'linking')->set('q', 'crawl-me')->call('toggle', '/blog/crawl-me')->assertSee('Linked from')
             ->set('q', '')->set('tab', 'external')->assertSee('dead.example.com');
         $this->assertSame($u->id, auth()->id());
         $this->get('/admin/seo-audit')->assertOk()->assertSee('Site health');

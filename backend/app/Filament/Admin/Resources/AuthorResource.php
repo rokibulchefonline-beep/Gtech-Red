@@ -41,7 +41,7 @@ class AuthorResource extends Resource
                 Forms\Components\TextInput::make('website')->label('Personal website')->url()->maxLength(300),
                 Forms\Components\TextInput::make('sort')->numeric()->default(0)->label('Order'),
             ]),
-            \App\Filament\Support\SchemaPanel::section(fn (Forms\Get $get) => '/blogs/author/'.($get('slug') ?: \Illuminate\Support\Str::slug((string) $get('name'))), fn (Forms\Get $get) => (string) $get('name'), 'ProfilePage, Person, BreadcrumbList'),
+            \App\Filament\Support\SchemaPanel::section(fn (Forms\Get $get) => '/blog/author/'.($get('slug') ?: \Illuminate\Support\Str::slug((string) $get('name'))), fn (Forms\Get $get) => (string) $get('name'), 'ProfilePage, Person, BreadcrumbList'),
         ]);
     }
 
@@ -51,7 +51,7 @@ class AuthorResource extends Resource
             Tables\Columns\ImageColumn::make('photo')->circular()->defaultImageUrl(fn (Author $r) => (new \App\Filament\Support\InitialsAvatar)->get($r)),
             Tables\Columns\TextColumn::make('name')->searchable()->sortable()->description(fn (Author $r) => $r->job_title),
             Tables\Columns\TextColumn::make('posts')->label('Posts')->getStateUsing(fn (Author $r) => Post::query()->where('author', $r->name)->count()),
-            Tables\Columns\TextColumn::make('slug')->label('Page')->formatStateUsing(fn ($state) => '/blogs/author/'.$state)->color('gray'),
+            Tables\Columns\TextColumn::make('slug')->label('Page')->formatStateUsing(fn ($state) => '/blog/author/'.$state)->color('gray'),
         ])->actions([Tables\Actions\EditAction::make(), Tables\Actions\DeleteAction::make()]);
     }
 

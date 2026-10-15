@@ -51,7 +51,7 @@ class PostResource extends Resource
                 Forms\Components\Section::make('Post')->schema([
                     Forms\Components\TextInput::make('title')->required()->maxLength(160)->live(onBlur: true)
                         ->afterStateUpdated(fn (Get $get, Set $set, ?string $state) => $get('slug') ? null : $set('slug', Str::slug((string) $state))),
-                    Forms\Components\TextInput::make('slug')->label('URL slug')->required()->maxLength(160)->prefix('/blogs/')
+                    Forms\Components\TextInput::make('slug')->label('URL slug')->required()->maxLength(160)->prefix('/blog/')
                         ->unique(ignoreRecord: true)->rule('regex:/^[a-z0-9-]+$/')->helperText('Lowercase words separated by hyphens. If you change it later, the old address keeps working (a redirect is added).'),
                     Forms\Components\Textarea::make('excerpt')->rows(2)->maxLength(400)->helperText('One or two sentences shown on the blog list.'),
                     // Images get alt text (click an image, then the edit button); links can be edited in place.
@@ -66,7 +66,7 @@ class PostResource extends Resource
                     Forms\Components\TextInput::make('canonical')->url()->maxLength(500),
                     Forms\Components\Toggle::make('noindex')->label('Hide from search engines'),
                 ]),
-                \App\Filament\Support\SchemaPanel::section(fn (Forms\Get $get) => '/blogs/'.$get('slug'), fn (Forms\Get $get) => $get('title'), 'BlogPosting (article), WebPage, BreadcrumbList'),
+                \App\Filament\Support\SchemaPanel::section(fn (Forms\Get $get) => '/blog/'.$get('slug'), fn (Forms\Get $get) => $get('title'), 'BlogPosting (article), WebPage, BreadcrumbList'),
             ])->columnSpan(['lg' => 2]),
             Forms\Components\Group::make([
                 Forms\Components\Section::make('SEO check')->schema([
@@ -153,7 +153,7 @@ class PostResource extends Resource
             ->defaultSort('updated_at', 'desc')
             ->columns([
                 Tables\Columns\ImageColumn::make('image')->label('')->getStateUsing(fn (Post $r) => $r->image ? ImageField::preview($r->image) : null)->width(64)->height(40)->visibleFrom('md'),
-                Tables\Columns\TextColumn::make('title')->searchable()->sortable()->wrap()->description(fn (Post $r) => '/blogs/'.$r->slug),
+                Tables\Columns\TextColumn::make('title')->searchable()->sortable()->wrap()->description(fn (Post $r) => '/blog/'.$r->slug),
                 Tables\Columns\TextColumn::make('status')->badge()->color(fn (string $state) => ['published' => 'success', 'scheduled' => 'info'][$state] ?? 'gray'),
                 Tables\Columns\TextColumn::make('category')->searchable()->toggleable()->visibleFrom('lg'),
                 Tables\Columns\IconColumn::make('featured')->boolean()->toggleable()->visibleFrom('lg'),
@@ -166,7 +166,7 @@ class PostResource extends Resource
             ])
             ->actions([
                 Tables\Actions\Action::make('view')->icon('heroicon-o-arrow-top-right-on-square')->color('gray')->iconButton()->tooltip('View on the website')
-                    ->url(fn (Post $r) => \App\Filament\Support\SiteLink::to('/blogs/'.$r->slug), shouldOpenInNewTab: true),
+                    ->url(fn (Post $r) => \App\Filament\Support\SiteLink::to('/blog/'.$r->slug), shouldOpenInNewTab: true),
                 Tables\Actions\EditAction::make()->iconButton()->tooltip('Edit'),
             ])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);

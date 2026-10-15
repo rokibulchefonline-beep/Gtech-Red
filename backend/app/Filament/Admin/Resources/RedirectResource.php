@@ -31,7 +31,7 @@ class RedirectResource extends Resource
                 ->dehydrateStateUsing(fn (?string $state) => Redirect::normalise((string) $state))
                 ->unique(ignoreRecord: true),
             Forms\Components\TextInput::make('to_path')->label('New address')->required()->maxLength(500)
-                ->placeholder('/blogs/new-post-name or https://…')->helperText('A page on this site (starting with /) or a full address.')
+                ->placeholder('/blog/new-post-name or https://…')->helperText('A page on this site (starting with /) or a full address.')
                 ->rule('regex:#^(/|https?://)#')->validationMessages(['regex' => 'Start with / or https://']),
             Forms\Components\Select::make('status_code')->label('Type')->options([301 => 'Permanent (301), the usual choice', 302 => 'Temporary (302)'])->default(301)->required(),
         ])->columns(1);

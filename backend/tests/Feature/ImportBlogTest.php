@@ -48,8 +48,8 @@ class ImportBlogTest extends TestCase
         $this->assertSame('Cover alt', $p->image_alt);
         $report = json_decode(Storage::disk('local')->get('blog-import-report.json'), true);
         $this->assertTrue($report[0]['ok'], json_encode($report[0]['problems']));
-        $this->get('/blog/seo-guide')->assertRedirect('/blogs/seo-guide');
-        $this->get('/blogs/seo-guide')->assertOk()->assertSee('Why it matters');
+        $this->get('/blogs/seo-guide')->assertRedirect('/blog/seo-guide');
+        $this->get('/blog/seo-guide')->assertOk()->assertSee('Why it matters');
     }
 
     public function test_other_sites_are_crawled_from_the_blog_listing(): void

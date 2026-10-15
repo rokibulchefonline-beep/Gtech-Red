@@ -34,15 +34,15 @@ class AdminFixesTest extends TestCase
         $p->update(['slug' => 'renamed-once']);
         $p->update(['slug' => 'renamed-twice']);
         \App\Support\Site\Repo::flush();
-        $this->get("/blogs/$old")->assertStatus(301)->assertRedirect('/blogs/renamed-twice');
-        $this->get('/blogs/renamed-once?utm_source=x')->assertRedirect('/blogs/renamed-twice?utm_source=x');
-        $this->get('/blogs/renamed-twice')->assertOk();
+        $this->get("/blog/$old")->assertStatus(301)->assertRedirect('/blog/renamed-twice');
+        $this->get('/blog/renamed-once?utm_source=x')->assertRedirect('/blog/renamed-twice?utm_source=x');
+        $this->get('/blog/renamed-twice')->assertOk();
 
         // Back to the first address: no loop, the live page wins.
         $p->update(['slug' => $old]);
         \App\Support\Site\Repo::flush(); // a new request would start with fresh data
-        $this->get("/blogs/$old")->assertOk();
-        $this->assertSame(0, Redirect::query()->where('from_path', "/blogs/$old")->count());
+        $this->get("/blog/$old")->assertOk();
+        $this->assertSame(0, Redirect::query()->where('from_path', "/blog/$old")->count());
 
         $c = CaseStudy::query()->where('status', 'published')->firstOrFail(); $oldC = $c->slug;
         $c->update(['slug' => 'new-case-address']);

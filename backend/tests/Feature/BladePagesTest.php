@@ -36,7 +36,7 @@ class BladePagesTest extends TestCase
             '/about' => 'id="case-studies"',
             '/contact' => 'Get in touch',
             '/case-studies' => 'Digital Marketing Case Studies and',
-            '/blogs' => 'Popular Posts',
+            '/blog' => 'Popular Posts',
             '/terms' => 'Last updated:',
             '/privacy-policy' => 'Table of Contents',
             '/cookie-policy' => 'Table of Contents',
@@ -47,7 +47,7 @@ class BladePagesTest extends TestCase
             $this->assertStringNotContainsString(">\n<", $res->getContent(), "$url is not minified");
         }
         $slug = Post::query()->value('slug');
-        $this->get("/blogs/$slug")->assertOk()->assertSee('Written by');
+        $this->get("/blog/$slug")->assertOk()->assertSee('Written by');
     }
 
     public function test_unknown_pages_use_the_site_404(): void
@@ -55,13 +55,13 @@ class BladePagesTest extends TestCase
         $this->get('/services/not-a-service')->assertNotFound()->assertSee('Page not found');
         $this->get('/industries/nope')->assertNotFound();
         $this->get('/case-studies/nope')->assertNotFound();
-        $this->get('/blogs/nope')->assertNotFound();
+        $this->get('/blog/nope')->assertNotFound();
     }
 
     public function test_blog_search_and_categories_run_on_the_server(): void
     {
-        $this->get('/blogs?q=zzzz-no-match')->assertOk()->assertSee('No articles found.')->assertSee('0 articles for “zzzz-no-match”', false);
-        $this->get('/blogs?category=seo')->assertOk()->assertSee('in SEO', false);
+        $this->get('/blog?q=zzzz-no-match')->assertOk()->assertSee('No articles found.')->assertSee('0 articles for “zzzz-no-match”', false);
+        $this->get('/blog?category=seo')->assertOk()->assertSee('in SEO', false);
     }
 
     public function test_blog_helpers_match_the_website(): void

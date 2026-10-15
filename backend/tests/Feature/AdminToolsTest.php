@@ -110,7 +110,7 @@ class AdminToolsTest extends TestCase
         $this->assertSame('<figure><img src="/a.webp" alt="A"><figcaption>Our team</figcaption></figure>', Blog::captions('<p><img src="/a.webp" alt="A" title="Our team"></p>'));
         Post::create(['title' => 'Captioned', 'slug' => 'captioned', 'status' => 'published', 'body' => '<p>Hello <b>there</b>.</p><p><img src="/x.webp" alt="X" title="A chart of results"></p>',
             'image' => '/posts/default.webp', 'image_alt' => 'Cover', 'image_caption' => 'Photo by our team']);
-        $this->get('/blogs/captioned')->assertOk()
+        $this->get('/blog/captioned')->assertOk()
             ->assertSee('<figcaption class="bp-caption">Photo by our team</figcaption>', false)
             ->assertSee('<figcaption>A chart of results</figcaption>', false);
     }
@@ -142,9 +142,9 @@ class AdminToolsTest extends TestCase
         Post::create(['title' => 'Rule test', 'slug' => 'rule-test', 'status' => 'published', 'body' => '<p>x</p>']);
         \App\Support\Site\PageCache::flush();
 
-        $post = $this->get('/blogs/rule-test')->assertOk()->getContent();
+        $post = $this->get('/blog/rule-test')->assertOk()->getContent();
         $this->assertStringContainsString('"@type":"HowTo"', $post);
-        $this->assertStringContainsString('/blogs/rule-test', $post);
+        $this->assertStringContainsString('/blog/rule-test', $post);
         $about = $this->get('/about')->assertOk()->getContent();
         $this->assertStringNotContainsString('"@type":"HowTo"', $about);
         $this->assertStringContainsString('"reviewBody":"Brilliant team."', $about);
