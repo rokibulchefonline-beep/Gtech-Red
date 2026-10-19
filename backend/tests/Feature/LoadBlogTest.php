@@ -24,16 +24,19 @@ class LoadBlogTest extends TestCase
 
     public function test_real_posts_replace_untouched_demo_posts_but_never_edited_ones(): void
     {
-        \Illuminate\Support\Facades\Artisan::call('gtech:seed-content');
+        // A site installed earlier with the demo posts, one of which was edited.
+        foreach (\App\Support\Content::get('demo.posts') as $d) Post::create(['title' => $d['title'], 'slug' => $d['slug'], 'body' => 'demo', 'status' => 'published']);
         $real = collect(json_decode(file_get_contents(database_path('data/blog-posts.json')), true))->keyBy('slug');
         Post::where('slug', 'aeo-geo-guide')->update(['title' => 'My edited demo post']);
 
-        $this->artisan('gtech:load-blog --remove-demo')->assertSuccessful();
+        $this->artisan('gtech:load-blog')->assertSuccessful();
 
         // The demo post with the same address as a real post is replaced by the real one.
         $this->assertSame($real['local-seo-checklist']['title'], Post::where('slug', 'local-seo-checklist')->value('title'));
         // Untouched demo posts are removed; the edited one is kept.
         $this->assertSame(['My edited demo post'], Post::whereNotIn('slug', $real->keys())->pluck('title')->all());
         $this->assertSame(17, Post::count());
+        // Old-site addresses linked from the posts redirect to their new pages.
+        $this->get('/seo-service')->assertRedirect('/services/search-engine-optimization');
     }
 }

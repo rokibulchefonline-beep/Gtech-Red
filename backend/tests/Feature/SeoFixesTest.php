@@ -78,7 +78,7 @@ class SeoFixesTest extends TestCase
 
     public function test_titles_fit_and_every_page_has_a_share_image(): void
     {
-        foreach (['/', '/about', '/contact', '/industries', '/blog', '/terms', '/cookie-policy', '/case-studies/chefonline', '/blog/aeo-geo-guide'] as $u) {
+        foreach (['/', '/about', '/contact', '/industries', '/blog', '/terms', '/cookie-policy', '/case-studies/chefonline', '/blog/optimise-website-for-ai-search'] as $u) {
             $html = $this->get($u)->assertOk()->getContent();
             preg_match('#<title>(.*?)</title>#', $html, $t);
             $this->assertLessThanOrEqual(60, mb_strlen(html_entity_decode($t[1])), "$u title: {$t[1]}");
@@ -93,9 +93,9 @@ class SeoFixesTest extends TestCase
     public function test_named_authors_get_a_profile_page_and_person_schema(): void
     {
         $a = \App\Models\Author::create(['name' => 'Sam Writer', 'job_title' => 'Head of SEO', 'bio' => 'Ten years of SEO for UK firms.', 'linkedin' => 'https://www.linkedin.com/in/sam']);
-        \App\Models\Post::query()->where('slug', 'aeo-geo-guide')->update(['author' => 'Sam Writer']);
+        \App\Models\Post::query()->where('slug', 'optimise-website-for-ai-search')->update(['author' => 'Sam Writer']);
         \App\Support\Site\Repo::flush();
-        $post = $this->get('/blog/aeo-geo-guide')->assertOk()->getContent();
+        $post = $this->get('/blog/optimise-website-for-ai-search')->assertOk()->getContent();
         $this->assertStringContainsString('<a href="/blog/author/sam-writer" rel="author">Sam Writer</a>', $post);
         $this->assertMatchesRegularExpression('#<time datetime="\d{4}-\d\d-\d\d">#', $post);
         $this->assertStringContainsString('"author":{"@id":"https://www.gtechdigital.co.uk/blog/author/sam-writer#person"}', $post);
@@ -108,7 +108,7 @@ class SeoFixesTest extends TestCase
         $this->get('/blog/author/nobody')->assertNotFound();
         // Renaming keeps the posts.
         $a->update(['name' => 'Sam Writer-Jones']);
-        $this->assertSame('Sam Writer-Jones', \App\Models\Post::query()->where('slug', 'aeo-geo-guide')->value('author'));
+        $this->assertSame('Sam Writer-Jones', \App\Models\Post::query()->where('slug', 'optimise-website-for-ai-search')->value('author'));
     }
 
     public function test_one_clean_address_per_page(): void

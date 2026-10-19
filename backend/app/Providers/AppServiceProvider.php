@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        // Windows-safe file writes for compiled templates (see SafeFilesystem).
+        $this->app->singleton('files', fn () => new \App\Support\Filesystem\SafeFilesystem());
     }
 
     public function boot(): void

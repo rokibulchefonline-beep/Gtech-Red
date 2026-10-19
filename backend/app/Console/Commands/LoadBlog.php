@@ -14,14 +14,24 @@ use Illuminate\Support\Str;
  * their images live in the repository (database/data/blog-posts.json and public/posts/blog/), so nothing is fetched
  * from the old server. Posts are matched by slug, so the addresses stay the same and running it again never duplicates.
  * Posts that already exist are left alone (they may have been edited in the admin) unless you pass --force. An
- * untouched demo post with the same address as a real one (e.g. local-seo-checklist) is always replaced.
+ * untouched demo post with the same address as a real one (e.g. local-seo-checklist) is replaced, and the other
+ * untouched demo posts are removed.
  */
 class LoadBlog extends Command
 {
     protected $signature = 'gtech:load-blog {--force : Overwrite posts that already exist with the copied version}
-        {--remove-demo : Also delete the demo posts the site was installed with (only ones never edited)}';
+        {--remove-demo : Kept for older instructions; demo posts are always removed now}';
 
     protected $description = 'Load the posts copied from the old blog, with their images';
+
+    /** Addresses of the old website linked from the posts => their page on the new site. */
+    public const OLD_PAGES = [
+        '/digital-marketing' => '/services/digital-marketing',
+        '/seo-service' => '/services/search-engine-optimization',
+        '/service-social-media' => '/services/social-media-marketing',
+        '/web-development' => '/services/web-design-development',
+        '/get-offer' => '/free-audit',
+    ];
 
     public function handle(): int
     {
@@ -48,11 +58,18 @@ class LoadBlog extends Command
         }
 
         $removed = 0;
-        if ($this->option('remove-demo')) {
+        // The demo posts the site was once installed with are removed (only ones never edited).
+        {
             $real = array_column($posts, 'slug');
             foreach (Post::query()->whereIn('slug', array_keys($demo))->whereNotIn('slug', $real)->get() as $d) {
                 if ($isDemo($d)) { $d->delete(); $removed++; }
             }
+        }
+
+        // Old-site addresses that the copied posts link to: sent permanently to the matching page of the new site,
+        // so the links in the articles (and any Google traffic to them) keep working without editing the posts.
+        foreach (self::OLD_PAGES as $from => $to) {
+            \App\Models\Redirect::query()->firstOrCreate(['from_path' => $from], ['to_path' => $to, 'status_code' => 301]);
         }
 
         PageCache::flush();

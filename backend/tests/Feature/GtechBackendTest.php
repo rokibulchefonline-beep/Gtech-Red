@@ -77,11 +77,11 @@ class GtechBackendTest extends TestCase
         $this->assertSame(5, \App\Models\ServiceGroup::count());
         $this->assertSame(33, \App\Models\ServiceItem::count());
         $this->assertSame(7, \App\Models\Industry::count());
-        $this->assertSame(6, Post::count());
+        $this->assertSame(16, Post::count());
         Page::find('page~home')->update(['meta_title' => 'Mine']);
         Artisan::call('gtech:seed-content');
         $this->assertSame('Mine', Page::find('page~home')->meta_title, 'a second run must not overwrite edits');
-        $this->assertSame(6, Post::count());
+        $this->assertSame(16, Post::count());
     }
 
     public function test_page_builder_round_trip_keeps_every_page_unchanged(): void

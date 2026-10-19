@@ -39,7 +39,7 @@ class LinkGraph
 
         $node('/', 'Home', 'home', 'site');
         foreach (['/services' => 'Services', '/industries' => 'Industries'] as $id => $l) $node($id, $l, 'hub', 'site');
-        foreach (['/case-studies' => 'Case studies', '/blog' => 'Blog', '/about' => 'About', '/contact' => 'Contact'] as $id => $l) $node($id, $l, 'page', 'site');
+        foreach (['/case-studies' => 'Case studies', '/blog' => 'Blog', '/about' => 'About', '/contact' => 'Contact', '/free-audit' => 'Free audit'] as $id => $l) $node($id, $l, 'page', 'site');
         foreach (['/services' => 'Services', '/industries' => 'Industries', '/case-studies' => 'Case studies', '/blog' => 'Blog', '/about' => 'About us', '/contact' => 'Contact'] as $to => $l) $add('/', $to, 'home', $l);
 
         foreach (Repo::groups() as $g) {

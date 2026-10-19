@@ -67,12 +67,6 @@ class SeedContent extends Command
             }
 
             if (! $this->option('no-demo')) {
-                $rows[] = $this->demo('Demo blog posts', Post::class, Content::get('demo.posts'), fn ($p) => [
-                    'title' => $p['title'], 'slug' => $p['slug'], 'excerpt' => $p['excerpt'] ?? '', 'body' => $p['body'] ?? '', 'format' => $p['format'] ?? 'md',
-                    'category' => $p['category'] ?? 'Insights', 'categories' => [$p['category'] ?? 'Insights'], 'tags' => $p['tags'] ?? [], 'image' => $p['image'] ?? '',
-                    'image_alt' => $p['imageAlt'] ?? '', 'author' => $p['author'] ?? 'GTech Editorial Team', 'featured' => (bool) ($p['featured'] ?? false),
-                    'status' => 'published', 'date' => $p['date'] ?? now(), 'meta_title' => $p['metaTitle'] ?? '',
-                ]);
                 $rows[] = $this->demo('Demo case studies', CaseStudy::class, Content::get('demo.caseStudies'), fn ($c) => [
                     'title' => $c['title'], 'slug' => $c['slug'], 'client' => $c['client'] ?? $c['title'], 'industry' => $c['industry'] ?? '', 'duration' => $c['duration'] ?? '',
                     'excerpt' => $c['excerpt'] ?? '', 'image' => $c['image'] ?? '', 'services' => $c['services'] ?? [], 'metrics' => $c['metrics'] ?? [],
@@ -94,6 +88,8 @@ class SeedContent extends Command
         \App\Support\Site\IndustriesHubContent::apply();
         \App\Support\Site\Content\ContentReview::apply();
         \App\Support\Site\Content\HeadingUpdates::apply();
+        // The real blog posts (copied from the old blog), instead of demo posts.
+        $this->callSilently('gtech:load-blog');
         if (! in_array('Changes to These Terms', array_column((array) Page::query()->find('legal~terms')?->sections, 'heading'), true)) \App\Support\Site\LegalContent::apply();
         return self::SUCCESS;
     }
