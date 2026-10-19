@@ -1,31 +1,33 @@
 {{-- /case-studies/{slug} (app/case-studies/[slug]/page.tsx). $d CaseStudy --}}
 @extends('site.layout')
 @php($R = \App\Support\Site\Repo::class)
-@php($others = $R::caseStudies(12)->where('slug', '!=', $d->slug)->take(3)->values())
+@php($others = $R::caseStudies(50)->where('slug', '!=', $d->slug)->sortBy(fn ($o) => $o->client === $d->client ? 0 : ($o->category === $d->category ? 1 : 2))->take(3)->values())
 @php($used = collect((array) $d->services)->map(fn ($s) => $R::item($s)['item'] ?? null)->filter()->take(6)->values())
 @php($name = $d->client ?: $d->title)
 @php($metrics = (array) $d->metrics)
+@php($label = trim($name.' '.$d->categoryLabel()))
+@php($gallery = collect((array) $d->gallery)->filter(fn ($g) => !empty($g['src']))->values())
 @php($svc = $R::uri($used[0]->name ?? ''))
 @php($path = "/case-studies/{$d->slug}")
-@php($headline = "$name Case Study".($metrics ? ': '.implode(' and ', array_map(fn ($m) => "{$m['value']} {$m['label']}", array_slice($metrics, 0, 2))) : ''))
-@php($short = "$name Case Study".($metrics ? ": {$metrics[0]['value']} {$metrics[0]['label']}" : ''))
+@php($headline = "$label Case Study".($metrics ? ': '.implode(' and ', array_map(fn ($m) => "{$m['value']} {$m['label']}", array_slice($metrics, 0, 2))) : ''))
+@php($short = "$label Case Study".($metrics ? ": {$metrics[0]['value']} {$metrics[0]['label']}" : ''))
 @php($metaDesc = $d->meta_description ?: \App\Support\Site\Seo::fillDescription((string) $d->excerpt, "How GTech Digital helped $name".($used->count() ? ' with '.$used->take(2)->pluck('name')->implode(' and ') : '').($metrics ? ': '.implode(', ', array_map(fn ($m) => "{$m['value']} {$m['label']}", array_slice($metrics, 0, 2))) : '').'.'))
 @php($seo = \App\Support\Site\Seo::make($path, ['title' => $d->meta_title ?: (mb_strlen($headline) <= \App\Support\Site\Seo::TITLE_MAX ? $headline : $short), 'description' => $metaDesc, 'og' => ['type' => 'article', 'title' => $headline, 'description' => $d->excerpt, 'image' => $d->image]], [
     \App\Support\Site\Schema::page(['path' => $path, 'name' => $headline, 'description' => (string) $d->excerpt, 'mainEntity' => \App\Support\Site\Schema::abs($path).'#article', 'image' => $d->image, 'about' => $used->pluck('name')->all(), 'modified' => $d->updated_at?->format('Y-m-d')]),
-    \App\Support\Site\Schema::breadcrumb($path, [['Case Studies', '/case-studies'], [$name, $path]]),
+    \App\Support\Site\Schema::breadcrumb($path, [['Case Studies', '/case-studies'], [$label, $path]]),
     \App\Support\Site\Schema::article(['path' => $path, 'headline' => $headline, 'description' => $d->meta_description ?: ($d->excerpt ?: ''), 'image' => $d->image, 'keywords' => $used->pluck('name')->all(), 'modified' => $d->updated_at?->format('Y-m-d')]),
 ]))
 @section('content')
 <section class="cs-hero">
 <div class="wrap cs-hero-in{{ $d->image ? ' has-img' : '' }}">
 <div class="cs-hero-copy">
-<nav class="sp-crumbs left" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/case-studies">Case Studies</a><span>/</span><b>{{ $name }}</b></nav>
-@if ($d->industry)<span class="cs-tag">{{ $d->industry }}</span>@endif
-<h1>{{ $name }} Case Study{!! $metrics ? ': <span class="hl">'.e(implode(' and ', array_map(fn ($m) => "{$m['value']} {$m['label']}", array_slice($metrics, 0, 2)))).'</span>' : '' !!}</h1>
+<nav class="sp-crumbs left" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/case-studies">Case Studies</a><span>/</span><b>{{ $label }}</b></nav>
+@if ($d->categoryLabel() || $d->industry)<span class="cs-tag">{{ collect([$d->categoryLabel(), $d->industry])->filter()->implode(' · ') }}</span>@endif
+<h1>{{ $label }} Case Study{!! $metrics ? ': <span class="hl">'.e(implode(' and ', array_map(fn ($m) => "{$m['value']} {$m['label']}", array_slice($metrics, 0, 2)))).'</span>' : '' !!}</h1>
 @if ($d->excerpt)<p class="cs-lead">{{ $d->excerpt }}</p>@endif
 <div class="sp-hero-btns left">
 <a class="sp-btn-red" href="/contact?service={{ $svc }}">Get Similar Results</a>
-<a class="sp-btn-line light" href="#results">See the Results</a>
+@if ($metrics || $d->results)<a class="sp-btn-line light" href="#results">See the Results</a>@endif
 </div>
 </div>
 @if ($d->image)<div class="cs-hero-art"><img src="{{ $d->image }}" alt="{{ $d->image_alt ?: "$name case study" }}" fetchpriority="high" decoding="async"></div>@endif
@@ -53,9 +55,16 @@
 <div class="cs-main">
 @if ($d->challenge)<section id="challenge"><h2>@hl("The Challenge Facing $name")</h2><p>{{ $d->challenge }}</p></section>@endif
 @if ($d->solution)<section id="solution"><h2>@hl("Our Solution for $name")</h2><p>{{ $d->solution }}</p></section>@endif
+@if ($d->results)<section @if (!$metrics) id="results" @endif><h2>@hl("Results for [[$name]]")</h2><ul class="cs-results">@foreach ((array) $d->results as $r)<li>@icon('lucide:check', 18){{ $r }}</li>@endforeach</ul></section>@endif
 @if (!$d->challenge && !$d->solution && $d->body)<section><p style="white-space:pre-line">{{ $d->body }}</p></section>@endif
 </div>
 </div></section>
+@if ($gallery->count())
+<section class="sp-sec cs-gallery-sec"><div class="wrap">
+<div class="sp-head center"><h2>@hl("$label [[Project Gallery]]")</h2></div>
+<div class="cs-gallery n{{ min($gallery->count(), 3) }}">@foreach ($gallery as $g)<figure><img src="{{ $g['src'] }}" alt="{{ $g['alt'] ?? "$label project" }}" loading="lazy" decoding="async">@if (!empty($g['caption']))<figcaption>{{ $g['caption'] }}</figcaption>@endif</figure>@endforeach</div>
+</div></section>
+@endif
 @if (!empty($d->quote['text']))
 <section class="sp-sec"><div class="wrap"><figure class="cs-quote">@icon('lucide:quote', 34)<blockquote>{{ $d->quote['text'] }}</blockquote><figcaption><b>{{ $d->quote['name'] ?? '' }}</b>@if (!empty($d->quote['role']))<span>{{ $d->quote['role'] }}</span>@endif</figcaption></figure></div></section>
 @endif

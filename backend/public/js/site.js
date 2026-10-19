@@ -397,4 +397,18 @@
         .catch(function () { show(false, 'Network error. Try again.'); });
     });
   });
+
+  // Case studies: the category filter works without reloading (the links still work without JavaScript).
+  document.querySelectorAll('[data-cs-filter]').forEach(function (nav) {
+    var cards = document.querySelectorAll('.case-grid .case-card');
+    nav.addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-cat]');
+      if (!a || e.metaKey || e.ctrlKey) return;
+      e.preventDefault();
+      var cat = a.getAttribute('data-cat');
+      nav.querySelectorAll('a').forEach(function (l) { l.toggleAttribute('aria-current', l === a); });
+      cards.forEach(function (c) { c.hidden = !!cat && c.getAttribute('data-cat') !== cat; });
+      history.replaceState(null, '', a.getAttribute('href'));
+    });
+  });
 })();

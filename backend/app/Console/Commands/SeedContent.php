@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\CaseStudy;
 use App\Models\Client;
 use App\Models\CoreService;
 use App\Models\Industry;
@@ -67,12 +66,6 @@ class SeedContent extends Command
             }
 
             if (! $this->option('no-demo')) {
-                $rows[] = $this->demo('Demo case studies', CaseStudy::class, Content::get('demo.caseStudies'), fn ($c) => [
-                    'title' => $c['title'], 'slug' => $c['slug'], 'client' => $c['client'] ?? $c['title'], 'industry' => $c['industry'] ?? '', 'duration' => $c['duration'] ?? '',
-                    'excerpt' => $c['excerpt'] ?? '', 'image' => $c['image'] ?? '', 'services' => $c['services'] ?? [], 'metrics' => $c['metrics'] ?? [],
-                    'challenge' => $c['challenge'] ?? '', 'solution' => $c['solution'] ?? '', 'results' => $c['results'] ?? [], 'quote' => $c['quote'] ?? null,
-                    'body' => $c['body'] ?? '', 'status' => 'published', 'order' => 100,
-                ]);
                 $rows[] = $this->demo('Partner badges', Partner::class, Content::get('demo.partners'), fn ($l, $i) => ['name' => $l['name'], 'logo' => $l['logo'], 'url' => $l['url'] ?? '', 'order' => ($i + 1) * 10, 'visible' => true]);
                 $rows[] = $this->demo('Client logos', Client::class, Content::get('demo.clients'), fn ($l, $i) => ['name' => $l['name'], 'logo' => $l['logo'], 'url' => $l['url'] ?? '', 'order' => ($i + 1) * 10, 'visible' => true]);
             }
@@ -90,6 +83,7 @@ class SeedContent extends Command
         \App\Support\Site\Content\HeadingUpdates::apply();
         // The real blog posts (copied from the old blog), instead of demo posts.
         $this->callSilently('gtech:load-blog');
+        $this->callSilently('gtech:load-case-studies');
         if (! in_array('Changes to These Terms', array_column((array) Page::query()->find('legal~terms')?->sections, 'heading'), true)) \App\Support\Site\LegalContent::apply();
         return self::SUCCESS;
     }

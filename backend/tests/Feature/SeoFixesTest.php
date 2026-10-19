@@ -78,7 +78,7 @@ class SeoFixesTest extends TestCase
 
     public function test_titles_fit_and_every_page_has_a_share_image(): void
     {
-        foreach (['/', '/about', '/contact', '/industries', '/blog', '/terms', '/cookie-policy', '/case-studies/chefonline', '/blog/optimise-website-for-ai-search'] as $u) {
+        foreach (['/', '/about', '/contact', '/industries', '/blog', '/terms', '/cookie-policy', '/case-studies/chefonline-seo', '/blog/optimise-website-for-ai-search'] as $u) {
             $html = $this->get($u)->assertOk()->getContent();
             preg_match('#<title>(.*?)</title>#', $html, $t);
             $this->assertLessThanOrEqual(60, mb_strlen(html_entity_decode($t[1])), "$u title: {$t[1]}");

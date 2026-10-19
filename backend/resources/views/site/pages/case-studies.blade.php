@@ -8,6 +8,16 @@
 ]))
 @section('content')
 @include('site.c.page-head', ['title' => 'Digital Marketing Case Studies and [[Results]]', 'sub' => 'GTech Digital case studies show measurable results from SEO, Google Ads, social media, web design and custom software projects for UK businesses.'])
-<section class="wrap block"><h2 class="sr-only">Client results</h2><div class="case-grid">@foreach (\App\Support\Site\Repo::caseStudies() as $i => $d)@include('site.c.case-card', ['doc' => $d, 'index' => $i])@endforeach</div></section>
+@php($all = \App\Support\Site\Repo::caseStudies())
+@php($cats = collect(\App\Models\CaseStudy::CATEGORIES)->filter(fn ($l, $k) => $all->contains('category', $k)))
+@php($cat = $cats->has(request('category')) ? request('category') : '')
+<section class="wrap block"><h2 class="sr-only">Client results</h2>
+@if ($cats->count() > 1)
+<nav class="cs-filter" aria-label="Filter case studies by category" data-cs-filter>
+<a href="/case-studies" data-cat=""@if (!$cat) aria-current="true"@endif>All <span>{{ $all->count() }}</span></a>
+@foreach ($cats as $k => $l)<a href="/case-studies?category={{ $k }}" data-cat="{{ $k }}"@if ($cat === $k) aria-current="true"@endif>{{ $l }} <span>{{ $all->where('category', $k)->count() }}</span></a>@endforeach
+</nav>
+@endif
+<div class="case-grid">@foreach ($all as $i => $d)@include('site.c.case-card', ['doc' => $d, 'index' => $i, 'hidden' => $cat && $d->category !== $cat])@endforeach</div></section>
 @include('site.c.inquiry')
 @endsection

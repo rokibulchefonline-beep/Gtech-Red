@@ -65,6 +65,7 @@ class CaseStudyResource extends Resource
                 ]),
                 Forms\Components\Section::make('Client')->schema([
                     Forms\Components\TextInput::make('client')->maxLength(120),
+                    Forms\Components\Select::make('category')->options(CaseStudy::CATEGORIES)->placeholder('None')->helperText('The filter on the Case Studies page, and part of the page heading.'),
                     Forms\Components\TextInput::make('industry')->maxLength(80),
                     Forms\Components\TextInput::make('duration')->maxLength(60)->placeholder('6 months'),
                     Forms\Components\TextInput::make('website')->url()->maxLength(500),
@@ -74,6 +75,13 @@ class CaseStudyResource extends Resource
                     ImageField::make('image', 'Banner image', 'image_alt'),
                     Forms\Components\TextInput::make('image_alt')->label('Alt text')->maxLength(200),
                     ImageField::make('logo', 'Client logo'),
+                ]),
+                Forms\Components\Section::make('Gallery')->description('Screenshots shown on the case study page: website home page, app screens, ads, reports.')->schema([
+                    Forms\Components\Repeater::make('gallery')->hiddenLabel()->schema([
+                        ImageField::make('src', 'Image'),
+                        Forms\Components\TextInput::make('alt')->label('Alt text')->maxLength(200),
+                        Forms\Components\TextInput::make('caption')->maxLength(160),
+                    ])->defaultItems(0)->reorderable()->collapsible()->addActionLabel('Add image'),
                 ]),
             ])->columnSpan(['lg' => 1]),
         ])->columns(3);
@@ -93,12 +101,12 @@ class CaseStudyResource extends Resource
             ->reorderable('order')
             ->columns([
                 Tables\Columns\ImageColumn::make('image')->label('')->getStateUsing(fn (CaseStudy $r) => $r->image ? ImageField::preview($r->image) : null)->width(64)->height(40)->visibleFrom('md'),
-                Tables\Columns\TextColumn::make('title')->searchable()->sortable()->description(fn (CaseStudy $r) => $r->industry),
+                Tables\Columns\TextColumn::make('title')->searchable()->sortable()->description(fn (CaseStudy $r) => collect([$r->categoryLabel(), $r->industry])->filter()->implode(' · ')),
                 Tables\Columns\TextColumn::make('status')->badge()->color(fn (string $state) => $state === 'published' ? 'success' : 'gray'),
                 Tables\Columns\TextColumn::make('metrics')->label('Numbers')->getStateUsing(fn (CaseStudy $r) => collect($r->metrics ?? [])->map(fn ($m) => ($m['value'] ?? '').' '.($m['label'] ?? ''))->implode(' · '))->wrap()->visibleFrom('lg'),
                 Tables\Columns\TextColumn::make('order')->sortable()->visibleFrom('md'),
             ])
-            ->filters([Tables\Filters\SelectFilter::make('status')->options(['draft' => 'Draft', 'published' => 'Published'])])
+            ->filters([Tables\Filters\SelectFilter::make('status')->options(['draft' => 'Draft', 'published' => 'Published']), Tables\Filters\SelectFilter::make('category')->options(CaseStudy::CATEGORIES)])
             ->actions([
                 Tables\Actions\Action::make('view')->icon('heroicon-o-arrow-top-right-on-square')->color('gray')->iconButton()->tooltip('View on the website')
                     ->url(fn (CaseStudy $r) => \App\Filament\Support\SiteLink::to('/case-studies/'.$r->slug), shouldOpenInNewTab: true),

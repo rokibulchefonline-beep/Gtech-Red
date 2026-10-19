@@ -1,0 +1,517 @@
+[
+ {
+  "slug": "chefonline-digital-marketing",
+  "title": "ChefOnline Digital Marketing",
+  "client": "ChefOnline",
+  "category": "digital-marketing",
+  "industry": "Restaurant Technology",
+  "website": "https://www.chefonline.co.uk",
+  "logo": "/clients/chefonline.png",
+  "services": [
+   "digital-marketing",
+   "social-media-marketing",
+   "facebook-marketing",
+   "instagram-marketing"
+  ],
+  "image": "/case/chefonline-digital-marketing.webp",
+  "imageAlt": "ChefOnline digital marketing case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/chefonline-digital-marketing-2.webp",
+    "alt": "ChefOnline Digital Marketing project overview"
+   }
+  ],
+  "order": 10,
+  "excerpt": "Joined-up social media and paid campaigns that keep ChefOnline in front of the right audience all year.",
+  "challenge": "ChefOnline is a UK online ordering platform that lets restaurants and takeaways take orders directly, without paying marketplace commission. Its marketing ran in bursts, with posts and ads planned one at a time, so reach rose and fell and it was hard to tell which activity actually brought people in.",
+  "solution": "We built a year-round marketing plan for ChefOnline: a content calendar for Facebook and Instagram, paid campaigns aimed at clearly defined audiences, consistent branded creative and tracking on every campaign so spend could be moved to what worked.",
+  "results": [
+   "A steady, planned flow of content instead of one-off posts",
+   "Paid campaigns targeted at clearly defined audiences",
+   "Consistent branding across every channel",
+   "Every campaign tracked, so budget follows what works"
+  ]
+ },
+ {
+  "slug": "chefonline-seo",
+  "title": "ChefOnline SEO",
+  "client": "ChefOnline",
+  "category": "seo",
+  "industry": "Restaurant Technology",
+  "website": "https://www.chefonline.co.uk",
+  "logo": "/clients/chefonline.png",
+  "services": [
+   "search-engine-optimization",
+   "local-seo",
+   "content-marketing"
+  ],
+  "image": "/case/chefonline-seo.webp",
+  "imageAlt": "ChefOnline SEO case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/chefonline-seo-2.webp",
+    "alt": "ChefOnline SEO project overview"
+   }
+  ],
+  "order": 110,
+  "excerpt": "Technical fixes, focused content and local SEO to help ChefOnline get found on Google by the people searching for it.",
+  "challenge": "ChefOnline is a UK online ordering platform that lets restaurants and takeaways take orders directly, without paying marketplace commission. Important pages were not ranking for the searches its audience makes, and technical issues made it harder for Google to crawl and understand the site.",
+  "solution": "We audited the ChefOnline website, fixed crawl, speed and indexing issues, mapped keywords to the right pages, rewrote titles and content around real search intent, added structured data and built local and industry citations.",
+  "results": [
+   "Technical SEO issues found and fixed",
+   "Each key page focused on clear search terms",
+   "Structured data added for richer Google results",
+   "A content plan to keep growing search visibility"
+  ]
+ },
+ {
+  "slug": "chefonline-web-development",
+  "title": "ChefOnline Web Development",
+  "client": "ChefOnline",
+  "category": "web-development",
+  "industry": "Restaurant Technology",
+  "website": "https://www.chefonline.co.uk",
+  "logo": "/clients/chefonline.png",
+  "services": [
+   "web-design-development",
+   "website-design",
+   "laravel-development"
+  ],
+  "image": "/case/chefonline-web-development.webp",
+  "imageAlt": "ChefOnline web development case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/chefonline-web-development-2.webp",
+    "alt": "ChefOnline Web Development project overview"
+   }
+  ],
+  "order": 210,
+  "excerpt": "A fast, mobile-first website for ChefOnline, built to be easy to manage and to turn visitors into enquiries.",
+  "challenge": "ChefOnline is a UK online ordering platform that lets restaurants and takeaways take orders directly, without paying marketplace commission. The website needed to work well on phones, load quickly and make the next step obvious for visitors, while staying easy for the team to update.",
+  "solution": "We designed and developed a new website for ChefOnline: a clear page structure, mobile-first layouts, fast-loading pages, simple content management and clear calls to action on every page, with analytics set up from launch.",
+  "results": [
+   "Mobile-first design that works on every screen",
+   "Fast-loading pages",
+   "Content the team can update without a developer",
+   "Clear calls to action and analytics from day one"
+  ]
+ },
+ {
+  "slug": "chefonline-app-development",
+  "title": "ChefOnline App Development",
+  "client": "ChefOnline",
+  "category": "app-development",
+  "industry": "Restaurant Technology",
+  "website": "https://www.chefonline.co.uk",
+  "logo": "/clients/chefonline.png",
+  "services": [
+   "mobile-app-development",
+   "api-system-integration"
+  ],
+  "image": "/case/chefonline-app-development.webp",
+  "imageAlt": "ChefOnline app development case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/chefonline-app-development-2.webp",
+    "alt": "ChefOnline App Development project overview"
+   }
+  ],
+  "order": 310,
+  "excerpt": "A branded food ordering app for iPhone, published on the App Store, so customers can order directly from their phone.",
+  "challenge": "ChefOnline is a UK online ordering platform that lets restaurants and takeaways take orders directly, without paying marketplace commission. Customers increasingly order on their phones, and a mobile website alone could not offer the convenience of an app: saved details, quick reordering and order updates.",
+  "solution": "We designed and built the ChefOnline customer app and published it on the App Store. Customers can find restaurants, browse menus, order for delivery or collection, pay securely and follow their order. The app connects to the same ordering platform and API as the website, so menus and orders stay in sync.",
+  "results": [
+   "Customer ordering app live on the App Store",
+   "Menus, orders and payments in sync with the web platform",
+   "Quick reordering with saved customer details",
+   "Order status updates for customers"
+  ]
+ },
+ {
+  "slug": "tablebookings-digital-marketing",
+  "title": "TableBookings.co.uk Digital Marketing",
+  "client": "TableBookings.co.uk",
+  "category": "digital-marketing",
+  "industry": "Hospitality and Reservations",
+  "website": "https://www.tablebookings.co.uk",
+  "logo": "/clients/tablebookings.png",
+  "services": [
+   "digital-marketing",
+   "social-media-marketing",
+   "facebook-marketing",
+   "instagram-marketing"
+  ],
+  "image": "/case/tablebookings-digital-marketing.webp",
+  "imageAlt": "TableBookings.co.uk digital marketing case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/tablebookings-digital-marketing-2.webp",
+    "alt": "TableBookings.co.uk Digital Marketing project overview"
+   }
+  ],
+  "order": 220,
+  "excerpt": "Joined-up social media and paid campaigns that keep TableBookings.co.uk in front of the right audience all year.",
+  "challenge": "TableBookings.co.uk is a UK restaurant table reservation platform that helps diners book a table and helps restaurants fill quiet services. Its marketing ran in bursts, with posts and ads planned one at a time, so reach rose and fell and it was hard to tell which activity actually brought people in.",
+  "solution": "We built a year-round marketing plan for TableBookings.co.uk: a content calendar for Facebook and Instagram, paid campaigns aimed at clearly defined audiences, consistent branded creative and tracking on every campaign so spend could be moved to what worked.",
+  "results": [
+   "A steady, planned flow of content instead of one-off posts",
+   "Paid campaigns targeted at clearly defined audiences",
+   "Consistent branding across every channel",
+   "Every campaign tracked, so budget follows what works"
+  ]
+ },
+ {
+  "slug": "tablebookings-seo",
+  "title": "TableBookings.co.uk SEO",
+  "client": "TableBookings.co.uk",
+  "category": "seo",
+  "industry": "Hospitality and Reservations",
+  "website": "https://www.tablebookings.co.uk",
+  "logo": "/clients/tablebookings.png",
+  "services": [
+   "search-engine-optimization",
+   "local-seo",
+   "content-marketing"
+  ],
+  "image": "/case/tablebookings-seo.webp",
+  "imageAlt": "TableBookings.co.uk SEO case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/tablebookings-seo-2.webp",
+    "alt": "TableBookings.co.uk SEO project overview"
+   }
+  ],
+  "order": 20,
+  "excerpt": "Technical fixes, focused content and local SEO to help TableBookings.co.uk get found on Google by the people searching for it.",
+  "challenge": "TableBookings.co.uk is a UK restaurant table reservation platform that helps diners book a table and helps restaurants fill quiet services. Important pages were not ranking for the searches its audience makes, and technical issues made it harder for Google to crawl and understand the site.",
+  "solution": "We audited the TableBookings.co.uk website, fixed crawl, speed and indexing issues, mapped keywords to the right pages, rewrote titles and content around real search intent, added structured data and built local and industry citations.",
+  "results": [
+   "Technical SEO issues found and fixed",
+   "Each key page focused on clear search terms",
+   "Structured data added for richer Google results",
+   "A content plan to keep growing search visibility"
+  ]
+ },
+ {
+  "slug": "tablebookings-web-development",
+  "title": "TableBookings.co.uk Web Development",
+  "client": "TableBookings.co.uk",
+  "category": "web-development",
+  "industry": "Hospitality and Reservations",
+  "website": "https://www.tablebookings.co.uk",
+  "logo": "/clients/tablebookings.png",
+  "services": [
+   "web-design-development",
+   "website-design",
+   "laravel-development"
+  ],
+  "image": "/case/tablebookings-web-development.webp",
+  "imageAlt": "TableBookings.co.uk web development case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/tablebookings-web-development-2.webp",
+    "alt": "TableBookings.co.uk Web Development project overview"
+   }
+  ],
+  "order": 120,
+  "excerpt": "A fast, mobile-first website for TableBookings.co.uk, built to be easy to manage and to turn visitors into enquiries.",
+  "challenge": "TableBookings.co.uk is a UK restaurant table reservation platform that helps diners book a table and helps restaurants fill quiet services. The website needed to work well on phones, load quickly and make the next step obvious for visitors, while staying easy for the team to update.",
+  "solution": "We designed and developed a new website for TableBookings.co.uk: a clear page structure, mobile-first layouts, fast-loading pages, simple content management and clear calls to action on every page, with analytics set up from launch.",
+  "results": [
+   "Mobile-first design that works on every screen",
+   "Fast-loading pages",
+   "Content the team can update without a developer",
+   "Clear calls to action and analytics from day one"
+  ]
+ },
+ {
+  "slug": "arta-digital-marketing",
+  "title": "ARTA Digital Marketing",
+  "client": "ARTA",
+  "category": "digital-marketing",
+  "industry": "Hospitality Awards and Events",
+  "website": "",
+  "logo": "/clients/arta.png",
+  "services": [
+   "digital-marketing",
+   "social-media-marketing",
+   "facebook-marketing",
+   "instagram-marketing"
+  ],
+  "image": "/case/arta-digital-marketing.webp",
+  "imageAlt": "ARTA digital marketing case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/arta-digital-marketing-2.webp",
+    "alt": "ARTA Digital Marketing project overview"
+   }
+  ],
+  "order": 130,
+  "excerpt": "Joined-up social media and paid campaigns that keep ARTA in front of the right audience all year.",
+  "challenge": "ARTA is the Asian Restaurant & Takeaway Awards, a national awards programme celebrating Asian restaurants and takeaways across the UK. Its marketing ran in bursts, with posts and ads planned one at a time, so reach rose and fell and it was hard to tell which activity actually brought people in.",
+  "solution": "We built a year-round marketing plan for ARTA: a content calendar for Facebook and Instagram, paid campaigns aimed at clearly defined audiences, consistent branded creative and tracking on every campaign so spend could be moved to what worked.",
+  "results": [
+   "A steady, planned flow of content instead of one-off posts",
+   "Paid campaigns targeted at clearly defined audiences",
+   "Consistent branding across every channel",
+   "Every campaign tracked, so budget follows what works"
+  ]
+ },
+ {
+  "slug": "arta-seo",
+  "title": "ARTA SEO",
+  "client": "ARTA",
+  "category": "seo",
+  "industry": "Hospitality Awards and Events",
+  "website": "",
+  "logo": "/clients/arta.png",
+  "services": [
+   "search-engine-optimization",
+   "local-seo",
+   "content-marketing"
+  ],
+  "image": "/case/arta-seo.webp",
+  "imageAlt": "ARTA SEO case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/arta-seo-2.webp",
+    "alt": "ARTA SEO project overview"
+   }
+  ],
+  "order": 230,
+  "excerpt": "Technical fixes, focused content and local SEO to help ARTA get found on Google by the people searching for it.",
+  "challenge": "ARTA is the Asian Restaurant & Takeaway Awards, a national awards programme celebrating Asian restaurants and takeaways across the UK. Important pages were not ranking for the searches its audience makes, and technical issues made it harder for Google to crawl and understand the site.",
+  "solution": "We audited the ARTA website, fixed crawl, speed and indexing issues, mapped keywords to the right pages, rewrote titles and content around real search intent, added structured data and built local and industry citations.",
+  "results": [
+   "Technical SEO issues found and fixed",
+   "Each key page focused on clear search terms",
+   "Structured data added for richer Google results",
+   "A content plan to keep growing search visibility"
+  ]
+ },
+ {
+  "slug": "arta-web-development",
+  "title": "ARTA Web Development",
+  "client": "ARTA",
+  "category": "web-development",
+  "industry": "Hospitality Awards and Events",
+  "website": "",
+  "logo": "/clients/arta.png",
+  "services": [
+   "web-design-development",
+   "website-design",
+   "laravel-development"
+  ],
+  "image": "/case/arta-web-development.webp",
+  "imageAlt": "ARTA web development case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/arta-web-development-2.webp",
+    "alt": "ARTA Web Development project overview"
+   }
+  ],
+  "order": 30,
+  "excerpt": "A fast, mobile-first website for ARTA, built to be easy to manage and to turn visitors into enquiries.",
+  "challenge": "ARTA is the Asian Restaurant & Takeaway Awards, a national awards programme celebrating Asian restaurants and takeaways across the UK. The website needed to work well on phones, load quickly and make the next step obvious for visitors, while staying easy for the team to update.",
+  "solution": "We designed and developed a new website for ARTA: a clear page structure, mobile-first layouts, fast-loading pages, simple content management and clear calls to action on every page, with analytics set up from launch.",
+  "results": [
+   "Mobile-first design that works on every screen",
+   "Fast-loading pages",
+   "Content the team can update without a developer",
+   "Clear calls to action and analytics from day one"
+  ]
+ },
+ {
+  "slug": "pride-of-asia-digital-marketing",
+  "title": "Pride of Asia Digital Marketing",
+  "client": "Pride of Asia",
+  "category": "digital-marketing",
+  "industry": "Awards and Community Events",
+  "website": "",
+  "logo": "/clients/pride-of-asia.png",
+  "services": [
+   "digital-marketing",
+   "social-media-marketing",
+   "facebook-marketing",
+   "instagram-marketing"
+  ],
+  "image": "/case/pride-of-asia-digital-marketing.webp",
+  "imageAlt": "Pride of Asia digital marketing case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/pride-of-asia-digital-marketing-2.webp",
+    "alt": "Pride of Asia Digital Marketing project overview"
+   }
+  ],
+  "order": 40,
+  "excerpt": "Joined-up social media and paid campaigns that keep Pride of Asia in front of the right audience all year.",
+  "challenge": "Pride of Asia is an awards and events brand that recognises achievement within the British Asian community. Its marketing ran in bursts, with posts and ads planned one at a time, so reach rose and fell and it was hard to tell which activity actually brought people in.",
+  "solution": "We built a year-round marketing plan for Pride of Asia: a content calendar for Facebook and Instagram, paid campaigns aimed at clearly defined audiences, consistent branded creative and tracking on every campaign so spend could be moved to what worked.",
+  "results": [
+   "A steady, planned flow of content instead of one-off posts",
+   "Paid campaigns targeted at clearly defined audiences",
+   "Consistent branding across every channel",
+   "Every campaign tracked, so budget follows what works"
+  ]
+ },
+ {
+  "slug": "pride-of-asia-seo",
+  "title": "Pride of Asia SEO",
+  "client": "Pride of Asia",
+  "category": "seo",
+  "industry": "Awards and Community Events",
+  "website": "",
+  "logo": "/clients/pride-of-asia.png",
+  "services": [
+   "search-engine-optimization",
+   "local-seo",
+   "content-marketing"
+  ],
+  "image": "/case/pride-of-asia-seo.webp",
+  "imageAlt": "Pride of Asia SEO case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/pride-of-asia-seo-2.webp",
+    "alt": "Pride of Asia SEO project overview"
+   }
+  ],
+  "order": 140,
+  "excerpt": "Technical fixes, focused content and local SEO to help Pride of Asia get found on Google by the people searching for it.",
+  "challenge": "Pride of Asia is an awards and events brand that recognises achievement within the British Asian community. Important pages were not ranking for the searches its audience makes, and technical issues made it harder for Google to crawl and understand the site.",
+  "solution": "We audited the Pride of Asia website, fixed crawl, speed and indexing issues, mapped keywords to the right pages, rewrote titles and content around real search intent, added structured data and built local and industry citations.",
+  "results": [
+   "Technical SEO issues found and fixed",
+   "Each key page focused on clear search terms",
+   "Structured data added for richer Google results",
+   "A content plan to keep growing search visibility"
+  ]
+ },
+ {
+  "slug": "pride-of-asia-web-development",
+  "title": "Pride of Asia Web Development",
+  "client": "Pride of Asia",
+  "category": "web-development",
+  "industry": "Awards and Community Events",
+  "website": "",
+  "logo": "/clients/pride-of-asia.png",
+  "services": [
+   "web-design-development",
+   "website-design",
+   "laravel-development"
+  ],
+  "image": "/case/pride-of-asia-web-development.webp",
+  "imageAlt": "Pride of Asia web development case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/pride-of-asia-web-development-2.webp",
+    "alt": "Pride of Asia Web Development project overview"
+   }
+  ],
+  "order": 240,
+  "excerpt": "A fast, mobile-first website for Pride of Asia, built to be easy to manage and to turn visitors into enquiries.",
+  "challenge": "Pride of Asia is an awards and events brand that recognises achievement within the British Asian community. The website needed to work well on phones, load quickly and make the next step obvious for visitors, while staying easy for the team to update.",
+  "solution": "We designed and developed a new website for Pride of Asia: a clear page structure, mobile-first layouts, fast-loading pages, simple content management and clear calls to action on every page, with analytics set up from launch.",
+  "results": [
+   "Mobile-first design that works on every screen",
+   "Fast-loading pages",
+   "Content the team can update without a developer",
+   "Clear calls to action and analytics from day one"
+  ]
+ },
+ {
+  "slug": "salik-and-co-digital-marketing",
+  "title": "Salik & Co Digital Marketing",
+  "client": "Salik & Co",
+  "category": "digital-marketing",
+  "industry": "Professional Services",
+  "website": "",
+  "logo": "/clients/salik-and-co.png",
+  "services": [
+   "digital-marketing",
+   "social-media-marketing",
+   "facebook-marketing",
+   "instagram-marketing"
+  ],
+  "image": "/case/salik-and-co-digital-marketing.webp",
+  "imageAlt": "Salik & Co digital marketing case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/salik-and-co-digital-marketing-2.webp",
+    "alt": "Salik & Co Digital Marketing project overview"
+   }
+  ],
+  "order": 250,
+  "excerpt": "Joined-up social media and paid campaigns that keep Salik & Co in front of the right audience all year.",
+  "challenge": "Salik & Co is a professional services firm that needed a web application to run its client work in one place. Its marketing ran in bursts, with posts and ads planned one at a time, so reach rose and fell and it was hard to tell which activity actually brought people in.",
+  "solution": "We built a year-round marketing plan for Salik & Co: a content calendar for Facebook and Instagram, paid campaigns aimed at clearly defined audiences, consistent branded creative and tracking on every campaign so spend could be moved to what worked.",
+  "results": [
+   "A steady, planned flow of content instead of one-off posts",
+   "Paid campaigns targeted at clearly defined audiences",
+   "Consistent branding across every channel",
+   "Every campaign tracked, so budget follows what works"
+  ]
+ },
+ {
+  "slug": "salik-and-co-seo",
+  "title": "Salik & Co SEO",
+  "client": "Salik & Co",
+  "category": "seo",
+  "industry": "Professional Services",
+  "website": "",
+  "logo": "/clients/salik-and-co.png",
+  "services": [
+   "search-engine-optimization",
+   "local-seo",
+   "content-marketing"
+  ],
+  "image": "/case/salik-and-co-seo.webp",
+  "imageAlt": "Salik & Co SEO case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/salik-and-co-seo-2.webp",
+    "alt": "Salik & Co SEO project overview"
+   }
+  ],
+  "order": 50,
+  "excerpt": "Technical fixes, focused content and local SEO to help Salik & Co get found on Google by the people searching for it.",
+  "challenge": "Salik & Co is a professional services firm that needed a web application to run its client work in one place. Important pages were not ranking for the searches its audience makes, and technical issues made it harder for Google to crawl and understand the site.",
+  "solution": "We audited the Salik & Co website, fixed crawl, speed and indexing issues, mapped keywords to the right pages, rewrote titles and content around real search intent, added structured data and built local and industry citations.",
+  "results": [
+   "Technical SEO issues found and fixed",
+   "Each key page focused on clear search terms",
+   "Structured data added for richer Google results",
+   "A content plan to keep growing search visibility"
+  ]
+ },
+ {
+  "slug": "salik-and-co-custom-software",
+  "title": "Salik & Co Custom Software",
+  "client": "Salik & Co",
+  "category": "custom-software",
+  "industry": "Professional Services",
+  "website": "",
+  "logo": "/clients/salik-and-co.png",
+  "services": [
+   "web-application-development",
+   "custom-software-development"
+  ],
+  "image": "/case/salik-and-co-custom-software.webp",
+  "imageAlt": "Salik & Co custom software case study by GTech Digital",
+  "gallery": [
+   {
+    "src": "/case/salik-and-co-custom-software-2.webp",
+    "alt": "Salik & Co Custom Software project overview"
+   }
+  ],
+  "order": 150,
+  "excerpt": "A custom web application that brings Salik & Co’s client work, documents and reporting into one secure system.",
+  "challenge": "Salik & Co is a professional services firm that needed a web application to run its client work in one place. Client information, documents and progress were spread across spreadsheets and email, which made it slow to see where each piece of work stood.",
+  "solution": "We planned and built a custom web application for Salik & Co: secure staff logins with roles, client records, document storage, task and status tracking, and dashboards that show the state of every job at a glance.",
+  "results": [
+   "Client records and documents in one secure place",
+   "Role-based access for staff",
+   "Task and status tracking for every client",
+   "Dashboards that show progress at a glance"
+  ]
+ }
+]
