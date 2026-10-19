@@ -16,9 +16,11 @@ return new class extends Migration
             if (! \Illuminate\Support\Facades\Schema::hasTable($table)) continue;
             foreach ($cols as $c) {
                 if (! \Illuminate\Support\Facades\Schema::hasColumn($table, $c)) continue;
-                DB::table($table)->where($c, 'like', '%/blogs%')->orderBy('id')->each(function ($r) use ($table, $c, $fix) {
-                    DB::table($table)->where('id', $r->id)->update([$c => $fix((string) $r->{$c})]);
-                });
+                // By value, not by id: some of these tables have a different key.
+                foreach (DB::table($table)->where($c, 'like', '%/blogs%')->distinct()->pluck($c) as $v) {
+                    // A clash with an address that is already there (unique column) keeps the old row as it is.
+                    try { DB::table($table)->where($c, $v)->update([$c => $fix((string) $v)]); } catch (\Illuminate\Database\QueryException) {}
+                }
             }
         }
         // A redirect from /blog/x to /blog/x would now loop: remove those.
