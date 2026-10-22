@@ -22,9 +22,9 @@ class GlobalContent
     }
 
     /** @return array{0:int,1:int} [fields changed, fields kept because they were edited] */
-    public static function apply(): array
+    public static function apply(?string $file = null): array
     {
-        $file = database_path('data/content-global.json');
+        $file ??= database_path('data/content-global.json');
         if (! is_file($file)) return [0, 0];
         $d = json_decode((string) file_get_contents($file), true) ?: [];
         $done = $kept = 0;
@@ -48,7 +48,8 @@ class GlobalContent
                 $changed = false;
                 foreach ($fields['sections'] as $id => $c) {
                     foreach ($secs as $i => $s) {
-                        if (($s['id'] ?? null) !== $id) continue;
+                        // "#n" = the section at position n (sections without an id, as on the legal pages).
+                        if (str_starts_with((string) $id, '#') ? $i !== (int) substr($id, 1) : ($s['id'] ?? null) !== $id) continue;
                         [$ok, $v] = $swap($s, $c);
                         if ($ok) { $secs[$i] = $v; $changed = true; }
                         break;
