@@ -13,4 +13,11 @@ return [
         'store' => env('GTECH_PAGE_CACHE_STORE'),            // empty = the default CACHE_STORE
         'ttl' => (int) env('GTECH_PAGE_CACHE_TTL', 43200),    // seconds; 12 hours
     ],
+
+    // Search engines may index only the live domains; every other copy (test domain, staging, local) answers
+    // "noindex" on every page and file. SITE_INDEXING=on or off overrides the check.
+    'indexing' => [
+        'mode' => env('SITE_INDEXING', 'auto'),
+        'hosts' => array_filter(array_map('trim', explode(',', (string) env('SITE_INDEXING_HOSTS', 'gtechdigital.co.uk,www.gtechdigital.co.uk')))),
+    ],
 ];

@@ -28,7 +28,8 @@ class CacheSitePage
         $cacheable = PageCache::enabled() && $request->isMethod('GET') && (! $query || $listing);
         if (! $cacheable) return $this->finish($request, $next($request), false);
 
-        $key = PageCache::key($request->getPathInfo().($query ? '?category='.($query['category'] ?? '').'&page='.($query['page'] ?? '') : ''));
+        // Pages for the live domain and for test copies differ (robots meta), so they are cached apart.
+        $key = PageCache::key((SiteIndexing::allowed($request) ? '' : 'noindex:').$request->getPathInfo().($query ? '?category='.($query['category'] ?? '').'&page='.($query['page'] ?? '') : ''));
         $hit = PageCache::store()->get($key);
         if ($hit) {
             $res = response($hit['body'], 200, $hit['headers']);
