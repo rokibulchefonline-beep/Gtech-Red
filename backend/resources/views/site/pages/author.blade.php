@@ -11,7 +11,7 @@
 @php($list = $posts->slice(($page - 1) * $perPage, $perPage)->values())
 @php($pageUrl = fn (int $n) => $path.($n > 1 ? "?page=$n" : ''))
 @php($role = $a->job_title ? "{$a->job_title} at GTech Digital" : 'Author at GTech Digital')
-@php($desc = \App\Support\Site\Seo::fillDescription((string) $a->bio, "Read articles by {$a->name}, $role, on SEO, marketing, web design and software for UK businesses."))
+@php($desc = \App\Support\Site\Seo::fillDescription((string) $a->bio, "Read articles by {$a->name}, $role, on SEO, marketing, web design and software for businesses in the UK and worldwide."))
 @php($seo = \App\Support\Site\Seo::make($path, ['title' => "{$a->name}, $role".($page > 1 ? " – Page $page" : ''), 'description' => $desc, 'canonical' => $pageUrl($page),
     'og' => ['type' => 'profile', 'image' => $a->photo ?: '']], [
     $S::page(['path' => $path, 'type' => 'ProfilePage', 'name' => $a->name, 'description' => $desc, 'mainEntity' => $S::abs($path).'#person']),

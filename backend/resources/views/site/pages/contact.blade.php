@@ -17,7 +17,7 @@
 @if ($contact['email'])<li><span class="sp-card-ico solid">@icon('lucide:mail', 20)</span><span><small>Email us</small><a href="mailto:{{ $contact['email'] }}">{{ $contact['email'] }}</a></span></li>@endif
 @if ($contact['hours'])<li><span class="sp-card-ico solid">@icon('lucide:clock', 20)</span><span><small>Office hours</small>{{ $contact['hours'] }}</span></li>@endif
 @if ($contact['showAddress'])<li><span class="sp-card-ico solid">@icon('lucide:map-pin', 20)</span><span><small>Visit us</small><address class="contact-addr">{!! implode('<br>', array_map('e', $contact['address'])) !!}</address>@if ($contact['mapsUrl'])<a class="contact-map" href="{{ $contact['mapsUrl'] }}" target="_blank" rel="noopener">Get directions @icon('lucide:arrow-up-right', 14)</a>@endif</span></li>
-@else<li><span class="sp-card-ico solid">@icon('lucide:map-pin', 20)</span><span><small>Where we work</small>Serving businesses across the UK</span></li>@endif
+@else<li><span class="sp-card-ico solid">@icon('lucide:map-pin', 20)</span><span><small>Where we work</small>Serving businesses across the UK and worldwide</span></li>@endif
 </ul>
 <h3>{{ $next['heading'] }}</h3>
 <ol class="contact-next">@foreach ($next['steps'] ?? [] as $i => $n)<li><span>{{ $i + 1 }}</span><div><b>{{ $n['title'] }}</b><p>{{ $n['text'] }}</p></div></li>@endforeach</ol>

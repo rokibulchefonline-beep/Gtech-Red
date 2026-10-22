@@ -84,6 +84,7 @@ class SeedContent extends Command
         // The real blog posts (copied from the old blog), instead of demo posts.
         $this->callSilently('gtech:load-blog');
         $this->callSilently('gtech:load-case-studies');
+        \App\Support\Site\Content\GlobalContent::apply();
         if (! in_array('Changes to These Terms', array_column((array) Page::query()->find('legal~terms')?->sections, 'heading'), true)) \App\Support\Site\LegalContent::apply();
         return self::SUCCESS;
     }

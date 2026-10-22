@@ -26,8 +26,8 @@ class SeoController extends Controller
         $c = \App\Support\Site\Contact::get();
         $link = fn (string $title, string $path, string $note = '') => "- [$title]($base$path)".($note !== '' ? ": $note" : '');
         $out = ['# '.($s['general']['siteName'] ?? 'GTech Digital'), '',
-            '> '.($s['seo']['defaultDescription'] ?: 'GTech Digital is a UK digital agency providing digital marketing, SEO, Google Ads, social media marketing, web design and development, custom software development and branding services.'), '',
-            'Contact: '.implode(' · ', array_filter([$c['email'], ...array_column($c['phones'], 'label'), $c['address'] ? implode(', ', $c['address']) : 'Serving businesses across the UK'])), '',
+            '> '.($s['seo']['defaultDescription'] ?: 'GTech Digital is a London-based digital agency serving businesses across the UK and worldwide with digital marketing, SEO, AEO and GEO, Google Ads, social media marketing, web design and development, custom software development and branding.'), '',
+            'Contact: '.implode(' · ', array_filter([$c['email'], ...array_column($c['phones'], 'label'), $c['address'] ? implode(', ', $c['address']) : 'Serving businesses across the UK and worldwide'])), '',
             '## Services', ''];
         foreach (Repo::groups() as $g) {
             $out[] = $link($g->title, "/services/{$g->slug}", (string) $g->intro);

@@ -8,7 +8,7 @@
     ['q' => 'Will you try to sell me something?', 'a' => 'We will tell you honestly what we would do and what it would cost if you asked us to help. Many businesses use the report to make the fixes themselves, and that is fine too.'],
 ])
 @php($seo = \App\Support\Site\Seo::make('/free-audit', ['title' => 'Free Website and Marketing Audit | GTech Digital', 'absolute' => true,
-    'description' => 'Get a free audit of your website, SEO, Google Ads and social media from a UK specialist. A clear report and a 30-minute call with the quickest wins, with no obligation.'], [
+    'description' => 'Get a free audit of your website, SEO, Google Ads and social media from a London-based specialist, wherever you are. A clear report and a 30-minute call with the quickest wins, with no obligation.'], [
     \App\Support\Site\Schema::page(['path' => '/free-audit', 'name' => 'Free Website and Marketing Audit', 'description' => 'A free audit of your website, SEO, paid ads and social media, with a written report and a call.']),
     \App\Support\Site\Schema::breadcrumb('/free-audit', [['Free Audit', '/free-audit']]),
     \App\Support\Site\Schema::faq('/free-audit', $faqs),
@@ -21,7 +21,7 @@
 <nav class="sp-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>Free Audit</b></nav>
 <p class="sp-hero-eyebrow">Free, no obligation</p>
 <h1>@hl('Get a [[Free Audit]] of Your Website and Marketing')</h1>
-<p class="sp-lead">A UK specialist reviews your website, search rankings, ads and social media, then shows you exactly what is holding you back and the quickest ways to win more customers.</p>
+<p class="sp-lead">A London-based specialist reviews your website, search rankings, ads and social media, then shows you exactly what is holding you back and the quickest ways to win more customers.</p>
 <ul class="sp-hero-points">@foreach (['Written report in 3 to 5 days', '30-minute walkthrough call', 'No obligation, no lock-in'] as $pt)<li>@include('site.c.tick'){{ $pt }}</li>@endforeach</ul>
 </div>
 </section>

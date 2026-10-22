@@ -18,7 +18,7 @@
 @php($rest = $ordered->slice(($page - 1) * $perPage, $perPage)->reject(fn ($p) => $featured && $p->is($featured))->values())
 @php($catName = $cats->first(fn ($c) => $B::slugify($c) === $category))
 @php($pageUrl = fn (int $n) => '/blog'.(($qs = http_build_query(array_filter(['category' => $category, 'page' => $n > 1 ? $n : null]))) ? "?$qs" : ''))
-@php($desc = 'Practical guides on SEO, Google Ads, social media, web design and software from the GTech Digital team, written for UK businesses.')
+@php($desc = 'Practical guides on SEO, Google Ads, social media, web design and software from the GTech Digital team, written for businesses in the UK and worldwide.')
 @php($seo = \App\Support\Site\Seo::make('/blog', ['title' => ! $catName && $page === 1 ? 'GTech Digital Blog | SEO, Marketing, Web & Software Insights' : ($catName ? "$catName Articles" : 'Blog').($page > 1 ? " – Page $page" : '').' | GTech Digital', 'absolute' => true,
     'description' => $desc.($page > 1 ? " Page $page of $pages." : ''), 'canonical' => $term !== '' ? '/blog' : $pageUrl($page), 'noindex' => $term !== ''], [
     \App\Support\Site\Schema::page(['path' => '/blog', 'type' => ['CollectionPage', 'Blog'], 'name' => 'GTech Digital Blog', 'description' => $desc, 'mainEntity' => \App\Support\Site\Schema::abs('/blog').'#list']),
@@ -29,7 +29,7 @@
 <section class="bl-hero-wrap">
 <div class="bl-hero">
 <h1>Digital Marketing <span class="hl">Insights and Guides</span></h1>
-<p>The GTech Digital blog shares practical guides on SEO, AI search, Google Ads, social media marketing, web design and custom software, written by our UK specialists.</p>
+<p>The GTech Digital blog shares practical guides on SEO, AI search, Google Ads, social media marketing, web design and custom software, written by our London-based specialists.</p>
 <form class="bl-search" action="/blog" role="search">@if ($category)<input type="hidden" name="category" value="{{ $category }}">@endif @icon('lucide:search', 18)<label class="sr-only" for="bl-q">Search articles</label><input id="bl-q" name="q" value="{{ $q }}" placeholder="Search articles..."><button type="submit">Search</button></form>
 <nav class="bl-cats" aria-label="Categories"><a href="/blog" class="{{ !$category ? 'on' : '' }}">All Posts</a>@foreach ($cats as $c)<a href="/blog?category={{ $B::slugify($c) }}" class="{{ $category === $B::slugify($c) ? 'on' : '' }}">{{ $c }}</a>@endforeach</nav>
 </div>

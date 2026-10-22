@@ -31,6 +31,12 @@ class Schema
     public static ?string $modified = null;
     private static function today(): string { return self::$modified ?? now()->format('Y-m-d'); }
 
+    /** The UK first (primary market), then the rest of the world. */
+    public static function areaServed(): array
+    {
+        return [['@type' => 'Country', 'name' => 'United Kingdom'], ['@type' => 'Place', 'name' => 'Worldwide']];
+    }
+
     public static function orgNode(): array
     {
         $s = Setting::all_();
@@ -38,12 +44,12 @@ class Schema
         return [
             '@type' => ['Organization', 'ProfessionalService'], '@id' => self::org(), 'name' => $s['general']['siteName'], 'alternateName' => 'Global Tech Digital', 'foundingDate' => '2014', 'url' => self::base().'/',
             'logo' => ['@type' => 'ImageObject', 'url' => self::base().'/logo.png', 'width' => 140, 'height' => 46], 'image' => self::base().'/logo.png',
-            'description' => 'GTech Digital is a UK digital agency providing digital marketing, SEO, Google Ads, social media marketing, web design and development, custom software development and branding services.',
-            'email' => $c['email'], 'telephone' => Contact::tel((string) $c['phone']), 'priceRange' => '££', 'areaServed' => ['@type' => 'Country', 'name' => 'United Kingdom'], 'slogan' => 'Get found on Google and in AI answers, and grow with ads, websites and software.',
+            'description' => 'GTech Digital is a London-based digital agency serving businesses across the UK and worldwide with digital marketing, SEO, AEO and GEO, Google Ads, social media marketing, web design and development, custom software development and branding.',
+            'email' => $c['email'], 'telephone' => Contact::tel((string) $c['phone']), 'priceRange' => '££', 'areaServed' => self::areaServed(), 'slogan' => 'Get found on Google and in AI answers, and grow with ads, websites and software.',
             ...(($ct = Contact::get())['postal'] ? ['address' => $ct['postal']] : []),
             ...($ct['mapsUrl'] ? ['hasMap' => $ct['mapsUrl']] : []),
             ...($ct['geo'] ? ['geo' => $ct['geo']] : []),
-            'contactPoint' => array_map(fn ($ph) => ['@type' => 'ContactPoint', 'contactType' => 'sales', 'email' => $c['email'], 'telephone' => $ph['tel'], 'areaServed' => 'GB', 'availableLanguage' => 'English'], $ct['phones']),
+            'contactPoint' => array_map(fn ($ph) => ['@type' => 'ContactPoint', 'contactType' => 'sales', 'email' => $c['email'], 'telephone' => $ph['tel'], 'areaServed' => ['GB', 'Worldwide'], 'availableLanguage' => 'English'], $ct['phones']),
             'sameAs' => array_values(array_filter(array_map(fn ($x) => $x['url'] ?? '', $s['socials'] ?? []))),
             'knowsAbout' => ['Digital marketing', 'Search engine optimisation', 'Answer engine optimisation', 'Generative engine optimisation', 'Local SEO', 'Google Ads', 'Social media marketing', 'Web design', 'Web development', 'UI/UX design', 'Custom software development', 'Branding', 'Print design', 'Conversion rate optimisation'],
             'hasOfferCatalog' => ['@type' => 'OfferCatalog', 'name' => 'GTech Digital services', 'itemListElement' => Repo::groups()->map(fn ($g) => [
@@ -109,7 +115,7 @@ class Schema
         $p = $o['path'];
         return [
             '@type' => 'Service', '@id' => self::abs($p).'#service', 'name' => $o['name'], 'serviceType' => $o['name'], 'description' => $o['description'], 'url' => self::abs($p),
-            'provider' => self::ref(self::org()), 'areaServed' => ['@type' => 'Country', 'name' => 'United Kingdom'], 'mainEntityOfPage' => self::ref(self::pageId($p)),
+            'provider' => self::ref(self::org()), 'areaServed' => self::areaServed(), 'mainEntityOfPage' => self::ref(self::pageId($p)),
             ...(! empty($o['category']) ? ['category' => $o['category']] : []), ...(! empty($o['audience']) ? ['audience' => ['@type' => 'BusinessAudience', 'name' => $o['audience']]] : []),
             ...($e ? ['keywords' => implode(', ', [$e->kw, ...(array) $e->sec]), 'about' => array_map(fn ($n) => ['@type' => 'Thing', 'name' => $n], (array) $e->ent)] : []),
             ...(! empty($o['related']) ? ['isRelatedTo' => array_map(fn ($r) => ['@type' => 'Service', 'name' => $r['name'], 'url' => self::abs($r['path'])], $o['related'])] : []),

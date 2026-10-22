@@ -1,13 +1,13 @@
 {{-- /case-studies (app/case-studies/page.tsx) --}}
 @extends('site.layout')
-@php($desc = 'Real results from SEO, Google Ads, social media, web design and software projects: more traffic, leads, revenue and sales for UK businesses.')
+@php($desc = 'Real results from SEO, Google Ads, social media, web design and software projects for businesses in the UK and worldwide: more traffic, leads and sales.')
 @php($seo = \App\Support\Site\Seo::make('/case-studies', ['title' => 'Digital Marketing Case Studies | GTech Digital', 'absolute' => true, 'description' => $desc], [
     \App\Support\Site\Schema::page(['path' => '/case-studies', 'type' => 'CollectionPage', 'name' => 'Digital Marketing Case Studies of GTech Digital', 'description' => $desc, 'mainEntity' => \App\Support\Site\Schema::abs('/case-studies').'#list']),
     \App\Support\Site\Schema::breadcrumb('/case-studies', [['Case Studies', '/case-studies']]),
     \App\Support\Site\Schema::itemList('/case-studies', 'GTech Digital case studies', \App\Support\Site\Repo::caseStudies()->map(fn ($d) => [$d->title, "/case-studies/{$d->slug}"])->all()),
 ]))
 @section('content')
-@include('site.c.page-head', ['title' => 'Digital Marketing Case Studies and [[Results]]', 'sub' => 'GTech Digital case studies show measurable results from SEO, Google Ads, social media, web design and custom software projects for UK businesses.'])
+@include('site.c.page-head', ['title' => 'Digital Marketing Case Studies and [[Results]]', 'sub' => 'GTech Digital case studies show measurable results from SEO, Google Ads, social media, web design and custom software projects for businesses across the UK and worldwide.'])
 @php($all = \App\Support\Site\Repo::caseStudies())
 @php($cats = collect(\App\Models\CaseStudy::CATEGORIES)->filter(fn ($l, $k) => $all->contains('category', $k)))
 @php($cat = $cats->has(request('category')) ? request('category') : '')
