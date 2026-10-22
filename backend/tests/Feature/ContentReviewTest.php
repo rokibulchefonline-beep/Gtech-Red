@@ -28,7 +28,7 @@ class ContentReviewTest extends TestCase
             $headings = array_column($p->sections, 'heading');
             $this->assertEmpty(array_filter($headings, fn ($h) => preg_match('/^[A-Za-z0-9 ]+ Marketing: /', (string) $h)), "$slug still has 'X Marketing:' headings");
             $this->assertLessThanOrEqual(160, mb_strlen($p->meta_description), $slug);
-            $this->assertLessThanOrEqual(10, count($p->faqs));
+            $this->assertLessThanOrEqual(12, count($p->faqs)); // 10 + the international and one People Also Ask question (GlobalContent)
         }
         $this->get('/industries/travel')->assertOk()->assertSee('ATOL')->assertSee('How do I market my travel business?');
         $this->get('/industries')->assertOk()->assertSee('Which industries does GTech Digital work with?')->assertSee('"FAQPage"', false);
