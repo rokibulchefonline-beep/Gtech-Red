@@ -32,6 +32,11 @@ class Setting extends Model
         'smtp' => ['host' => '', 'port' => 587, 'secure' => false, 'user' => '', 'pass' => '', 'fromName' => 'GTech Digital', 'fromEmail' => '', 'notifyTo' => '', 'autoReply' => true],
         // Website forms: the privacy notice under each form, and Google reCAPTCHA spam protection (secret encrypted).
         'forms' => ['budgets' => [], 'privacyNotice' => 'We use your details only to reply to your enquiry. See our [Privacy Policy](/privacy-policy).', 'recaptchaSite' => '', 'recaptchaSecret' => '', 'recaptchaVersion' => 'v2', 'recaptchaScore' => 0.5],
+        // SEO > Search engines: indexing, robots.txt, the robots meta tag and the sitemap.
+        'crawl' => ['indexing' => 'auto', 'hosts' => 'gtechdigital.co.uk, www.gtechdigital.co.uk', 'robotsTxt' => '',
+            'metaIndex' => 'index, follow', 'maxSnippet' => '-1', 'maxImagePreview' => 'large', 'maxVideoPreview' => '-1', 'noarchive' => false, 'notranslate' => false,
+            'noindexAuthors' => false, 'noindexBlogPages' => false, 'noindexCaseStudies' => false,
+            'sitemapSections' => ['main', 'services', 'industries', 'landing', 'posts', 'authors', 'cases'], 'sitemapExclude' => '', 'sitemapExtra' => '', 'sitemapLastmod' => true, 'sitemapPriority' => true],
         'company' => ['legalName' => '', 'number' => '', 'address' => '', 'ico' => ''],
         // Two-factor sign-in: off, managers (people who can manage users) or everyone.
         'security' => ['require2fa' => 'off'],

@@ -9,18 +9,13 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Keeps search engines out of every copy of the site that is not the live domain (test, staging, local): each
  * response, images and files included, says "noindex". Google removes pages it already has the next time it
- * crawls them. The live domains are in config/gtech.php (indexing); SITE_INDEXING=on|off in .env overrides.
+ * crawls them. Set in SEO > Search engines (see Crawl); SITE_INDEXING=on|off in .env overrides the admin.
  */
 class SiteIndexing
 {
     public static function allowed(?Request $request = null): bool
     {
-        $mode = strtolower((string) config('gtech.indexing.mode'));
-        if (in_array($mode, ['on', 'true', '1'], true)) return true;
-        if (in_array($mode, ['off', 'false', '0'], true)) return false;
-        $host = strtolower(($request ?? request())->getHost());
-
-        return in_array($host, (array) config('gtech.indexing.hosts'), true);
+        return \App\Support\Site\Crawl::indexable(($request ?? request())->getHost());
     }
 
     public function handle(Request $request, Closure $next): Response

@@ -40,7 +40,7 @@ class Seo
         if ($o?->title) $title = $o->title;
         $description = $o?->description ?: ($base['description'] ?? '');
         $canonical = Schema::abs($o?->canonical ?: ($base['canonical'] ?? $path));
-        $noindex = (bool) ($o?->noindex || ($base['noindex'] ?? false)) || ! \App\Http\Middleware\SiteIndexing::allowed();
+        $noindex = (bool) ($o?->noindex || ($base['noindex'] ?? false));
 
         $og = $base['og'] ?? [];
         // An override image replaces the page's Open Graph block, as on the website.
@@ -58,7 +58,7 @@ class Seo
 
         return [
             'title' => $title, 'description' => $description, 'canonical' => $canonical,
-            'robots' => $noindex ? 'noindex, follow' : '',
+            'robots' => Crawl::meta($noindex, $path),
             'keywords' => implode(',', $base['keywords'] ?? []),
             'og' => array_filter([
                 'og:type' => $og['type'] ?? 'website', 'og:site_name' => $name, 'og:locale' => 'en_GB', 'og:url' => $canonical,
