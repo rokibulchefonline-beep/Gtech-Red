@@ -364,12 +364,35 @@
   // Intro video: play/pause button. The icon and label follow the intended state, as in the React component.
   each('[data-video-toggle]', function (btn) {
     var v = btn.parentElement.querySelector('video'), playing = true;
-    btn.addEventListener('click', function () {
-      if (!v) return;
-      var was = playing;
-      if (v.paused) { var r = v.play(); if (r && r.catch) r.catch(function () {}); playing = true; } else { v.pause(); playing = false; }
-      if (playing !== was) swapIcon(btn);
+    if (!v) return;
+    // The icon follows the video itself, so it stays right when "Sound on" starts playback.
+    var sync = function () {
+      var now = !v.paused;
+      if (now !== playing) { playing = now; swapIcon(btn); }
       btn.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+    };
+    v.addEventListener('play', sync); v.addEventListener('pause', sync);
+    btn.addEventListener('click', function () {
+      if (v.paused) { var r = v.play(); if (r && r.catch) r.catch(function () {}); } else v.pause();
+    });
+  });
+
+  // Intro video sound: the first "Sound on" restarts the advert from the beginning with the voice-over.
+  each('[data-video-sound]', function (btn) {
+    var v = btn.parentElement.querySelector('video'), label = btn.querySelector('span'), started = false;
+    if (!v) return;
+    btn.addEventListener('click', function () {
+      var on = v.muted;
+      v.muted = !on;
+      if (on) {
+        if (!started) { v.currentTime = 0; started = true; }
+        var r = v.play(); if (r && r.catch) r.catch(function () {});
+      }
+      swapIcon(btn);
+      btn.classList.add('used');
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? 'Mute video' : 'Turn sound on');
+      if (label) label.textContent = on ? 'Mute' : 'Sound on';
     });
   });
 

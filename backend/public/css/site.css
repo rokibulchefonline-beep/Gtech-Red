@@ -307,6 +307,11 @@ a{color:inherit;text-decoration:none}
 .who-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .who-play{position:absolute;right:14px;bottom:16px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#111;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:background .2s,color .2s}
 .who-play:hover{background:var(--pink);color:#fff}
+.who-sound{position:absolute;left:14px;bottom:16px;height:40px;padding:0 16px 0 13px;border-radius:999px;border:0;background:rgba(255,255,255,.94);color:#111;display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;font-weight:600;line-height:1;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:background .2s,color .2s}
+.who-sound:hover,.who-sound[aria-pressed=true]{background:var(--pink);color:#fff}
+.who-sound:not(.used)::after{content:"";position:absolute;inset:-4px;border-radius:999px;border:2px solid rgba(255,255,255,.8);animation:who-sound-pulse 2s ease-out infinite;pointer-events:none}
+@keyframes who-sound-pulse{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(1.25)}}
+@media (prefers-reduced-motion:reduce){.who-sound::after{animation:none}}
 .who-eyebrow{margin:0 0 10px;font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--pink)}
 .who h2{margin:0 0 14px;font-size:clamp(26px,3.2vw,40px);line-height:1.15;font-weight:600}
 .who-text{margin:0 0 18px;color:#5b6270;font-size:16px;line-height:1.7}
